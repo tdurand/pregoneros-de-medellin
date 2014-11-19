@@ -10,6 +10,8 @@ define(['jquery',
         'utils/Localization',
         'text!templates/streetwalk/streetWalkViewTemplate.html',
         'text!templates/streetwalk/streetWalkLoadingViewTemplate.html',
+        'text!templates/streetwalk/streetWalkChoosePathStartViewTemplate.html',
+        'text!templates/streetwalk/streetWalkChoosePathEndViewTemplate.html',
         'popcorn'
         ],
 function($, _, Backbone,
@@ -21,7 +23,9 @@ function($, _, Backbone,
                 LOGGER,
                 Localization,
                 streetWalkViewTemplate,
-                streetWalkLoadingViewTemplate){
+                streetWalkLoadingViewTemplate,
+                streetWalkChoosePathStartViewTemplate,
+                streetWalkChoosePathEndViewTemplate){
 
   var StreetWalkView = Backbone.View.extend({
 
@@ -89,6 +93,8 @@ function($, _, Backbone,
         //     self.render();
         // }
 
+        self.firstScroll = true;
+
         self.loadPath();
 
         self.renderLoading();
@@ -105,7 +111,6 @@ function($, _, Backbone,
         if(self.$el.find(".loadingNextWay").length > 0) {
             self.$el.find(".loadingNextWay").show();
             self.$el.find(".streetwalk-title").hide();
-            self.$el.find(".chooseWay").hide();
 
             self.isFirstWay = false;
         }
@@ -171,7 +176,8 @@ function($, _, Backbone,
         var self = this;
 
         //render first still
-        var pathFirstStill = "data/casapare/highres/way00.jpg";
+        self.currentStill = self.way.wayStills.first();
+        var pathFirstStill = self.way.wayStills.first().get("srcLowRes");
 
         self.$el.html(_.template(streetWalkViewTemplate,{
             pathFirstStill:pathFirstStill,
@@ -258,6 +264,32 @@ function($, _, Backbone,
     renderElements: function(imgNb) {
 
         var self = this;
+
+        if(self.firstScroll && imgNb > 1) {
+            self.firstScroll = false;
+        }
+
+
+        if(imgNb >= self.way.wayStills.nbImages-1) {
+            self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
+
+            self.$el.find(".streetwalk-chooseway-end-wrapper").show();
+            self.$el.find(".streetwalk-chooseway-end-wrapper").html(_.template(streetWalkChoosePathEndViewTemplate,{
+                wayConnectionsEnd:self.way.wayConnectionsEnd
+            }));
+        }
+        else if(imgNb === 0) {
+            self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
+
+            self.$el.find(".streetwalk-chooseway-start-wrapper").show();
+            self.$el.find(".streetwalk-chooseway-start-wrapper").html(_.template(streetWalkChoosePathStartViewTemplate,{
+                wayConnectionsStart:self.way.wayConnectionsStart
+            }));
+        }
+        else {
+            self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
+            self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
+        }
 
     },
 

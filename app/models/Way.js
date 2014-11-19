@@ -42,6 +42,7 @@ function($, _, Backbone,
             params.wayPath = GeoUtils.prepareWayPathFromGeoJSONLine(params.wayPath,self.nbStills);
             self.wayPath = params.wayPath;
             self.wayConnectionsEnd = params.wayConnectionsEnd;
+            self.wayConnectionsStart = params.wayConnectionsStart;
 
             //Create the stills collection for this way
             self.wayStills = new Stills();

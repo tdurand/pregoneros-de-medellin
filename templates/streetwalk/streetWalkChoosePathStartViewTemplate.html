@@ -1,0 +1,5 @@
+<div class="streetwalk-chooseway">
+<% _.each(wayConnectionsStart, function(wayConnection) { %>  
+    <a href="#streetwalk/<%= wayConnection.name %>"><img class="arrow" src="../images/arrow-<%= wayConnection.direction %>-outline.svg" ></a>
+<% }); %>
+</div>

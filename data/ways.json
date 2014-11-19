@@ -1,10 +1,112 @@
 [
   {
-    "wayName":"casapare",
-    "nbStills":74,
-    "wayPath":[[-75.61152577400208,6.257881845167216],[-75.61136752367018,6.257825854403986]],
+    "wayName":"carabobo-cl52-cl51",
+    "nbStills":306,
+    "wayPath":[[-75.56892156600952,6.251720158996845],[-75.56925684213638,6.250976272456896]],
     "wayConnectionsEnd":[
+                {
+                    "direction": "left",
+                    "name":"cl51-carabobo-cr51"
+                },
+                {
+                    "direction": "right",
+                    "name":"cl51-carabobo-cr53"
+                }
+    ],
+    "wayConnectionsStart":[
+    ]
+  },
+  {
+    "wayName":"carabobo-cl51-cl52",
+    "nbStills":254,
+    "wayPath":[[-75.56925684213638,6.250976272456896],[-75.56892156600952,6.251720158996845]],
+    "wayConnectionsEnd":[
+    ],
+    "wayConnectionsStart":[
+        {
+            "direction": "left",
+            "name":"cl51-carabobo-cr53"
+        },
+        {
+            "direction": "right",
+            "name":"cl51-carabobo-cr51"
+        }
+    ]
+  },
+  {
+    "wayName":"cl51-carabobo-cr53",
+    "nbStills":290,
+    "wayPath":[[-75.56925415992737,6.250981604980651],[-75.57004272937775,6.2513442164690876]],
+    "wayConnectionsEnd":[
+                {
+                    "direction": "right",
+                    "name":"cr53-cl51-cl52-cl52-cr53-carabobo"
+                }
+    ],
+    "wayConnectionsStart":[
+        {
+            "direction": "backward",
+            "name":"cl51-carabobo-cr51"
+        },
+        {
+            "direction": "right",
+            "name":"carabobo-cl51-cl52"
+        }
+    ]
+  },
+  {
+    "wayName":"cl51-cr53-carabobo",
+    "nbStills":260,
+    "wayPath":[[-75.57004272937775,6.2513442164690876],[-75.56925415992737,6.250981604980651]],
+    "wayConnectionsEnd":[
+                {
+                    "direction": "left",
+                    "name":"carabobo-cl51-cl52"
+                },
+                {
+                    "direction": "forward",
+                    "name":"cl51-carabobo-cr51"
+                }
+    ],
+    "wayConnectionsStart":[
+                {
+                    "direction": "left",
+                    "name":"cr53-cl51-cl52-cl52-cr53-carabobo"
+                }
+    ]
+  },
+  {
+    "wayName":"cl51-carabobo-cr51",
+    "nbStills":436,
+    "wayPath":[[-75.56925684213638,6.2509736061949805],[-75.56834489107132,6.250515008945546]],
+    "wayConnectionsEnd":[
+    ],
+    "wayConnectionsStart":[
+        {
+            "direction": "left",
+            "name":"carabobo-cl51-cl52"
+        },
+        {
+            "direction": "backward",
+            "name":"cl51-carabobo-cr53"
+        }
+    ]
+  },
+  {
+    "wayName":"cl51-cr51-carabobo",
+    "nbStills":316,
+    "wayPath":[[-75.56834489107132,6.250515008945546],[-75.56925684213638,6.2509736061949805]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"cl51-carabobo-cr53"
+        },
+        {
+            "direction": "right",
+            "name":"carabobo-cl51-cl52"
+        }
     ] 
   }
 ]
+  
   

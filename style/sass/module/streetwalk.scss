@@ -10,6 +10,28 @@
     right:20px;
 }
 
+.streetwalk-chooseway-wrapper {
+    position: fixed;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+
+.streetwalk-chooseway {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /*transform*/
+    -webkit-transform:translate(-50%, -50%);
+       -moz-transform:translate(-50%, -50%);
+        -ms-transform:translate(-50%, -50%);
+         -o-transform:translate(-50%, -50%);
+            transform:translate(-50%, -50%);
+}
+
 .streetwalk-control {
     position: fixed;
     bottom:20px;
