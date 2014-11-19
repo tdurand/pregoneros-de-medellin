@@ -1,0 +1,615 @@
+/* line 3, ../sass/base.scss */
+* {
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 14, ../sass/base.scss */
+body {
+  -ms-touch-action: none;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: none;
+  color: #2f2f2f;
+  font-family: 'FilbertBrush';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* line 24, ../sass/base.scss */
+input,
+textarea {
+  -webkit-user-select: text;
+}
+
+/* line 28, ../sass/base.scss */
+img {
+  border: none;
+}
+
+/* line 4, ../sass/layout/layout.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 8, ../sass/layout/layout.scss */
+.page {
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+@font-face {
+  font-family: 'FilbertBrush';
+  src: url("../../fonts/2C7B89_0_0.eot");
+  src: url("../../fonts/2C7B89_0_0.eot?#iefix") format("embedded-opentype"), url("../../fonts/2C7B89_0_0.woff2") format("woff2"), url("../../fonts/2C7B89_0_0.woff") format("woff"), url("../../fonts/2C7B89_0_0.ttf") format("truetype");
+}
+/* line 1, ../sass/module/streetwalk.scss */
+#streetwalk {
+  height: 100%;
+}
+
+/* line 5, ../sass/module/streetwalk.scss */
+.streetwalk-control {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+/* line 10, ../sass/module/streetwalk.scss */
+.streetwalk-control .toggle-sounds {
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+}
+/* line 16, ../sass/module/streetwalk.scss */
+.streetwalk-control .toggle-sounds[data-state="muted"] {
+  background-image: url("../../images/mutesound.svg");
+}
+/* line 20, ../sass/module/streetwalk.scss */
+.streetwalk-control .toggle-sounds[data-state="normal"] {
+  background-image: url("../../images/unmutesound.svg");
+}
+
+/* line 27, ../sass/module/streetwalk.scss */
+.streetwalk-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+}
+/* line 36, ../sass/module/streetwalk.scss */
+.streetwalk-title .logo {
+  height: 30%;
+  min-width: 320px;
+  max-width: 600px;
+  max-height: 30%;
+}
+/* line 43, ../sass/module/streetwalk.scss */
+.streetwalk-title .description {
+  color: white;
+  width: 100%;
+  min-width: 320px;
+  max-width: 700px;
+  max-height: 30%;
+  margin: 0 auto;
+}
+@media screen and (max-width: 700px) {
+  /* line 52, ../sass/module/streetwalk.scss */
+  .streetwalk-title .description {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 700px) and (max-width: 1300px) {
+  /* line 59, ../sass/module/streetwalk.scss */
+  .streetwalk-title .description {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1300px) {
+  /* line 65, ../sass/module/streetwalk.scss */
+  .streetwalk-title .description {
+    width: 50%;
+  }
+}
+/* line 72, ../sass/module/streetwalk.scss */
+.streetwalk-title .description h2 {
+  margin: 1em;
+  font-size: 1.5rem;
+  line-height: 1.7rem;
+}
+/* line 78, ../sass/module/streetwalk.scss */
+.streetwalk-title .description p {
+  font-size: 1.5rem;
+}
+/* line 83, ../sass/module/streetwalk.scss */
+.streetwalk-title .scrolltostart {
+  height: 40%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+/* line 90, ../sass/module/streetwalk.scss */
+.streetwalk-title .scrolltostart img, .streetwalk-title .scrolltostart svg {
+  height: 100%;
+}
+/* line 95, ../sass/module/streetwalk.scss */
+.streetwalk-title #scrollToStartLoaded {
+  display: none;
+}
+
+/* line 102, ../sass/module/streetwalk.scss */
+.streetwalkImg, .element-fixed, .blurImg {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 112, ../sass/module/streetwalk.scss */
+.launching {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 119, ../sass/module/streetwalk.scss */
+.launching-content {
+  text-align: center;
+  color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  /*transform*/
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+/* line 136, ../sass/module/streetwalk.scss */
+.launching-content .launchinglogo {
+  width: 40%;
+}
+/* line 140, ../sass/module/streetwalk.scss */
+.launching-content .launching-emailgroup {
+  width: 60%;
+  margin: 0 auto;
+}
+/* line 145, ../sass/module/streetwalk.scss */
+.launching-content .launching-emailinput-label {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+/* line 151, ../sass/module/streetwalk.scss */
+.launching-content .launching-emailinput {
+  width: 100%;
+  height: 2.6rem;
+  font-size: 1.4rem;
+  font-family: "FilbertBrush";
+  padding: 0.6rem;
+  border: none;
+  -webkit-box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
+}
+/* line 162, ../sass/module/streetwalk.scss */
+.launching-content .launching-unlocklabel {
+  margin-top: 0.5rem;
+  font-size: 1.3rem;
+  color: #FFCD4B;
+  text-align: center;
+}
+/* line 169, ../sass/module/streetwalk.scss */
+.launching-content .launching-errorsignup {
+  color: red;
+}
+/* line 173, ../sass/module/streetwalk.scss */
+.launching-content .launching-button {
+  cursor: pointer;
+  border-radius: 1.5rem;
+  border: none;
+  height: 3rem;
+  margin: 1rem;
+  padding: 0.6rem;
+  font-family: "FilbertBrush";
+  font-size: 1.4rem;
+  display: inline-block;
+  line-height: 2rem;
+  text-decoration: none;
+  padding: 0.6rem;
+  box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
+}
+/* line 194, ../sass/module/streetwalk.scss */
+.launching-content .launching-button-subscribe {
+  margin-top: 0;
+  font-size: 1.7rem;
+  color: #009788;
+  background: #F9BE4C;
+}
+/* line 202, ../sass/module/streetwalk.scss */
+.launching-content .launching-button-subscribe:active {
+  color: #005650;
+  background: #E2A63B;
+}
+/* line 208, ../sass/module/streetwalk.scss */
+.launching-content .launching-button-subscribe[disabled="disabled"] {
+  color: #005650;
+  background: #E2A63B;
+}
+/* line 215, ../sass/module/streetwalk.scss */
+.launching-content .launching-button-share {
+  color: #FFFFFF;
+  background: #00B99B;
+}
+/* line 219, ../sass/module/streetwalk.scss */
+.launching-content .launching-button-share:active {
+  color: #D1ECE6;
+  background: #00B99B;
+}
+/* line 225, ../sass/module/streetwalk.scss */
+.launching-content .launchingfacebook {
+  padding-top: 1rem;
+  width: 50%;
+  margin: 0 auto;
+  display: block;
+}
+/* line 232, ../sass/module/streetwalk.scss */
+.launching-content .launching-facebookicon {
+  width: 50%;
+  max-width: 396px;
+}
+/* line 237, ../sass/module/streetwalk.scss */
+.launching-content .launching-signup-thanks {
+  max-height: 0;
+  overflow: hidden;
+  /* Set our transitions up. */
+  -webkit-transition: max-height 0.8s;
+  -moz-transition: max-height 0.8s;
+  transition: max-height 0.8s;
+}
+/* line 246, ../sass/module/streetwalk.scss */
+.launching-content .launching-signup-thanks.show {
+  max-height: 1000px;
+}
+/* line 250, ../sass/module/streetwalk.scss */
+.launching-content .launching-signup-thanks h2 {
+  margin: 1em;
+}
+/* line 254, ../sass/module/streetwalk.scss */
+.launching-content .launching-signup-thanks .launching-bonusvideo {
+  margin-bottom: 1em;
+  width: 500px;
+  height: 281px;
+  margin: 0 auto;
+}
+/* line 260, ../sass/module/streetwalk.scss */
+.launching-content .launching-signup-thanks .launching-bonusvideo.fullscreen {
+  width: 100%;
+  height: 100%;
+}
+/* line 267, ../sass/module/streetwalk.scss */
+.launching-content .launching-separatorline {
+  width: 60%;
+  fill: #FFF;
+}
+@media screen and (max-width: 700px) {
+  /* line 274, ../sass/module/streetwalk.scss */
+  .launching-content {
+    width: 100%;
+  }
+  /* line 278, ../sass/module/streetwalk.scss */
+  .launching-content .launchingfacebook {
+    width: 100%;
+  }
+  /* line 282, ../sass/module/streetwalk.scss */
+  .launching-content .launchinglogo {
+    width: 55%;
+  }
+}
+@media screen and (min-width: 700px) and (max-width: 1300px) {
+  /* line 288, ../sass/module/streetwalk.scss */
+  .launching-content {
+    width: 70%;
+  }
+  /* line 292, ../sass/module/streetwalk.scss */
+  .launching-content .launchingfacebook {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1300px) {
+  /* line 298, ../sass/module/streetwalk.scss */
+  .launching-content {
+    width: 50%;
+  }
+}
+
+/* line 304, ../sass/module/streetwalk.scss */
+.trame-video {
+  background: url("../../images/trame-video.png") repeat;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  transition: opacity 0.5s ease;
+  -webkit-transition: opacity 0.5s ease;
+  -moz-transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+/* line 315, ../sass/module/streetwalk.scss */
+body.not-moving .trame-video {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  -webkit-transition: opacity 0.5s ease;
+  -moz-transition: opacity 0.5s ease;
+}
+
+/* line 3, ../sass/module/loading.scss */
+.streetwalk-loading {
+  width: 100%;
+  height: 100%;
+  background-image: url("../../images/loadingbackground.jpg");
+  background-size: cover;
+}
+
+/* line 10, ../sass/module/loading.scss */
+.streetwalk-loading-text {
+  position: absolute;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* line 5, ../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 14, ../../../../../.rvm/gems/ruby-2.1.3/gems/susy-2.1.3/sass/susy/language/susy/_box-sizing.scss */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 3, ../sass/module/landing.scss */
+html, body {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+}
+/* line 12, ../../../../../.rvm/gems/ruby-2.1.3/gems/susy-2.1.3/sass/susy/output/support/_clearfix.scss */
+html:after, body:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
+/* line 8, ../sass/module/landing.scss */
+.page {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  display: none;
+}
+/* line 12, ../../../../../.rvm/gems/ruby-2.1.3/gems/susy-2.1.3/sass/susy/output/support/_clearfix.scss */
+.page:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
+/* line 14, ../sass/module/landing.scss */
+.main {
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  background-image: url("../../images/texture_full_hq.jpg");
+  background-size: cover;
+  height: 70%;
+  position: relative;
+}
+
+/* line 25, ../sass/module/landing.scss */
+.top {
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  height: 30%;
+  position: relative;
+}
+/* line 32, ../sass/module/landing.scss */
+.top .wrap-top-bar {
+  position: absolute;
+  height: 80%;
+  top: 20%;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #bd750f;
+  opacity: 0.6;
+}
+/* line 42, ../sass/module/landing.scss */
+.top .wrap-top-bar .top-bar {
+  position: absolute;
+  height: 60%;
+  top: 20%;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #8d3e00;
+  opacity: 1;
+}
+
+/* line 56, ../sass/module/landing.scss */
+.middle {
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  height: 70%;
+  position: relative;
+}
+/* line 62, ../sass/module/landing.scss */
+.middle .logo {
+  width: 32.20339%;
+  float: left;
+  margin-left: 8.47458%;
+  margin-right: -100%;
+  height: 100%;
+  background-image: url("../../images/logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+/* line 72, ../sass/module/landing.scss */
+.middle .description {
+  width: 66.10169%;
+  float: left;
+  margin-left: 33.89831%;
+  margin-right: -100%;
+  height: 120%;
+  position: absolute;
+  bottom: 0;
+  border-style: solid;
+  border-width: 111px 214px 51px 297px;
+  -webkit-border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
+  -moz-border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
+  border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
+}
+/* line 86, ../sass/module/landing.scss */
+.middle .description .description-title {
+  width: 50%;
+  height: 30%;
+  margin: 0 auto;
+  background-image: url("../../images/title_description.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+/* line 97, ../sass/module/landing.scss */
+.middle .description .description-text {
+  margin-top: 1rem;
+  font-family: absender;
+  font-size: 1.5rem;
+  text-align: justify;
+  color: #FFFFFF;
+}
+/* line 116, ../sass/module/landing.scss */
+.middle .separator {
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  position: absolute;
+  bottom: -12.5%;
+  z-index: 20;
+  height: 25%;
+  background-image: url("../../images/separator_bottom.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* line 131, ../sass/module/landing.scss */
+.landingpage-video-frame {
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background-image: url("../../images/landing-video-firstframe.jpg");
+  background-size: cover;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 0;
+}
+
+/* line 145, ../sass/module/landing.scss */
+.landingpage-video {
+  height: 0;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+/* line 155, ../sass/module/landing.scss */
+.landingpage-video .iframe {
+  width: 100%;
+}

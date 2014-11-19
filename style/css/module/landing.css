@@ -1,0 +1,240 @@
+/* line 5, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 14, ../../../../../../.rvm/gems/ruby-2.1.3/gems/susy-2.1.3/sass/susy/language/susy/_box-sizing.scss */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 3, ../../sass/module/landing.scss */
+html, body {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+}
+/* line 12, ../../../../../../.rvm/gems/ruby-2.1.3/gems/susy-2.1.3/sass/susy/output/support/_clearfix.scss */
+html:after, body:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
+/* line 8, ../../sass/module/landing.scss */
+.page {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  display: none;
+}
+/* line 12, ../../../../../../.rvm/gems/ruby-2.1.3/gems/susy-2.1.3/sass/susy/output/support/_clearfix.scss */
+.page:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
+/* line 14, ../../sass/module/landing.scss */
+.main {
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  background-image: url("../../images/texture_full_hq.jpg");
+  background-size: cover;
+  height: 70%;
+  position: relative;
+}
+
+/* line 25, ../../sass/module/landing.scss */
+.top {
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  height: 30%;
+  position: relative;
+}
+/* line 32, ../../sass/module/landing.scss */
+.top .wrap-top-bar {
+  position: absolute;
+  height: 80%;
+  top: 20%;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #bd750f;
+  opacity: 0.6;
+}
+/* line 42, ../../sass/module/landing.scss */
+.top .wrap-top-bar .top-bar {
+  position: absolute;
+  height: 60%;
+  top: 20%;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #8d3e00;
+  opacity: 1;
+}
+
+/* line 56, ../../sass/module/landing.scss */
+.middle {
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  height: 70%;
+  position: relative;
+}
+/* line 62, ../../sass/module/landing.scss */
+.middle .logo {
+  width: 32.20339%;
+  float: left;
+  margin-left: 8.47458%;
+  margin-right: -100%;
+  height: 100%;
+  background-image: url("../../images/logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+/* line 72, ../../sass/module/landing.scss */
+.middle .description {
+  width: 66.10169%;
+  float: left;
+  margin-left: 33.89831%;
+  margin-right: -100%;
+  height: 120%;
+  position: absolute;
+  bottom: 0;
+  border-style: solid;
+  border-width: 111px 214px 51px 297px;
+  -webkit-border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
+  -moz-border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
+  border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
+}
+/* line 86, ../../sass/module/landing.scss */
+.middle .description .description-title {
+  width: 50%;
+  height: 30%;
+  margin: 0 auto;
+  background-image: url("../../images/title_description.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+/* line 97, ../../sass/module/landing.scss */
+.middle .description .description-text {
+  margin-top: 1rem;
+  font-family: absender;
+  font-size: 1.5rem;
+  text-align: justify;
+  color: #FFFFFF;
+}
+/* line 116, ../../sass/module/landing.scss */
+.middle .separator {
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  position: absolute;
+  bottom: -12.5%;
+  z-index: 20;
+  height: 25%;
+  background-image: url("../../images/separator_bottom.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* line 131, ../../sass/module/landing.scss */
+.landingpage-video-frame {
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background-image: url("../../images/landing-video-firstframe.jpg");
+  background-size: cover;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 0;
+}
+
+/* line 145, ../../sass/module/landing.scss */
+.landingpage-video {
+  height: 0;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+/* line 155, ../../sass/module/landing.scss */
+.landingpage-video .iframe {
+  width: 100%;
+}

@@ -1,0 +1,158 @@
+@import "grids";
+
+html,body {
+    @include container;
+    height: 100%;
+}
+
+.page {
+    @include container;
+    height: 100%;
+    display: none;
+}
+
+.main {
+    @include span(12);
+
+    background-image: url("../../images/texture_full_hq.jpg");
+    background-size:cover;
+
+    height: 70%;
+
+    position: relative;
+}
+
+.top {
+     @include span(12);
+
+     height:30%;
+
+     position: relative;
+
+     .wrap-top-bar {
+        position:absolute;
+        height: 80%;
+        top:20%;
+
+        @include span(12);
+
+        background-color: #bd750f;
+        opacity: 0.6;
+
+        .top-bar {
+            position:absolute;
+            height: 60%;
+            top:20%;
+
+            @include span(12);
+
+            background-color: #8d3e00;
+            opacity: 1;
+        }
+
+     }  
+}
+
+.middle {
+    @include span(12);
+
+    height:70%;
+    position:relative;
+
+    .logo {
+        @include span(isolate 4 at 2);
+
+        height: 100%;
+
+        background-image: url("../../images/logo.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .description {
+        @include span(isolate 8 at 5);
+
+        height: 120%;
+
+        position: absolute;
+        bottom:0;
+
+        border-style: solid;
+        border-width: 111px 214px 51px 297px;
+        -webkit-border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
+        -moz-border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
+        border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
+
+        .description-title {
+
+            width: 50%;
+            height: 30%;
+            margin: 0 auto;
+
+            background-image: url("../../images/title_description.png");
+            background-size: contain;
+            background-repeat:no-repeat;
+        }
+
+        .description-text {
+           
+           margin-top:1rem;
+           font-family : absender;
+           font-size : 1.5rem;
+           text-align: justify;
+           color : #FFFFFF;
+        }
+
+        .description-btnenter {
+            // font-family: "ABOVEA DEMO VERSION";
+            // color:#F5CB48;
+            // font-size:4rem;
+            // -webkit-text-stroke-width: 1rem;
+            // -webkit-text-stroke-color: #a6360e;
+        }
+
+    }
+
+    .separator {
+        @include span(12);
+        position: absolute;
+        bottom:-12.5%;
+        z-index: 20;
+
+        height: 25%;
+
+        background-image: url("../../images/separator_bottom.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
+
+.landingpage-video-frame {
+    height: 100%;
+    width: 100%;
+    z-index:-1;
+
+    background-image: url("../../images/landing-video-firstframe.jpg"); 
+    background-size:cover;
+
+    position:absolute;
+    bottom:0;
+    top:0;
+    right:0;
+}
+
+.landingpage-video {
+    height: 0;
+    width: 100%;
+
+    position:absolute;
+    bottom:0;
+    right:0;
+
+    z-index:-1;
+
+    .iframe {
+        width: 100%;
+    }
+}

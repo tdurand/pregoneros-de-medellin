@@ -1,0 +1,33 @@
+/* line 3, ../sass/base.scss */
+* {
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 14, ../sass/base.scss */
+body {
+  -ms-touch-action: none;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: none;
+  color: #2f2f2f;
+  font-family: 'FilbertBrush';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* line 24, ../sass/base.scss */
+input,
+textarea {
+  -webkit-user-select: text;
+}
+
+/* line 28, ../sass/base.scss */
+img {
+  border: none;
+}
