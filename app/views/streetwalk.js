@@ -46,6 +46,28 @@ function($, _, Backbone,
         self.wayName = params.wayName;
     },
 
+    initMap: function() {
+        var self = this;
+
+        self.map = L.mapbox.map('streetwalk-map', 'tdurand.jn29943n',{
+            accessToken: 'pk.eyJ1IjoidGR1cmFuZCIsImEiOiI0T1ZEWlRVIn0.1PEGeiEWz6RUBfZq9Bvy7Q',
+            zoomControl: false,
+            attributionControl: false
+        });
+
+
+        self.map.on("load", function() {
+            self.mapLoaded = true;
+            self.updateMarkerPosition(self.currentStill.id);
+
+            //Center map every 500ms
+            //TODO ONLY IF POSITION CHANGED
+            setInterval(function() {
+                self.map.panTo(self.way.wayPath[self.currentStill.id]);
+            },500);
+        });
+    },
+
     initSounds: function() {
         var self = this;
 
@@ -122,6 +144,28 @@ function($, _, Backbone,
         }
     },
 
+    updateMarkerPosition: function(stillId) {
+        var self = this;
+
+        if(!self.mapLoaded) {
+            return;
+        }
+
+        if(self.markerMap) {
+            self.markerMap.setLatLng(self.way.wayPath[stillId]);
+        }
+        else {
+            if(self.map && self.way.wayPath) {
+                self.markerMap = L.marker(self.way.wayPath[stillId]).addTo(self.map);
+                if(stillId <= 1) {
+                    self.map.panTo(self.way.wayPath[stillId]);
+                }
+            }
+            
+        }
+        
+    },
+
     render:function() {
 
         var self = this;
@@ -191,6 +235,8 @@ function($, _, Backbone,
 
             LOGGER.debug("Load IMG NB instead:" +self.currentStill.id);
         }
+
+        self.updateMarkerPosition(self.currentStill.id);
 
         $(self.elImg).attr("src", self.currentStill.get("srcLowRes"));
 
