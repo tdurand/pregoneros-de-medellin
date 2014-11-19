@@ -1,1 +1,315 @@
-#streetwalk{height:100%}.streetwalk-control{position:fixed;bottom:20px;right:20px}.streetwalk-control .toggle-sounds{width:3rem;height:3rem;cursor:pointer}.streetwalk-control .toggle-sounds[data-state="muted"]{background-image:url("../../images/mutesound.svg")}.streetwalk-control .toggle-sounds[data-state="normal"]{background-image:url("../../images/unmutesound.svg")}.streetwalk-title{position:absolute;top:0;left:0;bottom:0;right:0;text-align:center}.streetwalk-title .logo{height:30%;min-width:320px;max-width:600px;max-height:30%}.streetwalk-title .description{color:white;width:100%;min-width:320px;max-width:700px;max-height:30%;margin:0 auto}@media screen and (max-width: 700px){.streetwalk-title .description{width:100%}}@media screen and (min-width: 700px) and (max-width: 1300px){.streetwalk-title .description{width:70%}}@media screen and (min-width: 1300px){.streetwalk-title .description{width:50%}}.streetwalk-title .description h2{margin:1em;font-size:1.5rem;line-height:1.7rem}.streetwalk-title .description p{font-size:1.5rem}.streetwalk-title .scrolltostart{height:40%;position:absolute;bottom:0;right:0;left:0}.streetwalk-title .scrolltostart img,.streetwalk-title .scrolltostart svg{height:100%}.streetwalk-title #scrollToStartLoaded{display:none}.streetwalkImg,.element-fixed,.blurImg{position:fixed;top:0;bottom:0;right:0;left:0;width:100%;height:100%}.launching{display:none;position:absolute;width:100%;height:100%}.launching-content{text-align:center;color:white;position:absolute;left:50%;top:50%;-webkit-transform:translate(-50%, -50%);-moz-transform:translate(-50%, -50%);-ms-transform:translate(-50%, -50%);-o-transform:translate(-50%, -50%);transform:translate(-50%, -50%)}.launching-content .launchinglogo{width:40%}.launching-content .launching-emailgroup{width:60%;margin:0 auto}.launching-content .launching-emailinput-label{margin-top:1rem;margin-bottom:1rem;text-align:left}.launching-content .launching-emailinput{width:100%;height:2.6rem;font-size:1.4rem;font-family:"FilbertBrush";padding:0.6rem;border:none;-webkit-box-shadow:7px 7px 5px 0px rgba(0,0,0,0.75)}.launching-content .launching-unlocklabel{margin-top:0.5rem;font-size:1.3rem;color:#FFCD4B;text-align:center}.launching-content .launching-errorsignup{color:red}.launching-content .launching-button{cursor:pointer;border-radius:1.5rem;border:none;height:3rem;margin:1rem;padding:0.6rem;font-family:"FilbertBrush";font-size:1.4rem;display:inline-block;line-height:2rem;text-decoration:none;padding:0.6rem;box-shadow:7px 7px 5px 0px rgba(0,0,0,0.75);-webkit-box-shadow:7px 7px 5px 0px rgba(0,0,0,0.75);-moz-box-shadow:7px 7px 5px 0px rgba(0,0,0,0.75)}.launching-content .launching-button-subscribe{margin-top:0;font-size:1.7rem;color:#009788;background:#F9BE4C}.launching-content .launching-button-subscribe:active{color:#005650;background:#E2A63B}.launching-content .launching-button-subscribe[disabled="disabled"]{color:#005650;background:#E2A63B}.launching-content .launching-button-share{color:#FFFFFF;background:#00B99B}.launching-content .launching-button-share:active{color:#D1ECE6;background:#00B99B}.launching-content .launchingfacebook{padding-top:1rem;width:50%;margin:0 auto;display:block}.launching-content .launching-facebookicon{width:50%;max-width:396px}.launching-content .launching-signup-thanks{max-height:0;overflow:hidden;-webkit-transition:max-height 0.8s;-moz-transition:max-height 0.8s;transition:max-height 0.8s}.launching-content .launching-signup-thanks.show{max-height:1000px}.launching-content .launching-signup-thanks h2{margin:1em}.launching-content .launching-signup-thanks .launching-bonusvideo{margin-bottom:1em;width:500px;height:281px;margin:0 auto}.launching-content .launching-signup-thanks .launching-bonusvideo.fullscreen{width:100%;height:100%}.launching-content .launching-separatorline{width:60%;fill:#FFF}@media screen and (max-width: 700px){.launching-content{width:100%}.launching-content .launchingfacebook{width:100%}.launching-content .launchinglogo{width:55%}}@media screen and (min-width: 700px) and (max-width: 1300px){.launching-content{width:70%}.launching-content .launchingfacebook{width:70%}}@media screen and (min-width: 1300px){.launching-content{width:50%}}.trame-video{background:url("../../images/trame-video.png") repeat;height:100%;position:fixed;width:100%;transition:opacity 0.5s ease;-webkit-transition:opacity 0.5s ease;-moz-transition:opacity 0.5s ease;opacity:1}body.not-moving .trame-video{opacity:0;transition:opacity 0.5s ease;-webkit-transition:opacity 0.5s ease;-moz-transition:opacity 0.5s ease}
+/* line 1, ../../sass/module/streetwalk.scss */
+#streetwalk {
+  height: 100%;
+}
+
+/* line 5, ../../sass/module/streetwalk.scss */
+.streetwalk-map {
+  width: 200px;
+  height: 200px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+/* line 13, ../../sass/module/streetwalk.scss */
+.streetwalk-control {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+/* line 18, ../../sass/module/streetwalk.scss */
+.streetwalk-control .toggle-sounds {
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+}
+/* line 24, ../../sass/module/streetwalk.scss */
+.streetwalk-control .toggle-sounds[data-state="muted"] {
+  background-image: url("../../images/mutesound.svg");
+}
+/* line 28, ../../sass/module/streetwalk.scss */
+.streetwalk-control .toggle-sounds[data-state="normal"] {
+  background-image: url("../../images/unmutesound.svg");
+}
+
+/* line 35, ../../sass/module/streetwalk.scss */
+.streetwalk-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+}
+/* line 44, ../../sass/module/streetwalk.scss */
+.streetwalk-title .logo {
+  height: 30%;
+  min-width: 320px;
+  max-width: 600px;
+  max-height: 30%;
+}
+/* line 51, ../../sass/module/streetwalk.scss */
+.streetwalk-title .description {
+  color: white;
+  width: 100%;
+  min-width: 320px;
+  max-width: 700px;
+  max-height: 30%;
+  margin: 0 auto;
+}
+@media screen and (max-width: 700px) {
+  /* line 60, ../../sass/module/streetwalk.scss */
+  .streetwalk-title .description {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 700px) and (max-width: 1300px) {
+  /* line 67, ../../sass/module/streetwalk.scss */
+  .streetwalk-title .description {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1300px) {
+  /* line 73, ../../sass/module/streetwalk.scss */
+  .streetwalk-title .description {
+    width: 50%;
+  }
+}
+/* line 80, ../../sass/module/streetwalk.scss */
+.streetwalk-title .description h2 {
+  margin: 1em;
+  font-size: 1.5rem;
+  line-height: 1.7rem;
+}
+/* line 86, ../../sass/module/streetwalk.scss */
+.streetwalk-title .description p {
+  font-size: 1.5rem;
+}
+/* line 91, ../../sass/module/streetwalk.scss */
+.streetwalk-title .scrolltostart {
+  height: 40%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+/* line 98, ../../sass/module/streetwalk.scss */
+.streetwalk-title .scrolltostart img, .streetwalk-title .scrolltostart svg {
+  height: 100%;
+}
+/* line 103, ../../sass/module/streetwalk.scss */
+.streetwalk-title #scrollToStartLoaded {
+  display: none;
+}
+
+/* line 110, ../../sass/module/streetwalk.scss */
+.streetwalkImg, .element-fixed, .blurImg {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 120, ../../sass/module/streetwalk.scss */
+.launching {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 127, ../../sass/module/streetwalk.scss */
+.launching-content {
+  text-align: center;
+  color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  /*transform*/
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+/* line 144, ../../sass/module/streetwalk.scss */
+.launching-content .launchinglogo {
+  width: 40%;
+}
+/* line 148, ../../sass/module/streetwalk.scss */
+.launching-content .launching-emailgroup {
+  width: 60%;
+  margin: 0 auto;
+}
+/* line 153, ../../sass/module/streetwalk.scss */
+.launching-content .launching-emailinput-label {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+/* line 159, ../../sass/module/streetwalk.scss */
+.launching-content .launching-emailinput {
+  width: 100%;
+  height: 2.6rem;
+  font-size: 1.4rem;
+  font-family: "FilbertBrush";
+  padding: 0.6rem;
+  border: none;
+  -webkit-box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
+}
+/* line 170, ../../sass/module/streetwalk.scss */
+.launching-content .launching-unlocklabel {
+  margin-top: 0.5rem;
+  font-size: 1.3rem;
+  color: #FFCD4B;
+  text-align: center;
+}
+/* line 177, ../../sass/module/streetwalk.scss */
+.launching-content .launching-errorsignup {
+  color: red;
+}
+/* line 181, ../../sass/module/streetwalk.scss */
+.launching-content .launching-button {
+  cursor: pointer;
+  border-radius: 1.5rem;
+  border: none;
+  height: 3rem;
+  margin: 1rem;
+  padding: 0.6rem;
+  font-family: "FilbertBrush";
+  font-size: 1.4rem;
+  display: inline-block;
+  line-height: 2rem;
+  text-decoration: none;
+  padding: 0.6rem;
+  box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
+}
+/* line 202, ../../sass/module/streetwalk.scss */
+.launching-content .launching-button-subscribe {
+  margin-top: 0;
+  font-size: 1.7rem;
+  color: #009788;
+  background: #F9BE4C;
+}
+/* line 210, ../../sass/module/streetwalk.scss */
+.launching-content .launching-button-subscribe:active {
+  color: #005650;
+  background: #E2A63B;
+}
+/* line 216, ../../sass/module/streetwalk.scss */
+.launching-content .launching-button-subscribe[disabled="disabled"] {
+  color: #005650;
+  background: #E2A63B;
+}
+/* line 223, ../../sass/module/streetwalk.scss */
+.launching-content .launching-button-share {
+  color: #FFFFFF;
+  background: #00B99B;
+}
+/* line 227, ../../sass/module/streetwalk.scss */
+.launching-content .launching-button-share:active {
+  color: #D1ECE6;
+  background: #00B99B;
+}
+/* line 233, ../../sass/module/streetwalk.scss */
+.launching-content .launchingfacebook {
+  padding-top: 1rem;
+  width: 50%;
+  margin: 0 auto;
+  display: block;
+}
+/* line 240, ../../sass/module/streetwalk.scss */
+.launching-content .launching-facebookicon {
+  width: 50%;
+  max-width: 396px;
+}
+/* line 245, ../../sass/module/streetwalk.scss */
+.launching-content .launching-signup-thanks {
+  max-height: 0;
+  overflow: hidden;
+  /* Set our transitions up. */
+  -webkit-transition: max-height 0.8s;
+  -moz-transition: max-height 0.8s;
+  transition: max-height 0.8s;
+}
+/* line 254, ../../sass/module/streetwalk.scss */
+.launching-content .launching-signup-thanks.show {
+  max-height: 1000px;
+}
+/* line 258, ../../sass/module/streetwalk.scss */
+.launching-content .launching-signup-thanks h2 {
+  margin: 1em;
+}
+/* line 262, ../../sass/module/streetwalk.scss */
+.launching-content .launching-signup-thanks .launching-bonusvideo {
+  margin-bottom: 1em;
+  width: 500px;
+  height: 281px;
+  margin: 0 auto;
+}
+/* line 268, ../../sass/module/streetwalk.scss */
+.launching-content .launching-signup-thanks .launching-bonusvideo.fullscreen {
+  width: 100%;
+  height: 100%;
+}
+/* line 275, ../../sass/module/streetwalk.scss */
+.launching-content .launching-separatorline {
+  width: 60%;
+  fill: #FFF;
+}
+@media screen and (max-width: 700px) {
+  /* line 282, ../../sass/module/streetwalk.scss */
+  .launching-content {
+    width: 100%;
+  }
+  /* line 286, ../../sass/module/streetwalk.scss */
+  .launching-content .launchingfacebook {
+    width: 100%;
+  }
+  /* line 290, ../../sass/module/streetwalk.scss */
+  .launching-content .launchinglogo {
+    width: 55%;
+  }
+}
+@media screen and (min-width: 700px) and (max-width: 1300px) {
+  /* line 296, ../../sass/module/streetwalk.scss */
+  .launching-content {
+    width: 70%;
+  }
+  /* line 300, ../../sass/module/streetwalk.scss */
+  .launching-content .launchingfacebook {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1300px) {
+  /* line 306, ../../sass/module/streetwalk.scss */
+  .launching-content {
+    width: 50%;
+  }
+}
+
+/* line 312, ../../sass/module/streetwalk.scss */
+.trame-video {
+  background: url("../../images/trame-video.png") repeat;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  transition: opacity 0.5s ease;
+  -webkit-transition: opacity 0.5s ease;
+  -moz-transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+/* line 323, ../../sass/module/streetwalk.scss */
+body.not-moving .trame-video {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  -webkit-transition: opacity 0.5s ease;
+  -moz-transition: opacity 0.5s ease;
+}

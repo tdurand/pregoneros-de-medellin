@@ -178,6 +178,8 @@ function($, _, Backbone,
             STR:Localization.STR,
             lang:Localization.translationLoaded
         }));
+
+        self.initMap();
         
     },
 
