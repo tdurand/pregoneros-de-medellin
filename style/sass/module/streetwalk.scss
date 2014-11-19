@@ -21,6 +21,7 @@
 }
 
 .streetwalk-chooseway {
+    width: 100%;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -30,6 +31,10 @@
         -ms-transform:translate(-50%, -50%);
          -o-transform:translate(-50%, -50%);
             transform:translate(-50%, -50%);
+
+    svg {
+        width: 100%;
+    }
 }
 
 .streetwalk-control {
