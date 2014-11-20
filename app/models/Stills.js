@@ -21,7 +21,7 @@ function($, _, Backbone,
 
         self.nbImgLoaded = 0;
         self.percentageLoaded = 0;
-        self.loadingStopped = false;
+        self.stopLoading = false;
         self.stillLoaded = [];
     },
 
@@ -37,8 +37,8 @@ function($, _, Backbone,
             for (var i = 0; i < self.nbImages; i+=val) {
             // for (var i = 0; i < self.nbImages; i++) {
 
-                if(self.loadingStopped) {
-                    break;
+                if(self.stopLoading) {
+                    return;
                 }
 
                 //If still isn't yet loaded
@@ -87,14 +87,21 @@ function($, _, Backbone,
 
     clear: function() {
         self = this;
-        self.loadingStopped = true;
+
         window.stop();
+        self.stopLoading = true;
+        setTimeout(function() {
+            self.stopLoading = false;
+        },500);
+        
         _.each(self.models,function(still) {
             self.remove(still);
             //still.clear();
         });
 
         self.stillLoaded = [];
+        self.nbImgLoaded = 0;
+        self.percentageLoaded = 0;
     }
 
     

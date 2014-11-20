@@ -1,0 +1,93 @@
+
+  {
+    "wayName":"cl51-cr52-cr51",
+    "nbStills":480,
+    "wayPath":[[-75.56925684213638,6.250970939933078],[-75.56833952665329,6.250509676417033]],
+    "wayConnectionsEnd":[
+                {
+                    "direction": "forward",
+                    "name":"cl51-cr51-cr50"
+                }
+    ] 
+  },
+  {
+    "wayName":"cl51-cr51-cr50",
+    "nbStills":359,
+    "wayPath":[[-75.56832075119017,6.250499011359828],[-75.56766092777252,6.250176393276593]],
+    "wayConnectionsEnd":[
+                {
+                    "direction": "forward",
+                    "name":"cl51-cr50-cr49"
+                }
+    ] 
+  },
+  {
+    "wayName":"cl51-cr50-cr49",
+    "nbStills":602,
+    "wayPath":[[-75.56761801242828,6.2501577294144575],[-75.56655585765839,6.249685800107594]],
+    "wayConnectionsEnd":[
+                {
+                    "direction": "left",
+                    "name":"juni-cl52-cl53"
+                }
+    ] 
+  },
+  {
+    "wayName":"juni-cl52-cl53",
+    "nbStills":380,
+    "wayPath":[[-75.56653171777725,6.249683133839114],[-75.56599795818329,6.250544337851438]],
+    "wayConnectionsEnd":[
+                {
+                    "direction": "forward",
+                    "name":"juni-parquebolivar"
+                }
+    ] 
+  },
+  {
+    "wayName":"juni-parquebolivar",
+    "nbStills":475,
+    "wayPath":[[-75.56518793106079,6.251888133230411],[-75.564324259758,6.253269252660903],[-75.56420087814331,6.25328525016189],[-75.56412041187286,6.253354572660535],[-75.56406140327454,6.253482552633864],[-75.5640560388565,6.25362119756963]],
+    "wayConnectionsEnd":[
+                {
+                    "direction": "forward",
+                    "name":"carabobo-cl52-cl51"
+                }
+    ] 
+  },
+  {
+    "wayName":"cl51-carabobo-cr53",
+    "nbStills":406,
+    "wayPath":[[-75.56925415992737,6.250981604980651],[-75.57004272937775,6.2513442164690876]],
+    "wayConnectionsEnd":[
+                {
+                    "direction": "right",
+                    "name":"cr53-cl51-cl52-cl52-cr53-carabobo"
+                }
+    ] 
+  },
+  {
+    "wayName":"cr53-cl51-cl52-cl52-cr53-carabobo",
+    "nbStills":774,
+    "wayPath":[[-75.57003200054167,6.251365546548827],[-75.56969404220581,6.2520854362295175],[-75.56892156600952,6.251733490287199]],
+    "wayConnectionsEnd":[
+                {  
+                    "direction": "forward",
+                    "name":"cl52-carabobo-cr51"
+                },
+                {
+                    "direction": "right",
+                    "name":"carabobo-cl52-cl51"
+                }
+    ] 
+  },
+  {
+    "wayName":"cl52-carabobo-cr51",
+    "nbStills":569,
+    "wayPath":[[-75.56892156600952,6.251717492738746],[-75.56802034378052,6.251290891265966],[-75.56792378425598,6.251301556307038]],
+    "wayConnectionsEnd":[
+                {
+                    "direction": "right",
+                    "name":"carabobo-cl52-cl51"
+                }
+    ] 
+  }

@@ -76,7 +76,7 @@ html, body {
 
 /* line 23, ../sass/module/streetwalk.scss */
 .streetwalk-chooseway {
-  width: 100%;
+  width: 50%;
   position: absolute;
   left: 50%;
   top: 50%;

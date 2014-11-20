@@ -33,7 +33,7 @@ function($, _, Backbone,
     elImg:"#streetwalk .streetwalkImg",
 
     currentPosition:0,
-    bodyHeight:5000,
+    bodyHeight:10000,
     fullscreen:false,
 
     scrollToEndEventSended:false,
