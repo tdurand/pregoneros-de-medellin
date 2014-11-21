@@ -269,52 +269,49 @@ function($, _, Backbone,
             self.firstScroll = false;
         }
 
-        var imgStartText = 250;
-        var imgEndText = 285;
-        var fullWidth = 200;
-
-        //Positions
-        //init
-        var initRight = 336;
-        var initTop = 317;
-        //end
-        var endTop = 291;
-        var endRight = 126;
+        var imgStartText = 266;
+        var imgEndText = 286;
+        var fullWidth = 37.66;
+        var startWidth = 13.42;
         //range
-        var rangePositionRight = initRight - endRight;
-        var rangePositionTop = initTop - endTop;
 
 
 
 
 
         //Text character
-        if(imgNb >= 200 && imgNb < self.way.wayStills.nbImages-1) {
+        if(imgNb >= imgStartText && imgNb <= imgEndText) {
             self.$el.find(".streetwalk-textcharacter").show();
 
             var fullRange = imgEndText - imgStartText;
             var imgNbRange =  imgEndText - imgNb;
             var imgPropRange = fullRange - imgNbRange;
-            var range = imgEndText - imgStartText;
-            var width = imgPropRange * fullWidth / range;
 
-            self.$el.find(".streetwalk-textcharacter .img-container").css("width","100px");
+
+            var width = imgPropRange * (fullWidth-startWidth) / fullRange + startWidth;
+
+            var widthPx = width * window.innerHeight / 100;
+
+            self.$el.find(".streetwalk-textcharacter .img-container").css("width",widthPx+"px");
 
             // self.$el.find(".streetwalk-textcharacter img").css("opacity",width/100);
 
-            if(imgNb >= 266 && imgNb <= 306) {
+            // if(imgNb >= 266 && imgNb <= 306) {
                 var leftPosition = self.way.characterPosition[imgNb].left;
                 self.$el.find(".streetwalk-textcharacter").css("left",leftPosition+"%");
 
                 var topPosition = self.way.characterPosition[imgNb].top;
                 self.$el.find(".streetwalk-textcharacter").css("top",topPosition+"%");
-            }
+            // }
 
             // var rightPosition = initRight - imgPropRange*rangePositionRight/fullRange;
             // self.$el.find(".streetwalk-textcharacter").css("right",rightPosition+"px");
 
             // var topPosition = initTop - imgPropRange*rangePositionTop/fullRange;
             // self.$el.find(".streetwalk-textcharacter").css("top",topPosition+"px");
+        }
+        else {
+            self.$el.find(".streetwalk-textcharacter .img-container").css("width","0px");
         }
 
 
