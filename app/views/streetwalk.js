@@ -269,6 +269,54 @@ function($, _, Backbone,
             self.firstScroll = false;
         }
 
+        var imgStartText = 250;
+        var imgEndText = 285;
+        var fullWidth = 200;
+
+        //Positions
+        //init
+        var initRight = 336;
+        var initTop = 317;
+        //end
+        var endTop = 291;
+        var endRight = 126;
+        //range
+        var rangePositionRight = initRight - endRight;
+        var rangePositionTop = initTop - endTop;
+
+
+
+
+
+        //Text character
+        if(imgNb >= 200 && imgNb < self.way.wayStills.nbImages-1) {
+            self.$el.find(".streetwalk-textcharacter").show();
+
+            var fullRange = imgEndText - imgStartText;
+            var imgNbRange =  imgEndText - imgNb;
+            var imgPropRange = fullRange - imgNbRange;
+            var range = imgEndText - imgStartText;
+            var width = imgPropRange * fullWidth / range;
+
+            self.$el.find(".streetwalk-textcharacter .img-container").css("width","100px");
+
+            // self.$el.find(".streetwalk-textcharacter img").css("opacity",width/100);
+
+            if(imgNb >= 266 && imgNb <= 306) {
+                var leftPosition = self.way.characterPosition[imgNb].left;
+                self.$el.find(".streetwalk-textcharacter").css("left",leftPosition+"%");
+
+                var topPosition = self.way.characterPosition[imgNb].top;
+                self.$el.find(".streetwalk-textcharacter").css("top",topPosition+"%");
+            }
+
+            // var rightPosition = initRight - imgPropRange*rangePositionRight/fullRange;
+            // self.$el.find(".streetwalk-textcharacter").css("right",rightPosition+"px");
+
+            // var topPosition = initTop - imgPropRange*rangePositionTop/fullRange;
+            // self.$el.find(".streetwalk-textcharacter").css("top",topPosition+"px");
+        }
+
 
         if(imgNb >= self.way.wayStills.nbImages-1) {
             self.$el.find(".streetwalk-chooseway-start-wrapper").hide();

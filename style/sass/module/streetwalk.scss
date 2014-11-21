@@ -20,6 +20,27 @@
     height:100%;
 }
 
+.streetwalk-textcharacter {
+    position: fixed;
+
+    .img-container {
+        width: 0%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+
+        img {
+            width: 100%;
+            height: 100%;
+            //offset to position the center of the circle (depending on the text-character sign)
+            margin-top:-24%;
+        }
+    }
+
+    
+}
+
 .streetwalk-chooseway {
     width: 50%;
     position: absolute;

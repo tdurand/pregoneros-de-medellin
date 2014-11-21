@@ -43,6 +43,7 @@ function($, _, Backbone,
             self.wayPath = params.wayPath;
             self.wayConnectionsEnd = params.wayConnectionsEnd;
             self.wayConnectionsStart = params.wayConnectionsStart;
+            self.characterPosition = params.characterPosition;
 
             //Create the stills collection for this way
             self.wayStills = new Stills();
