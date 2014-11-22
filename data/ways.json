@@ -19,7 +19,8 @@
         "startFrame":266,
         "endFrame":286,
         "framefullWidth":37.66,
-        "framestartWidth":13.42
+        "framestartWidth":13.42,
+        "offsetTopCenter":-24
 
     },
     "characterPosition":{

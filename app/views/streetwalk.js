@@ -280,7 +280,11 @@ function($, _, Backbone,
 
             if(imgNb >= self.way.characterDefinition.startFrame && imgNb <= self.way.characterDefinition.endFrame) {
 
+                //===== TODO ONE TIME INTRUCTION, do not execute for each loop
+                //show frame container
                 self.$el.find(".streetwalk-textcharacter").show();
+                //set offset for the imgFrame, to position the "real" center
+                self.$el.find(".streetwalk-textcharacter img").css("margin-top",self.way.characterDefinition.offsetTopCenter+"%");
 
                 //==== COMPUTE AND SET WIDTH OF THE CHARACTER FRAMER ======
                 var fullRange = self.way.characterDefinition.endFrame - self.way.characterDefinition.startFrame;
