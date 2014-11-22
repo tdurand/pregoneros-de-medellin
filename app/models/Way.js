@@ -60,6 +60,10 @@ function($, _, Backbone,
                 self.loadingFinished = true;
                 self.trigger("loadingFinished");
             });
+
+            self.wayStills.on("loadingFinishedCompletely", function() {
+                self.trigger('loadingFinishedCompletely');
+            });
         },
 
         fetch: function() {

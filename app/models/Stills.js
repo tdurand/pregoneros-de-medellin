@@ -69,6 +69,10 @@ function($, _, Backbone,
                         if(self.nbImgLoaded == parseInt(self.nbImages/accurate,10)) {
                             self.trigger("loadingFinished");
                         }
+
+                        if(self.nbImgLoaded == parseInt(self.nbImages,10)) {
+                            self.trigger("loadingFinishedCompletely");
+                        }
                     });
 
                     self.add(still);

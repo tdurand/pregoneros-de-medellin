@@ -13,6 +13,29 @@
 }
 
 /* line 13, ../../sass/module/streetwalk.scss */
+.streetwalk-video {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: none;
+}
+/* line 19, ../../sass/module/streetwalk.scss */
+.streetwalk-video .streetwalk-video-container {
+  height: 100%;
+  width: 100%;
+}
+/* line 24, ../../sass/module/streetwalk.scss */
+.streetwalk-video .streetwalk-video-btnclose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  background-image: url("../../images/closebtn.svg");
+  cursor: pointer;
+}
+
+/* line 36, ../../sass/module/streetwalk.scss */
 .streetwalk-chooseway-wrapper {
   position: fixed;
   top: 0;
@@ -23,11 +46,11 @@
   height: 100%;
 }
 
-/* line 23, ../../sass/module/streetwalk.scss */
+/* line 46, ../../sass/module/streetwalk.scss */
 .streetwalk-textcharacter {
   position: fixed;
 }
-/* line 26, ../../sass/module/streetwalk.scss */
+/* line 49, ../../sass/module/streetwalk.scss */
 .streetwalk-textcharacter .img-container {
   width: 0%;
   top: 50%;
@@ -35,13 +58,18 @@
   transform: translate(-50%, -50%);
   position: absolute;
 }
-/* line 33, ../../sass/module/streetwalk.scss */
-.streetwalk-textcharacter .img-container img {
+/* line 56, ../../sass/module/streetwalk.scss */
+.streetwalk-textcharacter .img-container .frame-character {
   width: 100%;
   height: 100%;
+  cursor: pointer;
+}
+/* line 62, ../../sass/module/streetwalk.scss */
+.streetwalk-textcharacter .img-container .frame-character:active {
+  opacity: 0.5;
 }
 
-/* line 42, ../../sass/module/streetwalk.scss */
+/* line 70, ../../sass/module/streetwalk.scss */
 .streetwalk-chooseway {
   width: 50%;
   position: absolute;
@@ -54,33 +82,33 @@
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 54, ../../sass/module/streetwalk.scss */
+/* line 82, ../../sass/module/streetwalk.scss */
 .streetwalk-chooseway svg {
   width: 100%;
 }
 
-/* line 59, ../../sass/module/streetwalk.scss */
+/* line 87, ../../sass/module/streetwalk.scss */
 .streetwalk-control {
   position: fixed;
   bottom: 20px;
   right: 20px;
 }
-/* line 64, ../../sass/module/streetwalk.scss */
+/* line 92, ../../sass/module/streetwalk.scss */
 .streetwalk-control .toggle-sounds {
   width: 3rem;
   height: 3rem;
   cursor: pointer;
 }
-/* line 70, ../../sass/module/streetwalk.scss */
+/* line 98, ../../sass/module/streetwalk.scss */
 .streetwalk-control .toggle-sounds[data-state="muted"] {
   background-image: url("../../images/mutesound.svg");
 }
-/* line 74, ../../sass/module/streetwalk.scss */
+/* line 102, ../../sass/module/streetwalk.scss */
 .streetwalk-control .toggle-sounds[data-state="normal"] {
   background-image: url("../../images/unmutesound.svg");
 }
 
-/* line 81, ../../sass/module/streetwalk.scss */
+/* line 109, ../../sass/module/streetwalk.scss */
 .streetwalk-title {
   position: absolute;
   top: 0;
@@ -89,14 +117,14 @@
   right: 0;
   text-align: center;
 }
-/* line 90, ../../sass/module/streetwalk.scss */
+/* line 118, ../../sass/module/streetwalk.scss */
 .streetwalk-title .logo {
   height: 30%;
   min-width: 320px;
   max-width: 600px;
   max-height: 30%;
 }
-/* line 97, ../../sass/module/streetwalk.scss */
+/* line 125, ../../sass/module/streetwalk.scss */
 .streetwalk-title .description {
   color: white;
   width: 100%;
@@ -106,34 +134,34 @@
   margin: 0 auto;
 }
 @media screen and (max-width: 700px) {
-  /* line 106, ../../sass/module/streetwalk.scss */
+  /* line 134, ../../sass/module/streetwalk.scss */
   .streetwalk-title .description {
     width: 100%;
   }
 }
 @media screen and (min-width: 700px) and (max-width: 1300px) {
-  /* line 113, ../../sass/module/streetwalk.scss */
+  /* line 141, ../../sass/module/streetwalk.scss */
   .streetwalk-title .description {
     width: 70%;
   }
 }
 @media screen and (min-width: 1300px) {
-  /* line 119, ../../sass/module/streetwalk.scss */
+  /* line 147, ../../sass/module/streetwalk.scss */
   .streetwalk-title .description {
     width: 50%;
   }
 }
-/* line 126, ../../sass/module/streetwalk.scss */
+/* line 154, ../../sass/module/streetwalk.scss */
 .streetwalk-title .description h2 {
   margin: 1em;
   font-size: 1.5rem;
   line-height: 1.7rem;
 }
-/* line 132, ../../sass/module/streetwalk.scss */
+/* line 160, ../../sass/module/streetwalk.scss */
 .streetwalk-title .description p {
   font-size: 1.5rem;
 }
-/* line 137, ../../sass/module/streetwalk.scss */
+/* line 165, ../../sass/module/streetwalk.scss */
 .streetwalk-title .scrolltostart {
   height: 40%;
   position: absolute;
@@ -141,16 +169,16 @@
   right: 0;
   left: 0;
 }
-/* line 144, ../../sass/module/streetwalk.scss */
+/* line 172, ../../sass/module/streetwalk.scss */
 .streetwalk-title .scrolltostart img, .streetwalk-title .scrolltostart svg {
   height: 100%;
 }
-/* line 149, ../../sass/module/streetwalk.scss */
+/* line 177, ../../sass/module/streetwalk.scss */
 .streetwalk-title #scrollToStartLoaded {
   display: none;
 }
 
-/* line 156, ../../sass/module/streetwalk.scss */
+/* line 184, ../../sass/module/streetwalk.scss */
 .streetwalkImg, .element-fixed, .blurImg {
   position: fixed;
   top: 0;
@@ -161,7 +189,7 @@
   height: 100%;
 }
 
-/* line 166, ../../sass/module/streetwalk.scss */
+/* line 194, ../../sass/module/streetwalk.scss */
 .launching {
   display: none;
   position: absolute;
@@ -169,7 +197,7 @@
   height: 100%;
 }
 
-/* line 173, ../../sass/module/streetwalk.scss */
+/* line 201, ../../sass/module/streetwalk.scss */
 .launching-content {
   text-align: center;
   color: white;
@@ -183,22 +211,22 @@
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 190, ../../sass/module/streetwalk.scss */
+/* line 218, ../../sass/module/streetwalk.scss */
 .launching-content .launchinglogo {
   width: 40%;
 }
-/* line 194, ../../sass/module/streetwalk.scss */
+/* line 222, ../../sass/module/streetwalk.scss */
 .launching-content .launching-emailgroup {
   width: 60%;
   margin: 0 auto;
 }
-/* line 199, ../../sass/module/streetwalk.scss */
+/* line 227, ../../sass/module/streetwalk.scss */
 .launching-content .launching-emailinput-label {
   margin-top: 1rem;
   margin-bottom: 1rem;
   text-align: left;
 }
-/* line 205, ../../sass/module/streetwalk.scss */
+/* line 233, ../../sass/module/streetwalk.scss */
 .launching-content .launching-emailinput {
   width: 100%;
   height: 2.6rem;
@@ -208,18 +236,18 @@
   border: none;
   -webkit-box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
 }
-/* line 216, ../../sass/module/streetwalk.scss */
+/* line 244, ../../sass/module/streetwalk.scss */
 .launching-content .launching-unlocklabel {
   margin-top: 0.5rem;
   font-size: 1.3rem;
   color: #FFCD4B;
   text-align: center;
 }
-/* line 223, ../../sass/module/streetwalk.scss */
+/* line 251, ../../sass/module/streetwalk.scss */
 .launching-content .launching-errorsignup {
   color: red;
 }
-/* line 227, ../../sass/module/streetwalk.scss */
+/* line 255, ../../sass/module/streetwalk.scss */
 .launching-content .launching-button {
   cursor: pointer;
   border-radius: 1.5rem;
@@ -237,46 +265,46 @@
   -webkit-box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
 }
-/* line 248, ../../sass/module/streetwalk.scss */
+/* line 276, ../../sass/module/streetwalk.scss */
 .launching-content .launching-button-subscribe {
   margin-top: 0;
   font-size: 1.7rem;
   color: #009788;
   background: #F9BE4C;
 }
-/* line 256, ../../sass/module/streetwalk.scss */
+/* line 284, ../../sass/module/streetwalk.scss */
 .launching-content .launching-button-subscribe:active {
   color: #005650;
   background: #E2A63B;
 }
-/* line 262, ../../sass/module/streetwalk.scss */
+/* line 290, ../../sass/module/streetwalk.scss */
 .launching-content .launching-button-subscribe[disabled="disabled"] {
   color: #005650;
   background: #E2A63B;
 }
-/* line 269, ../../sass/module/streetwalk.scss */
+/* line 297, ../../sass/module/streetwalk.scss */
 .launching-content .launching-button-share {
   color: #FFFFFF;
   background: #00B99B;
 }
-/* line 273, ../../sass/module/streetwalk.scss */
+/* line 301, ../../sass/module/streetwalk.scss */
 .launching-content .launching-button-share:active {
   color: #D1ECE6;
   background: #00B99B;
 }
-/* line 279, ../../sass/module/streetwalk.scss */
+/* line 307, ../../sass/module/streetwalk.scss */
 .launching-content .launchingfacebook {
   padding-top: 1rem;
   width: 50%;
   margin: 0 auto;
   display: block;
 }
-/* line 286, ../../sass/module/streetwalk.scss */
+/* line 314, ../../sass/module/streetwalk.scss */
 .launching-content .launching-facebookicon {
   width: 50%;
   max-width: 396px;
 }
-/* line 291, ../../sass/module/streetwalk.scss */
+/* line 319, ../../sass/module/streetwalk.scss */
 .launching-content .launching-signup-thanks {
   max-height: 0;
   overflow: hidden;
@@ -285,63 +313,63 @@
   -moz-transition: max-height 0.8s;
   transition: max-height 0.8s;
 }
-/* line 300, ../../sass/module/streetwalk.scss */
+/* line 328, ../../sass/module/streetwalk.scss */
 .launching-content .launching-signup-thanks.show {
   max-height: 1000px;
 }
-/* line 304, ../../sass/module/streetwalk.scss */
+/* line 332, ../../sass/module/streetwalk.scss */
 .launching-content .launching-signup-thanks h2 {
   margin: 1em;
 }
-/* line 308, ../../sass/module/streetwalk.scss */
+/* line 336, ../../sass/module/streetwalk.scss */
 .launching-content .launching-signup-thanks .launching-bonusvideo {
   margin-bottom: 1em;
   width: 500px;
   height: 281px;
   margin: 0 auto;
 }
-/* line 314, ../../sass/module/streetwalk.scss */
+/* line 342, ../../sass/module/streetwalk.scss */
 .launching-content .launching-signup-thanks .launching-bonusvideo.fullscreen {
   width: 100%;
   height: 100%;
 }
-/* line 321, ../../sass/module/streetwalk.scss */
+/* line 349, ../../sass/module/streetwalk.scss */
 .launching-content .launching-separatorline {
   width: 60%;
   fill: #FFF;
 }
 @media screen and (max-width: 700px) {
-  /* line 328, ../../sass/module/streetwalk.scss */
+  /* line 356, ../../sass/module/streetwalk.scss */
   .launching-content {
     width: 100%;
   }
-  /* line 332, ../../sass/module/streetwalk.scss */
+  /* line 360, ../../sass/module/streetwalk.scss */
   .launching-content .launchingfacebook {
     width: 100%;
   }
-  /* line 336, ../../sass/module/streetwalk.scss */
+  /* line 364, ../../sass/module/streetwalk.scss */
   .launching-content .launchinglogo {
     width: 55%;
   }
 }
 @media screen and (min-width: 700px) and (max-width: 1300px) {
-  /* line 342, ../../sass/module/streetwalk.scss */
+  /* line 370, ../../sass/module/streetwalk.scss */
   .launching-content {
     width: 70%;
   }
-  /* line 346, ../../sass/module/streetwalk.scss */
+  /* line 374, ../../sass/module/streetwalk.scss */
   .launching-content .launchingfacebook {
     width: 70%;
   }
 }
 @media screen and (min-width: 1300px) {
-  /* line 352, ../../sass/module/streetwalk.scss */
+  /* line 380, ../../sass/module/streetwalk.scss */
   .launching-content {
     width: 50%;
   }
 }
 
-/* line 358, ../../sass/module/streetwalk.scss */
+/* line 386, ../../sass/module/streetwalk.scss */
 .trame-video {
   background: url("../../images/trame-video.png") repeat;
   height: 100%;
@@ -353,7 +381,7 @@
   opacity: 1;
 }
 
-/* line 369, ../../sass/module/streetwalk.scss */
+/* line 397, ../../sass/module/streetwalk.scss */
 body.not-moving .trame-video {
   opacity: 0;
   transition: opacity 0.5s ease;

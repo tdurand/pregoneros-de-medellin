@@ -10,6 +10,29 @@
     right:20px;
 }
 
+.streetwalk-video {
+    position:fixed;
+    height: 100%;
+    width: 100%;
+    display:none;
+
+    .streetwalk-video-container {
+        height: 100%;
+        width: 100%;
+    }
+
+    .streetwalk-video-btnclose {
+        position:absolute;
+        top:10px;
+        right:10px;
+        width: 50px;
+        height: 50px;
+        background-image:url("../../images/closebtn.svg");
+
+        cursor:pointer;
+    }
+}
+
 .streetwalk-chooseway-wrapper {
     position: fixed;
     top:0;
@@ -30,9 +53,14 @@
         transform: translate(-50%, -50%);
         position: absolute;
 
-        img {
+        .frame-character {
             width: 100%;
             height: 100%;
+            cursor:pointer;
+        }
+
+        .frame-character:active {
+            opacity: 0.5;
         }
     }
 

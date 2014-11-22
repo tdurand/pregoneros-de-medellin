@@ -41,7 +41,9 @@ function($, _, Backbone,
     events:{
         "click .toggle-sounds ":"toggleSounds",
         "submit #signup-mailchimp-form":"signUpMailChimp",
-        "click .launching-button-share":"buttonShare"
+        "click .launching-button-share":"buttonShare",
+        "click .frame-character":"showVideo",
+        "click .streetwalk-video-btnclose":"closeVideo"
     },
 
     initialize : function(params) {
@@ -215,6 +217,10 @@ function($, _, Backbone,
             }
 
             self.render();
+        });
+
+        self.way.on("loadingFinishedCompletely", function() {
+            self.initVideo();
         });
         
     },
@@ -435,6 +441,34 @@ function($, _, Backbone,
 
         self.$el.find(".toggle-sounds").attr("data-state","muted");
         self.sounds.mute();
+    },
+
+    initVideo: function() {
+        var self = this;
+        // Add video
+        self.popcorn = Popcorn.vimeo( ".streetwalk-video-container", "http://player.vimeo.com/video/110573403");
+    },
+
+    showVideo: function() {
+        var self = this;
+
+        self.$el.find(".streetwalk-video").show();
+
+        self.popcorn.on("play",function() {
+            //Mute sounds
+            self.muteSounds();
+            
+        });
+
+        self.popcorn.play();
+    },
+
+    closeVideo: function() {
+        var self = this;
+
+        self.$el.find(".streetwalk-video").hide();
+
+        self.popcorn.pause();
     },
 
 
