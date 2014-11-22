@@ -276,45 +276,37 @@ function($, _, Backbone,
         //range
 
 
+        if(!_.isUndefined(self.way.characterDefinition)) {
 
+            if(imgNb >= self.way.characterDefinition.startFrame && imgNb <= self.way.characterDefinition.endFrame) {
 
+                self.$el.find(".streetwalk-textcharacter").show();
 
-        //Text character
-        if(imgNb >= imgStartText && imgNb <= imgEndText) {
-            self.$el.find(".streetwalk-textcharacter").show();
+                //==== COMPUTE AND SET WIDTH OF THE CHARACTER FRAMER ======
+                var fullRange = self.way.characterDefinition.endFrame - self.way.characterDefinition.startFrame;
+                var imgNbRange =  self.way.characterDefinition.endFrame - imgNb;
+                var imgPropRange = fullRange - imgNbRange;
 
-            var fullRange = imgEndText - imgStartText;
-            var imgNbRange =  imgEndText - imgNb;
-            var imgPropRange = fullRange - imgNbRange;
+                var width = imgPropRange * (self.way.characterDefinition.framefullWidth - self.way.characterDefinition.framestartWidth) / fullRange + self.way.characterDefinition.framestartWidth;
+                //TODO IF RESIZE WINDOW , need to actualize that
+                var widthPx = width * window.innerHeight / 100;
+                self.$el.find(".streetwalk-textcharacter .img-container").css("width",widthPx+"px");
 
-
-            var width = imgPropRange * (fullWidth-startWidth) / fullRange + startWidth;
-
-            var widthPx = width * window.innerHeight / 100;
-
-            self.$el.find(".streetwalk-textcharacter .img-container").css("width",widthPx+"px");
-
-            // self.$el.find(".streetwalk-textcharacter img").css("opacity",width/100);
-
-            // if(imgNb >= 266 && imgNb <= 306) {
+                //===== SET POSITION
                 var leftPosition = self.way.characterPosition[imgNb].left;
                 self.$el.find(".streetwalk-textcharacter").css("left",leftPosition+"%");
 
                 var topPosition = self.way.characterPosition[imgNb].top;
                 self.$el.find(".streetwalk-textcharacter").css("top",topPosition+"%");
-            // }
 
-            // var rightPosition = initRight - imgPropRange*rangePositionRight/fullRange;
-            // self.$el.find(".streetwalk-textcharacter").css("right",rightPosition+"px");
-
-            // var topPosition = initTop - imgPropRange*rangePositionTop/fullRange;
-            // self.$el.find(".streetwalk-textcharacter").css("top",topPosition+"px");
-        }
-        else {
-            self.$el.find(".streetwalk-textcharacter .img-container").css("width","0px");
+            }
+            else {
+                self.$el.find(".streetwalk-textcharacter .img-container").css("width","0px");
+            }
         }
 
 
+        //==========   CHOOSE WAY HANDLING ==============
         if(imgNb >= self.way.wayStills.nbImages-1) {
             self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
 

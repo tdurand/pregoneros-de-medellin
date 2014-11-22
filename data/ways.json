@@ -15,6 +15,13 @@
     ],
     "wayConnectionsStart":[
     ],
+    "characterDefinition": {
+        "startFrame":266,
+        "endFrame":286,
+        "framefullWidth":37.66,
+        "framestartWidth":13.42
+
+    },
     "characterPosition":{
       "266": { "left":61.5625, "top":54.81481481},
       "267": { "left":62.2109375, "top":55.05101852},
