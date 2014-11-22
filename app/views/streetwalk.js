@@ -454,13 +454,15 @@ function($, _, Backbone,
 
         self.$el.find(".streetwalk-video").show();
 
+        if(_.isUndefined(self.popcorn)) {
+            self.initVideo();
+        }
+            
         self.popcorn.on("play",function() {
             //Mute sounds
             self.muteSounds();
-            
+        
         });
-
-        self.popcorn.play();
     },
 
     closeVideo: function() {
