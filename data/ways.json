@@ -15,6 +15,23 @@
     ],
     "wayConnectionsStart":[
     ],
+    "waySounds":[
+        {
+            "position":[-75.568918,6.251722],
+            "path":"carabobo-cl52-cl51/punto1",
+            "db":40
+        },
+        {
+            "position":[-75.56907713413239,6.251376211588373],
+            "path":"carabobo-cl52-cl51/punto2",
+            "db":40
+        },
+        {
+            "position":[-75.569259,6.250986],
+            "path":"carabobo-cl52-cl51/punto3",
+            "db":40
+        }
+    ],
     "characterDefinition": {
         "startFrame":266,
         "endFrame":286,
