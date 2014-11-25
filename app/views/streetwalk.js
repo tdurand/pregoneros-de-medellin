@@ -77,8 +77,7 @@ function($, _, Backbone,
     initSounds: function() {
         var self = this;
 
-        self.sounds = new Sounds();
-        self.sounds.init();
+
     },
 
     prepare:function() {
@@ -100,8 +99,6 @@ function($, _, Backbone,
         self.loadPath();
 
         self.renderLoading();
-
-        self.initSounds();
 
         window.scrollTo(0,0);
 
@@ -202,6 +199,10 @@ function($, _, Backbone,
             self.updateLoadingIndicator(self.way.percentageLoaded);
         });
 
+        self.way.on("soundsLoaded", function() {
+            self.way.waySounds.updateSounds(self.way.wayPath[self.currentStill.id]);
+        });
+
         self.way.on("loadingFinished", function() {
             self.animating = true;
             self.currentStill = self.way.wayStills.first();
@@ -210,12 +211,6 @@ function($, _, Backbone,
             self.computeScrollableElements();
             self.$el.find("#scrollToStartLoaded").show();
             self.$el.find("#scrollToStartLoading").hide();
-            //init sounds
-            // Update sounds volume
-            if(self.sounds) {
-                self.sounds.updateSounds(self.way.wayPath[self.currentStill.id]);
-            }
-
             self.render();
         });
 
@@ -408,8 +403,8 @@ function($, _, Backbone,
                 },100);
 
                 // Update sounds volume
-                if(self.sounds) {
-                    self.sounds.updateSounds(self.way.wayPath[self.currentStill.id]);
+                if(self.way.waySounds) {
+                    self.way.waySounds.updateSounds(self.way.wayPath[self.currentStill.id]);
                 }
             }
         }
@@ -428,11 +423,11 @@ function($, _, Backbone,
 
         if(state == "normal") {
             $(e.currentTarget).attr("data-state","muted");
-            self.sounds.mute();
+            self.way.waySounds.mute();
         }
         else {
             $(e.currentTarget).attr("data-state","normal");
-            self.sounds.unmute();
+            self.way.waySounds.unmute();
         }
     },
 
@@ -440,7 +435,7 @@ function($, _, Backbone,
         var self = this;
 
         self.$el.find(".toggle-sounds").attr("data-state","muted");
-        self.sounds.mute();
+        self.way.waySounds.mute();
     },
 
     initVideo: function() {

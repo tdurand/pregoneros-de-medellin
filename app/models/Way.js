@@ -2,10 +2,13 @@ define(['jquery',
         'underscore',
         'backbone',
         'models/Stills',
+        'models/Sounds',
         'utils/GeoUtils'
         ],
 function($, _, Backbone,
-                Stills){
+                Stills,
+                Sounds,
+                GeoUtils){
 
   var Way = Backbone.Model.extend({
 
@@ -24,6 +27,9 @@ function($, _, Backbone,
         //Connections with other ways
         wayConnectionsStart:null,
         wayConnectionsEnd:null,
+
+        //Sounds
+        waySounds:null,
 
         initialize: function(params) {
             var self = this;
@@ -45,6 +51,14 @@ function($, _, Backbone,
             self.wayConnectionsStart = params.wayConnectionsStart;
             self.characterPosition = params.characterPosition;
             self.characterDefinition = params.characterDefinition;
+
+            //Sounds
+            self.waySounds = new Sounds();
+            self.waySounds.init(params.waySounds);
+            self.waySounds.fetch();
+            self.waySounds.on("soundsLoaded", function() {
+                self.trigger('soundsLoaded');
+            });
 
             //Create the stills collection for this way
             self.wayStills = new Stills();

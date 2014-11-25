@@ -14,20 +14,17 @@ function($, _, Backbone, GeoUtils){
     initialize: function() {
         var self = this;
 
-        self.set({
-            img:new Image(),
-            imgHighRes: new Image()
-        });
-
-        var name = self.get("name");
+        var path = self.get("path");
         self.position = self.get("position");
         self.db = self.get("db");
 
-
         self.sound = new Howl({
-          urls: ['data/sounds/' + name + '.mp3'],
+          urls: ['data/' + path + '.mp3'],
           loop:true,
-          volume:0
+          volume:0,
+          onload: function() {
+            self.trigger("soundLoaded");
+          }
         });
 
         self.sound.play();
@@ -38,6 +35,8 @@ function($, _, Backbone, GeoUtils){
 
             // Calculate distance between user and sound
             var distance = GeoUtils.distance(self.position, newUserPosition);
+
+            console.log(distance);
             
             // Calculate new volume based on distance
             self.vol = self.calculateVolume(distance);
@@ -102,7 +101,9 @@ function($, _, Backbone, GeoUtils){
     calculateVolume: function(distance){
         var self = this;
         // Calculate volume by using Inverse Square Law
-        var vol = 1 / (distance * distance);
+        // var vol = 1 / (distance * distance);
+        // Calculate volume by using Linear law
+        var vol = 1 / (distance);
         // Multiply distance volume by amplitude of sound (apply ceiling max of 1)
         vol = Math.min((vol * self.db), 1);
         return vol;
