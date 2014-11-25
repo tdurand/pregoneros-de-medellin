@@ -457,6 +457,8 @@ function($, _, Backbone,
         if(_.isUndefined(self.popcorn)) {
             self.initVideo();
         }
+
+        self.popcorn.play();
             
         self.popcorn.on("play",function() {
             //Mute sounds
@@ -469,7 +471,7 @@ function($, _, Backbone,
         var self = this;
 
         self.$el.find(".streetwalk-video").hide();
-
+        
         self.popcorn.pause();
     },
 
