@@ -2,9 +2,10 @@ define(['jquery',
         'underscore',
         'backbone',
         'utils/GeoUtils',
+        'utils/Logger',
         'howl'
         ],
-function($, _, Backbone, GeoUtils){
+function($, _, Backbone, GeoUtils, LOGGER){
 
   var Sound = Backbone.Model.extend({
 
@@ -42,7 +43,7 @@ function($, _, Backbone, GeoUtils){
             // Set new volume
             self.sound.volume(self.vol);
 
-            console.log(self.path + "PLAYING WITH VOL: " + self.vol);
+            LOGGER.debug(self.path + "PLAYING WITH VOL: " + self.vol);
     },
 
     updatePan : function(newUserPosition){
@@ -63,13 +64,13 @@ function($, _, Backbone, GeoUtils){
                 -75.61139702796936
                 ]);
 
-        console.log("Bearing " + GeoUtils.getBearing(newUserPosition,self.position));
+        LOGGER.debug("Bearing " + GeoUtils.getBearing(newUserPosition,self.position));
 
         // Convert angle to range between -180 and +180
         if (angle < -180)       angle += 360;
         else if (angle > 180)   angle -= 360;
 
-        console.log("ANGLE: " + angle);
+        LOGGER.debug("ANGLE: " + angle);
 
         // Calculate panPosition, as a range between -1 and +1
         var panPosition = (angle/90);
@@ -78,7 +79,7 @@ function($, _, Backbone, GeoUtils){
             panPosition = (panPosition > 0) ? 1 - x : -1 + x;
         }
 
-        console.log("PANPOSITION " + panPosition);
+        LOGGER.debug("PANPOSITION " + panPosition);
 
         // Set the new pan poition
         self.sound.pos3d(panPosition, 1, 1);

@@ -2,11 +2,13 @@ define(['jquery',
         'underscore',
         'backbone',
         'models/Sound',
-        'utils/GeoUtils'
+        'utils/GeoUtils',
+        'utils/Logger'
         ],
 function($, _, Backbone,
                 Sound,
-                GeoUtils){
+                GeoUtils,
+                LOGGER){
 
   var Sounds = Backbone.Collection.extend({
 
@@ -30,7 +32,7 @@ function($, _, Backbone,
         _.each(self.models, function(sound) {
             if(sound.cid != twoClosestNode.closestNode.sound.cid && sound.cid != twoClosestNode.secondClosestNode.sound.cid) {
                 sound.sound.volume(0);
-                console.log("SET VOLUME 0 TO " + sound.path);
+                LOGGER.debug("SET VOLUME 0 TO " + sound.path);
             }
         });
 
@@ -105,7 +107,7 @@ function($, _, Backbone,
 
                     if(nbSoundsToLoad === 0) {
                         self.trigger('soundsLoaded');
-                        console.log("ALL SOUNDS LOADED");
+                        LOGGER.debug("ALL SOUNDS LOADED");
                     }
                 });
 
