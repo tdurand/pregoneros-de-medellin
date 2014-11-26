@@ -19,12 +19,18 @@ function($, _, Backbone,
 
     updateSounds: function(newUserPosition) {
         var self = this;
+
+        if(self.models.length === 0) {
+            return;
+        }
+
         var twoClosestNode = self.getTwoClosestNode(newUserPosition);
 
         //set other node to 0 vol
         _.each(self.models, function(sound) {
             if(sound.cid != twoClosestNode.closestNode.sound.cid && sound.cid != twoClosestNode.secondClosestNode.sound.cid) {
                 sound.sound.volume(0);
+                console.log("SET VOLUME 0 TO " + sound.path);
             }
         });
 
@@ -112,6 +118,23 @@ function($, _, Backbone,
 
     unmute: function() {
         Howler.unmute();
+    },
+
+    clear: function() {
+
+        var self = this;
+
+        var length = self.length;
+
+        //need to clean like this because for odd
+        //reason backbone.each gives undefined on the last
+        //model
+        for (var i = 0; i < length; i++) {
+            self.at(0).unload();
+            self.remove(self.at(0));
+        }
+
+        self.waySounds = [];
     }
 
 

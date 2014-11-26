@@ -404,6 +404,7 @@ function($, _, Backbone,
 
                 // Update sounds volume
                 if(self.way.waySounds) {
+                    
                     self.way.waySounds.updateSounds(self.way.wayPath[self.currentStill.id]);
                 }
             }
@@ -438,6 +439,13 @@ function($, _, Backbone,
         self.way.waySounds.mute();
     },
 
+    unmuteSounds: function() {
+        var self = this;
+
+        self.$el.find(".toggle-sounds").attr("data-state","normal");
+        self.way.waySounds.unmute();
+    },
+
     initVideo: function() {
         var self = this;
         // Add video
@@ -453,13 +461,14 @@ function($, _, Backbone,
             self.initVideo();
         }
 
-        self.popcorn.play();
-            
         self.popcorn.on("play",function() {
             //Mute sounds
             self.muteSounds();
-        
         });
+
+        self.popcorn.play();
+            
+        
     },
 
     closeVideo: function() {
@@ -468,6 +477,9 @@ function($, _, Backbone,
         self.$el.find(".streetwalk-video").hide();
         
         self.popcorn.pause();
+        self.popcorn.currentTime(0);
+
+        self.unmuteSounds();
     },
 
 

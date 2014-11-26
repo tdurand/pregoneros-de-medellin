@@ -88,6 +88,7 @@ function($, _, Backbone,
         clear: function() {
             var self = this;
             self.wayStills.clear();
+            self.waySounds.clear();
         }
 
   });

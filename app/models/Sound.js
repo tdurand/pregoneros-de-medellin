@@ -14,12 +14,12 @@ function($, _, Backbone, GeoUtils){
     initialize: function() {
         var self = this;
 
-        var path = self.get("path");
+        self.path = self.get("path");
         self.position = self.get("position");
         self.db = self.get("db");
 
         self.sound = new Howl({
-          urls: ['data/' + path + '.mp3'],
+          urls: ['data/' + self.path + '.mp3'],
           loop:true,
           volume:0,
           onload: function() {
@@ -35,14 +35,14 @@ function($, _, Backbone, GeoUtils){
 
             // Calculate distance between user and sound
             var distance = GeoUtils.distance(self.position, newUserPosition);
-
-            console.log(distance);
             
             // Calculate new volume based on distance
             self.vol = self.calculateVolume(distance);
 
             // Set new volume
             self.sound.volume(self.vol);
+
+            console.log(self.path + "PLAYING WITH VOL: " + self.vol);
     },
 
     updatePan : function(newUserPosition){
@@ -107,6 +107,11 @@ function($, _, Backbone, GeoUtils){
         // Multiply distance volume by amplitude of sound (apply ceiling max of 1)
         vol = Math.min((vol * self.db), 1);
         return vol;
+    },
+
+    unload: function() {
+        var self = this;
+        self.sound.unload();
     }
 
   });

@@ -19,17 +19,17 @@
         {
             "position":[6.251722,-75.568918],
             "path":"carabobo-cl52-cl51/sounds/punto1",
-            "db":40
+            "db":10
         },
         {
             "position":[6.251376211588373,-75.56907713413239],
             "path":"carabobo-cl52-cl51/sounds/punto2",
-            "db":40
+            "db":10
         },
         {
             "position":[6.250986,-75.569259],
             "path":"carabobo-cl52-cl51/sounds/punto3",
-            "db":40
+            "db":10
         }
     ],
     "characterDefinition": {
