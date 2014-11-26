@@ -30,22 +30,17 @@ function($, _, Backbone,
 
         //set other node to 0 vol
         _.each(self.models, function(sound) {
-            if(sound.cid != twoClosestNode.closestNode.sound.cid && sound.cid != twoClosestNode.secondClosestNode.sound.cid) {
-                sound.sound.volume(0);
-                LOGGER.debug("SET VOLUME 0 TO " + sound.path);
-            }
-
             if(sound.type == "punctual") {
                 sound.updateSound(newUserPosition);
+            }
+            else if(sound.cid != twoClosestNode.closestNode.sound.cid && sound.cid != twoClosestNode.secondClosestNode.sound.cid) {
+                sound.sound.volume(0);
+                LOGGER.debug("SET VOLUME 0 TO " + sound.path);
             }
         });
 
         twoClosestNode.closestNode.sound.updateSound(newUserPosition);
         twoClosestNode.secondClosestNode.sound.updateSound(newUserPosition);
-    },
-
-    updateLinearSounds: function(newUserPosition) {
-
     },
 
     getTwoClosestNode: function(position) {
@@ -62,21 +57,23 @@ function($, _, Backbone,
         };
 
         _.each(self.models,function(sound) {
-            var soundDistanceToPosition = GeoUtils.distance(sound.position,position);
-            if(soundDistanceToPosition < closestNode.distance) {
-                //new closest node
-                secondClosestNode = closestNode;
-                closestNode = {
-                    sound:sound,
-                    distance:soundDistanceToPosition
-                };
-            }
-            else if(soundDistanceToPosition < secondClosestNode.distance) {
-                //new second closest node
-                secondClosestNode = {
-                    sound:sound,
-                    distance:soundDistanceToPosition
-                };
+            if(sound.type == "ambient") {
+                var soundDistanceToPosition = GeoUtils.distance(sound.position,position);
+                if(soundDistanceToPosition < closestNode.distance) {
+                    //new closest node
+                    secondClosestNode = closestNode;
+                    closestNode = {
+                        sound:sound,
+                        distance:soundDistanceToPosition
+                    };
+                }
+                else if(soundDistanceToPosition < secondClosestNode.distance) {
+                    //new second closest node
+                    secondClosestNode = {
+                        sound:sound,
+                        distance:soundDistanceToPosition
+                    };
+                }
             }
         });
 

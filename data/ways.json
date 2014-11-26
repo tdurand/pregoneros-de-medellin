@@ -37,7 +37,19 @@
         {
             "position":[6.25104292900004,-75.56928098201752],
             "path":"carabobo-cl52-cl51/sounds/pregonjale",
-            "db":50,
+            "db":60,
+            "type":"punctual"
+        },
+        {
+            "position":[6.251365546548827,-75.56901812553406],
+            "path":"carabobo-cl52-cl51/sounds/tiendatodoa5000",
+            "db":60,
+            "type":"punctual"
+        },
+        {
+            "position":[6.251608176144503,-75.56906640529631],
+            "path":"carabobo-cl52-cl51/sounds/cremheladopregon",
+            "db":60,
             "type":"punctual"
         }
     ],
