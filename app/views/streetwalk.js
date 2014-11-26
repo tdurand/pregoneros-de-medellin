@@ -407,7 +407,7 @@ function($, _, Backbone,
                 // Update sounds volume
                 if(self.way.waySounds) {
                     var currentGeoPosition = self.way.wayPath[imgNb];
-                    
+
                     if(_.isUndefined(self.distanceSinceLastSoundUpdate)) {
                         self.distanceSinceLastSoundUpdate = 0;
                         self.lastSoundUpdatePosition = currentGeoPosition;
@@ -479,12 +479,11 @@ function($, _, Backbone,
             self.initVideo();
         }
 
-        self.popcorn.on("play",function() {
-            //Mute sounds
-            self.muteSounds();
-        });
+        self.muteSounds();
 
-        self.popcorn.play();
+        setTimeout(function() {
+            self.popcorn.play();
+        },1000);
         
     },
 
