@@ -200,7 +200,7 @@ function($, _, Backbone,
         });
 
         self.way.on("soundsLoaded", function() {
-            self.way.waySounds.updateSounds(self.way.wayPath[self.currentStill.id]);
+            self.way.waySounds.updateSounds(self.way.wayPath[0]);
         });
 
         self.way.on("loadingFinished", function() {
