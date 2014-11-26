@@ -43,6 +43,26 @@
     height:100%;
 }
 
+.streetwalk-heads {
+    position:fixed;
+    bottom:10px;
+    right:60px;
+    width: 40%;
+    height: 15%;
+
+    .streetwalk-head {
+        display:inline-block;
+        height: 100%;
+        width: 18%;
+        box-sizing: border-box; 
+
+        object {
+            height: 100%;
+        }
+    }
+    
+}
+
 .streetwalk-textcharacter {
     position: fixed;
 

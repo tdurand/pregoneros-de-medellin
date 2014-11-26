@@ -496,6 +496,9 @@ function($, _, Backbone,
         self.popcorn.currentTime(0);
 
         self.unmuteSounds();
+
+        //unlock perso
+        self.$el.find(".streetwalk-head-jale1").attr("data","images/heads/jale.svg");
     },
 
 
