@@ -379,6 +379,8 @@ function($, _, Backbone,
             }
             else {
 
+                
+
                 //Make sure imgNb is in bounds (on chrome macosx we can scroll more than height (rebound))
                 if(imgNb < 0) { imgNb = 0; }
                 if(imgNb >= self.way.wayStills.length) { imgNb = self.way.wayStills.length-1; }
@@ -404,8 +406,24 @@ function($, _, Backbone,
 
                 // Update sounds volume
                 if(self.way.waySounds) {
+                    var currentGeoPosition = self.way.wayPath[imgNb];
                     
-                    self.way.waySounds.updateSounds(self.way.wayPath[self.currentStill.id]);
+                    if(_.isUndefined(self.distanceSinceLastSoundUpdate)) {
+                        self.distanceSinceLastSoundUpdate = 0;
+                        self.lastSoundUpdatePosition = currentGeoPosition;
+
+                    }
+                    else {
+                        self.distanceSinceLastSoundUpdate = GeoUtils.distance(self.lastSoundUpdatePosition,currentGeoPosition);
+
+                        //update each 2 meter
+                        if(self.distanceSinceLastSoundUpdate > 2) {
+                            self.way.waySounds.updateSounds(currentGeoPosition);
+                            self.distanceSinceLastSoundUpdate = 0;
+                            self.lastSoundUpdatePosition = currentGeoPosition;
+                        }
+                    }
+                    
                 }
             }
         }
@@ -467,7 +485,6 @@ function($, _, Backbone,
         });
 
         self.popcorn.play();
-            
         
     },
 
