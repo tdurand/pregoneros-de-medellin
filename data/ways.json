@@ -33,6 +33,12 @@
             "path":"carabobo-cl52-cl51/sounds/punto3",
             "db":10,
             "type":"ambient"
+        },
+        {
+            "position":[6.25104292900004,-75.56928098201752],
+            "path":"carabobo-cl52-cl51/sounds/pregonjale",
+            "db":50,
+            "type":"punctual"
         }
     ],
     "characterDefinition": {

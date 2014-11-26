@@ -111,7 +111,7 @@ function($, _, Backbone, GeoUtils, LOGGER){
         if(self.type == "ambient") {
             vol = 1 / (distance);
         }
-        else if(self.type == "punctal") {
+        else if(self.type == "punctual") {
             vol = 1 / (distance * distance);
         }
         

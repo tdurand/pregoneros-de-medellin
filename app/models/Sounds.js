@@ -34,6 +34,10 @@ function($, _, Backbone,
                 sound.sound.volume(0);
                 LOGGER.debug("SET VOLUME 0 TO " + sound.path);
             }
+
+            if(sound.type == "punctual") {
+                sound.updateSound(newUserPosition);
+            }
         });
 
         twoClosestNode.closestNode.sound.updateSound(newUserPosition);
