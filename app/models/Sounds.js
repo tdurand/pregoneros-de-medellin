@@ -97,7 +97,8 @@ function($, _, Backbone,
                 var sound = new Sound({
                         position: waySound.position,
                         path: waySound.path,
-                        db: waySound.db
+                        db: waySound.db,
+                        type: waySound.type
                         });
 
                 self.add(sound);

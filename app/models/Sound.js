@@ -11,6 +11,9 @@ function($, _, Backbone, GeoUtils, LOGGER){
 
     position: undefined,
     vol: undefined,
+    path: undefined,
+    type: undefined,
+    db: undefined,
 
     initialize: function() {
         var self = this;
@@ -18,6 +21,7 @@ function($, _, Backbone, GeoUtils, LOGGER){
         self.path = self.get("path");
         self.position = self.get("position");
         self.db = self.get("db");
+        self.type = self.get("type");
 
         self.sound = new Howl({
           urls: ['data/' + self.path + '.mp3'],
@@ -101,10 +105,16 @@ function($, _, Backbone, GeoUtils, LOGGER){
 
     calculateVolume: function(distance){
         var self = this;
-        // Calculate volume by using Inverse Square Law
-        // var vol = 1 / (distance * distance);
-        // Calculate volume by using Linear law
-        var vol = 1 / (distance);
+
+        var vol = 0;
+
+        if(self.type == "ambient") {
+            vol = 1 / (distance);
+        }
+        else if(self.type == "punctal") {
+            vol = 1 / (distance * distance);
+        }
+        
         // Multiply distance volume by amplitude of sound (apply ceiling max of 1)
         vol = Math.min((vol * self.db), 1);
         return vol;
