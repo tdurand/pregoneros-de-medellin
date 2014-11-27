@@ -51,20 +51,12 @@ function($, _, Backbone,
             self.wayConnectionsStart = params.wayConnectionsStart;
             self.characterPosition = params.characterPosition;
             self.characterDefinition = params.characterDefinition;
-
-            //Sounds
-            self.waySounds = new Sounds();
-            self.waySounds.init(params.waySounds);
-            self.waySounds.fetch();
-            self.waySounds.on("soundsLoaded", function() {
-                self.trigger('soundsLoaded');
-            });
+            self.waySoundsData = params.waySounds;
 
             //Create the stills collection for this way
             self.wayStills = new Stills();
             self.wayStills.init(params);
 
-            //
             self.wayStills.on("updatePercentageLoaded", function() {
                 self.percentageLoaded = self.wayStills.percentageLoaded;
                 self.trigger("updatePercentageLoaded");
@@ -83,12 +75,19 @@ function($, _, Backbone,
         fetch: function() {
             var self = this;
             self.wayStills.fetch();
+
+            //Sounds
+            Sounds.on("soundsLoaded", function() {
+                self.trigger('soundsLoaded');
+            });
+            Sounds.updateSoundsCollection(self.waySoundsData);
+            Sounds.fetch();
+            
         },
 
         clear: function() {
             var self = this;
             self.wayStills.clear();
-            self.waySounds.clear();
         }
 
   });

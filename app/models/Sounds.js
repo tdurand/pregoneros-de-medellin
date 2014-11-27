@@ -14,9 +14,31 @@ function($, _, Backbone,
 
     model: Sound,
 
-    init:function(waySounds) {
+    updateSoundsCollection:function(waySounds) {
         var self = this;
+        if(_.isUndefined(self.waySounds)) {
+            self.previousWaySounds = [];
+        }
+        else {
+            self.previousWaySounds = self.waySounds;
+        }
+        
         self.waySounds = waySounds;
+
+        self.waySoundsIds = _.pluck(self.waySounds,"path");
+        self.previousWaySoundsIds = _.pluck(self.previousWaySounds,"path");
+
+        //intersection
+        self.soundsToKeepIds = _.intersection(self.previousWaySoundsIds,self.waySoundsIds);
+        self.soundsToRemoveIds = _.difference(self.previousWaySoundsIds,self.soundsToKeepIds);
+        self.soundsToAddIds = _.difference(self.waySoundsIds,self.soundsToKeepIds);
+
+        self.soundsToAdd = [];
+
+        _.each(self.soundsToAddIds,function(soundToAddId) {
+            self.soundsToAdd.push(_.findWhere(self.waySounds, {path: soundToAddId}));
+        });
+
     },
 
     updateSounds: function(newUserPosition) {
@@ -39,20 +61,25 @@ function($, _, Backbone,
             }
         });
 
-        twoClosestNode.closestNode.sound.updateSound(newUserPosition);
-        twoClosestNode.secondClosestNode.sound.updateSound(newUserPosition);
+        if(!_.isUndefined(twoClosestNode.closestNode.sound)) {
+            twoClosestNode.closestNode.sound.updateSound(newUserPosition);
+        }
+
+        if(!_.isUndefined(twoClosestNode.secondClosestNode.sound)) {
+            twoClosestNode.secondClosestNode.sound.updateSound(newUserPosition);
+        }
     },
 
     getTwoClosestNode: function(position) {
         var self = this;
 
         var closestNode = {
-            sound:null,
+            sound:undefined,
             distance:100000000000
         };
 
         var secondClosestNode = {
-            sound:null,
+            sound:undefined,
             distance:100000000000
         };
 
@@ -86,14 +113,19 @@ function($, _, Backbone,
     fetch: function() {
             var self = this;
 
-            if(_.isUndefined(self.waySounds)) {
+            if(_.isUndefined(self.soundsToAdd)) {
                 self.trigger('noSounds');
                 return;
             }
 
-            var nbSoundsToLoad = self.waySounds.length;
+            //Remove old sounds
+            _.each(self.soundsToRemoveIds, function(soundToRemove) {
+                self.remove(soundToRemove).unload();
+            });
+
+            var nbSoundsToLoad = self.soundsToAdd.length;
             
-            _.each(self.waySounds, function(waySound) {
+            _.each(self.soundsToAdd, function(waySound) {
 
                 var sound = new Sound({
                         position: waySound.position,
@@ -125,26 +157,13 @@ function($, _, Backbone,
     },
 
     clear: function() {
-
         var self = this;
-
-        var length = self.length;
-
-        //need to clean like this because for odd
-        //reason backbone.each gives undefined on the last
-        //model
-        for (var i = 0; i < length; i++) {
-            self.at(0).unload();
-            self.remove(self.at(0));
-        }
-
-        self.waySounds = [];
     }
 
 
   });
 
-  return Sounds;
+  return new Sounds();
   
 });
 

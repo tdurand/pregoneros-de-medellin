@@ -200,7 +200,7 @@ function($, _, Backbone,
         });
 
         self.way.on("soundsLoaded", function() {
-            self.way.waySounds.updateSounds(self.way.wayPath[0]);
+            Sounds.updateSounds(self.way.wayPath[0]);
         });
 
         self.way.on("loadingFinished", function() {
@@ -405,7 +405,7 @@ function($, _, Backbone,
                 },100);
 
                 // Update sounds volume
-                if(self.way.waySounds) {
+                if(Sounds.length) {
                     var currentGeoPosition = self.way.wayPath[imgNb];
 
                     if(_.isUndefined(self.distanceSinceLastSoundUpdate)) {
@@ -418,7 +418,7 @@ function($, _, Backbone,
 
                         //update each 2 meter
                         if(self.distanceSinceLastSoundUpdate > 2) {
-                            self.way.waySounds.updateSounds(currentGeoPosition);
+                            Sounds.updateSounds(currentGeoPosition);
                             self.distanceSinceLastSoundUpdate = 0;
                             self.lastSoundUpdatePosition = currentGeoPosition;
                         }
@@ -442,11 +442,11 @@ function($, _, Backbone,
 
         if(state == "normal") {
             $(e.currentTarget).attr("data-state","muted");
-            self.way.waySounds.mute();
+            Sounds.mute();
         }
         else {
             $(e.currentTarget).attr("data-state","normal");
-            self.way.waySounds.unmute();
+            Sounds.unmute();
         }
     },
 
@@ -454,14 +454,14 @@ function($, _, Backbone,
         var self = this;
 
         self.$el.find(".toggle-sounds").attr("data-state","muted");
-        self.way.waySounds.mute();
+        Sounds.mute();
     },
 
     unmuteSounds: function() {
         var self = this;
 
         self.$el.find(".toggle-sounds").attr("data-state","normal");
-        self.way.waySounds.unmute();
+        Sounds.unmute();
     },
 
     initVideo: function() {

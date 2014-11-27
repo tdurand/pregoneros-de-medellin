@@ -120,6 +120,38 @@
             "direction": "right",
             "name":"cl51-carabobo-cr51"
         }
+    ],
+    "waySounds":[
+        {
+            "position":[6.251722,-75.568918],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":10,
+            "type":"ambient"
+        },
+        {
+            "position":[6.251376211588373,-75.56907713413239],
+            "path":"carabobo-cl52-cl51/sounds/punto2",
+            "db":10,
+            "type":"ambient"
+        },
+        {
+            "position":[6.250986,-75.569259],
+            "path":"carabobo-cl52-cl51/sounds/punto3",
+            "db":10,
+            "type":"ambient"
+        },
+        {
+            "position":[6.251365546548827,-75.56901812553406],
+            "path":"carabobo-cl52-cl51/sounds/tiendatodoa5000",
+            "db":60,
+            "type":"punctual"
+        },
+        {
+            "position":[6.251608176144503,-75.56906640529631],
+            "path":"carabobo-cl52-cl51/sounds/cremheladopregon",
+            "db":60,
+            "type":"punctual"
+        }
     ]
   },
   {
@@ -140,6 +172,14 @@
         {
             "direction": "right",
             "name":"carabobo-cl51-cl52"
+        }
+    ],
+    "waySounds":[
+        {
+            "position":[6.250986,-75.569259],
+            "path":"carabobo-cl52-cl51/sounds/punto3",
+            "db":10,
+            "type":"ambient"
         }
     ]
   },
@@ -178,6 +218,14 @@
         {
             "direction": "backward",
             "name":"cl51-carabobo-cr53"
+        }
+    ],
+    "waySounds":[
+        {
+            "position":[6.250986,-75.569259],
+            "path":"carabobo-cl52-cl51/sounds/punto3",
+            "db":10,
+            "type":"ambient"
         }
     ]
   },

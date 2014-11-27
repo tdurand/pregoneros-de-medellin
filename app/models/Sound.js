@@ -15,6 +15,8 @@ function($, _, Backbone, GeoUtils, LOGGER){
     type: undefined,
     db: undefined,
 
+    idAttribute: "path",
+
     initialize: function() {
         var self = this;
 
