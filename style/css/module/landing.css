@@ -71,35 +71,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 3, ../../sass/module/landing.scss */
-html, body {
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  height: 100%;
-}
-/* line 12, ../../../../../../.rvm/gems/ruby-2.1.3/gems/susy-2.1.3/sass/susy/output/support/_clearfix.scss */
-html:after, body:after {
-  content: " ";
-  display: block;
-  clear: both;
-}
-
-/* line 8, ../../sass/module/landing.scss */
-.page {
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  height: 100%;
-  display: none;
-}
-/* line 12, ../../../../../../.rvm/gems/ruby-2.1.3/gems/susy-2.1.3/sass/susy/output/support/_clearfix.scss */
-.page:after {
-  content: " ";
-  display: block;
-  clear: both;
-}
-
-/* line 14, ../../sass/module/landing.scss */
 .main {
   width: 100%;
   float: left;
@@ -111,7 +82,7 @@ html:after, body:after {
   position: relative;
 }
 
-/* line 25, ../../sass/module/landing.scss */
+/* line 14, ../../sass/module/landing.scss */
 .top {
   width: 100%;
   float: left;
@@ -120,7 +91,7 @@ html:after, body:after {
   height: 30%;
   position: relative;
 }
-/* line 32, ../../sass/module/landing.scss */
+/* line 21, ../../sass/module/landing.scss */
 .top .wrap-top-bar {
   position: absolute;
   height: 80%;
@@ -132,7 +103,7 @@ html:after, body:after {
   background-color: #bd750f;
   opacity: 0.6;
 }
-/* line 42, ../../sass/module/landing.scss */
+/* line 31, ../../sass/module/landing.scss */
 .top .wrap-top-bar .top-bar {
   position: absolute;
   height: 60%;
@@ -145,7 +116,7 @@ html:after, body:after {
   opacity: 1;
 }
 
-/* line 56, ../../sass/module/landing.scss */
+/* line 45, ../../sass/module/landing.scss */
 .middle {
   width: 100%;
   float: left;
@@ -154,7 +125,7 @@ html:after, body:after {
   height: 70%;
   position: relative;
 }
-/* line 62, ../../sass/module/landing.scss */
+/* line 51, ../../sass/module/landing.scss */
 .middle .logo {
   width: 32.20339%;
   float: left;
@@ -165,7 +136,7 @@ html:after, body:after {
   background-size: contain;
   background-repeat: no-repeat;
 }
-/* line 72, ../../sass/module/landing.scss */
+/* line 61, ../../sass/module/landing.scss */
 .middle .description {
   width: 66.10169%;
   float: left;
@@ -180,7 +151,7 @@ html:after, body:after {
   -moz-border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
   border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
 }
-/* line 86, ../../sass/module/landing.scss */
+/* line 75, ../../sass/module/landing.scss */
 .middle .description .description-title {
   width: 50%;
   height: 30%;
@@ -189,7 +160,7 @@ html:after, body:after {
   background-size: contain;
   background-repeat: no-repeat;
 }
-/* line 97, ../../sass/module/landing.scss */
+/* line 86, ../../sass/module/landing.scss */
 .middle .description .description-text {
   margin-top: 1rem;
   font-family: absender;
@@ -197,7 +168,7 @@ html:after, body:after {
   text-align: justify;
   color: #FFFFFF;
 }
-/* line 116, ../../sass/module/landing.scss */
+/* line 105, ../../sass/module/landing.scss */
 .middle .separator {
   width: 100%;
   float: left;
@@ -212,7 +183,7 @@ html:after, body:after {
   background-repeat: no-repeat;
 }
 
-/* line 131, ../../sass/module/landing.scss */
+/* line 120, ../../sass/module/landing.scss */
 .landingpage-video-frame {
   height: 100%;
   width: 100%;
@@ -225,7 +196,7 @@ html:after, body:after {
   right: 0;
 }
 
-/* line 145, ../../sass/module/landing.scss */
+/* line 134, ../../sass/module/landing.scss */
 .landingpage-video {
   height: 0;
   width: 100%;
@@ -234,7 +205,7 @@ html:after, body:after {
   right: 0;
   z-index: -1;
 }
-/* line 155, ../../sass/module/landing.scss */
+/* line 144, ../../sass/module/landing.scss */
 .landingpage-video .iframe {
   width: 100%;
 }

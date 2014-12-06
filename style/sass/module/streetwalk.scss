@@ -1,13 +1,69 @@
-#streetwalk {
-    height: 100%;
-}
+@import "grids";
 
-.streetwalk-map {
-    width: 200px;
-    height: 200px;
-    position: fixed;
-    bottom:20px;
-    left:20px;
+.streetwalk-bottombar {
+    position:fixed;
+    bottom:0;
+
+    @include span(12);
+    height: 10%;
+    background-color: #FFD64A;
+
+    .streetwalk-bottombar-separator {
+        @include span(12);
+        height: 100%;
+        position: absolute;
+
+        top:-60%;
+        z-index: 1;
+
+        background-image: url("../../images/separator_bottom.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .streetwalk-map {
+        position:absolute;
+        z-index: 2;
+
+        @include span(2);
+
+        //Positionning
+        bottom:50%;
+        left:2%;
+
+        //border
+        // border-style: solid;
+        // border-width: 111px 214px 51px 297px;
+        // -webkit-border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
+        // -moz-border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
+        // border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
+    }
+
+    .streetwalk-map:before {
+        content: "";
+        display: block;
+        padding-top: 100%;  /* initial ratio of 1:1*/
+    }
+
+    .streetwalk-heads {
+        position:absolute;
+        z-index: 2;
+        top:-50%;
+        right: 20px;
+        height: 150%;
+        
+        @include span(6);
+
+        .streetwalk-head {
+            height: 100%;
+            float:left;
+            width: 20%;
+
+            object {
+                height: 100%;
+            }
+        }
+    }
 }
 
 .streetwalk-video {
@@ -41,26 +97,6 @@
     left:0;
     width:100%;
     height:100%;
-}
-
-.streetwalk-heads {
-    position:fixed;
-    bottom:10px;
-    right:60px;
-    width: 40%;
-    height: 15%;
-
-    .streetwalk-head {
-        display:inline-block;
-        height: 100%;
-        width: 18%;
-        box-sizing: border-box; 
-
-        object {
-            height: 100%;
-        }
-    }
-    
 }
 
 .streetwalk-textcharacter {
@@ -209,198 +245,6 @@
     left:0;
     width:100%;
     height:100%;
-}
-
-.launching {
-    display:none;
-    position:absolute;
-    width:100%;
-    height:100%;
-}
-
-.launching-content {
-
-    text-align: center;
-
-    color:white;
-
-
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    /*transform*/
-    -webkit-transform:translate(-50%, -50%);
-       -moz-transform:translate(-50%, -50%);
-        -ms-transform:translate(-50%, -50%);
-         -o-transform:translate(-50%, -50%);
-            transform:translate(-50%, -50%);
-
-    .launchinglogo {
-        width: 40%;
-    }
-
-    .launching-emailgroup {
-        width: 60%;
-        margin:0 auto;
-    }
-
-    .launching-emailinput-label {
-        margin-top:1rem;
-        margin-bottom:1rem;
-        text-align: left;
-    }
-
-    .launching-emailinput {
-        width: 100%;
-        height: 2.6rem;
-        font-size: 1.4rem;
-        font-family: "FilbertBrush";
-        padding:0.6rem;
-
-        border:none;
-        -webkit-box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.75);
-    }
-
-    .launching-unlocklabel {
-        margin-top:0.5rem;
-        font-size:1.3rem;
-        color:#FFCD4B;
-        text-align: center;
-    }
-
-    .launching-errorsignup {
-        color:red;
-    }
-
-    .launching-button {
-        cursor:pointer;
-        border-radius : 1.5rem;
-        border:none;
-        height: 3rem;
-        margin:1rem;
-        padding:0.6rem;
-        font-family: "FilbertBrush";
-        font-size: 1.4rem;
-
-        display: inline-block;
-        line-height: 2rem;
-        text-decoration: none;
-        padding: 0.6rem;
-
-        box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.75);
-         -webkit-box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.75);
-         -moz-box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.75);
-
-    }
-
-    .launching-button-subscribe {
-
-        margin-top:0;
-        font-size: 1.7rem;
-
-        color:#009788;
-        background : #F9BE4C;
-         
-         &:active {
-            color : #005650;
-            background : #E2A63B;
-            
-         }
-
-         &[disabled="disabled"] {
-            color : #005650;
-            background : #E2A63B;
-         }
-
-    }
-
-    .launching-button-share {
-         color : #FFFFFF;
-         background : #00B99B;
-
-         &:active {
-            color : #D1ECE6;
-            background : #00B99B;
-         }
-    }
-
-    .launchingfacebook {
-        padding-top:1rem;
-        width: 50%;
-        margin:0 auto;
-        display:block;
-    }
-
-    .launching-facebookicon {
-        width:50%;
-        max-width:396px;
-    }
-
-    .launching-signup-thanks {
-        max-height: 0;
-        overflow: hidden;
-
-        /* Set our transitions up. */
-        -webkit-transition: max-height 0.8s;
-        -moz-transition: max-height 0.8s;
-        transition: max-height 0.8s;
-
-        &.show {
-             max-height: 1000px;
-        }
-
-        h2 {
-            margin:1em;
-        }
-
-        .launching-bonusvideo {
-            margin-bottom: 1em;
-            width: 500px;
-            height: 281px;
-            margin:0 auto;
-
-            &.fullscreen {
-                width: 100%;
-                height: 100%;
-            }
-        }
-    }
-
-    .launching-separatorline {
-        width: 60%;
-        fill:#FFF;
-    }
-
-    //Media query
-    @media screen and (max-width: 700px) {
-        & {
-            width: 100%;
-        }
-
-        .launchingfacebook {
-            width: 100%;
-        }
-
-        .launchinglogo {
-            width: 55%;
-        }   
-    }
-
-    @media screen and (min-width : 700px) and (max-width: 1300px) {
-        & {
-            width: 70%;
-        }
-
-        .launchingfacebook {
-            width: 70%;
-        }
-    }
-
-    @media screen and (min-width: 1300px) {
-        & {
-            width: 50%;
-        }
-    }
 }
 
 .trame-video {

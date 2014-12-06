@@ -1,16 +1,5 @@
 @import "grids";
 
-html,body {
-    @include container;
-    height: 100%;
-}
-
-.page {
-    @include container;
-    height: 100%;
-    display: none;
-}
-
 .main {
     @include span(12);
 
