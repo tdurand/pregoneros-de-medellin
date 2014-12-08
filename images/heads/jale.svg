@@ -3,6 +3,12 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 298.8 327.9" enable-background="new 0 0 298.8 327.9" xml:space="preserve">
+<style>
+    svg {
+        -webkit-filter:drop-shadow( 5px 5px 5px #000);
+                filter:drop-shadow( 5px 5px 5px #000);
+    }
+</style>   
 <g>
 	<path fill="#FFD565" d="M151.1,307c-1,0-2.1-0.3-3-0.8L26.4,236c-1.9-1.1-3-3.1-3-5.2l0-140.5c0-2.1,1.1-4.1,3-5.2L148,14.8
 		c0.9-0.5,2-0.8,3-0.8c1,0,2.1,0.3,3,0.8L275.6,85c1.9,1.1,3,3.1,3,5.2l0,140.5c0,2.1-1.1,4.1-3,5.2l-121.6,70.3

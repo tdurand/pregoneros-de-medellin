@@ -185,7 +185,20 @@ function($, _, Backbone,
         }));
 
         self.initMap();
+
+        self.adjustSizes();
         
+    },
+
+    adjustSizes: function() {
+        var self = this;
+
+        //Todo add handler on resize to execute this function
+
+        $(".streetwalk-map").width($(".streetwalk-map").height());
+
+        var height = $(".streetwalk-heads").height();
+        $(".streetwalk-heads").width(height*6);
     },
 
     loadPath: function() {
@@ -384,11 +397,6 @@ function($, _, Backbone,
                 //Make sure imgNb is in bounds (on chrome macosx we can scroll more than height (rebound))
                 if(imgNb < 0) { imgNb = 0; }
                 if(imgNb >= self.way.wayStills.length) { imgNb = self.way.wayStills.length-1; }
-
-                if(imgNb == self.way.wayStills.length -1 && !self.scrollToEndEventSended) {
-                    //send event to GA, scrolltoend reached
-                    self.scrollToEndEventSended = true;
-                }
 
                 //Render image
                 self.renderImg(imgNb);

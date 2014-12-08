@@ -25,42 +25,30 @@
         position:absolute;
         z-index: 2;
 
-        @include span(2);
-
         //Positionning
         bottom:50%;
         left:2%;
-
-        //border
-        // border-style: solid;
-        // border-width: 111px 214px 51px 297px;
-        // -webkit-border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
-        // -moz-border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
-        // border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
-    }
-
-    .streetwalk-map:before {
-        content: "";
-        display: block;
-        padding-top: 100%;  /* initial ratio of 1:1*/
+        //Size
+        height:225%;
+        width: 10%; //width defined = height in javascript
     }
 
     .streetwalk-heads {
         position:absolute;
         z-index: 2;
-        top:-50%;
-        right: 20px;
-        height: 150%;
-        
-        @include span(6);
+        top:-30%;
+        right: 70px;
+        height: 120%;
 
         .streetwalk-head {
             height: 100%;
+            width: 100%;
             float:left;
             width: 20%;
 
             object {
                 height: 100%;
+                width: 100%;
             }
         }
     }
@@ -144,6 +132,7 @@
     position: fixed;
     bottom:20px;
     right:20px;
+    z-index:1;
 
     .toggle-sounds {
         width:3rem;

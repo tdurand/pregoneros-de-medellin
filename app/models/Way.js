@@ -77,11 +77,11 @@ function($, _, Backbone,
             self.wayStills.fetch();
 
             //Sounds
-            Sounds.on("soundsLoaded", function() {
-                self.trigger('soundsLoaded');
-            });
-            Sounds.updateSoundsCollection(self.waySoundsData);
-            Sounds.fetch();
+            // Sounds.on("soundsLoaded", function() {
+            //     self.trigger('soundsLoaded');
+            // });
+            // Sounds.updateSoundsCollection(self.waySoundsData);
+            // Sounds.fetch();
             
         },
 
