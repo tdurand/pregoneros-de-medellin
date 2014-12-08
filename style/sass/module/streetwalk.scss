@@ -33,23 +33,62 @@
         width: 10%; //width defined = height in javascript
     }
 
-    .streetwalk-heads {
+    .streetwalk-menucharacters {
         position:absolute;
         z-index: 2;
         top:-30%;
         right: 70px;
         height: 120%;
 
-        .streetwalk-head {
-            height: 100%;
-            width: 100%;
-            float:left;
-            width: 20%;
+        .streetwalk-menucharacter {
+            height: 400%;
+            position:absolute;
+            width: 40%;
+            left:-20%;
+            bottom:-80%;
 
             object {
                 height: 100%;
                 width: 100%;
             }
+
+            .character-unlocked,.video1,.video2,.video3 {
+                display:none;
+            }
+
+            .submenu {
+                display:none;
+
+                &.open {
+                    display:block;
+                }
+            }
+
+
+        }
+
+        .streetwalk-menujale1 {
+            z-index: 10;
+        }
+
+        .streetwalk-menujale2 {
+            left:0%;
+            z-index: 9;
+        }
+
+        .streetwalk-menujale3 {
+            left:20%;
+            z-index: 8;
+        }
+
+        .streetwalk-menujale4 {
+            left:40%;
+            z-index: 7;
+        }
+
+        .streetwalk-menujale5 {
+            left:60%;
+            z-index: 6;
         }
     }
 }

@@ -8,6 +8,7 @@ define(['jquery',
         'utils/LocalParams',
         'utils/Logger',
         'utils/Localization',
+        'views/subview/menucharacters',
         'text!templates/streetwalk/streetWalkViewTemplate.html',
         'text!templates/streetwalk/streetWalkLoadingViewTemplate.html',
         'text!templates/streetwalk/streetWalkChoosePathStartViewTemplate.html',
@@ -22,6 +23,7 @@ function($, _, Backbone,
                 LocalParams,
                 LOGGER,
                 Localization,
+                MenuCharactersView,
                 streetWalkViewTemplate,
                 streetWalkLoadingViewTemplate,
                 streetWalkChoosePathStartViewTemplate,
@@ -184,6 +186,8 @@ function($, _, Backbone,
             lang:Localization.translationLoaded
         }));
 
+        self.menuCharactersView = new MenuCharactersView();
+
         self.initMap();
 
         self.adjustSizes();
@@ -197,8 +201,10 @@ function($, _, Backbone,
 
         $(".streetwalk-map").width($(".streetwalk-map").height());
 
-        var height = $(".streetwalk-heads").height();
-        $(".streetwalk-heads").width(height*6);
+        var height = $(".streetwalk-menucharacters").height();
+        $(".streetwalk-menucharacters").width(height*6);
+
+        $(".streetwalk-menucharacters").width(height*6);
     },
 
     loadPath: function() {
@@ -506,7 +512,15 @@ function($, _, Backbone,
         self.unmuteSounds();
 
         //unlock perso
-        self.$el.find(".streetwalk-head-jale1").attr("data","images/heads/jale.svg");
+        self.$el.find(".streetwalk-menujale1 .submenu").show();
+        self.$el.find(".streetwalk-menujale1 .character").show();
+        self.$el.find(".streetwalk-menujale1 .video1").show();
+        self.$el.find(".streetwalk-menujale1 .video1locked").hide();
+        self.$el.find(".streetwalk-menujale1 .character-locked").hide();
+    },
+
+    toggleMenu: function(e) {
+        $(e.currentTarget).find(".submenu").show();
     },
 
 
