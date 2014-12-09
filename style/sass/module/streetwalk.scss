@@ -8,6 +8,12 @@
     height: 10%;
     background-color: #FFD64A;
 
+    @media screen and (min-height: 800px) {
+        & {
+            height: 8%;
+        }
+    }
+
     .streetwalk-bottombar-separator {
         @include span(12);
         height: 100%;
@@ -40,6 +46,12 @@
         border-image: url("../../images/mapborder.png") 39 167 63 89 fill stretch;
         background-color: transparent;
 
+        .streetwalk-mapcontainer {
+            height: 100%;
+            width: 100%;
+            border-radius:10px;
+            overflow: hidden;
+        }
     }
 
     .streetwalk-menucharacters {

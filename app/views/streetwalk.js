@@ -59,7 +59,7 @@ function($, _, Backbone,
     initMap: function() {
         var self = this;
 
-        self.map = L.mapbox.map('streetwalk-map', 'tdurand.jn29943n',{
+        self.map = L.mapbox.map('streetwalk-mapcontainer', 'tdurand.jn29943n',{
             accessToken: 'pk.eyJ1IjoidGR1cmFuZCIsImEiOiI0T1ZEWlRVIn0.1PEGeiEWz6RUBfZq9Bvy7Q',
             zoomControl: false,
             attributionControl: false
