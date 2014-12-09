@@ -114,7 +114,7 @@ function($, _, Backbone,
         if(Progression.isFirstWay) {
             Progression.isFirstWay = false;
         }
-        
+
         self.$el.find(".streetwalk-loading").html(_.template(streetWalkLoadingViewTemplate));
             self.$el.find(".streetwalk-loading").show();
 
