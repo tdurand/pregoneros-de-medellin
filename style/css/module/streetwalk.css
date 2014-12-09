@@ -241,7 +241,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /* line 178, ../../sass/module/streetwalk.scss */
 .streetwalk-chooseway {
-  width: 50%;
+  width: 35%;
   position: absolute;
   left: 50%;
   top: 50%;
