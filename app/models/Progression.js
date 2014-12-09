@@ -7,6 +7,8 @@ function($, _, Backbone, LOGGER){
 
   var Progression = Backbone.Model.extend({
 
+    isFirstWay: true,
+
     initialize: function() {
         var self = this;
 

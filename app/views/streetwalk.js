@@ -111,28 +111,26 @@ function($, _, Backbone,
     renderLoading: function() {
         var self = this;
         
-        if(self.$el.find(".loadingNextWay").length > 0) {
-            self.$el.find(".loadingNextWay").show();
-            self.$el.find(".streetwalk-title").hide();
-
-            self.isFirstWay = false;
+        if(Progression.isFirstWay) {
+            Progression.isFirstWay = false;
         }
-        else {
-            self.$el.html(_.template(streetWalkLoadingViewTemplate));
-            self.isFirstWay = true;
+        
+        self.$el.find(".streetwalk-loading").html(_.template(streetWalkLoadingViewTemplate));
+            self.$el.find(".streetwalk-loading").show();
 
-            //init svg element path
-            self.pathLoading = Snap("#loadingLine");
-            self.pathLoadingLength = self.pathLoading.getTotalLength();
-            self.pathLoading.attr({
-                // Draw Path
-                "stroke-dasharray": self.pathLoadingLength + " " + self.pathLoadingLength,
-                "stroke-dashoffset": self.pathLoadingLength
-            });
+        //init svg element path
+        self.pathLoading = Snap("#loadingLine");
+        self.pathLoadingLength = self.pathLoading.getTotalLength();
+        self.pathLoading.attr({
+            // Draw Path
+            "stroke-dasharray": self.pathLoadingLength + " " + self.pathLoadingLength,
+            "stroke-dashoffset": self.pathLoadingLength
+        });
 
-            self.carito = Snap("#carito");
+        self.carito = Snap("#carito");
 
-        }
+        self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
+        self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
         
 
     },
@@ -233,6 +231,7 @@ function($, _, Backbone,
             self.$el.find("#scrollToStartLoaded").show();
             self.$el.find("#scrollToStartLoading").hide();
             self.render();
+            self.$el.find(".streetwalk-loading").hide();
         });
 
         self.way.on("loadingFinishedCompletely", function() {
@@ -340,6 +339,8 @@ function($, _, Backbone,
             self.$el.find(".streetwalk-chooseway-end-wrapper").html(_.template(streetWalkChoosePathEndViewTemplate,{
                 wayConnectionsEnd:self.way.wayConnectionsEnd
             }));
+
+            self.menuCharactersView.closeMenu();
         }
         else if(imgNb === 0) {
             self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
@@ -348,6 +349,8 @@ function($, _, Backbone,
             self.$el.find(".streetwalk-chooseway-start-wrapper").html(_.template(streetWalkChoosePathStartViewTemplate,{
                 wayConnectionsStart:self.way.wayConnectionsStart
             }));
+
+            self.menuCharactersView.closeMenu();
         }
         else {
             self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
@@ -400,8 +403,6 @@ function($, _, Backbone,
             }
             else {
 
-                
-
                 //Make sure imgNb is in bounds (on chrome macosx we can scroll more than height (rebound))
                 if(imgNb < 0) { imgNb = 0; }
                 if(imgNb >= self.way.wayStills.length) { imgNb = self.way.wayStills.length-1; }
@@ -412,6 +413,9 @@ function($, _, Backbone,
                 //Render elements at this position:
                 self.renderElements(imgNb);
                 $("body").removeClass('not-moving');
+
+                //close menu
+                self.menuCharactersView.closeMenu();
 
                 //Render highres after 100ms
                 clearTimeout(self.highResLoadingInterval);

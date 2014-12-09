@@ -2,11 +2,15 @@
 .streetwalk-loading {
   width: 100%;
   height: 100%;
-  background-image: url("../../images/loadingbackground.jpg");
   background-size: cover;
+  position: fixed;
+}
+/* line 9, ../../sass/module/loading.scss */
+.streetwalk-loading.firstway {
+  background-image: url("../../images/loadingbackground.jpg");
 }
 
-/* line 10, ../../sass/module/loading.scss */
+/* line 14, ../../sass/module/loading.scss */
 .streetwalk-loading-text {
   position: absolute;
   width: 50%;
