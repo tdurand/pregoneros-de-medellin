@@ -2,11 +2,13 @@ define(['jquery',
         'underscore',
         'backbone',
         'utils/Logger',
+        'models/Progression',
         'text!templates/streetwalk/menuCharactersViewTemplate.html',
         'text!templates/svg/svgMenuJaleTemplate.html'
         ],
 function($, _, Backbone,
                 LOGGER,
+                Progression,
                 streetWalkMenuCharactersViewTemplate,
                 svgMenuJaleTemplate){
 
@@ -15,7 +17,38 @@ function($, _, Backbone,
     el:"#streetwalk-menucharacters",
 
     events:{
-        "click .character":"characterClick"
+        "click .character":"toggleMenu"
+    },
+
+    bindings:{
+            ".streetwalk-menucharacter[data-character='jale'] .character-unlocked":{
+                observe:"charactersProgression",
+                visible: true,
+                onGet: function(charactersProgression) {
+                    return charactersProgression.jale.characterUnlocked;
+                }
+            },
+            ".streetwalk-menucharacter[data-character='jale'] .character-locked":{
+                observe:"charactersProgression",
+                visible: function(val) { return val === false; },
+                onGet: function(charactersProgression) {
+                    return charactersProgression.jale.characterUnlocked;
+                }
+            },
+            ".streetwalk-menucharacter[data-character='jale'] .video1":{
+                observe:"charactersProgression",
+                visible: true,
+                onGet: function(charactersProgression) {
+                    return charactersProgression.jale.video1Unlocked;
+                }
+            },
+            ".streetwalk-menucharacter[data-character='jale'] .video1locked":{
+                observe:"charactersProgression",
+                visible: function(val) { return val === false; },
+                onGet: function(charactersProgression) {
+                    return charactersProgression.jale.video1Unlocked;
+                }
+            }
     },
 
     initialize : function() {
@@ -29,17 +62,36 @@ function($, _, Backbone,
 
         self.$el.html(_.template(streetWalkMenuCharactersViewTemplate));
         
-        self.$el.find(".streetwalk-menujale1").html(_.template(svgMenuJaleTemplate));
-        self.$el.find(".streetwalk-menujale2").html(_.template(svgMenuJaleTemplate));
-        self.$el.find(".streetwalk-menujale3").html(_.template(svgMenuJaleTemplate));
-        self.$el.find(".streetwalk-menujale4").html(_.template(svgMenuJaleTemplate));
-        self.$el.find(".streetwalk-menujale5").html(_.template(svgMenuJaleTemplate));
+        self.$el.find(".streetwalk-menucharacter[data-character='jale']").html(_.template(svgMenuJaleTemplate));
+        self.$el.find(".streetwalk-menucharacter[data-character='pajarito']").html(_.template(svgMenuJaleTemplate));
+        self.$el.find(".streetwalk-menucharacter[data-character='perso3']").html(_.template(svgMenuJaleTemplate));
+        self.$el.find(".streetwalk-menucharacter[data-character='perso4']").html(_.template(svgMenuJaleTemplate));
+        self.$el.find(".streetwalk-menucharacter[data-character='perso5']").html(_.template(svgMenuJaleTemplate));
+
+        self.stickit(Progression);
     },
 
-    characterClick: function(e) {
+    toggleMenu: function(e) {
+        var self = this;
         var dataCharacter = $(e.currentTarget).parents(".streetwalk-menucharacter").attr("data-character");
 
-        $(".streetwalk-menucharacter streetwalk-"+dataCharacter).find(".submenu").addClass("open");
+        if(self.$el.find(".submenu[data-state='open']").parents("[data-character='"+dataCharacter+"']").length < 1) {
+            self.openMenu(dataCharacter);
+        }
+        else {
+            self.closeMenu();
+        }
+    },
+
+    openMenu: function(character) {
+        var self = this;
+        self.closeMenu();
+        self.$el.find(".streetwalk-menucharacter[data-character='" + character + "']").find(".submenu").attr("data-state","open");
+    },
+
+    closeMenu: function() {
+        var self = this;
+        self.$el.find(".submenu[data-state='open']").attr("data-state","closed");
     },
 
     onClose: function(){

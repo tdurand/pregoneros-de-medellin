@@ -4,6 +4,7 @@ define(['jquery',
         'snap',
         'models/Ways',
         'models/Sounds',
+        'models/Progression',
         'utils/GeoUtils',
         'utils/LocalParams',
         'utils/Logger',
@@ -19,6 +20,7 @@ function($, _, Backbone,
                 Snap,
                 Ways,
                 Sounds,
+                Progression,
                 GeoUtils,
                 LocalParams,
                 LOGGER,
@@ -512,17 +514,18 @@ function($, _, Backbone,
         self.unmuteSounds();
 
         //unlock perso
-        self.$el.find(".streetwalk-menujale1 .submenu").show();
-        self.$el.find(".streetwalk-menujale1 .character").show();
-        self.$el.find(".streetwalk-menujale1 .video1").show();
-        self.$el.find(".streetwalk-menujale1 .video1locked").hide();
-        self.$el.find(".streetwalk-menujale1 .character-locked").hide();
-    },
+        Progression.set({
+            charactersProgression: {
+                    jale: {
+                        characterUnlocked:true,
+                        video1Unlocked:true
+                    }
+            }
+        });
 
-    toggleMenu: function(e) {
-        $(e.currentTarget).find(".submenu").show();
+        //open menu
+        self.menuCharactersView.openMenu("jale");
     },
-
 
     onClose: function(){
       //Clean

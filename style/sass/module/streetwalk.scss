@@ -57,38 +57,42 @@
             }
 
             .submenu {
-                display:none;
 
-                &.open {
+                &[data-state='open'] {
                     display:block;
+                }
+
+                &[data-state='closed'] {
+                    display:none;
                 }
             }
 
+            //Default states
+            &[data-character='jale'] {
+                z-index: 10;
+            }
 
-        }
+            &[data-character='pajarito'] {
+                left:0%;
+                z-index: 9;
+            }
 
-        .streetwalk-menujale1 {
-            z-index: 10;
-        }
+            &[data-character='perso3'] {
+                left:20%;
+                z-index: 8;
+            }
 
-        .streetwalk-menujale2 {
-            left:0%;
-            z-index: 9;
-        }
+            &[data-character='perso4'] {
+                left:40%;
+                z-index: 7;
+            }
 
-        .streetwalk-menujale3 {
-            left:20%;
-            z-index: 8;
-        }
+            &[data-character='perso5'] {
+                left:60%;
+                z-index: 6;
+            }
 
-        .streetwalk-menujale4 {
-            left:40%;
-            z-index: 7;
-        }
 
-        .streetwalk-menujale5 {
-            left:60%;
-            z-index: 6;
         }
     }
 }

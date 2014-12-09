@@ -64,6 +64,9 @@ define(function() {
         getBonusUnlocked: function() {
             return this.getParam("PREGO.bonusUnlocked");
         }
+
+        /* UNLOCKED */
+        
     };
 
     return LocalParams;
