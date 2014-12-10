@@ -191,6 +191,8 @@ function($, _, Backbone,
         self.initMap();
 
         self.adjustSizes();
+
+        self.renderImgHighRes();
         
     },
 

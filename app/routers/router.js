@@ -44,7 +44,8 @@ define([
             var self = this;
 
             if(_.isUndefined(wayName)) {
-                wayName = "carabobo-cl52-cl51";
+                wayName = "carabobo-cl53-cl52";
+                self.navigate("#streetwalk/carabobo-cl53-cl52",{replace:true});
             }
 
             var streetWalkView = new StreetWalkView({
