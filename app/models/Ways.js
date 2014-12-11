@@ -2,7 +2,7 @@ define(['jquery',
         'underscore',
         'backbone',
         'models/Way',
-        'json!data/ways.json'
+        'json!content/ways.json'
         ],
 function($, _, Backbone,
                 Way,

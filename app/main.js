@@ -17,7 +17,7 @@ require.config({
         views:        'views',
         utils:        'utils',
         templates:    '../templates',
-        data:         '../data'
+        content:      '../content'
     },
     shim: {
         'backbone': {

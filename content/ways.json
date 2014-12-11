@@ -1,0 +1,937 @@
+[
+  {
+    "wayName":"carabobo-cl52-cl51",
+    "nbStills":306,
+    "wayPath":[[-75.56892156600952,6.251720158996845],[-75.56925684213638,6.250976272456896]],
+    "wayConnectionsEnd":[
+                {
+                    "direction": "left",
+                    "name":"cl51-carabobo-cr51"
+                },
+                {
+                    "direction":"forward",
+                    "name":"carabobo-cl49media-cl48"
+                },
+                {
+                    "direction": "right",
+                    "name":"cl51-carabobo-cr53"
+                }
+    ],
+    "wayConnectionsStart":[
+    ],
+    "waySounds":[
+        {
+            "position":[6.251722,-75.568918],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":10,
+            "type":"ambient"
+        },
+        {
+            "position":[6.251376211588373,-75.56907713413239],
+            "path":"carabobo-cl52-cl51/sounds/punto2",
+            "db":10,
+            "type":"ambient"
+        },
+        {
+            "position":[6.250986,-75.569259],
+            "path":"carabobo-cl52-cl51/sounds/punto3",
+            "db":10,
+            "type":"ambient"
+        },
+        {
+            "position":[6.25104292900004,-75.56928098201752],
+            "path":"carabobo-cl52-cl51/sounds/pregonjale",
+            "db":60,
+            "type":"punctual"
+        },
+        {
+            "position":[6.251365546548827,-75.56901812553406],
+            "path":"carabobo-cl52-cl51/sounds/tiendatodoa5000",
+            "db":60,
+            "type":"punctual"
+        },
+        {
+            "position":[6.251608176144503,-75.56906640529631],
+            "path":"carabobo-cl52-cl51/sounds/cremheladopregon",
+            "db":60,
+            "type":"punctual"
+        }
+    ],
+    "characterDefinition": {
+        "startFrame":266,
+        "endFrame":286,
+        "framefullWidth":37.66,
+        "framestartWidth":13.42,
+        "offsetTopCenter":-24
+
+    },
+    "characterPosition":{
+      "266": { "left":61.5625, "top":54.81481481},
+      "267": { "left":62.2109375, "top":55.05101852},
+      "268": { "left":62.88854167, "top":55.42574074},
+      "269": { "left":62.52395833, "top":55.23796296},
+      "270": { "left":62.65729167, "top":55.56638889},
+      "271": { "left":62.4, "top":55.73712963},
+      "272": { "left":62.96510417, "top":55.76351852},
+      "273": { "left":63.40729167, "top":55.9262963},
+      "274": { "left":63.98072917, "top":55.99898148},
+      "275": { "left":64.17239583, "top":56.16101852},
+      "276": { "left":65.20572917, "top":56.68833333},
+      "277": { "left":67.09479167, "top":56.8962963},
+      "278": { "left":69.4984375, "top":57.65009259},
+      "279": { "left":71.42291667, "top":57.83018519},
+      "280": { "left":73.10052083, "top":58.12712963},
+      "281": { "left":73.04635417, "top":58.58287037},
+      "282": { "left":74.42916667, "top":58.99953704},
+      "283": { "left":76.03802083, "top":60.01805556},
+      "284": { "left":77.73072917, "top":60.80111111},
+      "285": { "left":80.36197917, "top":62.13648148},
+      "286": { "left":83.30520833, "top":63.38037037},
+      "287": { "left":84.91770833, "top":69.03685185},
+      "288": { "left":86.7171875, "top":69.82277778},
+      "289": { "left":88.30677083, "top":70.70675926},
+      "290": { "left":90.1265625, "top":71.71259259},
+      "291": { "left":92.57604167, "top":72.91666667},
+      "292": { "left":95.675, "top":73.78833333},
+      "293": { "left":95.675, "top":73.78833333},
+      "294": { "left":95.675, "top":73.78833333},
+      "295": { "left":95.675, "top":73.78833333},
+      "296": { "left":95.675, "top":73.78833333},
+      "297": { "left":95.675, "top":73.78833333},
+      "298": { "left":95.675, "top":73.78833333},
+      "299": { "left":95.675, "top":73.78833333},
+      "300": { "left":95.675, "top":73.78833333},
+      "301": { "left":95.675, "top":73.78833333},
+      "302": { "left":95.675, "top":73.78833333},
+      "303": { "left":95.675, "top":73.78833333},
+      "304": { "left":95.675, "top":73.78833333},
+      "305": { "left":95.675, "top":73.78833333},
+      "306": { "left":95.675, "top":73.78833333}
+    }
+  },
+  {
+    "wayName":"carabobo-cl51-cl52",
+    "nbStills":254,
+    "wayPath":[[-75.56925684213638,6.250976272456896],[-75.56892156600952,6.251720158996845]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"cl52cr53-carabobo-cl51"
+        },
+        {
+            "direction": "forward",
+            "name":"plazabotero-carabobo-cr51"
+        },
+        {
+            "direction": "right",
+            "name":"cl52-carabobo-cr51"
+        }
+    ],
+    "wayConnectionsStart":[
+        {
+            "direction": "left",
+            "name":"cl51-carabobo-cr53"
+        },
+        {
+            "direction": "right",
+            "name":"cl51-carabobo-cr51"
+        }
+    ],
+    "waySounds":[
+        {
+            "position":[6.251722,-75.568918],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":10,
+            "type":"ambient"
+        },
+        {
+            "position":[6.251376211588373,-75.56907713413239],
+            "path":"carabobo-cl52-cl51/sounds/punto2",
+            "db":10,
+            "type":"ambient"
+        },
+        {
+            "position":[6.250986,-75.569259],
+            "path":"carabobo-cl52-cl51/sounds/punto3",
+            "db":10,
+            "type":"ambient"
+        },
+        {
+            "position":[6.251365546548827,-75.56901812553406],
+            "path":"carabobo-cl52-cl51/sounds/tiendatodoa5000",
+            "db":60,
+            "type":"punctual"
+        },
+        {
+            "position":[6.251608176144503,-75.56906640529631],
+            "path":"carabobo-cl52-cl51/sounds/cremheladopregon",
+            "db":60,
+            "type":"punctual"
+        }
+    ]
+  },
+  {
+    "wayName":"cl51-carabobo-cr53",
+    "nbStills":290,
+    "wayPath":[[-75.56925415992737,6.250981604980651],[-75.57004272937775,6.2513442164690876]],
+    "wayConnectionsEnd":[
+                {
+                    "direction": "right",
+                    "name":"cr53cl52-cl51-carabobo"
+                }
+    ],
+    "wayConnectionsStart":[
+        {
+            "direction": "backward",
+            "name":"cl51-carabobo-cr51"
+        },
+        {
+            "direction": "right",
+            "name":"carabobo-cl51-cl52"
+        }
+    ],
+    "waySounds":[
+        {
+            "position":[6.250986,-75.569259],
+            "path":"carabobo-cl52-cl51/sounds/punto3",
+            "db":10,
+            "type":"ambient"
+        }
+    ]
+  },
+  {
+    "wayName":"cl51-cr53-carabobo",
+    "nbStills":260,
+    "wayPath":[[-75.57004272937775,6.2513442164690876],[-75.56925415992737,6.250981604980651]],
+    "wayConnectionsEnd":[
+                {
+                    "direction": "left",
+                    "name":"carabobo-cl51-cl52"
+                },
+                {
+                    "direction": "forward",
+                    "name":"cl51-carabobo-cr51"
+                },
+                {
+                    "direction": "right",
+                    "name":"carabobo-cl49media-cl48"
+                }
+    ],
+    "wayConnectionsStart":[
+                {
+                    "direction": "left",
+                    "name":"cr53-cl51-cl52-cl52-cr53-carabobo"
+                }
+    ]
+  },
+  {
+    "wayName":"cl51-carabobo-cr51",
+    "nbStills":421,
+    "wayPath":[[-75.56925684213638,6.2509736061949805],[-75.56834489107132,6.250515008945546]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"cr48-cl54-cl55"
+        }
+    ],
+    "wayConnectionsStart":[
+        {
+            "direction": "left",
+            "name":"carabobo-cl51-cl52"
+        },
+        {
+            "direction": "backward",
+            "name":"cl51-carabobo-cr53"
+        }
+    ],
+    "waySounds":[
+        {
+            "position":[6.250986,-75.569259],
+            "path":"carabobo-cl52-cl51/sounds/punto3",
+            "db":10,
+            "type":"ambient"
+        }
+    ]
+  },
+  {
+    "wayName":"cl51-cr51-carabobo",
+    "nbStills":343,
+    "wayPath":[[-75.56834489107132,6.250515008945546],[-75.56925684213638,6.2509736061949805]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"cl51-carabobo-cr53"
+        },
+        {
+            "direction": "right",
+            "name":"carabobo-cl51-cl52"
+        }
+    ] 
+  },
+  {
+    "wayName":"carabobo-cl53-cl52",
+    "nbStills":386,
+    "wayPath":[[-75.56872844696045,6.2526853435398015],[-75.56858360767363,6.252608022191786],[-75.5685567855835,6.252552030863665],[-75.56854873895645,6.252488040767036],[-75.56855142116547,6.2524427144438555],[-75.56857019662857,6.25241338564441],[-75.5689188838005,6.2517228252549435]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"cl52-carabobo-cr51"
+        },
+        {
+            "direction": "forward",
+            "name":"carabobo-cl52-cl51"
+        },
+        {
+            "direction": "right",
+            "name":"cl52cr53-carabobo-cl51"
+        }
+    ] 
+  },
+  {
+    "wayName":"carabobo-cl52-cl53",
+    "nbStills":281,
+    "wayPath":[[-75.56891620159149,6.251720158996845],[-75.56850045919418,6.2525573633713645]],
+    "wayConnectionsStart":[
+        {
+            "direction": "backward",
+            "name":"carabobo-cl52-cl51"
+        }
+    ],
+    "wayConnectionsEnd":[
+        {
+            "direction": "right",
+            "name":"cr48-cl54-cl55"
+        }
+    ] 
+  },
+  {
+    "wayName":"cl52-carabobo-cr51",
+    "nbStills":519,
+    "wayPath":[[-75.56891620159149,6.2517228252549435],[-75.56802570819855,6.2512722274436]],
+    "wayConnectionsStart":[
+        {
+            "direction": "left",
+            "name":"carabobo-cl52-cl53"
+        },
+        {
+            "direction": "right",
+            "name":"carabobo-cl52-cl51"
+        }
+    ],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"plazabotero-cr51-carabobo"
+        },
+        {
+            "direction": "forward",
+            "name":"cr48-cl54-cl55"
+        }
+    ]
+  },
+  {
+    "wayName":"cl52-cr51-carabobo",
+    "nbStills":444,
+    "wayPath":[[-75.56802570819855,6.2512722274436],[-75.56891620159149,6.2517228252549435]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"carabobo-cl52-cl51"
+        },
+        {
+            "direction": "forward",
+            "name":"cl52cr53-carabobo-cl51"
+        },
+        {
+            "direction": "right",
+            "name":"carabobo-cl52-cl53"
+        }
+    ] 
+  },
+  {
+    "wayName":"plazabotero-carabobo-cr51",
+    "nbStills":651,
+    "wayPath":[[-75.56891620159149,6.25172549151303],[-75.56881159543991,6.251917462059321],[-75.56875258684158,6.252016113562633],[-75.56871771812439,6.252061439922797],[-75.5686667561531,6.252120097559511],[-75.56860774755478,6.252133428839663],[-75.56854605674744,6.2521440938635475],[-75.5684494972229,6.252152092631305],[-75.5683958530426,6.252157425143088],[-75.56831806898117,6.252152092631305],[-75.56824296712875,6.2521440938635475],[-75.56818127632141,6.25213609509565],[-75.56810081005096,6.252114765047359],[-75.56797742843627,6.252045442384369],[-75.56793451309204,6.25202677858891],[-75.56788891553879,6.251994783509445],[-75.56784063577652,6.251941458372657],[-75.56783527135849,6.251904130773661],[-75.56784063577652,6.25180281299155],[-75.56784868240356,6.251709493964334],[-75.56786477565765,6.2516428375061235],[-75.56789964437485,6.251514857082568],[-75.56794255971909,6.251384210367861],[-75.56800693273544,6.251269561183211]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "right",
+            "name":"cl52-cr51-carabobo"
+        }
+    ] 
+  },
+  {
+    "wayName":"plazabotero-cr51-carabobo",
+    "nbStills":619,
+    "wayPath":[[-75.56801766157149,6.25127755996434],[-75.5679640173912,6.251370879068626],[-75.56791305541992,6.251506858305053],[-75.56788623332977,6.251634838730568],[-75.5678540468216,6.251781482929633],[-75.5678540468216,6.251842806855247],[-75.56786209344864,6.2519254608305515],[-75.56788623332977,6.251949457143518],[-75.56795597076416,6.252005448536154],[-75.56806594133377,6.252045442384369],[-75.56819200515747,6.252090768741975],[-75.56839048862457,6.252122763815575],[-75.56853264570236,6.252122763815575],[-75.56866139173508,6.252122763815575],[-75.56874990463257,6.252013447306036],[-75.56882232427597,6.251912129545095],[-75.5688813328743,6.25177881667184],[-75.5689188838005,6.251728157771103]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"cl52-carabobo-cr51"
+        },
+        {
+            "direction": "forward",
+            "name":"carabobo-cl52-cl51"
+        },
+        {
+            "direction": "right",
+            "name":"cl52cr53-carabobo-cl51"
+        }
+    ] 
+  },
+  {
+    "wayName":"cr53cl52-cl51-carabobo",
+    "nbStills":427,
+    "wayPath":[[-75.57004541158676,6.251330885168823],[-75.56969404220581,6.25207743746073],[-75.5689188838005,6.2517228252549435]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"plazabotero-carabobo-cr51"
+        },
+        {
+            "direction": "forward",
+            "name":"cl52-carabobo-cr51"
+        },
+        {
+            "direction": "right",
+            "name":"carabobo-cl52-cl51"
+        }
+    ] 
+  },
+  {
+    "wayName":"cl52cr53-carabobo-cl51",
+    "nbStills":467,
+    "wayPath":[[-75.5689188838005,6.2517228252549435],[-75.56969404220581,6.25207743746073],[-75.57004541158676,6.251330885168823]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"cl51-cr53-carabobo"
+        }
+    ] 
+  },
+  {
+    "wayName":"carabobo-cl49media-cl48",
+    "nbStills":256,
+    "wayPath":[[-75.57013928890228,6.248880586409164],[-75.57026267051697,6.248523305761993]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"carabobo-cl48-cl46"
+        },
+        {
+            "direction": "left",
+            "name":"cl48cr51-carabobo-cl46"
+        }
+    ] 
+  },
+  {
+    "wayName":"cl48cr51-carabobo-cl46",
+    "nbStills":980,
+    "wayPath":[[-75.57025998830795,6.248515306938741],[-75.56945264339447,6.2482326817720475],[-75.56949555873871,6.248131363278892],[-75.56960016489029,6.247856736738293],[-75.56977182626723,6.247390137916551]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"cr51-cl46-cl45"
+        },
+        {
+            "direction": "right",
+            "name":"cl46-cr51-carabobo"
+        }
+    ] 
+  },
+  {
+    "wayName":"cr51cl48-cl46-carabobo",
+    "nbStills":873,
+    "wayPath":[[-75.56980937719345,6.247286152979603],[-75.56945264339447,6.2482326817720475],[-75.57025998830795,6.2485126406642815]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "right",
+            "name":"carabobo-cl51-cl52"
+        },
+        {
+            "direction": "left",
+            "name":"carabobo-cl48-cl46"
+        }
+    ] 
+  },
+  {
+    "wayName":"carabobo-cl48-cl46",
+    "nbStills":933,
+    "wayPath":[[-75.57025998830795,6.2485126406642815],[-75.57058990001678,6.2475474484229325]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"carabobo-cl46-cl45"
+        },
+        {
+            "direction": "left",
+            "name":"cl46-carabobo-cr51"
+        }
+    ] 
+  },
+  {
+    "wayName":"carabobo-cl46-cl48",
+    "nbStills":800,
+    "wayPath":[[-75.57058990001678,6.2475474484229325],[-75.57025998830795,6.2485126406642815]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"carabobo-cl51-cl52"
+        },
+        {
+            "direction": "right",
+            "name":"cl48cr51-carabobo-cl46"
+        }
+    ] 
+  },
+  {
+    "wayName":"cl46-carabobo-cr51",
+    "nbStills":312,
+    "wayPath":[[-75.57061403989792,6.247478125154759],[-75.56983888149261,6.247211497114687]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"cr51cl48-cl46-carabobo"
+        },
+        {
+            "direction": "right",
+            "name":"cr51-cl46-cl45"
+        }
+    ] 
+  },
+  {
+    "wayName":"cl46-cr51-carabobo",
+    "nbStills":302,
+    "wayPath":[[-75.56983888149261,6.247211497114687],[-75.57061403989792,6.247478125154759]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "right",
+            "name":"carabobo-cl46-cl48"
+        },
+        {
+            "direction": "left",
+            "name":"carabobo-cl46-cl45"
+        }
+    ] 
+  },
+  {
+    "wayName":"cr51-cl46-cl45",
+    "nbStills":457,
+    "wayPath":[[-75.56981205940245,6.247203498271385],[-75.57035386562347,6.245857024573625]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"cr51sanjuan-cl45-carabobo"
+        }
+    ] 
+  },
+  {
+    "wayName":"cr51-cl45-cl46",
+    "nbStills":476,
+    "wayPath":[[-75.57035386562347,6.245857024573625],[-75.56981205940245,6.247203498271385]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"cr51cl48-cl46-carabobo"
+        },
+        {
+            "direction": "left",
+            "name":"cl46-cr51-carabobo"
+        }
+    ] 
+  },
+  {
+    "wayName":"cr51sanjuan-cl45-carabobo",
+    "nbStills":502,
+    "wayPath":[[-75.57037264108658,6.245849025709636],[-75.57080179452896,6.244833168988514],[-75.57146966457367,6.245126461157626]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "right",
+            "name":"carabobo-sanjuan-parqueluz"
+        },
+        {
+            "direction": "forward",
+            "name":"sanjuan-parqueluz"
+        }
+    ] 
+  },
+  {
+    "wayName":"sanjuancr51-carabobo-cl45",
+    "nbStills":631,
+    "wayPath":[[-75.57146966457367,6.245126461157626],[-75.57037264108658,6.245849025709636],[-75.57080179452896,6.244833168988514]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"cr51-cl45-cl46"
+        }
+    ] 
+  },
+  {
+    "wayName":"sanjuan-parqueluz",
+    "nbStills":218,
+    "wayPath":[[-75.57146430015564,6.245129127449324],[-75.57174056768417,6.245289104926044],[-75.57186931371689,6.245425085742838],[-75.57187467813492,6.2455717316821255],[-75.57184785604477,6.245747706755071],[-75.57179421186447,6.2458250291168955]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"parqueluz-vueltaizquierda"
+        },
+        {
+            "direction": "right",
+            "name":"parqueluz-carabobo"
+        }
+    ] 
+  },
+  {
+    "wayName":"parqueluz-carabobo",
+    "nbStills":119,
+    "wayPath":[[-75.5717647075653,6.245891686316201],[-75.57123899459839,6.245726376446357]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"carabobo-parqueluz-cl45"
+        },
+        {
+            "direction": "right",
+            "name":"sanjuancr51-carabobo-cl45"
+        }
+    ] 
+  },
+  {
+    "wayName":"carabobo-parqueluz",
+    "nbStills":135,
+    "wayPath":[[-75.57123899459839,6.245726376446357],[-75.5717647075653,6.245891686316201]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"parqueluz-vueltaizquierda"
+        },
+        {
+            "direction": "right",
+            "name":"parqueluz-vueltaderecha"
+        }
+    ] 
+  },
+  {
+    "wayName":"parqueluz-vueltaizquierda",
+    "nbStills":410,
+    "wayPath":[[-75.57177275419235,6.245891686316201],[-75.5721589922905,6.246046330985918],[-75.57219117879868,6.246147649882687],[-75.57206511497498,6.246406279609183],[-75.57196587324141,6.246406279609183],[-75.57180494070052,6.246339622475397],[-75.5717808008194,6.246038332124818],[-75.57176738977432,6.245910350330494]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"parqueluz-carabobo"
+        }
+    ] 
+  },
+  {
+    "wayName":"parqueluz-vueltaderecha",
+    "nbStills":458,
+    "wayPath":[[-75.57174056768417,6.245902351467307],[-75.57184785604477,6.2459583435070325],[-75.57184517383574,6.246096990436752],[-75.57183712720871,6.246195643037445],[-75.5718344449997,6.246334289904329],[-75.57201683521271,6.246406279609183],[-75.57220995426178,6.2460943241499765],[-75.57178348302841,6.245894352604019]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"parqueluz-carabobo"
+        }
+    ] 
+  },
+  {
+    "wayName":"carabobo-parqueluz-cl45",
+    "nbStills":133,
+    "wayPath":[[-75.57123363018036,6.245718377580358],[-75.57108879089355,6.246110321870371]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"carabobo-cl45-cl46"
+        }
+    ] 
+  },
+  {
+    "wayName":"carabobo-cl45-parqueluz",
+    "nbStills":137,
+    "wayPath":[[-75.57108879089355,6.246110321870371],[-75.57123363018036,6.245718377580358]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "right",
+            "name":"carabobo-parqueluz"
+        }
+    ] 
+  },
+  {
+    "wayName":"carabobo-cl45-cl46",
+    "nbStills":956,
+    "wayPath":[[-75.57109147310257,6.246110321870371],[-75.57061672210692,6.247491456553201]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "right",
+            "name":"cl46-carabobo-cr51"
+        },
+        {
+            "direction": "forward",
+            "name":"carabobo-cl46-cl48"
+        }
+    ] 
+  },
+  {
+    "wayName":"carabobo-cl46-cl45",
+    "nbStills":930,
+    "wayPath":[[-75.57061672210692,6.247491456553201],[-75.57109147310257,6.246110321870371]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"carabobo-cl45-parqueluz"
+        }
+    ] 
+  },
+  {
+    "wayName":"cr48-cl54-cl55",
+    "nbStills":168,
+    "wayPath":[[-75.56469172239304,6.25205344115364],[-75.56428402662277,6.252696008552427]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"cr48-cl55-cl56"
+        },
+        {
+            "direction": "right",
+            "name":"cl55-cr48-cr47"
+        }
+    ] 
+  },
+  {
+    "wayName":"cr48-cl55-cl54",
+    "nbStills":166,
+    "wayPath":[[-75.56428402662277,6.252696008552427],[-75.56469172239304,6.25205344115364]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"cl54-cr48-cr47"
+        },
+        {
+            "direction": "right",
+            "name":"cl52-cr51-carabobo"
+        }
+    ] 
+  },
+  {
+    "wayName":"cl54-cr48-cr47",
+    "nbStills":182,
+    "wayPath":[[-75.56469440460204,6.25205344115364],[-75.56430280208588,6.251810811764511]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"cr47-cl54-cl55"
+        }
+    ] 
+  },
+  {
+    "wayName":"cl54-cr47-cr48",
+    "nbStills":163,
+    "wayPath":[[-75.56430280208588,6.251810811764511],[-75.56469440460204,6.25205344115364]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "right",
+            "name":"cr48-cl54-cl55"
+        },
+        {
+            "direction": "forward",
+            "name":"cl52-cr51-carabobo"
+        }
+    ] 
+  },
+  {
+    "wayName":"cr47-cl54-cl55",
+    "nbStills":175,
+    "wayPath":[[-75.56430011987686,6.25180814550687],[-75.56387096643448,6.252421384408058]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"cl55-cr47-cr48"
+        },
+        {
+            "direction": "right",
+            "name":"cl55-cr47-oriental"
+        }
+    ] 
+  },
+  {
+    "wayName":"cr47-cl55-cl54",
+    "nbStills":128,
+    "wayPath":[[-75.56387096643448,6.252421384408058],[-75.56430011987686,6.25180814550687]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "right",
+            "name":"cl54-cr47-cr48"
+        }
+    ] 
+  },
+  {
+    "wayName":"cl55-cr47-cr48",
+    "nbStills":123,
+    "wayPath":[[-75.56387096643448,6.252424050662582],[-75.56428134441376,6.252701341058663]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"cr48-cl55-cl54"
+        },
+        {
+            "direction": "right",
+            "name":"cr48-cl55-cl56"
+        }
+    ] 
+  },
+  {
+    "wayName":"cl55-cr48-cr47",
+    "nbStills":132,
+    "wayPath":[[-75.56428134441376,6.252701341058663],[-75.56387096643448,6.252424050662582]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"cr47-cl55-cl56"
+        },
+        {
+            "direction": "forward",
+            "name":"cl55-cr47-oriental"
+        },
+        {
+            "direction": "right",
+            "name":"cr47-cl55-cl54"
+        }
+    ] 
+  },
+  {
+    "wayName":"cl55-cr47-oriental",
+    "nbStills":200,
+    "wayPath":[[-75.56385219097137,6.252434715680538],[-75.56314945220947,6.252002782279493]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"orientalcl56-cl55-cr47"
+        }
+    ] 
+  },
+  {
+    "wayName":"cl55-oriental-cr47",
+    "nbStills":192,
+    "wayPath":[[-75.56314945220947,6.252002782279493],[-75.56385219097137,6.252434715680538]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"cr47-cl55-cl54"
+        },
+        {
+            "direction": "right",
+            "name":"cr47-cl55-cl56"
+        }
+    ] 
+  },
+  {
+    "wayName":"orientalcl56-cl55-cr47",
+    "nbStills":493,
+    "wayPath":[[-75.5631548166275,6.252005448536154],[-75.56277394294739,6.252677344780199],[-75.56341767311096,6.253082615113198]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"cr47-cl56-cl55"
+        },
+        {
+            "direction": "forward",
+            "name":"cl56-cr47-cr48"
+        }
+    ] 
+  },
+  {
+    "wayName":"cl56oriental-cr47-cl55",
+    "nbStills":421,
+    "wayPath":[[-75.56341767311096,6.253082615113198],[-75.56277394294739,6.252677344780199],[-75.5631548166275,6.252005448536154]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "right",
+            "name":"cl55-oriental-cr47"
+        }
+    ] 
+  },
+  {
+    "wayName":"cr47-cl56-cl55",
+    "nbStills":121,
+    "wayPath":[[-75.5634418129921,6.253101278870961],[-75.56385219097137,6.252437381934986]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "right",
+            "name":"cl55-cr47-cr48"
+        },
+        {
+            "direction": "forward",
+            "name":"cr47-cl55-cl54"
+        },
+        {
+            "direction": "left",
+            "name":"cl55-cr47-oriental"
+        }
+    ] 
+  },
+  {
+    "wayName":"cr47-cl55-cl56",
+    "nbStills":178,
+    "wayPath":[[75.56385219097137,6.252437381934986],[-75.5634418129921,6.253101278870961]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"cl56-cr47-cr48"
+        },
+        {
+            "direction": "right",
+            "name":"cl56oriental-cr47-cl55"
+        }
+    ] 
+  },
+  {
+    "wayName":"cl56-cr47-cr48",
+    "nbStills":156,
+    "wayPath":[[-75.56344717741013,6.253098612619872],[-75.56384414434433,6.253373236408591]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "left",
+            "name":"cr48-cl56-cl55"
+        }
+    ] 
+  },
+  {
+    "wayName":"cl56-cr48-cr47",
+    "nbStills":174,
+    "wayPath":[[-75.56384414434433,6.253373236408591],[-75.56344717741013,6.253098612619872]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"cl56oriental-cr47-cl55"
+        },
+        {
+            "direction": "right",
+            "name":"cr47-cl56-cl55"
+        }
+    ] 
+  },
+  {
+    "wayName":"cr48-cl56-cl55",
+    "nbStills":224,
+    "wayPath":[[-75.56384682655334,6.253373236408591],[-75.56427329778671,6.25270400731175]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"cr48-cl55-cl54"
+        },
+        {
+            "direction": "left",
+            "name":"cl55-cr48-cr47"
+        }
+    ] 
+  },
+  {
+    "wayName":"cr48-cl55-cl56",
+    "nbStills":168,
+    "wayPath":[[-75.56427329778671,6.25270400731175],[-75.56384682655334,6.253373236408591]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "right",
+            "name":"cl56-cr48-cr47"
+        }
+    ] 
+  }
+]
