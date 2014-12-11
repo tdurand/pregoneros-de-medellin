@@ -211,6 +211,10 @@
                 {
                     "direction": "forward",
                     "name":"cl51-carabobo-cr51"
+                },
+                {
+                    "direction": "right",
+                    "name":"carabobo-cl49media-cl48"
                 }
     ],
     "wayConnectionsStart":[
@@ -225,6 +229,10 @@
     "nbStills":421,
     "wayPath":[[-75.56925684213638,6.2509736061949805],[-75.56834489107132,6.250515008945546]],
     "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"cr48-cl54-cl55"
+        }
     ],
     "wayConnectionsStart":[
         {
@@ -288,6 +296,12 @@
             "direction": "backward",
             "name":"carabobo-cl52-cl51"
         }
+    ],
+    "wayConnectionsEnd":[
+        {
+            "direction": "right",
+            "name":"cr48-cl54-cl55"
+        }
     ] 
   },
   {
@@ -308,6 +322,10 @@
         {
             "direction": "left",
             "name":"plazabotero-cr51-carabobo"
+        },
+        {
+            "direction": "forward",
+            "name":"cr48-cl54-cl55"
         }
     ]
   },
@@ -353,6 +371,10 @@
         {
             "direction": "forward",
             "name":"carabobo-cl52-cl51"
+        },
+        {
+            "direction": "right",
+            "name":"cl52cr53-carabobo-cl51"
         }
     ] 
   },
@@ -528,7 +550,7 @@
         },
         {
             "direction": "forward",
-            "name":"sanjuan-parqueluz-carabobo"
+            "name":"sanjuan-parqueluz"
         }
     ] 
   },
@@ -660,7 +682,7 @@
   },
   {
     "wayName":"cr48-cl54-cl55",
-    "nbStills":256,
+    "nbStills":168,
     "wayPath":[[-75.56469172239304,6.25205344115364],[-75.56428402662277,6.252696008552427]],
     "wayConnectionsEnd":[
         {
@@ -675,18 +697,22 @@
   },
   {
     "wayName":"cr48-cl55-cl54",
-    "nbStills":256,
+    "nbStills":166,
     "wayPath":[[-75.56428402662277,6.252696008552427],[-75.56469172239304,6.25205344115364]],
     "wayConnectionsEnd":[
         {
             "direction": "left",
             "name":"cl54-cr48-cr47"
+        },
+        {
+            "direction": "right",
+            "name":"cl52-cr51-carabobo"
         }
     ] 
   },
   {
     "wayName":"cl54-cr48-cr47",
-    "nbStills":256,
+    "nbStills":182,
     "wayPath":[[-75.56469440460204,6.25205344115364],[-75.56430280208588,6.251810811764511]],
     "wayConnectionsEnd":[
         {
@@ -697,18 +723,22 @@
   },
   {
     "wayName":"cl54-cr47-cr48",
-    "nbStills":256,
+    "nbStills":163,
     "wayPath":[[-75.56430280208588,6.251810811764511],[-75.56469440460204,6.25205344115364]],
     "wayConnectionsEnd":[
         {
             "direction": "right",
             "name":"cr48-cl54-cl55"
+        },
+        {
+            "direction": "forward",
+            "name":"cl52-cr51-carabobo"
         }
     ] 
   },
   {
     "wayName":"cr47-cl54-cl55",
-    "nbStills":256,
+    "nbStills":175,
     "wayPath":[[-75.56430011987686,6.25180814550687],[-75.56387096643448,6.252421384408058]],
     "wayConnectionsEnd":[
         {
@@ -723,7 +753,7 @@
   },
   {
     "wayName":"cr47-cl55-cl54",
-    "nbStills":256,
+    "nbStills":128,
     "wayPath":[[-75.56387096643448,6.252421384408058],[-75.56430011987686,6.25180814550687]],
     "wayConnectionsEnd":[
         {
@@ -734,7 +764,7 @@
   },
   {
     "wayName":"cl55-cr47-cr48",
-    "nbStills":256,
+    "nbStills":123,
     "wayPath":[[-75.56387096643448,6.252424050662582],[-75.56428134441376,6.252701341058663]],
     "wayConnectionsEnd":[
         {
@@ -749,7 +779,7 @@
   },
   {
     "wayName":"cl55-cr48-cr47",
-    "nbStills":256,
+    "nbStills":132,
     "wayPath":[[-75.56428134441376,6.252701341058663],[-75.56387096643448,6.252424050662582]],
     "wayConnectionsEnd":[
         {
@@ -768,7 +798,7 @@
   },
   {
     "wayName":"cl55-cr47-oriental",
-    "nbStills":256,
+    "nbStills":200,
     "wayPath":[[-75.56385219097137,6.252434715680538],[-75.56314945220947,6.252002782279493]],
     "wayConnectionsEnd":[
         {
@@ -779,7 +809,7 @@
   },
   {
     "wayName":"cl55-oriental-cr47",
-    "nbStills":256,
+    "nbStills":192,
     "wayPath":[[-75.56314945220947,6.252002782279493],[-75.56385219097137,6.252434715680538]],
     "wayConnectionsEnd":[
         {
@@ -794,7 +824,7 @@
   },
   {
     "wayName":"orientalcl56-cl55-cr47",
-    "nbStills":256,
+    "nbStills":493,
     "wayPath":[[-75.5631548166275,6.252005448536154],[-75.56277394294739,6.252677344780199],[-75.56341767311096,6.253082615113198]],
     "wayConnectionsEnd":[
         {
@@ -809,7 +839,7 @@
   },
   {
     "wayName":"cl56oriental-cr47-cl55",
-    "nbStills":256,
+    "nbStills":421,
     "wayPath":[[-75.56341767311096,6.253082615113198],[-75.56277394294739,6.252677344780199],[-75.5631548166275,6.252005448536154]],
     "wayConnectionsEnd":[
         {
@@ -820,7 +850,7 @@
   },
   {
     "wayName":"cr47-cl56-cl55",
-    "nbStills":256,
+    "nbStills":121,
     "wayPath":[[-75.5634418129921,6.253101278870961],[-75.56385219097137,6.252437381934986]],
     "wayConnectionsEnd":[
         {
@@ -839,7 +869,7 @@
   },
   {
     "wayName":"cr47-cl55-cl56",
-    "nbStills":256,
+    "nbStills":178,
     "wayPath":[[75.56385219097137,6.252437381934986],[-75.5634418129921,6.253101278870961]],
     "wayConnectionsEnd":[
         {
@@ -854,7 +884,7 @@
   },
   {
     "wayName":"cl56-cr47-cr48",
-    "nbStills":256,
+    "nbStills":156,
     "wayPath":[[-75.56344717741013,6.253098612619872],[-75.56384414434433,6.253373236408591]],
     "wayConnectionsEnd":[
         {
@@ -865,7 +895,7 @@
   },
   {
     "wayName":"cl56-cr48-cr47",
-    "nbStills":256,
+    "nbStills":174,
     "wayPath":[[-75.56384414434433,6.253373236408591],[-75.56344717741013,6.253098612619872]],
     "wayConnectionsEnd":[
         {
@@ -880,7 +910,7 @@
   },
   {
     "wayName":"cr48-cl56-cl55",
-    "nbStills":256,
+    "nbStills":224,
     "wayPath":[[-75.56384682655334,6.253373236408591],[-75.56427329778671,6.25270400731175]],
     "wayConnectionsEnd":[
         {
@@ -895,7 +925,7 @@
   },
   {
     "wayName":"cr48-cl55-cl56",
-    "nbStills":256,
+    "nbStills":168,
     "wayPath":[[-75.56427329778671,6.25270400731175],[-75.56384682655334,6.253373236408591]],
     "wayConnectionsEnd":[
         {
