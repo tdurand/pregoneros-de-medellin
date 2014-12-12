@@ -18,15 +18,31 @@
 
      position: relative;
 
+     .logo-bar {
+        height: 30%;
+        position: absolute;
+        @include span(12);
+        
+        .logo-wrapper {
+            width: 30%;
+            height: 80%;
+            position:absolute;
+            top:10%;
+            right: 5px;
+            background-image: url("../../images/logo.svg");
+            background-size:contain;
+            background-repeat: no-repeat;
+        }
+     }
+
      .wrap-top-bar {
         position:absolute;
-        height: 80%;
-        top:20%;
+        height: 70%;
+        top:30%;
 
         @include span(12);
 
-        background-color: #bd750f;
-        opacity: 0.6;
+        background-color: rgba(189,117,15,0.6);
 
         .top-bar {
             position:absolute;
@@ -35,8 +51,24 @@
 
             @include span(12);
 
-            background-color: #8d3e00;
+            background-color: rgba(141,62,0,0.6);
             opacity: 1;
+
+            .share-btn {
+                width:20%;
+                position: absolute;
+                right: 2%;
+                top:15%;
+                height: 70%;
+
+                img {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+            }
+
         }
 
      }  
@@ -59,45 +91,45 @@
     }
 
     .description {
-        @include span(isolate 8 at 5);
-
+        
         height: 120%;
 
         position: absolute;
         bottom:0;
 
         border-style: solid;
-        border-width: 111px 214px 51px 297px;
         -webkit-border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
         -moz-border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
         border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
 
-        .description-title {
+        @include span(isolate 7 at 6);
+        border-width: 111px 214px 0px 297px;
 
-            width: 50%;
-            height: 30%;
-            margin: 0 auto;
-
-            background-image: url("../../images/title_description.png");
-            background-size: contain;
-            background-repeat:no-repeat;
+        @media screen and (max-width: 1400px) {
+            & {
+                @include span(isolate 7 at 6);
+                border-width: 60px 130px 0px 130px;
+            }
         }
 
         .description-text {
-           
-           margin-top:1rem;
-           font-family : absender;
-           font-size : 1.5rem;
+           font-family: "FilbertBrush";
+           font-size : 1.3rem;
            text-align: justify;
            color : #FFFFFF;
+
+           p {
+             margin:1em 0px;
+           }
         }
 
         .description-btnenter {
-            // font-family: "ABOVEA DEMO VERSION";
-            // color:#F5CB48;
-            // font-size:4rem;
-            // -webkit-text-stroke-width: 1rem;
-            // -webkit-text-stroke-color: #a6360e;
+            img {
+                position:absolute;
+                bottom:5%;
+                max-height: 25%;
+                z-index: 25;
+            }
         }
 
     }
@@ -108,7 +140,7 @@
         bottom:-12.5%;
         z-index: 20;
 
-        height: 25%;
+        height: 30%;
 
         background-image: url("../../images/separator_bottom.png");
         background-size: cover;

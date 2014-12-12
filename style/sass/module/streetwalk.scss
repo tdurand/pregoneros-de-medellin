@@ -8,12 +8,6 @@
     height: 10%;
     background-color: #FFD64A;
 
-    @media screen and (min-height: 800px) {
-        & {
-            height: 8%;
-        }
-    }
-
     .streetwalk-bottombar-separator {
         @include span(12);
         height: 100%;
