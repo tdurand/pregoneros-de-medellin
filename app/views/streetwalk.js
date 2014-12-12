@@ -113,10 +113,13 @@ function($, _, Backbone,
         
         if(Progression.isFirstWay) {
             Progression.isFirstWay = false;
+            self.$el.find(".streetwalk-loading-main").html(_.template(streetWalkLoadingViewTemplate));
+        }
+        else {
+            self.$el.find(".streetwalk-loading").html(_.template(streetWalkLoadingViewTemplate));
         }
 
-        self.$el.find(".streetwalk-loading").html(_.template(streetWalkLoadingViewTemplate));
-            self.$el.find(".streetwalk-loading").show();
+        self.$el.find(".streetwalk-loading").show();
 
         //init svg element path
         self.pathLoading = Snap("#loadingLine");
