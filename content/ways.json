@@ -62,7 +62,8 @@
         "endFrame":286,
         "framefullWidth":37.66,
         "framestartWidth":13.42,
-        "offsetTopCenter":-24
+        "offsetTopCenter":-24,
+        "vimeoId":110573403
 
     },
     "characterPosition":{
@@ -285,7 +286,33 @@
             "direction": "right",
             "name":"cl52cr53-carabobo-cl51"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.252581359655324,-75.56848973035812],
+            "path":"carabobo-cl53-cl52/sounds/punto1",
+            "db":10,
+            "type":"ambient"
+        },
+        {
+            "position":[6.252021446075804,-75.56877940893173],
+            "path":"carabobo-cl53-cl52/sounds/punto2",
+            "db":10,
+            "type":"ambient"
+        },
+        {
+            "position":[6.251722,-75.568918],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":7,
+            "type":"ambient"
+        },
+        {
+            "position":[6.2522480778349685,-75.5687016248703],
+            "path":"carabobo-cl53-cl52/sounds/pregonlimonpajarito",
+            "db":60,
+            "type":"punctual"
+        }
+    ]
   },
   {
     "wayName":"carabobo-cl52-cl53",
@@ -357,7 +384,47 @@
             "direction": "right",
             "name":"cl52-cr51-carabobo"
         }
-    ] 
+    ],
+    "characterDefinition": {
+        "startFrame":301,
+        "endFrame":329,
+        "framefullWidth":54,
+        "framestartWidth":17,
+        "offsetTopCenter":-24,
+        "vimeoId":110573403
+
+    },
+    "characterPosition":{
+      "301": { "left":56.25, "top":55.37037037},
+      "302": { "left":56.53385417, "top":55.68722222},
+      "303": { "left":56.44010417, "top":55.87453704},
+      "304": { "left":56.21770833, "top":56.09342593},
+      "305": { "left":56.15625, "top":56.11074074},
+      "306": { "left":55.63333333, "top":56.56935185},
+      "307": { "left":55.009375, "top":57.21712963},
+      "308": { "left":54.40520833, "top":57.62046296},
+      "309": { "left":53.78802083, "top":57.62944444},
+      "310": { "left":53.29947917, "top":58.42407407},
+      "311": { "left":52.46510417, "top":58.59555556},
+      "312": { "left":51.571875, "top":59.15509259},
+      "313": { "left":50.63697917, "top":59.52509259},
+      "314": { "left":49.7184375, "top":60.4162963},
+      "315": { "left":48.89, "top":60.87018519},
+      "316": { "left":48.37380208, "top":61.33064815},
+      "317": { "left":48.37380208, "top":61.33064815},
+      "318": { "left":47.56796875, "top":62.03055556},
+      "319": { "left":46.99359375, "top":63.41759259},
+      "320": { "left":46.110625, "top":64.06759259},
+      "321": { "left":45.0653125, "top":65.2662037},
+      "322": { "left":42.95979167, "top":66.79583333},
+      "323": { "left":40.45411458, "top":69.11027778},
+      "324": { "left":38.13661458, "top":70.91759259},
+      "325": { "left":35.63640625, "top":73.23101852},
+      "326": { "left":32.33052083, "top":76.51944444},
+      "327": { "left":28.58213542, "top":80.59388889},
+      "328": { "left":23.78619792, "top":85.03657407},
+      "329": { "left":18.05744792, "top":91.52092593}
+    }
   },
   {
     "wayName":"plazabotero-cr51-carabobo",

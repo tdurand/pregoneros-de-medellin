@@ -491,8 +491,12 @@ function($, _, Backbone,
 
     initVideo: function() {
         var self = this;
-        // Add video
-        self.popcorn = Popcorn.vimeo( ".streetwalk-video-container", "http://player.vimeo.com/video/110573403");
+
+        if(self.way.characterDefinition) {
+           var idVimeo = self.way.characterDefinition.vimeoId;
+           // Add video
+            self.popcorn = Popcorn.vimeo( ".streetwalk-video-container", "http://player.vimeo.com/video/"+idVimeo);
+        }
     },
 
     showVideo: function() {
