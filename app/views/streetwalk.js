@@ -148,7 +148,7 @@ function($, _, Backbone,
         if(pourcentage <= 100) {
             self.pathLoading.attr("stroke-dashoffset", self.pathLoadingLength-currentLoadingLength);
             self.caritoMatrix = new Snap.Matrix();
-            self.caritoMatrix.translate(currentLoadingLength-90,0);
+            self.caritoMatrix.translate(currentLoadingLength,0);
             self.carito.transform(self.caritoMatrix);
         }
     },
