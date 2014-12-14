@@ -19,6 +19,7 @@ function($, _, Backbone,
         //States indicators
         percentageLoaded:null,
         loadingFinished:false,
+        loadingFinishedCompletely:false,
 
         //Coordinates of the line path
         wayPath:null,
@@ -69,7 +70,9 @@ function($, _, Backbone,
 
             self.wayStills.on("loadingFinishedCompletely", function() {
                 self.trigger('loadingFinishedCompletely');
+                self.loadingFinishedCompletely = true;
             });
+
         },
 
         fetch: function() {

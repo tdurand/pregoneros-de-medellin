@@ -23,6 +23,9 @@ function($, _, Backbone,
         self.percentageLoaded = 0;
         self.stopLoading = false;
         self.stillLoaded = [];
+
+        self.queueToLoad = [];
+        self.numOpenRequests = 0;
     },
 
     fetch: function() {
@@ -64,6 +67,7 @@ function($, _, Backbone,
                         this.loaded = true;
                         self.stillLoaded.push(this.id);
                         self.nbImgLoaded++;
+                        self.numOpenRequests--;
                         self.percentageLoaded = Math.floor(self.nbImgLoaded*accurate/(self.nbImages+1)*100);
                         self.trigger("updatePercentageLoaded");
 
@@ -77,13 +81,36 @@ function($, _, Backbone,
                     });
 
                     self.add(still);
+                    self.queueToLoad.push(still);
 
                 }
                 
             }
              
         });
+    
+        self.intervalFetching = setInterval(function() {
+            self.processQueue();
+            if(self.queueToLoad.length === 0) {
+                clearInterval(self.intervalFetching);
+            }
+        },100);
     },
+
+    processQueue: function() {
+        var self = this;
+
+        while(self.numOpenRequests < 4 && self.queueToLoad.length > 0)
+        {
+            var stillToLoad = self.queueToLoad.shift();
+            stillToLoad.pull();
+            self.numOpenRequests++;
+        }
+    },
+
+    // addPriorityStillToQueue: function(still) {
+    //     self.queueToLoad.unshift(still);
+    // },
 
     lpad: function(value, padding) {
         var zeroes = new Array(padding+1).join("0");

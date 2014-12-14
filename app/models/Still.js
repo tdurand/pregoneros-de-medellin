@@ -17,6 +17,12 @@ function($, _, Backbone,LOGGER){
             imgHighRes: new Image()
         });
 
+        
+        
+    },
+
+    pull: function() {
+        var self = this;
         //TODO OVERRIDE SYNC METHOD TO PUT THIS THERE TO GET THE BACKBONE EVENTS
         var img = self.get("img");
         img.onload = function() {
@@ -24,7 +30,6 @@ function($, _, Backbone,LOGGER){
             self.trigger("imgloaded");
         };
         img.src =  self.get("srcLowRes");
-        
     },
 
     //TODO SEE IF WE CLEAR THE HIGHRES AFTER LOADING TO DO NOT OVERLOAD THE RAM
