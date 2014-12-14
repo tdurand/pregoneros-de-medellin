@@ -100,7 +100,7 @@ function($, _, Backbone,
     processQueue: function() {
         var self = this;
 
-        while(self.numOpenRequests < 4 && self.queueToLoad.length > 0)
+        while(self.numOpenRequests < 7 && self.queueToLoad.length > 0)
         {
             var stillToLoad = self.queueToLoad.shift();
             stillToLoad.pull();
