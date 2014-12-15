@@ -14,6 +14,25 @@ function($, _, Backbone,
 
     model: Sound,
 
+    playSoundHome: function() {
+        var self = this;
+
+        self.soundHome = new Howl({
+          urls: ['content/music/intro.mp3'],
+          loop:true,
+          volume:1,
+          onload: function() {
+            self.soundHome.play();
+          }
+        });
+    },
+
+    fadeOutSoundHome: function() {
+        var self = this;
+
+        self.soundHome.fadeOut(0,500);
+    },
+
     updateSoundsCollection:function(waySounds) {
         var self = this;
         if(_.isUndefined(self.waySounds)) {

@@ -1,10 +1,12 @@
 define(['jquery',
         'underscore',
         'backbone',
+        'models/Sounds',
         'text!templates/index/indexViewTemplate.html',
         'popcorn'
         ],
 function($, _, Backbone,
+                    Sounds,
                     indexViewTemplate){
 
   var IndexView = Backbone.View.extend({
@@ -21,10 +23,7 @@ function($, _, Backbone,
         
         this.render();
 
-        //Event listener for resize, doesn't work
-        // self.listenTo(window,"resize",function() {
-        //     self.resizeBackgroundVideo();
-        // });
+        Sounds.playSoundHome();
 
     },
 
@@ -36,7 +35,7 @@ function($, _, Backbone,
 
         //Add video
         self.popcorn = Popcorn.vimeo( ".landingpage-video", "http://player.vimeo.com/video/108518900?loop=1" );
-
+        self.popcorn.volume(0);
         self.popcorn.play();
         
         self.popcorn.on("play",function() {

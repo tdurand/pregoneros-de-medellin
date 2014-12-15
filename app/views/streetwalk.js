@@ -223,10 +223,6 @@ function($, _, Backbone,
             self.updateLoadingIndicator(self.way.percentageLoaded);
         });
 
-        self.way.on("soundsLoaded", function() {
-            Sounds.updateSounds(self.way.wayPath[0]);
-        });
-
         self.way.on("loadingFinished", function() {
             self.animating = true;
             self.currentStill = self.way.wayStills.first();
@@ -237,6 +233,9 @@ function($, _, Backbone,
             self.$el.find("#scrollToStartLoading").hide();
             self.render();
             self.$el.find(".streetwalk-loading").hide();
+            //TODO Sounds can be loaded after render....
+            Sounds.updateSounds(self.way.wayPath[0]);
+            Sounds.fadeOutSoundHome();
         });
 
         self.way.on("loadingFinishedCompletely", function() {
