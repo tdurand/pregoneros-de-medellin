@@ -8,6 +8,8 @@
     height: 10%;
     background-color: #FFD64A;
 
+    z-index:20;
+
     .streetwalk-bottombar-separator {
         @include span(12);
         height: 100%;
@@ -118,6 +120,8 @@
     width: 100%;
     display:none;
 
+    z-index:30;
+
     .streetwalk-video-container {
         height: 100%;
         width: 100%;
@@ -159,6 +163,7 @@
          -o-transform:translate(-50%, -50%);
             transform:translate(-50%, -50%);
         position: absolute;
+        z-index:10;
 
         .frame-character {
             width: 100%;
@@ -195,7 +200,7 @@
     position: fixed;
     bottom:20px;
     right:20px;
-    z-index:1;
+    z-index:21;
 
     .toggle-sounds {
         width:3rem;
