@@ -149,9 +149,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
-/* line 78, ../../sass/module/landing.scss */
+/* line 83, ../../sass/module/landing.scss */
 .middle {
   width: 100%;
   float: left;
@@ -160,7 +165,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   height: 70%;
   position: relative;
 }
-/* line 84, ../../sass/module/landing.scss */
+/* line 89, ../../sass/module/landing.scss */
 .middle .logo {
   width: 32.20339%;
   float: left;
@@ -171,7 +176,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   background-size: contain;
   background-repeat: no-repeat;
 }
-/* line 94, ../../sass/module/landing.scss */
+/* line 99, ../../sass/module/landing.scss */
 .middle .description {
   height: 120%;
   position: absolute;
@@ -187,7 +192,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   border-width: 111px 214px 0px 297px;
 }
 @media screen and (max-width: 1400px) {
-  /* line 110, ../../sass/module/landing.scss */
+  /* line 115, ../../sass/module/landing.scss */
   .middle .description {
     width: 57.62712%;
     float: left;
@@ -196,25 +201,25 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     border-width: 60px 130px 0px 130px;
   }
 }
-/* line 116, ../../sass/module/landing.scss */
+/* line 121, ../../sass/module/landing.scss */
 .middle .description .description-text {
   font-family: "FilbertBrush";
   font-size: 1.3rem;
   text-align: justify;
   color: #FFFFFF;
 }
-/* line 122, ../../sass/module/landing.scss */
+/* line 127, ../../sass/module/landing.scss */
 .middle .description .description-text p {
   margin: 1em 0px;
 }
-/* line 128, ../../sass/module/landing.scss */
+/* line 133, ../../sass/module/landing.scss */
 .middle .description .description-btnenter img {
   position: absolute;
   bottom: 5%;
   max-height: 25%;
   z-index: 25;
 }
-/* line 138, ../../sass/module/landing.scss */
+/* line 143, ../../sass/module/landing.scss */
 .middle .separator {
   width: 100%;
   float: left;
@@ -229,7 +234,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   background-repeat: no-repeat;
 }
 
-/* line 153, ../../sass/module/landing.scss */
+/* line 158, ../../sass/module/landing.scss */
 .landingpage-video-frame {
   height: 100%;
   width: 100%;
@@ -242,7 +247,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   right: 0;
 }
 
-/* line 167, ../../sass/module/landing.scss */
+/* line 172, ../../sass/module/landing.scss */
 .landingpage-video {
   height: 0;
   width: 100%;
@@ -251,7 +256,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   right: 0;
   z-index: -1;
 }
-/* line 177, ../../sass/module/landing.scss */
+/* line 182, ../../sass/module/landing.scss */
 .landingpage-video .iframe {
   width: 100%;
 }
