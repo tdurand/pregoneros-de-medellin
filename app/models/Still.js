@@ -34,7 +34,7 @@ function($, _, Backbone,LOGGER){
 
     //TODO SEE IF WE CLEAR THE HIGHRES AFTER LOADING TO DO NOT OVERLOAD THE RAM
     loadHighRes: function(callbackLoaded) {
-
+        var self = this;
         var imgHighRes = this.get("imgHighRes");
         imgHighRes.src = this.get("srcHighRes");
         //If image already loaded
@@ -46,6 +46,10 @@ function($, _, Backbone,LOGGER){
             imgHighRes.loaded = true;
         };
 
+    },
+
+    cancelHighResLoading: function() {
+        this.get("imgHighRes").src = ":about";
     },
 
     clear: function() {

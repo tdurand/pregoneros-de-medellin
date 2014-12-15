@@ -425,8 +425,22 @@ function($, _, Backbone,
                 //Render highres after 100ms
                 clearTimeout(self.highResLoadingInterval);
                 self.highResLoadingInterval = setTimeout(function() {
+                    currentTime = new Date().getTime();
+                    //If time since last call < 1 sec, cancel last highres
+                    if(currentTime - self.lastCallRenderHighResTime < 1000) {
+                        console.log("Cancel highres loading");
+                        self.lastCallRenderHighResStill.cancelHighResLoading();
+                        //cancel timeout not moving
+                        clearTimeout(self.timeOutNotMoving);
+                    }
+
                     self.renderImgHighRes();
-                    $("body").addClass('not-moving');
+                    self.lastCallRenderHighResTime = new Date().getTime();
+                    self.lastCallRenderHighResStill = self.currentStill;
+
+                    self.timeOutNotMoving = setTimeout(function() {
+                        $("body").addClass('not-moving');
+                    },500);
                 },100);
 
                 // Update sounds volume
