@@ -161,7 +161,7 @@
     z-index:-1;
 
     background-image: url("../../images/landing-video-firstframe.jpg"); 
-    background-size:cover;
+    background-size: 100% 100%;
 
     position:absolute;
     bottom:0;
@@ -179,7 +179,8 @@
 
     z-index:-1;
 
-    .iframe {
-        width: 100%;
+    iframe {
+        bottom: 0px;
+        position: absolute;
     }
 }

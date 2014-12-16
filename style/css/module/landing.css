@@ -240,7 +240,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   width: 100%;
   z-index: -1;
   background-image: url("../../images/landing-video-firstframe.jpg");
-  background-size: cover;
+  background-size: 100% 100%;
   position: absolute;
   bottom: 0;
   top: 0;
@@ -257,6 +257,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   z-index: -1;
 }
 /* line 182, ../../sass/module/landing.scss */
-.landingpage-video .iframe {
-  width: 100%;
+.landingpage-video iframe {
+  bottom: 0px;
+  position: absolute;
 }

@@ -34,7 +34,7 @@ function($, _, Backbone,
         self.$el.html(_.template(indexViewTemplate)());
 
         //Add video
-        self.popcorn = Popcorn.vimeo( ".landingpage-video", "http://player.vimeo.com/video/108518900?loop=1" );
+        self.popcorn = Popcorn.vimeo( ".landingpage-video", "http://player.vimeo.com/video/114688319?loop=1" );
         self.popcorn.volume(0);
         self.popcorn.play();
         
@@ -76,7 +76,7 @@ function($, _, Backbone,
         $(videoIframe).height(height+"px");
         $(videoIframe).css("marginTop","-3.278%");
 
-        $(videoContainer).height(height * 0.88);//0.88 was the magic number that you needed to shrink the height of the outer container with.
+        $(videoContainer).height(window.innerHeight);//0.88 was the magic number that you needed to shrink the height of the outer container with.
 
     },
 
