@@ -553,6 +553,10 @@ function($, _, Backbone,
                     jale: {
                         characterUnlocked:true,
                         video1Unlocked:true
+                    },
+                    pajarito:{
+                        characterUnlocked:true,
+                        video1Unlocked:true
                     }
             }
         });

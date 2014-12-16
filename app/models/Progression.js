@@ -19,6 +19,12 @@ function($, _, Backbone, LOGGER){
                         video1Unlocked:false,
                         video2Unlocked:false,
                         video3Unlocked:false
+                    },
+                    pajarito: {
+                        characterUnlocked:false,
+                        video1Unlocked:false,
+                        video2Unlocked:false,
+                        video3Unlocked:false
                     }
             }
         });

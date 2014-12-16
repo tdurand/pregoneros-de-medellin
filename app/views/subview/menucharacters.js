@@ -4,13 +4,15 @@ define(['jquery',
         'utils/Logger',
         'models/Progression',
         'text!templates/streetwalk/menuCharactersViewTemplate.html',
-        'text!templates/svg/svgMenuJaleTemplate.html'
+        'text!templates/svg/svgMenuJaleTemplate.html',
+        'text!templates/svg/svgMenuPajaritoTemplate.html'
         ],
 function($, _, Backbone,
                 LOGGER,
                 Progression,
                 streetWalkMenuCharactersViewTemplate,
-                svgMenuJaleTemplate){
+                svgMenuJaleTemplate,
+                svgMenuPajaritoTemplate){
 
   var MenuCharactersView = Backbone.View.extend({
 
@@ -48,6 +50,34 @@ function($, _, Backbone,
                 onGet: function(charactersProgression) {
                     return charactersProgression.jale.video1Unlocked;
                 }
+            },
+            ".streetwalk-menucharacter[data-character='pajarito'] .character-unlocked":{
+                observe:"charactersProgression",
+                visible: true,
+                onGet: function(charactersProgression) {
+                    return charactersProgression.pajarito.characterUnlocked;
+                }
+            },
+            ".streetwalk-menucharacter[data-character='pajarito'] .character-locked":{
+                observe:"charactersProgression",
+                visible: function(val) { return val === false; },
+                onGet: function(charactersProgression) {
+                    return charactersProgression.pajarito.characterUnlocked;
+                }
+            },
+            ".streetwalk-menucharacter[data-character='pajarito'] .video1":{
+                observe:"charactersProgression",
+                visible: true,
+                onGet: function(charactersProgression) {
+                    return charactersProgression.pajarito.video1Unlocked;
+                }
+            },
+            ".streetwalk-menucharacter[data-character='pajarito'] .video1locked":{
+                observe:"charactersProgression",
+                visible: function(val) { return val === false; },
+                onGet: function(charactersProgression) {
+                    return charactersProgression.pajarito.video1Unlocked;
+                }
             }
     },
 
@@ -63,7 +93,7 @@ function($, _, Backbone,
         self.$el.html(_.template(streetWalkMenuCharactersViewTemplate));
         
         self.$el.find(".streetwalk-menucharacter[data-character='jale']").html(_.template(svgMenuJaleTemplate));
-        self.$el.find(".streetwalk-menucharacter[data-character='pajarito']").html(_.template(svgMenuJaleTemplate));
+        self.$el.find(".streetwalk-menucharacter[data-character='pajarito']").html(_.template(svgMenuPajaritoTemplate));
         self.$el.find(".streetwalk-menucharacter[data-character='perso3']").html(_.template(svgMenuJaleTemplate));
         self.$el.find(".streetwalk-menucharacter[data-character='perso4']").html(_.template(svgMenuJaleTemplate));
         self.$el.find(".streetwalk-menucharacter[data-character='perso5']").html(_.template(svgMenuJaleTemplate));
