@@ -30,7 +30,9 @@ function($, _, Backbone,
     fadeOutSoundHome: function() {
         var self = this;
 
-        self.soundHome.fadeOut(0,500);
+        if(self.soundHome) {
+            self.soundHome.fadeOut(0,500);
+        }
     },
 
     updateSoundsCollection:function(waySounds) {

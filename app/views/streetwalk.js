@@ -547,22 +547,13 @@ function($, _, Backbone,
 
         self.unmuteSounds();
 
-        //unlock perso
-        Progression.set({
-            charactersProgression: {
-                    jale: {
-                        characterUnlocked:true,
-                        video1Unlocked:true
-                    },
-                    pajarito:{
-                        characterUnlocked:true,
-                        video1Unlocked:true
-                    }
-            }
-        });
-
+        //current character
+        var characterName = self.way.characterDefinition.name;
+        var doNotUnlock = self.way.characterDefinition.doNotUnlock;
+        //unlocknext item
+        Progression.unlockNextItem(characterName,doNotUnlock);
         //open menu
-        self.menuCharactersView.openMenu("jale");
+        self.menuCharactersView.openMenu(characterName);
     },
 
     onClose: function(){

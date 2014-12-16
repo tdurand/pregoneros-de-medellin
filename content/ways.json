@@ -63,7 +63,9 @@
         "framefullWidth":37.66,
         "framestartWidth":13.42,
         "offsetTopCenter":-24,
-        "vimeoId":110573403
+        "vimeoId":110573403,
+        "name":"jale",
+        "doNotUnlock":false
 
     },
     "characterPosition":{
@@ -230,7 +232,9 @@
         "framefullWidth":45.1,
         "framestartWidth":30.7,
         "offsetTopCenter":-24,
-        "vimeoId":110573403
+        "vimeoId":110573403,
+        "name":"jale",
+        "doNotUnlock":false
 
     },
     "characterPosition":{
@@ -284,7 +288,9 @@
         "framefullWidth":45.1,
         "framestartWidth":30.7,
         "offsetTopCenter":-24,
-        "vimeoId":110573403
+        "vimeoId":110573403,
+        "name":"pajarito",
+        "doNotUnlock":false
     },
     "characterPosition":{
       "295": { "left":62.48125, "top":59.1012037},
@@ -330,8 +336,9 @@
         "framefullWidth":53.9,
         "framestartWidth":13.4,
         "offsetTopCenter":-24,
-        "vimeoId":110573403
-
+        "vimeoId":110573403,
+        "name":"pajarito",
+        "doNotUnlock":false
     },
     "characterPosition":{
       "107": { "left":45.10416667, "top":58.88888889},
@@ -412,8 +419,9 @@
         "framefullWidth":47.6,
         "framestartWidth":22,
         "offsetTopCenter":-24,
-        "vimeoId":110573403
-
+        "vimeoId":110573403,
+        "name":"pajarito",
+        "doNotUnlock":true
     },
     "characterPosition":{
       "184": { "left":56.8421875, "top":57.19740741},
@@ -525,7 +533,9 @@
         "framefullWidth":54,
         "framestartWidth":17,
         "offsetTopCenter":-24,
-        "vimeoId":110573403
+        "vimeoId":110573403,
+        "name":"jale",
+        "doNotUnlock":false
 
     },
     "characterPosition":{
@@ -644,7 +654,9 @@
         "framefullWidth":54,
         "framestartWidth":17,
         "offsetTopCenter":-24,
-        "vimeoId":110573403
+        "vimeoId":110573403,
+        "name":"pajarito",
+        "doNotUnlock":false
     },
     "characterPosition":{
       "497": { "left":44.79166667, "top":57.03703704},
@@ -699,7 +711,9 @@
         "framefullWidth":44.2,
         "framestartWidth":17,
         "offsetTopCenter":-24,
-        "vimeoId":110573403
+        "vimeoId":110573403,
+        "name":"pajarito",
+        "doNotUnlock":false
     },
     "characterPosition":{
       "359": { "left":57.08333333, "top":58.7037037},
@@ -904,7 +918,9 @@
         "framefullWidth":30.2,
         "framestartWidth":17,
         "offsetTopCenter":-24,
-        "vimeoId":110573403
+        "vimeoId":110573403,
+        "name":"jale",
+        "doNotUnlock":false
     },
     "characterPosition":{
       "131": { "left":51.14583333, "top":56.48148148},
@@ -946,7 +962,9 @@
         "framefullWidth":44,
         "framestartWidth":17,
         "offsetTopCenter":-24,
-        "vimeoId":110573403
+        "vimeoId":110573403,
+        "name":"jale",
+        "doNotUnlock":false
     },
     "characterPosition":{
       "280": { "left":53.02083333, "top":57.40740741},
