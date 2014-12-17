@@ -215,6 +215,17 @@ function($, _, Backbone,
         self.adjustSizes();
 
         self.renderImgHighRes();
+
+        //prefech stuff
+        //Prefetch image loading
+        $.preloadImages = function() {
+          for (var i = 0; i < arguments.length; i++) {
+            $("<img />").attr("src", arguments[i]);
+          }
+        };
+
+        $.preloadImages("images/frame-pajarito.svg");
+        $.preloadImages("images/frame-jale.svg");
         
     },
 
@@ -325,6 +336,8 @@ function($, _, Backbone,
             if(imgNb >= self.way.characterDefinition.startFrame && imgNb <= self.way.characterDefinition.endFrame) {
 
                 //===== TODO ONE TIME INTRUCTION, do not execute for each loop
+                //set right src for frame character
+                self.$el.find(".frame-character").attr("src","images/frame-"+self.way.characterDefinition.name+".svg");
                 //show frame container
                 self.$el.find(".streetwalk-textcharacter").show();
                 //set offset for the imgFrame, to position the "real" center
