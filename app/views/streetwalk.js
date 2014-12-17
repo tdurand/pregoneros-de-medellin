@@ -228,7 +228,7 @@ function($, _, Backbone,
         $.preloadImages("images/frame-jale.svg");
 
         //set right src for frame character
-        self.$el.find(".frame-character").attr("src","images/frame-"+self.way.characterDefinition.name+".svg");
+        self.$el.find(".frame-character").attr("data","images/frame-"+self.way.characterDefinition.name+".svg");
         
     },
 
@@ -342,7 +342,7 @@ function($, _, Backbone,
                 //show frame container
                 self.$el.find(".streetwalk-textcharacter").show();
                 //set offset for the imgFrame, to position the "real" center
-                self.$el.find(".streetwalk-textcharacter img").css("margin-top",self.way.characterDefinition.offsetTopCenter+"%");
+                self.$el.find(".streetwalk-textcharacter .frame-character").css("margin-top",self.way.characterDefinition.offsetTopCenter+"%");
 
                 //==== COMPUTE AND SET WIDTH OF THE CHARACTER FRAMER ======
                 var fullRange = self.way.characterDefinition.endFrame - self.way.characterDefinition.startFrame;
