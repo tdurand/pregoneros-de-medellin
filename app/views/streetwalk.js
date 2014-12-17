@@ -203,7 +203,9 @@ function($, _, Backbone,
 
         //Render top signs
         self.$el.find(".streetwalk-progress").html(_.template(svgSignTopProgressTemplate));
-        self.$el.find(".streetwalk-area").html(_.template(svgSignTopAreaTemplate));
+        self.$el.find(".streetwalk-area").html(_.template(svgSignTopAreaTemplate,{
+            area:self.way.wayArea
+        }));
 
         //attach stickit
         self.stickit(Progression);

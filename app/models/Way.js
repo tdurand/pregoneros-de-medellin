@@ -46,6 +46,7 @@ function($, _, Backbone,
 
             self.nbStills = params.nbStills;
             self.wayName = params.wayName;
+            self.wayArea = params.wayArea;
             params.wayPath = GeoUtils.prepareWayPathFromGeoJSONLine(params.wayPath,self.nbStills);
             self.wayPath = params.wayPath;
             self.wayConnectionsEnd = params.wayConnectionsEnd;
