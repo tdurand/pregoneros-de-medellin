@@ -54,6 +54,12 @@ function($, _, Backbone,
         "click .streetwalk-video-btnclose":"closeVideo"
     },
 
+    bindings:{
+        ".streetwalk-progress .nbStoriesUnlocked":{
+            observe:"nbItemUnlocked"
+        }
+    },
+
     initialize : function(params) {
         var self = this;
 
@@ -198,6 +204,9 @@ function($, _, Backbone,
         //Render top signs
         self.$el.find(".streetwalk-progress").html(_.template(svgSignTopProgressTemplate));
         self.$el.find(".streetwalk-area").html(_.template(svgSignTopAreaTemplate));
+
+        //attach stickit
+        self.stickit(Progression);
 
         self.initMap();
 
