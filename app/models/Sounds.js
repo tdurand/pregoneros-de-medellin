@@ -31,7 +31,7 @@ function($, _, Backbone,
         var self = this;
 
         if(self.soundHome) {
-            self.soundHome.fadeOut(0,500);
+            self.soundHome.fadeOut(0,3000);
         }
     },
 
