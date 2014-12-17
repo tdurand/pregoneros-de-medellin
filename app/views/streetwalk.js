@@ -16,6 +16,8 @@ define(['jquery',
         'text!templates/streetwalk/streetWalkChoosePathEndViewTemplate.html',
         'text!templates/svg/svgSignTopProgressTemplate.html',
         'text!templates/svg/svgSignTopAreaTemplate.html',
+        'text!templates/svg/svgFramePajaritoTemplate.html',
+        'text!templates/svg/svgFrameJaleTemplate.html',
         'popcorn'
         ],
 function($, _, Backbone,
@@ -33,7 +35,9 @@ function($, _, Backbone,
                 streetWalkChoosePathStartViewTemplate,
                 streetWalkChoosePathEndViewTemplate,
                 svgSignTopProgressTemplate,
-                svgSignTopAreaTemplate){
+                svgSignTopAreaTemplate,
+                svgFramePajaritoTemplate,
+                svgFrameJaleTemplate){
 
   var StreetWalkView = Backbone.View.extend({
 
@@ -48,8 +52,6 @@ function($, _, Backbone,
 
     events:{
         "click .toggle-sounds ":"toggleSounds",
-        "submit #signup-mailchimp-form":"signUpMailChimp",
-        "click .launching-button-share":"buttonShare",
         "click .frame-character":"showVideo",
         "click .streetwalk-video-btnclose":"closeVideo"
     },
@@ -224,12 +226,23 @@ function($, _, Backbone,
           }
         };
 
-        $.preloadImages("images/frame-pajarito.svg");
-        $.preloadImages("images/frame-jale.svg");
-
         //set right src for frame character
-        self.$el.find(".frame-character").attr("data","images/frame-"+self.way.characterDefinition.name+".svg");
+        self.$el.find(".frame-character").html(_.template(self.getFrameTemplate(self.way.characterDefinition.name)));
         
+    },
+
+    getFrameTemplate : function(character) {
+        var self = this;
+        var template = "";
+
+        if(character == "pajarito") {
+            template = svgFramePajaritoTemplate;
+        }
+        else {
+            template = svgFrameJaleTemplate;
+        }
+
+        return template;
     },
 
     adjustSizes: function() {
