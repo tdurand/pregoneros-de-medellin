@@ -199,6 +199,12 @@
             "path":"carabobo-cl52-cl51/sounds/punto3",
             "db":10,
             "type":"ambient"
+        },
+        {
+            "position":[6.250981604980651,-75.56925415992737],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":50,
+            "type":"ambient"
         }
     ]
   },
@@ -225,6 +231,14 @@
                     "direction": "left",
                     "name":"cr53-cl51-cl52-cl52-cr53-carabobo"
                 }
+    ],
+    "waySounds":[
+        {
+            "position":[6.2513442164690876,-75.57004272937775],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
     ],
     "characterDefinition": {
         "startFrame":234,
@@ -276,9 +290,9 @@
     ],
     "waySounds":[
         {
-            "position":[6.250986,-75.569259],
-            "path":"carabobo-cl52-cl51/sounds/punto3",
-            "db":10,
+            "position":[6.2509736061949805,-75.56925684213638],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
             "type":"ambient"
         }
     ],
@@ -328,6 +342,14 @@
         {
             "direction": "right",
             "name":"carabobo-cl51-cl52"
+        }
+    ],
+    "waySounds":[
+        {
+            "position":[6.250515008945546,-75.56834489107132],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
         }
     ],
     "characterDefinition": {
@@ -496,6 +518,14 @@
             "direction": "forward",
             "name":"cr48-cl54-cl55"
         }
+    ],
+    "waySounds":[
+        {
+            "position":[6.2517228252549435,-75.56891620159149],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
     ]
   },
   {
@@ -515,7 +545,15 @@
             "direction": "right",
             "name":"carabobo-cl52-cl53"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.2512722274436,-75.56802570819855],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"plazabotero-carabobo-cr51",
@@ -525,6 +563,14 @@
         {
             "direction": "right",
             "name":"cl52-cr51-carabobo"
+        }
+    ],
+    "waySounds":[
+        {
+            "position":[6.25172549151303,-75.56891620159149],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
         }
     ],
     "characterDefinition": {
@@ -587,6 +633,14 @@
             "name":"cl52cr53-carabobo-cl51"
         }
     ],
+    "waySounds":[
+        {
+            "position":[6.25127755996434,-75.56801766157149],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ],
     "characterDefinition": {
         "startFrame":334,
         "endFrame":358,
@@ -642,7 +696,15 @@
             "direction": "right",
             "name":"carabobo-cl52-cl51"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.251330885168823,-75.57004541158676],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cl52cr53-carabobo-cl51",
@@ -653,7 +715,15 @@
             "direction": "left",
             "name":"cl51-cr53-carabobo"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.2517228252549435,-75.5689188838005],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"carabobo-cl49media-cl48",
@@ -668,7 +738,15 @@
             "direction": "left",
             "name":"cl48cr51-carabobo-cl46"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.248880586409164,-75.57013928890228],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cl48cr51-carabobo-cl46",
@@ -682,6 +760,14 @@
         {
             "direction": "right",
             "name":"cl46-cr51-carabobo"
+        }
+    ],
+    "waySounds":[
+        {
+            "position":[6.248515306938741,-75.57025998830795],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
         }
     ],
     "characterDefinition": {
@@ -741,6 +827,14 @@
             "name":"carabobo-cl48-cl46"
         }
     ],
+    "waySounds":[
+        {
+            "position":[6.247286152979603,-75.56980937719345],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ],
     "characterDefinition": {
         "startFrame":359,
         "endFrame":385,
@@ -794,7 +888,15 @@
             "direction": "left",
             "name":"cl46-carabobo-cr51"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.2485126406642815,-75.57025998830795],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"carabobo-cl46-cl48",
@@ -809,7 +911,15 @@
             "direction": "right",
             "name":"cl48cr51-carabobo-cl46"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.2475474484229325,-75.57058990001678],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cl46-carabobo-cr51",
@@ -824,7 +934,15 @@
             "direction": "right",
             "name":"cr51-cl46-cl45"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.247478125154759,-75.57061403989792],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cl46-cr51-carabobo",
@@ -839,7 +957,15 @@
             "direction": "left",
             "name":"carabobo-cl46-cl45"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.247211497114687,-75.56983888149261],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cr51-cl46-cl45",
@@ -850,7 +976,15 @@
             "direction": "forward",
             "name":"cr51sanjuan-cl45-carabobo"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.247203498271385,-75.56981205940245],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cr51-cl45-cl46",
@@ -865,7 +999,15 @@
             "direction": "left",
             "name":"cl46-cr51-carabobo"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.245857024573625,-75.57035386562347],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cr51sanjuan-cl45-carabobo",
@@ -880,7 +1022,15 @@
             "direction": "forward",
             "name":"sanjuan-parqueluz"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.245849025709636,-75.57037264108658],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"sanjuancr51-carabobo-cl45",
@@ -891,7 +1041,15 @@
             "direction": "forward",
             "name":"cr51-cl45-cl46"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.245126461157626,-75.57146966457367],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"sanjuan-parqueluz",
@@ -906,7 +1064,15 @@
             "direction": "right",
             "name":"parqueluz-carabobo"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.245129127449324,-75.57146430015564],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"parqueluz-carabobo",
@@ -921,7 +1087,15 @@
             "direction": "right",
             "name":"sanjuancr51-carabobo-cl45"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.245891686316201,-75.5717647075653],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"carabobo-parqueluz",
@@ -936,7 +1110,15 @@
             "direction": "right",
             "name":"parqueluz-vueltaderecha"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.245726376446357,-75.57123899459839],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"parqueluz-vueltaizquierda",
@@ -946,6 +1128,14 @@
         {
             "direction": "forward",
             "name":"parqueluz-carabobo"
+        }
+    ],
+    "waySounds":[
+        {
+            "position":[6.245891686316201,-75.57177275419235],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
         }
     ],
     "characterDefinition": {
@@ -992,6 +1182,14 @@
             "name":"parqueluz-carabobo"
         }
     ],
+    "waySounds":[
+        {
+            "position":[6.245902351467307,-75.57174056768417],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ],
     "characterDefinition": {
         "startFrame":280,
         "endFrame":299,
@@ -1034,7 +1232,15 @@
             "direction": "forward",
             "name":"carabobo-cl45-cl46"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.245718377580358,-75.57123363018036],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"carabobo-cl45-parqueluz",
@@ -1045,7 +1251,15 @@
             "direction": "right",
             "name":"carabobo-parqueluz"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.246110321870371,-75.57108879089355],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"carabobo-cl45-cl46",
@@ -1060,7 +1274,15 @@
             "direction": "forward",
             "name":"carabobo-cl46-cl48"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.246110321870371,-75.57109147310257],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"carabobo-cl46-cl45",
@@ -1071,7 +1293,15 @@
             "direction": "forward",
             "name":"carabobo-cl45-parqueluz"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.247491456553201,-75.57061672210692],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cr48-cl54-cl55",
@@ -1086,7 +1316,15 @@
             "direction": "right",
             "name":"cl55-cr48-cr47"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.25205344115364,-75.56469172239304],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cr48-cl55-cl54",
@@ -1101,7 +1339,15 @@
             "direction": "right",
             "name":"cl52-cr51-carabobo"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.252696008552427,-75.56428402662277],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cl54-cr48-cr47",
@@ -1111,6 +1357,14 @@
         {
             "direction": "left",
             "name":"cr47-cl54-cl55"
+        }
+    ],
+    "waySounds":[
+        {
+            "position":[6.25205344115364,-75.56469440460204],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
         }
     ],
     "characterDefinition": {
@@ -1185,6 +1439,14 @@
             "name":"cl52-cr51-carabobo"
         }
     ],
+    "waySounds":[
+        {
+            "position":[6.251810811764511,-75.56430280208588],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ],
     "characterDefinition": {
         "startFrame":36,
         "endFrame":72,
@@ -1248,7 +1510,15 @@
             "direction": "right",
             "name":"cl55-cr47-oriental"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.25180814550687,-75.56430011987686],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cr47-cl55-cl54",
@@ -1259,7 +1529,15 @@
             "direction": "right",
             "name":"cl54-cr47-cr48"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.252421384408058,-75.56387096643448],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cl55-cr47-cr48",
@@ -1274,7 +1552,15 @@
             "direction": "right",
             "name":"cr48-cl55-cl56"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.252424050662582,-75.56387096643448],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cl55-cr48-cr47",
@@ -1293,7 +1579,15 @@
             "direction": "right",
             "name":"cr47-cl55-cl54"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.252701341058663,-75.56428134441376],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cl55-cr47-oriental",
@@ -1304,7 +1598,15 @@
             "direction": "left",
             "name":"orientalcl56-cl55-cr47"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.252434715680538,-75.56385219097137],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cl55-oriental-cr47",
@@ -1319,7 +1621,15 @@
             "direction": "right",
             "name":"cr47-cl55-cl56"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.252002782279493,-75.56314945220947],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"orientalcl56-cl55-cr47",
@@ -1334,7 +1644,15 @@
             "direction": "forward",
             "name":"cl56-cr47-cr48"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.252005448536154,-75.5631548166275],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cl56oriental-cr47-cl55",
@@ -1345,7 +1663,15 @@
             "direction": "right",
             "name":"cl55-oriental-cr47"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.253082615113198,-75.56341767311096],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cr47-cl56-cl55",
@@ -1364,12 +1690,20 @@
             "direction": "left",
             "name":"cl55-cr47-oriental"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.253101278870961,-75.5634418129921],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cr47-cl55-cl56",
     "nbStills":178,
-    "wayPath":[[75.56385219097137,6.252437381934986],[-75.5634418129921,6.253101278870961]],
+    "wayPath":[[-75.56385219097137,6.252437381934986],[-75.5634418129921,6.253101278870961]],
     "wayConnectionsEnd":[
         {
             "direction": "left",
@@ -1379,7 +1713,15 @@
             "direction": "right",
             "name":"cl56oriental-cr47-cl55"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.252437381934986,-75.56385219097137],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cl56-cr47-cr48",
@@ -1389,6 +1731,14 @@
         {
             "direction": "left",
             "name":"cr48-cl56-cl55"
+        }
+    ],
+    "waySounds":[
+        {
+            "position":[6.253098612619872,-75.56344717741013],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
         }
     ],
     "characterDefinition": {
@@ -1442,6 +1792,14 @@
         {
             "direction": "right",
             "name":"cr47-cl56-cl55"
+        }
+    ],
+    "waySounds":[
+        {
+            "position":[6.253373236408591,-75.56384414434433],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
         }
     ],
     "characterDefinition": {
@@ -1502,7 +1860,15 @@
             "direction": "left",
             "name":"cl55-cr48-cr47"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.253373236408591,-75.56384682655334],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   },
   {
     "wayName":"cr48-cl55-cl56",
@@ -1513,6 +1879,14 @@
             "direction": "right",
             "name":"cl56-cr48-cr47"
         }
-    ] 
+    ],
+    "waySounds":[
+        {
+            "position":[6.25270400731175,-75.56427329778671],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
   }
 ]
