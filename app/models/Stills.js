@@ -55,10 +55,10 @@ function($, _, Backbone,
                         id:i,
                         // srcLowRes:"http://tdurand.github.io/scrollingvideo/"+self.pathToStills+"way"+self.lpad(i, 3)+".jpg",
                         // srcHighRes:"http://tdurand.github.io/scrollingvideo/"+self.pathToStills+"way"+self.lpad(i, 3)+".jpg"
-                        // srcLowRes:"https://s3.amazonaws.com/pregonerosdemedellin/data/"+self.pathToStills+"/lowres/way"+self.lpad(i, 3)+".jpg",
-                        // srcHighRes:"https://s3.amazonaws.com/pregonerosdemedellin/data/"+self.pathToStills+"/highres/way"+self.lpad(i, 3)+".jpg"
-                        srcLowRes:"data/"+self.pathToStills+"/lowres/way"+self.lpad(i, 3)+".jpg",
-                        srcHighRes:"data/"+self.pathToStills+"/highres/way"+self.lpad(i, 3)+".jpg"
+                        srcLowRes:"https://s3.amazonaws.com/pregonerosdemedellin/data/"+self.pathToStills+"/lowres/way"+self.lpad(i, 3)+".jpg",
+                        srcHighRes:"https://s3.amazonaws.com/pregonerosdemedellin/data/"+self.pathToStills+"/highres/way"+self.lpad(i, 3)+".jpg"
+                        // srcLowRes:"data/"+self.pathToStills+"/lowres/way"+self.lpad(i, 3)+".jpg",
+                        // srcHighRes:"data/"+self.pathToStills+"/highres/way"+self.lpad(i, 3)+".jpg"
                         // srcHighRes:"http://static2187.ovhcloudcdn.com/v1/AUTH_4ee2db5ea9c947b39eb3087c80294487/default/"+self.pathToStills+"/highres/way"+self.lpad(i, 3)+".jpg"
                         // srcLowRes:"http://maps.googleapis.com/maps/api/streetview?size=500x280&location="+self.stillsPath[i][0]+","+self.stillsPath[i][1]+"&fov=180&heading="+bearingTemp+"&pitch=5&key=AIzaSyBcQbYugBpXYmTvHVqBmmTa6EM0PHZZ28k",
                         // srcHighRes:"http://maps.googleapis.com/maps/api/streetview?size=500x280&location="+self.stillsPath[i][0]+","+self.stillsPath[i][1]+"&fov=180&heading="+bearingTemp+"&pitch=5&key=AIzaSyBcQbYugBpXYmTvHVqBmmTa6EM0PHZZ28k"
