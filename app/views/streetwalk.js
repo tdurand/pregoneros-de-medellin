@@ -18,6 +18,7 @@ define(['jquery',
         'text!templates/svg/svgSignTopAreaTemplate.html',
         'text!templates/svg/svgFramePajaritoTemplate.html',
         'text!templates/svg/svgFrameJaleTemplate.html',
+        'text!templates/svg/svgScrollToStartES.html',
         'popcorn'
         ],
 function($, _, Backbone,
@@ -37,7 +38,8 @@ function($, _, Backbone,
                 svgSignTopProgressTemplate,
                 svgSignTopAreaTemplate,
                 svgFramePajaritoTemplate,
-                svgFrameJaleTemplate){
+                svgFrameJaleTemplate,
+                svgScrollToStart){
 
   var StreetWalkView = Backbone.View.extend({
 
@@ -202,6 +204,9 @@ function($, _, Backbone,
         }));
 
         self.menuCharactersView = new MenuCharactersView();
+
+        //Render tutorial
+        self.$el.find(".streetwalk-tutorial").html(_.template(svgScrollToStart));
 
         //Render top signs
         self.$el.find(".streetwalk-progress").html(_.template(svgSignTopProgressTemplate));

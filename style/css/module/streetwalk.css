@@ -1,1 +1,433 @@
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font:inherit;font-size:100%;vertical-align:baseline}html{line-height:1}ol,ul{list-style:none}table{border-collapse:collapse;border-spacing:0}caption,th,td{text-align:left;font-weight:normal;vertical-align:middle}q,blockquote{quotes:none}q:before,q:after,blockquote:before,blockquote:after{content:"";content:none}a img{border:none}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}.streetwalk-bottombar{position:fixed;bottom:0;width:100%;float:left;margin-left:0;margin-right:0;height:10%;background-color:#FFD64A;z-index:20}.streetwalk-bottombar .streetwalk-bottombar-separator{width:100%;float:left;margin-left:0;margin-right:0;height:100%;position:absolute;top:-60%;z-index:1;background-image:url("../../images/separator_bottom.png");background-size:cover;background-repeat:no-repeat}.streetwalk-bottombar .streetwalk-map{position:absolute;z-index:2;bottom:30%;left:-2%;height:320%;width:10%;border-style:solid;border-width:39px 167px 0px 89px;-moz-border-image:url("../../images/mapborder.png") 39 167 63 89 stretch;-webkit-border-image:url("../../images/mapborder.png") 39 167 63 89 stretch;-o-border-image:url("../../images/mapborder.png") 39 167 63 89 stretch;border-image:url("../../images/mapborder.png") 39 167 63 89 fill stretch;background-color:transparent}.streetwalk-bottombar .streetwalk-map .streetwalk-mapcontainer{height:100%;width:100%;border-radius:10px;overflow:hidden}.streetwalk-bottombar .streetwalk-menucharacters{position:absolute;z-index:2;top:-30%;right:70px;height:120%}.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter{height:400%;position:absolute;width:40%;left:-20%;bottom:-80%}.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter object{height:100%;width:100%}.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter .character-unlocked,.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter .video1,.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter .video2,.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter .video3{display:none}.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter .submenu[data-state='open']{display:block}.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter .submenu[data-state='closed']{display:none}.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter[data-character='jale']{z-index:10}.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter[data-character='pajarito']{left:0%;z-index:9}.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter[data-character='perso3']{left:20%;z-index:8}.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter[data-character='perso4']{left:40%;z-index:7}.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter[data-character='perso5']{left:60%;z-index:6}.streetwalk-video{position:fixed;height:100%;width:100%;display:none;z-index:30}.streetwalk-video .streetwalk-video-container{height:100%;width:100%}.streetwalk-video .streetwalk-video-btnclose{position:absolute;top:10px;right:10px;width:50px;height:50px;background-image:url("../../images/closebtn.svg");cursor:pointer}.streetwalk-chooseway-wrapper{position:fixed;top:0;bottom:0;right:0;left:0;width:100%;height:100%}.streetwalk-textcharacter{position:fixed}.streetwalk-textcharacter .img-container{width:0%;top:50%;left:50%;transform:translate(-50%, -50%);-webkit-transform:translate(-50%, -50%);-moz-transform:translate(-50%, -50%);-ms-transform:translate(-50%, -50%);-o-transform:translate(-50%, -50%);transform:translate(-50%, -50%);position:absolute;z-index:10}.streetwalk-textcharacter .img-container .frame-character{width:100%;height:100%;cursor:pointer}.streetwalk-textcharacter .img-container .frame-character:active{opacity:0.5}.streetwalk-chooseway{width:35%;position:absolute;left:50%;top:50%;-webkit-transform:translate(-50%, -50%);-moz-transform:translate(-50%, -50%);-ms-transform:translate(-50%, -50%);-o-transform:translate(-50%, -50%);transform:translate(-50%, -50%)}.streetwalk-chooseway svg{width:100%}.streetwalk-control{position:fixed;bottom:20px;right:20px;z-index:21}.streetwalk-control .toggle-sounds{width:3rem;height:3rem;cursor:pointer}.streetwalk-control .toggle-sounds[data-state="muted"]{background-image:url("../../images/mutesound.svg")}.streetwalk-control .toggle-sounds[data-state="normal"]{background-image:url("../../images/unmutesound.svg")}.streetwalk-progress,.streetwalk-area{position:fixed;height:15%}@media screen and (min-width: 1400px){.streetwalk-progress,.streetwalk-area{height:12%}}.streetwalk-progress svg,.streetwalk-area svg{height:100%}.streetwalk-progress{top:0px;left:20px}.streetwalk-area{top:0px;right:20px}.streetwalk-title{position:absolute;top:0;left:0;bottom:0;right:0;text-align:center}.streetwalk-title .logo{height:30%;min-width:320px;max-width:600px;max-height:30%}.streetwalk-title .description{color:white;width:100%;min-width:320px;max-width:700px;max-height:30%;margin:0 auto}@media screen and (max-width: 700px){.streetwalk-title .description{width:100%}}@media screen and (min-width: 700px) and (max-width: 1300px){.streetwalk-title .description{width:70%}}@media screen and (min-width: 1300px){.streetwalk-title .description{width:50%}}.streetwalk-title .description h2{margin:1em;font-size:1.5rem;line-height:1.7rem}.streetwalk-title .description p{font-size:1.5rem}.streetwalk-title .scrolltostart{height:40%;position:absolute;bottom:0;right:0;left:0}.streetwalk-title .scrolltostart img,.streetwalk-title .scrolltostart svg{height:100%}.streetwalk-title #scrollToStartLoaded{display:none}.streetwalkImg,.element-fixed,.blurImg{position:fixed;top:0;bottom:0;right:0;left:0;width:100%;height:100%}.trame-video{background:url("../../images/trame-video.png") repeat;height:100%;position:fixed;width:100%;transition:opacity 0.5s ease;-webkit-transition:opacity 0.5s ease;-moz-transition:opacity 0.5s ease;opacity:1}body.not-moving .trame-video{opacity:0;transition:opacity 0.5s ease;-webkit-transition:opacity 0.5s ease;-moz-transition:opacity 0.5s ease}
+/* line 5, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 14, ../../../../../../.rvm/gems/ruby-2.1.3/gems/susy-2.1.3/sass/susy/language/susy/_box-sizing.scss */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 3, ../../sass/module/streetwalk.scss */
+.streetwalk-bottombar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  height: 10%;
+  background-color: #FFD64A;
+  z-index: 20;
+}
+/* line 13, ../../sass/module/streetwalk.scss */
+.streetwalk-bottombar .streetwalk-bottombar-separator {
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  height: 100%;
+  position: absolute;
+  top: -60%;
+  z-index: 1;
+  background-image: url("../../images/separator_bottom.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+/* line 26, ../../sass/module/streetwalk.scss */
+.streetwalk-bottombar .streetwalk-map {
+  position: absolute;
+  z-index: 2;
+  bottom: 30%;
+  left: -2%;
+  height: 320%;
+  width: 10%;
+  border-style: solid;
+  border-width: 39px 167px 0px 89px;
+  -moz-border-image: url("../../images/mapborder.png") 39 167 63 89 stretch;
+  -webkit-border-image: url("../../images/mapborder.png") 39 167 63 89 stretch;
+  -o-border-image: url("../../images/mapborder.png") 39 167 63 89 stretch;
+  border-image: url("../../images/mapborder.png") 39 167 63 89 fill stretch;
+  background-color: transparent;
+}
+/* line 45, ../../sass/module/streetwalk.scss */
+.streetwalk-bottombar .streetwalk-map .streetwalk-mapcontainer {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+/* line 53, ../../sass/module/streetwalk.scss */
+.streetwalk-bottombar .streetwalk-menucharacters {
+  position: absolute;
+  z-index: 2;
+  top: -30%;
+  right: 70px;
+  height: 120%;
+}
+/* line 60, ../../sass/module/streetwalk.scss */
+.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter {
+  height: 400%;
+  position: absolute;
+  width: 40%;
+  left: -20%;
+  bottom: -80%;
+}
+/* line 67, ../../sass/module/streetwalk.scss */
+.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter object {
+  height: 100%;
+  width: 100%;
+}
+/* line 72, ../../sass/module/streetwalk.scss */
+.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter .character-unlocked, .streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter .video1, .streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter .video2, .streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter .video3 {
+  display: none;
+}
+/* line 78, ../../sass/module/streetwalk.scss */
+.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter .submenu[data-state='open'] {
+  display: block;
+}
+/* line 82, ../../sass/module/streetwalk.scss */
+.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter .submenu[data-state='closed'] {
+  display: none;
+}
+/* line 88, ../../sass/module/streetwalk.scss */
+.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter[data-character='jale'] {
+  z-index: 10;
+}
+/* line 92, ../../sass/module/streetwalk.scss */
+.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter[data-character='pajarito'] {
+  left: 0%;
+  z-index: 9;
+}
+/* line 97, ../../sass/module/streetwalk.scss */
+.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter[data-character='perso3'] {
+  left: 20%;
+  z-index: 8;
+}
+/* line 102, ../../sass/module/streetwalk.scss */
+.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter[data-character='perso4'] {
+  left: 40%;
+  z-index: 7;
+}
+/* line 107, ../../sass/module/streetwalk.scss */
+.streetwalk-bottombar .streetwalk-menucharacters .streetwalk-menucharacter[data-character='perso5'] {
+  left: 60%;
+  z-index: 6;
+}
+
+/* line 117, ../../sass/module/streetwalk.scss */
+.streetwalk-video {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: none;
+  z-index: 30;
+}
+/* line 125, ../../sass/module/streetwalk.scss */
+.streetwalk-video .streetwalk-video-container {
+  height: 100%;
+  width: 100%;
+}
+/* line 130, ../../sass/module/streetwalk.scss */
+.streetwalk-video .streetwalk-video-btnclose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  background-image: url("../../images/closebtn.svg");
+  cursor: pointer;
+}
+
+/* line 142, ../../sass/module/streetwalk.scss */
+.streetwalk-chooseway-wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 152, ../../sass/module/streetwalk.scss */
+.streetwalk-textcharacter {
+  position: fixed;
+}
+/* line 155, ../../sass/module/streetwalk.scss */
+.streetwalk-textcharacter .img-container {
+  width: 0%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 10;
+}
+/* line 168, ../../sass/module/streetwalk.scss */
+.streetwalk-textcharacter .img-container .frame-character {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+/* line 174, ../../sass/module/streetwalk.scss */
+.streetwalk-textcharacter .img-container .frame-character:active {
+  opacity: 0.5;
+}
+
+/* line 182, ../../sass/module/streetwalk.scss */
+.streetwalk-chooseway {
+  width: 35%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  /*transform*/
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+/* line 194, ../../sass/module/streetwalk.scss */
+.streetwalk-chooseway svg {
+  width: 100%;
+}
+
+/* line 199, ../../sass/module/streetwalk.scss */
+.streetwalk-tutorial-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 25;
+}
+/* line 208, ../../sass/module/streetwalk.scss */
+.streetwalk-tutorial-wrapper .streetwalk-tutorial {
+  height: 50%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+/* line 215, ../../sass/module/streetwalk.scss */
+.streetwalk-tutorial-wrapper svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 221, ../../sass/module/streetwalk.scss */
+.streetwalk-control {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 21;
+}
+/* line 227, ../../sass/module/streetwalk.scss */
+.streetwalk-control .toggle-sounds {
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+}
+/* line 233, ../../sass/module/streetwalk.scss */
+.streetwalk-control .toggle-sounds[data-state="muted"] {
+  background-image: url("../../images/mutesound.svg");
+}
+/* line 237, ../../sass/module/streetwalk.scss */
+.streetwalk-control .toggle-sounds[data-state="normal"] {
+  background-image: url("../../images/unmutesound.svg");
+}
+
+/* line 244, ../../sass/module/streetwalk.scss */
+.streetwalk-progress, .streetwalk-area {
+  position: fixed;
+  height: 15%;
+}
+@media screen and (min-width: 1400px) {
+  /* line 250, ../../sass/module/streetwalk.scss */
+  .streetwalk-progress, .streetwalk-area {
+    height: 12%;
+  }
+}
+/* line 255, ../../sass/module/streetwalk.scss */
+.streetwalk-progress svg, .streetwalk-area svg {
+  height: 100%;
+}
+
+/* line 260, ../../sass/module/streetwalk.scss */
+.streetwalk-progress {
+  top: 0px;
+  left: 20px;
+}
+
+/* line 264, ../../sass/module/streetwalk.scss */
+.streetwalk-area {
+  top: 0px;
+  right: 20px;
+}
+
+/* line 270, ../../sass/module/streetwalk.scss */
+.streetwalk-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+}
+/* line 279, ../../sass/module/streetwalk.scss */
+.streetwalk-title .logo {
+  height: 30%;
+  min-width: 320px;
+  max-width: 600px;
+  max-height: 30%;
+}
+/* line 286, ../../sass/module/streetwalk.scss */
+.streetwalk-title .description {
+  color: white;
+  width: 100%;
+  min-width: 320px;
+  max-width: 700px;
+  max-height: 30%;
+  margin: 0 auto;
+}
+@media screen and (max-width: 700px) {
+  /* line 295, ../../sass/module/streetwalk.scss */
+  .streetwalk-title .description {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 700px) and (max-width: 1300px) {
+  /* line 302, ../../sass/module/streetwalk.scss */
+  .streetwalk-title .description {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1300px) {
+  /* line 308, ../../sass/module/streetwalk.scss */
+  .streetwalk-title .description {
+    width: 50%;
+  }
+}
+/* line 315, ../../sass/module/streetwalk.scss */
+.streetwalk-title .description h2 {
+  margin: 1em;
+  font-size: 1.5rem;
+  line-height: 1.7rem;
+}
+/* line 321, ../../sass/module/streetwalk.scss */
+.streetwalk-title .description p {
+  font-size: 1.5rem;
+}
+/* line 326, ../../sass/module/streetwalk.scss */
+.streetwalk-title .scrolltostart {
+  height: 40%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+/* line 333, ../../sass/module/streetwalk.scss */
+.streetwalk-title .scrolltostart img, .streetwalk-title .scrolltostart svg {
+  height: 100%;
+}
+/* line 338, ../../sass/module/streetwalk.scss */
+.streetwalk-title #scrollToStartLoaded {
+  display: none;
+}
+
+/* line 345, ../../sass/module/streetwalk.scss */
+.streetwalkImg, .element-fixed, .blurImg {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 355, ../../sass/module/streetwalk.scss */
+.trame-video {
+  background: url("../../images/trame-video.png") repeat;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  transition: opacity 0.5s ease;
+  -webkit-transition: opacity 0.5s ease;
+  -moz-transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+/* line 366, ../../sass/module/streetwalk.scss */
+body.not-moving .trame-video {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  -webkit-transition: opacity 0.5s ease;
+  -moz-transition: opacity 0.5s ease;
+}
