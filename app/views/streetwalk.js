@@ -129,6 +129,7 @@ function($, _, Backbone,
             self.$el.find(".streetwalk-loading-main").html(_.template(streetWalkLoadingViewTemplate));
         }
         else {
+            self.$el.find(".streetwalk-tutorial").hide();
             self.$el.find(".streetwalk-loading").html(_.template(streetWalkLoadingViewTemplate));
         }
 
