@@ -18,11 +18,13 @@
      height:30%;
 
      position: relative;
+     z-index:30;
 
      .logo-bar {
-        height: 30%;
+        height: 50%;
         position: absolute;
         @include span(12);
+        background-color: white;
         
         .logo-wrapper {
             width: 30%;
@@ -30,7 +32,7 @@
             position:absolute;
             top:10%;
             right: 5px;
-            background-image: url("../../images/logo.svg");
+            background-image: url("../../images/logos.jpg");
             background-size:contain;
             background-repeat: no-repeat;
         }
@@ -38,8 +40,8 @@
 
      .wrap-top-bar {
         position:absolute;
-        height: 70%;
-        top:30%;
+        height: 50%;
+        top:50%;
 
         @include span(12);
 
@@ -47,12 +49,12 @@
 
         .top-bar {
             position:absolute;
-            height: 60%;
-            top:20%;
+            height: 80%;
+            top:0%;
 
             @include span(12);
 
-            background-color: rgba(141,62,0,0.6);
+            background-color: #00937A;
             opacity: 1;
 
             .share-btn {
@@ -102,6 +104,7 @@
 
         position: absolute;
         bottom:0;
+        z-index:26;
 
         border-style: solid;
         -webkit-border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
@@ -121,8 +124,8 @@
         .description-text {
            font-family: "FilbertBrush";
            font-size : 1.3rem;
-           text-align: justify;
-           color : #FFFFFF;
+           text-align: center;
+           color : #4A2246;
 
            p {
              margin:1em 0px;
