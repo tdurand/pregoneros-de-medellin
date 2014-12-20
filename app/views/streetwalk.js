@@ -232,7 +232,7 @@ function($, _, Backbone,
         };
 
         //set right src for frame character
-        self.$el.find(".frame-character").html(_.template(self.getFrameTemplate(self.way.characterDefinition.name)));
+        self.$el.find(".img-container").html(_.template(self.getFrameTemplate(self.way.characterDefinition.name)));
         
     },
 
