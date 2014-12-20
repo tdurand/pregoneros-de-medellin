@@ -126,7 +126,6 @@ function($, _, Backbone,
         var self = this;
         
         if(Progression.isFirstWay) {
-            Progression.isFirstWay = false;
             self.$el.find(".streetwalk-loading-main").html(_.template(streetWalkLoadingViewTemplate));
         }
         else {
@@ -205,8 +204,11 @@ function($, _, Backbone,
 
         self.menuCharactersView = new MenuCharactersView();
 
-        //Render tutorial
-        self.$el.find(".streetwalk-tutorial").html(_.template(svgScrollToStart));
+        if(Progression.isFirstWay) {
+            Progression.isFirstWay = false;
+            //Render tutorial
+            self.$el.find(".streetwalk-tutorial").html(_.template(svgScrollToStart));
+        }
 
         //Render top signs
         self.$el.find(".streetwalk-progress").html(_.template(svgSignTopProgressTemplate));
