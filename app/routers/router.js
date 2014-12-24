@@ -4,12 +4,14 @@ define([
         'backbone',
         'utils/AppView',
         'utils/Localization',
+        'models/Progression',
         'views/index',
         'views/streetwalk'
         ],
     function($, _, Backbone,
                     AppView,
                     Localization,
+                    Progression,
                     IndexView,
                     StreetWalkView) {
 
@@ -34,6 +36,8 @@ define([
         index: function() {
             var indexView = new IndexView();
 
+            Progression.viewedLandingPage = true;
+
             indexView = AppView.show(indexView);
             AppView.changePage(indexView);
 
@@ -42,6 +46,11 @@ define([
         streetwalk: function(wayName) {
 
             var self = this;
+
+            if(!Progression.viewedLandingPage) {
+                self.navigate("#index",{trigger:true,replace:true});
+                return;
+            }
 
             if(_.isUndefined(wayName)) {
                 wayName = "carabobo-cl53-cl52";

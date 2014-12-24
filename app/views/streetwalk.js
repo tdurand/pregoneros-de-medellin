@@ -52,6 +52,8 @@ function($, _, Backbone,
 
     scrollToEndEventSended:false,
 
+    videoShowOneTime:false,
+
     events:{
         "click .toggle-sounds ":"toggleSounds",
         "click .frame-character":"showVideo",
@@ -235,7 +237,9 @@ function($, _, Backbone,
         };
 
         //set right src for frame character
-        self.$el.find(".img-container").html(_.template(self.getFrameTemplate(self.way.characterDefinition.name)));
+        if(!_.isUndefined(self.way.characterDefinition)) {
+            self.$el.find(".img-container").html(_.template(self.getFrameTemplate(self.way.characterDefinition.name)));
+        }
         
     },
 
@@ -560,7 +564,16 @@ function($, _, Backbone,
         var self = this;
 
         if(self.way.characterDefinition) {
-           var idVimeo = self.way.characterDefinition.vimeoId;
+
+            var idVimeo = Progression.nextVideoToPlay(self.way.characterDefinition.name);
+
+           if(Progression.isFirstVideo) {
+                Progression.isFirstVideo = false;
+                idVimeo = 115328392;
+           }
+
+           
+
            // Add video
             self.popcorn = Popcorn.vimeo( ".streetwalk-video-container", "http://player.vimeo.com/video/"+idVimeo);
         }
@@ -596,8 +609,14 @@ function($, _, Backbone,
         //current character
         var characterName = self.way.characterDefinition.name;
         var doNotUnlock = self.way.characterDefinition.doNotUnlock;
-        //unlocknext item
-        Progression.unlockNextItem(characterName,doNotUnlock);
+        
+        if(!self.videoShowOneTime) {
+            //unlocknext item
+            Progression.unlockNextItem(characterName,doNotUnlock);
+        }
+
+        self.videoShowOneTime = true;
+
         //open menu
         self.menuCharactersView.openMenu(characterName);
     },
