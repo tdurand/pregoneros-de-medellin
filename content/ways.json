@@ -285,6 +285,10 @@
         {
             "direction": "left",
             "name":"cr51-cl51-cl52"
+        },
+        {
+            "direction": "right",
+            "name":"parqueberrio-cr51-cr50"
         }
     ],
     "wayConnectionsStart":[
@@ -927,7 +931,7 @@
   {
     "wayName":"carabobo-cl48-cl46",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":454,
+    "nbStills":441,
     "wayPath":[[-75.57025998830795,6.2485126406642815],[-75.57058990001678,6.2475474484229325]],
     "wayConnectionsEnd":[
         {
@@ -1326,6 +1330,10 @@
         {
             "direction": "forward",
             "name":"carabobo-cl45-cl46"
+        },
+        {
+            "direction": "right",
+            "name":"cl45-carabobo-cr51"
         }
     ],
     "waySounds":[
@@ -1346,6 +1354,10 @@
         {
             "direction": "right",
             "name":"carabobo-parqueluz"
+        },
+        {
+            "direction": "forward",
+            "name":"carabobo-parqueluz-sanjuan"
         }
     ],
     "waySounds":[
@@ -1390,6 +1402,10 @@
         {
             "direction": "forward",
             "name":"carabobo-cl45-parqueluz"
+        },
+        {
+            "direction": "left",
+            "name":"cl46-carabobo-cr51"
         }
     ],
     "waySounds":[
@@ -2268,7 +2284,7 @@
   {
     "wayName":"carabobo-parqueluz-sanjuan",
     "wayArea":"PARQUE LUCES",
-    "nbStills":218,
+    "nbStills":146,
     "wayPath":[[-75.57124435901642,6.245713045002967],[-75.57143747806549,6.245206449902506]],
     "wayConnectionsEnd":[
         {
