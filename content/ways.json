@@ -2,7 +2,7 @@
   {
     "wayName":"carabobo-cl52-cl51",
     "wayArea":"PLAZA DE BOTERO",
-    "nbStills":306,
+    "nbStills":351,
     "wayPath":[[-75.56892156600952,6.251720158996845],[-75.56925684213638,6.250976272456896]],
     "wayConnectionsEnd":[
                 {
@@ -116,7 +116,7 @@
   {
     "wayName":"carabobo-cl51-cl52",
     "wayArea":"PLAZA DE BOTERO",
-    "nbStills":254,
+    "nbStills":301,
     "wayPath":[[-75.56925684213638,6.250976272456896],[-75.56892156600952,6.251720158996845]],
     "wayConnectionsEnd":[
         {
@@ -178,7 +178,7 @@
   {
     "wayName":"cl51-carabobo-cr53",
     "wayArea":"PLAZA DE BOTERO",
-    "nbStills":290,
+    "nbStills":245,
     "wayPath":[[-75.56925415992737,6.250981604980651],[-75.57004272937775,6.2513442164690876]],
     "wayConnectionsEnd":[
                 {
@@ -214,7 +214,7 @@
   {
     "wayName":"cl51-cr53-carabobo",
     "wayArea":"PLAZA DE BOTERO",
-    "nbStills":260,
+    "nbStills":365,
     "wayPath":[[-75.57004272937775,6.2513442164690876],[-75.56925415992737,6.250981604980651]],
     "wayConnectionsEnd":[
                 {
@@ -281,6 +281,10 @@
         {
             "direction": "forward",
             "name":"cr48-cl54-cl55"
+        },
+        {
+            "direction": "left",
+            "name":"cr51-cl51-cl52"
         }
     ],
     "wayConnectionsStart":[
@@ -348,6 +352,10 @@
         {
             "direction": "right",
             "name":"carabobo-cl51-cl52"
+        },
+        {
+            "direction": "left",
+            "name":"carabobo-cl49media-cl48"
         }
     ],
     "waySounds":[
@@ -568,12 +576,16 @@
   {
     "wayName":"plazabotero-carabobo-cr51",
     "wayArea":"PLAZA DE BOTERO",
-    "nbStills":651,
+    "nbStills":807,
     "wayPath":[[-75.56891620159149,6.25172549151303],[-75.56881159543991,6.251917462059321],[-75.56875258684158,6.252016113562633],[-75.56871771812439,6.252061439922797],[-75.5686667561531,6.252120097559511],[-75.56860774755478,6.252133428839663],[-75.56854605674744,6.2521440938635475],[-75.5684494972229,6.252152092631305],[-75.5683958530426,6.252157425143088],[-75.56831806898117,6.252152092631305],[-75.56824296712875,6.2521440938635475],[-75.56818127632141,6.25213609509565],[-75.56810081005096,6.252114765047359],[-75.56797742843627,6.252045442384369],[-75.56793451309204,6.25202677858891],[-75.56788891553879,6.251994783509445],[-75.56784063577652,6.251941458372657],[-75.56783527135849,6.251904130773661],[-75.56784063577652,6.25180281299155],[-75.56784868240356,6.251709493964334],[-75.56786477565765,6.2516428375061235],[-75.56789964437485,6.251514857082568],[-75.56794255971909,6.251384210367861],[-75.56800693273544,6.251269561183211]],
     "wayConnectionsEnd":[
         {
             "direction": "right",
             "name":"cl52-cr51-carabobo"
+        },
+        {
+            "direction": "forward",
+            "name":"cr51-cl52-cl51"
         }
     ],
     "waySounds":[
@@ -629,7 +641,7 @@
   {
     "wayName":"plazabotero-cr51-carabobo",
     "wayArea":"PLAZA DE BOTERO",
-    "nbStills":619,
+    "nbStills":790,
     "wayPath":[[-75.56801766157149,6.25127755996434],[-75.5679640173912,6.251370879068626],[-75.56791305541992,6.251506858305053],[-75.56788623332977,6.251634838730568],[-75.5678540468216,6.251781482929633],[-75.5678540468216,6.251842806855247],[-75.56786209344864,6.2519254608305515],[-75.56788623332977,6.251949457143518],[-75.56795597076416,6.252005448536154],[-75.56806594133377,6.252045442384369],[-75.56819200515747,6.252090768741975],[-75.56839048862457,6.252122763815575],[-75.56853264570236,6.252122763815575],[-75.56866139173508,6.252122763815575],[-75.56874990463257,6.252013447306036],[-75.56882232427597,6.251912129545095],[-75.5688813328743,6.25177881667184],[-75.5689188838005,6.251728157771103]],
     "wayConnectionsEnd":[
         {
@@ -722,7 +734,7 @@
   {
     "wayName":"cl52cr53-carabobo-cl51",
     "wayArea":"PLAZA DE BOTERO",
-    "nbStills":467,
+    "nbStills":446,
     "wayPath":[[-75.5689188838005,6.2517228252549435],[-75.56969404220581,6.25207743746073],[-75.57004541158676,6.251330885168823]],
     "wayConnectionsEnd":[
         {
@@ -742,7 +754,7 @@
   {
     "wayName":"carabobo-cl49media-cl48",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":256,
+    "nbStills":170,
     "wayPath":[[-75.57013928890228,6.248880586409164],[-75.57026267051697,6.248523305761993]],
     "wayConnectionsEnd":[
         {
@@ -766,7 +778,7 @@
   {
     "wayName":"carabobo-cl48-cl49media",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":256,
+    "nbStills":163,
     "wayPath":[[-75.57026267051697,6.248523305761993],[-75.57013928890228,6.248880586409164]],
     "wayConnectionsEnd":[
         {
@@ -786,7 +798,7 @@
   {
     "wayName":"cl48cr51-carabobo-cl46",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":980,
+    "nbStills":960,
     "wayPath":[[-75.57025998830795,6.248515306938741],[-75.56945264339447,6.2482326817720475],[-75.56949555873871,6.248131363278892],[-75.56960016489029,6.247856736738293],[-75.56977182626723,6.247390137916551]],
     "wayConnectionsEnd":[
         {
@@ -857,7 +869,7 @@
     "wayConnectionsEnd":[
         {
             "direction": "right",
-            "name":"carabobo-cl51-cl52"
+            "name":"carabobo-cl48-cl49media"
         },
         {
             "direction": "left",
@@ -915,7 +927,7 @@
   {
     "wayName":"carabobo-cl48-cl46",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":923,
+    "nbStills":454,
     "wayPath":[[-75.57025998830795,6.2485126406642815],[-75.57058990001678,6.2475474484229325]],
     "wayConnectionsEnd":[
         {
@@ -939,7 +951,7 @@
   {
     "wayName":"carabobo-cl46-cl48",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":800,
+    "nbStills":389,
     "wayPath":[[-75.57058990001678,6.2475474484229325],[-75.57025998830795,6.2485126406642815]],
     "wayConnectionsEnd":[
         {
@@ -963,7 +975,7 @@
   {
     "wayName":"cl46-carabobo-cr51",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":312,
+    "nbStills":299,
     "wayPath":[[-75.57061403989792,6.247478125154759],[-75.56983888149261,6.247211497114687]],
     "wayConnectionsEnd":[
         {
@@ -987,7 +999,7 @@
   {
     "wayName":"cl46-cr51-carabobo",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":302,
+    "nbStills":300,
     "wayPath":[[-75.56983888149261,6.247211497114687],[-75.57061403989792,6.247478125154759]],
     "wayConnectionsEnd":[
         {
@@ -1011,7 +1023,7 @@
   {
     "wayName":"cr51-cl46-cl45",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":457,
+    "nbStills":470,
     "wayPath":[[-75.56981205940245,6.247203498271385],[-75.57035386562347,6.245857024573625]],
     "wayConnectionsEnd":[
         {
@@ -1031,7 +1043,7 @@
   {
     "wayName":"cr51-cl45-cl46",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":476,
+    "nbStills":509,
     "wayPath":[[-75.57035386562347,6.245857024573625],[-75.56981205940245,6.247203498271385]],
     "wayConnectionsEnd":[
         {
@@ -1055,7 +1067,7 @@
   {
     "wayName":"cr51sanjuan-cl45-carabobo",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":502,
+    "nbStills":528,
     "wayPath":[[-75.57037264108658,6.245849025709636],[-75.57080179452896,6.244833168988514],[-75.57146966457367,6.245126461157626]],
     "wayConnectionsEnd":[
         {
@@ -1079,12 +1091,16 @@
   {
     "wayName":"sanjuancr51-carabobo-cl45",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":631,
+    "nbStills":570,
     "wayPath":[[-75.57146966457367,6.245126461157626],[-75.57037264108658,6.245849025709636],[-75.57080179452896,6.244833168988514]],
     "wayConnectionsEnd":[
         {
             "direction": "forward",
             "name":"cr51-cl45-cl46"
+        },
+        {
+            "direction": "left",
+            "name":"cl45-cr51-carabobo"
         }
     ],
     "waySounds":[
@@ -1099,7 +1115,7 @@
   {
     "wayName":"sanjuan-parqueluz",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":218,
+    "nbStills":289,
     "wayPath":[[-75.57146430015564,6.245129127449324],[-75.57174056768417,6.245289104926044],[-75.57186931371689,6.245425085742838],[-75.57187467813492,6.2455717316821255],[-75.57184785604477,6.245747706755071],[-75.57179421186447,6.2458250291168955]],
     "wayConnectionsEnd":[
         {
@@ -1123,7 +1139,7 @@
   {
     "wayName":"parqueluz-sanjuan",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":218,
+    "nbStills":288,
     "wayPath":[[-75.5718719959259,6.245894352604019],[-75.57192027568817,6.245731709023609],[-75.57191491127014,6.245539736207979],[-75.57186126708984,6.245454414933975],[-75.57172179222107,6.245353095903051],[-75.57151526212692,6.245246444270372],[-75.57143747806549,6.245203783611215]],
     "wayConnectionsEnd":[
         {
@@ -1147,7 +1163,7 @@
   {
     "wayName":"parqueluz-carabobo",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":119,
+    "nbStills":163,
     "wayPath":[[-75.5717647075653,6.245891686316201],[-75.57123899459839,6.245726376446357]],
     "wayConnectionsEnd":[
         {
@@ -1171,7 +1187,7 @@
   {
     "wayName":"carabobo-parqueluz",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":135,
+    "nbStills":140,
     "wayPath":[[-75.57123899459839,6.245726376446357],[-75.5717647075653,6.245891686316201]],
     "wayConnectionsEnd":[
         {
@@ -1195,12 +1211,16 @@
   {
     "wayName":"parqueluz-vueltaizquierda",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":410,
+    "nbStills":446,
     "wayPath":[[-75.57177275419235,6.245891686316201],[-75.5721589922905,6.246046330985918],[-75.57219117879868,6.246147649882687],[-75.57206511497498,6.246406279609183],[-75.57196587324141,6.246406279609183],[-75.57180494070052,6.246339622475397],[-75.5717808008194,6.246038332124818],[-75.57176738977432,6.245910350330494]],
     "wayConnectionsEnd":[
         {
             "direction": "forward",
             "name":"parqueluz-carabobo"
+        },
+        {
+            "direction": "right",
+            "name":"parqueluz-sanjuan"
         }
     ],
     "waySounds":[
@@ -1300,7 +1320,7 @@
   {
     "wayName":"carabobo-parqueluz-cl45",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":133,
+    "nbStills":146,
     "wayPath":[[-75.57123363018036,6.245718377580358],[-75.57108879089355,6.246110321870371]],
     "wayConnectionsEnd":[
         {
@@ -1320,7 +1340,7 @@
   {
     "wayName":"carabobo-cl45-parqueluz",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":137,
+    "nbStills":165,
     "wayPath":[[-75.57108879089355,6.246110321870371],[-75.57123363018036,6.245718377580358]],
     "wayConnectionsEnd":[
         {
@@ -1340,7 +1360,7 @@
   {
     "wayName":"carabobo-cl45-cl46",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":956,
+    "nbStills":638,
     "wayPath":[[-75.57109147310257,6.246110321870371],[-75.57061672210692,6.247491456553201]],
     "wayConnectionsEnd":[
         {
@@ -1364,7 +1384,7 @@
   {
     "wayName":"carabobo-cl46-cl45",
     "wayArea":"PARQUE DE LAS LUZES",
-    "nbStills":930,
+    "nbStills":528,
     "wayPath":[[-75.57061672210692,6.247491456553201],[-75.57109147310257,6.246110321870371]],
     "wayConnectionsEnd":[
         {
@@ -1417,7 +1437,7 @@
         },
         {
             "direction": "right",
-            "name":"cl52-cr51-carabobo"
+            "name":"cl54-cr48-juni"
         }
     ],
     "waySounds":[
@@ -1518,7 +1538,7 @@
         },
         {
             "direction": "forward",
-            "name":"cl52-cr51-carabobo"
+            "name":"cl54-cr48-juni"
         }
     ],
     "waySounds":[
@@ -1536,7 +1556,7 @@
         "framestartWidth":17,
         "offsetTopCenter":-24,
         "vimeoId":110573403,
-        "name":"jale",
+        "name":"pajarito",
         "doNotUnlock":false
     },
     "characterPosition":{
@@ -1659,7 +1679,7 @@
         },
         {
             "direction": "forward",
-            "name":"cl55-cr47-oriental"
+            "name":"cl55oriental-cr47-cl56"
         },
         {
             "direction": "right",
@@ -1837,7 +1857,7 @@
     "wayConnectionsEnd":[
         {
             "direction": "forward",
-            "name":"cl56oriental-cr47-cl55"
+            "name":"cl56-cr47-oriental"
         },
         {
             "direction": "right",
@@ -1930,6 +1950,10 @@
         {
             "direction": "right",
             "name":"cl56-cr48-cr47"
+        },
+        {
+            "direction": "left",
+            "name":"parquebolivar-cl56-juni"
         }
     ],
     "waySounds":[
@@ -1944,7 +1968,7 @@
   {
     "wayName":"parquebolivar-juni-cl56",
     "wayArea":"PARQUE BOLÍVAR",
-    "nbStills":218,
+    "nbStills":550,
     "wayPath":[[-75.56497067213058,6.2522374128132086],[-75.56448251008987,6.252941303782735],[-75.56449860334396,6.253069283857219],[-75.5644690990448,6.253135940133617],[-75.56441009044647,6.253173267644689],[-75.56432962417603,6.253170601393994],[-75.5642920732498,6.253167935143274],[-75.5641821026802,6.253143938886209],[-75.56412845849991,6.253178600146053],[-75.5640560388565,6.253317245162414],[-75.56397825479507,6.253330576412044],[-75.56391656398773,6.253357238910276],[-75.56388705968857,6.253378568907919]],
     "wayConnectionsEnd":[
         {
@@ -1964,7 +1988,7 @@
   {
     "wayName":"parquebolivar-cl56-juni",
     "wayArea":"PARQUE BOLÍVAR",
-    "nbStills":218,
+    "nbStills":520,
     "wayPath":[[-75.56388169527054,6.253375902658255],[-75.56398898363112,6.2532665864106916],[-75.56405067443846,6.253213261403581],[-75.56416064500809,6.253141272635362],[-75.56432694196701,6.253162602641797],[-75.5644503235817,6.253162602641797],[-75.56449055671692,6.253079948862021],[-75.56449055671692,6.252981297559388],[-75.5644690990448,6.2529199737672805],[-75.56496262550354,6.252256076601135]],
     "wayConnectionsEnd":[
         {
@@ -1988,7 +2012,7 @@
   {
     "wayName":"cl54-juni-cr48",
     "wayArea":"PARQUE BOLÍVAR",
-    "nbStills":218,
+    "nbStills":112,
     "wayPath":[[-75.56497871875763,6.252240079068674],[-75.56469440460204,6.252050774897221]],
     "wayConnectionsEnd":[
         {
@@ -2012,7 +2036,7 @@
   {
     "wayName":"cl54-cr48-juni",
     "wayArea":"PARQUE BOLÍVAR",
-    "nbStills":218,
+    "nbStills":125,
     "wayPath":[[-75.56469440460204,6.252050774897221],[-75.56497871875763,6.252240079068674]],
     "wayConnectionsEnd":[
         {
@@ -2036,7 +2060,7 @@
   {
     "wayName":"cr51-cl51-cl52",
     "wayArea":"PLAZA BOTERO",
-    "nbStills":218,
+    "nbStills":347,
     "wayPath":[[-75.56835561990738,6.250504343888456],[-75.56802034378052,6.251269561183211]],
     "wayConnectionsEnd":[
         {
@@ -2060,7 +2084,7 @@
   {
     "wayName":"cr51-cl52-cl51",
     "wayArea":"PLAZA BOTERO",
-    "nbStills":218,
+    "nbStills":364,
     "wayPath":[[-75.56802034378052,6.251269561183211],[-75.56835561990738,6.250504343888456]],
     "wayConnectionsEnd":[
         {
@@ -2084,7 +2108,7 @@
   {
     "wayName":"cl56-cr47-oriental",
     "wayArea":"PARQUE BOLIVAR",
-    "nbStills":218,
+    "nbStills":247,
     "wayPath":[[-75.56343108415604,6.253106611373062],[-75.5627578496933,6.252688009792977]],
     "wayConnectionsEnd":[
         {
@@ -2104,7 +2128,7 @@
   {
     "wayName":"cl56-oriental-cr47",
     "wayArea":"PARQUE BOLIVAR",
-    "nbStills":218,
+    "nbStills":270,
     "wayPath":[[-75.5627578496933,6.252688009792977],[-75.56343108415604,6.253106611373062]],
     "wayConnectionsEnd":[
         {
@@ -2128,7 +2152,7 @@
   {
     "wayName":"cl55oriental-cr47-cl56",
     "wayArea":"PARQUE BOLIVAR",
-    "nbStills":218,
+    "nbStills":509,
     "wayPath":[[-75.56383341550827,6.252421384408058],[-75.56314677000046,6.2520081147927895],[-75.5627605319023,6.2526853435398015]],
     "wayConnectionsEnd":[
         {
@@ -2148,7 +2172,7 @@
   {
     "wayName":"orientalcl55-cl56-cr47",
     "wayArea":"PARQUE BOLIVAR",
-    "nbStills":218,
+    "nbStills":449,
     "wayPath":[[-75.5627605319023,6.2526853435398015],[-75.56314677000046,6.2520081147927895],[-75.56383341550827,6.252421384408058]],
     "wayConnectionsEnd":[
         {
@@ -2176,7 +2200,7 @@
   {
     "wayName":"cl51-juni-cr50",
     "wayArea":"PLAZA BOTERO",
-    "nbStills":218,
+    "nbStills":658,
     "wayPath":[[-75.56645661592484,6.249811114710822],[-75.56655049324036,6.249691132644516],[-75.56762605905533,6.250168394478621]],
     "wayConnectionsEnd":[
         {
@@ -2200,7 +2224,7 @@
   {
     "wayName":"cl51-cr50-juni",
     "wayArea":"PLAZA BOTERO",
-    "nbStills":218,
+    "nbStills":682,
     "wayPath":[[-75.56762605905533,6.250168394478621],[-75.56655049324036,6.249691132644516],[-75.56645661592484,6.249811114710822]],
     "wayConnectionsEnd":[
         {
@@ -2220,7 +2244,7 @@
   {
     "wayName":"carabobo-sanjuan-parqueluz",
     "wayArea":"PARQUE LUCES",
-    "nbStills":218,
+    "nbStills":168,
     "wayPath":[[-75.57143747806549,6.245206449902506],[-75.57124435901642,6.245713045002967]],
     "wayConnectionsEnd":[
         {
@@ -2268,7 +2292,7 @@
   {
     "wayName":"cl45-cr51-carabobo",
     "wayArea":"PARQUE LUCES",
-    "nbStills":218,
+    "nbStills":239,
     "wayPath":[[-75.57031899690628,6.245873022301258],[-75.57108879089355,6.246107655583673]],
     "wayConnectionsEnd":[
         {
@@ -2292,7 +2316,7 @@
   {
     "wayName":"cl45-carabobo-cr51",
     "wayArea":"PARQUE LUCES",
-    "nbStills":218,
+    "nbStills":190,
     "wayPath":[[-75.57108879089355,6.246107655583673],[-75.57031899690628,6.245873022301258]],
     "wayConnectionsEnd":[
         {
@@ -2316,7 +2340,7 @@
   {
     "wayName":"parqueberrio-cr51-cr50",
     "wayArea":"PLAZA BOTERO",
-    "nbStills":218,
+    "nbStills":449,
     "wayPath":[[-75.5682322382927,6.250453684864275],[-75.56816518306732,6.250419023423852],[-75.56811690330505,6.250280377639196],[-75.56810349225998,6.250168394478621],[-75.56810349225998,6.250029748627542],[-75.56805789470671,6.249995087159041],[-75.56801229715347,6.249992420892139],[-75.56789427995682,6.250003085959673],[-75.56774139404297,6.250123067954429],[-75.5676770210266,6.25017106074462]],
     "wayConnectionsEnd":[
         {
@@ -2338,9 +2362,9 @@
     ]
   },
   {
-    "wayName":"parqueberrio-cr51-cr50",
+    "wayName":"parqueberrio-cr50-cr51",
     "wayArea":"PLAZA BOTERO",
-    "nbStills":218,
+    "nbStills":471,
     "wayPath":[[-75.56767165660858,6.250168394478621],[-75.56789427995682,6.250011084760177],[-75.56804180145264,6.2500004196928085],[-75.5680713057518,6.250003085959673],[-75.56810349225998,6.250029748627542],[-75.56811422109604,6.250285710170063],[-75.56815713644028,6.250421689688579],[-75.56822955608368,6.250453684864275]],
     "wayConnectionsEnd":[
         {
@@ -2349,7 +2373,7 @@
         },
         {
             "direction": "forward",
-            "name":"cl51-cr51-cr52"
+            "name":"cl51-cr51-carabobo"
         }
     ],
     "waySounds":[
@@ -2364,7 +2388,7 @@
   {
     "wayName":"cl51-cr50-cr51",
     "wayArea":"PLAZA BOTERO",
-    "nbStills":218,
+    "nbStills":274,
     "wayPath":[[-75.56766629219055,6.250181725808528],[-75.56823760271072,6.250459017393361]],
     "wayConnectionsEnd":[
         {
@@ -2373,7 +2397,7 @@
         },
         {
             "direction": "forward",
-            "name":"cl51-cr51-cr52"
+            "name":"cl51-cr51-carabobo"
         }
     ],
     "waySounds":[
@@ -2388,7 +2412,7 @@
   {
     "wayName":"cl51-cr51-cr50",
     "wayArea":"PLAZA BOTERO",
-    "nbStills":218,
+    "nbStills":291,
     "wayPath":[[-75.56823760271072,6.250459017393361],[-75.56766629219055,6.250181725808528]],
     "wayConnectionsEnd":[
         {
@@ -2397,7 +2421,7 @@
         },
         {
             "direction": "forward",
-            "name":"cl51-cr51-cr52"
+            "name":"cl51-cr51-carabobo"
         }
     ],
     "waySounds":[
@@ -2412,7 +2436,7 @@
   {
     "wayName":"juni-cl53-cl54",
     "wayArea":"PARQUE BOLÍVAR",
-    "nbStills":218,
+    "nbStills":269,
     "wayPath":[[-75.56538909673691,6.251562849745065],[-75.56499481201172,6.252210750257867]],
     "wayConnectionsEnd":[
         {
@@ -2436,7 +2460,7 @@
   {
     "wayName":"juni-cl54-cl53",
     "wayArea":"PARQUE BOLÍVAR",
-    "nbStills":218,
+    "nbStills":335,
     "wayPath":[[-75.56499481201172,6.252210750257867],[-75.56538909673691,6.251562849745065]],
     "wayConnectionsEnd":[
         {
@@ -2456,7 +2480,7 @@
   {
     "wayName":"juni-cl53-cl52media",
     "wayArea":"PARQUE BOLÍVAR",
-    "nbStills":218,
+    "nbStills":340,
     "wayPath":[[-75.56539982557295,6.251538853414364],[-75.56588530540466,6.250730976304965]],
     "wayConnectionsEnd":[
         {
@@ -2476,12 +2500,60 @@
   {
     "wayName":"juni-cl52media-cl53",
     "wayArea":"PARQUE BOLÍVAR",
-    "nbStills":218,
+    "nbStills":390,
     "wayPath":[[-75.56588530540466,6.250730976304965],[-75.56539982557295,6.251538853414364]],
     "wayConnectionsEnd":[
         {
             "direction": "forward",
             "name":"juni-cl53-cl54"
+        }
+    ],
+    "waySounds":[
+        {
+            "position":[6.245129127449324,-75.57146430015564],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
+  },
+  {
+    "wayName":"carabobo-cl51-colombia",
+    "wayArea":"PLAZA DE BOTERO",
+    "nbStills":341,
+    "wayPath":[[-75.56925684213638,6.250965607409196],[-75.56957602500916,6.250237717390381]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"carabobo-cl49media-cl48"
+        }
+    ],
+    "waySounds":[
+        {
+            "position":[6.245129127449324,-75.57146430015564],
+            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "db":200,
+            "type":"ambient"
+        }
+    ]
+  },
+  {
+    "wayName":"carabobo-colombia-cl51",
+    "wayArea":"PLAZA DE BOTERO",
+    "nbStills":271,
+    "wayPath":[[-75.56957602500916,6.250237717390381],[-75.56925684213638,6.250965607409196]],
+    "wayConnectionsEnd":[
+        {
+            "direction": "forward",
+            "name":"carabobo-cl51-cl52"
+        },
+        {
+            "direction": "left",
+            "name":"cl51-carabobo-cr53"
+        },
+        {
+            "direction": "right",
+            "name":"cl51-carabobo-cr51"
         }
     ],
     "waySounds":[
