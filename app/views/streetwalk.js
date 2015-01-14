@@ -10,6 +10,7 @@ define(['jquery',
         'utils/Logger',
         'utils/Localization',
         'views/subview/menucharacters',
+        'views/subview/soundeditor',
         'text!templates/streetwalk/streetWalkViewTemplate.html',
         'text!templates/streetwalk/streetWalkLoadingViewTemplate.html',
         'text!templates/streetwalk/streetWalkChoosePathStartViewTemplate.html',
@@ -31,6 +32,7 @@ function($, _, Backbone,
                 LOGGER,
                 Localization,
                 MenuCharactersView,
+                SoundEditorView,
                 streetWalkViewTemplate,
                 streetWalkLoadingViewTemplate,
                 streetWalkChoosePathStartViewTemplate,
@@ -57,7 +59,8 @@ function($, _, Backbone,
     events:{
         "click .toggle-sounds ":"toggleSounds",
         "click .frame-character":"showVideo",
-        "click .streetwalk-video-btnclose":"closeVideo"
+        "click .streetwalk-video-btnclose":"closeVideo",
+        "click .streetwalk-soundeditor-btnshow":"showSoundEditor"
     },
 
     bindings:{
@@ -206,6 +209,8 @@ function($, _, Backbone,
         }));
 
         self.menuCharactersView = new MenuCharactersView();
+
+        self.soundEditorView = new SoundEditorView();
 
         if(Progression.isFirstWay) {
             Progression.isFirstWay = false;
@@ -619,6 +624,11 @@ function($, _, Backbone,
 
         //open menu
         self.menuCharactersView.openMenu(characterName);
+    },
+
+    showSoundEditor: function() {
+        var self = this;
+        self.$el.find("#streetwalk-soundeditor").show();
     },
 
     onClose: function(){

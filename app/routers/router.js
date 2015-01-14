@@ -47,10 +47,10 @@ define([
 
             var self = this;
 
-            if(!Progression.viewedLandingPage) {
-                self.navigate("#index",{trigger:true,replace:true});
-                return;
-            }
+            // if(!Progression.viewedLandingPage) {
+            //     self.navigate("#index",{trigger:true,replace:true});
+            //     return;
+            // }
 
             if(_.isUndefined(wayName)) {
                 wayName = "carabobo-cl53-cl52";

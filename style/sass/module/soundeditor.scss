@@ -1,0 +1,46 @@
+@import "grids";
+
+.streetwalk-soundeditor-btnshow {
+    position:fixed;
+    top:0;
+    left:40%;
+    z-index:39;
+}
+
+#streetwalk-soundeditor {
+    position:fixed;
+    height: 100%;
+    width: 100%;
+    z-index:40;
+    top:0;
+}
+
+.streetwalk-soundeditor-map {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+}
+
+.streetwalk-soundeditor-panel {
+    width:50%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color:white;
+}
+
+.streetwalk-soundeditor-mapcontainer {
+    width: 100%;
+    height: 100%;
+}
+
+.streetwalk-soundeditor-btnclose {
+        position:absolute;
+        top:10px;
+        right:10px;
+        width: 50px;
+        height: 50px;
+        background-image:url("../../images/closebtnblack.svg");
+        cursor:pointer;
+}
