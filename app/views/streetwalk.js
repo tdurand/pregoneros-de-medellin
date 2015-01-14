@@ -522,6 +522,9 @@ function($, _, Backbone,
                             Sounds.updateSounds(currentGeoPosition);
                             self.distanceSinceLastSoundUpdate = 0;
                             self.lastSoundUpdatePosition = currentGeoPosition;
+
+                            //update editor
+                            self.soundEditorView.refreshEditorMapAfterMoving();
                         }
                     }
                     

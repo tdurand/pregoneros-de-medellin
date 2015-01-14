@@ -47,6 +47,7 @@ function($, _, Backbone,
             self.nbStills = params.nbStills;
             self.wayName = params.wayName;
             self.wayArea = params.wayArea;
+            self.originalWayPath = params.wayPath;
             params.wayPath = GeoUtils.prepareWayPathFromGeoJSONLine(params.wayPath,self.nbStills);
             self.wayPath = params.wayPath;
             self.wayConnectionsEnd = params.wayConnectionsEnd;
@@ -84,7 +85,7 @@ function($, _, Backbone,
             Sounds.on("soundsLoaded", function() {
                 self.trigger('soundsLoaded');
             });
-            Sounds.updateSoundsCollection(self.waySoundsData);
+            Sounds.updateSoundsCollection(self.waySoundsData,self.wayName);
             Sounds.fetch();
             
         },

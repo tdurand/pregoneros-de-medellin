@@ -1,0 +1,28 @@
+<form class="pure-form">
+<fieldset>
+        <legend>Sound Properties:</legend>
+<p>
+    <label for="sound-path">Filename:</label>
+    <input type="text" name="sound-path" class="sound-path" value="<%= sound.path %>">
+</p>
+
+<p>
+    <label for="sound-db">DB Level</label>
+    <input type="text" name="sound-db" class="sound-db" value="<%= sound.db %>">
+</p>
+
+<p><label for="sound-type">Type Sound</label>
+    <select name="sound-type">
+      <option value="punctal" <% if(sound.type == 'punctual') { %>selected<% } %>>punctual</option> 
+      <option value="ambient" <% if(sound.type == 'ambient') { %>selected<% } %>>ambient</option>
+    </select>
+</p>
+<button class="pure-button pure-button-primary">Save</button>
+</fieldset>
+<fieldset>
+        <legend>Export ways.json:</legend>
+        <button class="pure-button pure-button-primary">Export File</button>
+</fieldset>
+</form>
+
+

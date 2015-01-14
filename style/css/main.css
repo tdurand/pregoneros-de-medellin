@@ -683,15 +683,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   right: 0;
   top: 0;
   background-color: white;
+  padding: 10px;
 }
 
-/* line 33, ../sass/module/soundeditor.scss */
+/* line 35, ../sass/module/soundeditor.scss */
 .streetwalk-soundeditor-mapcontainer {
   width: 100%;
   height: 100%;
 }
 
-/* line 38, ../sass/module/soundeditor.scss */
+/* line 40, ../sass/module/soundeditor.scss */
 .streetwalk-soundeditor-btnclose {
   position: absolute;
   top: 10px;

@@ -35,8 +35,11 @@ function($, _, Backbone,
         }
     },
 
-    updateSoundsCollection:function(waySounds) {
+    updateSoundsCollection:function(waySounds,wayName) {
         var self = this;
+
+        self.wayName = wayName;
+
         if(_.isUndefined(self.waySounds)) {
             self.previousWaySounds = [];
         }
@@ -64,6 +67,8 @@ function($, _, Backbone,
 
     updateSounds: function(newUserPosition) {
         var self = this;
+
+        self.currentUserPosition = newUserPosition;
 
         if(self.models.length === 0) {
             return;
@@ -152,7 +157,8 @@ function($, _, Backbone,
                         position: waySound.position,
                         path: waySound.path,
                         db: waySound.db,
-                        type: waySound.type
+                        type: waySound.type,
+                        way: self.wayName
                         });
 
                 self.add(sound);
