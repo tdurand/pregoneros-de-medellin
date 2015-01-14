@@ -30,7 +30,7 @@ function($, _, Backbone,
         wayConnectionsEnd:null,
 
         //Sounds
-        waySounds:null,
+        waySoundsData:null,
 
         initialize: function(params) {
             var self = this;

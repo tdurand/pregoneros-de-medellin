@@ -210,8 +210,6 @@ function($, _, Backbone,
 
         self.menuCharactersView = new MenuCharactersView();
 
-        self.soundEditorView = new SoundEditorView();
-
         if(Progression.isFirstWay) {
             Progression.isFirstWay = false;
             //Render tutorial
@@ -299,6 +297,8 @@ function($, _, Backbone,
             //TODO Sounds can be loaded after render....
             Sounds.updateSounds(self.way.wayPath[0]);
             Sounds.fadeOutSoundHome();
+
+            self.soundEditorView = new SoundEditorView(self.way);
         });
 
         self.way.on("loadingFinishedCompletely", function() {
