@@ -175,15 +175,15 @@ define(['jquery',
         var soundDb = parseInt(self.$el.find(".sound-db").val(),10);
         var soundType = self.$el.find(".sound-type").val();
 
-        if(self.currentSoundEditing.get("path") == soundPath) {
-            //just update db and type
-            self.currentSoundEditing.set("db",soundDb);
-            self.currentSoundEditing.set("type",soundType);
-        }
-        else {
-            //need to reload sound
-        }
+        self.currentSoundEditing.set("db",soundDb);
+        self.currentSoundEditing.set("type",soundType);
 
+        if(self.currentSoundEditing.get("path") != soundPath) {
+            //need to reload sound
+            self.currentSoundEditing.set("path",soundPath);
+            self.currentSoundEditing.unload();
+            self.currentSoundEditing.loadSound();
+        }
 
         Sounds.updateSounds(Sounds.currentUserPosition);
     },

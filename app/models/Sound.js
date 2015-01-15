@@ -20,16 +20,7 @@ function($, _, Backbone, GeoUtils, LOGGER){
     initialize: function() {
         var self = this;
 
-        self.sound = new Howl({
-          src: ['data/sounds/' + self.get("path") + '.mp3'],
-          loop:true,
-          volume:0,
-          onload: function() {
-            self.trigger("soundLoaded");
-          }
-        });
-
-        self.sound.play();
+        self.loadSound();
     },
 
     updateVolume: function(newUserPosition) {
@@ -120,6 +111,21 @@ function($, _, Backbone, GeoUtils, LOGGER){
     unload: function() {
         var self = this;
         self.sound.unload();
+    },
+
+    loadSound:function() {
+
+        var self = this;
+        self.sound = new Howl({
+          src: ['data/sounds/' + self.get("path") + '.mp3'],
+          loop:true,
+          volume:0,
+          onload: function() {
+            self.trigger("soundLoaded");
+          }
+        });
+
+        self.sound.play();
     }
 
   });

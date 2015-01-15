@@ -2,7 +2,7 @@ define(function() {
 
     var Logger = {
 
-        modeDebug : true,
+        modeDebug : false,
 
         debug : function(text) {
             if (this.modeDebug) {
