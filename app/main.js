@@ -8,7 +8,7 @@ require.config({
         backbone:     'libs/vendor/backbone-1.1.0.min',
         stickit:      'libs/vendor/backbone.stickit-0.8.min',
         popcorn:      'libs/vendor/popcorn-1.5.6.min',
-        howl:         'libs/vendor/howler-1.1.14',
+        howl:         'libs/vendor/howler-2.0-beta.min',
         text:         'libs/vendor/text-2.0.10',
         fastclick:    'libs/vendor/fastclick.min',
         snap:         'libs/vendor/snap.svg-min',

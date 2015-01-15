@@ -21,7 +21,7 @@ function($, _, Backbone, GeoUtils, LOGGER){
         var self = this;
 
         self.sound = new Howl({
-          urls: ['data/sounds/' + self.get("path") + '.mp3'],
+          src: ['data/sounds/' + self.get("path") + '.mp3'],
           loop:true,
           volume:0,
           onload: function() {
