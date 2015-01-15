@@ -1,12 +1,23 @@
 <div class="streetwalk-soundeditor-map">
     <div class="streetwalk-soundeditor-mapcontainer" id="streetwalk-soundeditor-mapcontainer"></div>
 </div>
+
+
 <div class="streetwalk-soundeditor-panel">
+    <form class="pure-form">
     <h1>Way Name : <%= way.wayName %></h1>
+    
+    <button class="pure-button pure-button-primary streetwalk-soundeditor-addsound">Add New Sound</button>
     
     <div class="streetwalk-soundeditor-panel-soundinfo">
         
     </div>
+    
+    <fieldset>
+        <legend>Export ways.json:</legend>
+        <button class="pure-button pure-button-primary streetwalk-soundeditor-export">Export File</button>
+    </fieldset>
+    </form>
 </div>
 <div class="streetwalk-soundeditor-btnclose">
 </div>

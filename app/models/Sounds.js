@@ -18,8 +18,9 @@ function($, _, Backbone,
         var self = this;
 
         self.soundHome = new Howl({
-          urls: ['content/music/intro.mp3'],
+          src: ['content/music/intro.mp3'],
           loop:true,
+          html5:true,
           volume:1,
           onload: function() {
             self.soundHome.play();
@@ -31,38 +32,8 @@ function($, _, Backbone,
         var self = this;
 
         if(self.soundHome) {
-            self.soundHome.fadeOut(0,3000);
+            self.soundHome.fade(1,0,3000);
         }
-    },
-
-    updateSoundsCollection:function(waySounds,wayName) {
-        var self = this;
-
-        self.wayName = wayName;
-
-        if(_.isUndefined(self.waySounds)) {
-            self.previousWaySounds = [];
-        }
-        else {
-            self.previousWaySounds = self.waySounds;
-        }
-        
-        self.waySounds = waySounds;
-
-        self.waySoundsIds = _.pluck(self.waySounds,"path");
-        self.previousWaySoundsIds = _.pluck(self.previousWaySounds,"path");
-
-        //intersection
-        self.soundsToKeepIds = _.intersection(self.previousWaySoundsIds,self.waySoundsIds);
-        self.soundsToRemoveIds = _.difference(self.previousWaySoundsIds,self.soundsToKeepIds);
-        self.soundsToAddIds = _.difference(self.waySoundsIds,self.soundsToKeepIds);
-
-        self.soundsToAdd = [];
-
-        _.each(self.soundsToAddIds,function(soundToAddId) {
-            self.soundsToAdd.push(_.findWhere(self.waySounds, {path: soundToAddId}));
-        });
-
     },
 
     updateSounds: function(newUserPosition) {
@@ -134,6 +105,72 @@ function($, _, Backbone,
             "closestNode":closestNode,
             "secondClosestNode":secondClosestNode
         };
+    },
+
+    updateSoundsCollection:function(waySounds,wayName) {
+        var self = this;
+
+        self.wayName = wayName;
+
+        if(_.isUndefined(self.waySounds)) {
+            self.previousWaySounds = [];
+        }
+        else {
+            self.previousWaySounds = self.waySounds;
+        }
+        
+        self.waySounds = waySounds;
+
+        self.waySoundsIds = _.pluck(self.waySounds,"path");
+        self.previousWaySoundsIds = _.pluck(self.previousWaySounds,"path");
+
+        //intersection
+        self.soundsToKeepIds = _.intersection(self.previousWaySoundsIds,self.waySoundsIds);
+        self.soundsToRemoveIds = _.difference(self.previousWaySoundsIds,self.soundsToKeepIds);
+        self.soundsToAddIds = _.difference(self.waySoundsIds,self.soundsToKeepIds);
+
+        self.soundsToAdd = [];
+
+        _.each(self.soundsToAddIds,function(soundToAddId) {
+            self.soundsToAdd.push(_.findWhere(self.waySounds, {path: soundToAddId}));
+        });
+
+    },
+
+    addSound: function(waySound) {
+        var self = this;
+
+        self.previousWaySounds.push(waySound);
+
+        var sound = new Sound({
+                        position: waySound.position,
+                        path: waySound.path,
+                        db: waySound.db,
+                        type: waySound.type,
+                        way: self.wayName
+                        });
+
+        sound = self.add(sound);
+
+        console.log(self.models);
+
+        return sound;
+    },
+
+    removeSound: function(waySound) {
+        var self = this;
+
+        console.log(self.previousWaySounds);
+
+        self.previousWaySounds = _.reject(self.previousWaySounds,function(sound) {
+            return (sound.path == waySound.path);
+        });
+
+        console.log(self.previousWaySounds);
+
+        self.remove(waySound).unload();
+
+        console.log(self.models);
     },
 
     fetch: function() {

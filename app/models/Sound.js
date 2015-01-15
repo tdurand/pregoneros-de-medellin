@@ -113,6 +113,11 @@ function($, _, Backbone, GeoUtils, LOGGER){
         self.sound.unload();
     },
 
+    toJSON: function() {
+        var self = this;
+        return _.omit(this.attributes,"way");
+    },
+
     loadSound:function() {
 
         var self = this;
