@@ -55,17 +55,11 @@ function($, _, Backbone, GeoUtils, LOGGER){
             yDiff = self.get("position")[1] - newUserPosition[1],
             angle = Math.atan2(yDiff, xDiff) * (180/Math.PI);
 
-        // Add POV heading offset ,  always the same because we go through a line
-        angle -= GeoUtils.getBearing([
-                6.258111140611143,
-                -75.61215072870255
-                ],
-                [
-                6.257839185538634,
-                -75.61139702796936
-                ]);
+        // Add POV heading offset
+        // angle -= GeoUtils.getBearing(newUserPosition,self.get("position"));
 
-        LOGGER.debug("Bearing " + GeoUtils.getBearing(newUserPosition,self.get("position")));
+
+        // LOGGER.debug("Bearing " + GeoUtils.getBearing(newUserPosition,self.get("position")));
 
         // Convert angle to range between -180 and +180
         if (angle < -180)       angle += 360;
@@ -80,10 +74,13 @@ function($, _, Backbone, GeoUtils, LOGGER){
             panPosition = (panPosition > 0) ? 1 - x : -1 + x;
         }
 
+        //see why we need to invert angle
+        panPosition = -panPosition;
+
         LOGGER.debug("PANPOSITION " + panPosition);
 
         // Set the new pan poition
-        self.sound.pos3d(panPosition, 1, 1);
+        self.sound.pos(panPosition, 1, 1);
 
         // Apply lowpass filter *if* the sound is behind us (11,000hz = filter fully open)
         // var freq = 11000;
@@ -96,7 +93,10 @@ function($, _, Backbone, GeoUtils, LOGGER){
 
     updateSound: function(newUserPosition) {
         var self = this;
-        // self.updatePan(newUserPosition);
+        //spatialized only for punctual sounds
+        if(self.get("type") == "punctual") {
+            self.updatePan(newUserPosition);
+        }
         self.updateVolume(newUserPosition);
     },
 
