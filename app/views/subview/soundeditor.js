@@ -17,7 +17,8 @@ define(['jquery',
         el:"#streetwalk-soundeditor",
 
         events:{
-            "click .streetwalk-soundeditor-btnclose":"closeEditor"
+            "click .streetwalk-soundeditor-btnclose":"closeEditor",
+            "click .streetwalk-soundeditor-btnupdate":"updateSound"
         },
 
         initialize : function(way) {
@@ -84,6 +85,16 @@ define(['jquery',
                     self.currentMarker.setIcon(self.getSelectedMarkerIcon(self.currentSoundEditing.get("type")));
 
                     self.renderSoundInfo();
+
+                });
+
+                marker.on("dragend", function(e) {
+                    var soundReference = e.target.soundReference;
+                    var newPosition = e.target.getLatLng();
+
+                    soundReference.set("position",[newPosition.lat,newPosition.lng]);
+
+                    Sounds.updateSounds(Sounds.currentUserPosition);
 
                 });
 
@@ -154,6 +165,27 @@ define(['jquery',
     closeEditor: function() {
         var self = this;
         self.$el.hide();
+    },
+
+    updateSound: function(e) {
+        var self = this;
+        e.preventDefault();
+
+        var soundPath = self.$el.find(".sound-path").val();
+        var soundDb = parseInt(self.$el.find(".sound-db").val(),10);
+        var soundType = self.$el.find(".sound-type").val();
+
+        if(self.currentSoundEditing.get("path") == soundPath) {
+            //just update db and type
+            self.currentSoundEditing.set("db",soundDb);
+            self.currentSoundEditing.set("type",soundType);
+        }
+        else {
+            //need to reload sound
+        }
+
+
+        Sounds.updateSounds(Sounds.currentUserPosition);
     },
 
     getSelectedMarkerIcon: function(type) {

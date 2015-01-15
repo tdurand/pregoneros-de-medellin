@@ -78,7 +78,7 @@ function($, _, Backbone,
 
         //set other node to 0 vol
         _.each(self.models, function(sound) {
-            if(sound.type == "punctual") {
+            if(sound.get("type") == "punctual") {
                 sound.updateSound(newUserPosition);
             }
             else if(sound.cid != twoClosestNode.closestNode.sound.cid && sound.cid != twoClosestNode.secondClosestNode.sound.cid) {
@@ -110,8 +110,8 @@ function($, _, Backbone,
         };
 
         _.each(self.models,function(sound) {
-            if(sound.type == "ambient") {
-                var soundDistanceToPosition = GeoUtils.distance(sound.position,position);
+            if(sound.get("type") == "ambient") {
+                var soundDistanceToPosition = GeoUtils.distance(sound.get("position"),position);
                 if(soundDistanceToPosition < closestNode.distance) {
                     //new closest node
                     secondClosestNode = closestNode;

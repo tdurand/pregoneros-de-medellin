@@ -9,24 +9,19 @@ function($, _, Backbone, GeoUtils, LOGGER){
 
   var Sound = Backbone.Model.extend({
 
-    position: undefined,
-    vol: undefined,
-    path: undefined,
-    type: undefined,
-    db: undefined,
+    // position: undefined,
+    // vol: undefined,
+    // path: undefined,
+    // type: undefined,
+    // db: undefined,
 
     idAttribute: "path",
 
     initialize: function() {
         var self = this;
 
-        self.path = self.get("path");
-        self.position = self.get("position");
-        self.db = self.get("db");
-        self.type = self.get("type");
-
         self.sound = new Howl({
-          urls: ['https://s3.amazonaws.com/pregonerosdemedellin/data/' + self.path + '.mp3'],
+          urls: ['data/sounds/' + self.get("path") + '.mp3'],
           loop:true,
           volume:0,
           onload: function() {
@@ -41,7 +36,7 @@ function($, _, Backbone, GeoUtils, LOGGER){
             var self = this;
 
             // Calculate distance between user and sound
-            var distance = GeoUtils.distance(self.position, newUserPosition);
+            var distance = GeoUtils.distance(self.get("position"), newUserPosition);
             
             // Calculate new volume based on distance
             self.vol = self.calculateVolume(distance);
@@ -49,15 +44,15 @@ function($, _, Backbone, GeoUtils, LOGGER){
             // Set new volume
             self.sound.volume(self.vol);
 
-            LOGGER.debug(self.path + "PLAYING WITH VOL: " + self.vol);
+            LOGGER.debug(self.get("path") + "PLAYING WITH VOL: " + self.vol);
     },
 
     updatePan : function(newUserPosition){
 
         var self = this;
 
-        var xDiff = self.position[0] - newUserPosition[0],
-            yDiff = self.position[1] - newUserPosition[1],
+        var xDiff = self.get("position")[0] - newUserPosition[0],
+            yDiff = self.get("position")[1] - newUserPosition[1],
             angle = Math.atan2(yDiff, xDiff) * (180/Math.PI);
 
         // Add POV heading offset ,  always the same because we go through a line
@@ -70,7 +65,7 @@ function($, _, Backbone, GeoUtils, LOGGER){
                 -75.61139702796936
                 ]);
 
-        LOGGER.debug("Bearing " + GeoUtils.getBearing(newUserPosition,self.position));
+        LOGGER.debug("Bearing " + GeoUtils.getBearing(newUserPosition,self.get("position")));
 
         // Convert angle to range between -180 and +180
         if (angle < -180)       angle += 360;
@@ -110,15 +105,15 @@ function($, _, Backbone, GeoUtils, LOGGER){
 
         var vol = 0;
 
-        if(self.type == "ambient") {
+        if(self.get("type") == "ambient") {
             vol = 1 / (distance);
         }
-        else if(self.type == "punctual") {
+        else if(self.get("type") == "punctual") {
             vol = 1 / (distance * distance);
         }
         
         // Multiply distance volume by amplitude of sound (apply ceiling max of 1)
-        vol = Math.min((vol * self.db), 1);
+        vol = Math.min((vol * self.get("db")), 1);
         return vol;
     },
 

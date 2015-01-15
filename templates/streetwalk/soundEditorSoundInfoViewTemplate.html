@@ -3,21 +3,21 @@
         <legend>Sound Properties:</legend>
 <p>
     <label for="sound-path">Filename:</label>
-    <input type="text" name="sound-path" class="sound-path" value="<%= sound.path %>">
+    <input type="text" style="width:60%;" name="sound-path" class="sound-path" value="<%= sound.attributes.path %>">
 </p>
 
 <p>
     <label for="sound-db">DB Level</label>
-    <input type="text" name="sound-db" class="sound-db" value="<%= sound.db %>">
+    <input type="text" name="sound-db" class="sound-db" value="<%= sound.attributes.db %>">
 </p>
 
 <p><label for="sound-type">Type Sound</label>
-    <select name="sound-type">
-      <option value="punctal" <% if(sound.type == 'punctual') { %>selected<% } %>>punctual</option> 
-      <option value="ambient" <% if(sound.type == 'ambient') { %>selected<% } %>>ambient</option>
+    <select name="sound-type" class="sound-type">
+      <option value="punctual" <% if(sound.attributes.type == 'punctual') { %>selected<% } %>>punctual</option> 
+      <option value="ambient" <% if(sound.attributes.type == 'ambient') { %>selected<% } %>>ambient</option>
     </select>
 </p>
-<button class="pure-button pure-button-primary">Save</button>
+<button class="pure-button pure-button-primary streetwalk-soundeditor-btnupdate">Update sound</button>
 </fieldset>
 <fieldset>
         <legend>Export ways.json:</legend>

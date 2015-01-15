@@ -23,37 +23,37 @@
     "waySounds":[
         {
             "position":[6.251722,-75.568918],
-            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "path":"carabobo-cl52-cl51-punto1",
             "db":10,
             "type":"ambient"
         },
         {
             "position":[6.251376211588373,-75.56907713413239],
-            "path":"carabobo-cl52-cl51/sounds/punto2",
+            "path":"carabobo-cl52-cl51-punto2",
             "db":10,
             "type":"ambient"
         },
         {
             "position":[6.250986,-75.569259],
-            "path":"carabobo-cl52-cl51/sounds/punto3",
+            "path":"carabobo-cl52-cl51-punto3",
             "db":10,
             "type":"ambient"
         },
         {
             "position":[6.25104292900004,-75.56928098201752],
-            "path":"carabobo-cl52-cl51/sounds/pregonjale",
+            "path":"carabobo-cl52-cl51-pregonjale",
             "db":60,
             "type":"punctual"
         },
         {
             "position":[6.251365546548827,-75.56901812553406],
-            "path":"carabobo-cl52-cl51/sounds/tiendatodoa5000",
+            "path":"carabobo-cl52-cl51-tiendatodoa5000",
             "db":60,
             "type":"punctual"
         },
         {
             "position":[6.251608176144503,-75.56906640529631],
-            "path":"carabobo-cl52-cl51/sounds/cremheladopregon",
+            "path":"carabobo-cl52-cl51-cremheladopregon",
             "db":60,
             "type":"punctual"
         }
@@ -431,25 +431,25 @@
     "waySounds":[
         {
             "position":[6.252581359655324,-75.56848973035812],
-            "path":"carabobo-cl53-cl52/sounds/punto1",
+            "path":"carabobo-cl53-cl52-punto1",
             "db":10,
             "type":"ambient"
         },
         {
             "position":[6.252021446075804,-75.56877940893173],
-            "path":"carabobo-cl53-cl52/sounds/punto2",
+            "path":"carabobo-cl53-cl52-punto2",
             "db":10,
             "type":"ambient"
         },
         {
             "position":[6.251722,-75.568918],
-            "path":"carabobo-cl52-cl51/sounds/punto1",
+            "path":"carabobo-cl52-cl51-punto1",
             "db":7,
             "type":"ambient"
         },
         {
             "position":[6.2522480778349685,-75.5687016248703],
-            "path":"carabobo-cl53-cl52/sounds/pregonlimonpajarito",
+            "path":"carabobo-cl53-cl52-pregonlimonpajarito",
             "db":60,
             "type":"punctual"
         }
