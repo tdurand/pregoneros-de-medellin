@@ -16,6 +16,8 @@ function($, _, Backbone,
         
         var self = this;
 
+        window.WAYSClone = _.cloneDeep(WAYS);
+
         _.each(WAYS,function(wayParams) {
             self.add(new Way(wayParams));
         });

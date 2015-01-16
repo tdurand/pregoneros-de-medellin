@@ -54,6 +54,7 @@ function($, _, Backbone,
             }
             else if(sound.cid != twoClosestNode.closestNode.sound.cid && sound.cid != twoClosestNode.secondClosestNode.sound.cid) {
                 sound.sound.volume(0);
+                sound.vol = 0;
                 LOGGER.debug("SET VOLUME 0 TO " + sound.get("path"));
             }
         });

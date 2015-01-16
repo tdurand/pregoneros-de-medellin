@@ -71,7 +71,17 @@ define(['jquery',
                     icon:self.getMarkerIcon(waySound.get("type"))
                 });
 
+                markerVol = L.marker(new L.LatLng(position[0], position[1]), {
+                    icon: L.divIcon({
+                        // Specify a class name we can refer to in CSS.
+                        className: 'label',
+                        // Define what HTML goes in each marker.
+                        html: self.getVolPercentage(waySound.vol)
+                    })
+                });
+
                 marker.soundReference = waySound;
+                marker.soundReference.markerVol = markerVol;
 
                 marker.on("click",function(e) {
                     var marker = e.target;
@@ -84,6 +94,7 @@ define(['jquery',
 
                 // marker.addTo(self.map);
                 self.map.addLayer(marker);
+                self.map.addLayer(markerVol);
             });
 
             //ADD PATH OF WAY TO THE MAP
@@ -123,10 +134,21 @@ define(['jquery',
             icon:self.getMarkerIcon("ambient")
         });
 
+        markerVol = L.marker(new L.LatLng(position[0], position[1]), {
+            icon: L.divIcon({
+                // Specify a class name we can refer to in CSS.
+                className: 'label',
+                // Define what HTML goes in each marker.
+                html: 0
+            })
+        });
+
         marker.soundReference = soundReference;
+        marker.soundReference.markerVol = markerVol;
 
         // marker.addTo(self.map);
         self.map.addLayer(marker);
+        self.map.addLayer(markerVol);
 
         marker.on("click",function(e) {
             var marker = e.target;
@@ -143,6 +165,7 @@ define(['jquery',
     removeMarker : function(marker) {
         var self = this;
         self.map.removeLayer(marker);
+        self.map.removeLayer(marker.soundReference.markerVol);
     },
 
     selectMarker: function(marker) {
@@ -167,12 +190,16 @@ define(['jquery',
     },
 
     updateSoundPositionOnDragEnd: function(e) {
+        var self = this;
         var soundReference = e.target.soundReference;
         var newPosition = e.target.getLatLng();
+        var markerVol = e.target.soundReference.markerVol;
+        markerVol.setLatLng(newPosition);
 
         soundReference.set("position",[newPosition.lat,newPosition.lng]);
 
         Sounds.updateSounds(Sounds.currentUserPosition);
+        self.refreshEditorMapAfterMoving();
     },
 
     render: function() {
@@ -211,6 +238,20 @@ define(['jquery',
         var self = this;
 
         self.markerUserPosition.setLatLng(new L.LatLng(Sounds.currentUserPosition[0], Sounds.currentUserPosition[1]));
+
+        //update marker label volume
+        _.each(Sounds.models,function(sound) {
+            sound.markerVol.setIcon(new L.divIcon({
+                        // Specify a class name we can refer to in CSS.
+                        className: 'label',
+                        // Define what HTML goes in each marker.
+                        html: self.getVolPercentage(sound.vol)
+                    }));
+        });
+    },
+
+    getVolPercentage: function(vol) {
+        return Math.round(vol*100)+"%";
     },
 
     closeEditor: function() {
@@ -242,6 +283,7 @@ define(['jquery',
         }
 
         Sounds.updateSounds(Sounds.currentUserPosition);
+        self.refreshEditorMapAfterMoving();
     },
 
     addSound: function(e) {
@@ -253,7 +295,7 @@ define(['jquery',
         var waySound = {
             db: 10,
             type: "ambient",
-            path: self.newSoundId,
+            path: self.way.wayName + "-" + self.newSoundId,
             position: Sounds.currentUserPosition
         };
 
@@ -270,6 +312,7 @@ define(['jquery',
 
         //renderSound
         Sounds.updateSounds(Sounds.currentUserPosition);
+        self.refreshEditorMapAfterMoving();
     },
 
     deleteSound: function(e) {
@@ -287,7 +330,17 @@ define(['jquery',
     exportJSON: function(e) {
         var self = this;
         e.preventDefault();
-        console.log(JSON.stringify(Sounds.toJSON()));
+
+        self.$el.find(".streetwalk-soundeditor-exportarea").val("");
+
+        WAYSClone = _.map(WAYSClone,function(way) {
+            if(way.wayName == self.way.wayName) {
+                way.waySounds = Sounds.toJSON();
+            }
+            return way;
+        });
+
+        self.$el.find(".streetwalk-soundeditor-exportarea").val(JSON.stringify(WAYSClone));
     },
 
     getSelectedMarkerIcon: function(type) {
