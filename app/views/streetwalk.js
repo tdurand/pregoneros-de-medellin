@@ -11,6 +11,7 @@ define(['jquery',
         'utils/Localization',
         'views/subview/menucharacters',
         'views/subview/soundeditor',
+        'views/subview/login',
         'text!templates/streetwalk/streetWalkViewTemplate.html',
         'text!templates/streetwalk/streetWalkLoadingViewTemplate.html',
         'text!templates/streetwalk/streetWalkChoosePathStartViewTemplate.html',
@@ -33,6 +34,7 @@ function($, _, Backbone,
                 Localization,
                 MenuCharactersView,
                 SoundEditorView,
+                LogInView,
                 streetWalkViewTemplate,
                 streetWalkLoadingViewTemplate,
                 streetWalkChoosePathStartViewTemplate,
@@ -209,6 +211,7 @@ function($, _, Backbone,
         }));
 
         self.menuCharactersView = new MenuCharactersView();
+        self.logInView = new LogInView();
 
         if(Progression.isFirstWay) {
             Progression.isFirstWay = false;
