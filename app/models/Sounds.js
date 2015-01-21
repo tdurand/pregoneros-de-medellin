@@ -39,6 +39,8 @@ function($, _, Backbone,
     updateSounds: function(newUserPosition) {
         var self = this;
 
+        self.mute();
+
         self.currentUserPosition = newUserPosition;
 
         if(self.models.length === 0) {
@@ -214,11 +216,11 @@ function($, _, Backbone,
     },
 
     mute: function() {
-        Howler.mute();
+        Howler.mute(true);
     },
 
     unmute: function() {
-        Howler.unmute();
+        Howler.mute(false);
     },
 
     clear: function() {

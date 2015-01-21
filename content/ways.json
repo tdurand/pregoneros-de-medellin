@@ -280,7 +280,7 @@
     "wayConnectionsEnd":[
         {
             "direction": "forward",
-            "name":"cr48-cl54-cl55"
+            "name":"cl51-cr51-cr50"
         },
         {
             "direction": "left",
@@ -536,8 +536,8 @@
             "name":"plazabotero-cr51-carabobo"
         },
         {
-            "direction": "forward",
-            "name":"cr48-cl54-cl55"
+            "direction": "right",
+            "name":"cr51-cl52-cl51"
         }
     ],
     "waySounds":[
@@ -710,7 +710,7 @@
   {
     "wayName":"cr53cl52-cl51-carabobo",
     "wayArea":"PLAZA DE BOTERO",
-    "nbStills":427,
+    "nbStills":472,
     "wayPath":[[-75.57004541158676,6.251330885168823],[-75.56969404220581,6.25207743746073],[-75.5689188838005,6.2517228252549435]],
     "wayConnectionsEnd":[
         {
@@ -1176,7 +1176,7 @@
         },
         {
             "direction": "right",
-            "name":"sanjuancr51-carabobo-cl45"
+            "name":"carabobo-parqueluz-sanjuan"
         }
     ],
     "waySounds":[
@@ -2437,7 +2437,7 @@
         },
         {
             "direction": "forward",
-            "name":"cl51-cr51-carabobo"
+            "name":"cl51-cr50-juni"
         }
     ],
     "waySounds":[

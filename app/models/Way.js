@@ -56,6 +56,25 @@ function($, _, Backbone,
             self.characterDefinition = params.characterDefinition;
             self.waySoundsData = params.waySounds;
 
+            //Compute length of way
+            var lastPoint = null;
+            var current = null;
+            self.wayLength = 0;
+
+            var pathLength = GeoUtils.invertArrayLongLatToLatLong(self.originalWayPath);
+
+            _.each(pathLength, function(point) {
+                if(lastPoint !== null) {
+                    self.wayLength += GeoUtils.distance(lastPoint,point);
+                }
+                lastPoint = point;
+            });
+
+            console.log("WAY "+ self.wayName + ":");
+            console.log("LENGTH :" + self.wayLength + "m");
+            console.log("NBSTILLS :" + self.nbStills);
+            console.log("RATIO STILL/m :" + self.nbStills/self.wayLength);
+
             //Create the stills collection for this way
             self.wayStills = new Stills();
             self.wayStills.init(params);

@@ -1,95 +1,95 @@
 define(['jquery',
-        'underscore',
-        'backbone',
-        'snap',
-        'models/Ways',
-        'models/Sounds',
-        'models/Progression',
-        'utils/GeoUtils',
-        'utils/LocalParams',
-        'utils/Logger',
-        'utils/Localization',
-        'views/subview/menucharacters',
-        'views/subview/soundeditor',
-        'views/subview/login',
-        'text!templates/streetwalk/streetWalkViewTemplate.html',
-        'text!templates/streetwalk/streetWalkLoadingViewTemplate.html',
-        'text!templates/streetwalk/streetWalkChoosePathStartViewTemplate.html',
-        'text!templates/streetwalk/streetWalkChoosePathEndViewTemplate.html',
-        'text!templates/svg/svgSignTopProgressTemplate.html',
-        'text!templates/svg/svgSignTopAreaTemplate.html',
-        'text!templates/svg/svgFramePajaritoTemplate.html',
-        'text!templates/svg/svgFrameJaleTemplate.html',
-        'text!templates/svg/svgScrollToStartES.html',
-        'popcorn'
-        ],
-function($, _, Backbone,
-                Snap,
-                Ways,
-                Sounds,
-                Progression,
-                GeoUtils,
-                LocalParams,
-                LOGGER,
-                Localization,
-                MenuCharactersView,
-                SoundEditorView,
-                LogInView,
-                streetWalkViewTemplate,
-                streetWalkLoadingViewTemplate,
-                streetWalkChoosePathStartViewTemplate,
-                streetWalkChoosePathEndViewTemplate,
-                svgSignTopProgressTemplate,
-                svgSignTopAreaTemplate,
-                svgFramePajaritoTemplate,
-                svgFrameJaleTemplate,
-                svgScrollToStart){
+    'underscore',
+    'backbone',
+    'snap',
+    'models/Ways',
+    'models/Sounds',
+    'models/Progression',
+    'utils/GeoUtils',
+    'utils/LocalParams',
+    'utils/Logger',
+    'utils/Localization',
+    'views/subview/menucharacters',
+    'views/subview/soundeditor',
+    'views/subview/login',
+    'text!templates/streetwalk/streetWalkViewTemplate.html',
+    'text!templates/streetwalk/streetWalkLoadingViewTemplate.html',
+    'text!templates/streetwalk/streetWalkChoosePathStartViewTemplate.html',
+    'text!templates/streetwalk/streetWalkChoosePathEndViewTemplate.html',
+    'text!templates/svg/svgSignTopProgressTemplate.html',
+    'text!templates/svg/svgSignTopAreaTemplate.html',
+    'text!templates/svg/svgFramePajaritoTemplate.html',
+    'text!templates/svg/svgFrameJaleTemplate.html',
+    'text!templates/svg/svgScrollToStartES.html',
+    'popcorn'
+    ],
+    function($, _, Backbone,
+        Snap,
+        Ways,
+        Sounds,
+        Progression,
+        GeoUtils,
+        LocalParams,
+        LOGGER,
+        Localization,
+        MenuCharactersView,
+        SoundEditorView,
+        LogInView,
+        streetWalkViewTemplate,
+        streetWalkLoadingViewTemplate,
+        streetWalkChoosePathStartViewTemplate,
+        streetWalkChoosePathEndViewTemplate,
+        svgSignTopProgressTemplate,
+        svgSignTopAreaTemplate,
+        svgFramePajaritoTemplate,
+        svgFrameJaleTemplate,
+        svgScrollToStart){
 
-  var StreetWalkView = Backbone.View.extend({
+      var StreetWalkView = Backbone.View.extend({
 
-    el:"#streetwalk",
-    elImg:"#streetwalk .streetwalkImg",
+        el:"#streetwalk",
+        elImg:"#streetwalk .streetwalkImg",
 
-    currentPosition:0,
-    bodyHeight:10000,
-    fullscreen:false,
+        currentPosition:0,
+        bodyHeight:7000,
+        fullscreen:false,
 
-    scrollToEndEventSended:false,
+        scrollToEndEventSended:false,
 
-    videoShowOneTime:false,
+        videoShowOneTime:false,
 
-    events:{
-        "click .toggle-sounds ":"toggleSounds",
-        "click .frame-character":"showVideo",
-        "click .streetwalk-video-btnclose":"closeVideo",
-        "click .streetwalk-soundeditor-btnshow":"showSoundEditor"
-    },
+        events:{
+            "click .toggle-sounds ":"toggleSounds",
+            "click .frame-character":"showVideo",
+            "click .streetwalk-video-btnclose":"closeVideo",
+            "click .streetwalk-soundeditor-btnshow":"showSoundEditor"
+        },
 
-    bindings:{
-        ".streetwalk-progress .nbStoriesUnlocked":{
-            observe:"nbItemUnlocked"
-        }
-    },
+        bindings:{
+            ".streetwalk-progress .nbStoriesUnlocked":{
+                observe:"nbItemUnlocked"
+            }
+        },
 
-    initialize : function(params) {
-        var self = this;
+        initialize : function(params) {
+            var self = this;
 
-        self.wayName = params.wayName;
-    },
+            self.wayName = params.wayName;
+        },
 
-    initMap: function() {
-        var self = this;
+        initMap: function() {
+            var self = this;
 
-        self.map = L.mapbox.map('streetwalk-mapcontainer', 'tdurand.jn29943n',{
-            accessToken: 'pk.eyJ1IjoidGR1cmFuZCIsImEiOiI0T1ZEWlRVIn0.1PEGeiEWz6RUBfZq9Bvy7Q',
-            zoomControl: false,
-            attributionControl: false
-        });
+            self.map = L.mapbox.map('streetwalk-mapcontainer', 'tdurand.jn29943n',{
+                accessToken: 'pk.eyJ1IjoidGR1cmFuZCIsImEiOiI0T1ZEWlRVIn0.1PEGeiEWz6RUBfZq9Bvy7Q',
+                zoomControl: false,
+                attributionControl: false
+            });
 
 
-        self.map.on("load", function() {
-            self.mapLoaded = true;
-            self.updateMarkerPosition(self.currentStill.id);
+            self.map.on("load", function() {
+                self.mapLoaded = true;
+                self.updateMarkerPosition(self.currentStill.id);
 
             //Center map every 500ms
             //TODO ONLY IF POSITION CHANGED
@@ -97,20 +97,20 @@ function($, _, Backbone,
                 self.map.panTo(self.way.wayPath[self.currentStill.id]);
             },500);
         });
-    },
+        },
 
-    initSounds: function() {
-        var self = this;
+        initSounds: function() {
+            var self = this;
 
 
-    },
+        },
 
-    prepare:function() {
+        prepare:function() {
 
-        var self = this;
+            var self = this;
 
         // if(_.isUndefined(Localization.STR)) {
-            
+
         //     self.listenToOnce(Localization,"STRLoaded", function() {
         //         self.render();
         //     });
@@ -239,8 +239,8 @@ function($, _, Backbone,
         $.preloadImages = function() {
           for (var i = 0; i < arguments.length; i++) {
             $("<img />").attr("src", arguments[i]);
-          }
-        };
+        }
+    };
 
         //set right src for frame character
         if(!_.isUndefined(self.way.characterDefinition)) {
@@ -290,9 +290,8 @@ function($, _, Backbone,
         self.way.on("loadingFinished", function() {
             self.animating = true;
             self.currentStill = self.way.wayStills.first();
-            self.$el.css("height",self.bodyHeight+"px");
+            self.$el.css("height",self.computeBodyHeigh(self.way.wayLength)+"px");
             self.computeAnimation(true);
-            self.computeScrollableElements();
             self.$el.find("#scrollToStartLoaded").show();
             self.$el.find("#scrollToStartLoading").hide();
             self.render();
@@ -327,7 +326,7 @@ function($, _, Backbone,
 
             function sortNumber(a,b) {
               return a - b;
-            }
+          }
             //Get closest still loaded : TODO FIND THE BEST ALGORITHM, this one is not so optimized and insert the still in the array
             self.currentStill = self.way.wayStills.get(self.way.wayStills.stillLoaded.push( imgNb ) && self.way.wayStills.stillLoaded.sort(sortNumber)[ self.way.wayStills.stillLoaded.indexOf( imgNb ) - 1 ]);
 
@@ -336,6 +335,8 @@ function($, _, Backbone,
         }
 
         self.updateMarkerPosition(self.currentStill.id);
+
+        console.log("RENDER IMG NB:" + self.currentStill.get("srcLowRes"));
 
         $(self.elImg).attr("src", self.currentStill.get("srcLowRes"));
 
@@ -429,20 +430,17 @@ function($, _, Backbone,
 
     },
 
-    computeScrollableElements: function() {
+    computeBodyHeigh: function(wayLength) {
         var self = this;
-
-        var lastElementPosition = self.bodyHeight - window.innerHeight;
-        self.$el.find(".launching").css("bottom",-lastElementPosition+"px");
-        self.$el.find(".launching").show();
-
+        self.bodyHeight =  wayLength * 75;
+        return self.bodyHeight;
     },
 
     computeAnimation: function(firstStill) {
         var self = this;
 
         if(self.animating) {
- 
+
         //LOGGER.debug("Compute animation");
 
         var supportPageOffset = window.pageXOffset !== undefined;
@@ -463,7 +461,7 @@ function($, _, Backbone,
 
 
             //Change image
-            var availableHeigth = (self.bodyHeight - window.innerHeight);
+            var availableHeigth = self.bodyHeight;
 
             var imgNb = Math.floor( self.currentPosition / availableHeigth * self.way.wayStills.length);
 
@@ -539,83 +537,83 @@ function($, _, Backbone,
             self.computeAnimation();
         });
 
-        }
-    },
+    }
+},
 
-    toggleSounds: function(e) {
-        var self = this;
+toggleSounds: function(e) {
+    var self = this;
 
-        var state = $(e.currentTarget).attr("data-state");
+    var state = $(e.currentTarget).attr("data-state");
 
-        if(state == "normal") {
-            $(e.currentTarget).attr("data-state","muted");
-            Sounds.mute();
-        }
-        else {
-            $(e.currentTarget).attr("data-state","normal");
-            Sounds.unmute();
-        }
-    },
-
-    muteSounds: function() {
-        var self = this;
-
-        self.$el.find(".toggle-sounds").attr("data-state","muted");
+    if(state == "normal") {
+        $(e.currentTarget).attr("data-state","muted");
         Sounds.mute();
-    },
-
-    unmuteSounds: function() {
-        var self = this;
-
-        self.$el.find(".toggle-sounds").attr("data-state","normal");
+    }
+    else {
+        $(e.currentTarget).attr("data-state","normal");
         Sounds.unmute();
-    },
+    }
+},
 
-    initVideo: function() {
-        var self = this;
+muteSounds: function() {
+    var self = this;
 
-        if(self.way.characterDefinition) {
+    self.$el.find(".toggle-sounds").attr("data-state","muted");
+    Sounds.mute();
+},
 
-            var idVimeo = Progression.nextVideoToPlay(self.way.characterDefinition.name);
+unmuteSounds: function() {
+    var self = this;
 
-           if(Progression.isFirstVideo) {
-                Progression.isFirstVideo = false;
-                idVimeo = 115328392;
-           }
+    self.$el.find(".toggle-sounds").attr("data-state","normal");
+    Sounds.unmute();
+},
 
-           
+initVideo: function() {
+    var self = this;
+
+    if(self.way.characterDefinition) {
+
+        var idVimeo = Progression.nextVideoToPlay(self.way.characterDefinition.name);
+
+        if(Progression.isFirstVideo) {
+            Progression.isFirstVideo = false;
+            idVimeo = 115328392;
+        }
+
+
 
            // Add video
-            self.popcorn = Popcorn.vimeo( ".streetwalk-video-container", "http://player.vimeo.com/video/"+idVimeo);
-        }
-    },
+           self.popcorn = Popcorn.vimeo( ".streetwalk-video-container", "http://player.vimeo.com/video/"+idVimeo);
+       }
+   },
 
-    showVideo: function() {
-        var self = this;
+   showVideo: function() {
+    var self = this;
 
-        self.$el.find(".streetwalk-video").show();
+    self.$el.find(".streetwalk-video").show();
 
-        if(_.isUndefined(self.popcorn)) {
-            self.initVideo();
-        }
+    if(_.isUndefined(self.popcorn)) {
+        self.initVideo();
+    }
 
-        self.muteSounds();
+    self.muteSounds();
 
-        setTimeout(function() {
-            self.popcorn.play();
-        },1000);
-        
-    },
+    setTimeout(function() {
+        self.popcorn.play();
+    },1000);
 
-    closeVideo: function() {
-        var self = this;
+},
 
-        self.$el.find(".streetwalk-video").hide();
-        
-        self.popcorn.pause();
-        self.popcorn.currentTime(0);
+closeVideo: function() {
+    var self = this;
 
-        self.unmuteSounds();
+    self.$el.find(".streetwalk-video").hide();
+
+    self.popcorn.pause();
+    self.popcorn.currentTime(0);
+
+    self.unmuteSounds();
 
         //current character
         var characterName = self.way.characterDefinition.name;
@@ -642,12 +640,12 @@ function($, _, Backbone,
       this.undelegateEvents();
       this.way.clear();
       this.animating = false;
-    }
+  }
 
-  });
+});
 
-  return StreetWalkView;
-  
+return StreetWalkView;
+
 });
 
 
