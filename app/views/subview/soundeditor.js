@@ -250,12 +250,14 @@ define(['jquery',
 
         //update marker label volume
         _.each(Sounds.models,function(sound) {
-            sound.markerVol.setIcon(new L.divIcon({
-                        // Specify a class name we can refer to in CSS.
-                        className: 'label',
-                        // Define what HTML goes in each marker.
-                        html: self.getVolPercentage(sound.vol)
-                    }));
+            if(sound.markerVol) {
+                sound.markerVol.setIcon(new L.divIcon({
+                            // Specify a class name we can refer to in CSS.
+                            className: 'label',
+                            // Define what HTML goes in each marker.
+                            html: self.getVolPercentage(sound.vol)
+                        }));
+            }
         });
     },
 

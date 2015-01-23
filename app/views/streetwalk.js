@@ -337,8 +337,6 @@ define(['jquery',
 
         self.updateMarkerPosition(self.currentStill.id);
 
-        console.log("RENDER IMG NB:" + self.currentStill.get("srcLowRes"));
-
         $(self.elImg).attr("src", self.currentStill.get("srcLowRes"));
 
     },

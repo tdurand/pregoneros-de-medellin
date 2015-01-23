@@ -790,23 +790,25 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   width: 100%;
   height: 100%;
   position: fixed;
+  top: 0;
+  left: 0;
 }
-/* line 9, ../sass/module/loading.scss */
+/* line 11, ../sass/module/loading.scss */
 .streetwalk-loading.firstway {
   background-image: url("../../images/loadingbackground.jpg");
   background-size: cover;
 }
-/* line 13, ../sass/module/loading.scss */
+/* line 15, ../sass/module/loading.scss */
 .streetwalk-loading.firstway .streetwalk-loading-main {
   height: 80%;
 }
-/* line 18, ../sass/module/loading.scss */
+/* line 20, ../sass/module/loading.scss */
 .streetwalk-loading.firstway .streetwalk-loading-bottom {
   height: 20%;
   background-color: #00937A;
   position: relative;
 }
-/* line 23, ../sass/module/loading.scss */
+/* line 25, ../sass/module/loading.scss */
 .streetwalk-loading.firstway .streetwalk-loading-bottom .separator {
   position: absolute;
   top: -40%;
@@ -817,7 +819,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   background-repeat: no-repeat;
 }
 
-/* line 41, ../sass/module/loading.scss */
+/* line 43, ../sass/module/loading.scss */
 .streetwalk-loading-text {
   position: absolute;
   width: 50%;
@@ -830,7 +832,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 53, ../sass/module/loading.scss */
+/* line 55, ../sass/module/loading.scss */
 .streetwalk-loading-text .loading-text {
   font-family: "FilbertBrush";
   font-size: 1.3rem;
