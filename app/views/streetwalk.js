@@ -536,6 +536,7 @@ define(['jquery',
 
                     if(_.isUndefined(self.distanceSinceLastSoundUpdate)) {
                         self.distanceSinceLastSoundUpdate = 0;
+                        self.lastSoundUpdateStill = 0;
                         self.lastSoundUpdatePosition = currentGeoPosition;
 
                     }
@@ -544,9 +545,14 @@ define(['jquery',
 
                         //update each 2 meter
                         if(self.distanceSinceLastSoundUpdate > 2) {
-                            Sounds.updateSounds(currentGeoPosition);
+                            var movingForward = true;
+                            if(imgNb < self.lastSoundUpdateStill) {
+                                movingForward = false;
+                            }
+                            Sounds.updateSounds(currentGeoPosition, movingForward);
                             self.distanceSinceLastSoundUpdate = 0;
                             self.lastSoundUpdatePosition = currentGeoPosition;
+                            self.lastSoundUpdateStill = imgNb;
                         }
                     }
                     

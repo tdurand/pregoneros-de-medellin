@@ -36,7 +36,7 @@ function($, _, Backbone,
         }
     },
 
-    updateSounds: function(newUserPosition) {
+    updateSounds: function(newUserPosition, movingForward) {
         var self = this;
 
         // self.mute();
@@ -52,7 +52,7 @@ function($, _, Backbone,
         //set other node to 0 vol
         _.each(self.models, function(sound) {
             if(sound.get("type") == "punctual") {
-                sound.updateSound(newUserPosition);
+                sound.updateSound(newUserPosition, movingForward);
             }
             else if(sound.cid != twoClosestNode.closestNode.sound.cid && sound.cid != twoClosestNode.secondClosestNode.sound.cid) {
                 sound.sound.volume(0);
@@ -62,11 +62,11 @@ function($, _, Backbone,
         });
 
         if(!_.isUndefined(twoClosestNode.closestNode.sound)) {
-            twoClosestNode.closestNode.sound.updateSound(newUserPosition);
+            twoClosestNode.closestNode.sound.updateSound(newUserPosition, movingForward);
         }
 
         if(!_.isUndefined(twoClosestNode.secondClosestNode.sound)) {
-            twoClosestNode.secondClosestNode.sound.updateSound(newUserPosition);
+            twoClosestNode.secondClosestNode.sound.updateSound(newUserPosition, movingForward);
         }
     },
 

@@ -38,25 +38,35 @@ function($, _, Backbone, GeoUtils, LOGGER){
             LOGGER.debug(self.get("path") + "PLAYING WITH VOL: " + self.vol);
     },
 
-    updatePan : function(newUserPosition){
+    updatePan : function(newUserPosition, movingForward){
 
         var self = this;
 
+        //Angle between north - user position - sound position
         var xDiff = self.get("position")[0] - newUserPosition[0],
             yDiff = self.get("position")[1] - newUserPosition[1],
             angle = Math.atan2(yDiff, xDiff) * (180/Math.PI);
 
         // Add POV heading offset
-        // angle -= GeoUtils.getBearing(newUserPosition,self.get("position"));
+        if(self.previousUserPosition) {
+             if(movingForward) {
+                angleHeading = GeoUtils.getBearing(self.previousUserPosition,newUserPosition);
+             }
+             else {
+                angleHeading = GeoUtils.getBearing(newUserPosition, self.previousUserPosition);
+             }
+        }
+        else {
+            angleHeading = 0;
+        }
 
-
-        // LOGGER.debug("Bearing " + GeoUtils.getBearing(newUserPosition,self.get("position")));
+        angle = angle - angleHeading;
 
         // Convert angle to range between -180 and +180
         if (angle < -180)       angle += 360;
         else if (angle > 180)   angle -= 360;
 
-        LOGGER.debug("ANGLE: " + angle);
+        // console.log("ANGLE: " + angle);
 
         // Calculate panPosition, as a range between -1 and +1
         var panPosition = (angle/90);
@@ -65,10 +75,7 @@ function($, _, Backbone, GeoUtils, LOGGER){
             panPosition = (panPosition > 0) ? 1 - x : -1 + x;
         }
 
-        //see why we need to invert angle
-        panPosition = -panPosition;
-
-        LOGGER.debug("PANPOSITION " + panPosition);
+        // console.log("PANPOSITION " + panPosition);
 
         // Set the new pan poition
         self.sound.pos(panPosition, 1, 1);
@@ -82,13 +89,15 @@ function($, _, Backbone, GeoUtils, LOGGER){
         // self.sound.filter(freq);
     },
 
-    updateSound: function(newUserPosition) {
+    updateSound: function(newUserPosition, movingForward) {
         var self = this;
         //spatialized only for punctual sounds
         if(self.get("type") == "punctual") {
-            self.updatePan(newUserPosition);
+            self.updatePan(newUserPosition, movingForward);
         }
         self.updateVolume(newUserPosition);
+
+        self.previousUserPosition = newUserPosition;
     },
 
     calculateVolume: function(distance){
