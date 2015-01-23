@@ -432,7 +432,7 @@ define(['jquery',
 
     computeBodyHeigh: function(wayLength) {
         var self = this;
-        self.bodyHeight =  wayLength * 75;
+        self.bodyHeight =  wayLength * 100;
         return self.bodyHeight;
     },
 

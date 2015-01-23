@@ -39,7 +39,7 @@ function($, _, Backbone,
     updateSounds: function(newUserPosition) {
         var self = this;
 
-        self.mute();
+        // self.mute();
 
         self.currentUserPosition = newUserPosition;
 

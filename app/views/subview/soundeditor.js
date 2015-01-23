@@ -21,7 +21,8 @@ define(['jquery',
             "click .streetwalk-soundeditor-btnupdate":"updateSound",
             "click .streetwalk-soundeditor-addsound":"addSound",
             "click .streetwalk-soundeditor-deletesound":"deleteSound",
-            "click .streetwalk-soundeditor-export":"exportJSON"
+            "click .streetwalk-soundeditor-export":"exportJSON",
+            "click .streetwalk-soundeditor-save":"save"
         },
 
         newSoundId:0,
@@ -57,6 +58,12 @@ define(['jquery',
                         'marker-color': '#fa0'
                 })
             };
+
+            self.save();
+
+            setInterval(function() {
+                self.save();
+            },60000);
         },
 
         initMapContent : function() {
@@ -341,6 +348,32 @@ define(['jquery',
         });
 
         self.$el.find(".streetwalk-soundeditor-exportarea").val(JSON.stringify(WAYSClone));
+    },
+
+    save: function(e) {
+        var self = this;
+
+        if(e) {
+            e.preventDefault();
+        }
+
+        WAYSClone = _.map(WAYSClone,function(way) {
+            if(way.wayName == self.way.wayName) {
+                way.waySounds = Sounds.toJSON();
+            }
+            return way;
+        });
+
+        $.ajax({
+          type: "POST",
+          url: "saveways",
+          data: {file:JSON.stringify(WAYSClone)},
+          success:function() {
+            var d = new Date();
+            var n = d.toLocaleTimeString();
+            self.$el.find(".streetwalk-soundeditor-save-lasttime").text(n);
+          }
+        });
     },
 
     getSelectedMarkerIcon: function(type) {
