@@ -291,7 +291,6 @@ define(['jquery',
             self.animating = true;
             self.currentStill = self.way.wayStills.first();
             self.$el.css("height",self.computeBodyHeigh(self.way.wayLength)+"px");
-            self.computeAnimation(true);
             self.$el.find("#scrollToStartLoaded").show();
             self.$el.find("#scrollToStartLoading").hide();
             self.render();
@@ -301,6 +300,8 @@ define(['jquery',
             Sounds.fadeOutSoundHome();
 
             self.soundEditorView = new SoundEditorView(self.way);
+
+            self.computeAnimation(true);
         });
 
         self.way.on("loadingFinishedCompletely", function() {
@@ -523,13 +524,14 @@ define(['jquery',
                             Sounds.updateSounds(currentGeoPosition);
                             self.distanceSinceLastSoundUpdate = 0;
                             self.lastSoundUpdatePosition = currentGeoPosition;
-
-                            //update editor
-                            self.soundEditorView.refreshEditorMapAfterMoving();
                         }
                     }
                     
                 }
+
+                //update editor
+                Sounds.currentUserPosition = self.way.wayPath[imgNb];
+                self.soundEditorView.refreshEditorMapAfterMoving();
             }
         }
 

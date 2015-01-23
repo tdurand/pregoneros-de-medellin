@@ -244,7 +244,9 @@ define(['jquery',
     refreshEditorMapAfterMoving: function() {
         var self = this;
 
-        self.markerUserPosition.setLatLng(new L.LatLng(Sounds.currentUserPosition[0], Sounds.currentUserPosition[1]));
+        if(self.markerUserPosition) {
+            self.markerUserPosition.setLatLng(new L.LatLng(Sounds.currentUserPosition[0], Sounds.currentUserPosition[1]));
+        }
 
         //update marker label volume
         _.each(Sounds.models,function(sound) {
