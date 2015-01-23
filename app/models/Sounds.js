@@ -21,7 +21,7 @@ function($, _, Backbone,
           src: ['content/music/intro.mp3'],
           loop:true,
           html5:true,
-          volume:1,
+          volume:0,
           onload: function() {
             self.soundHome.play();
           }
@@ -32,7 +32,7 @@ function($, _, Backbone,
         var self = this;
 
         if(self.soundHome) {
-            self.soundHome.fade(1,0,3000);
+            // self.soundHome.fade(1,0,3000);
         }
     },
 

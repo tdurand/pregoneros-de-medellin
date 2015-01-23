@@ -460,7 +460,7 @@ define(['jquery',
 
 
             //Change image
-            var availableHeigth = self.bodyHeight;
+            var availableHeigth = (self.bodyHeight - window.innerHeight);
 
             var imgNb = Math.floor( self.currentPosition / availableHeigth * self.way.wayStills.length);
 
