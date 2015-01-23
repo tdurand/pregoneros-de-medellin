@@ -105,6 +105,29 @@ define(['jquery',
 
         },
 
+        initArrowKeyBinding: function() {
+            $(document).keydown(function(e) {
+            switch(e.which) {
+                case 37: // left
+                break;
+
+                case 38: // up
+                window.scrollBy(0, 50);
+                break;
+
+                case 39: // right
+                break;
+
+                case 40: // down
+                window.scrollBy(0, -50);
+                break;
+
+                default: return; // exit this handler for other keys
+            }
+            e.preventDefault(); // prevent the default action (scroll / move caret)
+        });
+        },
+
         prepare:function() {
 
             var self = this;
@@ -124,6 +147,8 @@ define(['jquery',
         self.loadPath();
 
         self.renderLoading();
+
+        self.initArrowKeyBinding();
 
         window.scrollTo(0,0);
 
