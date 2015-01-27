@@ -42,7 +42,7 @@
         border-image: url("../../images/mapborder.png") 39 167 63 89 fill stretch;
         background-color: transparent;
 
-        transition: height 0.2s,width 0.2s;
+        transition: height 0.2s ease-in,width 0.2s ease-out;
 
         .streetwalk-mapcontainer {
             height: 100%;
@@ -50,6 +50,8 @@
             border-radius:10px;
             overflow: hidden;
             z-index:30;
+
+            box-shadow:5px 5px 20px rgb(160, 138, 28);
         }
     }
 
