@@ -92,7 +92,7 @@ define(['jquery',
                 self.updateMarkerPosition(self.currentStill.id);
 
                 // Disable drag and zoom handlers.
-                self.map.dragging.disable();
+                // self.map.dragging.disable();
                 self.map.touchZoom.disable();
                 self.map.doubleClickZoom.disable();
                 self.map.scrollWheelZoom.disable();
@@ -107,9 +107,9 @@ define(['jquery',
 
                 //Center map every 500ms
                 //TODO ONLY IF POSITION CHANGED
-                setInterval(function() {
-                    self.map.panTo(self.way.wayPath[self.currentStill.id]);
-                },500);
+                // setInterval(function() {
+                //     self.map.panTo(self.way.wayPath[self.currentStill.id]);
+                // },500);
         });
         },
 
@@ -519,6 +519,19 @@ define(['jquery',
             }
             else {
 
+                //Update map diplay current user position
+                if(self.mapLoaded) {
+                    var currentTime = new Date().getTime();
+                    if(_.isUndefined(self.lastMapCurrentUserDisplayTimeStamp)) {
+                        self.lastMapCurrentUserDisplayTimeStamp = currentTime;
+                    }
+                    //Only update each 500ms
+                    if((currentTime - self.lastMapCurrentUserDisplayTimeStamp) > 500) {
+                        self.map.panTo(self.way.wayPath[self.currentStill.id]);
+                        self.lastMapCurrentUserDisplayTimeStamp = currentTime;
+                    }
+                }
+
                 //Make sure imgNb is in bounds (on chrome macosx we can scroll more than height (rebound))
                 if(imgNb < 0) { imgNb = 0; }
                 if(imgNb >= self.way.wayStills.length) { imgNb = self.way.wayStills.length-1; }
@@ -587,6 +600,8 @@ define(['jquery',
                 self.soundEditorView.refreshEditorMapAfterMoving();
             }
         }
+
+
 
         window.requestAnimationFrame(function() {
             self.computeAnimation();
