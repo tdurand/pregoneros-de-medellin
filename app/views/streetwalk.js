@@ -318,7 +318,7 @@ define(['jquery',
         var self = this;
 
         self.$el.find(".streetwalk-map").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
-            self.map.invalidateSize();
+            self.map.invalidateSize(true);
         });
 
         self.$el.find(".streetwalk-map").width(self.$el.find(".streetwalk-map").height());
@@ -698,7 +698,7 @@ closeVideo: function() {
         // });
 
         self.$el.find(".streetwalk-map").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
-            self.map.invalidateSize();
+            self.map.invalidateSize(true);
         });
 
         var height = self.$el.find(".streetwalk-map").height();
@@ -711,7 +711,7 @@ closeVideo: function() {
         console.log("ReduceMap");
 
         self.$el.find(".streetwalk-map").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
-            self.map.invalidateSize();
+            self.map.invalidateSize(true);
         });
 
         var height = self.$el.find(".streetwalk-map").height();
