@@ -1892,14 +1892,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   }
 }
 /* line 2, ../sass/module/swinganimation.scss */
-.streetwalk-progress {
+.streetwalk-sign {
   -webkit-perspective: 500;
   -moz-perspective: 500;
   -o-perspective: 500;
   perspective: 500;
 }
 /* line 8, ../sass/module/swinganimation.scss */
-.streetwalk-progress.swing svg, .streetwalk-progress:hover svg {
+.streetwalk-sign.swing svg, .streetwalk-sign:hover svg {
   -webkit-transform-origin: top;
   -moz-transform-origin: top;
   -o-transform-origin: top;

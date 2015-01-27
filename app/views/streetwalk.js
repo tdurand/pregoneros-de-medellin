@@ -693,19 +693,30 @@ closeVideo: function() {
     displayBigMap: function() {
         var self = this;
         console.log("DisplayBigMap");
+        // self.$el.find(".streetwalk-map").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
+        //     self.adjustMapSizes();
+        // });
+
         self.$el.find(".streetwalk-map").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
-            self.adjustMapSizes();
+            self.map.invalidateSize();
         });
-        self.$el.find(".streetwalk-map").css("height","600%");
+
+        var height = self.$el.find(".streetwalk-map").height();
+        self.$el.find(".streetwalk-map").height(height*2);
+        self.$el.find(".streetwalk-map").width(height*2);
     },
 
     reduceMap: function() {
         var self = this;
         console.log("ReduceMap");
+
         self.$el.find(".streetwalk-map").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
-            self.adjustMapSizes();
+            self.map.invalidateSize();
         });
-        self.$el.find(".streetwalk-map").css("height","320%");
+
+        var height = self.$el.find(".streetwalk-map").height();
+        self.$el.find(".streetwalk-map").height(height/2);
+        self.$el.find(".streetwalk-map").width(height/2);
         
     },
 
