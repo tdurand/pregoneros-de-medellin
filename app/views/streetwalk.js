@@ -305,17 +305,24 @@ define(['jquery',
     adjustSizes: function() {
         var self = this;
 
+        self.adjustMapSizes();
+
         //Todo add handler on resize to execute this function
         var height = $(".streetwalk-menucharacters").height();
         $(".streetwalk-menucharacters").width(height*6);
 
         $(".streetwalk-menucharacters").width(height*6);
-
-        self.adjustMapSizes();
     },
 
     adjustMapSizes: function() {
-        $(".streetwalk-map").width($(".streetwalk-map").height());
+        var self = this;
+
+        self.$el.find(".streetwalk-map").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
+            self.map.invalidateSize();
+        });
+
+        self.$el.find(".streetwalk-map").width(self.$el.find(".streetwalk-map").height());
+        
     },
 
     loadPath: function() {
@@ -686,18 +693,20 @@ closeVideo: function() {
     displayBigMap: function() {
         var self = this;
         console.log("DisplayBigMap");
+        self.$el.find(".streetwalk-map").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
+            self.adjustMapSizes();
+        });
         self.$el.find(".streetwalk-map").css("height","600%");
-        self.adjustMapSizes();
-        self.map.invalidateSize();
-        self.map.panTo(self.way.wayPath[self.currentStill.id]);
     },
 
     reduceMap: function() {
         var self = this;
         console.log("ReduceMap");
+        self.$el.find(".streetwalk-map").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
+            self.adjustMapSizes();
+        });
         self.$el.find(".streetwalk-map").css("height","320%");
-        self.adjustMapSizes();
-        self.map.invalidateSize();
+        
     },
 
     onClose: function(){

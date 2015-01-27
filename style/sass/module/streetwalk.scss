@@ -42,6 +42,8 @@
         border-image: url("../../images/mapborder.png") 39 167 63 89 fill stretch;
         background-color: transparent;
 
+        transition: height 0.2s,width 0.2s;
+
         .streetwalk-mapcontainer {
             height: 100%;
             width: 100%;
