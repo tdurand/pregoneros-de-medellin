@@ -91,11 +91,25 @@ define(['jquery',
                 self.mapLoaded = true;
                 self.updateMarkerPosition(self.currentStill.id);
 
-            //Center map every 500ms
-            //TODO ONLY IF POSITION CHANGED
-            setInterval(function() {
-                self.map.panTo(self.way.wayPath[self.currentStill.id]);
-            },500);
+                // Disable drag and zoom handlers.
+                self.map.dragging.disable();
+                self.map.touchZoom.disable();
+                self.map.doubleClickZoom.disable();
+                self.map.scrollWheelZoom.disable();
+                // Disable tap handler, if present.
+                if (self.map.tap) map.tap.disable();
+
+                self.$el.find("#streetwalk-mapcontainer").hover(function() {
+                    self.displayBigMap();
+                },function() {
+                    self.reduceMap();
+                });
+
+                //Center map every 500ms
+                //TODO ONLY IF POSITION CHANGED
+                setInterval(function() {
+                    self.map.panTo(self.way.wayPath[self.currentStill.id]);
+                },500);
         });
         },
 
@@ -292,13 +306,16 @@ define(['jquery',
         var self = this;
 
         //Todo add handler on resize to execute this function
-
-        $(".streetwalk-map").width($(".streetwalk-map").height());
-
         var height = $(".streetwalk-menucharacters").height();
         $(".streetwalk-menucharacters").width(height*6);
 
         $(".streetwalk-menucharacters").width(height*6);
+
+        self.adjustMapSizes();
+    },
+
+    adjustMapSizes: function() {
+        $(".streetwalk-map").width($(".streetwalk-map").height());
     },
 
     loadPath: function() {
@@ -664,6 +681,23 @@ closeVideo: function() {
     showSoundEditor: function() {
         var self = this;
         self.$el.find("#streetwalk-soundeditor").show();
+    },
+
+    displayBigMap: function() {
+        var self = this;
+        console.log("DisplayBigMap");
+        self.$el.find(".streetwalk-map").css("height","600%");
+        self.adjustMapSizes();
+        self.map.invalidateSize();
+        self.map.panTo(self.way.wayPath[self.currentStill.id]);
+    },
+
+    reduceMap: function() {
+        var self = this;
+        console.log("ReduceMap");
+        self.$el.find(".streetwalk-map").css("height","320%");
+        self.adjustMapSizes();
+        self.map.invalidateSize();
     },
 
     onClose: function(){
