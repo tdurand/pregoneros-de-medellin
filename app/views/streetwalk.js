@@ -487,175 +487,175 @@ define(['jquery',
     computeAnimation: function(firstStill) {
         var self = this;
 
-        if(self.animating) {
+            if(self.animating) {
 
-        //LOGGER.debug("Compute animation");
+            //LOGGER.debug("Compute animation");
 
-        var supportPageOffset = window.pageXOffset !== undefined;
-        var isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
-        self.targetPosition  = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+            var supportPageOffset = window.pageXOffset !== undefined;
+            var isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
+            self.targetPosition  = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
 
-        if( Math.floor(self.targetPosition) != Math.floor(self.currentPosition) || firstStill) {
-            //LOGGER.debug("Compute We have moved : scroll position " + self.currentPosition);
-            var deaccelerate = Math.max( Math.min( Math.abs(self.targetPosition - self.currentPosition) * 5000 , 10 ) , 2 );
-            self.currentPosition += (self.targetPosition - self.currentPosition) / deaccelerate;
+            if( Math.floor(self.targetPosition) != Math.floor(self.currentPosition) || firstStill) {
+                //LOGGER.debug("Compute We have moved : scroll position " + self.currentPosition);
+                var deaccelerate = Math.max( Math.min( Math.abs(self.targetPosition - self.currentPosition) * 5000 , 10 ) , 2 );
+                self.currentPosition += (self.targetPosition - self.currentPosition) / deaccelerate;
 
-            if(self.targetPosition > self.currentPosition) {
-                self.currentPosition = Math.ceil(self.currentPosition);
-            }
-            else{
-                self.currentPosition = Math.floor(self.currentPosition);
-            }
-
-
-            //Change image
-            var availableHeigth = (self.bodyHeight - window.innerHeight);
-
-            var imgNb = Math.floor( self.currentPosition / availableHeigth * self.way.wayStills.length);
-
-            //Do not render same img (we can have changed position a bit but do not have image for this position)
-            if(imgNb == self.currentStill.id) {
-                LOGGER.debug("DO NOT RENDER SAME STILL " + imgNb);
-            }
-            else {
-
-                //Update map diplay current user position
-                if(self.mapLoaded) {
-                    var currentTime = new Date().getTime();
-                    if(_.isUndefined(self.lastMapCurrentUserDisplayTimeStamp)) {
-                        self.lastMapCurrentUserDisplayTimeStamp = currentTime;
-                    }
-                    //Only update each 500ms
-                    if((currentTime - self.lastMapCurrentUserDisplayTimeStamp) > 500) {
-                        self.map.panTo(self.way.wayPath[self.currentStill.id]);
-                        self.lastMapCurrentUserDisplayTimeStamp = currentTime;
-                    }
+                if(self.targetPosition > self.currentPosition) {
+                    self.currentPosition = Math.ceil(self.currentPosition);
+                }
+                else{
+                    self.currentPosition = Math.floor(self.currentPosition);
                 }
 
-                //Make sure imgNb is in bounds (on chrome macosx we can scroll more than height (rebound))
-                if(imgNb < 0) { imgNb = 0; }
-                if(imgNb >= self.way.wayStills.length) { imgNb = self.way.wayStills.length-1; }
 
-                //Render image
-                self.renderImg(imgNb);
-                
-                //Render elements at this position:
-                self.renderElements(imgNb);
-                $("body").removeClass('not-moving');
+                //Change image
+                var availableHeigth = (self.bodyHeight - window.innerHeight);
 
-                //close menu
-                self.menuCharactersView.closeMenu();
+                var imgNb = Math.floor( self.currentPosition / availableHeigth * self.way.wayStills.length);
 
-                //Render highres after 100ms
-                clearTimeout(self.highResLoadingInterval);
-                self.highResLoadingInterval = setTimeout(function() {
-                    currentTime = new Date().getTime();
-                    //If time since last call < 1 sec, cancel last highres
-                    if(currentTime - self.lastCallRenderHighResTime < 1000) {
-                        console.log("Cancel highres loading");
-                        self.lastCallRenderHighResStill.cancelHighResLoading();
-                        //cancel timeout not moving
-                        clearTimeout(self.timeOutNotMoving);
-                    }
+                //Do not render same img (we can have changed position a bit but do not have image for this position)
+                if(imgNb == self.currentStill.id) {
+                    LOGGER.debug("DO NOT RENDER SAME STILL " + imgNb);
+                }
+                else {
 
-                    self.renderImgHighRes();
-                    self.lastCallRenderHighResTime = new Date().getTime();
-                    self.lastCallRenderHighResStill = self.currentStill;
-
-                    self.timeOutNotMoving = setTimeout(function() {
-                        $("body").addClass('not-moving');
-                    },500);
-                },100);
-
-                // Update sounds volume
-                if(Sounds.length) {
-                    var currentGeoPosition = self.way.wayPath[imgNb];
-
-                    if(_.isUndefined(self.distanceSinceLastSoundUpdate)) {
-                        self.distanceSinceLastSoundUpdate = 0;
-                        self.lastSoundUpdateStill = 0;
-                        self.lastSoundUpdatePosition = currentGeoPosition;
-
-                    }
-                    else {
-                        self.distanceSinceLastSoundUpdate = GeoUtils.distance(self.lastSoundUpdatePosition,currentGeoPosition);
-
-                        //update each 2 meter
-                        if(self.distanceSinceLastSoundUpdate > 2) {
-                            var movingForward = true;
-                            if(imgNb < self.lastSoundUpdateStill) {
-                                movingForward = false;
-                            }
-                            Sounds.updateSounds(currentGeoPosition, movingForward);
-                            self.distanceSinceLastSoundUpdate = 0;
-                            self.lastSoundUpdatePosition = currentGeoPosition;
-                            self.lastSoundUpdateStill = imgNb;
+                    //Update map diplay current user position
+                    if(self.mapLoaded) {
+                        var currentTime = new Date().getTime();
+                        if(_.isUndefined(self.lastMapCurrentUserDisplayTimeStamp)) {
+                            self.lastMapCurrentUserDisplayTimeStamp = currentTime;
+                        }
+                        //Only update each 500ms
+                        if((currentTime - self.lastMapCurrentUserDisplayTimeStamp) > 500) {
+                            self.map.panTo(self.way.wayPath[self.currentStill.id]);
+                            self.lastMapCurrentUserDisplayTimeStamp = currentTime;
                         }
                     }
+
+                    //Make sure imgNb is in bounds (on chrome macosx we can scroll more than height (rebound))
+                    if(imgNb < 0) { imgNb = 0; }
+                    if(imgNb >= self.way.wayStills.length) { imgNb = self.way.wayStills.length-1; }
+
+                    //Render image
+                    self.renderImg(imgNb);
                     
+                    //Render elements at this position:
+                    self.renderElements(imgNb);
+                    $("body").removeClass('not-moving');
+
+                    //close menu
+                    self.menuCharactersView.closeMenu();
+
+                    //Render highres after 100ms
+                    clearTimeout(self.highResLoadingInterval);
+                    self.highResLoadingInterval = setTimeout(function() {
+                        currentTime = new Date().getTime();
+                        //If time since last call < 1 sec, cancel last highres
+                        if(currentTime - self.lastCallRenderHighResTime < 1000) {
+                            console.log("Cancel highres loading");
+                            self.lastCallRenderHighResStill.cancelHighResLoading();
+                            //cancel timeout not moving
+                            clearTimeout(self.timeOutNotMoving);
+                        }
+
+                        self.renderImgHighRes();
+                        self.lastCallRenderHighResTime = new Date().getTime();
+                        self.lastCallRenderHighResStill = self.currentStill;
+
+                        self.timeOutNotMoving = setTimeout(function() {
+                            $("body").addClass('not-moving');
+                        },500);
+                    },100);
+
+                    // Update sounds volume
+                    if(Sounds.length) {
+                        var currentGeoPosition = self.way.wayPath[imgNb];
+
+                        if(_.isUndefined(self.distanceSinceLastSoundUpdate)) {
+                            self.distanceSinceLastSoundUpdate = 0;
+                            self.lastSoundUpdateStill = 0;
+                            self.lastSoundUpdatePosition = currentGeoPosition;
+
+                        }
+                        else {
+                            self.distanceSinceLastSoundUpdate = GeoUtils.distance(self.lastSoundUpdatePosition,currentGeoPosition);
+
+                            //update each 2 meter
+                            if(self.distanceSinceLastSoundUpdate > 2) {
+                                var movingForward = true;
+                                if(imgNb < self.lastSoundUpdateStill) {
+                                    movingForward = false;
+                                }
+                                Sounds.updateSounds(currentGeoPosition, movingForward);
+                                self.distanceSinceLastSoundUpdate = 0;
+                                self.lastSoundUpdatePosition = currentGeoPosition;
+                                self.lastSoundUpdateStill = imgNb;
+                            }
+                        }
+                        
+                    }
+
+                    //update editor
+                    Sounds.currentUserPosition = self.way.wayPath[imgNb];
+                    self.soundEditorView.refreshEditorMapAfterMoving();
                 }
-
-                //update editor
-                Sounds.currentUserPosition = self.way.wayPath[imgNb];
-                self.soundEditorView.refreshEditorMapAfterMoving();
             }
+
+
+
+            window.requestAnimationFrame(function() {
+                self.computeAnimation();
+            });
+
         }
+    },
 
+    toggleSounds: function(e) {
+        var self = this;
 
+        var state = $(e.currentTarget).attr("data-state");
 
-        window.requestAnimationFrame(function() {
-            self.computeAnimation();
-        });
+        if(state == "normal") {
+            $(e.currentTarget).attr("data-state","muted");
+            Sounds.mute();
+        }
+        else {
+            $(e.currentTarget).attr("data-state","normal");
+            Sounds.unmute();
+        }
+    },
 
-    }
-},
+    muteSounds: function() {
+        var self = this;
 
-toggleSounds: function(e) {
-    var self = this;
-
-    var state = $(e.currentTarget).attr("data-state");
-
-    if(state == "normal") {
-        $(e.currentTarget).attr("data-state","muted");
+        self.$el.find(".toggle-sounds").attr("data-state","muted");
         Sounds.mute();
-    }
-    else {
-        $(e.currentTarget).attr("data-state","normal");
+    },
+
+    unmuteSounds: function() {
+        var self = this;
+
+        self.$el.find(".toggle-sounds").attr("data-state","normal");
         Sounds.unmute();
-    }
-},
+    },
 
-muteSounds: function() {
-    var self = this;
+    initVideo: function() {
+        var self = this;
 
-    self.$el.find(".toggle-sounds").attr("data-state","muted");
-    Sounds.mute();
-},
+        if(self.way.characterDefinition) {
 
-unmuteSounds: function() {
-    var self = this;
+            var idVimeo = Progression.nextVideoToPlay(self.way.characterDefinition.name);
 
-    self.$el.find(".toggle-sounds").attr("data-state","normal");
-    Sounds.unmute();
-},
-
-initVideo: function() {
-    var self = this;
-
-    if(self.way.characterDefinition) {
-
-        var idVimeo = Progression.nextVideoToPlay(self.way.characterDefinition.name);
-
-        if(Progression.isFirstVideo) {
-            Progression.isFirstVideo = false;
-            idVimeo = 115328392;
-        }
+            if(Progression.isFirstVideo) {
+                Progression.isFirstVideo = false;
+                idVimeo = 115328392;
+            }
 
 
 
-           // Add video
-           self.popcorn = Popcorn.vimeo( ".streetwalk-video-container", "http://player.vimeo.com/video/"+idVimeo);
-       }
+               // Add video
+               self.popcorn = Popcorn.vimeo( ".streetwalk-video-container", "http://player.vimeo.com/video/"+idVimeo);
+           }
    },
 
    showVideo: function() {

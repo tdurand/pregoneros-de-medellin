@@ -171,13 +171,36 @@ function($, _, Backbone,
 
     openMenu: function(character) {
         var self = this;
+
+        if(self.isOpening) {
+            return;
+        }
+
         self.closeMenu();
-        self.$el.find(".streetwalk-menucharacter[data-character='" + character + "']").find(".submenu").attr("data-state","open");
+        var submenu = self.$el.find(".streetwalk-menucharacter[data-character='" + character + "']").find(".submenu");
+        submenu.attr("data-state","open");
+        TweenLite.fromTo(submenu, 0.5, {scaleY:0,scaleX:0,transformOrigin:"right bottom",onStart:function() {
+            self.isOpening = true;
+        }},{scaleY:1,scaleX:1,transformOrigin:"right bottom",onStart:function() {
+            self.isOpening = false;
+        }});
     },
 
     closeMenu: function() {
         var self = this;
-        self.$el.find(".submenu[data-state='open']").attr("data-state","closed");
+
+        if(self.isClosing) {
+            return;
+        }
+
+        var submenu = self.$el.find(".submenu[data-state='open']");
+
+        TweenLite.fromTo(submenu, 0.5, {scaleY:1,scaleX:1,transformOrigin:"right bottom",onStart:function() {
+            self.isClosing = true;
+        }},{scaleY:0,scaleX:0,transformOrigin:"right bottom",onComplete: function() {
+            submenu.attr("data-state","closed");
+            self.isClosing = false;
+        }});
     },
 
     onClose: function(){
