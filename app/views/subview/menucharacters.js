@@ -176,12 +176,12 @@ function($, _, Backbone,
             return;
         }
 
+        self.isOpening = true;
+
         self.closeMenu();
         var submenu = self.$el.find(".streetwalk-menucharacter[data-character='" + character + "']").find(".submenu");
         submenu.attr("data-state","open");
-        TweenLite.fromTo(submenu, 0.5, {scaleY:0,scaleX:0,transformOrigin:"right bottom",onStart:function() {
-            self.isOpening = true;
-        }},{scaleY:1,scaleX:1,transformOrigin:"right bottom",onStart:function() {
+        TweenLite.fromTo(submenu, 0.5, {scaleY:0,scaleX:0,transformOrigin:"right bottom"},{scaleY:1,scaleX:1,transformOrigin:"right bottom",onStart:function() {
             self.isOpening = false;
         }});
     },
@@ -193,11 +193,11 @@ function($, _, Backbone,
             return;
         }
 
+        self.isClosing = true;
+
         var submenu = self.$el.find(".submenu[data-state='open']");
 
-        TweenLite.fromTo(submenu, 0.5, {scaleY:1,scaleX:1,transformOrigin:"right bottom",onStart:function() {
-            self.isClosing = true;
-        }},{scaleY:0,scaleX:0,transformOrigin:"right bottom",onComplete: function() {
+        TweenLite.fromTo(submenu, 0.5, {scaleY:1,scaleX:1,transformOrigin:"right bottom"},{scaleY:0,scaleX:0,transformOrigin:"right bottom",onComplete: function() {
             submenu.attr("data-state","closed");
             self.isClosing = false;
         }});
