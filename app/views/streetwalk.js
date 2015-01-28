@@ -544,7 +544,7 @@ define(['jquery',
                     $("body").removeClass('not-moving');
 
                     //close menu
-                    self.menuCharactersView.closeMenu();
+                    self.menuCharactersView.closeMenu(true);
 
                     //Render highres after 100ms
                     clearTimeout(self.highResLoadingInterval);
@@ -675,15 +675,15 @@ define(['jquery',
 
 },
 
-closeVideo: function() {
-    var self = this;
+    closeVideo: function() {
+        var self = this;
 
-    self.$el.find(".streetwalk-video").hide();
+        self.$el.find(".streetwalk-video").hide();
 
-    self.popcorn.pause();
-    self.popcorn.currentTime(0);
+        self.popcorn.pause();
+        self.popcorn.currentTime(0);
 
-    self.unmuteSounds();
+        self.unmuteSounds();
 
         //current character
         var characterName = self.way.characterDefinition.name;
