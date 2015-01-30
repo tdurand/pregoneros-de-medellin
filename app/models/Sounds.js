@@ -115,11 +115,12 @@ function($, _, Backbone,
 
         self.wayName = wayName;
 
-        if(_.isUndefined(self.waySounds)) {
-            self.previousWaySounds = [];
-        }
-        else {
-            self.previousWaySounds = self.waySounds;
+        self.previousWaySounds = [];
+
+        if(self.models.length > 0) {
+            _.each(self.models,function(sound) {
+                self.previousWaySounds.push(sound.attributes);
+            });
         }
         
         self.waySounds = waySounds;
@@ -219,6 +220,7 @@ function($, _, Backbone,
                     if(nbSoundsToLoad === 0) {
                         self.trigger('soundsLoaded');
                         LOGGER.debug("ALL SOUNDS LOADED");
+                        console.log(self.models);
                     }
                 });
 

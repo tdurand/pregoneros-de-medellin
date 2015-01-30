@@ -59,11 +59,10 @@ define(['jquery',
                 })
             };
 
-            self.save();
-
-            setInterval(function() {
-                self.save();
-            },60000);
+            //Set last time saved
+            var d = new Date();
+            var n = d.toLocaleTimeString();
+            self.$el.find(".streetwalk-soundeditor-save-lasttime").text(n);
         },
 
         initMapContent : function() {
@@ -375,9 +374,7 @@ define(['jquery',
           url: "saveways",
           data: {file:JSON.stringify(WAYSClone)},
           success:function() {
-            var d = new Date();
-            var n = d.toLocaleTimeString();
-            self.$el.find(".streetwalk-soundeditor-save-lasttime").text(n);
+            window.location.reload();
           }
         });
     },
