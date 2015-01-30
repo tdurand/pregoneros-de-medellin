@@ -10,6 +10,11 @@
     <input type="text" name="sound-db" class="sound-db" value="<%= sound.attributes.db %>">
 </p>
 
+<p>
+    <label for="sound-maxvol">Max volume (0-100%)</label>
+    <input type="text" name="sound-maxvol" class="sound-maxvol" value="<%= sound.attributes.maxvol %>">
+</p>
+
 <p><label for="sound-type">Type Sound</label>
     <select name="sound-type" class="sound-type">
       <option value="punctual" <% if(sound.attributes.type == 'punctual') { %>selected<% } %>>punctual</option> 

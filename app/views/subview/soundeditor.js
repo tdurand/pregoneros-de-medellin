@@ -277,9 +277,11 @@ define(['jquery',
         var soundPath = self.$el.find(".sound-path").val();
         var soundDb = parseInt(self.$el.find(".sound-db").val(),10);
         var soundType = self.$el.find(".sound-type").val();
+        var soundMaxVolume = self.$el.find(".sound-maxvol").val();
 
         self.currentSoundEditing.set("db",soundDb);
         self.currentSoundEditing.set("type",soundType);
+        self.currentSoundEditing.set("maxvol",soundMaxVolume);
 
         if(self.currentSoundEditing.get("path") != soundPath) {
             //verify that soundpath doesn't exist yet

@@ -105,15 +105,18 @@ function($, _, Backbone, GeoUtils, LOGGER){
 
         var vol = 0;
 
+        var maxVol=self.get("maxvol")/100;
+
         if(self.get("type") == "ambient") {
-            vol = 1 / (distance);
+            vol = maxVol / (distance);
         }
         else if(self.get("type") == "punctual") {
-            vol = 1 / (distance * distance);
+            vol = maxVol / (distance * distance);
         }
         
-        // Multiply distance volume by amplitude of sound (apply ceiling max of 1)
-        vol = Math.min((vol * self.get("db")), 1);
+        // Multiply distance volume by amplitude of sound (apply ceiling max of maxVol)
+        vol = Math.min((vol * self.get("db")),maxVol);
+
         return vol;
     },
 

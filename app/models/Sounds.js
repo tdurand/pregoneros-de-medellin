@@ -145,10 +145,15 @@ function($, _, Backbone,
 
         self.previousWaySounds.push(waySound);
 
+        if(_.isUndefined(waySound.maxvol)) {
+            waySound.maxvol = 100;
+        }
+
         var sound = new Sound({
                         position: waySound.position,
                         path: waySound.path,
                         db: waySound.db,
+                        maxvol: waySound.maxvol,
                         type: waySound.type,
                         way: self.wayName
                         });
@@ -193,10 +198,15 @@ function($, _, Backbone,
             
             _.each(self.soundsToAdd, function(waySound) {
 
+                if(_.isUndefined(waySound.maxvol)) {
+                    waySound.maxvol = 100;
+                }
+
                 var sound = new Sound({
                         position: waySound.position,
                         path: waySound.path,
                         db: waySound.db,
+                        maxvol: waySound.maxvol,
                         type: waySound.type,
                         way: self.wayName
                         });
