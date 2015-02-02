@@ -5,6 +5,11 @@ var app = express();
 app.use('/', express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.set('views', __dirname);
+app.get('/', function(req, res) {
+    res.render('index.ejs', {lang:"en"});
+});
+
 app.listen(3000, function() { console.log('listening');});
 
 app.post('/saveways', function (req, res) {
@@ -18,5 +23,5 @@ app.post('/saveways', function (req, res) {
             res.sendStatus(200);
 
         }
-    }); 
+    });
 });
