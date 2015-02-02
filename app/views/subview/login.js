@@ -3,7 +3,7 @@ define(['jquery',
         'backbone',
         'utils/Logger',
         'models/Progression',
-        'text!templates/streetwalk/loginViewTemplate.html'
+        'text!templates/streetwalk/logInViewTemplate.html'
         ],
 function($, _, Backbone,
                 LOGGER,
