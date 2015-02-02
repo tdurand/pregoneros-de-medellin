@@ -4,13 +4,12 @@ var app = express();
 
 app.use('/', express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.set('port', (process.env.PORT || 3000));
 app.set('views', __dirname);
+
 app.get('/', function(req, res) {
     res.render('index.ejs', {lang:"en"});
 });
-
-app.listen(3000, function() { console.log('listening');});
 
 app.post('/saveways', function (req, res) {
   var fs = require('fs');
@@ -24,4 +23,8 @@ app.post('/saveways', function (req, res) {
 
         }
     });
+});
+
+app.listen(app.get('port'), function() {
+    console.log("Node app is running at localhost:" + app.get('port'));
 });
