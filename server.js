@@ -8,7 +8,11 @@ app.set('port', (process.env.PORT || 3000));
 app.set('views', __dirname);
 
 app.get('/', function(req, res) {
-    res.render('index.ejs', {lang:"en"});
+    var lang = "en";
+    if(req.query.fb_locale) {
+        lang = req.query.fb_locale;
+    }
+    res.render('index.ejs', {lang:lang});
 });
 
 app.post('/saveways', function (req, res) {
