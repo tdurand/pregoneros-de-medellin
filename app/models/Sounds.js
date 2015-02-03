@@ -140,6 +140,15 @@ function($, _, Backbone,
             self.soundsToAdd.push(_.findWhere(self.waySounds, {path: soundToAddId}));
         });
 
+        if(self.soundsToKeepIds.length === 0) {
+            //Need to do a fade on remove
+            
+            //Find closest ambient to remove
+            //fade closest ambient to remove
+            //Find closest ambient to add
+            //fade closest ambient to add
+        }
+
     },
 
     addSound: function(waySound) {
