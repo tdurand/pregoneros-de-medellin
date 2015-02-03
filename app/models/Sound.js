@@ -91,6 +91,11 @@ function($, _, Backbone, GeoUtils, LOGGER){
 
     updateSound: function(newUserPosition, movingForward) {
         var self = this;
+
+        if(self.sound._muted) {
+            return;
+        }
+
         //spatialized only for punctual sounds
         if(self.get("type") == "punctual") {
             self.updatePan(newUserPosition, movingForward);
