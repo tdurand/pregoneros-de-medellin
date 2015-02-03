@@ -168,7 +168,7 @@ define(['underscore','utils/Logger'],function(_,LOGGER) {
 
         },
 
-        generateIntermediatePointsOfArray: function(arrayPoints,nbTotalPoints) {
+        generateIntermediatePointsOfArray: function(arrayPoints,nbTotalPoints,arraySyncPoint) {
 
             var self = this;
 
@@ -195,16 +195,32 @@ define(['underscore','utils/Logger'],function(_,LOGGER) {
                     individualSegment = {};
                     individualSegment.pointStart = arrayPoints[i];
                     individualSegment.pointEnd = arrayPoints[i+1];
+
+                    if(arraySyncPoint) {
+                        individualSegment.pointEndFrameNb = arraySyncPoint[i+1];
+                    }
+                    else {
+                        individualSegment.pointEndFrameNb = "auto";
+                    }
+                    
                     individualSegment.distance = self.distance(individualSegment.pointStart,individualSegment.pointEnd);
                     distanceTotal += individualSegment.distance;
                     collectionOfSingleSegments.push(individualSegment);
                 }
 
+                var currentFrameNb = 0;
+
                 //then generate intermediate points for all individual segments
                 for (var j = 0; j < collectionOfSingleSegments.length; j++) {
 
                     individualSegment = collectionOfSingleSegments[j];
-                    nbPointsOnThisSegment = Math.round(individualSegment.distance * nbTotalPoints / distanceTotal);
+
+                    if(individualSegment.pointEndFrameNb !== "auto") {
+                        nbPointsOnThisSegment = individualSegment.pointEndFrameNb - nbTotalPointsGenerated;
+                    }
+                    else {
+                        nbPointsOnThisSegment = Math.round(individualSegment.distance * nbTotalPoints / distanceTotal);
+                    }
 
                     //if last segment, generate exact number of points
                     if(j == collectionOfSingleSegments.length - 1) {
@@ -238,12 +254,12 @@ define(['underscore','utils/Logger'],function(_,LOGGER) {
             return latLonArray;
         },
 
-        prepareWayPathFromGeoJSONLine : function(geoJsonLinePath,nbPoints) {
+        prepareWayPathFromGeoJSONLine : function(geoJsonLinePath,nbPoints,syncroPathPoints) {
             var self = this;
             //Invert long-lat to lat-long
             geoJsonLinePath = self.invertArrayLongLatToLatLong(geoJsonLinePath);
 
-            var path = self.generateIntermediatePointsOfArray(geoJsonLinePath,nbPoints);
+            var path = self.generateIntermediatePointsOfArray(geoJsonLinePath,nbPoints,syncroPathPoints);
 
             return path;
         }
