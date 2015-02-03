@@ -136,7 +136,7 @@ function($, _, Backbone, GeoUtils, LOGGER){
         self.sound = new Howl({
           src: ['data/sounds/' + self.get("path") + '.mp3'],
           loop:true,
-          html5:true,
+          html5:false,
           volume:0,
           onload: function() {
             self.trigger("soundLoaded");
