@@ -51,23 +51,24 @@ function($, _, Backbone,
 
         //set other node to 0 vol
         _.each(self.models, function(sound) {
-            if(sound.get("type") == "punctual") {
-                sound.updateSound(newUserPosition, movingForward);
-            }
-            else if(sound.cid != twoClosestNode.closestNode.sound.cid && sound.cid != twoClosestNode.secondClosestNode.sound.cid) {
-                sound.sound.volume(0);
-                sound.vol = 0;
-                LOGGER.debug("SET VOLUME 0 TO " + sound.get("path"));
-            }
+            sound.updateSound(newUserPosition, movingForward);
+            // if(sound.get("type") == "punctual") {
+            //     sound.updateSound(newUserPosition, movingForward);
+            // }
+            // else if(sound.cid != twoClosestNode.closestNode.sound.cid && sound.cid != twoClosestNode.secondClosestNode.sound.cid) {
+            //     sound.sound.volume(0);
+            //     sound.vol = 0;
+            //     LOGGER.debug("SET VOLUME 0 TO " + sound.get("path"));
+            // }
         });
 
-        if(!_.isUndefined(twoClosestNode.closestNode.sound)) {
-            twoClosestNode.closestNode.sound.updateSound(newUserPosition, movingForward);
-        }
+        // if(!_.isUndefined(twoClosestNode.closestNode.sound)) {
+        //     twoClosestNode.closestNode.sound.updateSound(newUserPosition, movingForward);
+        // }
 
-        if(!_.isUndefined(twoClosestNode.secondClosestNode.sound)) {
-            twoClosestNode.secondClosestNode.sound.updateSound(newUserPosition, movingForward);
-        }
+        // if(!_.isUndefined(twoClosestNode.secondClosestNode.sound)) {
+        //     twoClosestNode.secondClosestNode.sound.updateSound(newUserPosition, movingForward);
+        // }
     },
 
     getTwoClosestNode: function(position) {
