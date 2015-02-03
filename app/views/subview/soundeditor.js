@@ -315,6 +315,7 @@ define(['jquery',
         //default values
         var waySound = {
             db: 10,
+            maxvol : 70,
             type: "ambient",
             path: self.way.wayName + "-" + self.newSoundId,
             position: Sounds.currentUserPosition
