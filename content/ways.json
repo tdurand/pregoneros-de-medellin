@@ -1054,6 +1054,38 @@
         "direction": "right",
         "name": "carabobo-cl52-cl53"
       }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.2512722274436,
+          -75.56802570819855
+        ],
+        "path": "clle52-51-52-esquina-calibioconbolivar-false",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.251504567127158,
+          -75.56848486866268
+        ],
+        "path": "clle52-51-52-pasajecalibiomitaddecuadra",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.2517228252549435,
+          -75.56891620159149
+        ],
+        "path": "clle52-52-53-esquina-calibioconcarabobo",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
+      }
     ]
   },
   {
@@ -1295,7 +1327,69 @@
         "left": 18.05744792,
         "top": 91.52092593
       }
-    }
+    },
+    "waySounds": [
+      {
+        "position": [
+          6.25172549151303,
+          -75.56891620159149
+        ],
+        "path": "cra52-52-53-esquina",
+        "db": 12,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252077937383622,
+          -75.56870338507112
+        ],
+        "path": "cra52-52-53-medio-soldadoromano01",
+        "db": 10,
+        "maxvol": "50",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252157425143088,
+          -75.56842267513275
+        ],
+        "path": "clle53-52-51-medio-cabeza01",
+        "db": 10,
+        "maxvol": "50",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252114765047359,
+          -75.56810081005096
+        ],
+        "path": "clle53-52-51-medio-perro02",
+        "db": 10,
+        "maxvol": "50",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.251772192685758,
+          -75.56784327607636
+        ],
+        "path": "cra51-53-52-esquina-bajoviaducto",
+        "db": 10,
+        "maxvol": "60",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.251518856470838,
+          -75.56789855472768
+        ],
+        "path": "cra51-53-52-medio-bajoviaducto",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
+      }
+    ]
   },
   {
     "wayName": "plazabotero-cr51-carabobo",
@@ -1558,6 +1652,28 @@
         "direction": "left",
         "name": "cl51-cr53-carabobo"
       }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.2517228252549435,
+          -75.5689188838005
+        ],
+        "path": "clle52-52-53-esquina-calibioconcarabobo",
+        "db": 12,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252058044635073,
+          -75.56965165070336
+        ],
+        "path": "clle52-53-54-esquina-calibioconcundinamarca",
+        "db": 12,
+        "maxvol": "70",
+        "type": "ambient"
+      }
     ]
   },
   {
@@ -1815,7 +1931,11 @@
         6.2485126406642815
       ]
     ],
-    "wayPathSyncPoints": ["auto",385,"auto"],
+    "wayPathSyncPoints": [
+      "auto",
+      385,
+      "auto"
+    ],
     "wayConnectionsEnd": [
       {
         "direction": "right",
@@ -2081,7 +2201,7 @@
     "wayConnectionsEnd": [
       {
         "direction": "forward",
-        "name": "carabobo-cl51-cl52"
+        "name": "carabobo-cl48-cl49media"
       },
       {
         "direction": "right",
