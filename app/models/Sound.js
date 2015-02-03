@@ -144,6 +144,18 @@ function($, _, Backbone, GeoUtils, LOGGER){
         });
 
         self.sound.play();
+    },
+
+    mute: function() {
+        var self = this;
+
+        self.sound.mute(true);
+    },
+
+    unmute: function() {
+        var self = this;
+
+        self.sound.mute(false);
     }
 
   });

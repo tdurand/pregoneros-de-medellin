@@ -19,6 +19,8 @@ define(['jquery',
         events:{
             "click .streetwalk-soundeditor-btnclose":"closeEditor",
             "click .streetwalk-soundeditor-btnupdate":"updateSound",
+            "click .streetwalk-soundeditor-btnsolo":"soloSound",
+            "click .streetwalk-soundeditor-btnunmute":"unmuteAll",
             "click .streetwalk-soundeditor-addsound":"addSound",
             "click .streetwalk-soundeditor-deletesound":"deleteSound",
             "click .streetwalk-soundeditor-export":"exportJSON",
@@ -82,7 +84,7 @@ define(['jquery',
                         // Specify a class name we can refer to in CSS.
                         className: 'label',
                         // Define what HTML goes in each marker.
-                        html: self.getVolPercentage(waySound.vol)
+                        html: self.getVolPercentage(waySound)
                     })
                 });
 
@@ -254,14 +256,21 @@ define(['jquery',
                             // Specify a class name we can refer to in CSS.
                             className: 'label',
                             // Define what HTML goes in each marker.
-                            html: self.getVolPercentage(sound.vol)
+                            html: self.getVolPercentage(sound)
                         }));
             }
         });
     },
 
-    getVolPercentage: function(vol) {
-        return Math.round(vol*100)+"%";
+    getVolPercentage: function(sound) {
+        var text = "";
+        if(sound.sound._muted) {
+            text = "MU";
+        }
+        else {
+            text = Math.round(sound.vol*100)+"%";
+        }
+        return text;
     },
 
     closeEditor: function() {
@@ -377,6 +386,25 @@ define(['jquery',
             window.location.reload();
           }
         });
+    },
+
+    soloSound: function(e) {
+        var self = this;
+        e.preventDefault();
+
+        Sounds.solo(self.currentSoundEditing);
+
+        self.refreshEditorMapAfterMoving();
+    },
+
+    unmuteAll: function(e) {
+        var self = this;
+
+        e.preventDefault();
+
+        Sounds.unmuteAll();
+
+        self.refreshEditorMapAfterMoving();
     },
 
     getSelectedMarkerIcon: function(type) {

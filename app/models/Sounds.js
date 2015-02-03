@@ -235,6 +235,29 @@ function($, _, Backbone,
         Howler.mute(false);
     },
 
+    solo: function(soundToSolo) {
+        var self = this;
+        
+        self.unmuteAll();
+
+        if(self.models.length > 0) {
+            _.each(self.models,function(sound) {
+                if(soundToSolo.cid != sound.cid) {
+                    sound.mute();
+                }
+            });
+        }
+    },
+
+    unmuteAll: function() {
+        var self = this;
+        if(self.models.length > 0) {
+            _.each(self.models,function(sound) {
+                sound.unmute();
+            });
+        }
+    },
+
     clear: function() {
         var self = this;
     }
