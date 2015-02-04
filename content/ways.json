@@ -4304,6 +4304,11 @@
         6.252421384408058
       ]
     ],
+    "wayPathSyncPoints":[
+        "auto",
+        259,
+        "auto"
+    ],
     "wayConnectionsEnd": [
       {
         "direction": "right",
