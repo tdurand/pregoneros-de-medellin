@@ -283,6 +283,8 @@ define(['jquery',
             self.$el.find(".streetwalk-loading").html(_.template(streetWalkLoadingViewTemplate));
         }
 
+
+
         self.$el.find(".streetwalk-loading").show();
 
         //init svg element path
@@ -298,7 +300,8 @@ define(['jquery',
 
         self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
         self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
-        
+
+        window.scrollTo(0,5);
 
     },
 
