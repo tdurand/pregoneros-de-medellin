@@ -426,62 +426,75 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   bottom: 0;
 }
 /* line 220, ../sass/module/streetwalk.scss */
+.streetwalk-tutorial-wrapper .streetwalk-tutorial-scrollotherside-tooltip {
+  display: none;
+  width: 40%;
+  margin: 0 auto;
+  border-style: solid;
+  border-width: 39px 167px 30px 89px;
+  -moz-border-image: url("../../images/mapborder.png") 39 167 63 89 stretch;
+  -webkit-border-image: url("../../images/mapborder.png") 39 167 63 89 stretch;
+  -o-border-image: url("../../images/mapborder.png") 39 167 63 89 stretch;
+  border-image: url("../../images/mapborder.png") 39 167 63 89 fill stretch;
+  background-color: transparent;
+}
+/* line 233, ../sass/module/streetwalk.scss */
 .streetwalk-tutorial-wrapper svg {
   width: 100%;
   height: 100%;
 }
 
-/* line 226, ../sass/module/streetwalk.scss */
+/* line 239, ../sass/module/streetwalk.scss */
 .streetwalk-control {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 21;
 }
-/* line 232, ../sass/module/streetwalk.scss */
+/* line 245, ../sass/module/streetwalk.scss */
 .streetwalk-control .toggle-sounds {
   width: 3rem;
   height: 3rem;
   cursor: pointer;
 }
-/* line 238, ../sass/module/streetwalk.scss */
+/* line 251, ../sass/module/streetwalk.scss */
 .streetwalk-control .toggle-sounds[data-state="muted"] {
   background-image: url("../../images/mutesound.svg");
 }
-/* line 242, ../sass/module/streetwalk.scss */
+/* line 255, ../sass/module/streetwalk.scss */
 .streetwalk-control .toggle-sounds[data-state="normal"] {
   background-image: url("../../images/unmutesound.svg");
 }
 
-/* line 249, ../sass/module/streetwalk.scss */
+/* line 262, ../sass/module/streetwalk.scss */
 .streetwalk-progress, .streetwalk-area {
   position: fixed;
   height: 15%;
 }
 @media screen and (min-width: 1400px) {
-  /* line 255, ../sass/module/streetwalk.scss */
+  /* line 268, ../sass/module/streetwalk.scss */
   .streetwalk-progress, .streetwalk-area {
     height: 12%;
   }
 }
-/* line 260, ../sass/module/streetwalk.scss */
+/* line 273, ../sass/module/streetwalk.scss */
 .streetwalk-progress svg, .streetwalk-area svg {
   height: 100%;
 }
 
-/* line 265, ../sass/module/streetwalk.scss */
+/* line 278, ../sass/module/streetwalk.scss */
 .streetwalk-progress {
   top: 0px;
   left: 20px;
 }
 
-/* line 269, ../sass/module/streetwalk.scss */
+/* line 282, ../sass/module/streetwalk.scss */
 .streetwalk-area {
   top: 0px;
   right: 20px;
 }
 
-/* line 275, ../sass/module/streetwalk.scss */
+/* line 288, ../sass/module/streetwalk.scss */
 .streetwalk-title {
   position: absolute;
   top: 0;
@@ -490,14 +503,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   right: 0;
   text-align: center;
 }
-/* line 284, ../sass/module/streetwalk.scss */
+/* line 297, ../sass/module/streetwalk.scss */
 .streetwalk-title .logo {
   height: 30%;
   min-width: 320px;
   max-width: 600px;
   max-height: 30%;
 }
-/* line 291, ../sass/module/streetwalk.scss */
+/* line 304, ../sass/module/streetwalk.scss */
 .streetwalk-title .description {
   color: white;
   width: 100%;
@@ -507,34 +520,34 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   margin: 0 auto;
 }
 @media screen and (max-width: 700px) {
-  /* line 300, ../sass/module/streetwalk.scss */
+  /* line 313, ../sass/module/streetwalk.scss */
   .streetwalk-title .description {
     width: 100%;
   }
 }
 @media screen and (min-width: 700px) and (max-width: 1300px) {
-  /* line 307, ../sass/module/streetwalk.scss */
+  /* line 320, ../sass/module/streetwalk.scss */
   .streetwalk-title .description {
     width: 70%;
   }
 }
 @media screen and (min-width: 1300px) {
-  /* line 313, ../sass/module/streetwalk.scss */
+  /* line 326, ../sass/module/streetwalk.scss */
   .streetwalk-title .description {
     width: 50%;
   }
 }
-/* line 320, ../sass/module/streetwalk.scss */
+/* line 333, ../sass/module/streetwalk.scss */
 .streetwalk-title .description h2 {
   margin: 1em;
   font-size: 1.5rem;
   line-height: 1.7rem;
 }
-/* line 326, ../sass/module/streetwalk.scss */
+/* line 339, ../sass/module/streetwalk.scss */
 .streetwalk-title .description p {
   font-size: 1.5rem;
 }
-/* line 331, ../sass/module/streetwalk.scss */
+/* line 344, ../sass/module/streetwalk.scss */
 .streetwalk-title .scrolltostart {
   height: 40%;
   position: absolute;
@@ -542,16 +555,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   right: 0;
   left: 0;
 }
-/* line 338, ../sass/module/streetwalk.scss */
+/* line 351, ../sass/module/streetwalk.scss */
 .streetwalk-title .scrolltostart img, .streetwalk-title .scrolltostart svg {
   height: 100%;
 }
-/* line 343, ../sass/module/streetwalk.scss */
+/* line 356, ../sass/module/streetwalk.scss */
 .streetwalk-title #scrollToStartLoaded {
   display: none;
 }
 
-/* line 350, ../sass/module/streetwalk.scss */
+/* line 363, ../sass/module/streetwalk.scss */
 .streetwalkImg, .element-fixed, .blurImg {
   position: fixed;
   top: 0;
@@ -562,7 +575,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   height: 100%;
 }
 
-/* line 360, ../sass/module/streetwalk.scss */
+/* line 373, ../sass/module/streetwalk.scss */
 .trame-video {
   background: url("../../images/trame-video.png") repeat;
   height: 100%;
@@ -574,7 +587,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   opacity: 1;
 }
 
-/* line 371, ../sass/module/streetwalk.scss */
+/* line 384, ../sass/module/streetwalk.scss */
 body.not-moving .trame-video {
   opacity: 0;
   transition: opacity 0.5s ease;

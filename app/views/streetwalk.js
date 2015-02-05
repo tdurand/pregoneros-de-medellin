@@ -57,6 +57,7 @@ define(['jquery',
         scrollToEndEventSended:false,
 
         videoShowOneTime:false,
+        tutorialDone: false,
 
         events:{
             "click .toggle-sounds ":"toggleSounds",
@@ -80,7 +81,7 @@ define(['jquery',
         initMap: function() {
             var self = this;
 
-            self.map = L.mapbox.map('streetwalk-mapcontainer', 'tdurand.jn29943n',{
+            self.map = L.mapbox.map('streetwalk-mapcontainer', 'tdurand.l4njnee1',{
                 accessToken: 'pk.eyJ1IjoidGR1cmFuZCIsImEiOiI0T1ZEWlRVIn0.1PEGeiEWz6RUBfZq9Bvy7Q',
                 zoomControl: false,
                 attributionControl: false
@@ -115,31 +116,136 @@ define(['jquery',
 
         initSounds: function() {
             var self = this;
-
-
         },
 
         initArrowKeyBinding: function() {
             $(document).keydown(function(e) {
-            switch(e.which) {
-                case 37: // left
-                break;
+                switch(e.which) {
+                    case 37: // left
+                    break;
 
-                case 38: // up
-                window.scrollBy(0, 50);
-                break;
+                    case 38: // up
+                    window.scrollBy(0, 50);
+                    break;
 
-                case 39: // right
-                break;
+                    case 39: // right
+                    break;
 
-                case 40: // down
-                window.scrollBy(0, -50);
-                break;
+                    case 40: // down
+                    window.scrollBy(0, -50);
+                    break;
 
-                default: return; // exit this handler for other keys
+                    default: return; // exit this handler for other keys
+                }
+                e.preventDefault(); // prevent the default action (scroll / move caret)
+            });
+        },
+
+        initScrollEventHandlers: function() {
+            var self = this;
+
+            window.scrollTo(0,5);
+
+            var lastScrollTop = $(this).scrollTop();
+
+            $(window).scroll(function(event){
+               var st = $(this).scrollTop();
+               if (st > lastScrollTop){
+                   // downscroll code
+                   if(lastScrollTop === 0) {
+                        self.$el.find(".streetwalk-tutorial-scrollotherside-tooltip").hide();
+                    }
+               } else {
+                  // upscroll code
+                  if(st === 0) {
+                     //display tooltip
+                     self.$el.find(".streetwalk-tutorial-scrollotherside-tooltip").show();
+                  }
+               }
+               lastScrollTop = st;
+            });
+        },
+
+        initTutorial: function() {
+
+        },
+
+        updateTutorial: function(imgNb) {
+            var self = this;
+
+            var tour = {
+              id: 'tutorial-firststreet',
+              steps: [
+                {
+                  id: 'tooltip-clickoncharacter',
+                  target: '.img-container',
+                  placement: 'left',
+                  title: 'Tutorial : Descubrir personaje',
+                  content: 'Clica en el botton alrededor del personaje para ver un video',
+                  showNextButton:false,
+                  zindex:29,
+                  onShow:function() {
+                    self.listenToOnce(self,"closeVideo",function() {
+                        hopscotch.nextStep();
+                    });
+                  }
+                },
+                {
+                    id: 'tooltip-characterfound',
+                    target: '.menucharacter-pajarito .character',
+                    placement: 'top',
+                    title: 'Tutorial : Personaje descubierto',
+                    content: 'Felicitaciones, descubriste a Limon Pajarito !',
+                    showCTAButton:true,
+                    showNextButton:false,
+                    ctaLabel:"OK",
+                    onCTA: function() {
+                        hopscotch.nextStep();
+                    }
+                },
+                {
+                    id: 'tooltip-characterfound',
+                    target: '.menucharacter-pajarito .video2locked',
+                    placement: 'left',
+                    title: 'Tutorial : Sigues buscando',
+                    content: 'Sigues recoriendo, puedes encontrar a Limon Pajarito en otras calles !',
+                    showCTAButton:true,
+                    showNextButton:false,
+                    ctaLabel:"OK",
+                    onCTA: function() {
+                        hopscotch.nextStep();
+                    }
+                },
+                {
+                    id: 'tooltip-characterfound',
+                    target: '.streetwalk-menucharacter[data-character="perso3"] .character',
+                    placement: 'top',
+                    title: 'Tutorial : Otros personajes',
+                    content: 'Te dejamos explorar, hay varios otros personajes por encontrar !',
+                    showCTAButton:true,
+                    showNextButton:false,
+                    ctaLabel:"OK",
+                    onCTA: function() {
+                        self.tutorialDone = true;
+                        self.animating = true;
+                        document.body.style.overflowY = "visible";
+                        self.computeAnimation();
+                        hopscotch.nextStep();
+                    }
+                }
+              ]
+            };
+
+            if(self.wayName == "carabobo-cl53-cl52" && imgNb >= 186 && imgNb <= 213 && !self.tutorialDone) {
+                self.animating = false;
+                document.body.style.overflowY = "hidden";
+
+                setTimeout(function() {
+
+                    hopscotch.startTour(tour,0);
+
+                },200);
             }
-            e.preventDefault(); // prevent the default action (scroll / move caret)
-        });
         },
 
         prepare:function() {
@@ -163,8 +269,6 @@ define(['jquery',
         self.renderLoading();
 
         self.initArrowKeyBinding();
-
-        window.scrollTo(0,0);
 
     },
 
@@ -351,6 +455,7 @@ define(['jquery',
             self.soundEditorView = new SoundEditorView(self.way);
 
             self.computeAnimation(true);
+            self.initScrollEventHandlers();
         });
 
         self.way.on("loadingFinishedCompletely", function() {
@@ -507,11 +612,13 @@ define(['jquery',
                     self.currentPosition = Math.floor(self.currentPosition);
                 }
 
-
                 //Change image
                 var availableHeigth = (self.bodyHeight - window.innerHeight);
 
                 var imgNb = Math.floor( self.currentPosition / availableHeigth * self.way.wayStills.length);
+
+                //Update tutorial if in tutorial mode
+                self.updateTutorial(imgNb);
 
                 //Do not render same img (we can have changed position a bit but do not have image for this position)
                 if(imgNb == self.currentStill.id) {
@@ -679,6 +786,8 @@ define(['jquery',
         var self = this;
 
         self.$el.find(".streetwalk-video").hide();
+
+        self.trigger("closeVideo");
 
         self.popcorn.pause();
         self.popcorn.currentTime(0);
