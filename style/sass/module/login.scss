@@ -1,10 +1,19 @@
 @import "grids";
 
-#streetwalk-login {
+#streetwalk-login-wrapper {
     position:fixed;
     height: 100%;
     width: 100%;
+}
+
+.streetwalk-login {
+    width: 50%;
     z-index:40;
-    top:0;
-    display:none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: white;
+    padding:1em;
 }

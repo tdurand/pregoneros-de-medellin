@@ -12,7 +12,7 @@ function($, _, Backbone,
 
   var LogInView = Backbone.View.extend({
 
-    el:"#streetwalk-login",
+    el:".streetwalk-login",
 
     events:{
         "submit form.login-form": "logIn",
