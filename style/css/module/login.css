@@ -75,9 +75,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   position: fixed;
   height: 100%;
   width: 100%;
+  display: none;
 }
 
-/* line 9, ../../sass/module/login.scss */
+/* line 11, ../../sass/module/login.scss */
 .streetwalk-login {
   width: 50%;
   z-index: 40;
