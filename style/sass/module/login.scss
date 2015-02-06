@@ -19,3 +19,15 @@
     background-color: white;
     padding:1em;
 }
+
+.streetwalk-login-btnclose {
+    position:absolute;
+    top:10px;
+    right:10px;
+    width: 50px;
+    height: 50px;
+    background-image:url("../../images/closebtn.svg");
+    background-color:black;
+
+    cursor:pointer;
+}

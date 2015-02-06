@@ -59,11 +59,15 @@ define(['jquery',
         videoShowOneTime:false,
         tutorialDone: false,
 
+        menuOpen:false,
+
         events:{
             "click .toggle-sounds ":"toggleSounds",
             "click .frame-character":"showVideo",
             "click .streetwalk-video-btnclose":"closeVideo",
-            "click .streetwalk-soundeditor-btnshow":"showSoundEditor"
+            "click .streetwalk-soundeditor-btnshow":"showSoundEditor",
+            "click .streetwalk-btnmenu":"toggleMenu",
+            "click .streetwalk-menubottom-loginbtn":"showLogin"
         },
 
         bindings:{
@@ -429,6 +433,8 @@ define(['jquery',
         });
 
         self.$el.find(".streetwalk-map").width(self.$el.find(".streetwalk-map").height());
+
+        self.$el.find(".streetwalk-btnmenu-wrapper").css("left",self.$el.find(".streetwalk-map").height()+150+"px");
         
     },
 
@@ -845,6 +851,33 @@ define(['jquery',
         self.$el.find(".streetwalk-map").height(height/2);
         self.$el.find(".streetwalk-map").width(height/2);
         
+    },
+
+    //TODO MOVE IN SUBVIEWS
+
+    toggleMenu: function() {
+        var self = this;
+
+        console.log("displayMenu");
+
+        var elem = self.$el.find(".streetwalk-bottombar");
+
+        if(self.menuOpen) {
+            self.menuOpen = false;
+            TweenLite.to(elem, 0.5, { bottom:0 });
+        }
+        else {
+            self.menuOpen = true;
+            TweenLite.fromTo(elem, 0.5, { bottom:0 },{bottom:"5%"});
+        }
+
+        
+    },
+
+    showLogin: function() {
+        var self = this;
+
+        self.$el.find("#streetwalk-login-wrapper").show();
     },
 
     onClose: function(){

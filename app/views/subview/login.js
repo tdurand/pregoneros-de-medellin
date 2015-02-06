@@ -16,7 +16,8 @@ function($, _, Backbone,
 
     events:{
         "submit form.login-form": "logIn",
-        "submit form.signup-form": "signUp"
+        "submit form.signup-form": "signUp",
+        "click .streetwalk-login-btnclose": "closeView"
     },
 
     initialize : function() {
@@ -75,6 +76,10 @@ function($, _, Backbone,
 
       return false;
       
+    },
+
+    closeView: function() {
+        $("#streetwalk-login-wrapper").hide();
     },
 
     onClose: function(){

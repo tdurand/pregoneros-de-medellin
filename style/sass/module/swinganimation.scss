@@ -5,7 +5,7 @@
     -o-perspective: 500;
     perspective: 500;
 
-    &.swing svg,&:hover svg {
+    &.swing svg {
         -webkit-transform-origin: top;
         -moz-transform-origin: top;
         -o-transform-origin: top;

@@ -6,7 +6,7 @@
   perspective: 500;
 }
 /* line 8, ../../sass/module/swinganimation.scss */
-.streetwalk-sign.swing svg, .streetwalk-sign:hover svg {
+.streetwalk-sign.swing svg {
   -webkit-transform-origin: top;
   -moz-transform-origin: top;
   -o-transform-origin: top;
