@@ -111,6 +111,31 @@ function($, _, Backbone,
         };
     },
 
+    findClosestAmbientSound: function(currentPosition,sounds) {
+        var self = this;
+
+        var closestNode = {
+            sound:undefined,
+            distance:undefined
+        };
+
+        _.each(sounds,function(sound) {
+            if(sound.type == "ambient") {
+                var soundDistanceToPosition = GeoUtils.distance(sound.position,currentPosition);
+                if(soundDistanceToPosition < closestNode.distance || _.isUndefined(closestNode.distance)) {
+                    //new closest node
+                    closestNode = {
+                        sound:sound,
+                        distance:soundDistanceToPosition
+                    };
+                }
+            }
+        });
+
+        return closestNode.sound;
+
+    },
+
     updateSoundsCollection:function(waySounds,wayName) {
         var self = this;
 
@@ -140,13 +165,26 @@ function($, _, Backbone,
             self.soundsToAdd.push(_.findWhere(self.waySounds, {path: soundToAddId}));
         });
 
-        if(self.soundsToKeepIds.length === 0) {
+        if(self.soundsToKeepIds.length === 0 && !_.isUndefined(self.currentUserPosition)) {
             //Need to do a fade on remove
             
             //Find closest ambient to remove
-            //fade closest ambient to remove
+            var soundsToRemove = [];
+            _.each(self.soundsToRemoveIds, function(soundToRemove) {
+                soundsToRemove.push(self.get(soundToRemove).attributes);
+            });
+
+            var closestAmbientToFadeOut = self.findClosestAmbientSound(self.currentUserPosition,soundsToRemove);
+
+            //Fade closest ambient to remove
+            console.log(closestAmbientToFadeOut);
+
             //Find closest ambient to add
-            //fade closest ambient to add
+            var closestAmbientToFadeIn = self.findClosestAmbientSound(self.currentUserPosition,self.soundsToAdd);
+
+
+            //Fade closest ambient to add
+            console.log(closestAmbientToFadeIn);
         }
 
     },
