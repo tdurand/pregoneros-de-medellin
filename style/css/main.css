@@ -816,16 +816,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   box-sizing: border-box;
 }
 
-/* line 3, ../sass/module/login.scss */
-#streetwalk-login-wrapper {
+/* line 3, ../sass/module/usermanager.scss */
+#streetwalk-usermanager-wrapper {
   position: fixed;
   height: 100%;
   width: 100%;
   display: none;
+  z-index: 100;
 }
 
-/* line 11, ../sass/module/login.scss */
-.streetwalk-login {
+/* line 13, ../sass/module/usermanager.scss */
+.streetwalk-usermanager {
   width: 50%;
   z-index: 40;
   position: absolute;
@@ -836,7 +837,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   padding: 1em;
 }
 
-/* line 23, ../sass/module/login.scss */
+/* line 24, ../sass/module/usermanager.scss */
 .streetwalk-login-btnclose {
   position: absolute;
   top: 10px;

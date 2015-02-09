@@ -79,6 +79,15 @@
     loadCSS( "http://yui.yahooapis.com/pure/0.5.0/pure-min.css" );
     loadCSS( "app/libs/vendorcss/hopscotch.css" );
     </script>
+    <script>
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
     <noscript><link rel="stylesheet" href="style/css/main.css" /></noscript>
    <!--  <script data-main="app-build/main" src="app-build/libs/vendor/require-2.1.15.min.js"></script> -->
     <script data-main="app/main" src="app/libs/vendor/require-2.1.15.min.js"></script>

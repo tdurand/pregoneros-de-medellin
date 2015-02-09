@@ -11,7 +11,7 @@ define(['jquery',
     'utils/Localization',
     'views/subview/menucharacters',
     'views/subview/soundeditor',
-    'views/subview/login',
+    'views/subview/usermanager',
     'text!templates/streetwalk/streetWalkViewTemplate.html',
     'text!templates/streetwalk/streetWalkLoadingViewTemplate.html',
     'text!templates/streetwalk/streetWalkChoosePathStartViewTemplate.html',
@@ -34,7 +34,7 @@ define(['jquery',
         Localization,
         MenuCharactersView,
         SoundEditorView,
-        LogInView,
+        UserManagerView,
         streetWalkViewTemplate,
         streetWalkLoadingViewTemplate,
         streetWalkChoosePathStartViewTemplate,
@@ -361,7 +361,7 @@ define(['jquery',
         }));
 
         self.menuCharactersView = new MenuCharactersView();
-        self.logInView = new LogInView();
+        self.userManagerView = new UserManagerView();
 
         if(Progression.isFirstWay) {
             Progression.isFirstWay = false;
@@ -877,7 +877,7 @@ define(['jquery',
     showLogin: function() {
         var self = this;
 
-        self.$el.find("#streetwalk-login-wrapper").show();
+        self.$el.find("#streetwalk-usermanager-wrapper").show();
     },
 
     onClose: function(){
