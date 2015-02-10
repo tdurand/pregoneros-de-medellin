@@ -71,16 +71,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 3, ../../sass/module/usermanager.scss */
-#streetwalk-usermanager-wrapper {
+#usermanager {
   position: fixed;
   height: 100%;
   width: 100%;
-  display: none;
   z-index: 100;
+  top: 0;
+  left: 0;
 }
 
-/* line 13, ../../sass/module/usermanager.scss */
-.streetwalk-usermanager {
+/* line 12, ../../sass/module/usermanager.scss */
+.usermanager-content {
   width: 50%;
   z-index: 40;
   position: absolute;
@@ -91,7 +92,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   padding: 1em;
 }
 
-/* line 24, ../../sass/module/usermanager.scss */
+/* line 23, ../../sass/module/usermanager.scss */
 .streetwalk-login-btnclose {
   position: absolute;
   top: 10px;

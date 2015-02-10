@@ -16,8 +16,6 @@ function($, _, Backbone,
 
   var MenuCharactersView = Backbone.View.extend({
 
-    el:"#streetwalk-menucharacters",
-
     events:{
         "click .character":"toggleMenu"
     },
@@ -137,8 +135,10 @@ function($, _, Backbone,
             }
     },
 
-    initialize : function() {
+    prepare : function() {
         var self = this;
+
+        self.setElement(".streetwalk-menucharacters");
 
         self.render();
     },
@@ -215,7 +215,7 @@ function($, _, Backbone,
 
   });
 
-  return MenuCharactersView;
+  return new MenuCharactersView();
   
 });
 

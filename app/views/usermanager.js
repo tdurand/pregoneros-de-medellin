@@ -3,11 +3,11 @@ define(['jquery',
         'backbone',
         'utils/Logger',
         'models/Progression',
-        'text!templates/streetwalk/usermanager/askToCreateAccountViewTemplate.html',
-        'text!templates/streetwalk/usermanager/createAccountViewTemplate.html',
-        'text!templates/streetwalk/usermanager/signInViewTemplate.html',
-        'text!templates/streetwalk/usermanager/successAccountCreationViewTemplate.html',
-        'text!templates/streetwalk/usermanager/successSignInViewTemplate.html'
+        'text!templates/usermanager/askToCreateAccountViewTemplate.html',
+        'text!templates/usermanager/createAccountViewTemplate.html',
+        'text!templates/usermanager/signInViewTemplate.html',
+        'text!templates/usermanager/successAccountCreationViewTemplate.html',
+        'text!templates/usermanager/successSignInViewTemplate.html'
         ],
 function($, _, Backbone,
                 LOGGER,
@@ -20,7 +20,12 @@ function($, _, Backbone,
 
   var UserManagerView = Backbone.View.extend({
 
-    el:".streetwalk-usermanager",
+    el:".usermanager-content",
+
+    status: {
+        logged : false,
+        name: null
+    },
 
     events:{
         "click .streetwalk-usermanager-btn-createaccount":"renderCreateAccountView",
@@ -77,6 +82,13 @@ function($, _, Backbone,
          self.$el.html(_.template(SuccessAccountCreationView));
     },
 
+    renderLoginStatus: function() {
+
+        
+
+        
+    },
+
     logIn: function(e) {
       var self = this;
       var username = this.$("#login-username").val();
@@ -126,13 +138,31 @@ function($, _, Backbone,
 
         e.preventDefault();
 
+        Parse.User.logOut();
+
         Parse.FacebookUtils.logIn(null, {
           success: function(user) {
             if (!user.existed()) {
-              alert("User signed up and logged in through Facebook!");
+              console.log("User signed up and logged in through Facebook!");
             } else {
-              alert("User logged in through Facebook!");
+              console.log("User logged in through Facebook!");
             }
+
+            FB.api('/me', function(response) {
+                var user = Parse.User.current();
+                user.set("name",response.name);
+                console.log("Set facebook name!" + response.Name);
+
+                user.save(null, {
+                  success: function(user) {
+                    // This succeeds, since the user was authenticated on the device
+                    console.log(user);
+                    self.renderSuccessAccountCreationView();
+                  }
+                });
+            });
+
+
           },
           error: function(user, error) {
             alert("User cancelled the Facebook login or did not fully authorize.");
@@ -141,8 +171,26 @@ function($, _, Backbone,
 
     },
 
+    updateLoginStatus: function() {
+        var self = this;
+
+        if(!_.isNull(Parse.User.current())) {
+            self.status.logged = true;
+            self.status.name = Parse.User.current().get("name");
+        }
+        else {
+            self.status.logged = false;
+        }
+
+        self.renderLoginStatus();
+    },
+
     closeView: function() {
-        $("#streetwalk-usermanager-wrapper").hide();
+        $("#usermanager").addClass("hidden");
+    },
+
+    showView: function() {
+        $("#usermanager").removeClass("hidden");
     },
 
     onClose: function(){
@@ -152,7 +200,7 @@ function($, _, Backbone,
 
   });
 
-  return UserManagerView;
+  return new UserManagerView();
   
 });
 

@@ -1,16 +1,15 @@
 @import "grids";
 
-#streetwalk-usermanager-wrapper {
+#usermanager {
     position:fixed;
     height: 100%;
     width: 100%;
-
-    display:none;
-
     z-index:100;
+    top:0;
+    left:0;
 }
 
-.streetwalk-usermanager {
+.usermanager-content {
     width: 50%;
     z-index:40;
     position: absolute;

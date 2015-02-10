@@ -11,7 +11,7 @@ define(['jquery',
     'utils/Localization',
     'views/subview/menucharacters',
     'views/subview/soundeditor',
-    'views/subview/usermanager',
+    'views/subview/menustreetwalk',
     'text!templates/streetwalk/streetWalkViewTemplate.html',
     'text!templates/streetwalk/streetWalkLoadingViewTemplate.html',
     'text!templates/streetwalk/streetWalkChoosePathStartViewTemplate.html',
@@ -34,7 +34,7 @@ define(['jquery',
         Localization,
         MenuCharactersView,
         SoundEditorView,
-        UserManagerView,
+        MenuStreetWalkView,
         streetWalkViewTemplate,
         streetWalkLoadingViewTemplate,
         streetWalkChoosePathStartViewTemplate,
@@ -59,15 +59,11 @@ define(['jquery',
         videoShowOneTime:false,
         tutorialDone: false,
 
-        menuOpen:false,
-
         events:{
             "click .toggle-sounds ":"toggleSounds",
             "click .frame-character":"showVideo",
             "click .streetwalk-video-btnclose":"closeVideo",
-            "click .streetwalk-soundeditor-btnshow":"showSoundEditor",
-            "click .streetwalk-btnmenu":"toggleMenu",
-            "click .streetwalk-menubottom-loginbtn":"showLogin"
+            "click .streetwalk-soundeditor-btnshow":"showSoundEditor"
         },
 
         bindings:{
@@ -194,25 +190,25 @@ define(['jquery',
                     });
                   }
                 },
-                {
-                    id: 'tooltip-characterfound',
-                    target: '.menucharacter-pajarito .character',
-                    placement: 'top',
-                    title: 'Tutorial : Personaje descubierto',
-                    content: 'Felicitaciones, descubriste a Limon Pajarito !',
-                    showCTAButton:true,
-                    showNextButton:false,
-                    ctaLabel:"OK",
-                    onCTA: function() {
-                        hopscotch.nextStep();
-                    }
-                },
+                // {
+                //     id: 'tooltip-characterfound',
+                //     target: '.menucharacter-pajarito .character',
+                //     placement: 'top',
+                //     title: 'Tutorial : Personaje descubierto',
+                //     content: 'Felicitaciones, descubriste a Limon Pajarito !',
+                //     showCTAButton:true,
+                //     showNextButton:false,
+                //     ctaLabel:"OK",
+                //     onCTA: function() {
+                //         hopscotch.nextStep();
+                //     }
+                // },
                 {
                     id: 'tooltip-characterfound',
                     target: '.menucharacter-pajarito .video2locked',
                     placement: 'left',
-                    title: 'Tutorial : Sigues buscando',
-                    content: 'Sigues recoriendo, puedes encontrar a Limon Pajarito en otras calles !',
+                    title: 'Tutorial : Sigues recoriendo',
+                    content: 'Descubriste limon pajarito, puedes seguir recoriendo, y encontrar a Limon Pajarito en otras calles !',
                     showCTAButton:true,
                     showNextButton:false,
                     ctaLabel:"OK",
@@ -360,9 +356,6 @@ define(['jquery',
             lang:Localization.translationLoaded
         }));
 
-        self.menuCharactersView = new MenuCharactersView();
-        self.userManagerView = new UserManagerView();
-
         if(Progression.isFirstWay) {
             Progression.isFirstWay = false;
             //Render tutorial
@@ -390,12 +383,15 @@ define(['jquery',
           for (var i = 0; i < arguments.length; i++) {
             $("<img />").attr("src", arguments[i]);
         }
-    };
+        };
 
         //set right src for frame character
         if(!_.isUndefined(self.way.characterDefinition)) {
             self.$el.find(".img-container").html(_.template(self.getFrameTemplate(self.way.characterDefinition.name)));
         }
+
+        MenuCharactersView.prepare();
+        MenuStreetWalkView.prepare();
         
     },
 
@@ -660,7 +656,7 @@ define(['jquery',
                     $("body").removeClass('not-moving');
 
                     //close menu
-                    self.menuCharactersView.closeMenu(true);
+                    MenuCharactersView.closeMenu(true);
 
                     //Render highres after 100ms
                     clearTimeout(self.highResLoadingInterval);
@@ -815,7 +811,7 @@ define(['jquery',
         self.videoShowOneTime = true;
 
         //open menu
-        self.menuCharactersView.openMenu(characterName);
+        MenuCharactersView.openMenu(characterName);
     },
 
     showSoundEditor: function() {
@@ -853,32 +849,7 @@ define(['jquery',
         
     },
 
-    //TODO MOVE IN SUBVIEWS
-
-    toggleMenu: function() {
-        var self = this;
-
-        console.log("displayMenu");
-
-        var elem = self.$el.find(".streetwalk-bottombar");
-
-        if(self.menuOpen) {
-            self.menuOpen = false;
-            TweenLite.to(elem, 0.5, { bottom:0 });
-        }
-        else {
-            self.menuOpen = true;
-            TweenLite.fromTo(elem, 0.5, { bottom:0 },{bottom:"5%"});
-        }
-
-        
-    },
-
-    showLogin: function() {
-        var self = this;
-
-        self.$el.find("#streetwalk-usermanager-wrapper").show();
-    },
+    //TODO MOVE IN SUBVIEW
 
     onClose: function(){
       //Clean
