@@ -1,3 +1,8 @@
 <div class="streetwalk-menubottom-content">
-    <button class="streetwalk-menubottom-loginbtn">LOGIN</button> - LANGUE - EQUIPE - A PROPOS
+    <% if(loginStatus.logged) { %>
+        <button class="streetwalk-menubottom-btnlogout">LOGOUT (<%= loginStatus.name %>)</button>
+    <% } else { %>
+        <button class="streetwalk-menubottom-btnlogin">LOGIN</button>
+    <% } %>
+     - LANGUE - EQUIPE - A PROPOS
 </div>

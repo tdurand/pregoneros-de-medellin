@@ -17,7 +17,8 @@ function($, _, Backbone,
     menuOpen: false,
 
     events:{
-        "click .streetwalk-menubottom-loginbtn":"showLogin"
+        "click .streetwalk-menubottom-btnlogin":"displayLogin",
+        "click .streetwalk-menubottom-btnlogout":"logout"
     },
 
     prepare : function() {
@@ -32,12 +33,19 @@ function($, _, Backbone,
         $(".streetwalk-btnmenu").on("click", function() {
             self.toggleMenu();
         });
+
+        //render again menu on login status change
+        self.listenTo(UserManagerView,"loginStatusChanged",function() {
+            self.render();
+        });
     },
 
     render: function() {
         var self = this;
 
-        self.$el.html(_.template(menuStreetWalkViewTemplate));
+        self.$el.html(_.template(menuStreetWalkViewTemplate,{
+            loginStatus: UserManagerView.status
+        }));
     },
 
     toggleMenu: function() {
@@ -57,10 +65,14 @@ function($, _, Backbone,
         
     },
 
-    showLogin: function() {
+    displayLogin: function() {
         var self = this;
 
-        UserManagerView.showView();
+        UserManagerView.displayLogin();
+    },
+
+    logout: function() {
+        UserManagerView.logout();
     },
 
     onClose: function(){

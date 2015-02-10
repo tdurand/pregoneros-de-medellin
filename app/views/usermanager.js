@@ -29,10 +29,12 @@ function($, _, Backbone,
 
     events:{
         "click .streetwalk-usermanager-btn-createaccount":"renderCreateAccountView",
-        "click .signup-facebook":"signUpWithFacebook",
+        "click .signup-facebook":"signUpOrsignInWithFacebook",
+        "click .login-facebook":"signUpOrsignInWithFacebook",
         "submit form.login-form": "logIn",
         "submit form.signup-form": "signUp",
-        "click .streetwalk-login-btnclose": "closeView"
+        "click .streetwalk-login-btnclose": "closeView",
+        "click .btn-createaccount":"renderCreateAccountView"
     },
 
     initialize : function() {
@@ -56,12 +58,8 @@ function($, _, Backbone,
         fbAsyncInit();
 
         self.renderAskToCreateAccountView();
-    },
 
-    render: function() {
-        var self = this;
-
-        // self.$el.html(_.template(LogInViewTemplate));
+        self.updateLoginStatus();
     },
 
     renderAskToCreateAccountView: function() {
@@ -70,10 +68,11 @@ function($, _, Backbone,
          self.$el.html(_.template(AskToCreateAccountView));
     },
 
-    renderCreateAccountView: function() {
+    renderCreateAccountView: function(e) {
         var self = this;
 
-         self.$el.html(_.template(CreateAccountView));
+        e.preventDefault();
+        self.$el.html(_.template(CreateAccountView));
     },
 
     renderSuccessAccountCreationView: function() {
@@ -82,21 +81,29 @@ function($, _, Backbone,
          self.$el.html(_.template(SuccessAccountCreationView));
     },
 
-    renderLoginStatus: function() {
+    renderSignInView: function() {
+        var self = this;
 
-        
+        self.$el.html(_.template(SignInView));
+    },
 
-        
+    renderSuccessSignInView: function() {
+        var self = this;
+
+         self.$el.html(_.template(SuccessSignInView));
     },
 
     logIn: function(e) {
       var self = this;
-      var username = this.$("#login-username").val();
-      var password = this.$("#login-password").val();
+      var email = self.$el.find(".login-email").val();
+      var password = self.$el.find(".login-password").val();
       
-      Parse.User.logIn(username, password, {
+      Parse.User.logIn(email, password, {
         success: function(user) {
           console.log("SuccessFullLogin" + user);
+          self.updateLoginStatus();
+
+          self.renderSuccessSignInView();
         },
 
         error: function(user, error) {
@@ -110,15 +117,24 @@ function($, _, Backbone,
       return false;
     },
 
+    logInWithFacebook: function(e) {
+        var self = this;
+        e.preventDefault();
+
+        self.signUpWithFacebook();
+    },
+
     signUp: function(e) {
       var self = this;
 
+      var name = self.$el.find(".signup-name").val();
       var email = self.$el.find(".signup-email").val();
       var password = self.$el.find(".signup-password").val();
       
-      Parse.User.signUp(email, password, { ACL: new Parse.ACL() }, {
+      Parse.User.signUp(email, password, { ACL: new Parse.ACL(), name:name, email:email }, {
         success: function(user) {
             self.renderSuccessAccountCreationView();
+            self.updateLoginStatus();
         },
 
         error: function(user, error) {
@@ -133,35 +149,41 @@ function($, _, Backbone,
       
     },
 
-    signUpWithFacebook: function(e) {
+    signUpOrsignInWithFacebook: function(e) {
         var self = this;
 
         e.preventDefault();
 
-        Parse.User.logOut();
-
         Parse.FacebookUtils.logIn(null, {
           success: function(user) {
             if (!user.existed()) {
+
               console.log("User signed up and logged in through Facebook!");
-            } else {
-              console.log("User logged in through Facebook!");
-            }
 
-            FB.api('/me', function(response) {
-                var user = Parse.User.current();
-                user.set("name",response.name);
-                console.log("Set facebook name!" + response.Name);
+              FB.api('/me', function(response) {
+                    var user = Parse.User.current();
+                    user.set("name",response.name);
+                    console.log("Set facebook name!" + response.Name);
 
-                user.save(null, {
-                  success: function(user) {
-                    // This succeeds, since the user was authenticated on the device
-                    console.log(user);
-                    self.renderSuccessAccountCreationView();
-                  }
+                    user.save(null, {
+                      success: function(user) {
+                        // This succeeds, since the user was authenticated on the device
+                        console.log(user);
+                        self.renderSuccessAccountCreationView();
+                        self.updateLoginStatus();
+                      }
+                    });
                 });
-            });
 
+                
+
+            } else {
+
+              console.log("User logged in through Facebook!");
+
+              self.updateLoginStatus();
+              self.renderSuccessSignInView();
+            }
 
           },
           error: function(user, error) {
@@ -182,7 +204,14 @@ function($, _, Backbone,
             self.status.logged = false;
         }
 
-        self.renderLoginStatus();
+        self.trigger("loginStatusChanged");
+    },
+
+    logout: function() {
+        var self = this;
+        Parse.User.logOut();
+
+        self.updateLoginStatus();
     },
 
     closeView: function() {
@@ -191,6 +220,14 @@ function($, _, Backbone,
 
     showView: function() {
         $("#usermanager").removeClass("hidden");
+    },
+
+    displayLogin: function() {
+        var self = this;
+
+        self.renderSignInView();
+
+        self.showView();
     },
 
     onClose: function(){
