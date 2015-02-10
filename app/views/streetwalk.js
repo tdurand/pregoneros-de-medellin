@@ -569,7 +569,7 @@ define(['jquery',
                 wayConnectionsEnd:self.way.wayConnectionsEnd
             }));
 
-            self.menuCharactersView.closeMenu();
+            MenuCharactersView.closeMenu();
         }
         else if(imgNb === 0) {
             self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
@@ -579,7 +579,7 @@ define(['jquery',
                 wayConnectionsStart:self.way.wayConnectionsStart
             }));
 
-            self.menuCharactersView.closeMenu();
+            MenuCharactersView.closeMenu();
         }
         else {
             self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
