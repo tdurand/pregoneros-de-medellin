@@ -12,6 +12,7 @@ define(['jquery',
     'views/subview/menucharacters',
     'views/subview/soundeditor',
     'views/subview/menustreetwalk',
+    'views/subview/tutorial',
     'text!templates/streetwalk/streetWalkViewTemplate.html',
     'text!templates/streetwalk/streetWalkLoadingViewTemplate.html',
     'text!templates/streetwalk/streetWalkChoosePathStartViewTemplate.html',
@@ -35,6 +36,7 @@ define(['jquery',
         MenuCharactersView,
         SoundEditorView,
         MenuStreetWalkView,
+        TutorialView,
         streetWalkViewTemplate,
         streetWalkLoadingViewTemplate,
         streetWalkChoosePathStartViewTemplate,
@@ -76,6 +78,46 @@ define(['jquery',
             var self = this;
 
             self.wayName = params.wayName;
+        },
+
+        prepare:function() {
+
+            var self = this;
+
+            // if(_.isUndefined(Localization.STR)) {
+
+            //     self.listenToOnce(Localization,"STRLoaded", function() {
+            //         self.render();
+            //     });
+            // }
+            // else {
+            //     self.render();
+            // }
+
+            self.firstScroll = true;
+
+            self.loadPath();
+
+            self.renderLoading();
+
+            self.initArrowKeyBinding();
+
+            //EVENTING
+            
+            //TUTORIAL
+            TutorialView.on("pauseAnimating",function() {
+                self.animating = false;
+            });
+
+            TutorialView.on("startAnimating",function() {
+                self.animating = true;
+                self.computeAnimation();
+            });
+
+            self.on("closeVideo", function() {
+                TutorialView.trigger("closeVideo");
+            });
+
         },
 
         initMap: function() {
@@ -165,112 +207,6 @@ define(['jquery',
                lastScrollTop = st;
             });
         },
-
-        initTutorial: function() {
-
-        },
-
-        updateTutorial: function(imgNb) {
-            var self = this;
-
-            var tour = {
-              id: 'tutorial-firststreet',
-              steps: [
-                {
-                  id: 'tooltip-clickoncharacter',
-                  target: '.img-container',
-                  placement: 'left',
-                  title: 'Tutorial : Descubrir personaje',
-                  content: 'Clica en el botton alrededor del personaje para ver un video',
-                  showNextButton:false,
-                  zindex:29,
-                  onShow:function() {
-                    self.listenToOnce(self,"closeVideo",function() {
-                        hopscotch.nextStep();
-                    });
-                  }
-                },
-                // {
-                //     id: 'tooltip-characterfound',
-                //     target: '.menucharacter-pajarito .character',
-                //     placement: 'top',
-                //     title: 'Tutorial : Personaje descubierto',
-                //     content: 'Felicitaciones, descubriste a Limon Pajarito !',
-                //     showCTAButton:true,
-                //     showNextButton:false,
-                //     ctaLabel:"OK",
-                //     onCTA: function() {
-                //         hopscotch.nextStep();
-                //     }
-                // },
-                {
-                    id: 'tooltip-characterfound',
-                    target: '.menucharacter-pajarito .video2locked',
-                    placement: 'left',
-                    title: 'Tutorial : Sigues recoriendo',
-                    content: 'Descubriste limon pajarito, puedes seguir recoriendo, y encontrar a Limon Pajarito en otras calles !',
-                    showCTAButton:true,
-                    showNextButton:false,
-                    ctaLabel:"OK",
-                    onCTA: function() {
-                        hopscotch.nextStep();
-                    }
-                },
-                {
-                    id: 'tooltip-characterfound',
-                    target: '.streetwalk-menucharacter[data-character="perso3"] .character',
-                    placement: 'top',
-                    title: 'Tutorial : Otros personajes',
-                    content: 'Te dejamos explorar, hay varios otros personajes por encontrar !',
-                    showCTAButton:true,
-                    showNextButton:false,
-                    ctaLabel:"OK",
-                    onCTA: function() {
-                        self.tutorialDone = true;
-                        self.animating = true;
-                        document.body.style.overflowY = "visible";
-                        self.computeAnimation();
-                        hopscotch.nextStep();
-                    }
-                }
-              ]
-            };
-
-            if(self.wayName == "carabobo-cl53-cl52" && imgNb >= 186 && imgNb <= 213 && !self.tutorialDone) {
-                self.animating = false;
-                document.body.style.overflowY = "hidden";
-
-                setTimeout(function() {
-
-                    hopscotch.startTour(tour,0);
-
-                },200);
-            }
-        },
-
-        prepare:function() {
-
-            var self = this;
-
-        // if(_.isUndefined(Localization.STR)) {
-
-        //     self.listenToOnce(Localization,"STRLoaded", function() {
-        //         self.render();
-        //     });
-        // }
-        // else {
-        //     self.render();
-        // }
-
-        self.firstScroll = true;
-
-        self.loadPath();
-
-        self.renderLoading();
-
-        self.initArrowKeyBinding();
-
-    },
 
     renderLoading: function() {
         var self = this;
@@ -623,7 +559,7 @@ define(['jquery',
                 var imgNb = Math.floor( self.currentPosition / availableHeigth * self.way.wayStills.length);
 
                 //Update tutorial if in tutorial mode
-                self.updateTutorial(imgNb);
+                TutorialView.update(self.wayName, imgNb);
 
                 //Do not render same img (we can have changed position a bit but do not have image for this position)
                 if(imgNb == self.currentStill.id) {
