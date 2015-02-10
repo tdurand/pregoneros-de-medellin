@@ -13,6 +13,7 @@ define(['jquery',
     'views/subview/soundeditor',
     'views/subview/menustreetwalk',
     'views/subview/tutorial',
+    'views/subview/map',
     'text!templates/streetwalk/streetWalkViewTemplate.html',
     'text!templates/streetwalk/streetWalkLoadingViewTemplate.html',
     'text!templates/streetwalk/streetWalkChoosePathStartViewTemplate.html',
@@ -37,6 +38,7 @@ define(['jquery',
         SoundEditorView,
         MenuStreetWalkView,
         TutorialView,
+        MapView,
         streetWalkViewTemplate,
         streetWalkLoadingViewTemplate,
         streetWalkChoosePathStartViewTemplate,
@@ -118,46 +120,11 @@ define(['jquery',
                 TutorialView.trigger("closeVideo");
             });
 
-        },
-
-        initMap: function() {
-            var self = this;
-
-            self.map = L.mapbox.map('streetwalk-mapcontainer', 'tdurand.l4njnee1',{
-                accessToken: 'pk.eyJ1IjoidGR1cmFuZCIsImEiOiI0T1ZEWlRVIn0.1PEGeiEWz6RUBfZq9Bvy7Q',
-                zoomControl: false,
-                attributionControl: false
+            //MAP
+            self.listenTo(MapView,"loaded", function() {
+                MapView.update(self.way.wayPath[self.currentStill.id]);
             });
 
-
-            self.map.on("load", function() {
-                self.mapLoaded = true;
-                self.updateMarkerPosition(self.currentStill.id);
-
-                // Disable drag and zoom handlers.
-                // self.map.dragging.disable();
-                self.map.touchZoom.disable();
-                self.map.doubleClickZoom.disable();
-                self.map.scrollWheelZoom.disable();
-                // Disable tap handler, if present.
-                if (self.map.tap) map.tap.disable();
-
-                self.$el.find("#streetwalk-mapcontainer").hover(function() {
-                    self.displayBigMap();
-                },function() {
-                    self.reduceMap();
-                });
-
-                //Center map every 500ms
-                //TODO ONLY IF POSITION CHANGED
-                // setInterval(function() {
-                //     self.map.panTo(self.way.wayPath[self.currentStill.id]);
-                // },500);
-        });
-        },
-
-        initSounds: function() {
-            var self = this;
         },
 
         initArrowKeyBinding: function() {
@@ -256,28 +223,6 @@ define(['jquery',
         }
     },
 
-    updateMarkerPosition: function(stillId) {
-        var self = this;
-
-        if(!self.mapLoaded) {
-            return;
-        }
-
-        if(self.markerMap) {
-            self.markerMap.setLatLng(self.way.wayPath[stillId]);
-        }
-        else {
-            if(self.map && self.way.wayPath) {
-                self.markerMap = L.marker(self.way.wayPath[stillId]).addTo(self.map);
-                if(stillId <= 1) {
-                    self.map.panTo(self.way.wayPath[stillId]);
-                }
-            }
-            
-        }
-        
-    },
-
     render:function() {
 
         var self = this;
@@ -307,10 +252,6 @@ define(['jquery',
         //attach stickit
         self.stickit(Progression);
 
-        self.initMap();
-
-        self.adjustSizes();
-
         self.renderImgHighRes();
 
         //prefech stuff
@@ -328,6 +269,9 @@ define(['jquery',
 
         MenuCharactersView.prepare();
         MenuStreetWalkView.prepare();
+        MapView.prepare(self.way.wayPath[self.currentStill.id]);
+
+        self.adjustSizes();
         
     },
 
@@ -348,26 +292,13 @@ define(['jquery',
     adjustSizes: function() {
         var self = this;
 
-        self.adjustMapSizes();
+        MapView.adjustMapSizes();
 
         //Todo add handler on resize to execute this function
         var height = $(".streetwalk-menucharacters").height();
         $(".streetwalk-menucharacters").width(height*6);
 
         $(".streetwalk-menucharacters").width(height*6);
-    },
-
-    adjustMapSizes: function() {
-        var self = this;
-
-        self.$el.find(".streetwalk-map").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
-            self.map.invalidateSize(true);
-        });
-
-        self.$el.find(".streetwalk-map").width(self.$el.find(".streetwalk-map").height());
-
-        self.$el.find(".streetwalk-btnmenu-wrapper").css("left",self.$el.find(".streetwalk-map").height()+150+"px");
-        
     },
 
     loadPath: function() {
@@ -429,8 +360,6 @@ define(['jquery',
 
             LOGGER.debug("Load IMG NB instead:" +self.currentStill.id);
         }
-
-        self.updateMarkerPosition(self.currentStill.id);
 
         $(self.elImg).attr("src", self.currentStill.get("srcLowRes"));
 
@@ -568,14 +497,14 @@ define(['jquery',
                 else {
 
                     //Update map diplay current user position
-                    if(self.mapLoaded) {
+                    if(MapView.mapLoaded) {
                         var currentTime = new Date().getTime();
                         if(_.isUndefined(self.lastMapCurrentUserDisplayTimeStamp)) {
                             self.lastMapCurrentUserDisplayTimeStamp = currentTime;
                         }
                         //Only update each 500ms
                         if((currentTime - self.lastMapCurrentUserDisplayTimeStamp) > 500) {
-                            self.map.panTo(self.way.wayPath[self.currentStill.id]);
+                            MapView.map.panTo(self.way.wayPath[self.currentStill.id]);
                             self.lastMapCurrentUserDisplayTimeStamp = currentTime;
                         }
                     }
@@ -593,6 +522,9 @@ define(['jquery',
 
                     //close menu
                     MenuCharactersView.closeMenu(true);
+
+                    //Update map
+                    MapView.update(self.way.wayPath[self.currentStill.id]);
 
                     //Render highres after 100ms
                     clearTimeout(self.highResLoadingInterval);
@@ -754,38 +686,6 @@ define(['jquery',
         var self = this;
         self.$el.find("#streetwalk-soundeditor").show();
     },
-
-    displayBigMap: function() {
-        var self = this;
-        console.log("DisplayBigMap");
-        // self.$el.find(".streetwalk-map").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
-        //     self.adjustMapSizes();
-        // });
-
-        self.$el.find(".streetwalk-map").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
-            self.map.invalidateSize(true);
-        });
-
-        var height = self.$el.find(".streetwalk-map").height();
-        self.$el.find(".streetwalk-map").height(height*2);
-        self.$el.find(".streetwalk-map").width(height*2);
-    },
-
-    reduceMap: function() {
-        var self = this;
-        console.log("ReduceMap");
-
-        self.$el.find(".streetwalk-map").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
-            self.map.invalidateSize(true);
-        });
-
-        var height = self.$el.find(".streetwalk-map").height();
-        self.$el.find(".streetwalk-map").height(height/2);
-        self.$el.find(".streetwalk-map").width(height/2);
-        
-    },
-
-    //TODO MOVE IN SUBVIEW
 
     onClose: function(){
       //Clean
