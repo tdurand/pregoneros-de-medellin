@@ -26,7 +26,7 @@ define([
         initialize: function() {
             var self = this;
 
-            // Localization.on("STRSuccess",function() {
+            // self.listenTo(Localization,"STRSuccess",function() {
             //     self.navigate("#"+Localization.translationLoaded, {trigger:false,replace:true});
             // });
 
@@ -52,7 +52,7 @@ define([
             //     return;
             // }
 
-            if(_.isUndefined(wayName)) {
+            if(_.isNull(wayName)) {
                 wayName = "carabobo-cl53-cl52";
                 self.navigate("#streetwalk/carabobo-cl53-cl52",{replace:true});
             }

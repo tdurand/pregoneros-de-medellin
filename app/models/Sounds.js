@@ -262,7 +262,7 @@ function($, _, Backbone,
 
                 self.add(sound);
 
-                sound.on("soundLoaded",function() {
+                self.listenTo(sound,"soundLoaded",function() {
                     nbSoundsToLoad--;
 
                     if(nbSoundsToLoad === 0) {

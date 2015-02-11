@@ -38,7 +38,7 @@ function($, _, Backbone,
         self.popcorn.volume(0);
         self.popcorn.play();
         
-        self.popcorn.on("play",function() {
+        self.listenTo(self.popcorn,"play",function() {
             self.resizeBackgroundVideo();
             $(".landingpage-video-frame").css("z-index",-3);
             

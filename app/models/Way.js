@@ -79,17 +79,17 @@ function($, _, Backbone,
             self.wayStills = new Stills();
             self.wayStills.init(params);
 
-            self.wayStills.on("updatePercentageLoaded", function() {
+            self.listenTo(self.wayStills,"updatePercentageLoaded", function() {
                 self.percentageLoaded = self.wayStills.percentageLoaded;
                 self.trigger("updatePercentageLoaded");
             });
 
-            self.wayStills.on("loadingFinished", function() {
+            self.listenTo(self.wayStills,"loadingFinished", function() {
                 self.loadingFinished = true;
                 self.trigger("loadingFinished");
             });
 
-            self.wayStills.on("loadingFinishedCompletely", function() {
+            self.listenTo(self.wayStills,"loadingFinishedCompletely", function() {
                 self.trigger('loadingFinishedCompletely');
                 self.loadingFinishedCompletely = true;
             });
@@ -101,7 +101,7 @@ function($, _, Backbone,
             self.wayStills.fetch();
 
             //Sounds
-            Sounds.on("soundsLoaded", function() {
+            self.listenTo(Sounds,"soundsLoaded", function() {
                 self.trigger('soundsLoaded');
             });
             Sounds.updateSoundsCollection(self.waySoundsData,self.wayName);

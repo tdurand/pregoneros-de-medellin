@@ -107,22 +107,23 @@ define(['jquery',
             //EVENTING
             
             //TUTORIAL
-            TutorialView.on("pauseAnimating",function() {
+            self.listenTo(TutorialView,"pauseAnimating",function() {
                 self.animating = false;
             });
 
-            TutorialView.on("startAnimating",function() {
+            self.listenTo(TutorialView,"startAnimating",function() {
                 self.animating = true;
                 self.computeAnimation();
             });
 
-            self.on("closeVideo", function() {
+
+            self.listenTo(self,"closeVideo", function() {
                 TutorialView.trigger("closeVideo");
             });
 
             //MAP
-            self.listenTo(MapView,"loaded", function() {
-                MapView.update(self.way.wayPath[self.currentStill.id]);
+            self.listenToOnce(MapView,"loaded", function() {
+                MapView.update(self.way.wayPath[0]);
             });
 
         },
@@ -308,11 +309,11 @@ define(['jquery',
 
         self.way.fetch();
 
-        self.way.on("updatePercentageLoaded", function() {
+        self.listenTo(self.way,"updatePercentageLoaded", function() {
             self.updateLoadingIndicator(self.way.percentageLoaded);
         });
 
-        self.way.on("loadingFinished", function() {
+        self.listenToOnce(self.way,"loadingFinished", function() {
             self.animating = true;
             self.currentStill = self.way.wayStills.first();
             self.$el.css("height",self.computeBodyHeigh(self.way.wayLength)+"px");
@@ -330,7 +331,7 @@ define(['jquery',
             self.initScrollEventHandlers();
         });
 
-        self.way.on("loadingFinishedCompletely", function() {
+        self.listenToOnce(self.way,"loadingFinishedCompletely", function() {
             self.initVideo();
         });
         
@@ -353,7 +354,8 @@ define(['jquery',
 
             function sortNumber(a,b) {
               return a - b;
-          }
+            }
+
             //Get closest still loaded : TODO FIND THE BEST ALGORITHM, this one is not so optimized and insert the still in the array
             self.currentStill = self.way.wayStills.get(self.way.wayStills.stillLoaded.push( imgNb ) && self.way.wayStills.stillLoaded.sort(sortNumber)[ self.way.wayStills.stillLoaded.indexOf( imgNb ) - 1 ]);
 
@@ -624,7 +626,7 @@ define(['jquery',
 
         if(self.way.characterDefinition) {
 
-            var idVimeo = Progression.nextVideoToPlay(self.way.characterDefinition.name);
+            var idVimeo = Progression.nextVideoToPlay(self.way.characterDefinition.name, self.way.wayName);
 
             if(Progression.isFirstVideo) {
                 Progression.isFirstVideo = false;
@@ -639,21 +641,21 @@ define(['jquery',
    },
 
    showVideo: function() {
-    var self = this;
+        var self = this;
 
-    self.$el.find(".streetwalk-video").show();
+        self.$el.find(".streetwalk-video").show();
 
-    if(_.isUndefined(self.popcorn)) {
-        self.initVideo();
-    }
+        if(_.isUndefined(self.popcorn)) {
+            self.initVideo();
+        }
 
-    self.muteSounds();
+        self.muteSounds();
 
-    setTimeout(function() {
-        self.popcorn.play();
-    },1000);
+        setTimeout(function() {
+            self.popcorn.play();
+        },1000);
 
-},
+    },
 
     closeVideo: function() {
         var self = this;
@@ -669,11 +671,10 @@ define(['jquery',
 
         //current character
         var characterName = self.way.characterDefinition.name;
-        var doNotUnlock = self.way.characterDefinition.doNotUnlock;
         
         if(!self.videoShowOneTime) {
             //unlocknext item
-            Progression.unlockNextItem(characterName,doNotUnlock);
+            Progression.unlockNextItem(characterName,self.way.wayName);
         }
 
         self.videoShowOneTime = true;
@@ -690,6 +691,7 @@ define(['jquery',
     onClose: function(){
       //Clean
       this.undelegateEvents();
+      this.stopListening();
       this.way.clear();
       this.animating = false;
   }

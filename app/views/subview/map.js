@@ -25,8 +25,7 @@ function($, _, Backbone,
             attributionControl: false
         });
 
-
-        self.map.on("load", function() {
+        self.listenTo(self.map,"load", function() {
             self.trigger("loaded");
             self.mapLoaded = true;
 

@@ -91,12 +91,12 @@ define(['jquery',
                 marker.soundReference = waySound;
                 marker.soundReference.markerVol = markerVol;
 
-                marker.on("click",function(e) {
+                self.listenTo(marker,"click",function(e) {
                     var marker = e.target;
                     self.selectMarker(marker);
                 });
 
-                marker.on("dragend", function(e) {
+                self.listenTo(marker,"dragend", function(e) {
                     self.updateSoundPositionOnDragEnd(e);
                 });
 
@@ -158,12 +158,12 @@ define(['jquery',
         self.map.addLayer(marker);
         self.map.addLayer(markerVol);
 
-        marker.on("click",function(e) {
+        self.listenTo(marker,"click",function(e) {
             var marker = e.target;
             self.selectMarker(marker);
         });
 
-        marker.on("dragend", function(e) {
+        self.listenTo(marker,"dragend", function(e) {
             self.updateSoundPositionOnDragEnd(e);
         });
 
@@ -221,7 +221,7 @@ define(['jquery',
             accessToken: 'pk.eyJ1IjoidGR1cmFuZCIsImEiOiI0T1ZEWlRVIn0.1PEGeiEWz6RUBfZq9Bvy7Q'
         });
 
-        self.map.on("load", function() {
+        self.listenTo(self.map,"load", function() {
             self.mapLoaded = true;
             self.closeEditor();
             self.initMapContent();
