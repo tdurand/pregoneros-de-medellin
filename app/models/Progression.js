@@ -6,7 +6,9 @@ define(['jquery',
         ],
 function($, _, Backbone, LOGGER, Ways){
 
-  var Progression = Backbone.Model.extend({
+  var Progression = Parse.Object.extend({
+
+    className: "Progression",
 
     isFirstWay: true,
     isFirstVideo: true,
@@ -131,6 +133,51 @@ function($, _, Backbone, LOGGER, Ways){
         self.set("charactersProgression",charactersProgression);
 
         console.log(charactersProgression);
+
+        self.persistToParse();
+
+    },
+
+    persistToParse: function() {
+        var self = this;
+        self.set("belongTo", Parse.User.current());
+        self.save(null,{
+              success: function(gameScore) {
+                // Execute any logic that should take place after the object is saved.
+                alert('New object created with objectId: ' + gameScore.id);
+              },
+              error: function(gameScore, error) {
+                // Execute any logic that should take place if the save fails.
+                // error is a Parse.Error with an error code and message.
+                alert('Failed to create new object, with error code: ' + error.message);
+               }
+        });
+    },
+
+    parse:function(response) {
+        if(response.results) {
+            return response.results[0];
+        }
+        else {
+            return response;
+        }
+        
+    },
+
+    firstFetch: function() {
+        var self = this;
+        var query = new Parse.Query(Progression);
+
+        query.equalTo("belongTo", Parse.User.current());
+        query.first({
+          success: function(object) {
+            console.log(object);
+            // self.trigger("change");
+          },
+          error: function(error) {
+            alert("Error: " + error.code + " " + error.message);
+          }
+        });
     }
 
   });
