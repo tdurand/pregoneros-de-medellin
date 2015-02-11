@@ -229,9 +229,9 @@ define(['jquery',
 
         //render first still
         self.currentStill = self.way.wayStills.first();
-        var pathFirstStill = self.way.wayStills.first().get("srcLowRes");
+        var pathFirstStill = self.currentStill.get("srcLowRes");
 
-        self.$el.html(_.template(streetWalkViewTemplate,{
+        self.$el.html(_.template(streetWalkViewTemplate)({
             pathFirstStill:pathFirstStill,
             STR:Localization.STR,
             lang:Localization.translationLoaded
@@ -245,7 +245,7 @@ define(['jquery',
 
         //Render top signs
         self.$el.find(".streetwalk-progress").html(_.template(svgSignTopProgressTemplate));
-        self.$el.find(".streetwalk-area").html(_.template(svgSignTopAreaTemplate,{
+        self.$el.find(".streetwalk-area").html(_.template(svgSignTopAreaTemplate)({
             area:self.way.wayArea
         }));
 
@@ -430,7 +430,7 @@ define(['jquery',
             self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
 
             self.$el.find(".streetwalk-chooseway-end-wrapper").show();
-            self.$el.find(".streetwalk-chooseway-end-wrapper").html(_.template(streetWalkChoosePathEndViewTemplate,{
+            self.$el.find(".streetwalk-chooseway-end-wrapper").html(_.template(streetWalkChoosePathEndViewTemplate)({
                 wayConnectionsEnd:self.way.wayConnectionsEnd
             }));
 
@@ -440,7 +440,7 @@ define(['jquery',
             self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
 
             self.$el.find(".streetwalk-chooseway-start-wrapper").show();
-            self.$el.find(".streetwalk-chooseway-start-wrapper").html(_.template(streetWalkChoosePathStartViewTemplate,{
+            self.$el.find(".streetwalk-chooseway-start-wrapper").html(_.template(streetWalkChoosePathStartViewTemplate)({
                 wayConnectionsStart:self.way.wayConnectionsStart
             }));
 

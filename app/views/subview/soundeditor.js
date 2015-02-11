@@ -213,7 +213,7 @@ define(['jquery',
     render: function() {
         var self = this;
 
-        self.$el.html(_.template(soundEditorViewTemplate,{
+        self.$el.html(_.template(soundEditorViewTemplate)({
             way : self.way
         }));
 
@@ -231,7 +231,7 @@ define(['jquery',
     renderSoundInfo: function() {
         var self = this;
 
-        self.$el.find(".streetwalk-soundeditor-panel-soundinfo").html(_.template(soundEditorSoundInfoViewTemplate,{
+        self.$el.find(".streetwalk-soundeditor-panel-soundinfo").html(_.template(soundEditorSoundInfoViewTemplate)({
             sound : self.currentSoundEditing
         }));
     },

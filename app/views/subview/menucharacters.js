@@ -24,113 +24,113 @@ function($, _, Backbone,
             ".streetwalk-menucharacter[data-character='jale'] .character-unlocked":{
                 observe:"charactersProgression",
                 visible: true,
-                onGet: function(charactersProgression) {
-                    return charactersProgression.jale.characterUnlocked;
+                onGet: function() {
+                    return Progression.get("charactersProgression").jale.characterUnlocked;
                 }
             },
             ".streetwalk-menucharacter[data-character='jale'] .character-locked":{
                 observe:"charactersProgression",
-                visible: function(val) { return val === false; },
-                onGet: function(charactersProgression) {
-                    return charactersProgression.jale.characterUnlocked;
+                visible: true,
+                onGet: function() {
+                    return !Progression.get("charactersProgression").jale.characterUnlocked;
                 }
             },
             ".streetwalk-menucharacter[data-character='jale'] .video1":{
                 observe:"charactersProgression",
                 visible: true,
-                onGet: function(charactersProgression) {
-                    return charactersProgression.jale.video1Unlocked;
+                onGet: function() {
+                    return Progression.get("charactersProgression").jale.video1Unlocked;
                 }
             },
             ".streetwalk-menucharacter[data-character='jale'] .video1locked":{
                 observe:"charactersProgression",
-                visible: function(val) { return val === false; },
-                onGet: function(charactersProgression) {
-                    return charactersProgression.jale.video1Unlocked;
+                visible: true,
+                onGet: function() {
+                    return !Progression.get("charactersProgression").jale.video1Unlocked;
                 }
             },
             ".streetwalk-menucharacter[data-character='jale'] .video2":{
                 observe:"charactersProgression",
                 visible: true,
-                onGet: function(charactersProgression) {
-                    return charactersProgression.jale.video2Unlocked;
+                onGet: function() {
+                    return Progression.get("charactersProgression").jale.video2Unlocked;
                 }
             },
             ".streetwalk-menucharacter[data-character='jale'] .video2locked":{
                 observe:"charactersProgression",
-                visible: function(val) { return val === false; },
-                onGet: function(charactersProgression) {
-                    return charactersProgression.jale.video2Unlocked;
+                visible: true,
+                onGet: function() {
+                    return !Progression.get("charactersProgression").jale.video2Unlocked;
                 }
             },
             ".streetwalk-menucharacter[data-character='jale'] .video3":{
                 observe:"charactersProgression",
                 visible: true,
-                onGet: function(charactersProgression) {
-                    return charactersProgression.jale.video3Unlocked;
+                onGet: function() {
+                    return Progression.get("charactersProgression").jale.video3Unlocked;
                 }
             },
             ".streetwalk-menucharacter[data-character='jale'] .video3locked":{
                 observe:"charactersProgression",
-                visible: function(val) { return val === false; },
-                onGet: function(charactersProgression) {
-                    return charactersProgression.jale.video3Unlocked;
+                visible: true,
+                onGet: function() {
+                    return !Progression.get("charactersProgression").jale.video3Unlocked;
                 }
             },
             ".streetwalk-menucharacter[data-character='pajarito'] .character-unlocked":{
                 observe:"charactersProgression",
                 visible: true,
-                onGet: function(charactersProgression) {
-                    return charactersProgression.pajarito.characterUnlocked;
+                onGet: function() {
+                    return Progression.get("charactersProgression").pajarito.characterUnlocked;
                 }
             },
             ".streetwalk-menucharacter[data-character='pajarito'] .character-locked":{
                 observe:"charactersProgression",
-                visible: function(val) { return val === false; },
-                onGet: function(charactersProgression) {
-                    return charactersProgression.pajarito.characterUnlocked;
+                visible: true,
+                onGet: function() {
+                    return !Progression.get("charactersProgression").pajarito.characterUnlocked;
                 }
             },
             ".streetwalk-menucharacter[data-character='pajarito'] .video1":{
                 observe:"charactersProgression",
                 visible: true,
-                onGet: function(charactersProgression) {
-                    return charactersProgression.pajarito.video1Unlocked;
+                onGet: function() {
+                    return Progression.get("charactersProgression").pajarito.video1Unlocked;
                 }
             },
             ".streetwalk-menucharacter[data-character='pajarito'] .video1locked":{
                 observe:"charactersProgression",
-                visible: function(val) { return val === false; },
-                onGet: function(charactersProgression) {
-                    return charactersProgression.pajarito.video1Unlocked;
+                visible: true,
+                onGet: function() {
+                    return !Progression.get("charactersProgression").pajarito.video1Unlocked;
                 }
             },
             ".streetwalk-menucharacter[data-character='pajarito'] .video2":{
                 observe:"charactersProgression",
                 visible: true,
-                onGet: function(charactersProgression) {
-                    return charactersProgression.pajarito.video2Unlocked;
+                onGet: function() {
+                    return Progression.get("charactersProgression").pajarito.video2Unlocked;
                 }
             },
             ".streetwalk-menucharacter[data-character='pajarito'] .video2locked":{
                 observe:"charactersProgression",
-                visible: function(val) { return val === false; },
-                onGet: function(charactersProgression) {
-                    return charactersProgression.pajarito.video2Unlocked;
+                visible: true,
+                onGet: function() {
+                    return !Progression.get("charactersProgression").pajarito.video2Unlocked;
                 }
             },
             ".streetwalk-menucharacter[data-character='pajarito'] .video3":{
                 observe:"charactersProgression",
                 visible: true,
-                onGet: function(charactersProgression) {
-                    return charactersProgression.pajarito.video3Unlocked;
+                onGet: function() {
+                    return Progression.get("charactersProgression").pajarito.video3Unlocked;
                 }
             },
             ".streetwalk-menucharacter[data-character='pajarito'] .video3locked":{
                 observe:"charactersProgression",
-                visible: function(val) { return val === false; },
-                onGet: function(charactersProgression) {
-                    return charactersProgression.pajarito.video3Unlocked;
+                visible: true,
+                onGet: function() {
+                    return !Progression.get("charactersProgression").pajarito.video3Unlocked;
                 }
             }
     },

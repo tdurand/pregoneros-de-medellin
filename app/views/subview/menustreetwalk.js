@@ -43,7 +43,7 @@ function($, _, Backbone,
     render: function() {
         var self = this;
 
-        self.$el.html(_.template(menuStreetWalkViewTemplate,{
+        self.$el.html(_.template(menuStreetWalkViewTemplate)({
             loginStatus: UserManagerView.status
         }));
     },
