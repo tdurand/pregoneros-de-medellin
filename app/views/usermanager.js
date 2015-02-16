@@ -61,7 +61,7 @@ function($, _, Backbone,
 
         self.updateLoginStatus();
 
-        Progression.set("belongTo", Parse.User.current());
+        Progression.initialize();
         Progression.fetch();
     },
 
@@ -107,7 +107,7 @@ function($, _, Backbone,
           self.updateLoginStatus();
 
           self.renderSuccessSignInView();
-          Progression.persistToParse();
+          Progression.instance.persistToParse();
         },
 
         error: function(user, error) {
@@ -139,7 +139,7 @@ function($, _, Backbone,
         success: function(user) {
             self.renderSuccessAccountCreationView();
             self.updateLoginStatus();
-            Progression.persistToParse();
+            Progression.instance.persistToParse();
         },
 
         error: function(user, error) {
@@ -176,7 +176,7 @@ function($, _, Backbone,
                         console.log(user);
                         self.renderSuccessAccountCreationView();
                         self.updateLoginStatus();
-                        Progression.persistToParse();
+                        Progression.instance.persistToParse();
                       }
                     });
                 });

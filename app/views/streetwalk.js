@@ -179,7 +179,7 @@ define(['jquery',
     renderLoading: function() {
         var self = this;
         
-        if(Progression.isFirstWay) {
+        if(Progression.instance.isFirstWay) {
             self.$el.find(".streetwalk-loading-main").html(_.template(streetWalkLoadingViewTemplate));
         }
         else {
@@ -238,8 +238,8 @@ define(['jquery',
             lang:Localization.translationLoaded
         }));
 
-        if(Progression.isFirstWay) {
-            Progression.isFirstWay = false;
+        if(Progression.instance.isFirstWay) {
+            Progression.instance.isFirstWay = false;
             //Render tutorial
             self.$el.find(".streetwalk-tutorial").html(_.template(svgScrollToStart));
         }
@@ -251,7 +251,7 @@ define(['jquery',
         }));
 
         //attach stickit
-        self.stickit(Progression);
+        self.stickit(Progression.instance);
 
         self.renderImgHighRes();
 
@@ -626,10 +626,10 @@ define(['jquery',
 
         if(self.way.characterDefinition) {
 
-            var idVimeo = Progression.nextVideoToPlay(self.way.characterDefinition.name, self.way.wayName);
+            var idVimeo = Progression.instance.nextVideoToPlay(self.way.characterDefinition.name, self.way.wayName);
 
-            if(Progression.isFirstVideo) {
-                Progression.isFirstVideo = false;
+            if(Progression.instance.isFirstVideo) {
+                Progression.instance.isFirstVideo = false;
                 idVimeo = 115328392;
             }
 
@@ -674,7 +674,7 @@ define(['jquery',
         
         if(!self.videoShowOneTime) {
             //unlocknext item
-            Progression.unlockNextItem(characterName,self.way.wayName);
+            Progression.instance.unlockNextItem(characterName,self.way.wayName);
         }
 
         self.videoShowOneTime = true;

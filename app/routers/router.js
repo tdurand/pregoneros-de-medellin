@@ -36,7 +36,7 @@ define([
         index: function() {
             var indexView = new IndexView();
 
-            Progression.viewedLandingPage = true;
+            Progression.instance.viewedLandingPage = true;
 
             indexView = AppView.show(indexView);
             AppView.changePage(indexView);
@@ -47,7 +47,7 @@ define([
 
             var self = this;
 
-            // if(!Progression.viewedLandingPage) {
+            // if(!Progression.instance.instanceviewedLandingPage) {
             //     self.navigate("#index",{trigger:true,replace:true});
             //     return;
             // }
