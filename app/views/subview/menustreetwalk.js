@@ -72,7 +72,7 @@ function($, _, Backbone,
     },
 
     logout: function() {
-        UserManagerView.logout();
+        UserManagerView.alertBeforeLogout();
     },
 
     onClose: function(){

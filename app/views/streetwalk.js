@@ -672,12 +672,8 @@ define(['jquery',
         //current character
         var characterName = self.way.characterDefinition.name;
         
-        if(!self.videoShowOneTime) {
-            //unlocknext item
-            Progression.instance.unlockNextItem(characterName,self.way.wayName);
-        }
-
-        self.videoShowOneTime = true;
+        //unlocknext item
+        Progression.instance.unlockNextItem(characterName,self.way.wayName);
 
         //open menu
         MenuCharactersView.openMenu(characterName);

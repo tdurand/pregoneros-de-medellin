@@ -7,7 +7,8 @@ define(['jquery',
         'text!templates/usermanager/createAccountViewTemplate.html',
         'text!templates/usermanager/signInViewTemplate.html',
         'text!templates/usermanager/successAccountCreationViewTemplate.html',
-        'text!templates/usermanager/successSignInViewTemplate.html'
+        'text!templates/usermanager/successSignInViewTemplate.html',
+        'text!templates/usermanager/alertBeforeLogout.html'
         ],
 function($, _, Backbone,
                 LOGGER,
@@ -16,7 +17,8 @@ function($, _, Backbone,
                 CreateAccountView,
                 SignInView,
                 SuccessAccountCreationView,
-                SuccessSignInView){
+                SuccessSignInView,
+                AlertBeforeLogoutView){
 
   var UserManagerView = Backbone.View.extend({
 
@@ -34,6 +36,7 @@ function($, _, Backbone,
         "submit form.login-form": "logIn",
         "submit form.signup-form": "signUp",
         "click .streetwalk-login-btnclose": "closeView",
+        "click .streetwalk-login-btnlogout": "logOut",
         "click .btn-createaccount":"renderCreateAccountView"
     },
 
@@ -96,6 +99,12 @@ function($, _, Backbone,
          self.$el.html(_.template(SuccessSignInView));
     },
 
+    renderAlertBeforeLogout: function() {
+        var self = this;
+
+        self.$el.html(_.template(AlertBeforeLogoutView));
+    },
+
     logIn: function(e) {
       var self = this;
       var email = self.$el.find(".login-email").val();
@@ -107,7 +116,12 @@ function($, _, Backbone,
           self.updateLoginStatus();
 
           self.renderSuccessSignInView();
-          Progression.instance.persistToParse();
+
+          Progression.fetch(function(data) {
+              if(!_.isUndefined(data)) {
+                Progression.instance.persistToParse();
+              }
+          });
         },
 
         error: function(user, error) {
@@ -176,7 +190,9 @@ function($, _, Backbone,
                         console.log(user);
                         self.renderSuccessAccountCreationView();
                         self.updateLoginStatus();
+
                         Progression.instance.persistToParse();
+                        
                       }
                     });
                 });
@@ -186,6 +202,12 @@ function($, _, Backbone,
             } else {
 
               console.log("User logged in through Facebook!");
+
+              Progression.fetch(function(data) {
+                  if(!_.isUndefined(data)) {
+                    Progression.instance.persistToParse();
+                  }
+              });
 
               self.updateLoginStatus();
               self.renderSuccessSignInView();
@@ -213,11 +235,21 @@ function($, _, Backbone,
         self.trigger("loginStatusChanged");
     },
 
-    logout: function() {
+    alertBeforeLogout: function() {
+        var self = this;
+        self.renderAlertBeforeLogout();
+        self.showView();
+    },
+
+    logOut: function() {
         var self = this;
         Parse.User.logOut();
-
+        Progression.logOut();
         self.updateLoginStatus();
+
+        window.location.href = "#streetwalk/carabobo-cl53-cl52";
+
+        self.closeView();
     },
 
     closeView: function() {
