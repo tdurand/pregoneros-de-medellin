@@ -5,13 +5,15 @@ define(['jquery',
         'views/usermanager',
         'text!templates/index/indexViewTemplate.html',
         'text!templates/index/indexMenuViewTemplate.html',
+        'text!templates/index/indexBtnEnterViewTemplate.html',
         'popcorn'
         ],
 function($, _, Backbone,
                     Sounds,
                     UserManagerView,
                     indexViewTemplate,
-                    indexMenuViewTemplate){
+                    indexMenuViewTemplate,
+                    indexBtnEnterViewTemplate){
 
   var IndexView = Backbone.View.extend({
 
@@ -33,6 +35,7 @@ function($, _, Backbone,
         //EVENT
         self.listenTo(UserManagerView,"loginStatusChanged", function() {
             self.renderMenu();
+            self.renderStartButton();
         });
 
     },
@@ -67,6 +70,7 @@ function($, _, Backbone,
         $.preloadImages("images/loadingbackground.jpg");
 
         self.renderMenu();
+        self.renderStartButton();
 
     },
 
@@ -74,6 +78,14 @@ function($, _, Backbone,
         var self = this;
 
         self.$el.find(".menu").html(_.template(indexMenuViewTemplate)({
+            loginStatus: UserManagerView.status
+        }));
+    },
+
+    renderStartButton: function() {
+        var self = this;
+
+        self.$el.find(".description-btnenter").html(_.template(indexBtnEnterViewTemplate)({
             loginStatus: UserManagerView.status
         }));
     },

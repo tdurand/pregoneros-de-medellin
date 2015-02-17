@@ -1,0 +1,15 @@
+<% if(loginStatus.logged) { %>
+<a href="#streetwalk">
+    <img src="images/btn-continue.svg" alt="">
+</a>
+<div class="btn-newprogress description-btnenter-btnsecondary">
+    <a href="#" class="menu-btnlogout">Empezar de nuevo</a>
+</div>
+<% } else { %>
+<a href="#streetwalk">
+    <img src="images/btn-enter.svg" alt="">
+</a>
+<div class="btn-continueprogress description-btnenter-btnsecondary">
+    <a href="#" class="menu-btnlogin">Seguir mi progressión</a>
+</div>
+<% } %>
