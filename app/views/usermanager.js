@@ -63,9 +63,6 @@ function($, _, Backbone,
         self.renderAskToCreateAccountView();
 
         self.updateLoginStatus();
-
-        Progression.initialize();
-        Progression.fetch();
     },
 
     renderAskToCreateAccountView: function() {

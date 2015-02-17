@@ -26,6 +26,9 @@ define([
         initialize: function() {
             var self = this;
 
+            Progression.initialize();
+            Progression.fetch();
+
             // self.listenTo(Localization,"STRSuccess",function() {
             //     self.navigate("#"+Localization.translationLoaded, {trigger:false,replace:true});
             // });
@@ -53,8 +56,14 @@ define([
             // }
 
             if(_.isNull(wayName)) {
-                wayName = "carabobo-cl53-cl52";
-                self.navigate("#streetwalk/carabobo-cl53-cl52",{replace:true});
+                var currentStreet = Progression.instance.get("currentStreet");
+                if(currentStreet !== "") {
+                    wayName = currentStreet;
+                }
+                else {
+                    wayName = "carabobo-cl53-cl52";
+                }
+                self.navigate("#streetwalk/" + currentStreet,{replace:true});
             }
 
             var streetWalkView = new StreetWalkView({
