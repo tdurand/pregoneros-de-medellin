@@ -14,6 +14,7 @@ define(['jquery',
     'views/subview/menustreetwalk',
     'views/subview/tutorial',
     'views/subview/map',
+    'views/usermanager',
     'text!templates/streetwalk/streetWalkViewTemplate.html',
     'text!templates/streetwalk/streetWalkLoadingViewTemplate.html',
     'text!templates/streetwalk/streetWalkChoosePathStartViewTemplate.html',
@@ -39,6 +40,7 @@ define(['jquery',
         MenuStreetWalkView,
         TutorialView,
         MapView,
+        UserManagerView,
         streetWalkViewTemplate,
         streetWalkLoadingViewTemplate,
         streetWalkChoosePathStartViewTemplate,
@@ -126,6 +128,16 @@ define(['jquery',
                 MapView.update(self.way.wayPath[0]);
             });
 
+            //USER MANAGER
+            self.listenToOnce(UserManagerView,"progressFetched",function() {
+                var lastStreet = Progression.instance.get("currentStreet");
+                self.goToStreetName(lastStreet);
+            });
+
+            self.listenTo(UserManagerView,"logOut",function() {
+                self.goToStreetName("carabobo-cl53-cl52");
+            });
+
         },
 
         initArrowKeyBinding: function() {
@@ -176,38 +188,38 @@ define(['jquery',
             });
         },
 
-    renderLoading: function() {
-        var self = this;
-        
-        if(Progression.instance.isFirstWay) {
-            self.$el.find(".streetwalk-loading-main").html(_.template(streetWalkLoadingViewTemplate));
-        }
-        else {
-            self.$el.find(".streetwalk-tutorial").hide();
-            self.$el.find(".streetwalk-loading").html(_.template(streetWalkLoadingViewTemplate));
-        }
+        renderLoading: function() {
+            var self = this;
+            
+            if(Progression.instance.isFirstWay) {
+                self.$el.find(".streetwalk-loading-main").html(_.template(streetWalkLoadingViewTemplate));
+            }
+            else {
+                self.$el.find(".streetwalk-tutorial").hide();
+                self.$el.find(".streetwalk-loading").html(_.template(streetWalkLoadingViewTemplate));
+            }
 
 
 
-        self.$el.find(".streetwalk-loading").show();
+            self.$el.find(".streetwalk-loading").show();
 
-        //init svg element path
-        self.pathLoading = Snap("#loadingLine");
-        self.pathLoadingLength = self.pathLoading.getTotalLength();
-        self.pathLoading.attr({
-            // Draw Path
-            "stroke-dasharray": self.pathLoadingLength + " " + self.pathLoadingLength,
-            "stroke-dashoffset": self.pathLoadingLength
-        });
+            //init svg element path
+            self.pathLoading = Snap("#loadingLine");
+            self.pathLoadingLength = self.pathLoading.getTotalLength();
+            self.pathLoading.attr({
+                // Draw Path
+                "stroke-dasharray": self.pathLoadingLength + " " + self.pathLoadingLength,
+                "stroke-dashoffset": self.pathLoadingLength
+            });
 
-        self.carito = Snap("#carito");
+            self.carito = Snap("#carito");
 
-        self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
-        self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
+            self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
+            self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
 
-        window.scrollTo(0,5);
+            window.scrollTo(0,5);
 
-    },
+        },
 
     updateLoadingIndicator: function(pourcentage) {
         var self = this;
@@ -269,7 +281,7 @@ define(['jquery',
         }
 
         MenuCharactersView.prepare();
-        MenuStreetWalkView.prepare();
+        MenuStreetWalkView.prepare(UserManagerView);
         MapView.prepare(self.way.wayPath[self.currentStill.id]);
 
         Progression.setCurrentStreet(self.way.wayName);
@@ -684,6 +696,10 @@ define(['jquery',
     showSoundEditor: function() {
         var self = this;
         self.$el.find("#streetwalk-soundeditor").show();
+    },
+
+    goToStreetName: function(wayName) {
+        window.location.href = "#streetwalk/" + wayName;
     },
 
     onClose: function(){

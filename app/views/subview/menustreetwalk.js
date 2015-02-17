@@ -3,13 +3,11 @@ define(['jquery',
         'backbone',
         'utils/Logger',
         'models/Progression',
-        'views/usermanager',
         'text!templates/streetwalk/menu/menuStreetWalkViewTemplate.html'
         ],
 function($, _, Backbone,
                 LOGGER,
                 Progression,
-                UserManagerView,
                 menuStreetWalkViewTemplate){
 
   var MenuStreetWalkView = Backbone.View.extend({
@@ -21,8 +19,10 @@ function($, _, Backbone,
         "click .streetwalk-menubottom-btnlogout":"logout"
     },
 
-    prepare : function() {
+    prepare : function(UserManagerView) {
         var self = this;
+
+        self.UserManagerView = UserManagerView;
 
         //refresh el, element inserted after in the DOM
         self.setElement(".streetwalk-menubottom");
@@ -35,7 +35,7 @@ function($, _, Backbone,
         });
 
         //render again menu on login status change
-        self.listenTo(UserManagerView,"loginStatusChanged",function() {
+        self.listenTo(self.UserManagerView,"loginStatusChanged",function() {
             self.render();
         });
     },
@@ -44,7 +44,7 @@ function($, _, Backbone,
         var self = this;
 
         self.$el.html(_.template(menuStreetWalkViewTemplate)({
-            loginStatus: UserManagerView.status
+            loginStatus: self.UserManagerView.status
         }));
     },
 
@@ -67,12 +67,12 @@ function($, _, Backbone,
 
     displayLogin: function() {
         var self = this;
-
-        UserManagerView.displayLogin();
+        self.UserManagerView.displayLogin();
     },
 
     logout: function() {
-        UserManagerView.alertBeforeLogout();
+         var self = this;
+        self.UserManagerView.alertBeforeLogout();
     },
 
     onClose: function(){

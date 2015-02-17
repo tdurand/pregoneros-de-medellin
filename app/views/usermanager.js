@@ -114,14 +114,7 @@ function($, _, Backbone,
 
           self.renderSuccessSignInView();
 
-          Progression.fetch(function(data) {
-              if(!_.isUndefined(data)) {
-                //Go to last street
-                var lastStreet = Progression.instance.get("currentStreet");
-                self.goToStreetName(lastStreet);
-              }
-              Progression.instance.persistToParse();
-          });
+          self.afterLogin();
         },
 
         error: function(user, error) {
@@ -203,14 +196,7 @@ function($, _, Backbone,
 
               console.log("User logged in through Facebook!");
 
-              Progression.fetch(function(data) {
-                  if(!_.isUndefined(data)) {
-                    //Go to last street
-                    var lastStreet = Progression.instance.get("currentStreet");
-                    self.goToStreetName(lastStreet);
-                  }
-                  Progression.instance.persistToParse();
-              });
+              self.afterLogin();
 
               self.updateLoginStatus();
               self.renderSuccessSignInView();
@@ -250,9 +236,25 @@ function($, _, Backbone,
         Progression.logOut();
         self.updateLoginStatus();
 
-        self.goToStreetName("carabobo-cl53-cl52");
+        self.trigger("logOut");
 
         self.closeView();
+    },
+
+    afterLogin: function() {
+        var self = this;
+
+        Progression.fetch(function(data) {
+          if(!_.isUndefined(data)) {
+            //Go to last street
+            self.trigger("progressFetched");
+          }
+          else {
+            //save current progress
+            Progression.instance.persistToParse();
+          }
+       });
+
     },
 
     closeView: function() {
@@ -269,10 +271,6 @@ function($, _, Backbone,
         self.renderSignInView();
 
         self.showView();
-    },
-
-    goToStreetName: function(wayName) {
-        window.location.href = "#streetwalk/" + wayName;
     },
 
     onClose: function(){

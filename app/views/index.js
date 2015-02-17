@@ -2,19 +2,24 @@ define(['jquery',
         'underscore',
         'backbone',
         'models/Sounds',
+        'views/usermanager',
         'text!templates/index/indexViewTemplate.html',
+        'text!templates/index/indexMenuViewTemplate.html',
         'popcorn'
         ],
 function($, _, Backbone,
                     Sounds,
-                    indexViewTemplate){
+                    UserManagerView,
+                    indexViewTemplate,
+                    indexMenuViewTemplate){
 
   var IndexView = Backbone.View.extend({
 
     el:"#index",
 
     events:{
-
+        "click .menu-btnlogin":"displayLogin",
+        "click .menu-btnlogout":"logout"
     },
 
     prepare:function() {
@@ -24,6 +29,11 @@ function($, _, Backbone,
         this.render();
 
         Sounds.playSoundHome();
+
+        //EVENT
+        self.listenTo(UserManagerView,"loginStatusChanged", function() {
+            self.renderMenu();
+        });
 
     },
 
@@ -56,6 +66,16 @@ function($, _, Backbone,
 
         $.preloadImages("images/loadingbackground.jpg");
 
+        self.renderMenu();
+
+    },
+
+    renderMenu: function() {
+        var self = this;
+
+        self.$el.find(".menu").html(_.template(indexMenuViewTemplate)({
+            loginStatus: UserManagerView.status
+        }));
     },
 
     //See this hack: http://jsfiddle.net/6qBUK/4/
@@ -78,6 +98,14 @@ function($, _, Backbone,
 
         $(videoContainer).height(window.innerHeight);//0.88 was the magic number that you needed to shrink the height of the outer container with.
 
+    },
+
+    displayLogin: function() {
+        UserManagerView.displayLogin();
+    },
+
+    logout: function() {
+        UserManagerView.alertBeforeLogout();
     },
 
     onClose: function(){

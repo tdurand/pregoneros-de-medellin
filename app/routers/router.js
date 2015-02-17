@@ -63,7 +63,7 @@ define([
                 else {
                     wayName = "carabobo-cl53-cl52";
                 }
-                self.navigate("#streetwalk/" + currentStreet,{replace:true});
+                self.navigate("#streetwalk/" + wayName,{replace:true});
             }
 
             var streetWalkView = new StreetWalkView({
