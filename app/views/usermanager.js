@@ -122,8 +122,8 @@ function($, _, Backbone,
                 //Go to last street
                 var lastStreet = Progression.instance.get("currentStreet");
                 self.goToStreetName(lastStreet);
-                Progression.instance.persistToParse();
               }
+              Progression.instance.persistToParse();
           });
         },
 
@@ -211,8 +211,8 @@ function($, _, Backbone,
                     //Go to last street
                     var lastStreet = Progression.instance.get("currentStreet");
                     self.goToStreetName(lastStreet);
-                    Progression.instance.persistToParse();
                   }
+                  Progression.instance.persistToParse();
               });
 
               self.updateLoginStatus();
