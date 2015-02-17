@@ -27,7 +27,7 @@ function($, _, Backbone, LOGGER, ProgressionModel){
                 }
                 
                 if(callBack) {
-                    callBack();
+                    callBack(data);
                 }
           },
           error: function(error) {
@@ -44,8 +44,13 @@ function($, _, Backbone, LOGGER, ProgressionModel){
 
         self.instance.initialize();
         self.instance.set("id",undefined);
+    },
 
-        console.log(ProgressionModel);
+    setCurrentStreet: function(wayName) {
+        var self = this;
+
+        self.instance.setCurrentStreet(wayName);
+        self.instance.persistToParse();
     }
 
   };

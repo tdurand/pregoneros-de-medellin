@@ -54,7 +54,8 @@ function($, _, Backbone, LOGGER, Ways){
                             }
                         }
                 },
-                nbItemUnlocked:0
+                nbItemUnlocked:0,
+                currentStreet:""
             });
 
             self.set({
@@ -159,10 +160,13 @@ function($, _, Backbone, LOGGER, Ways){
 
         self.set("charactersProgression",charactersProgression);
 
-        console.log(charactersProgression);
-
         self.persistToParse();
 
+    },
+
+    setCurrentStreet: function(wayName) {
+        var self = this;
+        self.set("currentStreet", wayName);
     },
 
     persistToParse: function() {

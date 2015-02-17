@@ -272,6 +272,8 @@ define(['jquery',
         MenuStreetWalkView.prepare();
         MapView.prepare(self.way.wayPath[self.currentStill.id]);
 
+        Progression.setCurrentStreet(self.way.wayName);
+
         self.adjustSizes();
         
     },

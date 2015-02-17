@@ -119,6 +119,9 @@ function($, _, Backbone,
 
           Progression.fetch(function(data) {
               if(!_.isUndefined(data)) {
+                //Go to last street
+                var lastStreet = Progression.instance.get("currentStreet");
+                self.goToStreetName(lastStreet);
                 Progression.instance.persistToParse();
               }
           });
@@ -205,6 +208,9 @@ function($, _, Backbone,
 
               Progression.fetch(function(data) {
                   if(!_.isUndefined(data)) {
+                    //Go to last street
+                    var lastStreet = Progression.instance.get("currentStreet");
+                    self.goToStreetName(lastStreet);
                     Progression.instance.persistToParse();
                   }
               });
@@ -247,7 +253,7 @@ function($, _, Backbone,
         Progression.logOut();
         self.updateLoginStatus();
 
-        window.location.href = "#streetwalk/carabobo-cl53-cl52";
+        self.goToStreetName("carabobo-cl53-cl52");
 
         self.closeView();
     },
@@ -266,6 +272,10 @@ function($, _, Backbone,
         self.renderSignInView();
 
         self.showView();
+    },
+
+    goToStreetName: function(wayName) {
+        window.location.href = "#streetwalk/" + wayName;
     },
 
     onClose: function(){
