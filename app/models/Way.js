@@ -85,8 +85,17 @@ function($, _, Backbone,
             });
 
             self.listenTo(self.wayStills,"loadingFinished", function() {
-                self.loadingFinished = true;
-                self.trigger("loadingFinished");
+                if(self.soundsLoaded) {
+                    self.loadingFinished = true;
+                    self.trigger("loadingFinished");
+                }
+                else {
+                    self.listenToOnce(Sounds,"soundsLoaded", function() {
+                        self.loadingFinished = true;
+                        self.trigger("loadingFinished");
+                    });
+                }
+                
             });
 
             self.listenTo(self.wayStills,"loadingFinishedCompletely", function() {
@@ -103,6 +112,7 @@ function($, _, Backbone,
             //Sounds
             self.listenTo(Sounds,"soundsLoaded", function() {
                 self.trigger('soundsLoaded');
+                self.soundsLoaded = true;
             });
             Sounds.updateSoundsCollection(self.waySoundsData,self.wayName);
             Sounds.fetch();

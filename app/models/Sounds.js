@@ -21,7 +21,7 @@ function($, _, Backbone,
           src: ['content/music/intro.mp3'],
           loop:true,
           html5:true,
-          volume:0,
+          volume:1,
           onload: function() {
             self.soundHome.play();
           }
@@ -32,7 +32,9 @@ function($, _, Backbone,
         var self = this;
 
         if(self.soundHome) {
-            // self.soundHome.fade(1,0,3000);
+            if(self.soundHome.volume() == 1) {
+                self.soundHome.fade(1,0,3000);
+            }
         }
     },
 
@@ -161,6 +163,9 @@ function($, _, Backbone,
 
         self.soundsToAdd = [];
 
+        //sound to fadein
+        self.soundToFadeInId = "";
+
         _.each(self.soundsToAddIds,function(soundToAddId) {
             self.soundsToAdd.push(_.findWhere(self.waySounds, {path: soundToAddId}));
         });
@@ -175,16 +180,12 @@ function($, _, Backbone,
             });
 
             var closestAmbientToFadeOut = self.findClosestAmbientSound(self.currentUserPosition,soundsToRemove);
+            //Fadeout closest ambient to remove
+            self.get(closestAmbientToFadeOut.path).toFadeOut = true;
 
-            //Fade closest ambient to remove
-            console.log(closestAmbientToFadeOut);
-
-            //Find closest ambient to add
+            //Fadein closest ambient to add
             var closestAmbientToFadeIn = self.findClosestAmbientSound(self.currentUserPosition,self.soundsToAdd);
-
-
-            //Fade closest ambient to add
-            console.log(closestAmbientToFadeIn);
+            self.soundToFadeInId = closestAmbientToFadeIn.path;
         }
 
     },
@@ -238,11 +239,6 @@ function($, _, Backbone,
                 return;
             }
 
-            //Remove old sounds
-            _.each(self.soundsToRemoveIds, function(soundToRemove) {
-                self.remove(soundToRemove).unload();
-            });
-
             var nbSoundsToLoad = self.soundsToAdd.length;
             
             _.each(self.soundsToAdd, function(waySound) {
@@ -260,6 +256,8 @@ function($, _, Backbone,
                         way: self.wayName
                         });
 
+
+
                 self.add(sound);
 
                 self.listenTo(sound,"soundLoaded",function() {
@@ -269,6 +267,23 @@ function($, _, Backbone,
                         self.trigger('soundsLoaded');
                         LOGGER.debug("ALL SOUNDS LOADED");
                         console.log(self.models);
+
+                        //Remove old sounds
+                        _.each(self.soundsToRemoveIds, function(soundToRemove) {
+                            var sound = self.get(soundToRemove);
+                            self.listenToOnce(sound,"faded",function() {
+                                self.remove(sound).unload();
+                            });
+                            sound.fadeOut();
+                        });
+                    }
+
+                    console.log(self.soundToFadeInId);
+                    console.log(waySound.path);
+
+                    if(self.soundToFadeInId == waySound.path) {
+                        console.log("FADE IN");
+                        sound.fadeIn();
                     }
                 });
 

@@ -12,10 +12,11 @@ function($, _, Backbone, GeoUtils, LOGGER){
     // position: undefined,
     // vol: undefined,
     // path: undefined,
-    // type: undefined,
+    // $.type(DOMelementArray);: undefined,
     // db: undefined,
 
     idAttribute: "path",
+    isFading: false,
 
     initialize: function() {
         var self = this;
@@ -141,7 +142,7 @@ function($, _, Backbone, GeoUtils, LOGGER){
         self.sound = new Howl({
           src: ['data/sounds/' + self.get("path") + '.mp3'],
           loop:true,
-          html5:false,
+          html5:self.isAmbient(),
           volume:0,
           onload: function() {
             self.trigger("soundLoaded");
@@ -149,6 +150,26 @@ function($, _, Backbone, GeoUtils, LOGGER){
         });
 
         self.sound.play();
+    },
+
+    fadeOut: function() {
+        var self = this;
+        self.isFading = true;
+        self.sound.once("faded",function() {
+            self.trigger("faded");
+            self.isFading = false;
+        });
+        self.sound.fade(self.sound.volume(),0,3000);
+    },
+
+    fadeIn: function() {
+        var self = this;
+        self.isFading = true;
+        self.listenToOnce(self.sound,"faded",function() {
+            self.trigger("faded");
+            self.isFading = false;
+        });
+        self.sound.fade(0,1,3000);
     },
 
     mute: function() {
@@ -161,6 +182,16 @@ function($, _, Backbone, GeoUtils, LOGGER){
         var self = this;
 
         self.sound.mute(false);
+    },
+
+    isAmbient: function() {
+        var self = this;
+        if(self.get("type") == "ambient") {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
   });

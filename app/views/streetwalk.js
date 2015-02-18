@@ -339,7 +339,9 @@ define(['jquery',
             Sounds.updateSounds(self.way.wayPath[0]);
             Sounds.fadeOutSoundHome();
 
-            self.soundEditorView = new SoundEditorView(self.way);
+            setTimeout(function() {
+                self.soundEditorView = new SoundEditorView(self.way);
+            },5000);
 
             self.computeAnimation(true);
             self.initScrollEventHandlers();
@@ -593,7 +595,10 @@ define(['jquery',
 
                     //update editor
                     Sounds.currentUserPosition = self.way.wayPath[imgNb];
-                    self.soundEditorView.refreshEditorMapAfterMoving();
+                    if(self.soundEditorView) {
+                        self.soundEditorView.refreshEditorMapAfterMoving();
+                    }
+                    
                 }
             }
 
