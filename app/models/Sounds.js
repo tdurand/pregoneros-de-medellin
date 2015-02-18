@@ -171,21 +171,11 @@ function($, _, Backbone,
         });
 
         if(self.soundsToKeepIds.length === 0 && !_.isUndefined(self.currentUserPosition)) {
-            //Need to do a fade on remove
-            
-            //Find closest ambient to remove
-            var soundsToRemove = [];
-            _.each(self.soundsToRemoveIds, function(soundToRemove) {
-                soundsToRemove.push(self.get(soundToRemove).attributes);
-            });
-
-            var closestAmbientToFadeOut = self.findClosestAmbientSound(self.currentUserPosition,soundsToRemove);
-            //Fadeout closest ambient to remove
-            self.get(closestAmbientToFadeOut.path).toFadeOut = true;
-
             //Fadein closest ambient to add
             var closestAmbientToFadeIn = self.findClosestAmbientSound(self.currentUserPosition,self.soundsToAdd);
-            self.soundToFadeInId = closestAmbientToFadeIn.path;
+            if(closestAmbientToFadeIn) {
+                self.soundToFadeInId = closestAmbientToFadeIn.path;
+            }
         }
 
     },
@@ -240,6 +230,22 @@ function($, _, Backbone,
             }
 
             var nbSoundsToLoad = self.soundsToAdd.length;
+
+            //TODO REMOVE OR AVOID DUPLICATE CODE
+            if(nbSoundsToLoad === 0) {
+                self.trigger('soundsLoaded');
+                        LOGGER.debug("ALL SOUNDS LOADED");
+                        console.log(self.models);
+
+                        //Remove old sounds
+                        _.each(self.soundsToRemoveIds, function(soundToRemove) {
+                            var sound = self.get(soundToRemove);
+                            self.listenToOnce(sound,"faded",function() {
+                                self.remove(sound).unload();
+                            });
+                            sound.fadeOut();
+                        });
+            }
             
             _.each(self.soundsToAdd, function(waySound) {
 
