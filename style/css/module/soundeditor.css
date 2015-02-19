@@ -85,16 +85,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   width: 100%;
   z-index: 40;
   top: 0;
+  display: none;
 }
 
-/* line 18, ../../sass/module/soundeditor.scss */
+/* line 19, ../../sass/module/soundeditor.scss */
 .streetwalk-soundeditor-map {
   width: 50%;
   height: 100%;
   position: absolute;
 }
 
-/* line 24, ../../sass/module/soundeditor.scss */
+/* line 25, ../../sass/module/soundeditor.scss */
 .streetwalk-soundeditor-panel {
   width: 50%;
   height: 100%;
@@ -105,13 +106,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   padding: 10px;
 }
 
-/* line 35, ../../sass/module/soundeditor.scss */
+/* line 36, ../../sass/module/soundeditor.scss */
 .streetwalk-soundeditor-mapcontainer {
   width: 100%;
   height: 100%;
 }
 
-/* line 40, ../../sass/module/soundeditor.scss */
+/* line 41, ../../sass/module/soundeditor.scss */
 .streetwalk-soundeditor-btnclose {
   position: absolute;
   top: 10px;

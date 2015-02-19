@@ -223,16 +223,19 @@ define(['jquery',
 
     updateLoadingIndicator: function(pourcentage) {
         var self = this;
-        self.$el.find(".loadingIndicator").text(pourcentage);
 
         //update svg animation
         var currentLoadingLength = pourcentage * self.pathLoadingLength / 100;
 
         if(pourcentage <= 100) {
+            self.$el.find(".loadingIndicator").text(pourcentage);
             self.pathLoading.attr("stroke-dashoffset", self.pathLoadingLength-currentLoadingLength);
             self.caritoMatrix = new Snap.Matrix();
             self.caritoMatrix.translate(currentLoadingLength,0);
             self.carito.transform(self.caritoMatrix);
+        }
+        else {
+            self.$el.find(".loading-text").text("CARGANDO SONIDOS ...");
         }
     },
 
@@ -700,7 +703,9 @@ define(['jquery',
 
     showSoundEditor: function() {
         var self = this;
-        self.$el.find("#streetwalk-soundeditor").show();
+        if(self.soundEditorView) {
+            self.soundEditorView.showEditor();
+        }
     },
 
     goToStreetName: function(wayName) {

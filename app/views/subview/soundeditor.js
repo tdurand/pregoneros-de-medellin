@@ -28,6 +28,7 @@ define(['jquery',
         },
 
         newSoundId:0,
+        rendered:false,
 
         initialize : function(way) {
             var self = this;
@@ -35,8 +36,6 @@ define(['jquery',
             self.way = way;
 
             L.mapbox.accessToken = "pk.eyJ1IjoidGR1cmFuZCIsImEiOiI0T1ZEWlRVIn0.1PEGeiEWz6RUBfZq9Bvy7Q";
-
-            self.render();
 
             self.markerLibrary = {
                 punctual : L.mapbox.marker.icon({
@@ -223,9 +222,10 @@ define(['jquery',
 
         self.listenTo(self.map,"load", function() {
             self.mapLoaded = true;
-            self.closeEditor();
             self.initMapContent();
         });
+
+        self.rendered = true;
     },
 
     renderSoundInfo: function() {
@@ -276,6 +276,16 @@ define(['jquery',
     closeEditor: function() {
         var self = this;
         self.$el.hide();
+    },
+
+    showEditor: function() {
+        var self = this;
+
+        self.$el.show();
+
+        if(!self.rendered) {
+            self.render();
+        }
     },
 
     updateSound: function(e) {
