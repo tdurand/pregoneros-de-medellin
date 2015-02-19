@@ -14,6 +14,8 @@ function($, _, Backbone,
 
     model: Sound,
 
+    soundHomeFaded: false,
+
     playSoundHome: function() {
         var self = this;
 
@@ -32,8 +34,9 @@ function($, _, Backbone,
         var self = this;
 
         if(self.soundHome) {
-            if(self.soundHome.volume() == 1) {
+            if(!self.soundHomeFaded) {
                 self.soundHome.fade(1,0,3000);
+                self.soundHomeFaded = true;
             }
         }
     },

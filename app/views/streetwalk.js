@@ -339,8 +339,8 @@ define(['jquery',
             self.render();
             self.$el.find(".streetwalk-loading").hide();
             //TODO Sounds can be loaded after render....
-            Sounds.updateSounds(self.way.wayPath[0]);
             Sounds.fadeOutSoundHome();
+            Sounds.updateSounds(self.way.wayPath[0]);
 
             setTimeout(function() {
                 self.soundEditorView = new SoundEditorView(self.way);
