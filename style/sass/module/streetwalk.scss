@@ -171,7 +171,7 @@
     width: 100%;
     display:none;
 
-    z-index:30;
+    z-index:1000000000;
 
     .streetwalk-video-container {
         height: 100%;
@@ -202,6 +202,8 @@
 
 .streetwalk-textcharacter {
     position: fixed;
+
+    z-index:51;
 
     .img-container {
         width: 0%;
@@ -284,6 +286,8 @@
 
 .streetwalk-progress,.streetwalk-area {
     position:fixed;
+
+    z-index:5;
 
     height: 15%;
 
@@ -403,6 +407,40 @@
     -moz-transition: opacity 0.5s ease;
     opacity: 1;
 }
+
+.streetwalk-tutorial-overlay {
+
+    display:none;
+
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:50;
+
+    background-color: black;
+    opacity: 0.75;
+
+    &.step1 {
+        background:-webkit-radial-gradient(55% 60%, circle closest-corner, transparent 0, black 50%);
+    }
+
+    &.step2 {
+        background:-webkit-radial-gradient(80% 76%, circle closest-corner, transparent 0, black 75%);
+    }
+
+    &.step3 {
+        background:-webkit-radial-gradient(90% 92%, circle closest-corner, transparent 0, black 200%);
+    }
+
+    -webkit-transition: all 0.3s ease-out;
+     -moz-transition: all 0.3s ease-out;
+      -ms-transition: all 0.3s ease-out;
+       -o-transition: all 0.3s ease-out;
+          transition: all 0.3s ease-out;
+}
+
 
 body.not-moving .trame-video {
     opacity: 0;

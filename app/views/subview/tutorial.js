@@ -23,8 +23,9 @@ function($, _, Backbone,
               title: 'Tutorial : Descubrir personaje',
               content: 'Clica en el botton alrededor del personaje para ver un video',
               showNextButton:false,
-              zindex:29,
               onShow:function() {
+                $(".streetwalk-tutorial-overlay").addClass("step1");
+                $(".streetwalk-tutorial-overlay").show();
                 self.listenToOnce(self,"closeVideo",function() {
                     hopscotch.nextStep();
                 });
@@ -39,6 +40,10 @@ function($, _, Backbone,
                 showCTAButton:true,
                 showNextButton:false,
                 ctaLabel:"OK",
+                onShow:function() {
+                    $(".streetwalk-tutorial-overlay").removeClass("step1");
+                    $(".streetwalk-tutorial-overlay").addClass("step2");
+                },
                 onCTA: function() {
                     hopscotch.nextStep();
                 }
@@ -52,11 +57,16 @@ function($, _, Backbone,
                 showCTAButton:true,
                 showNextButton:false,
                 ctaLabel:"OK",
+                onShow: function() {
+                    $(".streetwalk-tutorial-overlay").removeClass("step2");
+                    $(".streetwalk-tutorial-overlay").addClass("step3");
+                },
                 onCTA: function() {
                     self.tutorialDone = true;
                     self.trigger("startAnimating");
                     document.body.style.overflowY = "visible";
                     hopscotch.nextStep();
+                    $(".streetwalk-tutorial-overlay").hide();
                 }
             }
           ]
