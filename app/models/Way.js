@@ -55,6 +55,7 @@ function($, _, Backbone,
             self.characterPosition = params.characterPosition;
             self.characterDefinition = params.characterDefinition;
             self.waySoundsData = params.waySounds;
+            self.waySoundsMaster = params.waySoundsMaster;
 
             //Compute length of way
             var lastPoint = null;

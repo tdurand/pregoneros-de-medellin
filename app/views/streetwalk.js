@@ -342,9 +342,11 @@ define(['jquery',
             Sounds.fadeOutSoundHome();
             Sounds.updateSounds(self.way.wayPath[0]);
 
+            //SPECIFIC SOUND EDITOR STUFF
             setTimeout(function() {
                 self.soundEditorView = new SoundEditorView(self.way);
             },5000);
+            // END SPECIFIC SOUND EDITOR STUFF
 
             self.computeAnimation(true);
             self.initScrollEventHandlers();

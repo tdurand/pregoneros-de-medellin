@@ -2,12 +2,14 @@ define(['jquery',
     'underscore',
     'backbone',
     'models/Sounds',
+    'models/Ways',
     'utils/Logger',
     'text!templates/streetwalk/soundEditorViewTemplate.html',
     'text!templates/streetwalk/soundEditorSoundInfoViewTemplate.html'
     ],
     function($, _, Backbone,
         Sounds,
+        Ways,
         LOGGER,
         soundEditorViewTemplate,
         soundEditorSoundInfoViewTemplate){
@@ -24,7 +26,8 @@ define(['jquery',
             "click .streetwalk-soundeditor-addsound":"addSound",
             "click .streetwalk-soundeditor-deletesound":"deleteSound",
             "click .streetwalk-soundeditor-export":"exportJSON",
-            "click .streetwalk-soundeditor-save":"save"
+            "click .streetwalk-soundeditor-save":"save",
+            "click .streetwalk-soundeditor-generatedreversestreet":"generatedInvertedStreet"
         },
 
         newSoundId:0,
@@ -397,6 +400,58 @@ define(['jquery',
             window.location.reload();
           }
         });
+    },
+
+    generatedInvertedStreet: function(e) {
+        var self = this;
+
+        if(e) {
+            e.preventDefault();
+        }
+
+        if(self.way.waySoundsMaster) {
+            //if we want to save the current street need to do it before clone
+
+
+            //get opposite street
+           var reverseStreetName = Ways.getReverseWayName(self.way.wayName);
+
+           var reverseStreetSounds = _.clone(Sounds);
+
+           reverseStreetSounds = _.map(reverseStreetSounds.models,function(sound) {
+                if(sound.get("type") == "ambient") {
+                    var path = sound.get("path");
+                    path = path.split(".mp3")[0];
+                    path = path + "-inverted.mp3";
+
+                    sound.set("path",path);
+                }
+                return sound;
+           });
+
+           WAYSClone = _.map(WAYSClone,function(way) {
+                if(way.wayName == reverseStreetName) {
+                    way.waySounds = reverseStreetSounds.attributes;
+                }
+                return way;
+            });
+
+           $.ajax({
+              type: "POST",
+              url: "saveways",
+              data: {file:JSON.stringify(WAYSClone)},
+              success:function() {
+                window.location.href = "#streetwalk/" + reverseStreetName;
+                window.location.reload();
+              }
+            });
+        }
+
+        
+    },
+
+    generateAllReverseStreet: function() {
+        
     },
 
     soloSound: function(e) {
