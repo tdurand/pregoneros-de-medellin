@@ -639,14 +639,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 /* line 427, ../sass/module/streetwalk.scss */
 .streetwalk-tutorial-overlay.step2 {
-  background: -webkit-radial-gradient(80% 76%, circle closest-corner, transparent 0, black 75%);
+  opacity: 0.4;
+  z-index: 5;
 }
-/* line 431, ../sass/module/streetwalk.scss */
+/* line 433, ../sass/module/streetwalk.scss */
 .streetwalk-tutorial-overlay.step3 {
-  background: -webkit-radial-gradient(90% 92%, circle closest-corner, transparent 0, black 200%);
+  opacity: 0.4;
+  z-index: 5;
 }
 
-/* line 443, ../sass/module/streetwalk.scss */
+/* line 447, ../sass/module/streetwalk.scss */
 body.not-moving .trame-video {
   opacity: 0;
   transition: opacity 0.5s ease;

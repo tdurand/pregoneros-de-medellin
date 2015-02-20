@@ -20,27 +20,41 @@ function($, _, Backbone,
               id: 'tooltip-clickoncharacter',
               target: '.img-container',
               placement: 'left',
-              title: 'Tutorial : Descubrir personaje',
-              content: 'Clica en el botton alrededor del personaje para ver un video',
+              title: 'TUTORIAL: PERSONAJE',
+              content: 'Haz click en el botton alrededor del personaje para ver un video',
               showNextButton:false,
               onShow:function() {
                 $(".streetwalk-tutorial-overlay").addClass("step1");
                 $(".streetwalk-tutorial-overlay").show();
                 self.listenToOnce(self,"closeVideo",function() {
-                    hopscotch.nextStep();
+                    if(hopscotch.getState()) {
+                        hopscotch.nextStep();
+                    }
+                    else {
+                        hopscotch.startTour(self.tutorial,1);
+                    }
                 });
               }
             },
             {
                 id: 'tooltip-characterfound',
-                target: '.menucharacter-pajarito .video2locked',
+                target: '.menucharacter-pajarito .video3locked',
                 placement: 'left',
-                title: 'Tutorial : Sigues recoriendo',
-                content: 'Descubriste limon pajarito, puedes seguir recoriendo, y encontrar a Limon Pajarito en otras calles !',
+                title: 'TUTORIAL: DESCUBRE MÁS',
+                content: 'Puedes conocer mas sobre Pajarito, buscalo en otras calles !',
                 showCTAButton:true,
                 showNextButton:false,
-                ctaLabel:"OK",
+                ctaLabel:"OK ▸",
+                onClose: function() {
+                  $(".streetwalk-tutorial-overlay").hide();
+                  $(".streetwalk-textcharacter").css("z-index","5");
+                },
                 onShow:function() {
+                    self.trigger("pauseAnimating");
+                    document.body.style.overflowY = "hidden";
+
+                    $(".streetwalk-textcharacter").css("z-index","-1");
+                    $(".streetwalk-tutorial-overlay").show();
                     $(".streetwalk-tutorial-overlay").removeClass("step1");
                     $(".streetwalk-tutorial-overlay").addClass("step2");
                 },
@@ -52,11 +66,11 @@ function($, _, Backbone,
                 id: 'tooltip-characterfound',
                 target: '.streetwalk-menucharacter[data-character="perso3"] .character',
                 placement: 'top',
-                title: 'Tutorial : Otros personajes',
+                title: 'TUTORIAL: OTROS PERSONAJES',
                 content: 'Te dejamos explorar, hay varios otros personajes por encontrar !',
                 showCTAButton:true,
                 showNextButton:false,
-                ctaLabel:"OK",
+                ctaLabel:"OK ▸",
                 onShow: function() {
                     $(".streetwalk-tutorial-overlay").removeClass("step2");
                     $(".streetwalk-tutorial-overlay").addClass("step3");
@@ -67,6 +81,11 @@ function($, _, Backbone,
                     document.body.style.overflowY = "visible";
                     hopscotch.nextStep();
                     $(".streetwalk-tutorial-overlay").hide();
+                    $(".streetwalk-tutorial-overlay").removeClass("step3");
+                    $(".streetwalk-textcharacter").css("z-index","5");
+                },
+                onClose: function() {
+
                 }
             }
           ]
@@ -81,6 +100,15 @@ function($, _, Backbone,
                 document.body.style.overflowY = "hidden";
                 setTimeout(function() {
                     hopscotch.startTour(self.tutorial,0);
+                    hopscotch.listen("close",function() {
+                        self.tutorialDone = true;
+                        self.trigger("startAnimating");
+                        document.body.style.overflowY = "visible";
+                        $(".streetwalk-tutorial-overlay").hide();
+                        $(".streetwalk-tutorial-overlay").removeClass("step2");
+                        $(".streetwalk-tutorial-overlay").removeClass("step3");
+                        $(".streetwalk-textcharacter").css("z-index","5");
+                    });
                 },200);
         }
     },

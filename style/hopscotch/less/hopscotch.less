@@ -7,9 +7,9 @@ div.hopscotch-bubble {
   background-color: @bubbleColor;
   border: @bubbleBorderWidth solid #000; /* default */
   border: @bubbleBorderWidth solid @borderColor; /* transparent, if supported */
-  color: #333;
+  color: @bubbleTextColor;
   font-family: @bubbleFontFamily;
-  font-size: 13px;
+  font-size: 1.2rem;
   position: absolute;
   z-index: @bubbleZindex;
   .box-sizing(content-box);
@@ -53,9 +53,9 @@ div.hopscotch-bubble {
   }
 
   h3 {
-    color: #000;
+    color: @bubbleTextColor;
     font-family: @bubbleFontFamily;
-    font-size: 16px;
+    font-size: 1.2rem;
     font-weight: bold;
     line-height: 19px;
     margin: -1px @bubblePadding 0 0;
@@ -74,11 +74,11 @@ div.hopscotch-bubble {
     font-weight: normal;
     line-height: 17px;
     margin: -5px 0 11px;
-    padding-top: 8px;
+    padding-top: 1rem;
   }
 
   .hopscotch-bubble-content {
-    margin: 0 0 0 (@circleWidth + 10px);
+    margin: 5px;
   }
 
   &.no-number .hopscotch-bubble-content {
@@ -87,7 +87,8 @@ div.hopscotch-bubble {
 
   .hopscotch-bubble-close {
     color: #000;
-    background: transparent @spriteUrl -192px -92px no-repeat;
+    background-image:url("../../images/closeBtnPopup.svg");
+    background-repeat:none;
     display: block;
     padding: 8px;
     position: absolute;
@@ -97,8 +98,8 @@ div.hopscotch-bubble {
     width: 8px;
     height: 8px;
 
-    top: 0;
-    right: 0;
+    top: 5px;
+    right: 5px;
 
     &.hide,
     &.hide-all {
