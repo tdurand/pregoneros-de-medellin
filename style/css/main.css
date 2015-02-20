@@ -481,52 +481,49 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 /* line 268, ../sass/module/streetwalk.scss */
 .streetwalk-tutorial-wrapper .streetwalk-tutorial-scrollotherside-tooltip {
   display: none;
-  width: 40%;
+  width: 25%;
   margin: 0 auto;
-  border-style: solid;
-  border-width: 39px 167px 30px 89px;
-  -moz-border-image: url("../../images/mapborder.png") 39 167 63 89 stretch;
-  -webkit-border-image: url("../../images/mapborder.png") 39 167 63 89 stretch;
-  -o-border-image: url("../../images/mapborder.png") 39 167 63 89 stretch;
-  border-image: url("../../images/mapborder.png") 39 167 63 89 fill stretch;
-  background-color: transparent;
+  background-image: url("../../images/2908339CE58A15BD.png");
+  background-size: contain;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
 }
-/* line 281, ../sass/module/streetwalk.scss */
+/* line 279, ../sass/module/streetwalk.scss */
 .streetwalk-tutorial-wrapper svg {
   width: 100%;
   height: 100%;
 }
 
-/* line 287, ../sass/module/streetwalk.scss */
+/* line 285, ../sass/module/streetwalk.scss */
 .streetwalk-progress, .streetwalk-area {
   position: fixed;
   z-index: 5;
   height: 15%;
 }
 @media screen and (min-width: 1400px) {
-  /* line 295, ../sass/module/streetwalk.scss */
+  /* line 293, ../sass/module/streetwalk.scss */
   .streetwalk-progress, .streetwalk-area {
     height: 12%;
   }
 }
-/* line 300, ../sass/module/streetwalk.scss */
+/* line 298, ../sass/module/streetwalk.scss */
 .streetwalk-progress svg, .streetwalk-area svg {
   height: 100%;
 }
 
-/* line 305, ../sass/module/streetwalk.scss */
+/* line 303, ../sass/module/streetwalk.scss */
 .streetwalk-progress {
   top: 0px;
   left: 20px;
 }
 
-/* line 309, ../sass/module/streetwalk.scss */
+/* line 307, ../sass/module/streetwalk.scss */
 .streetwalk-area {
   top: 0px;
   right: 20px;
 }
 
-/* line 315, ../sass/module/streetwalk.scss */
+/* line 313, ../sass/module/streetwalk.scss */
 .streetwalk-title {
   position: absolute;
   top: 0;
@@ -535,14 +532,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   right: 0;
   text-align: center;
 }
-/* line 324, ../sass/module/streetwalk.scss */
+/* line 322, ../sass/module/streetwalk.scss */
 .streetwalk-title .logo {
   height: 30%;
   min-width: 320px;
   max-width: 600px;
   max-height: 30%;
 }
-/* line 331, ../sass/module/streetwalk.scss */
+/* line 329, ../sass/module/streetwalk.scss */
 .streetwalk-title .description {
   color: white;
   width: 100%;
@@ -552,34 +549,34 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   margin: 0 auto;
 }
 @media screen and (max-width: 700px) {
-  /* line 340, ../sass/module/streetwalk.scss */
+  /* line 338, ../sass/module/streetwalk.scss */
   .streetwalk-title .description {
     width: 100%;
   }
 }
 @media screen and (min-width: 700px) and (max-width: 1300px) {
-  /* line 347, ../sass/module/streetwalk.scss */
+  /* line 345, ../sass/module/streetwalk.scss */
   .streetwalk-title .description {
     width: 70%;
   }
 }
 @media screen and (min-width: 1300px) {
-  /* line 353, ../sass/module/streetwalk.scss */
+  /* line 351, ../sass/module/streetwalk.scss */
   .streetwalk-title .description {
     width: 50%;
   }
 }
-/* line 360, ../sass/module/streetwalk.scss */
+/* line 358, ../sass/module/streetwalk.scss */
 .streetwalk-title .description h2 {
   margin: 1em;
   font-size: 1.5rem;
   line-height: 1.7rem;
 }
-/* line 366, ../sass/module/streetwalk.scss */
+/* line 364, ../sass/module/streetwalk.scss */
 .streetwalk-title .description p {
   font-size: 1.5rem;
 }
-/* line 371, ../sass/module/streetwalk.scss */
+/* line 369, ../sass/module/streetwalk.scss */
 .streetwalk-title .scrolltostart {
   height: 40%;
   position: absolute;
@@ -587,16 +584,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   right: 0;
   left: 0;
 }
-/* line 378, ../sass/module/streetwalk.scss */
+/* line 376, ../sass/module/streetwalk.scss */
 .streetwalk-title .scrolltostart img, .streetwalk-title .scrolltostart svg {
   height: 100%;
 }
-/* line 383, ../sass/module/streetwalk.scss */
+/* line 381, ../sass/module/streetwalk.scss */
 .streetwalk-title #scrollToStartLoaded {
   display: none;
 }
 
-/* line 390, ../sass/module/streetwalk.scss */
+/* line 388, ../sass/module/streetwalk.scss */
 .streetwalkImg, .element-fixed, .blurImg {
   position: fixed;
   top: 0;
@@ -607,7 +604,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   height: 100%;
 }
 
-/* line 400, ../sass/module/streetwalk.scss */
+/* line 398, ../sass/module/streetwalk.scss */
 .trame-video {
   background: url("../../images/trame-video.png") repeat;
   height: 100%;
@@ -619,7 +616,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   opacity: 1;
 }
 
-/* line 411, ../sass/module/streetwalk.scss */
+/* line 409, ../sass/module/streetwalk.scss */
 .streetwalk-tutorial-overlay {
   display: none;
   position: fixed;
@@ -636,20 +633,20 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
 }
-/* line 425, ../sass/module/streetwalk.scss */
+/* line 423, ../sass/module/streetwalk.scss */
 .streetwalk-tutorial-overlay.step1 {
   background: -webkit-radial-gradient(55% 60%, circle closest-corner, transparent 0, black 50%);
 }
-/* line 429, ../sass/module/streetwalk.scss */
+/* line 427, ../sass/module/streetwalk.scss */
 .streetwalk-tutorial-overlay.step2 {
   background: -webkit-radial-gradient(80% 76%, circle closest-corner, transparent 0, black 75%);
 }
-/* line 433, ../sass/module/streetwalk.scss */
+/* line 431, ../sass/module/streetwalk.scss */
 .streetwalk-tutorial-overlay.step3 {
   background: -webkit-radial-gradient(90% 92%, circle closest-corner, transparent 0, black 200%);
 }
 
-/* line 445, ../sass/module/streetwalk.scss */
+/* line 443, ../sass/module/streetwalk.scss */
 body.not-moving .trame-video {
   opacity: 0;
   transition: opacity 0.5s ease;

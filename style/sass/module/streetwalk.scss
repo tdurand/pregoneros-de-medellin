@@ -267,15 +267,13 @@
 
     .streetwalk-tutorial-scrollotherside-tooltip {
         display:none;
-        width: 40%;
+        width: 25%;
         margin: 0 auto;
-        border-style: solid;
-        border-width: 39px 167px 30px 89px;
-        -moz-border-image: url("../../images/mapborder.png") 39 167 63 89 stretch;
-        -webkit-border-image: url("../../images/mapborder.png") 39 167 63 89 stretch;
-        -o-border-image: url("../../images/mapborder.png") 39 167 63 89 stretch;
-        border-image: url("../../images/mapborder.png") 39 167 63 89 fill stretch;
-        background-color: transparent;
+
+        background-image: url("../../images/2908339CE58A15BD.png");
+        background-size: contain;
+        background-position: 50% 50%;
+        background-repeat:no-repeat;
     }
 
     svg {
