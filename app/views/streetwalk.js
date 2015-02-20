@@ -350,12 +350,28 @@ define(['jquery',
 
             self.computeAnimation(true);
             self.initScrollEventHandlers();
+
+            self.scrollToStartAnimation();
         });
 
         self.listenToOnce(self.way,"loadingFinishedCompletely", function() {
             self.initVideo();
         });
         
+    },
+
+    scrollToStartAnimation: function() {
+        var tl = new TimelineMax({
+            repeat:-1
+        });
+        tl.add( TweenLite.fromTo($("#frame1"), 0.2, {display:"block"},{display:"none"}));
+        tl.add( TweenLite.fromTo($("#frame2"), 0.2, {display:"none"},{display:"block"}));
+        tl.add( TweenLite.fromTo($("#frame2"), 0.2, {display:"block"},{display:"none"}));
+        tl.add( TweenLite.fromTo($("#frame3"), 0.2, {display:"none"},{display:"block"}));
+        tl.add( TweenLite.fromTo($("#frame3"), 0.2, {display:"block"},{display:"none"}));
+        tl.add( TweenLite.fromTo($("#frame1"), 0.2, {display:"none"},{display:"block"}));
+
+        tl.play();
     },
 
     renderImg: function(imgNb) {
