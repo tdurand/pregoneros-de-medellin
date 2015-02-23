@@ -121,7 +121,7 @@
             }
 
             .character-unlocked,.video1,.video2,.video3 {
-                display:none;
+                // display:none;
             }
 
             .submenu {
@@ -203,7 +203,7 @@
 .streetwalk-textcharacter {
     position: fixed;
 
-    z-index:51;
+    z-index:14;
 
     .img-container {
         width: 0%;

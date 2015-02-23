@@ -17,8 +17,8 @@ function($, _, Backbone, LOGGER, Ways){
         var self = this;
 
         if(_.isUndefined(data)) {
-            self.set({
-                charactersProgression: {
+
+            self.set("charactersProgression", new Backbone.NestedModel({
                         jale: {
                             characterUnlocked:false,
                             video1: {
@@ -53,7 +53,10 @@ function($, _, Backbone, LOGGER, Ways){
                                 wayName:""
                             }
                         }
-                },
+            }));
+
+
+            self.set({
                 nbItemUnlocked:0,
                 currentStreet:""
             });
@@ -111,7 +114,7 @@ function($, _, Backbone, LOGGER, Ways){
     nextItemToUnlock: function(character) {
         var self = this;
 
-        var toUnLock = _.findKey(self.get("charactersProgression")[character],{locked: true});
+        var toUnLock = _.findKey(self.get("charactersProgression").get(character),{locked: true});
 
         console.log("Next item to unlock" + toUnLock);
 
@@ -124,10 +127,10 @@ function($, _, Backbone, LOGGER, Ways){
         var videoAlreadyUnlockedInThisStreet;
 
         //Check if we have already unlocked a video in this street
-        videoAlreadyUnlockedInThisStreet = _.findKey(self.get("charactersProgression")[character],{wayName: wayName});
+        videoAlreadyUnlockedInThisStreet = _.findKey(self.get("charactersProgression").get(character),{wayName: wayName});
         if(_.isUndefined(videoAlreadyUnlockedInThisStreet)) {
             //or reverse street
-            videoAlreadyUnlockedInThisStreet = _.findKey(self.get("charactersProgression")[character],{wayName: Ways.getReverseWayName(wayName)});
+            videoAlreadyUnlockedInThisStreet = _.findKey(self.get("charactersProgression").get(character),{wayName: Ways.getReverseWayName(wayName)});
         }
 
         return videoAlreadyUnlockedInThisStreet;
@@ -141,27 +144,30 @@ function($, _, Backbone, LOGGER, Ways){
             return;
         }
 
-        var charactersProgression = _.cloneDeep(self.get("charactersProgression"));
+        var charactersProgression = self.get("charactersProgression");
 
         var toUnLock = self.nextItemToUnlock(character);
 
-        //Always unlock character
-        charactersProgression[character]["characterUnlocked"] = true;
         //Unlock next video
-        charactersProgression[character][toUnLock] = {
+        charactersProgression.set(character+"."+toUnLock, {
             locked :false,
             wayName : wayName
-        };
+        });
 
         var nbItemUnlocked = self.get("nbItemUnlocked");
         nbItemUnlocked++;
 
         self.set("nbItemUnlocked", nbItemUnlocked);
 
-        self.set("charactersProgression",charactersProgression);
-
         self.persistToParse();
 
+    },
+
+    unlockCharacter: function(character) {
+        var self = this;
+
+        //Always unlock character
+        self.get("charactersProgression").set(character+".characterUnlocked", true);
     },
 
     setCurrentStreet: function(wayName) {

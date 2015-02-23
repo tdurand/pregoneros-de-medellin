@@ -683,7 +683,16 @@ define(['jquery',
    showVideo: function() {
         var self = this;
 
-        self.$el.find(".streetwalk-video").show();
+        //unlock character
+        Progression.instance.unlockCharacter(self.way.characterDefinition.name);
+
+        // setTimeout(function())
+
+        // self.$el.find(".streetwalk-video").show();
+
+        // setTimeout(function() {
+        //     self.$el.find(".streetwalk-video").show();
+        // },1000);
 
         if(_.isUndefined(self.popcorn)) {
             self.initVideo();
@@ -700,7 +709,7 @@ define(['jquery',
     closeVideo: function() {
         var self = this;
 
-        self.$el.find(".streetwalk-video").hide();
+        // self.$el.find(".streetwalk-video").hide();
 
         self.trigger("closeVideo");
 
@@ -716,7 +725,7 @@ define(['jquery',
         Progression.instance.unlockNextItem(characterName,self.way.wayName);
 
         //open menu
-        MenuCharactersView.openMenu(characterName);
+        // MenuCharactersView.openMenu(characterName);
     },
 
     showSoundEditor: function() {
