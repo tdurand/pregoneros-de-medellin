@@ -23,7 +23,7 @@ function($, _, Backbone,
           src: ['content/music/intro.mp3'],
           loop:true,
           html5:true,
-          volume:1,
+          volume:0.7,
           onload: function() {
             self.soundHome.play();
           }
