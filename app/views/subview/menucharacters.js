@@ -183,11 +183,12 @@ function($, _, Backbone,
                 var tl = new TimelineLite();
 
                 //Discover character
-                tl.to(".streetwalk-menucharacter[data-character='" + character+ "'] .character-locked", 1, {rotationZ:150,transformOrigin:"top right",ease:Power2.easeIn,
+                tl.to(".streetwalk-menucharacter[data-character='" + character+ "'] .character-locked", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",ease:Power2.easeIn,
                     onComplete: function() {
                         $(".streetwalk-menucharacter[data-character='" + character+ "'] .character-locked").hide();
                     }
                    })
+                  // .to(".streetwalk-menucharacter[data-character='" + character+ "'] .character-locked .st2", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",ease:Power2.easeIn})
                   .to(".streetwalk-menucharacter[data-character='" + character+ "'] .character-unlocked", 0.5,{scaleX:1,scaleY:1,transformOrigin:"center center",ease:Power2.easeIn},"-=0.5")
                   //Open menu
                   .call(self.openMenu,["pajarito"],self)
