@@ -193,17 +193,18 @@ function($, _, Backbone,
                   //Open menu
                   .call(self.openMenu,["pajarito"],self)
                   //Unlock video
-                  .to(".streetwalk-menucharacter[data-character="+ character +"] .video1locked", 1, {rotationY:100,transformOrigin:"right",ease:Power2.easeIn, onComplete:function() {
-                        $(".streetwalk-menucharacter[data-character=" + character +"] .video1locked").hide();
-                  }})
-                  .to(".streetwalk-menucharacter[data-character="+ character +"] .video1locked .st6", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",ease:Power2.easeIn},"-=1")
+                  // .to(".streetwalk-menucharacter[data-character="+ character +"] .video1locked", 1, {rotationY:100,transformOrigin:"right",ease:Power2.easeIn, onComplete:function() {
+                  //       $(".streetwalk-menucharacter[data-character=" + character +"] .video1locked").hide();
+                  // }})
+                  .to(".streetwalk-menucharacter[data-character="+ character +"] .video1locked", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",ease:Power2.easeIn})
+                  .fromTo(".streetwalk-menucharacter[data-character="+ character +"] .video1", 1, {scaleX:0.8,scaleY:0.8},{scaleX:1,scaleY:1,transformOrigin:"center center",ease:Back.easeOut.config(3)},"-=0.5")
                   //open video
                   .fromTo(".streetwalk-video", 1,
                     {scaleY:0,scaleX:0,display:"block"},
                     {scaleY:1,scaleX:1,
                         transformOrigin:Xposition+"px "+Yposition+"px",
-                        ease: Power2.easeOut
-                   });
+                        ease: Power1.easeInOut
+                   },"-=0.5");
 
         });
     },
