@@ -99,7 +99,7 @@ function($, _, Backbone,
                 self.trigger("pauseAnimating");
                 document.body.style.overflowY = "hidden";
                 setTimeout(function() {
-                    // hopscotch.startTour(self.tutorial,0);
+                    hopscotch.startTour(self.tutorial,0);
                     hopscotch.listen("close",function() {
                         self.tutorialDone = true;
                         self.trigger("startAnimating");

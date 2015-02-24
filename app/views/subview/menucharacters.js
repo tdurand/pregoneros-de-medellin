@@ -20,125 +20,6 @@ function($, _, Backbone,
         "click .character":"toggleMenu"
     },
 
-    bindings:{
-            ".streetwalk-menucharacter[data-character='jale'] .character-unlocked":{
-                observe:"charactersProgression",
-                visible: true,
-                onGet: function() {
-                    return Progression.instance.get("charactersProgression").jale.characterUnlocked;
-                }
-            },
-            ".streetwalk-menucharacter[data-character='jale'] .character-locked":{
-                observe:"charactersProgression",
-                visible: true,
-                onGet: function() {
-                    return !Progression.instance.get("charactersProgression").jale.characterUnlocked;
-                }
-            },
-            ".streetwalk-menucharacter[data-character='jale'] .video1":{
-                observe:"charactersProgression",
-                visible: true,
-                onGet: function() {
-                    return !Progression.instance.get("charactersProgression").jale.video1.locked;
-                }
-            },
-            ".streetwalk-menucharacter[data-character='jale'] .video1locked":{
-                observe:"charactersProgression",
-                visible: true,
-                onGet: function() {
-                    return Progression.instance.get("charactersProgression").jale.video1.locked;
-                }
-            },
-            ".streetwalk-menucharacter[data-character='jale'] .video2":{
-                observe:"charactersProgression",
-                visible: true,
-                onGet: function() {
-                    return !Progression.instance.get("charactersProgression").jale.video2.locked;
-                }
-            },
-            ".streetwalk-menucharacter[data-character='jale'] .video2locked":{
-                observe:"charactersProgression",
-                visible: true,
-                onGet: function() {
-                    return Progression.instance.get("charactersProgression").jale.video2.locked;
-                }
-            },
-            ".streetwalk-menucharacter[data-character='jale'] .video3":{
-                observe:"charactersProgression",
-                visible: true,
-                onGet: function() {
-                    return !Progression.instance.get("charactersProgression").jale.video3.locked;
-                }
-            },
-            ".streetwalk-menucharacter[data-character='jale'] .video3locked":{
-                observe:"charactersProgression",
-                visible: true,
-                onGet: function() {
-                    return Progression.instance.get("charactersProgression").jale.video3.locked;
-                }
-            },
-            ".streetwalk-menucharacter[data-character='pajarito'] .character-unlocked":{
-                observe:"charactersProgression",
-                // visible: true,
-                onGet: function() {
-                    var characterUnlocked = Progression.instance.get("charactersProgression").pajarito.characterUnlocked;
-                    if(characterUnlocked) {
-                        TweenLite.to(".front", 1.2, {rotationZ:180,transformOrigin:"top right",ease:Power2.easeOut,onComplete: function() { $(".front").hide(); } });
-                    }
-                    // return Progression.instance.get("charactersProgression").pajarito.characterUnlocked;
-                }
-            },
-            ".streetwalk-menucharacter[data-character='pajarito'] .character-locked":{
-                observe:"charactersProgression",
-                // visible: true,
-                onGet: function() {
-                    return !Progression.instance.get("charactersProgression").pajarito.characterUnlocked;
-                }
-            },
-            ".streetwalk-menucharacter[data-character='pajarito'] .video1":{
-                observe:"charactersProgression",
-                visible: true,
-                onGet: function() {
-                    return !Progression.instance.get("charactersProgression").pajarito.video1.locked;
-                }
-            },
-            ".streetwalk-menucharacter[data-character='pajarito'] .video1locked":{
-                observe:"charactersProgression",
-                visible: true,
-                onGet: function() {
-                    return Progression.instance.get("charactersProgression").pajarito.video1.locked;
-                }
-            },
-            ".streetwalk-menucharacter[data-character='pajarito'] .video2":{
-                observe:"charactersProgression",
-                visible: true,
-                onGet: function() {
-                    return !Progression.instance.get("charactersProgression").pajarito.video2.locked;
-                }
-            },
-            ".streetwalk-menucharacter[data-character='pajarito'] .video2locked":{
-                observe:"charactersProgression",
-                visible: true,
-                onGet: function() {
-                    return Progression.instance.get("charactersProgression").pajarito.video2.locked;
-                }
-            },
-            ".streetwalk-menucharacter[data-character='pajarito'] .video3":{
-                observe:"charactersProgression",
-                visible: true,
-                onGet: function() {
-                    return !Progression.instance.get("charactersProgression").pajarito.video3.locked;
-                }
-            },
-            ".streetwalk-menucharacter[data-character='pajarito'] .video3locked":{
-                observe:"charactersProgression",
-                visible: true,
-                onGet: function() {
-                    return Progression.instance.get("charactersProgression").pajarito.video3.locked;
-                }
-            }
-    },
-
     prepare : function() {
         var self = this;
 
@@ -166,47 +47,84 @@ function($, _, Backbone,
             console.log(_.keys(Progression.instance.changedAttributes()));
         });
 
-        Progression.instance.get("charactersProgression").bind('change:pajarito.characterUnlocked', function(model, newValue){
-            console.log("UNLOCKED PAJARITO");
-
-                //INIT VARS
+        Progression.instance.get("charactersProgression").bind('change:pajarito.video1.locked', function(model, newValue){
+                console.log("UNLOCKED PAJARITO");
                 var character = "pajarito";
+                var video = "video1";
 
-                var elem = $(".streetwalk-menucharacter[data-character='" + character + "'] .submenu .video1");
-                var elemProperties = $(elem)[0].getBoundingClientRect();
+                //if character not unlocked, unlock it
+                if(!Progression.instance.get("charactersProgression").get("pajarito").characterUnlocked) {
+                    Progression.instance.unlockCharacter(character);
 
-                var Xposition = elemProperties.left + elemProperties.width/2;
-                var Yposition = elemProperties.top + elemProperties.height/2;
+                    //Launch animation unlockCharacter
+                    self.unlockCharacter(character,function() {
+                        self.unlockVideoAndOpen(character,video);
+                    });
+                }
+                else {
+                    //Launch animation unlockvideo
+                    self.unlockVideoAndOpen(character,video);
+                }
 
-                //TIMELINE ANIMATION
-
-                var tl = new TimelineLite();
-
-                //Discover character
-                tl.to(".streetwalk-menucharacter[data-character='" + character+ "'] .character-locked", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",ease:Power2.easeIn,
-                    onComplete: function() {
-                        $(".streetwalk-menucharacter[data-character='" + character+ "'] .character-locked").hide();
-                    }
-                   })
-                  // .to(".streetwalk-menucharacter[data-character='" + character+ "'] .character-locked .st2", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",ease:Power2.easeIn})
-                  .to(".streetwalk-menucharacter[data-character='" + character+ "'] .character-unlocked", 0.5,{scaleX:1,scaleY:1,transformOrigin:"center center",ease:Power2.easeIn},"-=0.5")
-                  //Open menu
-                  .call(self.openMenu,["pajarito"],self)
-                  //Unlock video
-                  // .to(".streetwalk-menucharacter[data-character="+ character +"] .video1locked", 1, {rotationY:100,transformOrigin:"right",ease:Power2.easeIn, onComplete:function() {
-                  //       $(".streetwalk-menucharacter[data-character=" + character +"] .video1locked").hide();
-                  // }})
-                  .to(".streetwalk-menucharacter[data-character="+ character +"] .video1locked", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",ease:Power2.easeIn})
-                  .fromTo(".streetwalk-menucharacter[data-character="+ character +"] .video1", 1, {scaleX:0.8,scaleY:0.8},{scaleX:1,scaleY:1,transformOrigin:"center center",ease:Back.easeOut.config(3)},"-=0.5")
-                  //open video
-                  .fromTo(".streetwalk-video", 1,
-                    {scaleY:0,scaleX:0,display:"block"},
-                    {scaleY:1,scaleX:1,
-                        transformOrigin:Xposition+"px "+Yposition+"px",
-                        ease: Power1.easeInOut
-                   },"-=0.5");
+                self.listenToOnce(self,"closeVideo",function() {
+                    self.closeVideo(character,video);
+                });
 
         });
+    },
+
+    unlockVideoAndOpen: function(character, video) {
+        var self = this;
+        var tl = new TimelineLite();
+
+        var elem = $(".streetwalk-menucharacter[data-character='" + character + "'] ." + video);
+        var elemProperties = $(elem)[0].getBoundingClientRect();
+
+        var Xposition = elemProperties.left + elemProperties.width/2;
+        var Yposition = elemProperties.top + elemProperties.height/2;
+
+        //Open menu
+        tl.call(self.openMenu,[character],self)
+              //Unlock video
+              .to(".streetwalk-menucharacter[data-character="+ character +"] ." + video + "locked", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",ease:Power2.easeIn})
+              .fromTo(".streetwalk-menucharacter[data-character="+ character +"] ." + video, 1, {scaleX:0.8,scaleY:0.8},{scaleX:1,scaleY:1,transformOrigin:"center center",ease:Back.easeOut.config(3)},"-=0.5")
+              //open video
+              .fromTo(".streetwalk-video", 1,
+                {scaleY:0,scaleX:0,display:"block"},
+                {scaleY:1,scaleX:1,
+                    transformOrigin:Xposition+"px "+Yposition+"px",
+                    ease: Power1.easeInOut
+               },"-=0.5");
+
+    },
+
+    closeVideo: function(character, video) {
+
+        var elem = $(".streetwalk-menucharacter[data-character='" + character + "'] ." + video);
+        var elemProperties = $(elem)[0].getBoundingClientRect();
+
+        var Xposition = elemProperties.left + elemProperties.width/2;
+        var Yposition = elemProperties.top + elemProperties.height/2;
+
+        TweenLite.fromTo(".streetwalk-video", 1,
+                {scaleY:1,scaleX:1,display:"block"},
+                {scaleY:0,scaleX:0,
+                    transformOrigin:Xposition+"px "+Yposition+"px",
+                    ease: Power1.easeInOut
+               });
+
+    },
+
+    unlockCharacter: function(character,callBackEnd) {
+        var tl = new TimelineLite({onComplete:callBackEnd});
+        //Discover character
+        tl.to(".streetwalk-menucharacter[data-character='" + character+ "'] .character-locked", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",ease:Power2.easeIn,
+            onComplete: function() {
+                $(".streetwalk-menucharacter[data-character='" + character+ "'] .character-locked").hide();
+            }
+          })
+          .to(".streetwalk-menucharacter[data-character='" + character+ "'] .character-unlocked", 0.5,{scaleX:1,scaleY:1,transformOrigin:"center center",ease:Power2.easeIn},"-=0.5");
+ 
     },
 
     toggleMenu: function(e) {

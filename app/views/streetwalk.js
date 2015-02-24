@@ -121,6 +121,7 @@ define(['jquery',
 
             self.listenTo(self,"closeVideo", function() {
                 TutorialView.trigger("closeVideo");
+                MenuCharactersView.trigger("closeVideo");
             });
 
             //MAP
@@ -264,9 +265,6 @@ define(['jquery',
         self.$el.find(".streetwalk-area").html(_.template(svgSignTopAreaTemplate)({
             area:self.way.wayArea
         }));
-
-        //attach stickit
-        self.stickit(Progression.instance);
 
         self.renderImgHighRes();
 
@@ -683,8 +681,8 @@ define(['jquery',
    showVideo: function() {
         var self = this;
 
-        //unlock character
-        Progression.instance.unlockCharacter(self.way.characterDefinition.name);
+        //unlocknext item
+        Progression.instance.unlockNextItem(self.way.characterDefinition.name,self.way.wayName);
 
         // setTimeout(function())
 
@@ -709,8 +707,6 @@ define(['jquery',
     closeVideo: function() {
         var self = this;
 
-        self.$el.find(".streetwalk-video").hide();
-
         self.trigger("closeVideo");
 
         self.popcorn.pause();
@@ -720,9 +716,6 @@ define(['jquery',
 
         //current character
         var characterName = self.way.characterDefinition.name;
-        
-        //unlocknext item
-        Progression.instance.unlockNextItem(characterName,self.way.wayName);
 
         //open menu
         // MenuCharactersView.openMenu(characterName);
