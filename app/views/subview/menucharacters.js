@@ -86,7 +86,7 @@ function($, _, Backbone,
         //Open menu
         tl.call(self.openMenu,[character],self)
               //Unlock video
-              .to(".streetwalk-menucharacter[data-character="+ character +"] ." + video + "locked", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",ease:Power2.easeIn})
+              .to(".streetwalk-menucharacter[data-character="+ character +"] ." + video + "locked", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",display:"none",ease:Power2.easeIn})
               .fromTo(".streetwalk-menucharacter[data-character="+ character +"] ." + video, 1, {scaleX:0.8,scaleY:0.8},{scaleX:1,scaleY:1,transformOrigin:"center center",ease:Back.easeOut.config(3)},"-=0.5")
               //open video
               .fromTo(".streetwalk-video", 1,
@@ -118,17 +118,15 @@ function($, _, Backbone,
     unlockCharacter: function(character,callBackEnd) {
         var tl = new TimelineLite({onComplete:callBackEnd});
         //Discover character
-        tl.to(".streetwalk-menucharacter[data-character='" + character+ "'] .character-locked", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",ease:Power2.easeIn,
-            onComplete: function() {
-                $(".streetwalk-menucharacter[data-character='" + character+ "'] .character-locked").hide();
-            }
-          })
+        tl.to(".streetwalk-menucharacter[data-character='" + character+ "'] .character-locked", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",display:"none",ease:Power2.easeIn})
           .to(".streetwalk-menucharacter[data-character='" + character+ "'] .character-unlocked", 0.5,{scaleX:1,scaleY:1,transformOrigin:"center center",ease:Power2.easeIn},"-=0.5");
  
     },
 
     toggleMenu: function(e) {
         var self = this;
+
+        console.log("toggle menu");
         var dataCharacter = $(e.currentTarget).parents(".streetwalk-menucharacter").attr("data-character");
 
         if(self.$el.find(".submenu[data-state='open']").parents("[data-character='"+dataCharacter+"']").length < 1) {

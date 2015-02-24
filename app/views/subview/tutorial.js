@@ -24,8 +24,14 @@ function($, _, Backbone,
               content: 'Haz click en el botton alrededor del personaje para ver un video',
               showNextButton:false,
               onShow:function() {
+                $(".streetwalk-textcharacter").css("z-index","51");
                 $(".streetwalk-tutorial-overlay").addClass("step1");
                 $(".streetwalk-tutorial-overlay").show();
+
+                self.listenToOnce(self,"clickOnCharacter",function() {
+                    $(".streetwalk-tutorial-overlay").addClass("step2");
+                });
+
                 self.listenToOnce(self,"closeVideo",function() {
                     if(hopscotch.getState()) {
                         hopscotch.nextStep();
@@ -55,8 +61,6 @@ function($, _, Backbone,
 
                     $(".streetwalk-textcharacter").css("z-index","-1");
                     $(".streetwalk-tutorial-overlay").show();
-                    $(".streetwalk-tutorial-overlay").removeClass("step1");
-                    $(".streetwalk-tutorial-overlay").addClass("step2");
                 },
                 onCTA: function() {
                     hopscotch.nextStep();

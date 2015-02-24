@@ -124,6 +124,10 @@ define(['jquery',
                 MenuCharactersView.trigger("closeVideo");
             });
 
+            self.listenTo(self,"clickOnCharacter", function() {
+                TutorialView.trigger("clickOnCharacter");
+            });
+
             //MAP
             self.listenToOnce(MapView,"loaded", function() {
                 MapView.update(self.way.wayPath[0]);
@@ -680,6 +684,8 @@ define(['jquery',
 
    showVideo: function() {
         var self = this;
+
+        self.trigger("clickOnCharacter");
 
         //unlocknext item
         Progression.instance.unlockNextItem(self.way.characterDefinition.name,self.way.wayName);
