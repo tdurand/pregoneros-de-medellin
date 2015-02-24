@@ -158,7 +158,7 @@ function($, _, Backbone,
         self.$el.find(".streetwalk-menucharacter[data-character='perso4']").html(_.template(svgMenuJaleTemplate));
         self.$el.find(".streetwalk-menucharacter[data-character='perso5']").html(_.template(svgMenuJaleTemplate));
 
-        TweenLite.set(".back", {scaleX:0.8,scaleY:0.8,transformOrigin:"center center"});
+        TweenLite.set(".streetwalk-menucharacter[data-character='pajarito'] .character-unlocked", {scaleX:0.8,scaleY:0.8,transformOrigin:"center center"});
 
 
         // self.stickit(Progression.instance);
@@ -169,89 +169,41 @@ function($, _, Backbone,
         Progression.instance.get("charactersProgression").bind('change:pajarito.characterUnlocked', function(model, newValue){
             console.log("UNLOCKED PAJARITO");
 
-                var tl = new TimelineLite();
+                //INIT VARS
+                var character = "pajarito";
 
-                TweenLite.to(".back", 0.5,{scaleX:1,scaleY:1,transformOrigin:"center center",ease:Power2.easeIn});
-            // setTimeout(function() {
-                TweenLite.to(".front", 1, {rotationZ:150,transformOrigin:"top right",ease:Power2.easeIn,
-                    onComplete: function() {
-                        $(".front").hide();
-
-                        
-                    }
-                });
-
-                //start showing video 0.5s after (before other transition end) TODO use timeline to do that well
-                setTimeout(function(){
-                    $(".streetwalk-video").show();
-
-                    var elem = $(".streetwalk-menucharacter[data-character='pajarito'] .character-unlocked");
-                    var elemProperties = $(elem)[0].getBoundingClientRect();
-
-                    var Xposition = elemProperties.left + elemProperties.width/2;
-                    var Yposition = elemProperties.bottom + elemProperties.height/2;
-
-                    TweenLite.fromTo(".streetwalk-video", 1,
-                            {scaleY:0,scaleX:0},
-                            {scaleY:1,scaleX:1,
-                                transformOrigin:Xposition+"px "+Yposition+"px",
-                                ease: Power2.easeIn,
-                                onComplete:function() {
-                                    console.log("end");
-
-                                }
-                        });
-                },500);
-
-                // self.openMenu("pajarito", function() {
-
-                //             TweenLite.to(".streetwalk-menucharacter[data-character=pajarito] .video1locked", 1.2, {rotationY:100,transformOrigin:"right",ease:Power2.easeOut, onComplete:function() {
-                //                 $(".streetwalk-menucharacter[data-character=pajarito] .video1locked").hide();
-                //             }});
-
-                //         });
-
-
-            // },500);
-
-            Progression.instance.get("charactersProgression").bind('change:pajarito.video1.locked', function(model, newValue){
-
-                var elem = $(".streetwalk-menucharacter[data-character='pajarito'] .submenu .video1");
+                var elem = $(".streetwalk-menucharacter[data-character='" + character + "'] .submenu .video1");
                 var elemProperties = $(elem)[0].getBoundingClientRect();
 
                 var Xposition = elemProperties.left + elemProperties.width/2;
-                var Yposition = elemProperties.bottom + elemProperties.height/2;
-                        var submenu = self.$el.find(".streetwalk-menucharacter[data-character='pajarito']").find(".submenu");
-                        submenu.attr("data-state","open");
+                var Yposition = elemProperties.top + elemProperties.height/2;
 
-                        $(".streetwalk-video").css("z-index","15");
+                //TIMELINE ANIMATION
 
-                        TweenLite.fromTo(".streetwalk-video", 1,
-                            {scaleY:1,scaleX:1},
-                            {scaleY:0.0,scaleX:0.0,
-                                transformOrigin:Xposition+"px "+Yposition+"px",
-                                ease: Power2.easeOut,
-                                onComplete:function() {
-                                    console.log("end");
-                                    // self.openMenu("pajarito", function() {
+                var tl = new TimelineLite();
 
-                                        // TweenLite.to(".streetwalk-menucharacter[data-character=pajarito] .video1locked", 1, {rotationY:100,transformOrigin:"right",ease:Power2.easeOut, onComplete:function() {
-                                        //     $(".streetwalk-menucharacter[data-character=pajarito] .video1locked").hide();
-                                        // }});
+                //Discover character
+                tl.to(".streetwalk-menucharacter[data-character='" + character+ "'] .character-locked", 1, {rotationZ:150,transformOrigin:"top right",ease:Power2.easeIn,
+                    onComplete: function() {
+                        $(".streetwalk-menucharacter[data-character='" + character+ "'] .character-locked").hide();
+                    }
+                   })
+                  .to(".streetwalk-menucharacter[data-character='" + character+ "'] .character-unlocked", 0.5,{scaleX:1,scaleY:1,transformOrigin:"center center",ease:Power2.easeIn},"-=0.5")
+                  //Open menu
+                  .call(self.openMenu,["pajarito"],self)
+                  //Unlock video
+                  .to(".streetwalk-menucharacter[data-character="+ character +"] .video1locked", 1, {rotationY:100,transformOrigin:"right",ease:Power2.easeIn, onComplete:function() {
+                        $(".streetwalk-menucharacter[data-character=" + character +"] .video1locked").hide();
+                  }})
+                  .to(".streetwalk-menucharacter[data-character="+ character +"] .video1locked .st6", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",ease:Power2.easeIn},"-=1")
+                  //open video
+                  .fromTo(".streetwalk-video", 1,
+                    {scaleY:0,scaleX:0,display:"block"},
+                    {scaleY:1,scaleX:1,
+                        transformOrigin:Xposition+"px "+Yposition+"px",
+                        ease: Power2.easeOut
+                   });
 
-                                    // });
-                                }
-                        });
-
-                        TweenLite.to(".streetwalk-menucharacter[data-character=pajarito] .video1locked", 1, {rotationY:100,transformOrigin:"right",ease:Power2.easeIn, onComplete:function() {
-                                $(".streetwalk-menucharacter[data-character=pajarito] .video1locked").hide();
-                        }});
-
-                        TweenLite.to(".streetwalk-menucharacter[data-character=pajarito] .video1locked .st6", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",ease:Power2.easeIn});
-
-            });
-            
-            console.log(newValue);
         });
     },
 
@@ -281,7 +233,7 @@ function($, _, Backbone,
         submenu.attr("data-state","open");
         TweenLite.fromTo(submenu, 0.5, {scaleY:0,scaleX:0,transformOrigin:"right bottom",ease: Back.easeOut},{scaleY:1,scaleX:1,transformOrigin:"right bottom",ease: Back.easeOut,onComplete:function() {
             self.isOpening = false;
-            callBackMenuOpen();
+            if(callBackMenuOpen) { callBackMenuOpen(); }
         }});
     },
 

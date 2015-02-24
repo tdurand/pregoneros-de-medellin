@@ -709,7 +709,7 @@ define(['jquery',
     closeVideo: function() {
         var self = this;
 
-        // self.$el.find(".streetwalk-video").hide();
+        self.$el.find(".streetwalk-video").hide();
 
         self.trigger("closeVideo");
 
