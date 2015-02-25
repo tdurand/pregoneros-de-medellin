@@ -51,11 +51,6 @@ function($, _, Backbone,
                 showCTAButton:true,
                 showNextButton:false,
                 ctaLabel:"OK ▸",
-                onClose: function() {
-                  $(".streetwalk-tutorial-overlay").hide();
-                  $(".streetwalk-textcharacter").css("z-index","5");
-                  self.animationInterrogativeSign.repeat(1);
-                },
                 onShow:function() {
                     self.trigger("pauseAnimating");
                     document.body.style.overflowY = "hidden";
@@ -91,18 +86,18 @@ function($, _, Backbone,
                 onShow: function() {
                     $(".streetwalk-tutorial-overlay").removeClass("step2");
                     $(".streetwalk-tutorial-overlay").addClass("step3");
+
+                    //Animate locked characters
+                    self.animationLockedCharacters = new TimelineMax({onComplete:function() {
+                        TweenLite.to(".character-locked .st18",0.5,{scaleX:1,scaleY:1});
+                        TweenLite.to(".character-locked .st18",0.5,{scaleX:1,scaleY:1});
+                    }});
+                    self.animationLockedCharacters.add(TweenLite.fromTo(".character-locked .st18", 0.5, { scaleX:0.95,scaleY:0.95 },{scaleX:1.05,scaleY:1.05, transformOrigin:"center center",ease: Power0.easeNone}));
+                    self.animationLockedCharacters.add(TweenLite.fromTo(".character-locked .st18", 0.5, { scaleX:1.05,scaleY:1.05 },{scaleX:0.95,scaleY:0.95, transformOrigin:"center center",ease: Power0.easeNone}));
+                    self.animationLockedCharacters.repeat(-1);
                 },
                 onCTA: function() {
-                    self.tutorialDone = true;
-                    self.trigger("startAnimating");
-                    document.body.style.overflowY = "visible";
-                    hopscotch.nextStep();
-                    $(".streetwalk-tutorial-overlay").hide();
-                    $(".streetwalk-tutorial-overlay").removeClass("step3");
-                    $(".streetwalk-textcharacter").css("z-index","5");
-                },
-                onClose: function() {
-
+                    hopscotch.endTour();
                 }
             }
           ]
@@ -118,15 +113,32 @@ function($, _, Backbone,
                 setTimeout(function() {
                     hopscotch.startTour(self.tutorial,0);
                     hopscotch.listen("close",function() {
-                        self.tutorialDone = true;
-                        self.trigger("startAnimating");
-                        document.body.style.overflowY = "visible";
-                        $(".streetwalk-tutorial-overlay").hide();
-                        $(".streetwalk-tutorial-overlay").removeClass("step2");
-                        $(".streetwalk-tutorial-overlay").removeClass("step3");
-                        $(".streetwalk-textcharacter").css("z-index","5");
+                        self.endTutorial();
+                    });
+                    hopscotch.listen("end",function() {
+                        self.endTutorial();
                     });
                 },200);
+        }
+    },
+
+    endTutorial: function() {
+        var self = this;
+
+        self.tutorialDone = true;
+        self.trigger("startAnimating");
+        document.body.style.overflowY = "visible";
+        $(".streetwalk-tutorial-overlay").hide();
+        $(".streetwalk-tutorial-overlay").removeClass("step2");
+        $(".streetwalk-tutorial-overlay").removeClass("step3");
+        $(".streetwalk-textcharacter").css("z-index","5");
+        
+        if(self.animationLockedCharacters) {
+            self.animationLockedCharacters.repeat(1);
+        }
+
+        if(self.animationInterrogativeSign) {
+            self.animationInterrogativeSign.repeat(1);
         }
     },
 
