@@ -62,7 +62,7 @@ define(['jquery',
 
         scrollToEndEventSended:false,
 
-        videoShowOneTime:false,
+        videoShownOneTime:false,
         tutorialDone: false,
 
         events:{
@@ -119,7 +119,7 @@ define(['jquery',
             });
 
 
-            self.listenTo(self,"closeVideo", function() {
+            self.listenToOnce(self,"closeVideo", function() {
                 TutorialView.trigger("closeVideo");
                 MenuCharactersView.trigger("closeVideo");
             });
@@ -688,17 +688,19 @@ define(['jquery',
         self.trigger("clickOnCharacter");
 
         //unlocknext item
-        Progression.instance.unlockNextItem(self.way.characterDefinition.name,self.way.wayName);
-
+        var someThingUnlocked = Progression.instance.unlockNextItem(self.way.characterDefinition.name,self.way.wayName);
         Progression.save();
 
-        // setTimeout(function())
-
-        // self.$el.find(".streetwalk-video").show();
-
-        // setTimeout(function() {
-        //     self.$el.find(".streetwalk-video").show();
-        // },1000);
+        if(!someThingUnlocked) {
+            //todo open video with animation from the character
+            TweenLite.fromTo(".streetwalk-video", 1,
+                {scaleY:0,scaleX:0},
+                {scaleY:1,scaleX:1,
+                    display:"block",
+                    transformOrigin:"bottom 80%",
+                    ease: Power1.easeInOut
+            });
+        }
 
         if(_.isUndefined(self.popcorn)) {
             self.initVideo();
@@ -715,7 +717,20 @@ define(['jquery',
     closeVideo: function() {
         var self = this;
 
-        self.trigger("closeVideo");
+        if(!self.videoShownOneTime) {
+            self.trigger("closeVideo");
+            self.videoShownOneTime = true;
+        }
+        else {
+            //close video TODO FROM THE CHARACTER
+            TweenLite.fromTo(".streetwalk-video", 0.7,
+                {scaleY:1,scaleX:1},
+                {scaleY:0,scaleX:0,
+                    display:"none",
+                    transformOrigin:"bottom 80%",
+                    ease: Power1.easeInOut
+            });
+        }
 
         self.popcorn.pause();
         self.popcorn.currentTime(0);

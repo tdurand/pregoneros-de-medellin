@@ -149,7 +149,7 @@ function($, _, Backbone, LOGGER, Ways){
 
         if(!_.isUndefined(self.itemAlreadyUnlockedInThisStreet(character, wayName))) {
             //already unlocked in this street
-            return;
+            return false;
         }
 
         var charactersProgression = self.get("charactersProgression");
@@ -166,6 +166,8 @@ function($, _, Backbone, LOGGER, Ways){
         nbItemUnlocked++;
 
         self.set("nbItemUnlocked", nbItemUnlocked);
+
+        return true;
 
     },
 
