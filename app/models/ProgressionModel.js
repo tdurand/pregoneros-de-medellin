@@ -6,7 +6,7 @@ define(['jquery',
         ],
 function($, _, Backbone, LOGGER, Ways){
 
-  var ProgressionModel = Parse.Object.extend({
+  var ProgressionModel = Backbone.Model.extend({
 
     className: "Progression",
 
@@ -159,8 +159,6 @@ function($, _, Backbone, LOGGER, Ways){
 
         self.set("nbItemUnlocked", nbItemUnlocked);
 
-        self.persistToParse();
-
     },
 
     unlockCharacter: function(character) {
@@ -173,30 +171,6 @@ function($, _, Backbone, LOGGER, Ways){
     setCurrentStreet: function(wayName) {
         var self = this;
         self.set("currentStreet", wayName);
-    },
-
-    persistToParse: function() {
-        var self = this;
-        var user = Parse.User.current();
-
-        //If user logged in
-        if(!_.isNull(user)) {
-
-            self.set("belongTo", Parse.User.current());
-            self.save(null,{
-              success: function(gameScore) {
-                // Execute any logic that should take place after the object is saved.
-                console.log('New object created with objectId: ' + gameScore.id);
-              },
-              error: function(gameScore, error) {
-                // Execute any logic that should take place if the save fails.
-                // error is a Parse.Error with an error code and message.
-                console.log('Failed to create new object, with error code: ' + error.message);
-               }
-            });
-        }
-
-        
     }
 
 

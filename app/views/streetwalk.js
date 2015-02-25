@@ -690,6 +690,8 @@ define(['jquery',
         //unlocknext item
         Progression.instance.unlockNextItem(self.way.characterDefinition.name,self.way.wayName);
 
+        Progression.save();
+
         // setTimeout(function())
 
         // self.$el.find(".streetwalk-video").show();

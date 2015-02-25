@@ -146,7 +146,7 @@ function($, _, Backbone,
         success: function(user) {
             self.renderSuccessAccountCreationView();
             self.updateLoginStatus();
-            Progression.instance.persistToParse();
+            Progression.save();
         },
 
         error: function(user, error) {
@@ -184,7 +184,7 @@ function($, _, Backbone,
                         self.renderSuccessAccountCreationView();
                         self.updateLoginStatus();
 
-                        Progression.instance.persistToParse();
+                        Progression.save();
                         
                       }
                     });
@@ -251,7 +251,7 @@ function($, _, Backbone,
           }
           else {
             //save current progress
-            Progression.instance.persistToParse();
+            Progression.save();
           }
        });
 
