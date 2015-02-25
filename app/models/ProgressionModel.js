@@ -20,7 +20,9 @@ function($, _, Backbone, LOGGER, Ways){
 
             self.set("charactersProgression", new Backbone.NestedModel({
                         jale: {
-                            characterUnlocked:false,
+                            character:{
+                                locked:true
+                            },
                             video1: {
                                 locked: true,
                                 wayName:""
@@ -35,7 +37,9 @@ function($, _, Backbone, LOGGER, Ways){
                             }
                         },
                         pajarito: {
-                            characterUnlocked:false,
+                            character:{
+                                locked:true
+                            },
                             video1: {
                                 locked: true,
                                 wayName:""
@@ -114,7 +118,11 @@ function($, _, Backbone, LOGGER, Ways){
     nextItemToUnlock: function(character) {
         var self = this;
 
-        var toUnLock = _.findKey(self.get("charactersProgression").get(character),{locked: true});
+        var toUnLock = _.findKey(self.get("charactersProgression").get(character),function(key,keyName) {
+                if(keyName !== "character" && key.locked === true) {
+                    return key;
+                }
+        });
 
         console.log("Next item to unlock" + toUnLock);
 
@@ -165,7 +173,7 @@ function($, _, Backbone, LOGGER, Ways){
         var self = this;
 
         //Always unlock character
-        self.get("charactersProgression").set(character+".characterUnlocked", true);
+        self.get("charactersProgression").set(character+".character.locked", false);
     },
 
     setCurrentStreet: function(wayName) {

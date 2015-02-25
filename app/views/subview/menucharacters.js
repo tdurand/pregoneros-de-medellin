@@ -39,6 +39,8 @@ function($, _, Backbone,
         self.$el.find(".streetwalk-menucharacter[data-character='perso4']").html(_.template(svgMenuJaleTemplate));
         self.$el.find(".streetwalk-menucharacter[data-character='perso5']").html(_.template(svgMenuJaleTemplate));
 
+        self.updateMenuCharactersStates();
+
         TweenLite.set(".streetwalk-menucharacter[data-character='pajarito'] .character-unlocked", {scaleX:0.8,scaleY:0.8,transformOrigin:"center center"});
 
 
@@ -53,7 +55,7 @@ function($, _, Backbone,
                 var video = "video1";
 
                 //if character not unlocked, unlock it
-                if(!Progression.instance.get("charactersProgression").get("pajarito").characterUnlocked) {
+                if(Progression.instance.get("charactersProgression").get("pajarito.character.locked")) {
                     Progression.instance.unlockCharacter(character);
 
                     //Launch animation unlockCharacter
@@ -73,6 +75,24 @@ function($, _, Backbone,
         });
     },
 
+    updateMenuCharactersStates: function() {
+        var self = this;
+
+        _.each(Progression.instance.get("charactersProgression").attributes, function(characterData, characterName) {
+
+            var domElement = $(".streetwalk-menucharacter[data-character='" + characterName + "']");
+
+            _.each(characterData,function(menuElement,menuElementName) {
+
+                if(!menuElement.locked) {
+                    domElement.find("." + menuElementName + "-locked").hide();
+                }
+                
+            });
+
+        });
+    },
+
     unlockVideoAndOpen: function(character, video) {
         var self = this;
         var tl = new TimelineLite();
@@ -86,7 +106,7 @@ function($, _, Backbone,
         //Open menu
         tl.call(self.openMenu,[character],self)
               //Unlock video
-              .to(".streetwalk-menucharacter[data-character="+ character +"] ." + video + "locked", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",display:"none",ease:Power2.easeIn})
+              .to(".streetwalk-menucharacter[data-character="+ character +"] ." + video + "-locked", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",display:"none",ease:Power2.easeIn})
               .fromTo(".streetwalk-menucharacter[data-character="+ character +"] ." + video, 1, {scaleX:0.8,scaleY:0.8},{scaleX:1,scaleY:1,transformOrigin:"center center",ease:Back.easeOut.config(3)},"-=0.5")
               //open video
               .fromTo(".streetwalk-video", 1,
