@@ -44,7 +44,7 @@ function($, _, Backbone,
             },
             {
                 id: 'tooltip-characterfound',
-                target: '.menucharacter-pajarito .video3locked',
+                target: '.menucharacter-pajarito .video3-locked',
                 placement: 'left',
                 title: 'TUTORIAL: DESCUBRE MÁS',
                 content: 'Puedes conocer mas sobre Pajarito, buscalo en otras calles !',

@@ -87,7 +87,7 @@ function($, _, Backbone,
                 if(!menuElement.locked) {
                     domElement.find("." + menuElementName + "-locked").hide();
                 }
-                
+
             });
 
         });
