@@ -54,6 +54,7 @@ function($, _, Backbone,
                 onClose: function() {
                   $(".streetwalk-tutorial-overlay").hide();
                   $(".streetwalk-textcharacter").css("z-index","5");
+                  self.animationInterrogativeSign.repeat(1);
                 },
                 onShow:function() {
                     self.trigger("pauseAnimating");
@@ -61,9 +62,21 @@ function($, _, Backbone,
 
                     $(".streetwalk-textcharacter").css("z-index","-1");
                     $(".streetwalk-tutorial-overlay").show();
+
+                    //Animate ? sign
+                    self.animationInterrogativeSign = new TimelineMax({onComplete:function() {
+                        TweenLite.to(".video3-locked .st6",0.5,{scaleX:1,scaleY:1});
+                        TweenLite.to(".video2-locked .st6",0.5,{scaleX:1,scaleY:1});
+                    }});
+                    self.animationInterrogativeSign.add(TweenLite.fromTo(".video3-locked .st6", 0.5, { scaleX:0.7,scaleY:0.7 },{scaleX:1.3,scaleY:1.3, transformOrigin:"center center",ease: Power0.easeNone}));
+                    self.animationInterrogativeSign.add(TweenLite.fromTo(".video3-locked .st6", 0.5, { scaleX:1.3,scaleY:1.3 },{scaleX:0.7,scaleY:0.7, transformOrigin:"center center",ease: Power0.easeNone}));
+                    self.animationInterrogativeSign.add(TweenLite.fromTo(".video2-locked .st6", 0.5, { scaleX:0.7,scaleY:0.7 },{scaleX:1.3,scaleY:1.3, transformOrigin:"center center",ease: Power0.easeNone}),0);
+                    self.animationInterrogativeSign.add(TweenLite.fromTo(".video2-locked .st6", 0.5, { scaleX:1.3,scaleY:1.3 },{scaleX:0.7,scaleY:0.7, transformOrigin:"center center",ease: Power0.easeNone}),0.5);
+                    self.animationInterrogativeSign.repeat(-1);
                 },
                 onCTA: function() {
                     hopscotch.nextStep();
+                    self.animationInterrogativeSign.repeat(1);
                 }
             },
             {
