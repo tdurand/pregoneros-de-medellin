@@ -35,7 +35,7 @@ function($, _, Backbone,
         "click .login-facebook":"signUpOrsignInWithFacebook",
         "submit form.login-form": "logIn",
         "submit form.signup-form": "signUp",
-        "click .streetwalk-login-btnclose": "closeView",
+        "click .usermanager-btnclose": "closeView",
         "click .streetwalk-login-btnlogout": "logOut",
         "click .btn-createaccount":"renderCreateAccountView"
     },

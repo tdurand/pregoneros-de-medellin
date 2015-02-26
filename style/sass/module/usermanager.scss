@@ -11,23 +11,38 @@
 
 .usermanager-content {
     width: 50%;
-    z-index:40;
+    z-index:60;
+
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+
+    background-color: #FFD64A;
+    border:7px solid #4B2246;
+    border-radius:5px;
+
     padding:1em;
 }
 
-.streetwalk-login-btnclose {
+.usermanager-btnclose {
     position:absolute;
     top:10px;
     right:10px;
-    width: 50px;
-    height: 50px;
-    background-image:url("../../images/closebtn.svg");
-    background-color:black;
+    width: 30px;
+    height: 30px;
+    background-image:url("../../images/closeBtnPopup.svg");
 
     cursor:pointer;
+}
+
+.usermanager-overlay {
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:50;
+    background-color: black;
+    opacity: 0.6;
 }
