@@ -24,7 +24,24 @@
 
     padding:1em;
 
-    
+    color:#4b2246;
+
+    h2 {
+        margin-top:0;
+    }
+
+    button {
+        color:#fff;
+        border-radius:1rem;
+        border:none;
+        font-size:1.2rem;
+        padding:0.3rem;
+        padding-left:0.5rem;
+        padding-right: 0.5rem;
+        text-decoration: none;
+        -webkit-box-shadow:3px 3px 3px 0px rgba(0,0,0,0.75);
+        background-color: #00A99D;
+    }
     
 }
 

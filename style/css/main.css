@@ -444,6 +444,11 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* line 7, ../sass/base.scss */
+button:focus {
+  outline: 0;
+}
+
 /* line 1, ../sass/states.scss */
 .hidden {
   display: none !important;
@@ -2608,9 +2613,27 @@ body.not-moving .trame-video {
   border: 7px solid #4B2246;
   border-radius: 5px;
   padding: 1em;
+  color: #4b2246;
+}
+/* line 29, ../sass/module/usermanager.scss */
+.usermanager-content h2 {
+  margin-top: 0;
+}
+/* line 33, ../sass/module/usermanager.scss */
+.usermanager-content button {
+  color: #fff;
+  border-radius: 1rem;
+  border: none;
+  font-size: 1.2rem;
+  padding: 0.3rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  text-decoration: none;
+  -webkit-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.75);
+  background-color: #00A99D;
 }
 
-/* line 31, ../sass/module/usermanager.scss */
+/* line 48, ../sass/module/usermanager.scss */
 .usermanager-btnclose {
   position: absolute;
   top: 10px;
@@ -2621,7 +2644,7 @@ body.not-moving .trame-video {
   cursor: pointer;
 }
 
-/* line 42, ../sass/module/usermanager.scss */
+/* line 59, ../sass/module/usermanager.scss */
 .usermanager-overlay {
   position: fixed;
   top: 0;

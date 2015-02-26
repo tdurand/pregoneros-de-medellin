@@ -6,4 +6,9 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* line 7, ../sass/base.scss */
+button:focus {
+  outline: 0;
+}
+
 /*# sourceMappingURL=base.css.map */
