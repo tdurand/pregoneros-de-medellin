@@ -1,68 +1,3 @@
-/* line 5, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  font-size: 100%;
-  vertical-align: baseline;
-}
-
-/* line 22, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
-html {
-  line-height: 1;
-}
-
-/* line 24, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
-ol, ul {
-  list-style: none;
-}
-
-/* line 26, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-/* line 28, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
-caption, th, td {
-  text-align: left;
-  font-weight: normal;
-  vertical-align: middle;
-}
-
-/* line 30, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
-q, blockquote {
-  quotes: none;
-}
-/* line 103, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
-q:before, q:after, blockquote:before, blockquote:after {
-  content: "";
-  content: none;
-}
-
-/* line 32, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
-a img {
-  border: none;
-}
-
-/* line 116, ../../../../../../.rvm/gems/ruby-2.1.3/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
-article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
-  display: block;
-}
-
 /* line 14, ../../../../../../.rvm/gems/ruby-2.1.3/gems/susy-2.1.3/sass/susy/language/susy/_box-sizing.scss */
 *, *:before, *:after {
   -moz-box-sizing: border-box;
@@ -122,3 +57,1590 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   background-image: url("../../images/closebtnblack.svg");
   cursor: pointer;
 }
+
+/* line 53, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor {
+  font-family: sans-serif;
+  /* ==========================================================================
+     Links
+     ========================================================================== */
+  /**
+   * Address `outline` inconsistency between Chrome and other browsers.
+   */
+  /**
+   * Improve readability when focused and also mouse hovered in all browsers.
+   */
+  /* ==========================================================================
+     Typography
+     ========================================================================== */
+  /**
+   * Address font sizes and margins set differently in IE 6/7.
+   * Address font sizes within `section` and `article` in Firefox 4+, Safari 5,
+   * and Chrome.
+   */
+  /**
+   * Address styling not present in IE 7/8/9, Safari 5, and Chrome.
+   */
+  /**
+   * Address style set to `bolder` in Firefox 3+, Safari 4/5, and Chrome.
+   */
+  /**
+   * Address styling not present in Safari 5 and Chrome.
+   */
+  /**
+   * Address differences between Firefox and other browsers.
+   * Known issue: no IE 6/7 normalization.
+   */
+  /**
+   * Address styling not present in IE 6/7/8/9.
+   */
+  /**
+   * Address margins set differently in IE 6/7.
+   */
+  /**
+   * Correct font family set oddly in IE 6, Safari 4/5, and Chrome.
+   */
+  /**
+   * Improve readability of pre-formatted text in all browsers.
+   */
+  /**
+   * Address CSS quotes not supported in IE 6/7.
+   */
+  /**
+   * Address `quotes` property not supported in Safari 4.
+   */
+  /**
+   * Address inconsistent and variable font size in all browsers.
+   */
+  /**
+   * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+   */
+  /* ==========================================================================
+     Lists
+     ========================================================================== */
+  /**
+   * Address margins set differently in IE 6/7.
+   */
+  /**
+   * Address paddings set differently in IE 6/7.
+   */
+  /**
+   * Correct list images handled incorrectly in IE 7.
+   */
+  /* ==========================================================================
+     Embedded content
+     ========================================================================== */
+  /**
+   * 1. Remove border when inside `a` element in IE 6/7/8/9 and Firefox 3.
+   * 2. Improve image quality when scaled in IE 7.
+   */
+  /**
+   * Correct overflow displayed oddly in IE 9.
+   */
+  /* ==========================================================================
+     Figures
+     ========================================================================== */
+  /**
+   * Address margin not present in IE 6/7/8/9, Safari 5, and Opera 11.
+   */
+  /* ==========================================================================
+     Forms
+     ========================================================================== */
+  /**
+   * Correct margin displayed oddly in IE 6/7.
+   */
+  /**
+   * Define consistent border, margin, and padding.
+   */
+  /**
+   * 1. Correct color not being inherited in IE 6/7/8/9.
+   * 2. Correct text not wrapping in Firefox 3.
+   * 3. Correct alignment displayed oddly in IE 6/7.
+   */
+  /**
+   * 1. Correct font size not being inherited in all browsers.
+   * 2. Address margins set differently in IE 6/7, Firefox 3+, Safari 5,
+   *    and Chrome.
+   * 3. Improve appearance and consistency in all browsers.
+   */
+  /**
+   * Address Firefox 3+ setting `line-height` on `input` using `!important` in
+   * the UA stylesheet.
+   */
+  /**
+   * Address inconsistent `text-transform` inheritance for `button` and `select`.
+   * All other form control elements do not inherit `text-transform` values.
+   * Correct `button` style inheritance in Chrome, Safari 5+, and IE 6+.
+   * Correct `select` style inheritance in Firefox 4+ and Opera.
+   */
+  /**
+   * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+   *    and `video` controls.
+   * 2. Correct inability to style clickable `input` types in iOS.
+   * 3. Improve usability and consistency of cursor style between image-type
+   *    `input` and others.
+   * 4. Remove inner spacing in IE 7 without affecting normal text inputs.
+   *    Known issue: inner spacing remains in IE 6.
+   */
+  /**
+   * Re-set default cursor for disabled elements.
+   */
+  /**
+   * 1. Address box sizing set to content-box in IE 8/9.
+   * 2. Remove excess padding in IE 8/9.
+   * 3. Remove excess padding in IE 7.
+   *    Known issue: excess padding remains in IE 6.
+   */
+  /**
+   * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+   * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+   *    (include `-moz` to future-proof).
+   */
+  /**
+   * Remove inner padding and search cancel button in Safari 5 and Chrome
+   * on OS X.
+   */
+  /**
+   * Remove inner padding and border in Firefox 3+.
+   */
+  /**
+   * 1. Remove default vertical scrollbar in IE 6/7/8/9.
+   * 2. Improve readability and alignment in all browsers.
+   */
+  /* ==========================================================================
+     Tables
+     ========================================================================== */
+  /**
+   * Remove most spacing between table cells.
+   */
+  /*csslint important:false*/
+  /* ==========================================================================
+     Pure Base Extras
+     ========================================================================== */
+  /**
+   * Extra rules that Pure adds on top of Normalize.css
+   */
+  /**
+   * Always hide an element when it has the `hidden` HTML attribute.
+   */
+  /**
+   * Add this class to an image to make it fit within it's fluid parent wrapper while maintaining
+   * aspect ratio.
+   */
+  /*csslint regex-selectors:false, known-properties:false, duplicate-properties:false*/
+  /* Opera as of 12 on Windows needs word-spacing.
+     The ".opera-only" selector is used to prevent actual prefocus styling
+     and is not required in markup.
+  */
+  /*
+  Resets the font family back to the OS/browser's default sans-serif font,
+  this the same font stack that Normalize.css sets for the `body`.
+  */
+  /* Firefox: Get rid of the inner focus border */
+  /*csslint outline-none:false*/
+  /* Firefox: Get rid of the inner focus border */
+  /*
+  Need to separate out the :not() selector from the rest of the CSS 2.1 selectors
+  since IE8 won't execute CSS that contains a CSS3 selector.
+  */
+  /* Chrome (as of v.32/34 on OS X) needs additional room for color to display. */
+  /* May be able to remove this tweak as color inputs become more standardized across browsers. */
+  /*
+  Need to separate out the :not() selector from the rest of the CSS 2.1 selectors
+  since IE8 won't execute CSS that contains a CSS3 selector.
+  */
+  /*
+  Need to separate out the :not() selector from the rest of the CSS 2.1 selectors
+  since IE8 won't execute CSS that contains a CSS3 selector.
+  */
+  /*
+  Need to separate out the :not() selector from the rest of the CSS 2.1 selectors
+  since IE8 won't execute CSS that contains a CSS3 selector.
+  */
+  /* Aligned Forms */
+  /* Rounded Inputs */
+  /* Grouped Inputs */
+  /* Inline help for forms */
+  /* NOTE: pure-help-inline is deprecated. Use .pure-form-message-inline instead. */
+  /* Block help for forms */
+  /*csslint adjoining-classes:false, outline-none:false*/
+  /*TODO: Remove this lint rule override after a refactor of this code.*/
+  /* FIXED MENU */
+  /* HORIZONTAL MENU CODE */
+  /* Initial menus should be inline-block so that they are horizontal */
+  /* Submenus should still be display: block; */
+  /* Content after should be down arrow */
+  /*Add extra padding to elements that have the arrow so that the hover looks nice */
+  /* Adjusting separator for vertical menus */
+  /* Submenus should be horizontal separator again */
+  /*csslint adjoining-classes:false*/
+  /*TODO: Remove this lint rule override after a refactor of this code.*/
+  /* MAIN MENU STYLING */
+  /* remove borders for horizontal menus */
+  /* LINK STYLES */
+  /* Focus style for a dropdown menu-item when the parent has been opened */
+  /* DISABLED STATES */
+  /* HEADINGS */
+  /* ACTIVE MENU ITEM */
+  /* FIXED MENU */
+  /*csslint box-model:false*/
+  /*TODO: Remove this lint rule override after a refactor of this code.*/
+  /* `pure-u` Grid styles */
+  /*
+  striping:
+     even - #fff (white)
+     odd  - #f2f2f2 (light gray)
+  */
+  /* nth-child selector for modern browsers */
+  /* BORDERED TABLES */
+  /* HORIZONTAL BORDERED TABLES */
+}
+/* line 65, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor a:focus {
+  outline: thin dotted;
+}
+/* line 73, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor a:active,
+#streetwalk-soundeditor a:hover {
+  outline: 0;
+}
+/* line 88, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+/* line 93, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor h2 {
+  font-size: 1.5em;
+  margin: 0.83em 0;
+}
+/* line 98, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor h3 {
+  font-size: 1.17em;
+  margin: 1em 0;
+}
+/* line 103, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor h4 {
+  font-size: 1em;
+  margin: 1.33em 0;
+}
+/* line 108, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor h5 {
+  font-size: 0.83em;
+  margin: 1.67em 0;
+}
+/* line 113, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor h6 {
+  font-size: 0.67em;
+  margin: 2.33em 0;
+}
+/* line 122, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor abbr[title] {
+  border-bottom: 1px dotted;
+}
+/* line 130, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor b,
+#streetwalk-soundeditor strong {
+  font-weight: bold;
+}
+/* line 135, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor blockquote {
+  margin: 1em 40px;
+}
+/* line 143, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor dfn {
+  font-style: italic;
+}
+/* line 152, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+/* line 162, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor mark {
+  background: #ff0;
+  color: #000;
+}
+/* line 171, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor p,
+#streetwalk-soundeditor pre {
+  margin: 1em 0;
+}
+/* line 180, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor code,
+#streetwalk-soundeditor kbd,
+#streetwalk-soundeditor pre,
+#streetwalk-soundeditor samp {
+  font-family: monospace, serif;
+  _font-family: 'courier new', monospace;
+  font-size: 1em;
+}
+/* line 193, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+/* line 203, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor q {
+  quotes: none;
+}
+/* line 211, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor q:before,
+#streetwalk-soundeditor q:after {
+  content: '';
+  content: none;
+}
+/* line 221, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor small {
+  font-size: 80%;
+}
+/* line 229, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor sub,
+#streetwalk-soundeditor sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+/* line 237, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor sup {
+  top: -0.5em;
+}
+/* line 241, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor sub {
+  bottom: -0.25em;
+}
+/* line 253, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor dl,
+#streetwalk-soundeditor menu,
+#streetwalk-soundeditor ol,
+#streetwalk-soundeditor ul {
+  margin: 1em 0;
+}
+/* line 260, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor dd {
+  margin: 0 0 0 40px;
+}
+/* line 268, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor menu,
+#streetwalk-soundeditor ol,
+#streetwalk-soundeditor ul {
+  padding: 0 0 0 40px;
+}
+/* line 278, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor nav ul,
+#streetwalk-soundeditor nav ol {
+  list-style: none;
+  list-style-image: none;
+}
+/* line 293, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor img {
+  border: 0;
+  /* 1 */
+  -ms-interpolation-mode: bicubic;
+  /* 2 */
+}
+/* line 302, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor svg:not(:root) {
+  overflow: hidden;
+}
+/* line 314, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor figure {
+  margin: 0;
+}
+/* line 326, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor form {
+  margin: 0;
+}
+/* line 334, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+/* line 346, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  white-space: normal;
+  /* 2 */
+  *margin-left: -7px;
+  /* 3 */
+}
+/* line 360, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor button,
+#streetwalk-soundeditor input,
+#streetwalk-soundeditor select,
+#streetwalk-soundeditor textarea {
+  font-size: 100%;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+  vertical-align: baseline;
+  /* 3 */
+  *vertical-align: middle;
+  /* 3 */
+}
+/* line 375, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor button,
+#streetwalk-soundeditor input {
+  line-height: normal;
+}
+/* line 387, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor button,
+#streetwalk-soundeditor select {
+  text-transform: none;
+}
+/* line 402, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor button,
+#streetwalk-soundeditor html input[type="button"],
+#streetwalk-soundeditor input[type="reset"],
+#streetwalk-soundeditor input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+  *overflow: visible;
+  /* 4 */
+}
+/* line 415, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor button[disabled],
+#streetwalk-soundeditor html input[disabled] {
+  cursor: default;
+}
+/* line 427, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor input[type="checkbox"],
+#streetwalk-soundeditor input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+  *height: 13px;
+  /* 3 */
+  *width: 13px;
+  /* 3 */
+}
+/* line 441, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box;
+}
+/* line 453, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor input[type="search"]::-webkit-search-cancel-button,
+#streetwalk-soundeditor input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+/* line 462, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor button::-moz-focus-inner,
+#streetwalk-soundeditor input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+/* line 473, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */
+}
+/* line 486, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* line 505, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor [hidden] {
+  display: none !important;
+}
+/* line 513, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+/* line 521, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-g {
+  letter-spacing: -0.31em;
+  /* Webkit: collapse white-space between units */
+  *letter-spacing: normal;
+  /* reset IE < 8 */
+  *word-spacing: -0.43em;
+  /* IE < 8: collapse white-space between units */
+  text-rendering: optimizespeed;
+  /* Webkit: fixes text-rendering: optimizeLegibility */
+        /*
+        Sets the font stack to fonts known to work properly with the above letter
+        and word spacings. See: https://github.com/yui/pure/issues/41/
+
+        The following font stack makes Pure Grids work on all known environments.
+
+        * FreeSans: Ships with many Linux distros, including Ubuntu
+
+        * Arimo: Ships with Chrome OS. Arimo has to be defined before Helvetica and
+          Arial to get picked up by the browser, even though neither is available
+          in Chrome OS.
+
+        * Droid Sans: Ships with all versions of Android.
+
+        * Helvetica, Arial, sans-serif: Common font stack on OS X and Windows.
+        */
+  font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif;
+        /*
+        Use flexbox when possible to avoid `letter-spacing` side-effects.
+
+        NOTE: Firefox (as of 25) does not currently support flex-wrap, so the
+        `-moz-` prefix version is omitted.
+        */
+  display: -webkit-flex;
+  -webkit-flex-flow: row wrap;
+  /* IE10 uses display: flexbox */
+  display: -ms-flexbox;
+  -ms-flex-flow: row wrap;
+}
+/* line 564, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .opera-only :-o-prefocus,
+#streetwalk-soundeditor .pure-g {
+  word-spacing: -0.43em;
+}
+/* line 569, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u {
+  display: inline-block;
+  *display: inline;
+  /* IE < 8: fake inline-block */
+  zoom: 1;
+  letter-spacing: normal;
+  word-spacing: normal;
+  vertical-align: top;
+  text-rendering: auto;
+}
+/* line 583, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-g [class*="pure-u"] {
+  font-family: sans-serif;
+}
+/* line 587, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-1,
+#streetwalk-soundeditor .pure-u-1-1,
+#streetwalk-soundeditor .pure-u-1-2,
+#streetwalk-soundeditor .pure-u-1-3,
+#streetwalk-soundeditor .pure-u-2-3,
+#streetwalk-soundeditor .pure-u-1-4,
+#streetwalk-soundeditor .pure-u-3-4,
+#streetwalk-soundeditor .pure-u-1-5,
+#streetwalk-soundeditor .pure-u-2-5,
+#streetwalk-soundeditor .pure-u-3-5,
+#streetwalk-soundeditor .pure-u-4-5,
+#streetwalk-soundeditor .pure-u-5-5,
+#streetwalk-soundeditor .pure-u-1-6,
+#streetwalk-soundeditor .pure-u-5-6,
+#streetwalk-soundeditor .pure-u-1-8,
+#streetwalk-soundeditor .pure-u-3-8,
+#streetwalk-soundeditor .pure-u-5-8,
+#streetwalk-soundeditor .pure-u-7-8,
+#streetwalk-soundeditor .pure-u-1-12,
+#streetwalk-soundeditor .pure-u-5-12,
+#streetwalk-soundeditor .pure-u-7-12,
+#streetwalk-soundeditor .pure-u-11-12,
+#streetwalk-soundeditor .pure-u-1-24,
+#streetwalk-soundeditor .pure-u-2-24,
+#streetwalk-soundeditor .pure-u-3-24,
+#streetwalk-soundeditor .pure-u-4-24,
+#streetwalk-soundeditor .pure-u-5-24,
+#streetwalk-soundeditor .pure-u-6-24,
+#streetwalk-soundeditor .pure-u-7-24,
+#streetwalk-soundeditor .pure-u-8-24,
+#streetwalk-soundeditor .pure-u-9-24,
+#streetwalk-soundeditor .pure-u-10-24,
+#streetwalk-soundeditor .pure-u-11-24,
+#streetwalk-soundeditor .pure-u-12-24,
+#streetwalk-soundeditor .pure-u-13-24,
+#streetwalk-soundeditor .pure-u-14-24,
+#streetwalk-soundeditor .pure-u-15-24,
+#streetwalk-soundeditor .pure-u-16-24,
+#streetwalk-soundeditor .pure-u-17-24,
+#streetwalk-soundeditor .pure-u-18-24,
+#streetwalk-soundeditor .pure-u-19-24,
+#streetwalk-soundeditor .pure-u-20-24,
+#streetwalk-soundeditor .pure-u-21-24,
+#streetwalk-soundeditor .pure-u-22-24,
+#streetwalk-soundeditor .pure-u-23-24,
+#streetwalk-soundeditor .pure-u-24-24 {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  letter-spacing: normal;
+  word-spacing: normal;
+  vertical-align: top;
+  text-rendering: auto;
+}
+/* line 642, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-1-24 {
+  width: 4.1667%;
+  *width: 4.1357%;
+}
+/* line 647, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-1-12,
+#streetwalk-soundeditor .pure-u-2-24 {
+  width: 8.3333%;
+  *width: 8.3023%;
+}
+/* line 653, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-1-8,
+#streetwalk-soundeditor .pure-u-3-24 {
+  width: 12.5000%;
+  *width: 12.4690%;
+}
+/* line 659, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-1-6,
+#streetwalk-soundeditor .pure-u-4-24 {
+  width: 16.6667%;
+  *width: 16.6357%;
+}
+/* line 665, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-1-5 {
+  width: 20%;
+  *width: 19.9690%;
+}
+/* line 670, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-5-24 {
+  width: 20.8333%;
+  *width: 20.8023%;
+}
+/* line 675, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-1-4,
+#streetwalk-soundeditor .pure-u-6-24 {
+  width: 25%;
+  *width: 24.9690%;
+}
+/* line 681, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-7-24 {
+  width: 29.1667%;
+  *width: 29.1357%;
+}
+/* line 686, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-1-3,
+#streetwalk-soundeditor .pure-u-8-24 {
+  width: 33.3333%;
+  *width: 33.3023%;
+}
+/* line 692, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-3-8,
+#streetwalk-soundeditor .pure-u-9-24 {
+  width: 37.5000%;
+  *width: 37.4690%;
+}
+/* line 698, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-2-5 {
+  width: 40%;
+  *width: 39.9690%;
+}
+/* line 703, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-5-12,
+#streetwalk-soundeditor .pure-u-10-24 {
+  width: 41.6667%;
+  *width: 41.6357%;
+}
+/* line 709, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-11-24 {
+  width: 45.8333%;
+  *width: 45.8023%;
+}
+/* line 714, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-1-2,
+#streetwalk-soundeditor .pure-u-12-24 {
+  width: 50%;
+  *width: 49.9690%;
+}
+/* line 720, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-13-24 {
+  width: 54.1667%;
+  *width: 54.1357%;
+}
+/* line 725, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-7-12,
+#streetwalk-soundeditor .pure-u-14-24 {
+  width: 58.3333%;
+  *width: 58.3023%;
+}
+/* line 731, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-3-5 {
+  width: 60%;
+  *width: 59.9690%;
+}
+/* line 736, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-5-8,
+#streetwalk-soundeditor .pure-u-15-24 {
+  width: 62.5000%;
+  *width: 62.4690%;
+}
+/* line 742, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-2-3,
+#streetwalk-soundeditor .pure-u-16-24 {
+  width: 66.6667%;
+  *width: 66.6357%;
+}
+/* line 748, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-17-24 {
+  width: 70.8333%;
+  *width: 70.8023%;
+}
+/* line 753, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-3-4,
+#streetwalk-soundeditor .pure-u-18-24 {
+  width: 75%;
+  *width: 74.9690%;
+}
+/* line 759, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-19-24 {
+  width: 79.1667%;
+  *width: 79.1357%;
+}
+/* line 764, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-4-5 {
+  width: 80%;
+  *width: 79.9690%;
+}
+/* line 769, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-5-6,
+#streetwalk-soundeditor .pure-u-20-24 {
+  width: 83.3333%;
+  *width: 83.3023%;
+}
+/* line 775, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-7-8,
+#streetwalk-soundeditor .pure-u-21-24 {
+  width: 87.5000%;
+  *width: 87.4690%;
+}
+/* line 781, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-11-12,
+#streetwalk-soundeditor .pure-u-22-24 {
+  width: 91.6667%;
+  *width: 91.6357%;
+}
+/* line 787, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-23-24 {
+  width: 95.8333%;
+  *width: 95.8023%;
+}
+/* line 792, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-u-1,
+#streetwalk-soundeditor .pure-u-1-1,
+#streetwalk-soundeditor .pure-u-5-5,
+#streetwalk-soundeditor .pure-u-24-24 {
+  width: 100%;
+}
+/* line 798, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-button {
+  /* Structure */
+  display: inline-block;
+  *display: inline;
+  /*IE 6/7*/
+  zoom: 1;
+  line-height: normal;
+  white-space: nowrap;
+  vertical-align: baseline;
+  text-align: center;
+  cursor: pointer;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* line 816, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+/* line 823, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-button {
+  font-family: inherit;
+  font-size: 100%;
+  *font-size: 90%;
+  /*IE 6/7 - To reduce IE's oversized button text*/
+  *overflow: visible;
+  /*IE 6/7 - Because of IE's overly large left/right padding on buttons */
+  padding: 0.5em 1em;
+  color: #444;
+  /* rgba not supported (IE 8) */
+  color: rgba(0, 0, 0, 0.8);
+  /* rgba supported */
+  *color: #444;
+  /* IE 6 & 7 */
+  border: 1px solid #999;
+  /*IE 6/7/8*/
+  border: none transparent;
+  /*IE9 + everything else*/
+  background-color: #E6E6E6;
+  text-decoration: none;
+  border-radius: 2px;
+}
+/* line 839, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-button-hover,
+#streetwalk-soundeditor .pure-button:hover,
+#streetwalk-soundeditor .pure-button:focus {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#1a000000',GradientType=0);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, left, color-stop(40%, rgba(0, 0, 0, 0.05)), right);
+  background-image: -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.1));
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.1));
+  background-image: -o-linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.1));
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.1));
+}
+/* line 849, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-button:focus {
+  outline: 0;
+}
+/* line 852, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-button-active,
+#streetwalk-soundeditor .pure-button:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+/* line 857, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-button[disabled],
+#streetwalk-soundeditor .pure-button-disabled,
+#streetwalk-soundeditor .pure-button-disabled:hover,
+#streetwalk-soundeditor .pure-button-disabled:focus,
+#streetwalk-soundeditor .pure-button-disabled:active {
+  border: none;
+  background-image: none;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  filter: alpha(opacity=40);
+  -khtml-opacity: 0.40;
+  -moz-opacity: 0.40;
+  opacity: 0.40;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+/* line 873, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-button-hidden {
+  display: none;
+}
+/* line 878, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+/* line 883, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-button-primary,
+#streetwalk-soundeditor .pure-button-selected,
+#streetwalk-soundeditor a.pure-button-primary,
+#streetwalk-soundeditor a.pure-button-selected {
+  background-color: #0078e7;
+  color: #fff;
+}
+/* line 891, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form input[type="text"],
+#streetwalk-soundeditor .pure-form input[type="password"],
+#streetwalk-soundeditor .pure-form input[type="email"],
+#streetwalk-soundeditor .pure-form input[type="url"],
+#streetwalk-soundeditor .pure-form input[type="date"],
+#streetwalk-soundeditor .pure-form input[type="month"],
+#streetwalk-soundeditor .pure-form input[type="time"],
+#streetwalk-soundeditor .pure-form input[type="datetime"],
+#streetwalk-soundeditor .pure-form input[type="datetime-local"],
+#streetwalk-soundeditor .pure-form input[type="week"],
+#streetwalk-soundeditor .pure-form input[type="number"],
+#streetwalk-soundeditor .pure-form input[type="search"],
+#streetwalk-soundeditor .pure-form input[type="tel"],
+#streetwalk-soundeditor .pure-form input[type="color"],
+#streetwalk-soundeditor .pure-form select,
+#streetwalk-soundeditor .pure-form textarea {
+  padding: 0.5em 0.6em;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 3px #ddd;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 921, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form input:not([type]) {
+  padding: 0.5em 0.6em;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 3px #ddd;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 935, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form input[type="color"] {
+  padding: 0.2em 0.5em;
+}
+/* line 940, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form input[type="text"]:focus,
+#streetwalk-soundeditor .pure-form input[type="password"]:focus,
+#streetwalk-soundeditor .pure-form input[type="email"]:focus,
+#streetwalk-soundeditor .pure-form input[type="url"]:focus,
+#streetwalk-soundeditor .pure-form input[type="date"]:focus,
+#streetwalk-soundeditor .pure-form input[type="month"]:focus,
+#streetwalk-soundeditor .pure-form input[type="time"]:focus,
+#streetwalk-soundeditor .pure-form input[type="datetime"]:focus,
+#streetwalk-soundeditor .pure-form input[type="datetime-local"]:focus,
+#streetwalk-soundeditor .pure-form input[type="week"]:focus,
+#streetwalk-soundeditor .pure-form input[type="number"]:focus,
+#streetwalk-soundeditor .pure-form input[type="search"]:focus,
+#streetwalk-soundeditor .pure-form input[type="tel"]:focus,
+#streetwalk-soundeditor .pure-form input[type="color"]:focus,
+#streetwalk-soundeditor .pure-form select:focus,
+#streetwalk-soundeditor .pure-form textarea:focus {
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+  border-color: #129FEA;
+}
+/* line 965, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form input:not([type]):focus {
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+  border-color: #129FEA;
+}
+/* line 971, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form input[type="file"]:focus,
+#streetwalk-soundeditor .pure-form input[type="radio"]:focus,
+#streetwalk-soundeditor .pure-form input[type="checkbox"]:focus {
+  outline: thin dotted #333;
+  outline: 1px auto #129FEA;
+}
+/* line 977, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form .pure-checkbox,
+#streetwalk-soundeditor .pure-form .pure-radio {
+  margin: 0.5em 0;
+  display: block;
+}
+/* line 983, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form input[type="text"][disabled],
+#streetwalk-soundeditor .pure-form input[type="password"][disabled],
+#streetwalk-soundeditor .pure-form input[type="email"][disabled],
+#streetwalk-soundeditor .pure-form input[type="url"][disabled],
+#streetwalk-soundeditor .pure-form input[type="date"][disabled],
+#streetwalk-soundeditor .pure-form input[type="month"][disabled],
+#streetwalk-soundeditor .pure-form input[type="time"][disabled],
+#streetwalk-soundeditor .pure-form input[type="datetime"][disabled],
+#streetwalk-soundeditor .pure-form input[type="datetime-local"][disabled],
+#streetwalk-soundeditor .pure-form input[type="week"][disabled],
+#streetwalk-soundeditor .pure-form input[type="number"][disabled],
+#streetwalk-soundeditor .pure-form input[type="search"][disabled],
+#streetwalk-soundeditor .pure-form input[type="tel"][disabled],
+#streetwalk-soundeditor .pure-form input[type="color"][disabled],
+#streetwalk-soundeditor .pure-form select[disabled],
+#streetwalk-soundeditor .pure-form textarea[disabled] {
+  cursor: not-allowed;
+  background-color: #eaeded;
+  color: #cad2d3;
+}
+/* line 1008, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form input:not([type])[disabled] {
+  cursor: not-allowed;
+  background-color: #eaeded;
+  color: #cad2d3;
+}
+/* line 1013, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form input[readonly],
+#streetwalk-soundeditor .pure-form select[readonly],
+#streetwalk-soundeditor .pure-form textarea[readonly] {
+  background: #eee;
+  /* menu hover bg color */
+  color: #777;
+  /* menu text color */
+  border-color: #ccc;
+}
+/* line 1021, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form input:focus:invalid,
+#streetwalk-soundeditor .pure-form textarea:focus:invalid,
+#streetwalk-soundeditor .pure-form select:focus:invalid {
+  color: #b94a48;
+  border-color: #ee5f5b;
+}
+/* line 1027, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form input:focus:invalid:focus,
+#streetwalk-soundeditor .pure-form textarea:focus:invalid:focus,
+#streetwalk-soundeditor .pure-form select:focus:invalid:focus {
+  border-color: #e9322d;
+}
+/* line 1032, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form input[type="file"]:focus:invalid:focus,
+#streetwalk-soundeditor .pure-form input[type="radio"]:focus:invalid:focus,
+#streetwalk-soundeditor .pure-form input[type="checkbox"]:focus:invalid:focus {
+  outline-color: #e9322d;
+}
+/* line 1037, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form select {
+  border: 1px solid #ccc;
+  background-color: white;
+}
+/* line 1041, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form select[multiple] {
+  height: auto;
+}
+/* line 1044, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form label {
+  margin: 0.5em 0 0.2em;
+}
+/* line 1047, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form fieldset {
+  margin: 0;
+  padding: 0.35em 0 0.75em;
+  border: 0;
+}
+/* line 1052, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form legend {
+  display: block;
+  width: 100%;
+  padding: 0.3em 0;
+  margin-bottom: 0.3em;
+  color: #333;
+  border-bottom: 1px solid #e5e5e5;
+}
+/* line 1061, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form-stacked input[type="text"],
+#streetwalk-soundeditor .pure-form-stacked input[type="password"],
+#streetwalk-soundeditor .pure-form-stacked input[type="email"],
+#streetwalk-soundeditor .pure-form-stacked input[type="url"],
+#streetwalk-soundeditor .pure-form-stacked input[type="date"],
+#streetwalk-soundeditor .pure-form-stacked input[type="month"],
+#streetwalk-soundeditor .pure-form-stacked input[type="time"],
+#streetwalk-soundeditor .pure-form-stacked input[type="datetime"],
+#streetwalk-soundeditor .pure-form-stacked input[type="datetime-local"],
+#streetwalk-soundeditor .pure-form-stacked input[type="week"],
+#streetwalk-soundeditor .pure-form-stacked input[type="number"],
+#streetwalk-soundeditor .pure-form-stacked input[type="search"],
+#streetwalk-soundeditor .pure-form-stacked input[type="tel"],
+#streetwalk-soundeditor .pure-form-stacked input[type="color"],
+#streetwalk-soundeditor .pure-form-stacked select,
+#streetwalk-soundeditor .pure-form-stacked label,
+#streetwalk-soundeditor .pure-form-stacked textarea {
+  display: block;
+  margin: 0.25em 0;
+}
+/* line 1086, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form-stacked input:not([type]) {
+  display: block;
+  margin: 0.25em 0;
+}
+/* line 1090, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form-aligned input,
+#streetwalk-soundeditor .pure-form-aligned textarea,
+#streetwalk-soundeditor .pure-form-aligned select,
+#streetwalk-soundeditor .pure-form-aligned .pure-help-inline,
+#streetwalk-soundeditor .pure-form-message-inline {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  vertical-align: middle;
+}
+/* line 1101, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form-aligned textarea {
+  vertical-align: top;
+}
+/* line 1106, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form-aligned .pure-control-group {
+  margin-bottom: 0.5em;
+}
+/* line 1109, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form-aligned .pure-control-group label {
+  text-align: right;
+  display: inline-block;
+  vertical-align: middle;
+  width: 10em;
+  margin: 0 1em 0 0;
+}
+/* line 1116, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form-aligned .pure-controls {
+  margin: 1.5em 0 0 10em;
+}
+/* line 1121, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form input.pure-input-rounded,
+#streetwalk-soundeditor .pure-form .pure-input-rounded {
+  border-radius: 2em;
+  padding: 0.5em 1em;
+}
+/* line 1128, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form .pure-group fieldset {
+  margin-bottom: 10px;
+}
+/* line 1131, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form .pure-group input {
+  display: block;
+  padding: 10px;
+  margin: 0;
+  border-radius: 0;
+  position: relative;
+  top: -1px;
+}
+/* line 1139, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form .pure-group input:focus {
+  z-index: 2;
+}
+/* line 1142, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form .pure-group input:first-child {
+  top: 1px;
+  border-radius: 4px 4px 0 0;
+}
+/* line 1146, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form .pure-group input:last-child {
+  top: -2px;
+  border-radius: 0 0 4px 4px;
+}
+/* line 1150, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form .pure-group button {
+  margin: 0.35em 0;
+}
+/* line 1154, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form .pure-input-1 {
+  width: 100%;
+}
+/* line 1157, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form .pure-input-2-3 {
+  width: 66%;
+}
+/* line 1160, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form .pure-input-1-2 {
+  width: 50%;
+}
+/* line 1163, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form .pure-input-1-3 {
+  width: 33%;
+}
+/* line 1166, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form .pure-input-1-4 {
+  width: 25%;
+}
+/* line 1172, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form .pure-help-inline,
+#streetwalk-soundeditor .pure-form-message-inline {
+  display: inline-block;
+  padding-left: 0.3em;
+  color: #666;
+  vertical-align: middle;
+  font-size: 0.875em;
+}
+/* line 1182, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-form-message {
+  display: block;
+  color: #666;
+  font-size: 0.875em;
+}
+@media only screen and (max-width: 480px) {
+  /* line 53, ../../sass/module/soundeditor.scss */
+  #streetwalk-soundeditor {
+    /* NOTE: pure-help-inline is deprecated. Use .pure-form-message-inline instead. */
+  }
+  /* line 1189, ../../sass/module/soundeditor.scss */
+  #streetwalk-soundeditor .pure-form button[type="submit"] {
+    margin: 0.7em 0 0;
+  }
+  /* line 1193, ../../sass/module/soundeditor.scss */
+  #streetwalk-soundeditor .pure-form input:not([type]),
+  #streetwalk-soundeditor .pure-form input[type="text"],
+  #streetwalk-soundeditor .pure-form input[type="password"],
+  #streetwalk-soundeditor .pure-form input[type="email"],
+  #streetwalk-soundeditor .pure-form input[type="url"],
+  #streetwalk-soundeditor .pure-form input[type="date"],
+  #streetwalk-soundeditor .pure-form input[type="month"],
+  #streetwalk-soundeditor .pure-form input[type="time"],
+  #streetwalk-soundeditor .pure-form input[type="datetime"],
+  #streetwalk-soundeditor .pure-form input[type="datetime-local"],
+  #streetwalk-soundeditor .pure-form input[type="week"],
+  #streetwalk-soundeditor .pure-form input[type="number"],
+  #streetwalk-soundeditor .pure-form input[type="search"],
+  #streetwalk-soundeditor .pure-form input[type="tel"],
+  #streetwalk-soundeditor .pure-form input[type="color"],
+  #streetwalk-soundeditor .pure-form label {
+    margin-bottom: 0.3em;
+    display: block;
+  }
+  /* line 1213, ../../sass/module/soundeditor.scss */
+  #streetwalk-soundeditor .pure-group input:not([type]),
+  #streetwalk-soundeditor .pure-group input[type="text"],
+  #streetwalk-soundeditor .pure-group input[type="password"],
+  #streetwalk-soundeditor .pure-group input[type="email"],
+  #streetwalk-soundeditor .pure-group input[type="url"],
+  #streetwalk-soundeditor .pure-group input[type="date"],
+  #streetwalk-soundeditor .pure-group input[type="month"],
+  #streetwalk-soundeditor .pure-group input[type="time"],
+  #streetwalk-soundeditor .pure-group input[type="datetime"],
+  #streetwalk-soundeditor .pure-group input[type="datetime-local"],
+  #streetwalk-soundeditor .pure-group input[type="week"],
+  #streetwalk-soundeditor .pure-group input[type="number"],
+  #streetwalk-soundeditor .pure-group input[type="search"],
+  #streetwalk-soundeditor .pure-group input[type="tel"],
+  #streetwalk-soundeditor .pure-group input[type="color"] {
+    margin-bottom: 0;
+  }
+  /* line 1231, ../../sass/module/soundeditor.scss */
+  #streetwalk-soundeditor .pure-form-aligned .pure-control-group label {
+    margin-bottom: 0.3em;
+    text-align: left;
+    display: block;
+    width: 100%;
+  }
+  /* line 1238, ../../sass/module/soundeditor.scss */
+  #streetwalk-soundeditor .pure-form-aligned .pure-controls {
+    margin: 1.5em 0 0 0;
+  }
+  /* line 1243, ../../sass/module/soundeditor.scss */
+  #streetwalk-soundeditor .pure-form .pure-help-inline,
+  #streetwalk-soundeditor .pure-form-message-inline,
+  #streetwalk-soundeditor .pure-form-message {
+    display: block;
+    font-size: 0.75em;
+    /* Increased bottom padding to make it group with its related input element. */
+    padding: 0.2em 0 0.8em;
+  }
+}
+/* line 1256, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu ul {
+  position: absolute;
+  visibility: hidden;
+}
+/* line 1261, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu.pure-menu-open {
+  visibility: visible;
+  z-index: 2;
+  width: 100%;
+}
+/* line 1267, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu ul {
+  left: -10000px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  top: -10000px;
+  z-index: 1;
+}
+/* line 1276, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu > ul {
+  position: relative;
+}
+/* line 1278, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu-open > ul {
+  left: 0;
+  top: 0;
+  visibility: visible;
+}
+/* line 1284, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu-open > ul:focus {
+  outline: 0;
+}
+/* line 1288, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu li {
+  position: relative;
+}
+/* line 1290, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu a,
+#streetwalk-soundeditor .pure-menu .pure-menu-heading {
+  display: block;
+  color: inherit;
+  line-height: 1.5em;
+  padding: 5px 20px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+/* line 1300, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu.pure-menu-horizontal > .pure-menu-heading {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  margin: 0;
+  vertical-align: middle;
+}
+/* line 1307, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu.pure-menu-horizontal > ul {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  vertical-align: middle;
+}
+/* line 1314, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu li a {
+  padding: 5px 20px;
+}
+/* line 1316, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu-can-have-children > .pure-menu-label:after {
+  content: '\25B8';
+  float: right;
+  /* These specific fonts have the Unicode char we need. */
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'DejaVu Sans', sans-serif;
+  margin-right: -20px;
+  margin-top: -1px;
+}
+/* line 1325, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu-can-have-children > .pure-menu-label {
+  padding-right: 30px;
+}
+/* line 1329, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu-separator {
+  background-color: #dfdfdf;
+  display: block;
+  height: 1px;
+  font-size: 0;
+  margin: 7px 2px;
+  overflow: hidden;
+}
+/* line 1338, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu-hidden {
+  display: none;
+}
+/* line 1343, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+/* line 1354, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu-horizontal li {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  vertical-align: middle;
+}
+/* line 1362, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu-horizontal li li {
+  display: block;
+}
+/* line 1367, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu-horizontal > .pure-menu-children > .pure-menu-can-have-children > .pure-menu-label:after {
+  content: "\25BE";
+}
+/* line 1371, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu-horizontal > .pure-menu-children > .pure-menu-can-have-children > .pure-menu-label {
+  padding-right: 30px;
+}
+/* line 1376, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu-horizontal li.pure-menu-separator {
+  height: 50%;
+  width: 1px;
+  margin: 0 7px;
+}
+/* line 1383, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu-horizontal li li.pure-menu-separator {
+  height: 1px;
+  width: auto;
+  margin: 7px 2px;
+}
+/* line 1395, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu.pure-menu-open,
+#streetwalk-soundeditor .pure-menu.pure-menu-horizontal li .pure-menu-children {
+  background: #fff;
+  /* Old browsers */
+  border: 1px solid #b7b7b7;
+}
+/* line 1402, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu.pure-menu-horizontal,
+#streetwalk-soundeditor .pure-menu.pure-menu-horizontal .pure-menu-heading {
+  border: none;
+}
+/* line 1410, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu a {
+  border: 1px solid transparent;
+  border-left: none;
+  border-right: none;
+}
+/* line 1417, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu a,
+#streetwalk-soundeditor .pure-menu .pure-menu-can-have-children > li:after {
+  color: #777;
+}
+/* line 1422, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu .pure-menu-can-have-children > li:hover:after {
+  color: #fff;
+}
+/* line 1427, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu .pure-menu-open {
+  background: #dedede;
+}
+/* line 1432, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu li a:hover,
+#streetwalk-soundeditor .pure-menu li a:focus {
+  background: #eee;
+}
+/* line 1438, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu li.pure-menu-disabled a:hover,
+#streetwalk-soundeditor .pure-menu li.pure-menu-disabled a:focus {
+  background: #fff;
+  color: #bfbfbf;
+}
+/* line 1444, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu .pure-menu-disabled > a {
+  background-image: none;
+  border-color: transparent;
+  cursor: default;
+}
+/* line 1450, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu .pure-menu-disabled > a,
+#streetwalk-soundeditor .pure-menu .pure-menu-can-have-children.pure-menu-disabled > a:after {
+  color: #bfbfbf;
+}
+/* line 1456, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu .pure-menu-heading {
+  color: #565d64;
+  text-transform: uppercase;
+  font-size: 90%;
+  margin-top: 0.5em;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #dfdfdf;
+}
+/* line 1467, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu .pure-menu-selected a {
+  color: #000;
+}
+/* line 1472, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-menu.pure-menu-open.pure-menu-fixed {
+  border: none;
+  border-bottom: 1px solid #b7b7b7;
+}
+/* line 1481, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-paginator {
+  /* `pure-g` Grid styles */
+  letter-spacing: -0.31em;
+  /* Webkit: collapse white-space between units */
+  *letter-spacing: normal;
+  /* reset IE < 8 */
+  *word-spacing: -0.43em;
+  /* IE < 8: collapse white-space between units */
+  text-rendering: optimizespeed;
+  /* Webkit: fixes text-rendering: optimizeLegibility */
+  /* `pure-paginator` Specific styles */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* line 1494, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .opera-only :-o-prefocus,
+#streetwalk-soundeditor .pure-paginator {
+  word-spacing: -0.43em;
+}
+/* line 1500, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-paginator li {
+  display: inline-block;
+  *display: inline;
+  /* IE < 8: fake inline-block */
+  zoom: 1;
+  letter-spacing: normal;
+  word-spacing: normal;
+  vertical-align: top;
+  text-rendering: auto;
+}
+/* line 1511, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-paginator .pure-button {
+  border-radius: 0;
+  padding: 0.8em 1.4em;
+  vertical-align: top;
+  height: 1.1em;
+}
+/* line 1517, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-paginator .pure-button:focus,
+#streetwalk-soundeditor .pure-paginator .pure-button:active {
+  outline-style: none;
+}
+/* line 1521, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-paginator .prev,
+#streetwalk-soundeditor .pure-paginator .next {
+  color: #C0C1C3;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.45);
+}
+/* line 1526, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-paginator .prev {
+  border-radius: 2px 0 0 2px;
+}
+/* line 1529, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-paginator .next {
+  border-radius: 0 2px 2px 0;
+}
+@media (max-width: 480px) {
+  /* line 1534, ../../sass/module/soundeditor.scss */
+  #streetwalk-soundeditor .pure-menu-horizontal {
+    width: 100%;
+  }
+  /* line 1538, ../../sass/module/soundeditor.scss */
+  #streetwalk-soundeditor .pure-menu-children li {
+    display: block;
+    border-bottom: 1px solid black;
+  }
+}
+/* line 1544, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-table {
+  /* Remove spacing between table cells (from Normalize.css) */
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show;
+  border: 1px solid #cbcbcb;
+}
+/* line 1552, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-table caption {
+  color: #000;
+  font: italic 85%/1 arial, sans-serif;
+  padding: 1em 0;
+  text-align: center;
+}
+/* line 1559, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-table td,
+#streetwalk-soundeditor .pure-table th {
+  border-left: 1px solid #cbcbcb;
+  /*  inner column border */
+  border-width: 0 0 0 1px;
+  font-size: inherit;
+  margin: 0;
+  overflow: visible;
+  /*to make ths where the title is really long work*/
+  padding: 0.5em 1em;
+  /* cell padding */
+}
+/* line 1568, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-table td:first-child,
+#streetwalk-soundeditor .pure-table th:first-child {
+  border-left-width: 0;
+}
+/* line 1573, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-table thead {
+  background: #e0e0e0;
+  color: #000;
+  text-align: left;
+  vertical-align: bottom;
+}
+/* line 1585, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-table td {
+  background-color: transparent;
+}
+/* line 1588, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-table-odd td {
+  background-color: #f2f2f2;
+}
+/* line 1593, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-table-striped tr:nth-child(2n-1) td {
+  background-color: #f2f2f2;
+}
+/* line 1598, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-table-bordered td {
+  border-bottom: 1px solid #cbcbcb;
+}
+/* line 1601, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-table-bordered tbody > tr:last-child td,
+#streetwalk-soundeditor .pure-table-horizontal tbody > tr:last-child td {
+  border-bottom-width: 0;
+}
+/* line 1609, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-table-horizontal td,
+#streetwalk-soundeditor .pure-table-horizontal th {
+  border-width: 0 0 1px 0;
+  border-bottom: 1px solid #cbcbcb;
+}
+/* line 1614, ../../sass/module/soundeditor.scss */
+#streetwalk-soundeditor .pure-table-horizontal tbody > tr:last-child td {
+  border-bottom-width: 0;
+}
+
+/*# sourceMappingURL=soundeditor.css.map */
