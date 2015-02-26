@@ -202,6 +202,8 @@
 
 .streetwalk-textcharacter {
     position: fixed;
+    width:0;
+    height:0;
 
     z-index:14;
 
@@ -209,26 +211,47 @@
         width: 0%;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
-        -webkit-transform: translate(-50%, -50%);
-        -moz-transform:translate(-50%, -50%);
-        -ms-transform:translate(-50%, -50%);
-         -o-transform:translate(-50%, -50%);
-            transform:translate(-50%, -50%);
+        transform: translate(-50%, -100%);
+        -webkit-transform: translate(-50%, -100%);
+        -moz-transform:translate(-50%, -100%);
+        -ms-transform:translate(-50%, -100%);
+         -o-transform:translate(-50%, -100%);
+            transform:translate(-50%, -100%);
         position: absolute;
         z-index:10;
 
-        .frame-character {
+        svg {
             width: 100%;
             height: 100%;
-            cursor:pointer;
-        }
-
-        .frame-character:active {
-            opacity: 0.5;
         }
     }
 
+    .character-sign {
+        cursor:pointer;
+    }
+
+    .character-sign:active {
+        opacity: 0.5;
+    }
+
+    .mask-character {
+        width:200px;
+        height:200px;
+
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -moz-transform:translate(-50%, 0%);
+        -ms-transform:translate(-50%, 0%);
+         -o-transform:translate(-50%, 0%);
+            transform:translate(-50%, 0%);
+    }
+
+    &:active {
+
+        .character-sign {
+            opacity: 0.5;
+        }
+    }
     
 }
 

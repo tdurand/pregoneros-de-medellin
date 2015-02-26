@@ -20,7 +20,7 @@ function($, _, Backbone,
               id: 'tooltip-clickoncharacter',
               target: '.img-container',
               placement: 'left',
-              title: 'TUTORIAL: PERSONAJE',
+              title: 'AYUDA: PERSONAJE',
               content: 'Haz click en el botton alrededor del personaje para ver un video',
               showNextButton:false,
               onShow:function() {
@@ -46,7 +46,7 @@ function($, _, Backbone,
                 id: 'tooltip-characterfound',
                 target: '.menucharacter-pajarito .video3-locked',
                 placement: 'left',
-                title: 'TUTORIAL: DESCUBRE MÁS',
+                title: 'AYUDA: DESCUBRE MÁS',
                 content: 'Puedes conocer mas sobre Pajarito, buscalo en otras calles !',
                 showCTAButton:true,
                 showNextButton:false,
@@ -78,7 +78,7 @@ function($, _, Backbone,
                 id: 'tooltip-characterfound',
                 target: '.streetwalk-menucharacter[data-character="perso3"] .character',
                 placement: 'top',
-                title: 'TUTORIAL: OTROS PERSONAJES',
+                title: 'AYUDA: OTROS PERSONAJES',
                 content: 'Te dejamos explorar, hay varios otros personajes por encontrar !',
                 showCTAButton:true,
                 showNextButton:false,
@@ -108,10 +108,10 @@ function($, _, Backbone,
         var self = this;
 
         if(wayName == "carabobo-cl53-cl52" && frameNb >= 186 && frameNb <= 213 && !self.tutorialDone) {
-                self.trigger("pauseAnimating");
-                document.body.style.overflowY = "hidden";
+                // self.trigger("pauseAnimating");
+                // document.body.style.overflowY = "hidden";
                 setTimeout(function() {
-                    hopscotch.startTour(self.tutorial,0);
+                    // hopscotch.startTour(self.tutorial,0);
                     hopscotch.listen("close",function() {
                         self.endTutorial();
                     });
@@ -131,7 +131,7 @@ function($, _, Backbone,
         $(".streetwalk-tutorial-overlay").hide();
         $(".streetwalk-tutorial-overlay").removeClass("step2");
         $(".streetwalk-tutorial-overlay").removeClass("step3");
-        $(".streetwalk-textcharacter").css("z-index","5");
+        $(".streetwalk-textcharacter").css("z-index","14");
         
         if(self.animationLockedCharacters) {
             self.animationLockedCharacters.repeat(1);

@@ -67,7 +67,7 @@ define(['jquery',
 
         events:{
             "click .toggle-sounds ":"toggleSounds",
-            "click .frame-character":"showVideo",
+            "click .character-sign":"showVideo",
             "click .streetwalk-video-btnclose":"closeVideo",
             "click .streetwalk-soundeditor-btnshow":"showSoundEditor"
         },
@@ -459,9 +459,20 @@ define(['jquery',
                 var topPosition = self.way.characterPosition[imgNb].top;
                 self.$el.find(".streetwalk-textcharacter").css("top",topPosition+"%");
 
+                //=== ANIMATE
+                // TODO SEE WHY IT'S LAGGUY
+                // if(!self.animationCharacterSign) {
+                //     self.animationCharacterSign = true;
+                //     self.animationCharacterSign = new TimelineMax({onComplete:function() {
+                //         TweenLite.to(".img-container",0.5,{y:"-100%"});
+                //     }});
+                //     self.animationCharacterSign.add(TweenLite.to(".img-container",0.5,{y:"-105%",ease: Power0.easeNone}));
+                //     self.animationCharacterSign.add(TweenLite.to(".img-container",0.5,{y:"-100%",ease: Power0.easeNone}));
+                //     self.animationCharacterSign.repeat(-1);
+                // }
             }
             else {
-                self.$el.find(".streetwalk-textcharacter .img-container").css("width","0px");
+                self.$el.find(".streetwalk-textcharacter").hide();
             }
         }
 
@@ -682,7 +693,7 @@ define(['jquery',
            }
    },
 
-   showVideo: function() {
+   showVideo: function(e) {
         var self = this;
 
         self.trigger("clickOnCharacter");
