@@ -11,4 +11,9 @@ button:focus {
   outline: 0;
 }
 
+/* line 9, ../sass/base.scss */
+p {
+  font-size: 1.2rem;
+}
+
 /*# sourceMappingURL=base.css.map */

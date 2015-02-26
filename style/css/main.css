@@ -449,6 +449,11 @@ button:focus {
   outline: 0;
 }
 
+/* line 9, ../sass/base.scss */
+p {
+  font-size: 1.2rem;
+}
+
 /* line 1, ../sass/states.scss */
 .hidden {
   display: none !important;
