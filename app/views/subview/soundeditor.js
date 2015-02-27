@@ -62,11 +62,6 @@ define(['jquery',
                         'marker-color': '#fa0'
                 })
             };
-
-            //Set last time saved
-            var d = new Date();
-            var n = d.toLocaleTimeString();
-            self.$el.find(".streetwalk-soundeditor-save-lasttime").text(n);
         },
 
         initMapContent : function() {
@@ -229,6 +224,11 @@ define(['jquery',
         });
 
         self.rendered = true;
+
+        //Set last time saved
+        var d = new Date();
+        var n = d.toLocaleTimeString();
+        self.$el.find(".streetwalk-soundeditor-save-lasttime").text(n);
     },
 
     renderSoundInfo: function() {
