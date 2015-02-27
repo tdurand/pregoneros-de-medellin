@@ -222,6 +222,15 @@ define(['jquery',
             self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
             self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
 
+            var tl = new TimelineMax({
+            repeat:-1
+            });
+            tl.to("#waveright",0.5,{scaleX:1.2,scaleY:1.2,transformOrigin:"center center"});
+            tl.to("#waveright",0.5,{scaleX:1,scaleY:1,transformOrigin:"center center"});
+            tl.to("#waveleft",0.5,{scaleX:1.2,scaleY:1.2,transformOrigin:"center center"},0);
+            tl.to("#waveleft",0.5,{scaleX:1,scaleY:1,transformOrigin:"center center"},0.5);
+
+
             window.scrollTo(0,5);
 
         },

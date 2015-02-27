@@ -2736,6 +2736,19 @@ body.not-moving .trame-video {
   color: #FFFFFF;
   margin: 1rem;
 }
+/* line 63, ../sass/module/loading.scss */
+.streetwalk-loading-text .headset {
+  position: absolute;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 
 /* line 1, ../sass/module/mapbox.scss */
 .leaflet-container {
