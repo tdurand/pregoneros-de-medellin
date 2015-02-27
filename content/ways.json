@@ -294,7 +294,7 @@
     "wayConnectionsEnd": [
       {
         "direction": "left",
-        "name": "cl52cr53-carabobo-cl51"
+        "name": "cr53cl52-carabobo-cl51"
       },
       {
         "direction": "forward",
@@ -909,7 +909,7 @@
       },
       {
         "direction": "right",
-        "name": "cl52cr53-carabobo-cl51"
+        "name": "cr53cl52-carabobo-cl51"
       }
     ],
     "characterDefinition": {
@@ -1272,7 +1272,7 @@
       },
       {
         "direction": "forward",
-        "name": "cl52cr53-carabobo-cl51"
+        "name": "cr53cl52-carabobo-cl51"
       },
       {
         "direction": "right",
@@ -1804,7 +1804,7 @@
       },
       {
         "direction": "right",
-        "name": "cl52cr53-carabobo-cl51"
+        "name": "cr53cl52-carabobo-cl51"
       }
     ],
     "characterDefinition": {
@@ -1959,7 +1959,7 @@
     ]
   },
   {
-    "wayName": "cl52cr53-carabobo-cl51",
+    "wayName": "cr53cl52-carabobo-cl51",
     "wayArea": "PLAZA DE BOTERO",
     "nbStills": 446,
     "wayPath": [
@@ -2056,7 +2056,7 @@
       },
       {
         "direction": "left",
-        "name": "cl48cr51-carabobo-cl46"
+        "name": "cr51cl48-carabobo-cl46"
       }
     ]
   },
@@ -2114,7 +2114,7 @@
     ]
   },
   {
-    "wayName": "cl48cr51-carabobo-cl46",
+    "wayName": "cr51cl48-carabobo-cl46",
     "wayArea": "PARQUE DE LAS LUZES",
     "nbStills": 960,
     "wayPath": [
@@ -2614,7 +2614,7 @@
       },
       {
         "direction": "right",
-        "name": "cl48cr51-carabobo-cl46"
+        "name": "cr51cl48-carabobo-cl46"
       }
     ],
     "waySounds": [
@@ -2779,7 +2779,7 @@
     "wayConnectionsEnd": [
       {
         "direction": "forward",
-        "name": "cr51sanjuan-cl45-carabobo"
+        "name": "sanjuancr51-cl45-carabobo"
       },
       {
         "direction": "right",
@@ -2865,7 +2865,7 @@
     ]
   },
   {
-    "wayName": "cr51sanjuan-cl45-carabobo",
+    "wayName": "sanjuancr51-cl45-carabobo",
     "wayArea": "PARQUE DE LAS LUZES",
     "nbStills": 528,
     "wayPath": [
@@ -4495,7 +4495,7 @@
       },
       {
         "direction": "forward",
-        "name": "cl55oriental-cr47-cl56"
+        "name": "orientalcl55-cr47-cl56"
       },
       {
         "direction": "right",
@@ -5555,7 +5555,7 @@
     ]
   },
   {
-    "wayName": "cl55oriental-cr47-cl56",
+    "wayName": "orientalcl55-cr47-cl56",
     "wayArea": "PARQUE BOLIVAR",
     "nbStills": 509,
     "wayPath": [
@@ -5985,7 +5985,7 @@
       },
       {
         "direction": "right",
-        "name": "cr51sanjuan-cl45-carabobo"
+        "name": "sanjuancr51-cl45-carabobo"
       }
     ]
   },
