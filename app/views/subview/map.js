@@ -56,9 +56,6 @@ function($, _, Backbone,
         });
 
         self.$el.width(self.$el.height());
-
-        //Special btn menu case
-        self.$el.find(".streetwalk-btnmenu-wrapper").css("left",self.$el.find(".streetwalk-map").height()+150+"px");
         
     },
 

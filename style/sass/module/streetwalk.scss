@@ -41,9 +41,23 @@
 
     .streetwalk-btnmenu-wrapper {
         position:absolute;
-        top:50%;
-        transform:translateY(-50%);
-        z-index:40;
+        top:100%;
+        right: 0%;
+        transform:translate(95%,-110%);
+        z-index:10;
+
+        button {
+            color:#fff;
+            border-radius:0rem 1rem 1rem 0rem;
+            border:none;
+            font-size:1.2rem;
+            padding:0.3rem;
+            padding-left:1rem;
+            padding-right: 0.7rem;
+            text-decoration: none;
+            -webkit-box-shadow:3px 3px 3px 0px rgba(0,0,0,0.75);
+            background-color: #AD482A;
+        }
     }
 
     .streetwalk-control {
@@ -260,7 +274,6 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    /*transform*/
     -webkit-transform:translate(-50%, -50%);
        -moz-transform:translate(-50%, -50%);
         -ms-transform:translate(-50%, -50%);
@@ -273,19 +286,18 @@
 }
 
 .streetwalk-tutorial-wrapper {
-    
     position: absolute;
-    bottom:0;
+    bottom:0%;
     left:0;
     right: 0;
     top:0;
-    z-index:25;
+    z-index:4;
 
     .streetwalk-tutorial {
         height: 50%;
         width: 100%;
         position:absolute;
-        bottom: 0;
+        bottom: 10%;
     }
 
     .streetwalk-tutorial-scrollotherside-tooltip {
