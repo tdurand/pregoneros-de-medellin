@@ -204,9 +204,9 @@ define(['jquery',
                 self.$el.find(".streetwalk-loading").html(_.template(streetWalkLoadingViewTemplate));
             }
 
-
-
             self.$el.find(".streetwalk-loading").show();
+            TweenLite.set(".loading-animation",{y:"+25%"});
+            TweenLite.set("#carito",{opacity:0});
 
             //init svg element path
             self.pathLoading = Snap("#loadingLine");
@@ -230,6 +230,12 @@ define(['jquery',
             tl.to("#waveleft",0.5,{scaleX:1.2,scaleY:1.2,transformOrigin:"center center"},0);
             tl.to("#waveleft",0.5,{scaleX:1,scaleY:1,transformOrigin:"center center"},0.5);
 
+            var tl2 = new TimelineMax({
+            });
+
+            tl2.to(".headset",1,{opacity:0,transformOrigin:"center center"},5);
+            tl2.to(".loading-animation",1,{y:"0%"},5);
+            tl2.to("#carito",1,{opacity:1},5);
 
             window.scrollTo(0,5);
 
