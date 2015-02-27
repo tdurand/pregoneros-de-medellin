@@ -20,7 +20,7 @@
       },
       {
         "direction": "forward",
-        "name": "carabobo-cl49media-cl48"
+        "name": "carabobo-cl51-colombia"
       },
       {
         "direction": "right",
@@ -207,23 +207,73 @@
     "waySounds": [
       {
         "position": [
-          6.251720158996845,
-          -75.56892156600952
+          6.2517228252549435,
+          -75.5689188838005
         ],
         "path": "cra52-52-51-esquina-parquebotero",
         "db": 10,
-        "maxvol": "70",
+        "maxvol": "45",
         "type": "ambient"
       },
       {
         "position": [
-          6.251368556400913,
-          -75.5690800364852
+          6.251421538003981,
+          -75.56905031204224
         ],
         "path": "cra52-52-51-medio",
         "db": 10,
-        "maxvol": "70",
+        "maxvol": "40",
         "type": "ambient"
+      },
+      {
+        "position": [
+          6.251357547769023,
+          -75.56916296482086
+        ],
+        "path": "wt-agachese-veracruz",
+        "db": 100,
+        "maxvol": "70",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.250976272456896,
+          -75.56925684213638
+        ],
+        "path": "cra52-51-50-esquina",
+        "db": 10,
+        "maxvol": "40",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.251053594046163,
+          -75.56926220655441
+        ],
+        "path": "wt-guiaturisticoextranjeros-veracruz",
+        "db": 50,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.251629506213466,
+          -75.56891620159149
+        ],
+        "path": "wt-emisionnoticias",
+        "db": 5,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.25122156849378,
+          -75.5691146850586
+        ],
+        "path": "pregon-jale-oidopueblo",
+        "db": 55,
+        "maxvol": "100",
+        "type": "punctual"
       }
     ]
   },
@@ -300,7 +350,7 @@
   {
     "wayName": "cl51-cr53-carabobo",
     "wayArea": "PLAZA DE BOTERO",
-    "nbStills": 365,
+    "nbStills": 333,
     "wayPath": [
       [
         -75.57004272937775,
@@ -402,18 +452,8 @@
     "waySounds": [
       {
         "position": [
-          6.2513442164690876,
-          -75.57004272937775
-        ],
-        "path": "cra53-51-50-esquina-cundinamarcaconboyaca",
-        "db": 2,
-        "maxvol": "45",
-        "type": "ambient"
-      },
-      {
-        "position": [
-          6.251307388793392,
-          -75.56996264024308
+          6.251317553868214,
+          -75.5699971318245
         ],
         "path": "clle51-53-52-esquina-cundinamarcaconboyaca",
         "db": 9,
@@ -439,6 +479,26 @@
         "db": 8,
         "maxvol": "35",
         "type": "ambient"
+      },
+      {
+        "position": [
+          6.251228067604577,
+          -75.56979014060666
+        ],
+        "path": "cl51-cr53-carabobo-0",
+        "db": 10,
+        "maxvol": 70,
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.251170909539063,
+          -75.56981474161148
+        ],
+        "path": "wt-agachese-boyaca-entre-cundinamarcaycarabobo",
+        "db": 120,
+        "maxvol": "80",
+        "type": "punctual"
       }
     ]
   },
@@ -488,7 +548,7 @@
         ],
         "path": "clle51-52-51-esquina-veracruzboyaca",
         "db": 12,
-        "maxvol": "50",
+        "maxvol": "45",
         "type": "ambient"
       },
       {
@@ -503,8 +563,8 @@
       },
       {
         "position": [
-          6.250515008945546,
-          -75.56834489107132
+          6.250504343888456,
+          -75.56833148002625
         ],
         "path": "clle51-51-50-esquina-boyacabolivar",
         "db": 10,
@@ -523,8 +583,8 @@
       },
       {
         "position": [
-          6.250533672794947,
-          -75.56844145059584
+          6.250541671587334,
+          -75.5684494972229
         ],
         "path": "wt-pregonmandarina-boyaca-clle51-52-51mono",
         "db": 40,
@@ -538,7 +598,27 @@
         ],
         "path": "wt-musicaboyaca-calle51-52-51mono",
         "db": 200,
+        "maxvol": "80",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.250589664339129,
+          -75.56823492050171
+        ],
+        "path": "wt-pregon-cristiano-boyacabolivar",
+        "db": 37,
         "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.250616326977114,
+          -75.56858092546463
+        ],
+        "path": "pregon-pajarito-limoncriollito",
+        "db": 50,
+        "maxvol": "80",
         "type": "punctual"
       }
     ],
@@ -843,56 +923,210 @@
       "doNotUnlock": true
     },
     "characterPosition": {
-      "167": { "left":53.89114583, "top":51.63712963},
-      "168": { "left":54.02395833, "top":51.7},
-      "169": { "left":54.1640625, "top":51.76296296},
-      "170": { "left":54.31197917, "top":51.82712963},
-      "171": { "left":54.46875, "top":51.89287037},
-      "172": { "left":54.634375, "top":51.96009259},
-      "173": { "left":54.80989583, "top":52.02916667},
-      "174": { "left":54.99583333, "top":52.10009259},
-      "175": { "left":55.19322917, "top":52.17305556},
-      "176": { "left":55.40260417, "top":52.24814815},
-      "177": { "left":55.29166667, "top":52.41833333},
-      "178": { "left":55.18541667, "top":52.59287037},
-      "179": { "left":55.08697917, "top":52.77148148},
-      "180": { "left":55.15052083, "top":52.92194444},
-      "181": { "left":55.30104167, "top":53.05824074},
-      "182": { "left":55.45885417, "top":53.19768519},
-      "183": { "left":55.62395833, "top":53.34046296},
-      "184": { "left":55.79791667, "top":53.48685185},
-      "185": { "left":55.98072917, "top":53.63722222},
-      "186": { "left":56.15625, "top":53.67574074},
-      "187": { "left":56.340625, "top":53.71657407},
-      "188": { "left":56.53541667, "top":53.76212963},
-      "189": { "left":56.74166667, "top":53.81296296},
-      "190": { "left":56.9609375, "top":53.86962963},
-      "191": { "left":57.19375, "top":53.93268519},
-      "192": { "left":57.45, "top":54.0275},
-      "193": { "left":57.74114583, "top":54.1875},
-      "194": { "left":58.0515625, "top":54.35981481},
-      "195": { "left":58.81354167, "top":54.48138889},
-      "196": { "left":59.609375, "top":54.61101852},
-      "197": { "left":60.43072917, "top":54.75203704},
-      "198": { "left":61.28177083, "top":54.9062963},
-      "199": { "left":62.16614583, "top":55.07583333},
-      "200": { "left":63.09010417, "top":55.26361111},
-      "201": { "left":64.059375, "top":55.47277778},
-      "202": { "left":65.08333333, "top":55.70740741},
-      "203": { "left":66.17135417, "top":55.97268519},
-      "204": { "left":66.49739583, "top":56.32935185},
-      "205": { "left":66.8875, "top":56.73583333},
-      "206": { "left":67.3796875, "top":57.20287037},
-      "207": { "left":68, "top":57.7462037},
-      "208": { "left":68.7828125, "top":58.38685185},
-      "209": { "left":69.778125, "top":59.15462963},
-      "210": { "left":71.0578125, "top":60.09240741},
-      "211": { "left":72.7296875, "top":61.26481481},
-      "212": { "left":74.96458333, "top":62.77444444},
-      "213": { "left":78.17447917, "top":64.95166667},
-      "214": { "left":82.68333333, "top":68.07388889}
+      "167": {
+        "left": 53.89114583,
+        "top": 51.63712963
+      },
+      "168": {
+        "left": 54.02395833,
+        "top": 51.7
+      },
+      "169": {
+        "left": 54.1640625,
+        "top": 51.76296296
+      },
+      "170": {
+        "left": 54.31197917,
+        "top": 51.82712963
+      },
+      "171": {
+        "left": 54.46875,
+        "top": 51.89287037
+      },
+      "172": {
+        "left": 54.634375,
+        "top": 51.96009259
+      },
+      "173": {
+        "left": 54.80989583,
+        "top": 52.02916667
+      },
+      "174": {
+        "left": 54.99583333,
+        "top": 52.10009259
+      },
+      "175": {
+        "left": 55.19322917,
+        "top": 52.17305556
+      },
+      "176": {
+        "left": 55.40260417,
+        "top": 52.24814815
+      },
+      "177": {
+        "left": 55.29166667,
+        "top": 52.41833333
+      },
+      "178": {
+        "left": 55.18541667,
+        "top": 52.59287037
+      },
+      "179": {
+        "left": 55.08697917,
+        "top": 52.77148148
+      },
+      "180": {
+        "left": 55.15052083,
+        "top": 52.92194444
+      },
+      "181": {
+        "left": 55.30104167,
+        "top": 53.05824074
+      },
+      "182": {
+        "left": 55.45885417,
+        "top": 53.19768519
+      },
+      "183": {
+        "left": 55.62395833,
+        "top": 53.34046296
+      },
+      "184": {
+        "left": 55.79791667,
+        "top": 53.48685185
+      },
+      "185": {
+        "left": 55.98072917,
+        "top": 53.63722222
+      },
+      "186": {
+        "left": 56.15625,
+        "top": 53.67574074
+      },
+      "187": {
+        "left": 56.340625,
+        "top": 53.71657407
+      },
+      "188": {
+        "left": 56.53541667,
+        "top": 53.76212963
+      },
+      "189": {
+        "left": 56.74166667,
+        "top": 53.81296296
+      },
+      "190": {
+        "left": 56.9609375,
+        "top": 53.86962963
+      },
+      "191": {
+        "left": 57.19375,
+        "top": 53.93268519
+      },
+      "192": {
+        "left": 57.45,
+        "top": 54.0275
+      },
+      "193": {
+        "left": 57.74114583,
+        "top": 54.1875
+      },
+      "194": {
+        "left": 58.0515625,
+        "top": 54.35981481
+      },
+      "195": {
+        "left": 58.81354167,
+        "top": 54.48138889
+      },
+      "196": {
+        "left": 59.609375,
+        "top": 54.61101852
+      },
+      "197": {
+        "left": 60.43072917,
+        "top": 54.75203704
+      },
+      "198": {
+        "left": 61.28177083,
+        "top": 54.9062963
+      },
+      "199": {
+        "left": 62.16614583,
+        "top": 55.07583333
+      },
+      "200": {
+        "left": 63.09010417,
+        "top": 55.26361111
+      },
+      "201": {
+        "left": 64.059375,
+        "top": 55.47277778
+      },
+      "202": {
+        "left": 65.08333333,
+        "top": 55.70740741
+      },
+      "203": {
+        "left": 66.17135417,
+        "top": 55.97268519
+      },
+      "204": {
+        "left": 66.49739583,
+        "top": 56.32935185
+      },
+      "205": {
+        "left": 66.8875,
+        "top": 56.73583333
+      },
+      "206": {
+        "left": 67.3796875,
+        "top": 57.20287037
+      },
+      "207": {
+        "left": 68,
+        "top": 57.7462037
+      },
+      "208": {
+        "left": 68.7828125,
+        "top": 58.38685185
+      },
+      "209": {
+        "left": 69.778125,
+        "top": 59.15462963
+      },
+      "210": {
+        "left": 71.0578125,
+        "top": 60.09240741
+      },
+      "211": {
+        "left": 72.7296875,
+        "top": 61.26481481
+      },
+      "212": {
+        "left": 74.96458333,
+        "top": 62.77444444
+      },
+      "213": {
+        "left": 78.17447917,
+        "top": 64.95166667
+      },
+      "214": {
+        "left": 82.68333333,
+        "top": 68.07388889
+      }
     },
     "waySounds": [
+      {
+        "position": [
+          6.2517228252549435,
+          -75.5689188838005
+        ],
+        "path": "cra52-52-51-esquina-parquebotero",
+        "db": 10,
+        "maxvol": "45",
+        "type": "ambient"
+      },
       {
         "position": [
           6.2526853435398015,
@@ -915,23 +1149,43 @@
       },
       {
         "position": [
-          6.252047874216881,
-          -75.56875475577372
+          6.252080103717009,
+          -75.56873381137848
         ],
         "path": "cra52-53-52-medio-puertamuseoantioquia",
         "db": 10,
-        "maxvol": "70",
+        "maxvol": "55",
         "type": "ambient"
       },
       {
         "position": [
-          6.2517228252549435,
-          -75.5689188838005
+          6.251917462059321,
+          -75.56883841753006
         ],
-        "path": "cra52-52-51-esquina-parquebotero",
-        "db": 10,
-        "maxvol": "70",
-        "type": "ambient"
+        "path": "wt-discossuperacionpersonal-parquebotero",
+        "db": 100,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.251717492738746,
+          -75.5688625574112
+        ],
+        "path": "wt-pregon-desayunos-parquebotero",
+        "db": 40,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.252189420212605,
+          -75.5687552690506
+        ],
+        "path": "pregon-pajarito-criollocriollo",
+        "db": 90,
+        "maxvol": "100",
+        "type": "punctual"
       }
     ]
   },
@@ -1033,17 +1287,17 @@
         ],
         "path": "clle52-51-52-esquina-calibioconbolivar-false",
         "db": 10,
-        "maxvol": "70",
+        "maxvol": "55",
         "type": "ambient"
       },
       {
         "position": [
-          6.251504567127158,
-          -75.56848486866268
+          6.25148019571246,
+          -75.56844681501389
         ],
         "path": "clle52-51-52-pasajecalibiomitaddecuadra",
         "db": 10,
-        "maxvol": "70",
+        "maxvol": "55",
         "type": "ambient"
       },
       {
@@ -1053,8 +1307,48 @@
         ],
         "path": "clle52-52-53-esquina-calibioconcarabobo",
         "db": 10,
-        "maxvol": "70",
+        "maxvol": "55",
         "type": "ambient"
+      },
+      {
+        "position": [
+          6.2513148876080535,
+          -75.56815713644028
+        ],
+        "path": "wt-discusionvozaltaparqueberrio",
+        "db": 40,
+        "maxvol": "80",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.251445534340051,
+          -75.56860506534576
+        ],
+        "path": "wt-maquinaescribirpasajecalibio",
+        "db": 20,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.251597511109689,
+          -75.56877940893173
+        ],
+        "path": "wt-pregon-desayunos-parquebotero",
+        "db": 42,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.251349548989115,
+          -75.5682322382927
+        ],
+        "path": "wt-musica01",
+        "db": 30,
+        "maxvol": "50",
+        "type": "punctual"
       }
     ]
   },
@@ -1305,14 +1599,14 @@
           -75.56891620159149
         ],
         "path": "cra52-52-53-esquina",
-        "db": 12,
-        "maxvol": "70",
+        "db": 10,
+        "maxvol": "55",
         "type": "ambient"
       },
       {
         "position": [
-          6.252077937383622,
-          -75.56870338507112
+          6.25205344115364,
+          -75.5687204003334
         ],
         "path": "cra52-52-53-medio-soldadoromano01",
         "db": 10,
@@ -1326,7 +1620,7 @@
         ],
         "path": "clle53-52-51-medio-cabeza01",
         "db": 10,
-        "maxvol": "50",
+        "maxvol": "37",
         "type": "ambient"
       },
       {
@@ -1336,7 +1630,7 @@
         ],
         "path": "clle53-52-51-medio-perro02",
         "db": 10,
-        "maxvol": "50",
+        "maxvol": "37",
         "type": "ambient"
       },
       {
@@ -1356,8 +1650,68 @@
         ],
         "path": "cra51-53-52-medio-bajoviaducto",
         "db": 10,
-        "maxvol": "70",
+        "maxvol": "55",
         "type": "ambient"
+      },
+      {
+        "position": [
+          6.252109099253003,
+          -75.56867631152359
+        ],
+        "path": "wt-campanillahelados-parquebotero",
+        "db": 20,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.252130762583651,
+          -75.56867212057114
+        ],
+        "path": "wt-pregon-cremhelado-parquebotero",
+        "db": 10,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.252048108640801,
+          -75.5679103732109
+        ],
+        "path": "wt-pregon-fotos-parquebotero",
+        "db": 16,
+        "maxvol": "75",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.251269561183211,
+          -75.56800693273544
+        ],
+        "path": "cra51-52-51-esquina-calibioconbolivar",
+        "db": 10,
+        "maxvol": "55",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.251893465744878,
+          -75.56883841753006
+        ],
+        "path": "wt-pregon-helados",
+        "db": 40,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.25216009139896,
+          -75.56824564933777
+        ],
+        "path": "pregon-jale-nicreas",
+        "db": 65,
+        "maxvol": "100",
+        "type": "punctual"
       }
     ]
   },
@@ -1569,7 +1923,12 @@
   {
     "wayName": "cr53cl52-cl51-carabobo",
     "wayArea": "PLAZA DE BOTERO",
-    "nbStills": 472,
+    "nbStills": 429,
+    "wayPathSyncPoints": [
+      "auto",
+      201,
+      "auto"
+    ],
     "wayPath": [
       [
         -75.57004541158676,
@@ -1663,6 +2022,16 @@
         "db": 10,
         "maxvol": "55",
         "type": "ambient"
+      },
+      {
+        "position": [
+          6.25198411848252,
+          -75.56954115629196
+        ],
+        "path": "wt-pregon-gaseosas-cundinamarca-boyaca",
+        "db": 80,
+        "maxvol": "100",
+        "type": "punctual"
       }
     ]
   },
@@ -1719,7 +2088,7 @@
         ],
         "path": "cra52-48-49-esquina-caraboboconpichincha",
         "db": 11,
-        "maxvol": "70",
+        "maxvol": "60",
         "type": "ambient"
       },
       {
@@ -1729,8 +2098,18 @@
         ],
         "path": "cra52-48-49-medio",
         "db": 11,
-        "maxvol": "70",
+        "maxvol": "65",
         "type": "ambient"
+      },
+      {
+        "position": [
+          6.248741940216824,
+          -75.570088326931
+        ],
+        "path": "wt-perritodecuerdaqueladra",
+        "db": 33,
+        "maxvol": "100",
+        "type": "punctual"
       }
     ]
   },
@@ -2064,17 +2443,17 @@
         ],
         "path": "cra51-46-47-medio-bajoviaducto-01",
         "db": 4,
-        "maxvol": "55",
+        "maxvol": "27",
         "type": "ambient"
       },
       {
         "position": [
-          6.2475234519080765,
-          -75.56971549987793
+          6.247576777495167,
+          -75.56969135999678
         ],
         "path": "cra51-46-47-medio-bajoviaducto-02",
         "db": 6,
-        "maxvol": "55",
+        "maxvol": "27",
         "type": "ambient"
       },
       {
@@ -2084,7 +2463,7 @@
         ],
         "path": "cra51-46-47-medio-bajoviaducto-03",
         "db": 6,
-        "maxvol": "55",
+        "maxvol": "27",
         "type": "ambient"
       },
       {
@@ -2094,7 +2473,7 @@
         ],
         "path": "cra51-46-47-medio-bajoviaducto-04",
         "db": 6,
-        "maxvol": "55",
+        "maxvol": "27",
         "type": "ambient"
       },
       {
@@ -2104,17 +2483,17 @@
         ],
         "path": "cra51-48-49-esquina-bajoviaducto",
         "db": 1,
-        "maxvol": "55",
+        "maxvol": "27",
         "type": "ambient"
       },
       {
         "position": [
           6.248238014323778,
-          -75.56946873664855
+          -75.56947410106659
         ],
         "path": "clle48-51-52-esquina-pichincha-bolivar",
         "db": 1,
-        "maxvol": "55",
+        "maxvol": "27",
         "type": "ambient"
       },
       {
@@ -2124,7 +2503,7 @@
         ],
         "path": "clle48-51-52-medio-centrodecuadra",
         "db": 10,
-        "maxvol": "60",
+        "maxvol": "30",
         "type": "ambient"
       },
       {
@@ -2134,7 +2513,7 @@
         ],
         "path": "clle48-51-52-medio",
         "db": 8,
-        "maxvol": "60",
+        "maxvol": "30",
         "type": "ambient"
       },
       {
@@ -2144,8 +2523,48 @@
         ],
         "path": "clle48-52-53-esquina-pichincha-carabobo",
         "db": 10,
-        "maxvol": "60",
+        "maxvol": "30",
         "type": "ambient"
+      },
+      {
+        "position": [
+          6.247419466997591,
+          -75.56972622871399
+        ],
+        "path": "wt-pregon-agua-estacionsanantonio",
+        "db": 85,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.248227349220265,
+          -75.56957870721817
+        ],
+        "path": "wt-pregon-cerveza-pichincha-bolivar",
+        "db": 40,
+        "maxvol": "30",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.248262010805875,
+          -75.56943118572235
+        ],
+        "path": "wt-pregon-mandarina-pichincha-bolivar",
+        "db": 37,
+        "maxvol": "55",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.248222016668433,
+          -75.56941777467728
+        ],
+        "path": "pregon-pajarito-limoncriollito",
+        "db": 80,
+        "maxvol": "80",
+        "type": "punctual"
       }
     ]
   },
@@ -2201,33 +2620,63 @@
     "waySounds": [
       {
         "position": [
+          6.248523305761993,
+          -75.57026267051697
+        ],
+        "path": "cra52-48-49-esquina-caraboboconpichincha",
+        "db": 11,
+        "maxvol": "60",
+        "type": "ambient"
+      },
+      {
+        "position": [
           6.2475474484229325,
           -75.57058990001678
         ],
         "path": "cra52-46-47-esquina-maturinconcarabobo",
         "db": 10,
-        "maxvol": "79",
+        "maxvol": "65",
         "type": "ambient"
       },
       {
         "position": [
-          6.248014963440502,
-          -75.5704300991848
+          6.248006048273386,
+          -75.57042628526688
         ],
         "path": "cra52-46-47-medio",
         "db": 10,
-        "maxvol": "70",
+        "maxvol": "60",
         "type": "ambient"
       },
       {
         "position": [
-          6.2485126406642815,
-          -75.57025998830795
+          6.248230015496163,
+          -75.57043433189392
         ],
-        "path": "cra52-48-49-esquina-caraboboconpichincha",
-        "db": 10,
-        "maxvol": "70",
-        "type": "ambient"
+        "path": "wt-musicosciegocalle-carabobo",
+        "db": 20,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.247859403016074,
+          -75.57059526443481
+        ],
+        "path": "wt-pregon-agachese-carabobo",
+        "db": 102,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.248339332796273,
+          -75.57027071714401
+        ],
+        "path": "wt-transmisionradial-pichincha-carabobo",
+        "db": 20,
+        "maxvol": "100",
+        "type": "punctual"
       }
     ]
   },
@@ -2263,7 +2712,7 @@
         ],
         "path": "clle46-52-51-esquina-maturinconcarabobo",
         "db": 10,
-        "maxvol": "50",
+        "maxvol": "65",
         "type": "ambient"
       },
       {
@@ -2273,7 +2722,7 @@
         ],
         "path": "clle46-52-51-medio-maturinconcarabobo",
         "db": 10,
-        "maxvol": "50",
+        "maxvol": "65",
         "type": "ambient"
       },
       {
@@ -2283,7 +2732,7 @@
         ],
         "path": "clle46-51-50-esquina-maturinconbolivar",
         "db": 10,
-        "maxvol": "55",
+        "maxvol": "65",
         "type": "ambient"
       }
     ]
@@ -2331,6 +2780,10 @@
       {
         "direction": "forward",
         "name": "cr51sanjuan-cl45-carabobo"
+      },
+      {
+        "direction": "right",
+        "name": "cl45-cr51-carabobo"
       }
     ]
   },
@@ -2357,14 +2810,78 @@
         "direction": "left",
         "name": "cl46-cr51-carabobo"
       }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.245827695405044,
+          -75.5704128742218
+        ],
+        "path": "cra51-45-46-esquina-amadorconbolivar",
+        "db": 14,
+        "maxvol": "55",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.245179786988907,
+          -75.57059794664382
+        ],
+        "path": "wt-pasametro-bajobolivarcercaasanjuan",
+        "db": 130,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.24658492068586,
+          -75.57005614042282
+        ],
+        "path": "cra51-45-46-medio-nodo2",
+        "db": 10,
+        "maxvol": "60",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.247203498271385,
+          -75.56981205940245
+        ],
+        "path": "cra51-46-47-esquina-bolivar-maturin",
+        "db": 10,
+        "maxvol": "60",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.2462196396132015,
+          -75.57013392448424
+        ],
+        "path": "pregon-lider-todoscomen",
+        "db": 100,
+        "maxvol": "100",
+        "type": "punctual"
+      }
     ]
   },
   {
     "wayName": "cr51sanjuan-cl45-carabobo",
     "wayArea": "PARQUE DE LAS LUZES",
     "nbStills": 528,
-    "wayPath": [[-75.57041823863983,6.245859690861596],[-75.57083398103714,6.244867830798886],[-75.57146698236465,6.24514779149078]]
-    ,
+    "wayPath": [
+      [
+        -75.57041823863983,
+        6.245859690861596
+      ],
+      [
+        -75.57083398103714,
+        6.244867830798886
+      ],
+      [
+        -75.57146698236465,
+        6.24514779149078
+      ]
+    ],
     "wayPathSyncPoints": [
       "auto",
       328,
@@ -2385,8 +2902,20 @@
     "wayName": "sanjuancr51-carabobo-cl45",
     "wayArea": "PARQUE DE LAS LUZES",
     "nbStills": 570,
-    "wayPath": [[-75.57146698236465,6.24514779149078],[-75.57083398103714,6.244867830798886],[-75.57041823863983,6.245859690861596]]
-    ,
+    "wayPath": [
+      [
+        -75.57146698236465,
+        6.24514779149078
+      ],
+      [
+        -75.57083398103714,
+        6.244867830798886
+      ],
+      [
+        -75.57041823863983,
+        6.245859690861596
+      ]
+    ],
     "wayPathSyncPoints": [
       "auto",
       222,
@@ -2415,38 +2944,38 @@
       },
       {
         "position": [
-          6.245370609199791,
-          -75.57109899096068
+          6.2450011454327425,
+          -75.57112634181976
         ],
         "path": "clle44-52-51-medio-2de3",
-        "db": 10,
-        "maxvol": "70",
+        "db": 12,
+        "maxvol": "55",
         "type": "ambient"
       },
       {
         "position": [
-          6.245537137773432,
-          -75.57084616136159
+          6.244899826314099,
+          -75.57090371847153
         ],
-        "path": "sanjuancr51-carabobo-cl45-2",
+        "path": "clle44-51-50-esquina-bolivarconsanjuan3de3",
         "db": 10,
-        "maxvol": "70",
+        "maxvol": "60",
         "type": "ambient"
       },
       {
         "position": [
-          6.245679674846562,
-          -75.57062975623805
+          6.244955818461047,
+          -75.5707910656929
         ],
         "path": "cra51-44-45-esquina-sanjuaconbolivar",
         "db": 10,
-        "maxvol": "70",
+        "maxvol": "60",
         "type": "ambient"
       },
       {
         "position": [
-          6.245470063575024,
-          -75.57053273563191
+          6.245366427355601,
+          -75.57060599327087
         ],
         "path": "cra51-44-45-medio",
         "db": 10,
@@ -2455,13 +2984,23 @@
       },
       {
         "position": [
-          6.244854499333626,
-          -75.5707910656929
+          6.245827695405044,
+          -75.5704128742218
         ],
         "path": "cra51-45-46-esquina-amadorconbolivar",
-        "db": 10,
-        "maxvol": "70",
+        "db": 14,
+        "maxvol": "55",
         "type": "ambient"
+      },
+      {
+        "position": [
+          6.245126461157626,
+          -75.570627450943
+        ],
+        "path": "wt-pasametro-bajobolivarcercaasanjuan",
+        "db": 130,
+        "maxvol": "100",
+        "type": "punctual"
       }
     ]
   },
@@ -2469,9 +3008,28 @@
     "wayName": "sanjuan-parqueluz",
     "wayArea": "PARQUE DE LAS LUZES",
     "nbStills": 289,
-    "wayPath": [[-75.57145088911057,6.245177120697464],
-    [-75.57182639837264,6.245489076703216],
-    [-75.57183980941772,6.245587729418486],[-75.57179689407349,6.245686382115143],[-75.57172983884811,6.245875688589153]],
+    "wayPath": [
+      [
+        -75.57145088911057,
+        6.245177120697464
+      ],
+      [
+        -75.57182639837264,
+        6.245489076703216
+      ],
+      [
+        -75.57183980941772,
+        6.245587729418486
+      ],
+      [
+        -75.57179689407349,
+        6.245686382115143
+      ],
+      [
+        -75.57172983884811,
+        6.245875688589153
+      ]
+    ],
     "wayPathSyncPoints": [
       "auto",
       129,
@@ -2488,13 +3046,80 @@
         "direction": "right",
         "name": "parqueluz-carabobo"
       }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.245177120697464,
+          -75.57145088911057
+        ],
+        "path": "clle44-52-53-esquina-caraboboconsanjuan",
+        "db": 17,
+        "maxvol": "30",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.245498325395287,
+          -75.57182765565788
+        ],
+        "path": "clle44-52-53-columnaedificiovasquezmirandoaparqueluces",
+        "db": 12,
+        "maxvol": "20",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.245875688589153,
+          -75.57172983884811
+        ],
+        "path": "cra53-44a-45-centroparqueluces",
+        "db": 10,
+        "maxvol": "30",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.245515739601065,
+          -75.57179421186447
+        ],
+        "path": "pregon-papavanegas-hoyeldiacomenzo",
+        "db": 90,
+        "maxvol": "100",
+        "type": "punctual"
+      }
     ]
   },
   {
     "wayName": "parqueluz-sanjuan",
     "wayArea": "PARQUE DE LAS LUZES",
     "nbStills": 288,
-    "wayPath": [[-75.57172983884811,6.245875688589153],[-75.57179689407349,6.245686382115143],[-75.57183980941772,6.245587729418486],[-75.57182639837264,6.245489076703216],[-75.57177275419235,6.24540108913067],[-75.57145088911057,6.245177120697464]],
+    "wayPath": [
+      [
+        -75.57172983884811,
+        6.245875688589153
+      ],
+      [
+        -75.57179689407349,
+        6.245686382115143
+      ],
+      [
+        -75.57183980941772,
+        6.245587729418486
+      ],
+      [
+        -75.57182639837264,
+        6.245489076703216
+      ],
+      [
+        -75.57177275419235,
+        6.24540108913067
+      ],
+      [
+        -75.57145088911057,
+        6.245177120697464
+      ]
+    ],
     "wayPathSyncPoints": [
       "auto",
       "auto",
@@ -2571,17 +3196,17 @@
         ],
         "path": "clle44a-52-53-esquina-carabobo02",
         "db": 10,
-        "maxvol": "70",
+        "maxvol": "35",
         "type": "ambient"
       },
       {
         "position": [
-          6.245835694269363,
-          -75.5716037750244
+          6.245851691997633,
+          -75.57165741920471
         ],
         "path": "clle44a-52-53-medio-entrevasquezcarre",
         "db": 10,
-        "maxvol": "70",
+        "maxvol": "45",
         "type": "ambient"
       }
     ]
@@ -2590,7 +3215,64 @@
     "wayName": "parqueluz-vueltaizquierda",
     "wayArea": "PARQUE DE LAS LUZES",
     "nbStills": 446,
-    "wayPath": [[-75.57174324989319,6.245913016618197],[-75.57226091623306,6.246072993855384],[-75.5722850561142,6.246110321870371],[-75.57227164506912,6.246163647601427],[-75.57222872972487,6.246286296762254],[-75.57211339473724,6.246419611034928],[-75.57207584381104,6.246419611034928],[-75.57193636894226,6.2463236247620255],[-75.57188004255295,6.246264966475473],[-75.57185053825378,6.246190310464926],[-75.57184517383574,6.246107655583673],[-75.57185053825378,6.246038332124818],[-75.57185053825378,6.245985006380977],[-75.57174324989319,6.2459316806317275]],
+    "wayPath": [
+      [
+        -75.57174324989319,
+        6.245913016618197
+      ],
+      [
+        -75.57226091623306,
+        6.246072993855384
+      ],
+      [
+        -75.5722850561142,
+        6.246110321870371
+      ],
+      [
+        -75.57227164506912,
+        6.246163647601427
+      ],
+      [
+        -75.57222872972487,
+        6.246286296762254
+      ],
+      [
+        -75.57211339473724,
+        6.246419611034928
+      ],
+      [
+        -75.57207584381104,
+        6.246419611034928
+      ],
+      [
+        -75.57193636894226,
+        6.2463236247620255
+      ],
+      [
+        -75.57188004255295,
+        6.246264966475473
+      ],
+      [
+        -75.57185053825378,
+        6.246190310464926
+      ],
+      [
+        -75.57184517383574,
+        6.246107655583673
+      ],
+      [
+        -75.57185053825378,
+        6.246038332124818
+      ],
+      [
+        -75.57185053825378,
+        6.245985006380977
+      ],
+      [
+        -75.57174324989319,
+        6.2459316806317275
+      ]
+    ],
     "wayPathSyncPoints": [
       "auto",
       "auto",
@@ -2716,13 +3398,73 @@
     "waySounds": [
       {
         "position": [
-          6.245891686316201,
-          -75.57177275419235
+          6.245851691997633,
+          -75.57165741920471
         ],
         "path": "clle44a-52-53-medio-entrevasquezcarre",
         "db": 10,
-        "maxvol": "70",
+        "maxvol": "45",
         "type": "ambient"
+      },
+      {
+        "position": [
+          6.246230304757617,
+          -75.57225555181503
+        ],
+        "path": "cra53-44a-45-centroparqueluces",
+        "db": 10,
+        "maxvol": "35",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.246051663559913,
+          -75.57220727205276
+        ],
+        "path": "clle44a-53-54-centroparqueluces",
+        "db": 8,
+        "maxvol": "35",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.246392948183108,
+          -75.57214289903641
+        ],
+        "path": "cra53-45-46-esquina-amadorcundinamarca",
+        "db": 6,
+        "maxvol": "45",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.2462836304764595,
+          -75.57189613580704
+        ],
+        "path": "clle45-53-52-esquina-amadorcundinamarca",
+        "db": 10,
+        "maxvol": "55",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.246126319590257,
+          -75.57179152965546
+        ],
+        "path": "wt-musicoscallerap-parqueluces-ejercitoreal01",
+        "db": 20,
+        "maxvol": "50",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.2461209870170125,
+          -75.57231724262238
+        ],
+        "path": "pregon-jale-corocoro",
+        "db": 55,
+        "maxvol": "50",
+        "type": "punctual"
       }
     ]
   },
@@ -2730,7 +3472,48 @@
     "wayName": "parqueluz-vueltaderecha",
     "wayArea": "PARQUE DE LAS LUZES",
     "nbStills": 457,
-    "wayPath": [[-75.57174324989319,6.245929014344113],[-75.57184249162674,6.2459903389556075],[-75.57185053825378,6.246187644178647],[-75.57188272476196,6.246272965333126],[-75.57207584381104,6.246424943605119],[-75.57211607694626,6.246424943605119],[-75.5722314119339,6.246291629333819],[-75.57228773832321,6.2461156544437175],[-75.57226628065109,6.246070327568507],[-75.57175397872925,6.245918349193554]],
+    "wayPath": [
+      [
+        -75.57174324989319,
+        6.245929014344113
+      ],
+      [
+        -75.57184249162674,
+        6.2459903389556075
+      ],
+      [
+        -75.57185053825378,
+        6.246187644178647
+      ],
+      [
+        -75.57188272476196,
+        6.246272965333126
+      ],
+      [
+        -75.57207584381104,
+        6.246424943605119
+      ],
+      [
+        -75.57211607694626,
+        6.246424943605119
+      ],
+      [
+        -75.5722314119339,
+        6.246291629333819
+      ],
+      [
+        -75.57228773832321,
+        6.2461156544437175
+      ],
+      [
+        -75.57226628065109,
+        6.246070327568507
+      ],
+      [
+        -75.57175397872925,
+        6.245918349193554
+      ]
+    ],
     "wayPathSyncPoints": [
       "auto",
       "auto",
@@ -2869,6 +3652,28 @@
         "direction": "right",
         "name": "cl45-carabobo-cr51"
       }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.246110321870371,
+          -75.57108879089355
+        ],
+        "path": "cra52-45-44-esquina-caraboboamador-4de4inv",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.245722970677739,
+          -75.57123193284625
+        ],
+        "path": "cra52-44a-45-esquina-caraboboentrevasquezycarre",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
+      }
     ]
   },
   {
@@ -2942,10 +3747,20 @@
       },
       {
         "direction": "left",
-        "name": "cl46-carabobo-cr51"
+        "name": "cl45-carabobo-cr51"
       }
     ],
     "waySounds": [
+      {
+        "position": [
+          6.250064410093766,
+          -75.5678540468216
+        ],
+        "path": "pregon-gaucho-donadora",
+        "db": 70,
+        "maxvol": "100",
+        "type": "punctual"
+      },
       {
         "position": [
           6.247491456553201,
@@ -2968,12 +3783,12 @@
       },
       {
         "position": [
-          6.246606250959601,
-          -75.5709198117256
+          6.246582254401591,
+          -75.57092785835266
         ],
         "path": "cra52-46-45-medio-3de4",
         "db": 8,
-        "maxvol": "70",
+        "maxvol": "45",
         "type": "ambient"
       },
       {
@@ -2985,6 +3800,36 @@
         "db": 8,
         "maxvol": "100",
         "type": "ambient"
+      },
+      {
+        "position": [
+          6.246360952759125,
+          -75.57102173566818
+        ],
+        "path": "wt-musicosjazz-caraboboentrepichinchayamador",
+        "db": 90,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.247360808833858,
+          -75.57064086198807
+        ],
+        "path": "wt-pregon-guarapo-carabobomaturin",
+        "db": 42,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.246688905762129,
+          -75.57093054056168
+        ],
+        "path": "pregon-gaucho-elcolombiano",
+        "db": 70,
+        "maxvol": "100",
+        "type": "punctual"
       }
     ]
   },
@@ -3010,6 +3855,48 @@
       {
         "direction": "right",
         "name": "cl55-cr48-cr47"
+      }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.25205344115364,
+          -75.56469172239304
+        ],
+        "path": "cra48-54-55-esquina-ecuadorcaracas-bolivar-01de04",
+        "db": 10,
+        "maxvol": "60",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.2522868738778055,
+          -75.5645436142799
+        ],
+        "path": "cra48-54-55-medio-bolivar-02de04",
+        "db": 10,
+        "maxvol": "60",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252482656130625,
+          -75.5644193944701
+        ],
+        "path": "cra48-54-55-medio-bolivar-03de04",
+        "db": 10,
+        "maxvol": "60",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252696008552427,
+          -75.56428402662277
+        ],
+        "path": "cra48-55-56-esquina-bolivar-04de04",
+        "db": 10,
+        "maxvol": "60",
+        "type": "ambient"
       }
     ]
   },
@@ -3434,7 +4321,39 @@
         "left": 81.56614583,
         "top": 71.43805556
       }
-    }
+    },
+    "waySounds": [
+      {
+        "position": [
+          6.251810811764511,
+          -75.56430280208588
+        ],
+        "path": "clle54-47-48-esquina-01de02",
+        "db": 14,
+        "maxvol": "65",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252031642431308,
+          -75.56465922154864
+        ],
+        "path": "clle54-48-49-esquina-parquebolivar-02de02",
+        "db": 14,
+        "maxvol": "65",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.251941458372657,
+          -75.56447178125381
+        ],
+        "path": "pregon-pajarito-limoncriollito",
+        "db": 67,
+        "maxvol": "100",
+        "type": "punctual"
+      }
+    ]
   },
   {
     "wayName": "cr47-cl54-cl55",
@@ -3451,6 +4370,10 @@
       ]
     ],
     "wayConnectionsEnd": [
+      {
+        "direction": "forward",
+        "name": "cr47-cl55-cl56"
+      },
       {
         "direction": "left",
         "name": "cl55-cr47-cr48"
@@ -3480,6 +4403,28 @@
         "direction": "right",
         "name": "cl54-cr47-cr48"
       }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.252437381934986,
+          -75.56385219097137
+        ],
+        "path": "cra47-55-54-esquina-sucreconperu",
+        "db": 17,
+        "maxvol": "65",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.25180814550687,
+          -75.56430011987686
+        ],
+        "path": "cra47-54-53-esquina-sucreconcaracas",
+        "db": 17,
+        "maxvol": "65",
+        "type": "ambient"
+      }
     ]
   },
   {
@@ -3504,6 +4449,28 @@
       {
         "direction": "right",
         "name": "cr48-cl55-cl56"
+      }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.252701341058663,
+          -75.56428134441376
+        ],
+        "path": "clle55-48-49-esquina-peru-ecuador-false",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252424050662582,
+          -75.56387096643448
+        ],
+        "path": "clle55-47-48-esquina-orientalconsucre",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
       }
     ]
   },
@@ -3609,6 +4576,28 @@
         "direction": "left",
         "name": "cl55-cr47-oriental"
       }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.253101278870961,
+          -75.5634418129921
+        ],
+        "path": "cra47-56-55-esquina-sucre-bolivia",
+        "db": 18,
+        "maxvol": "65",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252437381934986,
+          -75.56385219097137
+        ],
+        "path": "cra47-55-54-esquina-sucreconperu",
+        "db": 17,
+        "maxvol": "65",
+        "type": "ambient"
+      }
     ]
   },
   {
@@ -3632,7 +4621,7 @@
       },
       {
         "direction": "right",
-        "name": "cl56oriental-cr47-cl55"
+        "name": "cl56-cr47-oriental"
       }
     ]
   },
@@ -3771,7 +4760,39 @@
         "left": 76.6890625,
         "top": 73.865
       }
-    }
+    },
+    "waySounds": [
+      {
+        "position": [
+          6.253098612619872,
+          -75.56344717741013
+        ],
+        "path": "clle56-47-48-esquina-1de2",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.253348563189747,
+          -75.56380847932928
+        ],
+        "path": "clle56-48-49-esquina-2de2",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.253341241411502,
+          -75.56376367807388
+        ],
+        "path": "pregon-pajarito-criollocriollo",
+        "db": 64,
+        "maxvol": "100",
+        "type": "punctual"
+      }
+    ]
   },
   {
     "wayName": "cl56-cr48-cr47",
@@ -3986,32 +5007,219 @@
         "direction": "left",
         "name": "parquebolivar-cl56-juni"
       }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.25270400731175,
+          -75.56427329778671
+        ],
+        "path": "cra48-55-56-esquina-bolivar-04de04",
+        "db": 7,
+        "maxvol": "50",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252903976255124,
+          -75.56415528059006
+        ],
+        "path": "cra48-55-56-medio01",
+        "db": 6,
+        "maxvol": "40",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.253067377840572,
+          -75.56404173736968
+        ],
+        "path": "cra48-55-56-medio02",
+        "db": 6,
+        "maxvol": "50",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.253211157518242,
+          -75.56395011265536
+        ],
+        "path": "cra48-55-56-medio03",
+        "db": 6,
+        "maxvol": "50",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.253373236408591,
+          -75.56384682655334
+        ],
+        "path": "cra48-56-57-esquina-ecuador-bolivia",
+        "db": 6,
+        "maxvol": "50",
+        "type": "ambient"
+      }
     ]
   },
   {
     "wayName": "parquebolivar-juni-cl56",
     "wayArea": "PARQUE BOLÍVAR",
     "nbStills": 550,
-    "wayPath": [[-75.5649545788765,6.252272074133139],[-75.56461393833159,6.252791993656259],[-75.56460052728653,6.252866648724815],[-75.56461393833159,6.2529199737672805],[-75.56458443403244,6.252965300049088],[-75.56452006101608,6.25298663006271],[-75.56446373462677,6.252970632552576],[-75.56433767080307,6.2528906449946025],[-75.56429475545883,6.2529093087592225],[-75.56425452232361,6.252946636286465],[-75.56421428918839,6.252962633797337],[-75.56417405605316,6.252946636286465],[-75.5639111995697,6.253341241411502]],
+    "wayPath": [
+      [
+        -75.5649545788765,
+        6.252272074133139
+      ],
+      [
+        -75.56461393833159,
+        6.252791993656259
+      ],
+      [
+        -75.56460052728653,
+        6.252866648724815
+      ],
+      [
+        -75.56461393833159,
+        6.2529199737672805
+      ],
+      [
+        -75.56458443403244,
+        6.252965300049088
+      ],
+      [
+        -75.56452006101608,
+        6.25298663006271
+      ],
+      [
+        -75.56446373462677,
+        6.252970632552576
+      ],
+      [
+        -75.56433767080307,
+        6.2528906449946025
+      ],
+      [
+        -75.56429475545883,
+        6.2529093087592225
+      ],
+      [
+        -75.56425452232361,
+        6.252946636286465
+      ],
+      [
+        -75.56421428918839,
+        6.252962633797337
+      ],
+      [
+        -75.56417405605316,
+        6.252946636286465
+      ],
+      [
+        -75.5639111995697,
+        6.253341241411502
+      ]
+    ],
     "wayPathSyncPoints": [
-        "auto",
-        "auto",
-        "auto",
-        "auto",
-        "auto",
-        "auto",
-        "auto",
-        323,
-        "auto",
-        "auto",
-        "auto",
-        388,
-        "auto"
+      "auto",
+      "auto",
+      "auto",
+      "auto",
+      "auto",
+      "auto",
+      "auto",
+      323,
+      "auto",
+      "auto",
+      "auto",
+      388,
+      "auto"
     ],
     "wayConnectionsEnd": [
       {
         "direction": "right",
         "name": "cl56-cr48-cr47"
+      }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.252210750257867,
+          -75.56499481201172
+        ],
+        "path": "cra49-54-55-esquina-caracasconjuninhaciaestatua",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252536095793371,
+          -75.56478159743442
+        ],
+        "path": "cra49-54-55-metidoenparquebolivarmirandoestatuanodo2",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.2527466673594265,
+          -75.56464344263077
+        ],
+        "path": "cra49-54-55-metidoenparquebolivarparadoenestatuanodo3",
+        "db": 10,
+        "maxvol": "40",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.2528906449946025,
+          -75.56433767080307
+        ],
+        "path": "cra49-55-56-metidoenparquebolivarproxaecuadormirandoiglesianodo4",
+        "db": 10,
+        "maxvol": "40",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252954135120069,
+          -75.56419291533498
+        ],
+        "path": "cra49-55-56-sobreecuadormirandoecuadornodo5",
+        "db": 10,
+        "maxvol": "60",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.253143938886209,
+          -75.56403994560242
+        ],
+        "path": "cra48-55-56-medio02sobreparque",
+        "db": 10,
+        "maxvol": "50",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.253330576412044,
+          -75.56390851736067
+        ],
+        "path": "cra48-55-56-medio03sobreparque",
+        "db": 10,
+        "maxvol": "65",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252818656181957,
+          -75.56462198495865
+        ],
+        "path": "pregon-papavanegas-nosotrossomos",
+        "db": 75,
+        "maxvol": "100",
+        "type": "punctual"
       }
     ]
   },
@@ -4019,18 +5227,59 @@
     "wayName": "parquebolivar-cl56-juni",
     "wayArea": "PARQUE BOLÍVAR",
     "nbStills": 520,
-    "wayPath": [[-75.56391656398773,6.253341241411502],[-75.56408822536469,6.2530772826108425],[-75.56415528059006,6.253127941380897],[-75.56431084871292,6.252906642507179],[-75.56435108184814,6.252903976255124],[-75.56450933218002,6.252991962565982],[-75.56459516286849,6.252962633797337],[-75.56461930274963,6.252911975011253],[-75.56461393833159,6.252797326161502],[-75.56496530771255,6.252258742856499]],
+    "wayPath": [
+      [
+        -75.56391656398773,
+        6.253341241411502
+      ],
+      [
+        -75.56408822536469,
+        6.2530772826108425
+      ],
+      [
+        -75.56415528059006,
+        6.253127941380897
+      ],
+      [
+        -75.56431084871292,
+        6.252906642507179
+      ],
+      [
+        -75.56435108184814,
+        6.252903976255124
+      ],
+      [
+        -75.56450933218002,
+        6.252991962565982
+      ],
+      [
+        -75.56459516286849,
+        6.252962633797337
+      ],
+      [
+        -75.56461930274963,
+        6.252911975011253
+      ],
+      [
+        -75.56461393833159,
+        6.252797326161502
+      ],
+      [
+        -75.56496530771255,
+        6.252258742856499
+      ]
+    ],
     "wayPathSyncPoints": [
-        "auto",
-        107,
-        136,
-        "auto",
-        231,
-        "auto",
-        "auto",
-        "auto",
-        "auto",
-        "auto"
+      "auto",
+      107,
+      136,
+      "auto",
+      231,
+      "auto",
+      "auto",
+      "auto",
+      "auto",
+      "auto"
     ],
     "wayConnectionsEnd": [
       {
@@ -4071,7 +5320,7 @@
   {
     "wayName": "cl54-cr48-juni",
     "wayArea": "PARQUE BOLÍVAR",
-    "nbStills": 125,
+    "nbStills": 109,
     "wayPath": [
       [
         -75.56469440460204,
@@ -4090,6 +5339,28 @@
       {
         "direction": "left",
         "name": "juni-cl54-cl53"
+      }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.252031642431308,
+          -75.56465922154864
+        ],
+        "path": "clle54-48-49-esquina-parquebolivar-02de02",
+        "db": 10,
+        "maxvol": "55",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252240079068674,
+          -75.56497871875763
+        ],
+        "path": "clle54-49-50-esquina-caracas-junin-false",
+        "db": 10,
+        "maxvol": "55",
+        "type": "ambient"
       }
     ]
   },
@@ -4115,6 +5386,78 @@
       {
         "direction": "forward",
         "name": "plazabotero-cr51-carabobo"
+      }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.250504343888456,
+          -75.56835561990738
+        ],
+        "path": "cra51-51-52-esquina-bolivarconboyaca",
+        "db": 7,
+        "maxvol": "50",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.251269561183211,
+          -75.56802034378052
+        ],
+        "path": "cra51-52-53-esquina-calibioconbolivar",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.250892930822484,
+          -75.56818536262182
+        ],
+        "path": "cra51-51-52-medio",
+        "db": 10,
+        "maxvol": "50",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.250658987195065,
+          -75.5682000517845
+        ],
+        "path": "wt-musicotiemplaguitarra",
+        "db": 25,
+        "maxvol": "70",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.251050927784655,
+          -75.56803911924361
+        ],
+        "path": "wt-pasametro-bajobolivarcercaasanjuan",
+        "db": 90,
+        "maxvol": "90",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.25115224571241,
+          -75.56804180145264
+        ],
+        "path": "wt-ventajugos-metroparqueberrio-bolivar",
+        "db": 10,
+        "maxvol": "93",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.250773636513553,
+          -75.5682510137558
+        ],
+        "path": "pregon-papavanegas-hayqueolvidarelpasado",
+        "db": 100,
+        "maxvol": "100",
+        "type": "punctual"
       }
     ]
   },
@@ -4161,6 +5504,28 @@
       {
         "direction": "right",
         "name": "orientalcl55-cl56-cr47"
+      }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.2530906138665925,
+          -75.56342035531998
+        ],
+        "path": "clle56-47-46-esquina-Inv",
+        "db": 17,
+        "maxvol": "65",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252688009792977,
+          -75.5627578496933
+        ],
+        "path": "clle56-46-45-esquina-orientalconbolivia",
+        "db": 17,
+        "maxvol": "65",
+        "type": "ambient"
       }
     ]
   },
@@ -4212,6 +5577,78 @@
         "direction": "left",
         "name": "cl56-oriental-cr47"
       }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.252421384408058,
+          -75.56383341550827
+        ],
+        "path": "clle55-47-46-esquina",
+        "db": 11,
+        "maxvol": "60",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252228471553983,
+          -75.56351289139593
+        ],
+        "path": "clle55-47-46-medio",
+        "db": 11,
+        "maxvol": "60",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252060580711284,
+          -75.56323394173329
+        ],
+        "path": "clle55-46-45-esquina-orientalconperu",
+        "db": 10,
+        "maxvol": "30",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.25203744361497,
+          -75.56313067674637
+        ],
+        "path": "cra46-55-56-esquina-orientalconperu",
+        "db": 10,
+        "maxvol": "25",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.25235466547589,
+          -75.56294912484867
+        ],
+        "path": "cra46-55-56-medio-orientalentreperuybolivia2de3",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.2526853435398015,
+          -75.5627605319023
+        ],
+        "path": "cra46-56-57-esquina-orientalconbolivia",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252104100022877,
+          -75.56311994791031
+        ],
+        "path": "pregon-lider-haganfila",
+        "db": 65,
+        "maxvol": "100",
+        "type": "punctual"
+      }
     ]
   },
   {
@@ -4232,10 +5669,10 @@
         6.252421384408058
       ]
     ],
-    "wayPathSyncPoints":[
-        "auto",
-        259,
-        "auto"
+    "wayPathSyncPoints": [
+      "auto",
+      259,
+      "auto"
     ],
     "wayConnectionsEnd": [
       {
@@ -4256,11 +5693,30 @@
     "wayName": "cl51-juni-cr50",
     "wayArea": "PLAZA BOTERO",
     "nbStills": 658,
-    "wayPath": [[-75.56645661592484,6.249821779782047],
-    [-75.56655049324036,6.249691132644516],
-    [-75.5669367313385,6.249840443656167],
-    [-75.56762605905533,6.250165728212608]],
-    "wayPathSyncPoints":["auto",81,325,"auto"],
+    "wayPath": [
+      [
+        -75.56645661592484,
+        6.249821779782047
+      ],
+      [
+        -75.56655049324036,
+        6.249691132644516
+      ],
+      [
+        -75.5669367313385,
+        6.249840443656167
+      ],
+      [
+        -75.56762605905533,
+        6.250165728212608
+      ]
+    ],
+    "wayPathSyncPoints": [
+      "auto",
+      81,
+      325,
+      "auto"
+    ],
     "wayConnectionsEnd": [
       {
         "direction": "forward",
@@ -4270,14 +5726,108 @@
         "direction": "left",
         "name": "parqueberrio-cr50-cr51"
       }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.249699131449792,
+          -75.56656122207642
+        ],
+        "path": "clle51-49-50-esquina-juninconboyaca",
+        "db": 10,
+        "maxvol": "30",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.24985060881214,
+          -75.56695827281669
+        ],
+        "path": "clle51-49-50-medio-pasajeboyacajuninhaciaberrio",
+        "db": 10,
+        "maxvol": "30",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.250019604401798,
+          -75.567316400014
+        ],
+        "path": "clle51-49-50-medio-pasajeboyacajuninhaciaberrio3de4",
+        "db": 10,
+        "maxvol": "30",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.250165728212608,
+          -75.56762605905533
+        ],
+        "path": "clle51-50-51-esquina-pasajeboyacajunin4de4",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.249821779782047,
+          -75.56645661592484
+        ],
+        "path": "cra49-52-51-esquina-junin-playa-false",
+        "db": 2,
+        "maxvol": "30",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.249963091955293,
+          -75.56711107492447
+        ],
+        "path": "wt-pulidora-pasajeboyacajunin",
+        "db": 40,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.249672468765066,
+          -75.56659609079361
+        ],
+        "path": "pregon-lider-wey",
+        "db": 70,
+        "maxvol": "100",
+        "type": "punctual"
+      }
     ]
   },
   {
     "wayName": "cl51-cr50-juni",
     "wayArea": "PLAZA BOTERO",
     "nbStills": 682,
-    "wayPath": [[-75.56762605905533,6.250165728212608],[-75.5669367313385,6.249840443656167],[-75.56655049324036,6.249691132644516],[-75.56645661592484,6.249821779782047]],
-    "wayPathSyncPoints":["auto",355,620,"auto"],
+    "wayPath": [
+      [
+        -75.56762605905533,
+        6.250165728212608
+      ],
+      [
+        -75.5669367313385,
+        6.249840443656167
+      ],
+      [
+        -75.56655049324036,
+        6.249691132644516
+      ],
+      [
+        -75.56645661592484,
+        6.249821779782047
+      ]
+    ],
+    "wayPathSyncPoints": [
+      "auto",
+      355,
+      620,
+      "auto"
+    ],
     "wayConnectionsEnd": [
       {
         "direction": "forward",
@@ -4289,7 +5839,16 @@
     "wayName": "carabobo-sanjuan-parqueluz",
     "wayArea": "PARQUE LUCES",
     "nbStills": 168,
-    "wayPath": [[-75.57146698236465,6.245142458907587],[-75.57125240564346,6.245673050670748]],
+    "wayPath": [
+      [
+        -75.57146698236465,
+        6.245142458907587
+      ],
+      [
+        -75.57125240564346,
+        6.245673050670748
+      ]
+    ],
     "wayConnectionsEnd": [
       {
         "direction": "forward",
@@ -4299,13 +5858,44 @@
         "direction": "left",
         "name": "carabobo-parqueluz"
       }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.245142458907587,
+          -75.57146698236465
+        ],
+        "path": "cra52-44-45-esquina-caraboboconsanjuan",
+        "db": 14,
+        "maxvol": "60",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.245673050670748,
+          -75.57125240564346
+        ],
+        "path": "cra52-44a-45-esquina-caraboboentrevasquezycarre",
+        "db": 14,
+        "maxvol": "60",
+        "type": "ambient"
+      }
     ]
   },
   {
     "wayName": "carabobo-parqueluz-sanjuan",
     "wayArea": "PARQUE LUCES",
     "nbStills": 146,
-    "wayPath": [[-75.57125240564346,6.245673050670748],[-75.57146698236465,6.245142458907587]],
+    "wayPath": [
+      [
+        -75.57125240564346,
+        6.245673050670748
+      ],
+      [
+        -75.57146698236465,
+        6.245142458907587
+      ]
+    ],
     "wayConnectionsEnd": [
       {
         "direction": "left",
@@ -4348,7 +5938,7 @@
           -75.57031899690628
         ],
         "path": "clle45-51-52-esquina-bolivarconamador",
-        "db": 10,
+        "db": 13,
         "maxvol": "70",
         "type": "ambient"
       },
@@ -4358,7 +5948,7 @@
           -75.57072193586043
         ],
         "path": "clle45-51-52-medio",
-        "db": 10,
+        "db": 13,
         "maxvol": "70",
         "type": "ambient"
       },
@@ -4368,7 +5958,7 @@
           -75.57108879089355
         ],
         "path": "clle45-52-53-esquina-amadorconcarabobo",
-        "db": 10,
+        "db": 13,
         "maxvol": "100",
         "type": "ambient"
       }
@@ -4463,7 +6053,7 @@
         ],
         "path": "clle51-51-50-esquina-bolivarconboyaca",
         "db": 9,
-        "maxvol": "60",
+        "maxvol": "20",
         "type": "ambient"
       },
       {
@@ -4473,17 +6063,17 @@
         ],
         "path": "clle51giro1-51-50-sobreescalasdelparquemirandoalcentro",
         "db": 10,
-        "maxvol": "70",
+        "maxvol": "35",
         "type": "ambient"
       },
       {
         "position": [
-          6.249994837196686,
-          -75.56805361993608
+          6.25002174982733,
+          -75.56809812784195
         ],
         "path": "clle51giro2-51-50-realmenteentodoelcentrodeparqberriohaciaiglesiapalaceconmusic",
-        "db": 6,
-        "maxvol": "70",
+        "db": 10,
+        "maxvol": "20",
         "type": "ambient"
       },
       {
@@ -4498,13 +6088,33 @@
       },
       {
         "position": [
-          6.250161312209746,
-          -75.56769009679648
+          6.2501603956805205,
+          -75.56769043207169
         ],
         "path": "cra50giro4fin-52-52-esquina-palaceboyacaparque",
         "db": 8,
-        "maxvol": "70",
+        "maxvol": "20",
         "type": "ambient"
+      },
+      {
+        "position": [
+          6.250005752226512,
+          -75.56799620389938
+        ],
+        "path": "wt-musicos-parqueberrio",
+        "db": 28,
+        "maxvol": "70",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.250064410093766,
+          -75.5678540468216
+        ],
+        "path": "pregon-gaucho-donadora",
+        "db": 90,
+        "maxvol": "100",
+        "type": "punctual"
       }
     ]
   },
@@ -4588,17 +6198,17 @@
           -75.56766629219055
         ],
         "path": "clle51-50-51-esquina-pasajeboyacajunin4de4",
-        "db": 8,
+        "db": 10,
         "maxvol": "55",
         "type": "ambient"
       },
       {
         "position": [
-          6.250333702945331,
-          -75.56796938180923
+          6.25032837041496,
+          -75.56795865297316
         ],
         "path": "clle51-50-51-medio-boyacaentrepalaceybolivarsobreparque2de3",
-        "db": 8,
+        "db": 10,
         "maxvol": "55",
         "type": "ambient"
       },
@@ -4611,6 +6221,16 @@
         "db": 8,
         "maxvol": "50",
         "type": "ambient"
+      },
+      {
+        "position": [
+          6.250307040292957,
+          -75.56808739900589
+        ],
+        "path": "wt-pregon-chicles-parqueberrio",
+        "db": 40,
+        "maxvol": "100",
+        "type": "punctual"
       }
     ]
   },
@@ -4661,6 +6281,68 @@
       {
         "direction": "forward",
         "name": "parquebolivar-juni-cl56"
+      }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.251538853414364,
+          -75.56539982557295
+        ],
+        "path": "cra49-53-54-esquina-maracaibojunin",
+        "db": 11,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.251938792115665,
+          -75.56514769792557
+        ],
+        "path": "cra49-53-54-medio",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.252210750257867,
+          -75.56499481201172
+        ],
+        "path": "cra49-54-55-esquina-caracasconjuninhaciaestatua",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.2517210286083,
+          -75.5652928359078
+        ],
+        "path": "wt-musicoarmonica-av1demayo",
+        "db": 30,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.252013447306036,
+          -75.565045773983
+        ],
+        "path": "wt-pregon-simcard",
+        "db": 20,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.251888133230411,
+          -75.5651530623436
+        ],
+        "path": "pregon-gaucho-elcolombiano",
+        "db": 65,
+        "maxvol": "80",
+        "type": "punctual"
       }
     ]
   },
@@ -4725,6 +6407,58 @@
         "direction": "forward",
         "name": "juni-cl53-cl54"
       }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.250730976304965,
+          -75.56588530540466
+        ],
+        "path": "cra49-52-53-esquina-junin-playa-false",
+        "db": 10,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.250730976304965,
+          -75.56588530540466
+        ],
+        "path": "cra49-52-53-medio-1de3-false",
+        "db": 11,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.251174362039274,
+          -75.56561886060457
+        ],
+        "path": "cra49-52-53-medio-2de3-false",
+        "db": 11,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.251538853414364,
+          -75.56539982557295
+        ],
+        "path": "cra49-53-54-esquina-maracaibojunin",
+        "db": 11,
+        "maxvol": "70",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.250994936289822,
+          -75.56569218635559
+        ],
+        "path": "wt-musicoscalleparrandera-carabobo",
+        "db": 20,
+        "maxvol": "100",
+        "type": "punctual"
+      }
     ]
   },
   {
@@ -4774,6 +6508,48 @@
       {
         "direction": "right",
         "name": "cl51-carabobo-cr51"
+      }
+    ],
+    "waySounds": [
+      {
+        "position": [
+          6.250237717390381,
+          -75.56957602500916
+        ],
+        "path": "cra52-50-51-caraboboconcolombia",
+        "db": 15,
+        "maxvol": "68",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.250965607409196,
+          -75.56925684213638
+        ],
+        "path": "cra52-51-52-esquina-inv",
+        "db": 10,
+        "maxvol": "55",
+        "type": "ambient"
+      },
+      {
+        "position": [
+          6.250616326977114,
+          -75.56936949491501
+        ],
+        "path": "wt-desfilemodascalle-carabobo-50-51",
+        "db": 60,
+        "maxvol": "100",
+        "type": "punctual"
+      },
+      {
+        "position": [
+          6.250784301565159,
+          -75.56931048631668
+        ],
+        "path": "wt-pregon-tenis-carabobo-50-51",
+        "db": 40,
+        "maxvol": "100",
+        "type": "punctual"
       }
     ]
   }
