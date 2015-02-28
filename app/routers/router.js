@@ -18,9 +18,11 @@ define([
         var Router = Backbone.Router.extend({
             routes: {
                 '':                                     'index',
-                'index':                                'index',
+                'index/:lang':                          'index',
                 'streetwalk':                           'streetwalk',
-                'streetwalk/:wayName':                  'streetwalk'
+                'streetwalk/:wayName':                  'streetwalk',
+                'streetwalk/:wayName/:lang':            'streetwalk',
+                ':lang':                                'index'
              },
 
         initialize: function() {
@@ -28,15 +30,27 @@ define([
 
             Progression.initialize();
             Progression.fetch();
-
-            // self.listenTo(Localization,"STRSuccess",function() {
-            //     self.navigate("#"+Localization.translationLoaded, {trigger:false,replace:true});
-            // });
-
-            // Localization.init(lang);
         },
 
-        index: function() {
+        initLocalization: function(lang) {
+
+            var self = this;
+
+            self.listenTo(Localization,"STRSuccess",function() {
+                if(AppView.currentView.el.id == "index") {
+                    self.navigate("#"+Localization.translationLoaded, {trigger:false,replace:true});
+                }
+            });
+
+            Localization.init(lang);
+        },
+
+        index: function(lang) {
+
+            var self = this;
+
+            self.initLocalization(lang);
+
             var indexView = new IndexView();
 
             Progression.instance.viewedLandingPage = true;
@@ -46,7 +60,7 @@ define([
 
         },
 
-        streetwalk: function(wayName) {
+        streetwalk: function(wayName, lang) {
 
             var self = this;
 
@@ -55,7 +69,9 @@ define([
             //     return;
             // }
 
-            if(_.isNull(wayName)) {
+            self.initLocalization(lang);
+
+            if(_.isUndefined(wayName) || _.isNull(wayName)) {
                 var currentStreet = Progression.instance.get("currentStreet");
                 if(currentStreet !== "") {
                     wayName = currentStreet;

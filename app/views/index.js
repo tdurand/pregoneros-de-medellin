@@ -1,6 +1,7 @@
 define(['jquery',
         'underscore',
         'backbone',
+        'utils/Localization',
         'models/Sounds',
         'views/usermanager',
         'text!templates/index/indexViewTemplate.html',
@@ -9,6 +10,7 @@ define(['jquery',
         'popcorn'
         ],
 function($, _, Backbone,
+                    Localization,
                     Sounds,
                     UserManagerView,
                     indexViewTemplate,
@@ -27,8 +29,16 @@ function($, _, Backbone,
     prepare:function() {
 
         var self = this;
-        
-        this.render();
+
+        if(_.isUndefined(Localization.STR)) {
+
+            self.listenToOnce(Localization,"STRLoaded", function() {
+                self.render();
+            });
+        }
+        else {
+            self.render();
+        }
 
         Sounds.playSoundHome();
 
@@ -44,7 +54,9 @@ function($, _, Backbone,
 
         var self = this;
 
-        self.$el.html(_.template(indexViewTemplate)());
+        self.$el.html(_.template(indexViewTemplate)({
+            STR: Localization.STR
+        }));
 
         //Add video
         self.popcorn = Popcorn.vimeo( ".landingpage-video", "http://player.vimeo.com/video/114688319?loop=1" );

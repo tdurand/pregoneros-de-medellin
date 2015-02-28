@@ -88,23 +88,22 @@ define(['jquery',
 
             var self = this;
 
-            // if(_.isUndefined(Localization.STR)) {
+            //Localization
+            if(_.isUndefined(Localization.STR)) {
 
-            //     self.listenToOnce(Localization,"STRLoaded", function() {
-            //         self.render();
-            //     });
-            // }
-            // else {
-            //     self.render();
-            // }
-
-            self.firstScroll = true;
-
-            self.loadPath();
-
-            self.renderLoading();
-
-            self.initArrowKeyBinding();
+                self.listenToOnce(Localization,"STRLoaded", function() {
+                    self.firstScroll = true;
+                    self.loadPath();
+                    self.renderLoading();
+                    self.initArrowKeyBinding();
+                });
+            }
+            else {
+                self.firstScroll = true;
+                self.loadPath();
+                self.renderLoading();
+                self.initArrowKeyBinding();
+            }
 
             //EVENTING
             

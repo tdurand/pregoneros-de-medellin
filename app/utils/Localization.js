@@ -11,6 +11,14 @@ define(["underscore",
         init: function(lang) {
             var self = this;
 
+            if(self.translationLoaded && _.isUndefined(lang)) {
+                return;
+            }
+
+            if(self.translationLoaded && self.translationLoaded == lang) {
+                return;
+            }
+
             if(lang) {
                 if(self.isLangInSupportedTranslation(lang)) {
                     self.loadTranslation(lang, true);
@@ -65,7 +73,7 @@ define(["underscore",
         getPath:function(translation) {
             var self = this;
 
-            var path = "data/content/string_"+translation+".json";
+            var path = "content/content/string_"+translation+".json";
 
             return path;
         },
