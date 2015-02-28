@@ -36,9 +36,15 @@ define([
 
             var self = this;
 
-            self.listenTo(Localization,"STRSuccess",function() {
+            self.listenToOnce(Localization,"STRSuccess",function() {
                 if(AppView.currentView.el.id == "index") {
                     self.navigate("#"+Localization.translationLoaded, {trigger:false,replace:true});
+                }
+            });
+
+            self.listenToOnce(Localization,"STRChanged",function() {
+                if(AppView.currentView.el.id == "index") {
+                    self.index(Localization.translationLoaded);
                 }
             });
 

@@ -23,7 +23,8 @@ function($, _, Backbone,
 
     events:{
         "click .menu-btnlogin":"displayLogin",
-        "click .menu-btnlogout":"logout"
+        "click .menu-btnlogout":"logout",
+        "change .language-selection":"changeLanguage"
     },
 
     prepare:function() {
@@ -90,7 +91,8 @@ function($, _, Backbone,
         var self = this;
 
         self.$el.find(".menu").html(_.template(indexMenuViewTemplate)({
-            loginStatus: UserManagerView.status
+            loginStatus: UserManagerView.status,
+            lang: Localization.translationLoaded
         }));
     },
 
@@ -130,6 +132,14 @@ function($, _, Backbone,
 
     logout: function() {
         UserManagerView.alertBeforeLogout();
+    },
+
+    changeLanguage: function() {
+        var self = this;
+
+        var lang = self.$el.find(".language-selection").val();
+
+        Localization.init(lang);
     },
 
     onClose: function(){

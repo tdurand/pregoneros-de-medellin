@@ -8,6 +8,8 @@ define(["underscore",
 
     var Localization = {
 
+        translationLoaded:false,
+
         init: function(lang) {
             var self = this;
 
@@ -21,7 +23,7 @@ define(["underscore",
 
             if(lang) {
                 if(self.isLangInSupportedTranslation(lang)) {
-                    self.loadTranslation(lang, true);
+                    self.loadTranslation(lang, !self.translationLoaded);
                     return;
                 }
             }
@@ -30,19 +32,19 @@ define(["underscore",
                 var navigatorLang = self.getNavigatorLang();
                 //Try to set the translation on the navigator of the user
                 if(self.isLangInSupportedTranslation(navigatorLang)) {
-                    self.loadTranslation(navigatorLang, true);
+                    self.loadTranslation(navigatorLang, !self.translationLoaded);
                 }
                 //if not available
                 else {
                     //Try to set English
                     if(self.isLangInSupportedTranslation("en")) {
-                        self.loadTranslation("en", true);
+                        self.loadTranslation("en", !self.translationLoaded);
                     }
                 }
             }
             else {
                 //Not the first use
-                self.loadTranslation(LocalParams.getUserTranslationLang(), true);
+                self.loadTranslation(LocalParams.getUserTranslationLang(), !self.translationLoaded);
             }
         },
 
