@@ -35,7 +35,7 @@
     mainConfigFile: 'app/main.js',
 
     paths: {
-        "jquery": "empty:"
+        // "jquery": "empty:"
     },
 
     //The directory path to save the output. If not specified, then
@@ -80,7 +80,49 @@
 
     modules: [
         {
-            name:"main"
+            name:"main",
+            // Use the *shallow* exclude; otherwise, dependencies of
+            // the FAQ module will also be excluded from this build
+            // (including jQuery and text and util modules). In other
+            // words, a deep-exclude would override our above include.
+            excludeShallow: [
+                //streetwalk stuff
+                "views/streetwalk",
+                "utils/GeoUtils.js",
+                "libs/vendor/snap.svg-min.js",
+                "models/Stills.js",
+                "models/Still.js",
+                "models/Way.js",
+                "json!content/ways.json",
+                "models/Ways.js",
+                "text!templates/streetwalk/menuCharactersViewTemplate.html",
+                "text!templates/svg/svgMenuJaleTemplate.html",
+                "text!templates/svg/svgMenuPajaritoTemplate.html",
+                "views/subview/menucharacters.js",
+                "text!templates/streetwalk/soundEditorViewTemplate.html",
+                "text!templates/streetwalk/soundEditorSoundInfoViewTemplate.html",
+                "views/subview/soundeditor.js",
+                "text!templates/streetwalk/menu/menuStreetWalkViewTemplate.html",
+                "views/subview/menustreetwalk.js",
+                "views/subview/tutorial.js",
+                "views/subview/map.js",
+                "text!templates/streetwalk/streetWalkViewTemplate.html",
+                "text!templates/streetwalk/streetWalkLoadingViewTemplate.html",
+                "text!templates/streetwalk/streetWalkChoosePathStartViewTemplate.html",
+                "text!templates/streetwalk/streetWalkChoosePathEndViewTemplate.html",
+                "text!templates/svg/svgSignTopProgressTemplate.html",
+                "text!templates/svg/svgSignTopAreaTemplate.html",
+                "text!templates/svg/svgFramePajaritoTemplate.html",
+                "text!templates/svg/svgFrameJaleTemplate.html",
+                "text!templates/svg/svgScrollToStartES.html",
+                //libs
+                "mapbox",
+                "tweenmax"
+            ]
+
+        },
+        {
+            name:"views/streetwalk"
         }
     ],
 
