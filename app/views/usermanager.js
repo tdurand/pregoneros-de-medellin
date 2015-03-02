@@ -43,10 +43,11 @@ function($, _, Backbone,
     initialize : function() {
         var self = this;
 
-        Parse.initialize("9uInSCaUNce345LbJrkqIsKQZfS7TJSdQNzQeFXT",
+        window.fbAsyncInit = function() {
+
+            Parse.initialize("9uInSCaUNce345LbJrkqIsKQZfS7TJSdQNzQeFXT",
                    "XmjFAZhIjwkRKzir12xZO6w9kz8V5t1zwYmuT0Qt");
 
-        window.fbAsyncInit = function() {
             Parse.FacebookUtils.init({ // this line replaces FB.init({
               appId      : '584965638293572', // Facebook App ID
               status     : true,  // check Facebook Login status
@@ -56,13 +57,14 @@ function($, _, Backbone,
             });
          
             // Run code after the Facebook SDK is loaded.
+            self.renderAskToCreateAccountView();
+
+            self.updateLoginStatus();
           };
 
         fbAsyncInit();
 
-        self.renderAskToCreateAccountView();
-
-        self.updateLoginStatus();
+        
     },
 
     renderAskToCreateAccountView: function() {
