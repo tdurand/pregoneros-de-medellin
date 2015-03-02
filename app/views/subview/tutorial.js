@@ -108,10 +108,10 @@ function($, _, Backbone,
         var self = this;
 
         if(wayName == "carabobo-cl53-cl52" && frameNb >= 186 && frameNb <= 213 && !self.tutorialDone) {
-                // self.trigger("pauseAnimating");
-                // document.body.style.overflowY = "hidden";
+                self.trigger("pauseAnimating");
+                document.body.style.overflowY = "hidden";
                 setTimeout(function() {
-                    // hopscotch.startTour(self.tutorial,0);
+                    hopscotch.startTour(self.tutorial,0);
                     hopscotch.listen("close",function() {
                         self.endTutorial();
                     });
