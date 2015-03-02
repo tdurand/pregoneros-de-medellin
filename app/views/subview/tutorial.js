@@ -109,7 +109,8 @@ function($, _, Backbone,
 
         if(wayName == "carabobo-cl53-cl52" && frameNb >= 186 && frameNb <= 213 && !self.tutorialDone) {
                 self.trigger("pauseAnimating");
-                document.body.style.overflowY = "hidden";
+                // document.body.style.overflowY = "hidden";
+                $("body").css("overflow", "hidden");
                 setTimeout(function() {
                     hopscotch.startTour(self.tutorial,0);
                     hopscotch.listen("close",function() {
@@ -127,7 +128,7 @@ function($, _, Backbone,
 
         self.tutorialDone = true;
         self.trigger("startAnimating");
-        document.body.style.overflowY = "visible";
+        $("body").css("overflow", "visible");
         $(".streetwalk-tutorial-overlay").hide();
         $(".streetwalk-tutorial-overlay").removeClass("step2");
         $(".streetwalk-tutorial-overlay").removeClass("step3");
