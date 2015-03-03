@@ -610,7 +610,7 @@ define(['jquery',
 
                         self.timeOutNotMoving = setTimeout(function() {
                             $("body").addClass('not-moving');
-                        },500);
+                        },1000);
                     },100);
 
                     // Update sounds volume
