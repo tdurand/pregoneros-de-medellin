@@ -19,6 +19,10 @@ function($, _, Backbone,
     playSoundHome: function() {
         var self = this;
 
+        if(self.soundHome) {
+            return;
+        }
+
         self.soundHome = new Howl({
           src: ['content/music/intro.mp3'],
           loop:true,
