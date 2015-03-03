@@ -25,6 +25,8 @@ define([
                 ':lang':                                'index'
              },
 
+        streetWalkLoaded:false,
+
         initialize: function() {
             var self = this;
 
@@ -77,10 +79,28 @@ define([
 
             var self = this;
 
+            //IN PRODUCTION DO NOT ALLOW TO GO TO A SPECIFIC WAY
             // if(!Progression.instance.instanceviewedLandingPage) {
             //     self.navigate("#index",{trigger:true,replace:true});
             //     return;
             // }
+
+            if(!self.streetWalkLoaded) {
+                require([ "views/streetwalk" ], function(streetwalk) {
+                    self.streetWalkLoaded = true;
+                    self.StreetWalkView = streetwalk;
+                    self.streetwalkRoute(wayName, lang);
+                });
+            }
+            else {
+                self.streetwalkRoute(wayName,lang);
+            }
+
+        },
+
+        streetwalkRoute: function(wayName, lang) {
+            var self  = this;
+            
 
             self.initLocalization(lang);
 
