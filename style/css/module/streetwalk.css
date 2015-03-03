@@ -33,7 +33,7 @@
   margin-left: 0;
   margin-right: 0;
   height: 10%;
-  -webkit-transition: 1s ease;
+  -webkit-transition: 0.5s ease-out;
   opacity: 0.7;
   transform: translateY(90%);
   background-color: #FFD64A;
@@ -463,42 +463,31 @@
   z-index: 5;
 }
 
-/* line 485, ../../sass/module/streetwalk.scss */
-body.not-moving .trame-video {
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  -webkit-transition: opacity 0.5s ease;
-  -moz-transition: opacity 0.5s ease;
-}
-
-/* line 492, ../../sass/module/streetwalk.scss */
+/* line 484, ../../sass/module/streetwalk.scss */
 .streetwalk-sign {
   transform: translateY(-85%);
-  -webkit-transition: 1s ease;
+  -webkit-transition: 0.5s ease-out;
   opacity: 0.2;
 }
 
-/* line 498, ../../sass/module/streetwalk.scss */
+/* line 490, ../../sass/module/streetwalk.scss */
 .streetwalk-menubottom {
-  transform: translateY(-85%);
-  -webkit-transition: 1s ease;
-  display: none;
+  transform: translateY(90%);
 }
 
-/* line 506, ../../sass/module/streetwalk.scss */
+/* line 496, ../../sass/module/streetwalk.scss */
 body.not-moving .streetwalk-bottombar {
-  -webkit-transition: 1s ease;
+  -webkit-transition: 0.5s ease-out;
   opacity: 1;
   transform: translateY(0%);
 }
-/* line 512, ../../sass/module/streetwalk.scss */
+/* line 502, ../../sass/module/streetwalk.scss */
 body.not-moving .streetwalk-menubottom {
-  opacity: 1;
   transform: translateY(0%);
 }
-/* line 517, ../../sass/module/streetwalk.scss */
+/* line 506, ../../sass/module/streetwalk.scss */
 body.not-moving .streetwalk-sign {
   transform: translateY(0%);
-  -webkit-transition: 1s ease;
+  -webkit-transition: 0.5s ease-out;
   opacity: 1;
 }

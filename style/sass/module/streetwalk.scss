@@ -22,7 +22,7 @@
 
     @include span(12);
     height: 10%;
-    -webkit-transition:1s ease;
+    -webkit-transition:0.5s ease-out;
     opacity: 0.7;
     transform:translateY(90%);
     background-color: #FFD64A;
@@ -481,42 +481,31 @@
           transition: all 0.3s ease-out;
 }
 
-
-body.not-moving .trame-video {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    -webkit-transition: opacity 0.5s ease;
-    -moz-transition: opacity 0.5s ease;
-}
-
 .streetwalk-sign {
         transform:translateY(-85%);
-        -webkit-transition:1s ease;
+        -webkit-transition:0.5s ease-out;
         opacity: 0.2;
 }
 
 .streetwalk-menubottom {
-        transform:translateY(-85%);
-        -webkit-transition:1s ease;
-        display:none;
+        transform:translateY(90%);
 }
 
 body.not-moving {
 
     .streetwalk-bottombar {
-        -webkit-transition:1s ease;
+        -webkit-transition:0.5s ease-out;
         opacity: 1;
         transform:translateY(0%);
     }
 
     .streetwalk-menubottom {
-        opacity: 1;
         transform:translateY(0%);
     }
 
     .streetwalk-sign {
         transform:translateY(0%);
-        -webkit-transition:1s ease;
+        -webkit-transition:0.5s ease-out;
         opacity: 1;
     }
 }
