@@ -88,24 +88,12 @@
             excludeShallow: [
                 //streetwalk stuff
                 "views/streetwalk",
-                "utils/GeoUtils.js",
-                "libs/vendor/snap.svg-min.js",
-                "models/Stills.js",
-                "models/Still.js",
-                "models/Way.js",
-                "json!content/ways.json",
-                "models/Ways.js",
                 "text!templates/streetwalk/menuCharactersViewTemplate.html",
                 "text!templates/svg/svgMenuJaleTemplate.html",
                 "text!templates/svg/svgMenuPajaritoTemplate.html",
-                "views/subview/menucharacters.js",
                 "text!templates/streetwalk/soundEditorViewTemplate.html",
                 "text!templates/streetwalk/soundEditorSoundInfoViewTemplate.html",
-                "views/subview/soundeditor.js",
                 "text!templates/streetwalk/menu/menuStreetWalkViewTemplate.html",
-                "views/subview/menustreetwalk.js",
-                "views/subview/tutorial.js",
-                "views/subview/map.js",
                 "text!templates/streetwalk/streetWalkViewTemplate.html",
                 "text!templates/streetwalk/streetWalkLoadingViewTemplate.html",
                 "text!templates/streetwalk/streetWalkChoosePathStartViewTemplate.html",
@@ -118,11 +106,50 @@
                 //libs
                 "mapbox",
                 "tweenmax"
+            ],
+            exclude: [
+                "views/subview/menucharacters.js",
+                "views/subview/soundeditor.js",
+                "views/subview/menustreetwalk.js",
+                "views/subview/tutorial.js",
+                "views/subview/map.js"
             ]
-
         },
         {
-            name:"views/streetwalk"
+            name:"views/streetwalk",
+            exclude: [
+                "views/usermanager.js",
+                "text!templates/usermanager/askToCreateAccountViewTemplate.html",
+                "text!templates/usermanager/createAccountViewTemplate.html",
+                "text!templates/usermanager/signInViewTemplate.html",
+                "text!templates/usermanager/successAccountCreationViewTemplate.html",
+                "text!templates/usermanager/successSignInViewTemplate.html",
+                "text!templates/usermanager/alertBeforeLogout.html",
+                "libs/vendor/jquery-2.0.3.min.js",
+                "libs/vendor/lodash-3.1.0.min.js",
+                "libs/vendor/backbone-1.1.2.min.js",
+                "libs/vendor/fastclick.min.js",
+                "models/ProgressionModel.js",
+                "models/Progression.js",
+                "models/Sound.js",
+                "models/Sounds.js",
+                "models/Ways.js",
+                "models/Way.js",
+                "models/Stills.js",
+                "utils/Logger.js",
+                "utils/AppView.js",
+                "utils/LocalParams.js",
+                "utils/Localization.js",
+                "models/Still.js",
+                "utils/GeoUtils.js",
+                "utils/Logger.js",
+                "libs/vendor/howler-2.0-beta.min.js",
+                "models/Way.js",
+                "libs/vendor/text-2.0.10.js",
+                "libs/vendor/json-0.3.1.js",
+                "libs/vendor/popcorn-1.5.6.min.js",
+                "json!content/ways.json"
+            ]
         }
     ],
 
