@@ -24,7 +24,9 @@ define(['jquery',
     'text!templates/svg/svgFramePajaritoTemplate.html',
     'text!templates/svg/svgFrameJaleTemplate.html',
     'text!templates/svg/svgScrollToStartES.html',
-    'popcorn'
+    'popcorn',
+    'tweenmax',
+    'mapbox'
     ],
     function($, _, Backbone,
         Snap,

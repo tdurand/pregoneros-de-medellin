@@ -5,8 +5,8 @@ define([
         'utils/AppView',
         'utils/Localization',
         'models/Progression',
-        'views/index',
-        'views/streetwalk'
+        'views/index'
+        // 'views/streetwalk'
         ],
     function($, _, Backbone,
                     AppView,
@@ -30,6 +30,13 @@ define([
 
             Progression.initialize();
             Progression.fetch();
+
+            self.StreetWalkView = StreetWalkView;
+
+            require([ "views/streetwalk" ], function(streetwalk) {
+                self.streetWalkLoaded = true;
+                self.StreetWalkView = streetwalk;
+            });
         },
 
         initLocalization: function(lang) {
@@ -88,7 +95,7 @@ define([
                 self.navigate("#streetwalk/" + wayName,{replace:true});
             }
 
-            var streetWalkView = new StreetWalkView({
+            var streetWalkView = new self.StreetWalkView({
                 wayName : wayName
             });
 
