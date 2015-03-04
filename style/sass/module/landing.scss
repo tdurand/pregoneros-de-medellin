@@ -21,7 +21,7 @@
      z-index:30;
 
      .logo-bar {
-        height: 50%;
+        height: 40%;
         position: absolute;
         @include span(12);
         background-color: white;
@@ -40,8 +40,8 @@
 
      .wrap-top-bar {
         position:absolute;
-        height: 50%;
-        top:50%;
+        height: 60%;
+        top:40%;
 
         @include span(12);
 
@@ -82,6 +82,9 @@
                 font-size : 1.3rem;
                 color:white;
                 margin-left:10%;
+                position:absolute;
+                top:50%;
+                transform:translateY(-50%);
             }
 
         }
