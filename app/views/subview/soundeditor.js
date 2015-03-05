@@ -422,16 +422,16 @@ define(['jquery',
                 if(sound.get("type") == "ambient") {
                     var path = sound.get("path");
                     path = path.split(".mp3")[0];
-                    path = path + "-inverted.mp3";
+                    path = path + "-inverted";
 
                     sound.set("path",path);
                 }
-                return sound;
+                return sound.attributes;
            });
 
            WAYSClone = _.map(WAYSClone,function(way) {
                 if(way.wayName == reverseStreetName) {
-                    way.waySounds = reverseStreetSounds.attributes;
+                    way.waySounds = reverseStreetSounds;
                 }
                 return way;
             });
