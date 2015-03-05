@@ -29,7 +29,12 @@ function($, _, Backbone,
 
         wayNameArray = wayName.split("-");
 
-        reverseWayName = wayNameArray[0] + "-" + wayNameArray[2] + "-" + wayNameArray[1];
+        if(wayNameArray.length == 2) {
+            reverseWayName = wayNameArray[1] + "-" + wayNameArray[0];
+        }
+        else {
+            reverseWayName = wayNameArray[0] + "-" + wayNameArray[2] + "-" + wayNameArray[1];
+        }
 
         return reverseWayName;
     }
