@@ -110,7 +110,7 @@ define([
                     wayName = currentStreet;
                 }
                 else {
-                    wayName = "carabobo-cl53-cl52";
+                    wayName = "plazabotero-start-carabobo";
                 }
                 self.navigate("#streetwalk/" + wayName,{replace:true});
             }

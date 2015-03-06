@@ -141,7 +141,7 @@ define(['jquery',
             });
 
             self.listenTo(UserManagerView,"logOut",function() {
-                self.goToStreetName("carabobo-cl53-cl52");
+                self.goToStreetName("plazabotero-start-carabobo");
             });
 
         },
@@ -318,6 +318,9 @@ define(['jquery',
         if(character == "pajarito") {
             template = svgFramePajaritoTemplate;
         }
+        else if(character == "jale"){
+            template = svgFrameJaleTemplate;
+        }
         else {
             template = svgFrameJaleTemplate;
         }
@@ -456,7 +459,7 @@ define(['jquery',
                 //show frame container
                 self.$el.find(".streetwalk-textcharacter").show();
                 //set offset for the imgFrame, to position the "real" center
-                self.$el.find(".streetwalk-textcharacter .frame-character").css("margin-top",self.way.characterDefinition.offsetTopCenter+"%");
+                TweenLite.set(self.$el.find(".streetwalk-textcharacter .character-sign"),{x:"-50%",y:-100+self.way.characterDefinition.offsetTopCenter+"%"});
 
                 //==== COMPUTE AND SET WIDTH OF THE CHARACTER FRAMER ======
                 var fullRange = self.way.characterDefinition.endFrame - self.way.characterDefinition.startFrame;
