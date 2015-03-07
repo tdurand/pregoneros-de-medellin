@@ -792,7 +792,7 @@ html:after, body:after {
 }
 /* line 294, ../sass/module/streetwalk.scss */
 .streetwalk-tutorial-wrapper .streetwalk-tutorial {
-  height: 70%;
+  height: 60%;
   width: 100%;
   position: absolute;
   bottom: 10%;
