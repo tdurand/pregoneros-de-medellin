@@ -47,7 +47,7 @@ function($, _, Backbone,
                 target: '.menucharacter-pajarito .video3-locked',
                 placement: 'left',
                 title: 'AYUDA: DESCUBRE MÁS',
-                content: 'Puedes conocer mas sobre Pajarito, buscalo en otras calles !',
+                content: 'Puedes conocer mas sobre la Jale, buscala en otras calles !',
                 showCTAButton:true,
                 showNextButton:false,
                 ctaLabel:"OK ▸",
@@ -107,7 +107,7 @@ function($, _, Backbone,
     update: function(wayName, frameNb) {
         var self = this;
 
-        if(wayName == "carabobo-cl53-cl52" && frameNb >= 186 && frameNb <= 213 && !self.tutorialDone) {
+        if(wayName == "plazabotero-start-carabobo" && frameNb >= 110 && frameNb <= 120 && !self.tutorialDone) {
                 self.trigger("pauseAnimating");
                 // document.body.style.overflowY = "hidden";
                 $("body").css("overflow", "hidden");
