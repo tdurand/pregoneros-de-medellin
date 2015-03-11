@@ -175,27 +175,31 @@
             }
 
             &[data-character='pajarito'] {
-                left:-3%;
+                left:-2%;
                 z-index: 9;
-                width: 43%;
+                width: 44%;
+                bottom:-39%;
             }
 
             &[data-character='lider'] {
-                left:17%;
+                left:16%;
                 z-index: 8;
-                width: 43%;
+                width: 44%;
+                bottom: -45%;
             }
 
             &[data-character='gaucho'] {
-                left:37%;
+                left:34%;
                 z-index: 7;
-                width: 43%;
+                width: 44%;
+                bottom:-42%;
             }
 
             &[data-character='papavanegas'] {
-                left:57%;
-                z-index: 6;
-                width: 43%;
+                left:56%;
+                z-index:6;
+                width: 44%;
+                bottom:-42%;
             }
 
 
