@@ -307,10 +307,10 @@
 }
 /* line 323, ../../sass/module/streetwalk.scss */
 .streetwalk-tutorial-wrapper .streetwalk-tutorial {
-  height: 60%;
+  height: 55%;
   width: 100%;
   position: absolute;
-  bottom: 10%;
+  bottom: 15%;
 }
 /* line 330, ../../sass/module/streetwalk.scss */
 .streetwalk-tutorial-wrapper .streetwalk-tutorial-scrollotherside-tooltip {
