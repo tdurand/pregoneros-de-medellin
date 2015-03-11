@@ -85,6 +85,18 @@ function($, _, Backbone,
                 var video = "video1";
                 self.unlock(character,video);
         });
+
+        Progression.instance.get("charactersProgression").bind('change:gaucho.video1.locked', function(model, newValue){
+                var character = "gaucho";
+                var video = "video1";
+                self.unlock(character,video);
+        });
+
+        Progression.instance.get("charactersProgression").bind('change:papavanegas.video1.locked', function(model, newValue){
+                var character = "papavanegas";
+                var video = "video1";
+                self.unlock(character,video);
+        });
     },
 
     unlock: function(character,video) {
