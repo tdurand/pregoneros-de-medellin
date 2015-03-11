@@ -5,14 +5,20 @@ define(['jquery',
         'models/Progression',
         'text!templates/streetwalk/menuCharactersViewTemplate.html',
         'text!templates/svg/svgMenuJaleTemplate.html',
-        'text!templates/svg/svgMenuPajaritoTemplate.html'
+        'text!templates/svg/svgMenuPajaritoTemplate.html',
+        'text!templates/svg/svgMenuLiderTemplate.html',
+        'text!templates/svg/svgMenuGauchoTemplate.html',
+        'text!templates/svg/svgMenuPapavanegasTemplate.html'
         ],
 function($, _, Backbone,
                 LOGGER,
                 Progression,
                 streetWalkMenuCharactersViewTemplate,
                 svgMenuJaleTemplate,
-                svgMenuPajaritoTemplate){
+                svgMenuPajaritoTemplate,
+                svgMenuLiderTemplate,
+                svgMenuGauchoTemplate,
+                svgMenuPapavanegasTemplate){
 
   var MenuCharactersView = Backbone.View.extend({
 
@@ -40,13 +46,13 @@ function($, _, Backbone,
         self.$el.find(".streetwalk-menucharacter[data-character='pajarito']").html(_.template(svgMenuPajaritoTemplate)({
             state : Progression.instance.get("charactersProgression").get("pajarito")
         }));
-        self.$el.find(".streetwalk-menucharacter[data-character='perso3']").html(_.template(svgMenuPajaritoTemplate)({
+        self.$el.find(".streetwalk-menucharacter[data-character='lider']").html(_.template(svgMenuLiderTemplate)({
             state : Progression.instance.get("charactersProgression").get("pajarito")
         }));
-        self.$el.find(".streetwalk-menucharacter[data-character='perso4']").html(_.template(svgMenuPajaritoTemplate)({
+        self.$el.find(".streetwalk-menucharacter[data-character='gaucho']").html(_.template(svgMenuGauchoTemplate)({
             state : Progression.instance.get("charactersProgression").get("pajarito")
         }));
-        self.$el.find(".streetwalk-menucharacter[data-character='perso5']").html(_.template(svgMenuPajaritoTemplate)({
+        self.$el.find(".streetwalk-menucharacter[data-character='papavanegas']").html(_.template(svgMenuPapavanegasTemplate)({
             state : Progression.instance.get("charactersProgression").get("pajarito")
         }));
 
@@ -71,6 +77,12 @@ function($, _, Backbone,
         Progression.instance.get("charactersProgression").bind('change:jale.video2.locked', function(model, newValue){
                 var character = "jale";
                 var video = "video2";
+                self.unlock(character,video);
+        });
+
+        Progression.instance.get("charactersProgression").bind('change:lider.video1.locked', function(model, newValue){
+                var character = "lider";
+                var video = "video1";
                 self.unlock(character,video);
         });
     },

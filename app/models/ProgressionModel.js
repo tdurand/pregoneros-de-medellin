@@ -56,6 +56,69 @@ function($, _, Backbone, LOGGER, Ways){
                                 locked: true,
                                 wayName:""
                             }
+                        },
+                        lider: {
+                            character:{
+                                locked:true
+                            },
+                            video1: {
+                                locked: true,
+                                wayName:""
+                            },
+                            video2: {
+                                locked: true,
+                                wayName:""
+                            },
+                            video3: {
+                                locked: true,
+                                wayName:""
+                            },
+                            video4: {
+                                locked: true,
+                                wayName:""
+                            }
+                        },
+                        gaucho: {
+                            character:{
+                                locked:true
+                            },
+                            video1: {
+                                locked: true,
+                                wayName:""
+                            },
+                            video2: {
+                                locked: true,
+                                wayName:""
+                            },
+                            video3: {
+                                locked: true,
+                                wayName:""
+                            },
+                            video4: {
+                                locked: true,
+                                wayName:""
+                            }
+                        },
+                        papavanegas: {
+                            character:{
+                                locked:true
+                            },
+                            video1: {
+                                locked: true,
+                                wayName:""
+                            },
+                            video2: {
+                                locked: true,
+                                wayName:""
+                            },
+                            video3: {
+                                locked: true,
+                                wayName:""
+                            },
+                            video4: {
+                                locked: true,
+                                wayName:""
+                            }
                         }
             }));
 
@@ -75,8 +138,22 @@ function($, _, Backbone, LOGGER, Ways){
                     pajarito: {
                         video1:"115328392",
                         video2:"115325355",
-                        video3:"115325356",
-                        video4:"115325356"
+                        video3:"115325356"
+                    },
+                    lider: {
+                        video1:"115325357",
+                        video2:"115328393",
+                        video3:"115328393"
+                    },
+                    gaucho: {
+                        video1:"115328392",
+                        video2:"115325355",
+                        video3:"115325356"
+                    },
+                    papavanegas: {
+                        video1:"115328392",
+                        video2:"115325355",
+                        video3:"115325356"
                     }
                 }
             });
