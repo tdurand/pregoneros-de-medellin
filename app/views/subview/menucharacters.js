@@ -17,7 +17,8 @@ function($, _, Backbone,
   var MenuCharactersView = Backbone.View.extend({
 
     events:{
-        "click .character":"toggleMenu"
+        "click .character":"toggleMenu",
+        "click .btn-close":"toggleMenu"
     },
 
     prepare : function() {
@@ -33,46 +34,68 @@ function($, _, Backbone,
 
         self.$el.html(_.template(streetWalkMenuCharactersViewTemplate));
         
-        self.$el.find(".streetwalk-menucharacter[data-character='jale']").html(_.template(svgMenuJaleTemplate));
-        self.$el.find(".streetwalk-menucharacter[data-character='pajarito']").html(_.template(svgMenuPajaritoTemplate));
-        self.$el.find(".streetwalk-menucharacter[data-character='perso3']").html(_.template(svgMenuJaleTemplate));
-        self.$el.find(".streetwalk-menucharacter[data-character='perso4']").html(_.template(svgMenuJaleTemplate));
-        self.$el.find(".streetwalk-menucharacter[data-character='perso5']").html(_.template(svgMenuJaleTemplate));
+        self.$el.find(".streetwalk-menucharacter[data-character='jale']").html(_.template(svgMenuJaleTemplate)({
+            state : Progression.instance.get("charactersProgression").get("jale")
+        }));
+        self.$el.find(".streetwalk-menucharacter[data-character='pajarito']").html(_.template(svgMenuPajaritoTemplate)({
+            state : Progression.instance.get("charactersProgression").get("pajarito")
+        }));
+        self.$el.find(".streetwalk-menucharacter[data-character='perso3']").html(_.template(svgMenuPajaritoTemplate)({
+            state : Progression.instance.get("charactersProgression").get("pajarito")
+        }));
+        self.$el.find(".streetwalk-menucharacter[data-character='perso4']").html(_.template(svgMenuPajaritoTemplate)({
+            state : Progression.instance.get("charactersProgression").get("pajarito")
+        }));
+        self.$el.find(".streetwalk-menucharacter[data-character='perso5']").html(_.template(svgMenuPajaritoTemplate)({
+            state : Progression.instance.get("charactersProgression").get("pajarito")
+        }));
 
         self.updateMenuCharactersStates();
 
-        TweenLite.set(".streetwalk-menucharacter[data-character='pajarito'] .character-unlocked", {scaleX:0.8,scaleY:0.8,transformOrigin:"center center"});
-
-
-        // self.stickit(Progression.instance);
         Progression.instance.on("change", function() {
             console.log(_.keys(Progression.instance.changedAttributes()));
         });
 
         Progression.instance.get("charactersProgression").bind('change:pajarito.video1.locked', function(model, newValue){
-                console.log("UNLOCKED PAJARITO");
                 var character = "pajarito";
                 var video = "video1";
-
-                //if character not unlocked, unlock it
-                if(Progression.instance.get("charactersProgression").get("pajarito.character.locked")) {
-                    Progression.instance.unlockCharacter(character);
-
-                    //Launch animation unlockCharacter
-                    self.unlockCharacter(character,function() {
-                        self.unlockVideoAndOpen(character,video);
-                    });
-                }
-                else {
-                    //Launch animation unlockvideo
-                    self.unlockVideoAndOpen(character,video);
-                }
-
-                self.listenToOnce(self,"closeVideo",function() {
-                    self.closeVideo(character,video);
-                });
-
+                self.unlock(character,video);
         });
+
+        Progression.instance.get("charactersProgression").bind('change:jale.video1.locked', function(model, newValue){
+                var character = "jale";
+                var video = "video1";
+                self.unlock(character,video);
+        });
+
+        Progression.instance.get("charactersProgression").bind('change:jale.video2.locked', function(model, newValue){
+                var character = "jale";
+                var video = "video2";
+                self.unlock(character,video);
+        });
+    },
+
+    unlock: function(character,video) {
+        var self = this;
+
+        //if character not unlocked, unlock it
+        if(Progression.instance.get("charactersProgression").get(character+".character.locked")) {
+            Progression.instance.unlockCharacter(character);
+
+            //Launch animation unlockCharacter
+            self.unlockCharacter(character,function() {
+                self.unlockVideoAndOpen(character,video);
+            });
+        }
+        else {
+            //Launch animation unlockvideo
+            self.unlockVideoAndOpen(character,video);
+        }
+
+        self.listenToOnce(self,"closeVideo",function() {
+            self.closeVideo(character,video);
+        });
+
     },
 
     updateMenuCharactersStates: function() {
@@ -107,7 +130,7 @@ function($, _, Backbone,
         tl.call(self.openMenu,[character],self)
               //Unlock video
               .to(".streetwalk-menucharacter[data-character="+ character +"] ." + video + "-locked", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",display:"none",ease:Power2.easeIn})
-              .fromTo(".streetwalk-menucharacter[data-character="+ character +"] ." + video, 1, {scaleX:0.8,scaleY:0.8},{scaleX:1,scaleY:1,transformOrigin:"center center",ease:Back.easeOut.config(3)},"-=0.5")
+              .fromTo(".streetwalk-menucharacter[data-character="+ character +"] ." + video, 1, {scaleX:0.8,scaleY:0.8,display:"block"},{scaleX:1,scaleY:1,transformOrigin:"center center",ease:Back.easeOut.config(3)},"-=0.5")
               //open video
               .fromTo(".streetwalk-video", 1,
                 {scaleY:0,scaleX:0,display:"block"},
@@ -140,7 +163,10 @@ function($, _, Backbone,
         //Discover character
         tl.to(".streetwalk-menucharacter[data-character='" + character+ "'] .character-locked", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",display:"none",ease:Power2.easeIn})
           .to(".streetwalk-menucharacter[data-character='" + character+ "'] .character-unlocked", 0.5,{scaleX:1,scaleY:1,transformOrigin:"center center",ease:Power2.easeIn},"-=0.5");
- 
+        //Change state
+        $(".streetwalk-menucharacter[data-character='" + character + "'] .character-unlocked").attr("data-state","unlocked");
+
+
     },
 
     toggleMenu: function(e) {

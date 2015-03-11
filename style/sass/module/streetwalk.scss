@@ -130,15 +130,11 @@
             position:absolute;
             width: 40%;
             left:-20%;
-            bottom:-80%;
+            bottom:-50%;
 
             object {
                 height: 100%;
                 width: 100%;
-            }
-
-            .character-unlocked,.video1,.video2,.video3 {
-                // display:none;
             }
 
             .submenu {
@@ -152,14 +148,36 @@
                 }
             }
 
+            .character-locked {
+                opacity: 0.9;
+            }
+
+            .character-unlocked {
+
+                &[data-state='locked'] {
+                    
+                    .label {
+                        display:none;
+                    }
+                }
+
+                &[data-state='unlocked'] {
+                    
+                    .label {
+                        display:block;
+                    }
+                }
+            }
+
             //Default states
             &[data-character='jale'] {
                 z-index: 10;
             }
 
             &[data-character='pajarito'] {
-                left:0%;
+                left:-3%;
                 z-index: 9;
+                width: 43%;
             }
 
             &[data-character='perso3'] {
