@@ -23,6 +23,9 @@ define(['jquery',
     'text!templates/svg/svgSignTopAreaTemplate.html',
     'text!templates/svg/svgFramePajaritoTemplate.html',
     'text!templates/svg/svgFrameJaleTemplate.html',
+    'text!templates/svg/svgFrameLiderTemplate.html',
+    'text!templates/svg/svgFrameGauchoTemplate.html',
+    'text!templates/svg/svgFramePapavanegasTemplate.html',
     'text!templates/svg/svgScrollToStartES.html',
     'popcorn',
     'tweenmax',
@@ -51,6 +54,9 @@ define(['jquery',
         svgSignTopAreaTemplate,
         svgFramePajaritoTemplate,
         svgFrameJaleTemplate,
+        svgFrameLiderTemplate,
+        svgFrameGauchoTemplate,
+        svgFramePapavanegasTemplate,
         svgScrollToStart){
 
       var StreetWalkView = Backbone.View.extend({
@@ -321,8 +327,14 @@ define(['jquery',
         else if(character == "jale"){
             template = svgFrameJaleTemplate;
         }
+        else if(character == "gaucho"){
+            template = svgFrameGauchoTemplate;
+        }
+        else if(character == "lider"){
+            template = svgFrameLiderTemplate;
+        }
         else {
-            template = svgFrameJaleTemplate;
+            template = svgFramePapavanegasTemplate;
         }
 
         return template;
