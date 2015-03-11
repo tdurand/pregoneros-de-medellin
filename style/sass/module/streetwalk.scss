@@ -202,6 +202,10 @@
                 bottom:-42%;
             }
 
+            &[data-state='open'] {
+                z-index:10;
+            }
+
 
         }
     }

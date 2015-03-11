@@ -270,7 +270,9 @@ function($, _, Backbone,
         self.isOpening = true;
 
         self.closeMenu();
+        var menu = self.$el.find(".streetwalk-menucharacter[data-character='" + character + "']");
         var submenu = self.$el.find(".streetwalk-menucharacter[data-character='" + character + "']").find(".submenu");
+        menu.attr("data-state","open");
         submenu.attr("data-state","open");
         TweenLite.fromTo(submenu, 0.5, {scaleY:0,scaleX:0,transformOrigin:"right bottom",ease: Back.easeOut},{scaleY:1,scaleX:1,transformOrigin:"right bottom",ease: Back.easeOut,onComplete:function() {
             self.isOpening = false;
@@ -282,9 +284,11 @@ function($, _, Backbone,
         var self = this;
 
         var submenu = self.$el.find(".submenu[data-state='open']");
+        var menu = self.$el.find(".streetwalk-menucharacter[data-state='open']");
 
         if(skipAnimation) {
             submenu.attr("data-state","closed");
+            menu.attr("data-state","closed");
             return;
         }
 
@@ -296,6 +300,7 @@ function($, _, Backbone,
 
         TweenLite.fromTo(submenu, 0.5, {scaleY:1,scaleX:1,transformOrigin:"right bottom"},{scaleY:0,scaleX:0,transformOrigin:"right bottom",onComplete: function() {
             submenu.attr("data-state","closed");
+            menu.attr("data-state","closed");
             self.isClosing = false;
         }});
     },
