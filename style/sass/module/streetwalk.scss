@@ -169,6 +169,10 @@
                 }
             }
 
+            .character,.submenu g {
+                cursor: pointer;
+            }
+
             //Default states
             &[data-character='jale'] {
                 z-index: 10;
@@ -204,6 +208,15 @@
 
             &[data-state='open'] {
                 z-index:10;
+            }
+
+            //STATE
+            .character:active {
+                opacity:0.8 !important;
+            }
+
+            .submenu g:active {
+                opacity:0.8 !important;
             }
 
 
