@@ -44,7 +44,7 @@ function($, _, Backbone,
             },
             {
                 id: 'tooltip-characterfound',
-                target: '.menucharacter-pajarito .video3-locked',
+                target: '.menucharacter-jale .video3-locked',
                 placement: 'left',
                 title: 'AYUDA: DESCUBRE MÁS',
                 content: 'Puedes conocer mas sobre la Jale, buscala en otras calles !',
@@ -60,13 +60,13 @@ function($, _, Backbone,
 
                     //Animate ? sign
                     self.animationInterrogativeSign = new TimelineMax({onComplete:function() {
-                        TweenLite.to(".video3-locked .st6",0.5,{scaleX:1,scaleY:1});
-                        TweenLite.to(".video2-locked .st6",0.5,{scaleX:1,scaleY:1});
+                        TweenLite.to(".video3-locked .locker",0.5,{scaleX:1,scaleY:1});
+                        TweenLite.to(".video2-locked .locker",0.5,{scaleX:1,scaleY:1});
                     }});
-                    self.animationInterrogativeSign.add(TweenLite.fromTo(".video3-locked .st6", 0.5, { scaleX:0.7,scaleY:0.7 },{scaleX:1.3,scaleY:1.3, transformOrigin:"center center",ease: Power0.easeNone}));
-                    self.animationInterrogativeSign.add(TweenLite.fromTo(".video3-locked .st6", 0.5, { scaleX:1.3,scaleY:1.3 },{scaleX:0.7,scaleY:0.7, transformOrigin:"center center",ease: Power0.easeNone}));
-                    self.animationInterrogativeSign.add(TweenLite.fromTo(".video2-locked .st6", 0.5, { scaleX:0.7,scaleY:0.7 },{scaleX:1.3,scaleY:1.3, transformOrigin:"center center",ease: Power0.easeNone}),0);
-                    self.animationInterrogativeSign.add(TweenLite.fromTo(".video2-locked .st6", 0.5, { scaleX:1.3,scaleY:1.3 },{scaleX:0.7,scaleY:0.7, transformOrigin:"center center",ease: Power0.easeNone}),0.5);
+                    self.animationInterrogativeSign.add(TweenLite.fromTo(".video3-locked .locker", 0.5, { scaleX:0.7,scaleY:0.7 },{scaleX:1.3,scaleY:1.3, transformOrigin:"center center",ease: Power0.easeNone}));
+                    self.animationInterrogativeSign.add(TweenLite.fromTo(".video3-locked .locker", 0.5, { scaleX:1.3,scaleY:1.3 },{scaleX:0.7,scaleY:0.7, transformOrigin:"center center",ease: Power0.easeNone}));
+                    self.animationInterrogativeSign.add(TweenLite.fromTo(".video2-locked .locker", 0.5, { scaleX:0.7,scaleY:0.7 },{scaleX:1.3,scaleY:1.3, transformOrigin:"center center",ease: Power0.easeNone}),0);
+                    self.animationInterrogativeSign.add(TweenLite.fromTo(".video2-locked .locker", 0.5, { scaleX:1.3,scaleY:1.3 },{scaleX:0.7,scaleY:0.7, transformOrigin:"center center",ease: Power0.easeNone}),0.5);
                     self.animationInterrogativeSign.repeat(-1);
                 },
                 onCTA: function() {
@@ -76,7 +76,7 @@ function($, _, Backbone,
             },
             {
                 id: 'tooltip-characterfound',
-                target: '.streetwalk-menucharacter[data-character="perso3"] .character',
+                target: '.streetwalk-menucharacter[data-character="lider"] .character',
                 placement: 'top',
                 title: 'AYUDA: OTROS PERSONAJES',
                 content: 'Te dejamos explorar, hay varios otros personajes por encontrar !',
@@ -89,11 +89,11 @@ function($, _, Backbone,
 
                     //Animate locked characters
                     self.animationLockedCharacters = new TimelineMax({onComplete:function() {
-                        TweenLite.to(".character-locked .st18",0.5,{scaleX:1,scaleY:1});
-                        TweenLite.to(".character-locked .st18",0.5,{scaleX:1,scaleY:1});
+                        TweenLite.to(".character-locked",0.5,{scaleX:1,scaleY:1});
+                        TweenLite.to(".character-locked",0.5,{scaleX:1,scaleY:1});
                     }});
-                    self.animationLockedCharacters.add(TweenLite.fromTo(".character-locked .st18", 0.5, { scaleX:0.95,scaleY:0.95 },{scaleX:1.05,scaleY:1.05, transformOrigin:"center center",ease: Power0.easeNone}));
-                    self.animationLockedCharacters.add(TweenLite.fromTo(".character-locked .st18", 0.5, { scaleX:1.05,scaleY:1.05 },{scaleX:0.95,scaleY:0.95, transformOrigin:"center center",ease: Power0.easeNone}));
+                    self.animationLockedCharacters.add(TweenLite.fromTo(".character-locked", 0.5, { scaleX:0.95,scaleY:0.95 },{scaleX:1.05,scaleY:1.05, transformOrigin:"center center",ease: Power0.easeNone}));
+                    self.animationLockedCharacters.add(TweenLite.fromTo(".character-locked", 0.5, { scaleX:1.05,scaleY:1.05 },{scaleX:0.95,scaleY:0.95, transformOrigin:"center center",ease: Power0.easeNone}));
                     self.animationLockedCharacters.repeat(-1);
                 },
                 onCTA: function() {

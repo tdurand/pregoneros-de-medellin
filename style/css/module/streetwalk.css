@@ -34,7 +34,7 @@
   margin-right: 0;
   height: 10%;
   -webkit-transition: 0.5s ease-out;
-  opacity: 0.7;
+  opacity: 1;
   transform: translateY(90%);
   background-color: #FFD64A;
   z-index: 20;
@@ -481,7 +481,7 @@
 }
 /* line 498, ../../sass/module/streetwalk.scss */
 .streetwalk-tutorial-overlay.step1 {
-  background: -webkit-radial-gradient(55% 60%, circle closest-corner, transparent 0, black 50%);
+  background: -webkit-radial-gradient(65% 60%, circle closest-corner, transparent 0, black 50%);
 }
 /* line 502, ../../sass/module/streetwalk.scss */
 .streetwalk-tutorial-overlay.step2 {
@@ -515,8 +515,9 @@ body.not-moving .streetwalk-bottombar {
 /* line 539, ../../sass/module/streetwalk.scss */
 body.not-moving .streetwalk-menubottom {
   transform: translateY(0%);
+  -webkit-transition: 0.5s ease-out;
 }
-/* line 543, ../../sass/module/streetwalk.scss */
+/* line 544, ../../sass/module/streetwalk.scss */
 body.not-moving .streetwalk-sign {
   transform: translateY(0%);
   -webkit-transition: 0.5s ease-out;
