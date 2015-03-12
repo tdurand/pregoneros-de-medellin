@@ -16,6 +16,8 @@ function($, _, Backbone,
         
         var self = this;
 
+        self.WAYS = WAYS;
+
         //TODO REMOVE WHEN REMOVE SOUND EDITOR
         window.WAYSClone = _.cloneDeep(WAYS);
 

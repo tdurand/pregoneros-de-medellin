@@ -335,6 +335,30 @@ function($, _, Backbone,
         else {
             //locker
             //show tooltip to go to other street
+            var calloutMgr = hopscotch.getCalloutManager();
+            calloutMgr.createCallout({
+                  id: 'unlock-video',
+                  target: ".menucharacter-" + character + " ." + content +"-locked",
+                  placement: 'top',
+                  title: 'Bloqueado',
+                  content: 'Para desbloquear, buscas a Jale las calle, o si quieres, te podemos llevar hasta allá !'
+                            +'<p><button class="btn-gotostreet hopscotch-nav-button hopscotch-cta">Llevame</button> <button class="hopscotch-close hopscotch-nav-button hopscotch-cta">Prefiero buscar</button></p>',
+                  onShow: function() {
+                     $(".streetwalk-tutorial-overlay").show();
+                  },
+                  onCTA: function() {
+                    $(".streetwalk-tutorial-overlay").hide();
+                  },
+                  onClose: function() {
+                    $(".streetwalk-tutorial-overlay").hide();
+                  }
+
+            });
+
+            $(".btn-gotostreet").one("click",function() {
+                var street = Progression.instance.getStreetWhereCharacterNotDiscovered(character);
+                window.location.href = "#streetwalk/"+ street;
+            });
         }
     },
 

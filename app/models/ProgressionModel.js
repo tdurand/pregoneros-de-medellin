@@ -260,6 +260,25 @@ function($, _, Backbone, LOGGER, Ways){
     setCurrentStreet: function(wayName) {
         var self = this;
         self.set("currentStreet", wayName);
+    },
+
+    getStreetWhereCharacterNotDiscovered: function(character) {
+        var self = this;
+
+        var streetsWhereCharacter = _.pluck(_.where(Ways.WAYS,{"characterDefinition":{name:character}}),"wayName");
+        var streetsAlreadyUnlockedTemp = _.pluck(_.where(self.get("charactersProgression").get(character),{locked:false},"wayName"),"wayName");
+        var streetsAlreadyUnlocked = [];
+        _.each(streetsAlreadyUnlockedTemp, function(way) {
+            if(!_.isUndefined(way)) {
+                var wayReverse = Ways.getReverseWayName(way);
+                streetsAlreadyUnlocked.push(way);
+                streetsAlreadyUnlocked.push(wayReverse);
+            }
+        });
+
+        var streetsToGo = _.difference(streetsWhereCharacter, streetsAlreadyUnlocked);
+
+        return streetsToGo[0];
     }
 
 
