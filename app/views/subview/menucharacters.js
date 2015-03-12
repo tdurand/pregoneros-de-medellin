@@ -341,12 +341,13 @@ function($, _, Backbone,
                   target: ".menucharacter-" + character + " ." + content +"-locked",
                   placement: 'top',
                   title: 'Bloqueado',
-                  content: 'Para desbloquear, buscas a Jale las calle, o si quieres, te podemos llevar hasta allá !'
-                            +'<p><button class="btn-gotostreet hopscotch-nav-button hopscotch-cta">Llevame</button> <button class="hopscotch-close hopscotch-nav-button hopscotch-cta">Prefiero buscar</button></p>',
+                  content: 'Para desbloquear, encontra a '+ character +' las otras calles, o si quieres, te podemos llevar hasta allá !'
+                            +'<p><button class="btn-gotostreet btn-secondary hopscotch-cta">Llevame</button> <button class="hopscotch-close hopscotch-nav-button hopscotch-cta">Prefiero buscar</button></p>',
                   onShow: function() {
                      $(".streetwalk-tutorial-overlay").show();
                   },
                   onCTA: function() {
+                    //in case we are in the tutorial
                     $(".streetwalk-tutorial-overlay").hide();
                   },
                   onClose: function() {
@@ -356,6 +357,7 @@ function($, _, Backbone,
             });
 
             $(".btn-gotostreet").one("click",function() {
+                $("body").css("overflow", "visible");
                 var street = Progression.instance.getStreetWhereCharacterNotDiscovered(character);
                 window.location.href = "#streetwalk/"+ street;
             });
