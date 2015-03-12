@@ -14,6 +14,7 @@ define(['jquery',
     'views/subview/menustreetwalk',
     'views/subview/tutorial',
     'views/subview/map',
+    'views/subview/videomanager',
     'views/usermanager',
     'text!templates/streetwalk/streetWalkViewTemplate.html',
     'text!templates/streetwalk/streetWalkLoadingViewTemplate.html',
@@ -27,7 +28,6 @@ define(['jquery',
     'text!templates/svg/svgFrameGauchoTemplate.html',
     'text!templates/svg/svgFramePapavanegasTemplate.html',
     'text!templates/svg/svgScrollToStartES.html',
-    'popcorn',
     'tweenmax',
     'mapbox'
     ],
@@ -45,6 +45,7 @@ define(['jquery',
         MenuStreetWalkView,
         TutorialView,
         MapView,
+        VideoManagerView,
         UserManagerView,
         streetWalkViewTemplate,
         streetWalkLoadingViewTemplate,
@@ -75,8 +76,7 @@ define(['jquery',
 
         events:{
             "click .toggle-sounds ":"toggleSounds",
-            "click .character-sign":"showVideo",
-            "click .streetwalk-video-btnclose":"closeVideo",
+            "click .character-sign":"clickOnCharacter",
             "click .streetwalk-soundeditor-btnshow":"showSoundEditor"
         },
 
@@ -126,7 +126,7 @@ define(['jquery',
             });
 
 
-            self.listenToOnce(self,"closeVideo", function() {
+            self.listenToOnce(VideoManagerView,"closeVideo", function() {
                 TutorialView.trigger("closeVideo");
                 MenuCharactersView.trigger("closeVideo");
             });
@@ -310,6 +310,7 @@ define(['jquery',
         MenuCharactersView.prepare();
         MenuStreetWalkView.prepare(UserManagerView);
         MapView.prepare(self.way.wayPath[self.currentStill.id]);
+        VideoManagerView.prepare(Progression);
 
         Progression.setCurrentStreet(self.way.wayName);
 
@@ -388,7 +389,10 @@ define(['jquery',
         });
 
         self.listenToOnce(self.way,"loadingFinishedCompletely", function() {
-            self.initVideo();
+            //if there is a character in this street
+            if(self.way.isThereACharacter()) {
+                VideoManagerView.initVideo(self.way.characterDefinition.name, self.way.wayName);
+            }
         });
         
     },
@@ -705,77 +709,20 @@ define(['jquery',
         Sounds.unmute();
     },
 
-    initVideo: function() {
-        var self = this;
-
-        if(self.way.characterDefinition) {
-
-            var idVimeo = Progression.instance.nextVideoToPlay(self.way.characterDefinition.name, self.way.wayName);
-            // Add video
-            self.popcorn = Popcorn.vimeo( ".streetwalk-video-container", "http://player.vimeo.com/video/"+idVimeo);
-        }
-   },
-
-   showVideo: function(e) {
+   clickOnCharacter: function(e) {
         var self = this;
 
         self.trigger("clickOnCharacter");
 
-        //unlocknext item
-        var someThingUnlocked = Progression.instance.unlockNextItem(self.way.characterDefinition.name,self.way.wayName);
-        Progression.save();
+        self.listenToOnce(VideoManagerView,"showVideo",function() {
+            self.muteSounds();
+        });
 
-        if(!someThingUnlocked) {
-            //todo open video with animation from the character
-            TweenLite.fromTo(".streetwalk-video", 1,
-                {scaleY:0,scaleX:0},
-                {scaleY:1,scaleX:1,
-                    display:"block",
-                    transformOrigin:"bottom 80%",
-                    ease: Power1.easeInOut
-            });
-        }
+        self.listenToOnce(VideoManagerView,"closeVideo",function() {
+            self.unmuteSounds();
+        });
 
-        if(_.isUndefined(self.popcorn)) {
-            self.initVideo();
-        }
-
-        self.muteSounds();
-
-        setTimeout(function() {
-            self.popcorn.play();
-        },1000);
-
-    },
-
-    closeVideo: function() {
-        var self = this;
-
-        self.popcorn.pause();
-        self.popcorn.currentTime(0);
-
-        self.unmuteSounds();
-
-        if(!self.videoShownOneTime) {
-            self.trigger("closeVideo");
-            self.videoShownOneTime = true;
-        }
-        else {
-            //close video TODO FROM THE CHARACTER
-            TweenLite.fromTo(".streetwalk-video", 0.7,
-                {scaleY:1,scaleX:1},
-                {scaleY:0,scaleX:0,
-                    display:"none",
-                    transformOrigin:"bottom 80%",
-                    ease: Power1.easeInOut
-            });
-        }
-
-        //current character
-        var characterName = self.way.characterDefinition.name;
-
-        //open menu
-        // MenuCharactersView.openMenu(characterName);
+        VideoManagerView.showVideo(self.way.characterDefinition.name, self.way.wayName);
     },
 
     showSoundEditor: function() {

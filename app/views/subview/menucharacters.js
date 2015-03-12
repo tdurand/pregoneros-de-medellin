@@ -24,7 +24,8 @@ function($, _, Backbone,
 
     events:{
         "click .character":"toggleMenu",
-        "click .btn-close":"toggleMenu"
+        "click .btn-close":"toggleMenu",
+        "click .video":"clickOnMenu"
     },
 
     firstRender: true,
@@ -315,6 +316,23 @@ function($, _, Backbone,
             menu.attr("data-state","closed");
             self.isClosing = false;
         }});
+    },
+
+    clickOnMenu: function(e) {
+        var self = this;
+
+        var type = $(e.currentTarget).attr("data-type");
+        var content = $(e.currentTarget).attr("data-content");
+        var character = $(e.currentTarget).attr("data-character");
+
+        if(type == "video") {
+            //open video
+            
+        }
+        else {
+            //locker
+            //show tooltip to go to other street
+        }
     },
 
     onClose: function(){

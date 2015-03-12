@@ -120,6 +120,16 @@ function($, _, Backbone,
             
         },
 
+        isThereACharacter: function() {
+            var self = this;
+            if(self.characterDefinition) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        },
+
         clear: function() {
             var self = this;
             self.wayStills.clear();
