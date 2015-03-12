@@ -307,7 +307,7 @@ define(['jquery',
             self.$el.find(".img-container").html(_.template(self.getFrameTemplate(self.way.characterDefinition.name)));
         }
 
-        MenuCharactersView.prepare();
+        MenuCharactersView.prepare(VideoManagerView);
         MenuStreetWalkView.prepare(UserManagerView);
         MapView.prepare(self.way.wayPath[self.currentStill.id]);
         VideoManagerView.prepare(Progression);

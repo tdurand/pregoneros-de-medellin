@@ -13,6 +13,10 @@ function($, _, Backbone,
     },
 
     videoShownOneTime: false,
+    videoCharacter:"",
+    videoName:"",
+    videoId: null,
+
 
     prepare : function(Progression) {
         var self = this;
@@ -25,18 +29,43 @@ function($, _, Backbone,
     initVideo: function(characterName, wayName) {
         var self = this;
 
-        var idVimeo = self.Progression.instance.nextVideoToPlay(characterName, wayName);
+        var video = self.Progression.instance.nextVideoToPlay(characterName, wayName);
         // Add video
-        self.popcorn = Popcorn.vimeo( ".streetwalk-video-container", "http://player.vimeo.com/video/"+idVimeo);
+        self.popcorn = Popcorn.vimeo( ".streetwalk-video-container", "http://player.vimeo.com/video/"+video.videoId);
+
+        self.videoCharacter = characterName;
+        self.videoName = video.videoName;
+        self.videoId = video.videoId;
+   },
+
+   initSpecificVideo: function(characterName, video) {
+       var self = this;
+
+       var idVimeo = self.Progression.instance.get("videoToPlay")[characterName][video];
+        // Add video
+       if(self.popcorn) {
+            self.popcorn.destroy();
+       }
+       $(".streetwalk-video-container iframe").remove();
+       self.popcorn = Popcorn.vimeo( ".streetwalk-video-container", "http://player.vimeo.com/video/"+idVimeo);
+
+       self.videoCharacter = characterName;
+       self.videoName = video;
+       self.videoId = idVimeo;
    },
 
    showVideo: function(characterName, wayName) {
         var self = this;
 
-        //unlocknext item
-        var someThingUnlocked = self.Progression.instance.unlockNextItem(characterName,wayName);
-        self.Progression.save();
+        var someThingUnlocked = false;
 
+        if(!_.isUndefined(characterName)) {
+            //unlocknext item
+            someThingUnlocked = self.Progression.instance.unlockNextItem(characterName,wayName);
+            self.Progression.save();
+        }
+
+        //if something unlocked, we open the menu and do the nice animation from the menucharacter.js view
         if(!someThingUnlocked) {
             //todo open video with animation from the character
             TweenLite.fromTo(".streetwalk-video", 1,

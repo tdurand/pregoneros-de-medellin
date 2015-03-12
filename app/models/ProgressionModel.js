@@ -173,6 +173,7 @@ function($, _, Backbone, LOGGER, Ways){
 
         var self = this;
         var videoId;
+        var videoName = "";
 
         //Check if we have already unlocked a video in this street
         var videoAlreadyUnlockedInThisStreet = self.itemAlreadyUnlockedInThisStreet(character, wayName);
@@ -180,15 +181,16 @@ function($, _, Backbone, LOGGER, Ways){
         if(_.isUndefined(videoAlreadyUnlockedInThisStreet)) {
             console.log("No unlock in this street yet");
             var nextItemForThisCharacter = self.nextItemToUnlock(character);
-
+            videoName = nextItemForThisCharacter;
             videoId = self.get("videoToPlay")[character][nextItemForThisCharacter];
         }
         else {
             console.log("Video already unlocked in this street, play same");
             videoId = self.get("videoToPlay")[character][videoAlreadyUnlockedInThisStreet];
+            videoName = videoAlreadyUnlockedInThisStreet;
         }
 
-        return videoId;
+        return { "videoId":videoId, "videoName":videoName };
 
     },
 

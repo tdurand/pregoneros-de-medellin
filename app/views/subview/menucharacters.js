@@ -30,10 +30,12 @@ function($, _, Backbone,
 
     firstRender: true,
 
-    prepare : function() {
+    prepare : function(VideoManagerView) {
         var self = this;
 
         self.setElement(".streetwalk-menucharacters");
+
+        self.VideoManagerView = VideoManagerView;
 
         self.render();
 
@@ -327,7 +329,8 @@ function($, _, Backbone,
 
         if(type == "video") {
             //open video
-            
+            self.VideoManagerView.initSpecificVideo(character, content);
+            self.VideoManagerView.showVideo();
         }
         else {
             //locker
