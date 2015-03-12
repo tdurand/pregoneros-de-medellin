@@ -711,17 +711,9 @@ define(['jquery',
         if(self.way.characterDefinition) {
 
             var idVimeo = Progression.instance.nextVideoToPlay(self.way.characterDefinition.name, self.way.wayName);
-
-            if(Progression.instance.isFirstVideo) {
-                Progression.instance.isFirstVideo = false;
-                idVimeo = 115328392;
-            }
-
-
-
-               // Add video
-               self.popcorn = Popcorn.vimeo( ".streetwalk-video-container", "http://player.vimeo.com/video/"+idVimeo);
-           }
+            // Add video
+            self.popcorn = Popcorn.vimeo( ".streetwalk-video-container", "http://player.vimeo.com/video/"+idVimeo);
+        }
    },
 
    showVideo: function(e) {
@@ -759,6 +751,11 @@ define(['jquery',
     closeVideo: function() {
         var self = this;
 
+        self.popcorn.pause();
+        self.popcorn.currentTime(0);
+
+        self.unmuteSounds();
+
         if(!self.videoShownOneTime) {
             self.trigger("closeVideo");
             self.videoShownOneTime = true;
@@ -773,11 +770,6 @@ define(['jquery',
                     ease: Power1.easeInOut
             });
         }
-
-        self.popcorn.pause();
-        self.popcorn.currentTime(0);
-
-        self.unmuteSounds();
 
         //current character
         var characterName = self.way.characterDefinition.name;

@@ -27,12 +27,117 @@ function($, _, Backbone,
         "click .btn-close":"toggleMenu"
     },
 
+    firstRender: true,
+
     prepare : function() {
         var self = this;
 
         self.setElement(".streetwalk-menucharacters");
 
         self.render();
+
+        if(self.firstRender) {
+            self.initListeners();
+            self.firstRender = false;
+        }
+    },
+
+    initListeners: function() {
+        var self = this;
+        
+        Progression.instance.on("change", function() {
+            console.log(_.keys(Progression.instance.changedAttributes()));
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:pajarito.video1.locked', function(model, newValue){
+                var character = "pajarito";
+                var video = "video1";
+                self.unlock(character,video);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:pajarito.video2.locked', function(model, newValue){
+                var character = "pajarito";
+                var video = "video2";
+                self.unlock(character,video);
+        });
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:pajarito.video3.locked', function(model, newValue){
+                this.unbind();
+                var character = "pajarito";
+                var video = "video3";
+                self.unlock(character,video);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:jale.video1.locked', function(model, newValue){
+                var character = "jale";
+                var video = "video1";
+                self.unlock(character,video);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:jale.video2.locked', function(model, newValue){
+                var character = "jale";
+                var video = "video2";
+                self.unlock(character,video);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:jale.video3.locked', function(model, newValue){
+                var character = "jale";
+                var video = "video3";
+                self.unlock(character,video);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:lider.video1.locked', function(model, newValue){
+                var character = "lider";
+                var video = "video1";
+                self.unlock(character,video);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:lider.video2.locked', function(model, newValue){
+                var character = "lider";
+                var video = "video2";
+                self.unlock(character,video);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:lider.video3.locked', function(model, newValue){
+                var character = "lider";
+                var video = "video3";
+                self.unlock(character,video);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:gaucho.video1.locked', function(model, newValue){
+                var character = "gaucho";
+                var video = "video1";
+                self.unlock(character,video);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:gaucho.video2.locked', function(model, newValue){
+                var character = "gaucho";
+                var video = "video2";
+                self.unlock(character,video);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:gaucho.video3.locked', function(model, newValue){
+                var character = "gaucho";
+                var video = "video3";
+                self.unlock(character,video);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:papavanegas.video1.locked', function(model, newValue){
+                var character = "papavanegas";
+                var video = "video1";
+                self.unlock(character,video);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:papavanegas.video2.locked', function(model, newValue){
+                var character = "papavanegas";
+                var video = "video2";
+                self.unlock(character,video);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:papavanegas.video3.locked', function(model, newValue){
+                var character = "papavanegas";
+                var video = "video3";
+                self.unlock(character,video);
+        });
     },
 
     render: function() {
@@ -57,99 +162,6 @@ function($, _, Backbone,
         }));
 
         self.updateMenuCharactersStates();
-
-        Progression.instance.on("change", function() {
-            console.log(_.keys(Progression.instance.changedAttributes()));
-        });
-
-        Progression.instance.get("charactersProgression").bind('change:pajarito.video1.locked', function(model, newValue){
-                var character = "pajarito";
-                var video = "video1";
-                self.unlock(character,video);
-        });
-
-        Progression.instance.get("charactersProgression").bind('change:pajarito.video2.locked', function(model, newValue){
-                var character = "pajarito";
-                var video = "video2";
-                self.unlock(character,video);
-        });
-        Progression.instance.get("charactersProgression").bind('change:pajarito.video3.locked', function(model, newValue){
-                var character = "pajarito";
-                var video = "video3";
-                self.unlock(character,video);
-        });
-
-        Progression.instance.get("charactersProgression").bind('change:jale.video1.locked', function(model, newValue){
-                var character = "jale";
-                var video = "video1";
-                self.unlock(character,video);
-        });
-
-        Progression.instance.get("charactersProgression").bind('change:jale.video2.locked', function(model, newValue){
-                var character = "jale";
-                var video = "video2";
-                self.unlock(character,video);
-        });
-
-        Progression.instance.get("charactersProgression").bind('change:jale.video3.locked', function(model, newValue){
-                var character = "jale";
-                var video = "video3";
-                self.unlock(character,video);
-        });
-
-        Progression.instance.get("charactersProgression").bind('change:lider.video1.locked', function(model, newValue){
-                var character = "lider";
-                var video = "video1";
-                self.unlock(character,video);
-        });
-
-        Progression.instance.get("charactersProgression").bind('change:lider.video2.locked', function(model, newValue){
-                var character = "lider";
-                var video = "video2";
-                self.unlock(character,video);
-        });
-
-        Progression.instance.get("charactersProgression").bind('change:lider.video3.locked', function(model, newValue){
-                var character = "lider";
-                var video = "video3";
-                self.unlock(character,video);
-        });
-
-        Progression.instance.get("charactersProgression").bind('change:gaucho.video1.locked', function(model, newValue){
-                var character = "gaucho";
-                var video = "video1";
-                self.unlock(character,video);
-        });
-
-        Progression.instance.get("charactersProgression").bind('change:gaucho.video2.locked', function(model, newValue){
-                var character = "gaucho";
-                var video = "video2";
-                self.unlock(character,video);
-        });
-
-        Progression.instance.get("charactersProgression").bind('change:gaucho.video3.locked', function(model, newValue){
-                var character = "gaucho";
-                var video = "video3";
-                self.unlock(character,video);
-        });
-
-        Progression.instance.get("charactersProgression").bind('change:papavanegas.video1.locked', function(model, newValue){
-                var character = "papavanegas";
-                var video = "video1";
-                self.unlock(character,video);
-        });
-
-        Progression.instance.get("charactersProgression").bind('change:papavanegas.video2.locked', function(model, newValue){
-                var character = "papavanegas";
-                var video = "video2";
-                self.unlock(character,video);
-        });
-
-        Progression.instance.get("charactersProgression").bind('change:papavanegas.video3.locked', function(model, newValue){
-                var character = "papavanegas";
-                var video = "video3";
-                self.unlock(character,video);
-        });
     },
 
     unlock: function(character,video) {
@@ -308,6 +320,7 @@ function($, _, Backbone,
     onClose: function(){
       //Clean
       this.undelegateEvents();
+      this.stopListening();
     }
 
   });
