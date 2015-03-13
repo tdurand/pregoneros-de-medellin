@@ -46,7 +46,10 @@
         position:absolute;
         top:100%;
         right: 0%;
-        transform:translate(95%,-110%);
+        
+        -webkit-transition:0.5s ease-out;
+        transform:translate(0%,-110%);
+
         z-index:10;
 
         button {
@@ -90,6 +93,10 @@
         position:absolute;
         z-index:30;
 
+        //Position
+        transform:translateY(-25%);
+        -webkit-transition:0.5s ease-out;
+
         //Positionning
         bottom:30%;
         left:-2%;
@@ -104,8 +111,6 @@
         -o-border-image: url("../../images/mapborder.png") 39 167 63 89 stretch;
         border-image: url("../../images/mapborder.png") 39 167 63 89 fill stretch;
         background-color: transparent;
-
-        transition: height 0.2s ease-in,width 0.2s ease-out;
 
         .streetwalk-mapcontainer {
             height: 100%;
@@ -537,6 +542,16 @@ body.not-moving {
     }
 
     .streetwalk-menubottom {
+        transform:translateY(0%);
+        -webkit-transition:0.5s ease-out;
+    }
+
+    .streetwalk-btnmenu-wrapper {
+        -webkit-transition:0.5s ease-out;
+        transform:translate(95%,-110%);
+    }
+
+    .streetwalk-map {
         transform:translateY(0%);
         -webkit-transition:0.5s ease-out;
     }
