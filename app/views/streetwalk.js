@@ -146,7 +146,9 @@ define(['jquery',
 
             //PROGRESSION
             self.listenTo(Progression.instance,"change:nbItemUnlocked", function() {
-                self.$el.find(".streetwalk-progress .nbStoriesUnlocked").text(Progression.instance.get("nbItemUnlocked"));
+                self.listenToOnce(VideoManagerView,"closeVideo",function() {
+                    self.$el.find(".streetwalk-progress .nbStoriesUnlocked").text(Progression.instance.get("nbItemUnlocked"));
+                });
             });
 
         },
