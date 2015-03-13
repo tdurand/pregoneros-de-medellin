@@ -609,6 +609,7 @@ define(['jquery',
                     //Render elements at this position:
                     self.renderElements(imgNb);
                     $("body").removeClass('not-moving');
+                    MapView.moving = true;
 
                     //close menu
                     MenuCharactersView.closeMenu(true);
@@ -633,6 +634,7 @@ define(['jquery',
                         self.lastCallRenderHighResStill = self.currentStill;
 
                         self.timeOutNotMoving = setTimeout(function() {
+                            MapView.moving = false;
                             $("body").addClass('not-moving');
                         },1000);
                     },100);
@@ -745,6 +747,7 @@ define(['jquery',
       this.stopListening();
       this.way.clear();
       this.animating = false;
+      MapView.onClose();
   }
 
 });
