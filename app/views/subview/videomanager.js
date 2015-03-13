@@ -1,10 +1,12 @@
 define(['jquery',
         'underscore',
         'backbone',
-        'utils/Logger'
+        'utils/Logger',
+        'utils/Constant'
         ],
 function($, _, Backbone,
-                LOGGER){
+                LOGGER,
+                CONSTANT){
 
   var VideoManagerView = Backbone.View.extend({
 
@@ -41,7 +43,7 @@ function($, _, Backbone,
    initSpecificVideo: function(characterName, video) {
        var self = this;
 
-       var idVimeo = self.Progression.instance.get("videoToPlay")[characterName][video];
+       var idVimeo = CONSTANT.get("videoToPlay")[characterName][video];
         // Add video
        if(self.popcorn) {
             self.popcorn.destroy();

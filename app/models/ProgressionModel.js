@@ -2,9 +2,10 @@ define(['jquery',
         'underscore',
         'backbone',
         'utils/Logger',
+        'utils/Constant',
         'models/Ways'
         ],
-function($, _, Backbone, LOGGER, Ways){
+function($, _, Backbone, LOGGER, CONSTANT, Ways){
 
   var ProgressionModel = Backbone.Model.extend({
 
@@ -128,36 +129,6 @@ function($, _, Backbone, LOGGER, Ways){
                 currentStreet:""
             });
 
-            self.set({
-                videoToPlay: {
-                    jale: {
-                        video1:"120590814",
-                        video2:"120593060",
-                        video3:"120593061"
-                    },
-                    pajarito: {
-                        video1:"121791163",
-                        video2:"121791164",
-                        video3:"121791165"
-                    },
-                    lider: {
-                        video1:"120198776",
-                        video2:"120198778",
-                        video3:"120198779"
-                    },
-                    gaucho: {
-                        video1:"115328392",
-                        video2:"115325355",
-                        video3:"115325356"
-                    },
-                    papavanegas: {
-                        video1:"115328392",
-                        video2:"115325355",
-                        video3:"115325356"
-                    }
-                }
-            });
-
             //Reinitialize id to undefined (for parse sync)
             self.id = undefined;
         }
@@ -182,11 +153,11 @@ function($, _, Backbone, LOGGER, Ways){
             console.log("No unlock in this street yet");
             var nextItemForThisCharacter = self.nextItemToUnlock(character);
             videoName = nextItemForThisCharacter;
-            videoId = self.get("videoToPlay")[character][nextItemForThisCharacter];
+            videoId = CONSTANT.get("videoToPlay")[character][nextItemForThisCharacter];
         }
         else {
             console.log("Video already unlocked in this street, play same");
-            videoId = self.get("videoToPlay")[character][videoAlreadyUnlockedInThisStreet];
+            videoId = CONSTANT.get("videoToPlay")[character][videoAlreadyUnlockedInThisStreet];
             videoName = videoAlreadyUnlockedInThisStreet;
         }
 

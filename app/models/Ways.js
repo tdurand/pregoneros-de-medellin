@@ -43,7 +43,9 @@ function($, _, Backbone,
 
   });
 
-  return new Ways();
+  window.Ways = new Ways();
+
+  return window.Ways;
   
 });
 

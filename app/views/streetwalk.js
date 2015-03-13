@@ -312,7 +312,7 @@ define(['jquery',
 
         MenuCharactersView.prepare(VideoManagerView);
         MenuStreetWalkView.prepare(UserManagerView);
-        MapView.prepare(self.way.wayPath[self.currentStill.id]);
+        MapView.prepare(self.way.wayPath[self.currentStill.id],Ways);
         VideoManagerView.prepare(Progression);
 
         Progression.setCurrentStreet(self.way.wayName);
