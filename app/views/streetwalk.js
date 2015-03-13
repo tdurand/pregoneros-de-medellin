@@ -79,13 +79,7 @@ define(['jquery',
             "click .character-sign":"clickOnCharacter",
             "click .streetwalk-soundeditor-btnshow":"showSoundEditor"
         },
-
-        bindings:{
-            ".streetwalk-progress .nbStoriesUnlocked":{
-                observe:"nbItemUnlocked"
-            }
-        },
-
+        
         initialize : function(params) {
             var self = this;
 
@@ -148,6 +142,11 @@ define(['jquery',
 
             self.listenTo(UserManagerView,"logOut",function() {
                 self.goToStreetName("plazabotero-start-carabobo");
+            });
+
+            //PROGRESSION
+            self.listenTo(Progression.instance,"change:nbItemUnlocked", function() {
+                self.$el.find(".streetwalk-progress .nbStoriesUnlocked").text(Progression.instance.get("nbItemUnlocked"));
             });
 
         },
@@ -287,7 +286,9 @@ define(['jquery',
         }
 
         //Render top signs
-        self.$el.find(".streetwalk-progress").html(_.template(svgSignTopProgressTemplate));
+        self.$el.find(".streetwalk-progress").html(_.template(svgSignTopProgressTemplate)({
+            nbItemUnlocked: Progression.instance.get("nbItemUnlocked")
+        }));
         self.$el.find(".streetwalk-area").html(_.template(svgSignTopAreaTemplate)({
             area:self.way.wayArea
         }));

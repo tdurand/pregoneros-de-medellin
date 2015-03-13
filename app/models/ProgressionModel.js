@@ -246,6 +246,8 @@ function($, _, Backbone, LOGGER, Ways){
 
         self.set("nbItemUnlocked", nbItemUnlocked);
 
+        console.log("nbItemUnlocked: " + nbItemUnlocked);
+
         return true;
 
     },
