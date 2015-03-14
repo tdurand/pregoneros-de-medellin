@@ -97,6 +97,10 @@
         transform:translateY(-25%);
         -webkit-transition:0.5s ease-out;
 
+        &.enlarged {
+            transform:translateY(-12%);
+        }
+
         //Positionning
         bottom:30%;
         left:-2%;
@@ -539,6 +543,15 @@ body.not-moving {
         -webkit-transition:0.5s ease-out;
         opacity: 1;
         transform:translateY(0%);
+
+        .streetwalk-map {
+            transform:translateY(0%);
+            -webkit-transition:0.5s ease-out;
+
+            .enlarged {
+                transform:translateY(0%);
+            }
+        }   
     }
 
     .streetwalk-menubottom {
@@ -549,11 +562,6 @@ body.not-moving {
     .streetwalk-btnmenu-wrapper {
         -webkit-transition:0.5s ease-out;
         transform:translate(95%,-110%);
-    }
-
-    .streetwalk-map {
-        transform:translateY(0%);
-        -webkit-transition:0.5s ease-out;
     }
 
     .streetwalk-sign {
