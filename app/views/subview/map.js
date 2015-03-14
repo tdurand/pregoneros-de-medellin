@@ -85,7 +85,7 @@ function($, _, Backbone,
                 "type": "Feature",
                 "geometry": {
                     "type": "Point",
-                    "coordinates": characterPosition.position
+                    "coordinates": [characterPosition.position[1],characterPosition.position[0]]
                 },
                 "properties": {
                 "title": characterPosition.name,
