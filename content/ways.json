@@ -3354,8 +3354,8 @@
     "characterDefinition": {
       "startFrame": 100,
       "endFrame": 136,
-      "framefullWidth": 18,
-      "framestartWidth": 7,
+      "framefullWidth": 22,
+      "framestartWidth": 8,
       "offsetTopCenter": 10,
       "name": "papavanegas"
     },
@@ -3530,7 +3530,7 @@
     "characterDefinition":{
       "startFrame": 111,
       "endFrame": 165,
-      "framefullWidth": 18,
+      "framefullWidth": 22,
       "framestartWidth": 7,
       "offsetTopCenter": 10,
       "name": "papavanegas"
@@ -5500,7 +5500,7 @@
     "characterDefinition": {
       "startFrame": 165,
       "endFrame": 200,
-      "framefullWidth": 18,
+      "framefullWidth": 22,
       "framestartWidth": 7,
       "offsetTopCenter": 10,
       "name": "papavanegas"
@@ -5712,7 +5712,7 @@
     "characterDefinition": {
       "startFrame": 290,
       "endFrame": 333,
-      "framefullWidth": 18,
+      "framefullWidth": 22,
       "framestartWidth": 7,
       "offsetTopCenter": 20,
       "name": "papavanegas"
@@ -5976,7 +5976,7 @@
     "characterDefinition": {
       "startFrame": 75,
       "endFrame": 131,
-      "framefullWidth": 20,
+      "framefullWidth": 22,
       "framestartWidth": 7,
       "offsetTopCenter": 10,
       "name": "papavanegas"
@@ -6147,8 +6147,8 @@
     "characterDefinition": {
       "startFrame": 180,
       "endFrame": 246,
-      "framefullWidth": 15,
-      "framestartWidth": 6,
+      "framefullWidth": 22,
+      "framestartWidth": 7,
       "offsetTopCenter": 10,
       "name": "papavanegas"
     },
