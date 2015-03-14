@@ -81,6 +81,10 @@ function($, _, Backbone,
         var layerCharacters = L.mapbox.featureLayer(geoJson).addTo(self.map);
 
         _.each(self.characterPositions,function(characterPosition) {
+            if(characterPosition.way == "plazabotero-cr51-carabobo" || characterPosition.way == "plazabotero-carabobo-cr51") {
+                return;
+            }
+
             geoJson.push({
                 "type": "Feature",
                 "geometry": {
@@ -92,9 +96,9 @@ function($, _, Backbone,
                 "way":characterPosition.way,
                 "icon": {
                     "iconUrl": "/images/map/" + characterPosition.name + ".png",
-                    "iconSize": [50, 50], // size of the icon
-                    "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
-                    "popupAnchor": [0, -25], // point from which the popup should open relative to the iconAnchor
+                    "iconSize": [40, 40], // size of the icon
+                    "iconAnchor": [20, 20], // point of the icon which will correspond to marker's location
+                    "popupAnchor": [0, -20], // point from which the popup should open relative to the iconAnchor
                     "className": "characterIcon"
                 }
                 }
