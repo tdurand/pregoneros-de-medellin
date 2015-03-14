@@ -48,7 +48,7 @@ function($, _, Backbone,
             zoomControl: false,
             attributionControl: false,
             minZoom: 16,
-            maxZoom: 19,
+            maxZoom: 17,
             maxBounds:[[6.24327071884627,-75.57523012161253],[6.254767683129394,-75.56199073791504]]
         });
 
@@ -95,11 +95,11 @@ function($, _, Backbone,
                 "title": characterPosition.name,
                 "way":characterPosition.way,
                 "icon": {
-                    "iconUrl": "/images/map/" + characterPosition.name + ".png",
+                    "iconUrl": "/images/map/" + characterPosition.name + "-locked.png",
                     "iconSize": [40, 40], // size of the icon
                     "iconAnchor": [20, 20], // point of the icon which will correspond to marker's location
                     "popupAnchor": [0, -20], // point from which the popup should open relative to the iconAnchor
-                    "className": "characterIcon"
+                    "className": characterPosition.name + " " + characterPosition.way
                 }
                 }
             });
@@ -171,7 +171,7 @@ function($, _, Backbone,
         //CAN'T USE GSAP BECAUSE OF WIDTH SET, doesn't work with Gsap, it set outerwidth
         self.$el.one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
             self.$el.addClass("enlarged");
-            self.map.setZoom(17);
+            self.map.setZoom(16);
             self.map.invalidateSize(true);
             self.enlarged = true;
             self.isChangingSize = false;
@@ -196,7 +196,7 @@ function($, _, Backbone,
 
         self.$el.one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
             self.$el.removeClass("enlarged");
-            self.map.setZoom(19);
+            self.map.setZoom(17);
             self.map.invalidateSize(true);
             self.enlarged = false;
             self.isChangingSize = false;
