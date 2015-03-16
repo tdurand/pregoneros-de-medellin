@@ -47,10 +47,6 @@ function($, _, Backbone,
 
     initListeners: function() {
         var self = this;
-        
-        Progression.instance.on("change", function() {
-            console.log(_.keys(Progression.instance.changedAttributes()));
-        });
 
         self.listenToOnce(Progression.instance.get("charactersProgression"),'change:pajarito.video1.locked', function(model, newValue){
                 var character = "pajarito";

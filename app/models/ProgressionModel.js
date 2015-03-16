@@ -252,6 +252,20 @@ function($, _, Backbone, LOGGER, CONSTANT, Ways){
         var streetsToGo = _.difference(streetsWhereCharacter, streetsAlreadyUnlocked);
 
         return streetsToGo[0];
+    },
+
+    isThisCharacterInThisStreetLocked: function(wayName, character) {
+        var self = this;
+        
+        var locked = true;
+        if(!_.isUndefined(_.find(self.get("charactersProgression").get(character),{wayName:wayName}))) {
+            locked = false;
+        }
+
+        if(!_.isUndefined(_.find(self.get("charactersProgression").get(character),{wayName:Ways.getReverseWayName(wayName)}))) {
+            locked = false;
+        }
+        return locked;
     }
 
 

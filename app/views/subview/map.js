@@ -70,6 +70,118 @@ function($, _, Backbone,
             },function() {
                 self.reduceMap();
             });
+
+            self.initListeners();
+        });
+    },
+
+    initListeners: function() {
+
+        var self = this;
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:pajarito.video1.locked', function(model, newValue){
+                var character = "pajarito";
+                var video = "video1";
+                var way = Progression.instance.get("charactersProgression").get("pajarito.video1.wayName");
+                self.unlockIconMap(way,character);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:pajarito.video2.locked', function(model, newValue){
+                var character = "pajarito";
+                var video = "video2";
+                var way = Progression.instance.get("charactersProgression").get(character+"."+video+".wayName");
+                self.unlockIconMap(way,character);
+        });
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:pajarito.video3.locked', function(model, newValue){
+                this.unbind();
+                var character = "pajarito";
+                var video = "video3";
+                var way = Progression.instance.get("charactersProgression").get(character+"."+video+".wayName");
+                self.unlockIconMap(way,character);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:jale.video1.locked', function(model, newValue){
+                var character = "jale";
+                var video = "video1";
+                var way = Progression.instance.get("charactersProgression").get(character+"."+video+".wayName");
+                self.unlockIconMap(way,character);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:jale.video2.locked', function(model, newValue){
+                var character = "jale";
+                var video = "video2";
+                var way = Progression.instance.get("charactersProgression").get(character+"."+video+".wayName");
+                self.unlockIconMap(way,character);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:jale.video3.locked', function(model, newValue){
+                var character = "jale";
+                var video = "video3";
+                var way = Progression.instance.get("charactersProgression").get(character+"."+video+".wayName");
+                self.unlockIconMap(way,character);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:lider.video1.locked', function(model, newValue){
+                var character = "lider";
+                var video = "video1";
+                var way = Progression.instance.get("charactersProgression").get(character+"."+video+".wayName");
+                self.unlockIconMap(way,character);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:lider.video2.locked', function(model, newValue){
+                var character = "lider";
+                var video = "video2";
+                var way = Progression.instance.get("charactersProgression").get(character+"."+video+".wayName");
+                self.unlockIconMap(way,character);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:lider.video3.locked', function(model, newValue){
+                var character = "lider";
+                var video = "video3";
+                var way = Progression.instance.get("charactersProgression").get(character+"."+video+".wayName");
+                self.unlockIconMap(way,character);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:gaucho.video1.locked', function(model, newValue){
+                var character = "gaucho";
+                var video = "video1";
+                var way = Progression.instance.get("charactersProgression").get(character+"."+video+".wayName");
+                self.unlockIconMap(way,character);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:gaucho.video2.locked', function(model, newValue){
+                var character = "gaucho";
+                var video = "video2";
+                var way = Progression.instance.get("charactersProgression").get(character+"."+video+".wayName");
+                self.unlockIconMap(way,character);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:gaucho.video3.locked', function(model, newValue){
+                var character = "gaucho";
+                var video = "video3";
+                var way = Progression.instance.get("charactersProgression").get(character+"."+video+".wayName");
+                self.unlockIconMap(way,character);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:papavanegas.video1.locked', function(model, newValue){
+                var character = "papavanegas";
+                var video = "video1";
+                var way = Progression.instance.get("charactersProgression").get(character+"."+video+".wayName");
+                self.unlockIconMap(way,character);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:papavanegas.video2.locked', function(model, newValue){
+                var character = "papavanegas";
+                var video = "video2";
+                var way = Progression.instance.get("charactersProgression").get(character+"."+video+".wayName");
+                self.unlockIconMap(way,character);
+        });
+
+        self.listenToOnce(Progression.instance.get("charactersProgression"),'change:papavanegas.video3.locked', function(model, newValue){
+                var character = "papavanegas";
+                var video = "video3";
+                var way = Progression.instance.get("charactersProgression").get(character+"."+video+".wayName");
+                self.unlockIconMap(way,character);
         });
     },
 
@@ -94,12 +206,13 @@ function($, _, Backbone,
                 "properties": {
                 "title": characterPosition.name,
                 "way":characterPosition.way,
+                "wayReverse": Ways.getReverseWayName(characterPosition.way),
                 "icon": {
-                    "iconUrl": "/images/map/" + characterPosition.name + "-locked.png",
+                    "iconUrl": self.getIconPath(characterPosition.name,characterPosition.way),
                     "iconSize": [40, 40], // size of the icon
                     "iconAnchor": [20, 20], // point of the icon which will correspond to marker's location
                     "popupAnchor": [0, -20], // point from which the popup should open relative to the iconAnchor
-                    "className": characterPosition.name + " " + characterPosition.way
+                    "className": characterPosition.name + " " + characterPosition.way + " " + Ways.getReverseWayName(characterPosition.way)
                 }
                 }
             });
@@ -114,6 +227,24 @@ function($, _, Backbone,
         });
 
         layerCharacters.setGeoJSON(geoJson);
+    },
+
+    unlockIconMap: function(wayName, character) {
+        $(".streetwalk-mapcontainer ."+ wayName).attr("src","images/map/"+ character +".png");
+    },
+
+    getIconPath: function(characterName,wayName) {
+
+        var path = "images/map/" + characterName;
+
+        if(Progression.instance.isThisCharacterInThisStreetLocked(wayName,characterName)) {
+            path += "-locked.png";
+        }
+        else {
+            path += ".png";
+        }
+
+        return path;
     },
 
     adjustMapSizes: function() {
