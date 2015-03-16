@@ -1,10 +1,14 @@
 define(['jquery',
         'underscore',
         'backbone',
-        'utils/Logger'
+        'utils/Logger',
+        'utils/GeoUtils',
+        'models/Progression'
         ],
 function($, _, Backbone,
-                LOGGER){
+                LOGGER,
+                GeoUtils,
+                Progression){
 
   var MapView = Backbone.View.extend({
 
@@ -22,6 +26,7 @@ function($, _, Backbone,
 
         self.characterPositions = [];
 
+        //init characterPositions
         _.each(self.Ways.models,function(way) {
             if(way.characterDefinition) {
                 //just add one position for the street reverse
@@ -63,7 +68,9 @@ function($, _, Backbone,
             self.map.scrollWheelZoom.disable();
             // Disable tap handler, if present.
             if (self.map.tap) map.tap.disable();
+
             self.addAllCharacterToMap();
+            self.addWaysToMap();
 
             self.$el.find(".streetwalk-mapcontainer").hover(function() {
                 self.enlargeMap();
@@ -190,7 +197,7 @@ function($, _, Backbone,
 
         var geoJson = [];
 
-        var layerCharacters = L.mapbox.featureLayer(geoJson).addTo(self.map);
+        self.layerCharacters = L.mapbox.featureLayer(geoJson).addTo(self.map);
 
         _.each(self.characterPositions,function(characterPosition) {
             if(characterPosition.way == "plazabotero-cr51-carabobo" || characterPosition.way == "plazabotero-carabobo-cr51") {
@@ -204,29 +211,65 @@ function($, _, Backbone,
                     "coordinates": [characterPosition.position[1],characterPosition.position[0]]
                 },
                 "properties": {
-                "title": characterPosition.name,
-                "way":characterPosition.way,
-                "wayReverse": Ways.getReverseWayName(characterPosition.way),
-                "icon": {
-                    "iconUrl": self.getIconPath(characterPosition.name,characterPosition.way),
-                    "iconSize": [40, 40], // size of the icon
-                    "iconAnchor": [20, 20], // point of the icon which will correspond to marker's location
-                    "popupAnchor": [0, -20], // point from which the popup should open relative to the iconAnchor
-                    "className": characterPosition.name + " " + characterPosition.way + " " + Ways.getReverseWayName(characterPosition.way)
-                }
+                    "title": characterPosition.name,
+                    "way":characterPosition.way,
+                    "wayReverse": Ways.getReverseWayName(characterPosition.way),
+                    "icon": {
+                        "iconUrl": self.getIconPath(characterPosition.name,characterPosition.way),
+                        "iconSize": [40, 40], // size of the icon
+                        "iconAnchor": [20, 20], // point of the icon which will correspond to marker's location
+                        "popupAnchor": [0, -20], // point from which the popup should open relative to the iconAnchor
+                        "className": characterPosition.name + " " + characterPosition.way + " " + Ways.getReverseWayName(characterPosition.way)
+                    }
                 }
             });
         });
 
         // Set a custom icon on each marker based on feature properties.
-        layerCharacters.on('layeradd', function(e) {
+        self.layerCharacters.on('layeradd', function(e) {
             var marker = e.layer,
                 feature = marker.feature;
 
             marker.setIcon(L.icon(feature.properties.icon));
         });
 
-        layerCharacters.setGeoJSON(geoJson);
+        self.layerCharacters.setGeoJSON(geoJson);
+    },
+
+    addWaysToMap: function() {
+        var self = this;
+
+        var geoJson = [];
+
+        self.layerWays = L.mapbox.featureLayer(geoJson).addTo(self.map);
+
+        _.each(Ways.models,function(way) {
+            //If we didn't draw the reverse street
+            if(_.isUndefined(_.find(geoJson,{properties: {id: Ways.getReverseWayName(way.wayName)}}))) {
+                geoJson.push({
+                    "type": "Feature",
+                    "geometry": {
+                        "coordinates": GeoUtils.invertArrayLongLatToLatLong(way.wayPath),
+                        "type": "LineString"
+                    },
+                    "properties": {
+                        "id": way.wayName,
+                        "stroke": "#6c6c6c",
+                        "stroke-opacity": 1,
+                        "stroke-width": 3
+                    }
+                });
+            }
+        });
+
+        // Dash array
+        self.layerWays.on('layeradd', function(e) {
+            e.layer.setStyle({
+                dashArray: "8,6"
+            });
+        });
+
+        self.layerWays.setGeoJSON(geoJson);
     },
 
     unlockIconMap: function(wayName, character) {
