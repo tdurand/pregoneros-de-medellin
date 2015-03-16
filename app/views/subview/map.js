@@ -71,6 +71,7 @@ function($, _, Backbone,
 
             self.addAllCharacterToMap();
             self.addWaysToMap();
+            self.addDiscoveredPathToMap();
 
             self.$el.find(".streetwalk-mapcontainer").hover(function() {
                 self.enlargeMap();
@@ -190,6 +191,11 @@ function($, _, Backbone,
                 var way = Progression.instance.get("charactersProgression").get(character+"."+video+".wayName");
                 self.unlockIconMap(way,character);
         });
+
+        self.listenTo(Progression.instance,'pathDiscoveredUpdated',function() {
+            var newProgressionPath = Progression.instance.get("pathDiscovered")[Progression.instance.get("currentStreet")];
+            self.updateDiscoveredPathToMap(newProgressionPath);
+        });
     },
 
     addAllCharacterToMap: function() {
@@ -272,6 +278,60 @@ function($, _, Backbone,
         self.layerWays.setGeoJSON(geoJson);
     },
 
+    addDiscoveredPathToMap: function() {
+        var self = this;
+
+        var geoJson = [];
+
+        self.layerDiscoveredPath = L.mapbox.featureLayer(geoJson).addTo(self.map);
+
+        _.each(Progression.instance.get("pathDiscovered"),function(path,wayName) {
+            //If we didn't draw the reverse street
+            geoJson.push({
+                    "type": "Feature",
+                    "geometry": {
+                        "coordinates": GeoUtils.invertArrayLongLatToLatLong(path),
+                        "type": "LineString"
+                    },
+                    "properties": {
+                        "id":wayName,
+                        "stroke": "#444AB6",
+                        "stroke-opacity": 1,
+                        "stroke-width": 3
+                    }
+                });
+        });
+
+        self.layerDiscoveredPath.setGeoJSON(geoJson);
+    },
+
+    updateDiscoveredPathToMap: function(newProgressionPath) {
+        var self = this;
+
+        self.layerDiscoveredPath.clearLayers();
+
+        var geoJson = [];
+
+        _.each(Progression.instance.get("pathDiscovered"),function(path,wayName) {
+            //If we didn't draw the reverse street
+            geoJson.push({
+                    "type": "Feature",
+                    "geometry": {
+                        "coordinates": GeoUtils.invertArrayLongLatToLatLong(path),
+                        "type": "LineString"
+                    },
+                    "properties": {
+                        "id":wayName,
+                        "stroke": "#444AB6",
+                        "stroke-opacity": 1,
+                        "stroke-width": 3
+                    }
+                });
+        });
+
+        self.layerDiscoveredPath.setGeoJSON(geoJson);
+    },
+
     unlockIconMap: function(wayName, character) {
         $(".streetwalk-mapcontainer ."+ wayName).attr("src","images/map/"+ character +".png");
     },
@@ -302,9 +362,26 @@ function($, _, Backbone,
         
     },
 
-    update: function(position) {
+    update: function(currentPosition) {
         var self = this;
-        self.updateMarkerPosition(position);
+        self.updateMarkerPosition(currentPosition);
+
+        self.updateProgressionPathDiscovered(currentPosition);
+    },
+
+    updateProgressionPathDiscovered: function(currentPosition) {
+        var self = this;
+
+        var currentStreet = Progression.instance.get("currentStreet");
+
+        var currentWay = Ways.findWhere({wayName:currentStreet});
+
+        var currentPositionInStreet = _.values(currentWay.wayPath).indexOf(currentPosition);
+
+        var currentProgressionInStreet = _.slice(_.values(currentWay.wayPath),0,currentPositionInStreet);
+
+        Progression.instance.get("pathDiscovered")[currentWay.wayName] = currentProgressionInStreet;
+        Progression.instance.trigger("pathDiscoveredUpdated");
     },
 
     updateMarkerPosition: function(position) {
@@ -386,9 +463,11 @@ function($, _, Backbone,
     },
 
     onClose: function(){
+      var self = this;
       //Clean
       this.undelegateEvents();
       this.markerMap =  undefined;
+      self.stopListening();
     }
 
   });

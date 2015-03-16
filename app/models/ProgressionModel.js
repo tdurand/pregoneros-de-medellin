@@ -129,6 +129,8 @@ function($, _, Backbone, LOGGER, CONSTANT, Ways){
                 currentStreet:""
             });
 
+            self.set("pathDiscovered",{});
+
             //Reinitialize id to undefined (for parse sync)
             self.id = undefined;
         }
@@ -256,7 +258,7 @@ function($, _, Backbone, LOGGER, CONSTANT, Ways){
 
     isThisCharacterInThisStreetLocked: function(wayName, character) {
         var self = this;
-        
+
         var locked = true;
         if(!_.isUndefined(_.find(self.get("charactersProgression").get(character),{wayName:wayName}))) {
             locked = false;
