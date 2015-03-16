@@ -295,7 +295,7 @@ function($, _, Backbone,
                     },
                     "properties": {
                         "id":wayName,
-                        "stroke": "#444AB6",
+                        "stroke": "#1087bf",
                         "stroke-opacity": 1,
                         "stroke-width": 3
                     }
@@ -322,7 +322,7 @@ function($, _, Backbone,
                     },
                     "properties": {
                         "id":wayName,
-                        "stroke": "#444AB6",
+                        "stroke": "#1087bf",
                         "stroke-opacity": 1,
                         "stroke-width": 3
                     }
@@ -378,6 +378,11 @@ function($, _, Backbone,
 
         var currentPositionInStreet = _.values(currentWay.wayPath).indexOf(currentPosition);
 
+        //if we are in a street we already have discovered or doing going back
+        if(!_.isUndefined(Progression.instance.get("pathDiscovered")[currentWay.wayName]) && Progression.instance.get("pathDiscovered")[currentWay.wayName].length > currentPositionInStreet) {
+            return;
+        }
+
         var currentProgressionInStreet = _.slice(_.values(currentWay.wayPath),0,currentPositionInStreet);
 
         Progression.instance.get("pathDiscovered")[currentWay.wayName] = currentProgressionInStreet;
@@ -399,6 +404,11 @@ function($, _, Backbone,
         else {
             if(self.map) {
                 self.markerMap = L.marker(position).addTo(self.map);
+                self.markerMap.setIcon(L.mapbox.marker.icon({
+                        'marker-size': 'large',
+                        'marker-symbol': 'pitch',
+                        'marker-color': '#1087bf'
+                }));
             }
             
         }
