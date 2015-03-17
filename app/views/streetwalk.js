@@ -385,27 +385,27 @@ define(['jquery',
         });
 
         self.listenToOnce(self.way,"loadingFinished", function() {
-            // self.animating = true;
-            // self.currentStill = self.way.wayStills.first();
-            // self.$el.css("height",self.computeBodyHeigh(self.way.wayLength)+"px");
-            // self.$el.find("#scrollToStartLoaded").show();
-            // self.$el.find("#scrollToStartLoading").hide();
-            // self.render();
-            // self.$el.find(".streetwalk-loading").hide();
-            // //TODO Sounds can be loaded after render....
-            // Sounds.fadeOutSoundHome();
-            // Sounds.updateSounds(self.way.wayPath[0]);
+            self.animating = true;
+            self.currentStill = self.way.wayStills.first();
+            self.$el.css("height",self.computeBodyHeigh(self.way.wayLength)+"px");
+            self.$el.find("#scrollToStartLoaded").show();
+            self.$el.find("#scrollToStartLoading").hide();
+            self.render();
+            self.$el.find(".streetwalk-loading").hide();
+            //TODO Sounds can be loaded after render....
+            Sounds.fadeOutSoundHome();
+            Sounds.updateSounds(self.way.wayPath[0]);
 
-            // //SPECIFIC SOUND EDITOR STUFF
-            // setTimeout(function() {
-            //     self.soundEditorView = new SoundEditorView(self.way);
-            // },5000);
-            // // END SPECIFIC SOUND EDITOR STUFF
+            //SPECIFIC SOUND EDITOR STUFF
+            setTimeout(function() {
+                self.soundEditorView = new SoundEditorView(self.way);
+            },5000);
+            // END SPECIFIC SOUND EDITOR STUFF
 
-            // self.computeAnimation(true);
-            // self.initScrollEventHandlers();
+            self.computeAnimation(true);
+            self.initScrollEventHandlers();
 
-            // self.scrollToStartAnimation();
+            self.scrollToStartAnimation();
         });
 
         self.listenToOnce(self.way,"loadingFinishedCompletely", function() {
