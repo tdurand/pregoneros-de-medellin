@@ -705,7 +705,7 @@
         "name": "cr51-cl51-cl52"
       },
       {
-        "direction": "right",
+        "direction": "forward-right",
         "name": "parqueberrio-cr51-cr50"
       }
     ],
@@ -5085,6 +5085,10 @@
       {
         "direction": "left",
         "name": "cr48-cl56-cl55"
+      },
+      {
+        "direction": "forward-left",
+        "name": "parquebolivar-cl56-juni"
       }
     ],
     "characterDefinition": {
@@ -5412,7 +5416,12 @@
       {
         "direction": "right",
         "name": "cl56-cr48-cr47"
+      },
+      {
+        "direction":"backward-right",
+        "name":"cr48-cl56-cl55"
       }
+
     ],
     "waySounds": [
       {
@@ -7589,6 +7598,10 @@
       ]
     ],
     "wayConnectionsEnd": [
+      {
+        "direction": "backward-left",
+        "name": "parqueberrio-cr51-cr50"
+      },
       {
         "direction": "right",
         "name": "cr51-cl51-cl52"
