@@ -1,4 +1,4 @@
-define(function() {
+define(["backbone"],function(Backbone) {
 
     var CONSTANT = Backbone.Model.extend({
 

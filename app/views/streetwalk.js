@@ -1,7 +1,6 @@
 define(['jquery',
     'underscore',
     'backbone',
-    'snap',
     'models/Ways',
     'models/Sounds',
     'models/Progression',
@@ -18,6 +17,7 @@ define(['jquery',
     'views/usermanager',
     'text!templates/streetwalk/streetWalkViewTemplate.html',
     'text!templates/streetwalk/streetWalkLoadingViewTemplate.html',
+    'text!templates/streetwalk/streetWalkLoadingSimpleViewTemplate.html',
     'text!templates/streetwalk/streetWalkChoosePathStartViewTemplate.html',
     'text!templates/streetwalk/streetWalkChoosePathEndViewTemplate.html',
     'text!templates/svg/svgSignTopProgressTemplate.html',
@@ -32,7 +32,6 @@ define(['jquery',
     'mapbox'
     ],
     function($, _, Backbone,
-        Snap,
         Ways,
         Sounds,
         Progression,
@@ -49,6 +48,7 @@ define(['jquery',
         UserManagerView,
         streetWalkViewTemplate,
         streetWalkLoadingViewTemplate,
+        streetWalkLoadingSimpleViewTemplate,
         streetWalkChoosePathStartViewTemplate,
         streetWalkChoosePathEndViewTemplate,
         svgSignTopProgressTemplate,
@@ -203,47 +203,63 @@ define(['jquery',
 
         renderLoading: function() {
             var self = this;
-            
-            if(Progression.instance.isFirstWay) {
-                self.$el.find(".streetwalk-loading-main").html(_.template(streetWalkLoadingViewTemplate));
-            }
-            else {
-                self.$el.find(".streetwalk-tutorial").hide();
-                self.$el.find(".streetwalk-loading").html(_.template(streetWalkLoadingViewTemplate));
-            }
-
-            self.$el.find(".streetwalk-loading").show();
-            TweenLite.set(".loading-animation",{y:"+25%"});
-            TweenLite.set("#carito",{opacity:0});
-
-            //init svg element path
-            self.pathLoading = Snap("#loadingLine");
-            self.pathLoadingLength = self.pathLoading.getTotalLength();
-            self.pathLoading.attr({
-                // Draw Path
-                "stroke-dasharray": self.pathLoadingLength + " " + self.pathLoadingLength,
-                "stroke-dashoffset": self.pathLoadingLength
-            });
-
-            self.carito = Snap("#carito");
 
             self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
             self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
+            
+            if(Progression.instance.isFirstWay) {
+                self.$el.find(".streetwalk-loading-main").html(_.template(streetWalkLoadingViewTemplate));
+                self.$el.find(".streetwalk-loading").show();
 
-            var tl = new TimelineMax({
-            repeat:-1
-            });
-            tl.to("#waveright",0.5,{scaleX:1.2,scaleY:1.2,transformOrigin:"center center"});
-            tl.to("#waveright",0.5,{scaleX:1,scaleY:1,transformOrigin:"center center"});
-            tl.to("#waveleft",0.5,{scaleX:1.2,scaleY:1.2,transformOrigin:"center center"},0);
-            tl.to("#waveleft",0.5,{scaleX:1,scaleY:1,transformOrigin:"center center"},0.5);
+                TweenLite.set(".loading-animation",{y:"+25%"});
+                TweenLite.set("#carito",{opacity:0});
 
-            var tl2 = new TimelineMax({
-            });
+                //init svg element path
+                self.pathLoading = $("#loadingLine");
+                self.pathLoadingLength = self.pathLoading[0].getTotalLength();
+                self.pathLoading.attr({
+                    // Draw Path
+                    "stroke-dasharray": self.pathLoadingLength + " " + self.pathLoadingLength,
+                    "stroke-dashoffset": self.pathLoadingLength
+                });
 
-            tl2.to(".headset",1,{opacity:0,transformOrigin:"center center"},5);
-            tl2.to(".loading-animation",1,{y:"0%"},5);
-            tl2.to("#carito",1,{opacity:1},5);
+
+                self.carito = $("#carito");
+
+                var tl = new TimelineMax({
+                repeat:-1
+                });
+                tl.to("#waveright",0.5,{scaleX:1.2,scaleY:1.2,transformOrigin:"center center"});
+                tl.to("#waveright",0.5,{scaleX:1,scaleY:1,transformOrigin:"center center"});
+                tl.to("#waveleft",0.5,{scaleX:1.2,scaleY:1.2,transformOrigin:"center center"},0);
+                tl.to("#waveleft",0.5,{scaleX:1,scaleY:1,transformOrigin:"center center"},0.5);
+
+                var tl2 = new TimelineMax({
+                });
+
+                tl2.to(".headset",1,{opacity:0,transformOrigin:"center center"},5);
+                tl2.to(".loading-animation",1,{y:"0%"},5);
+                tl2.to("#carito",1,{opacity:1},5);
+
+
+            }
+            else {
+                self.$el.find(".streetwalk-tutorial").hide();
+                self.$el.find(".streetwalk-loading").html(_.template(streetWalkLoadingSimpleViewTemplate));
+                self.$el.find(".streetwalk-loading").show();
+
+                console.log(self.$el.find(".streetwalk-loading"));
+
+                self.pathLoading = $(".streetwalk-loading .loading-line");
+                self.pathLoadingLength = self.pathLoading[0].getTotalLength();
+                self.pathLoading.attr({
+                    // Draw Path
+                    "stroke-dasharray": self.pathLoadingLength + " " + self.pathLoadingLength,
+                    "stroke-dashoffset": self.pathLoadingLength
+                });
+
+
+            }
 
             window.scrollTo(0,5);
 
@@ -258,9 +274,8 @@ define(['jquery',
         if(pourcentage <= 100) {
             self.$el.find(".loadingIndicator").text(pourcentage);
             self.pathLoading.attr("stroke-dashoffset", self.pathLoadingLength-currentLoadingLength);
-            self.caritoMatrix = new Snap.Matrix();
-            self.caritoMatrix.translate(currentLoadingLength,0);
-            self.carito.transform(self.caritoMatrix);
+            
+            self.carito.css("transform","translateX(" + currentLoadingLength + "px)");
         }
         else {
             self.$el.find(".loading-text").text("CARGANDO SONIDOS ...");
@@ -304,6 +319,8 @@ define(['jquery',
             $("<img />").attr("src", arguments[i]);
         }
         };
+
+        $.preloadImages("images/loading/background.jpg");
 
         //set right src for frame character
         if(!_.isUndefined(self.way.characterDefinition)) {
@@ -368,27 +385,27 @@ define(['jquery',
         });
 
         self.listenToOnce(self.way,"loadingFinished", function() {
-            self.animating = true;
-            self.currentStill = self.way.wayStills.first();
-            self.$el.css("height",self.computeBodyHeigh(self.way.wayLength)+"px");
-            self.$el.find("#scrollToStartLoaded").show();
-            self.$el.find("#scrollToStartLoading").hide();
-            self.render();
-            self.$el.find(".streetwalk-loading").hide();
-            //TODO Sounds can be loaded after render....
-            Sounds.fadeOutSoundHome();
-            Sounds.updateSounds(self.way.wayPath[0]);
+            // self.animating = true;
+            // self.currentStill = self.way.wayStills.first();
+            // self.$el.css("height",self.computeBodyHeigh(self.way.wayLength)+"px");
+            // self.$el.find("#scrollToStartLoaded").show();
+            // self.$el.find("#scrollToStartLoading").hide();
+            // self.render();
+            // self.$el.find(".streetwalk-loading").hide();
+            // //TODO Sounds can be loaded after render....
+            // Sounds.fadeOutSoundHome();
+            // Sounds.updateSounds(self.way.wayPath[0]);
 
-            //SPECIFIC SOUND EDITOR STUFF
-            setTimeout(function() {
-                self.soundEditorView = new SoundEditorView(self.way);
-            },5000);
-            // END SPECIFIC SOUND EDITOR STUFF
+            // //SPECIFIC SOUND EDITOR STUFF
+            // setTimeout(function() {
+            //     self.soundEditorView = new SoundEditorView(self.way);
+            // },5000);
+            // // END SPECIFIC SOUND EDITOR STUFF
 
-            self.computeAnimation(true);
-            self.initScrollEventHandlers();
+            // self.computeAnimation(true);
+            // self.initScrollEventHandlers();
 
-            self.scrollToStartAnimation();
+            // self.scrollToStartAnimation();
         });
 
         self.listenToOnce(self.way,"loadingFinishedCompletely", function() {

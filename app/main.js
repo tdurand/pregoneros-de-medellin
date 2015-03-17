@@ -11,7 +11,6 @@ require.config({
         howl:         'libs/vendor/howler-2.0-beta.min',
         text:         'libs/vendor/text-2.0.10',
         fastclick:    'libs/vendor/fastclick.min',
-        snap:         'libs/vendor/snap.svg-min',
         tweenmax:     'libs/vendor/TweenMax-1.15.1.min',
         mapbox:       'libs/vendor/mapbox-2.1.2.min',
         parse:        'libs/vendor/parse-1.3.3',

@@ -32,7 +32,21 @@
   background-repeat: no-repeat;
 }
 
-/* line 43, ../../sass/module/loading.scss */
+/* line 42, ../../sass/module/loading.scss */
+.streetwalk-loading-simple {
+  position: absolute;
+  width: 30%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+/* line 55, ../../sass/module/loading.scss */
 .streetwalk-loading-text {
   position: absolute;
   width: 50%;
@@ -45,7 +59,7 @@
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 55, ../../sass/module/loading.scss */
+/* line 67, ../../sass/module/loading.scss */
 .streetwalk-loading-text .loading-text {
   font-family: "FilbertBrush";
   font-size: 1.3rem;
@@ -53,7 +67,7 @@
   color: #FFFFFF;
   margin: 1rem;
 }
-/* line 63, ../../sass/module/loading.scss */
+/* line 75, ../../sass/module/loading.scss */
 .streetwalk-loading-text .headset {
   position: absolute;
   width: 50%;
