@@ -18,8 +18,7 @@ define(['jquery',
     'text!templates/streetwalk/streetWalkViewTemplate.html',
     'text!templates/streetwalk/streetWalkLoadingViewTemplate.html',
     'text!templates/streetwalk/streetWalkLoadingSimpleViewTemplate.html',
-    'text!templates/streetwalk/streetWalkChoosePathStartViewTemplate.html',
-    'text!templates/streetwalk/streetWalkChoosePathEndViewTemplate.html',
+    'text!templates/streetwalk/streetWalkChoosePathViewTemplate.html',
     'text!templates/svg/svgSignTopProgressTemplate.html',
     'text!templates/svg/svgSignTopAreaTemplate.html',
     'text!templates/svg/svgFramePajaritoTemplate.html',
@@ -49,8 +48,7 @@ define(['jquery',
         streetWalkViewTemplate,
         streetWalkLoadingViewTemplate,
         streetWalkLoadingSimpleViewTemplate,
-        streetWalkChoosePathStartViewTemplate,
-        streetWalkChoosePathEndViewTemplate,
+        streetWalkChoosePathViewTemplate,
         svgSignTopProgressTemplate,
         svgSignTopAreaTemplate,
         svgFramePajaritoTemplate,
@@ -539,8 +537,8 @@ define(['jquery',
             self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
 
             self.$el.find(".streetwalk-chooseway-end-wrapper").show();
-            self.$el.find(".streetwalk-chooseway-end-wrapper").html(_.template(streetWalkChoosePathEndViewTemplate)({
-                wayConnectionsEnd:self.way.wayConnectionsEnd
+            self.$el.find(".streetwalk-chooseway-end-wrapper").html(_.template(streetWalkChoosePathViewTemplate)({
+                wayConnections:self.way.wayConnectionsEnd
             }));
 
             MenuCharactersView.closeMenu();
@@ -549,8 +547,8 @@ define(['jquery',
             self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
 
             self.$el.find(".streetwalk-chooseway-start-wrapper").show();
-            self.$el.find(".streetwalk-chooseway-start-wrapper").html(_.template(streetWalkChoosePathStartViewTemplate)({
-                wayConnectionsStart:self.way.wayConnectionsStart
+            self.$el.find(".streetwalk-chooseway-start-wrapper").html(_.template(streetWalkChoosePathViewTemplate)({
+                wayConnections:self.way.wayConnectionsStart
             }));
 
             MenuCharactersView.closeMenu();

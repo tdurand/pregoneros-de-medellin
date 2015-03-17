@@ -31,16 +31,16 @@
     ],
     "wayConnectionsEnd": [
       {
+        "direction": "right",
+        "name": "cr53cl52-carabobo-cl51"
+      },
+      {
         "direction": "left",
         "name": "cl52-carabobo-cr51"
       },
       {
         "direction": "forward",
         "name": "carabobo-cl52-cl51"
-      },
-      {
-        "direction": "right",
-        "name": "cr53cl52-carabobo-cl51"
       }
     ],
     "waySoundsMaster": false,
@@ -6069,6 +6069,10 @@
       {
         "direction": "left",
         "name": "cl51-cr51-cr50"
+      },
+      {
+        "direction": "forward-left",
+        "name": "parqueberrio-cr51-cr50"
       }
     ],
     "waySoundsMaster": false,
