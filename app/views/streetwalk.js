@@ -275,7 +275,9 @@ define(['jquery',
             self.$el.find(".loadingIndicator").text(pourcentage);
             self.pathLoading.attr("stroke-dashoffset", self.pathLoadingLength-currentLoadingLength);
             
-            self.carito.css("transform","translateX(" + currentLoadingLength + "px)");
+            if(self.carito) {
+                self.carito.css("transform","translateX(" + currentLoadingLength + "px)");
+            }
         }
         else {
             self.$el.find(".loading-text").text("CARGANDO SONIDOS ...");
