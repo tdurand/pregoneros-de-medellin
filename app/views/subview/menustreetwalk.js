@@ -18,7 +18,8 @@ function($, _, Backbone,
 
     events:{
         "click .streetwalk-menubottom-btnlogin":"displayLogin",
-        "click .streetwalk-menubottom-btnlogout":"logout"
+        "click .streetwalk-menubottom-btnlogout":"logout",
+        "change .language-selection":"changeLanguage"
     },
 
     prepare : function(UserManagerView) {
@@ -82,6 +83,14 @@ function($, _, Backbone,
          var self = this;
          e.preventDefault();
          self.UserManagerView.alertBeforeLogout();
+    },
+
+    changeLanguage: function() {
+        var self = this;
+
+        var lang = self.$el.find(".language-selection").val();
+
+        Localization.init(lang);
     },
 
     onClose: function(){

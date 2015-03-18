@@ -55,6 +55,11 @@ define([
                 if(AppView.currentView.el.id == "index") {
                     self.index(Localization.translationLoaded);
                 }
+
+                if(AppView.currentView.el.id == "streetwalk") {
+                    //display popup
+                    self.index(Localization.translationLoaded);
+                }
             });
 
             Localization.init(lang);
