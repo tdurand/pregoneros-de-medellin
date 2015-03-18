@@ -2,11 +2,13 @@ define(['jquery',
         'underscore',
         'backbone',
         'utils/Logger',
+        'utils/Localization',
         'models/Progression',
         'text!templates/streetwalk/menu/menuStreetWalkViewTemplate.html'
         ],
 function($, _, Backbone,
                 LOGGER,
+                Localization,
                 Progression,
                 menuStreetWalkViewTemplate){
 
@@ -44,7 +46,8 @@ function($, _, Backbone,
         var self = this;
 
         self.$el.html(_.template(menuStreetWalkViewTemplate)({
-            loginStatus: self.UserManagerView.status
+            loginStatus: self.UserManagerView.status,
+            lang: Localization.translationLoaded
         }));
     },
 
@@ -54,25 +57,31 @@ function($, _, Backbone,
         var elem = $(".streetwalk-bottombar");
 
         if(self.menuOpen) {
-            self.menuOpen = false;
-            TweenLite.to(elem, 0.5, { bottom:0 });
+            TweenLite.to(elem, 0.5, { bottom:0 , onComplete: function() {
+                self.menuOpen = false;
+                self.$el.removeClass("open");
+            }});
         }
         else {
-            self.menuOpen = true;
-            TweenLite.fromTo(elem, 0.5, { bottom:0 },{bottom:"5%"});
+            TweenLite.fromTo(elem, 0.5, { bottom:0 },{bottom:"5%",onComplete:function() {
+                self.menuOpen = true;
+                self.$el.addClass("open");
+            }});
         }
 
         
     },
 
-    displayLogin: function() {
+    displayLogin: function(e) {
         var self = this;
+        e.preventDefault();
         self.UserManagerView.displayLogin();
     },
 
-    logout: function() {
+    logout: function(e) {
          var self = this;
-        self.UserManagerView.alertBeforeLogout();
+         e.preventDefault();
+         self.UserManagerView.alertBeforeLogout();
     },
 
     onClose: function(){

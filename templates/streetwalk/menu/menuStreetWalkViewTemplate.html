@@ -1,9 +1,18 @@
 <div class="streetwalk-menubottom-content">
-    <a href="#index">HOME</a> - 
+    <a href="#index">Home</a> <span class="menu-separator">|</span> 
+    <a>Un Transmedia</a> <span class="menu-separator">|</span> 
+    <a>Musica</a> <span class="menu-separator">|</span> 
+    <a>Equipo</a> <span class="menu-separator">|</span> 
+    <a>Making Of</a> <span class="menu-separator">|</span> 
+    <a>Presskit</a> <span class="menu-separator">|</span> 
     <% if(loginStatus.logged) { %>
-        <button class="streetwalk-menubottom-btnlogout">LOGOUT (<%= loginStatus.name %>)</button>
+        <a class="streetwalk-menubottom-btnlogout">Logout (<%= loginStatus.name %>)</a>
     <% } else { %>
-        <button class="streetwalk-menubottom-btnlogin">LOGIN</button>
+        <a class="streetwalk-menubottom-btnlogin">Login</a>
     <% } %>
-     - LANGUE - EQUIPE - A PROPOS
+     <span class="menu-separator">|</span> <select name="language-selection" class="language-selection">
+        <option value="es" <% if(lang == "es") {%> selected <%} %>>Español</option>
+        <option value="en" <% if(lang == "en") {%> selected <%} %>>English</option>
+        <option value="fr" <% if(lang == "fr") {%> selected <%} %>>Français</option>
+    </select>
 </div>

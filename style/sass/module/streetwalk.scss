@@ -1,6 +1,11 @@
 @import "grids";
 
 
+.menu-separator {
+    font-family: Arial !important;
+    font-weight: bold;
+}
+
 .streetwalk-menubottom {
     position:fixed;
     bottom:0;
@@ -9,11 +14,32 @@
     height: 5%;
     @include span(12);
 
+    color:#4B2246;
+    font-size:1.1rem;
+    font-variant: small-caps;
+
     .streetwalk-menubottom-content {
         position:absolute;
         top:50%;
         transform:translateY(-50%);
+        margin-left: 2%;
     } 
+
+    &.open {
+        z-index:21;
+    }
+
+    .language-selection {
+        background-color: transparent;
+    }
+
+    a {
+        cursor:pointer;
+    }
+
+    a:visited {
+        color:#4B2246;
+    }
 }
 
 .streetwalk-bottombar {

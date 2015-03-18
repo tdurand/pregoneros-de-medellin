@@ -218,6 +218,10 @@ function($, _, Backbone,
         if(!_.isNull(Parse.User.current())) {
             self.status.logged = true;
             self.status.name = Parse.User.current().get("name");
+            self.status.name = self.status.name.split(" ")[0];
+            if(self.status.name.length > 10) {
+                self.status.name = self.status.name.slice(0, 10);
+            }
         }
         else {
             self.status.logged = false;

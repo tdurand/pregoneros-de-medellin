@@ -15,13 +15,13 @@
 .top {
      @include span(12);
 
-     height:30%;
+     height:25%;
 
      position: relative;
      z-index:30;
 
      .logo-bar {
-        height: 40%;
+        height: 50%;
         position: absolute;
         @include span(12);
         background-color: white;
@@ -40,8 +40,8 @@
 
      .wrap-top-bar {
         position:absolute;
-        height: 60%;
-        top:40%;
+        height: 50%;
+        top:50%;
 
         @include span(12);
 
@@ -80,11 +80,24 @@
             .menu {
                 font-family: "FilbertBrush";
                 font-size : 1.3rem;
+                font-variant: small-caps;
                 color:white;
-                margin-left:10%;
+                margin-left:2%;
                 position:absolute;
                 top:50%;
                 transform:translateY(-50%);
+
+                .language-selection {
+                    background-color: transparent;
+                }
+
+                a {
+                    cursor: pointer;
+                }
+
+                a:visited {
+                    color:white;
+                }
             }
 
         }
@@ -95,7 +108,7 @@
 .middle {
     @include span(12);
 
-    height:70%;
+    height:75%;
     position:relative;
 
     .logo {
@@ -133,7 +146,7 @@
 
         .description-text {
            font-family: "FilbertBrush";
-           font-size : 1.3rem;
+           font-size : 1.2rem;
            text-align: center;
            color : #4A2246;
 

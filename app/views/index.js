@@ -126,11 +126,13 @@ function($, _, Backbone,
 
     },
 
-    displayLogin: function() {
+    displayLogin: function(e) {
+        e.preventDefault();
         UserManagerView.displayLogin();
     },
 
-    logout: function() {
+    logout: function(e) {
+        e.preventDefault();
         UserManagerView.alertBeforeLogout();
     },
 

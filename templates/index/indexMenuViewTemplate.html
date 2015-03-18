@@ -1,11 +1,15 @@
-<p>UN PROYECTO TRANSMEDIA - MUSICA - EQUIPO - 
+<p><a>Un Transmedia</a> <span class="menu-separator">|</span> 
+    <a>Musica</a> <span class="menu-separator">|</span> 
+    <a>Equipo</a> <span class="menu-separator">|</span> 
+    <a>Making of</a> <span class="menu-separator">|</span> 
+    <a>PressKit</a> <span class="menu-separator">|</span> 
 
 <% if(loginStatus.logged) { %>
-        <button class="menu-btnlogout">LOGOUT (<%= loginStatus.name %>)</button>
+        <a class="menu-btnlogout">Logout (<%= loginStatus.name %>)</a>
 <% } else { %>
-    <button class="menu-btnlogin">LOGIN</button>
+    <a class="menu-btnlogin">Login</a> 
 <% } %>
-    <select name="language-selection" class="language-selection">
+   <span class="menu-separator">|</span> <select name="language-selection" class="language-selection">
         <option value="es" <% if(lang == "es") {%> selected <%} %>>Español</option>
         <option value="en" <% if(lang == "en") {%> selected <%} %>>English</option>
         <option value="fr" <% if(lang == "fr") {%> selected <%} %>>Français</option>
