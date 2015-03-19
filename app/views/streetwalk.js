@@ -26,7 +26,7 @@ define(['jquery',
     'text!templates/svg/svgFrameLiderTemplate.html',
     'text!templates/svg/svgFrameGauchoTemplate.html',
     'text!templates/svg/svgFramePapavanegasTemplate.html',
-    'text!templates/svg/svgScrollToStartES.html',
+    'text!templates/svg/svgScrollToStart.html',
     'tweenmax',
     'mapbox'
     ],
@@ -211,7 +211,8 @@ define(['jquery',
             if(Progression.instance.isFirstWay) {
 
                 self.$el.find(".streetwalk-loading-main").html(_.template(streetWalkLoadingViewTemplate)({
-                    STR: Localization.STR
+                    STR: Localization.STR,
+                    lang: Localization.translationLoaded
                 }));
                 self.$el.find(".streetwalk-loading").show();
 
@@ -307,7 +308,9 @@ define(['jquery',
         if(Progression.instance.isFirstWay) {
             Progression.instance.isFirstWay = false;
             //Render tutorial
-            self.$el.find(".streetwalk-tutorial").html(_.template(svgScrollToStart));
+            self.$el.find(".streetwalk-tutorial").html(_.template(svgScrollToStart)({
+                lang: Localization.translationLoaded
+            }));
         }
 
         //Render top signs
