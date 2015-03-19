@@ -551,7 +551,8 @@ define(['jquery',
 
             self.$el.find(".streetwalk-chooseway-end-wrapper").show();
             self.$el.find(".streetwalk-chooseway-end-wrapper").html(_.template(streetWalkChoosePathViewTemplate)({
-                wayConnections:self.way.wayConnectionsEnd
+                wayConnections:self.way.wayConnectionsEnd,
+                lang : Localization.translationLoaded
             }));
 
             MenuCharactersView.closeMenu();
@@ -561,7 +562,8 @@ define(['jquery',
 
             self.$el.find(".streetwalk-chooseway-start-wrapper").show();
             self.$el.find(".streetwalk-chooseway-start-wrapper").html(_.template(streetWalkChoosePathViewTemplate)({
-                wayConnections:self.way.wayConnectionsStart
+                wayConnections:self.way.wayConnectionsStart,
+                lang : Localization.translationLoaded
             }));
 
             MenuCharactersView.closeMenu();
