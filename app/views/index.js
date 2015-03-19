@@ -41,7 +41,7 @@ function($, _, Backbone,
             self.render();
         }
 
-        // Sounds.playSoundHome();
+        Sounds.playSoundHome();
 
         //EVENT
         self.listenTo(UserManagerView,"loginStatusChanged", function() {
