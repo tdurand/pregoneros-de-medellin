@@ -24,9 +24,9 @@ define(["backbone"],function(Backbone) {
                         video3:"120198779"
                     },
                     gaucho: {
-                        video1:"115328392",
-                        video2:"115325355",
-                        video3:"115325356"
+                        video1:"122376488",
+                        video2:"122378449",
+                        video3:"122591730"
                     },
                     papavanegas: {
                         video1:"115328392",

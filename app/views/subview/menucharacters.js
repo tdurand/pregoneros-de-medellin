@@ -339,7 +339,7 @@ function($, _, Backbone,
                   target: ".menucharacter-" + character + " ." + content +"-locked",
                   placement: 'top',
                   title: Localization.tutorialDirectUnlockTitle,
-                  content: STR.Localization.tutorialDirectUnlockDescription + '<p><button class="btn-gotostreet btn-secondary hopscotch-cta">'+ Localization.STR.tutorialDirectUnlockBtnGoDirectly + '</button> <button class="hopscotch-close hopscotch-nav-button hopscotch-cta">' + Localization.STR.tutorialDirectUnlockBtnPreferSearch +'</button></p>',
+                  content: Localization.STR.tutorialDirectUnlockDescription + '<p><button class="btn-gotostreet btn-secondary hopscotch-cta">'+ Localization.STR.tutorialDirectUnlockBtnGoDirectly + '</button> <button class="hopscotch-close hopscotch-nav-button hopscotch-cta">' + Localization.STR.tutorialDirectUnlockBtnPreferSearch +'</button></p>',
                   onShow: function() {
                      $(".streetwalk-tutorial-overlay").show();
                   },
