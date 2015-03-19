@@ -309,7 +309,7 @@ div.hopscotch-bubble .hopscotch-bubble-container {
 div.hopscotch-bubble .hopscotch-content {
   font-family: 'FilbertBrush', Helvetica, Arial;
   font-weight: normal;
-  line-height: 17px;
+  line-height: 1.3rem;
   margin: -5px 0 11px;
   padding-top: 1rem;
 }
