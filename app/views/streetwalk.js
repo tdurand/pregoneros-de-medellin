@@ -101,6 +101,7 @@ define(['jquery',
                 self.loadPath();
                 self.renderLoading();
                 self.initArrowKeyBinding();
+                TutorialView.initialize();
             }
 
             //EVENTING
