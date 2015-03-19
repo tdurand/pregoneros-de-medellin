@@ -67,9 +67,6 @@ define(['jquery',
         bodyHeight:7000,
         fullscreen:false,
 
-        scrollToEndEventSended:false,
-
-        videoShownOneTime:false,
         tutorialDone: false,
 
         events:{
@@ -96,6 +93,7 @@ define(['jquery',
                     self.loadPath();
                     self.renderLoading();
                     self.initArrowKeyBinding();
+                    TutorialView.initialize();
                 });
             }
             else {
@@ -115,6 +113,11 @@ define(['jquery',
             self.listenTo(TutorialView,"startAnimating",function() {
                 self.animating = true;
                 self.computeAnimation();
+            });
+
+            //Refresh helper STR
+            self.listenTo(Localization,"STRChanged",function() {
+                TutorialView.initialize();
             });
 
 
@@ -206,7 +209,10 @@ define(['jquery',
             self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
             
             if(Progression.instance.isFirstWay) {
-                self.$el.find(".streetwalk-loading-main").html(_.template(streetWalkLoadingViewTemplate));
+
+                self.$el.find(".streetwalk-loading-main").html(_.template(streetWalkLoadingViewTemplate)({
+                    STR: Localization.STR
+                }));
                 self.$el.find(".streetwalk-loading").show();
 
                 TweenLite.set(".loading-animation",{y:"+25%"});
@@ -243,7 +249,9 @@ define(['jquery',
             }
             else {
                 self.$el.find(".streetwalk-tutorial").hide();
-                self.$el.find(".streetwalk-loading").html(_.template(streetWalkLoadingSimpleViewTemplate));
+                self.$el.find(".streetwalk-loading").html(_.template(streetWalkLoadingSimpleViewTemplate)({
+                    STR: Localization.STR
+                }));
                 self.$el.find(".streetwalk-loading").show();
 
                 console.log(self.$el.find(".streetwalk-loading"));

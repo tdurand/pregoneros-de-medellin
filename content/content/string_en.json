@@ -2,7 +2,8 @@
     "landingDescriptionHeadline":"THE INTERACTIVE WEB DOCUMENTARY OF THE SINGING STREET VENDORS OF MEDELLÍN - COLOMBIA.",
     "landingDescriptionParagraph":"A virtual journey to discover the world of those who have understood that in trade as in love, it is the voice that seduces.",
     "landingLoadSavedProgress":"Load saved progress",
-    "langingInitNewProgress":"Begin new progress",
+    "landingInitNewProgress":"Begin new progress",
+    "loadingLabel":"LOADING",
     "menuBtnLabelHome":"Home",
     "menuBtnLabelTransmedia":"A Transmedia",
     "menuBtnLabelMusic":"Music",
@@ -17,5 +18,16 @@
     "streetWalkSignDiscoveredStoriesTitle":"STORIES DISCOVERED",
     "streetWalkSignDiscoveredOf":"OF",
     "streetWalkSignAreaTitle":"AREA",
-    "streetWalkBtnMenuLabel":"MENU"
+    "streetWalkBtnMenuLabel":"MENU",
+    "tutorialOkBtn":"OK ▸",
+    "tutorialFirstStreetHelper1Title":"HELP:",
+    "tutorialFirstStreetHelper1Description":"Clicking on the name of the street vendor, visualize one of the video about his life.",
+    "tutorialFirstStreetHelper2Title":"HELP: DISCOVER MORE",
+    "tutorialFirstStreetHelper2Description":"One video is little to know all the facets of Jale. There's more ! Look for her in other streets !.",
+    "tutorialFirstStreetHelper3Title":"HELP: OTHER STREET VENDORS",
+    "tutorialFirstStreetHelper3Description":"There are other street vendors in the streets. Find them. Your turn to explore!",
+    "tutorialDirectUnlockTitle":"Locked",
+    "tutorialDirectUnlockDescription":"To unlock, find again the street vendor. You can go directly or come back to the streets and discover him in other streets of the city.",
+    "tutorialDirectUnlockBtnGoDirectly":"Go directly",
+    "tutorialDirectUnlockBtnPreferSearch":"I prefer looking for"
 }

@@ -2,7 +2,8 @@
     "landingDescriptionHeadline":"LE WEBDOCUMENTAIRE INTERACTIF DES CRIEURS AMBULANTS COLOMBIENS.",
     "landingDescriptionParagraph":"Parcourez virtuellement Medellín et découvrez l’univers de ceux qui ont compris, qu’en amour comme en commerce, c’est par la voix qu’on séduit.",
     "landingLoadSavedProgress":"Reprendre une sauvegarde",
-    "langingInitNewProgress":"Recommencer à zero",
+    "landingInitNewProgress":"Recommencer à zero",
+    "loadingLabel":"CHARGEMENT",
     "menuBtnLabelHome":"Accueil",
     "menuBtnLabelTransmedia":"Un Transmedia",
     "menuBtnLabelMusic":"Musique",
@@ -17,5 +18,16 @@
     "streetWalkSignDiscoveredStoriesTitle":"HISTOIRES DECOUVERTES",
     "streetWalkSignDiscoveredOf":"DE",
     "streetWalkSignAreaTitle":"ZONE",
-    "streetWalkBtnMenuLabel":"MENU"
+    "streetWalkBtnMenuLabel":"MENU",
+    "tutorialOkBtn":"OK ▸",
+    "tutorialFirstStreetHelper1Title":"AIDE:",
+    "tutorialFirstStreetHelper1Description":"En cliquant sur le nom du vendeur ambulant, découvrez un des videos sur sa vie.",
+    "tutorialFirstStreetHelper2Title":"AIDE: EN SAVOIR PLUS",
+    "tutorialFirstStreetHelper2Description":"Un vidéo est peu pour connaître toutes les facettes de la Jale. Il y en a plus! Cherchez-la dans la ville!",
+    "tutorialFirstStreetHelper3Title":"AIDE: AUTRES VENDEURS AMBULANTS",
+    "tutorialFirstStreetHelper3Description":"Il y a d'autres vendeurs ambulants dans ces rues. Trouvez-les. A votre tour d'explorer!",
+    "tutorialDirectUnlockTitle":"Verrouillé",
+    "tutorialDirectUnlockDescription":"Pour le débloquer, trouvez de vendeur de nouveau. Vous pouvez y aller directement ou retourner au parcours et le trouvez dans une autre rue de la ville.",
+    "tutorialDirectUnlockBtnGoDirectly":"Aller directement",
+    "tutorialDirectUnlockBtnPreferSearch":"Je préfère chercher"
 }

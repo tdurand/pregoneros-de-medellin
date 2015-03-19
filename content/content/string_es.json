@@ -2,7 +2,8 @@
     "landingDescriptionHeadline":"LA WEB DOCUMENTAL INTERACTIVA DE LOS QUE VENDEN CANTANDO EN MEDELLÍN - COLOMBIA.",
     "landingDescriptionParagraph":"Un recorrido virtual por el universo laboral y personal de aquellos que entendieron que al amor y a los clientes se les seduce por el oído.",
     "landingLoadSavedProgress":"Retomar recorrido guardado",
-    "langingInitNewProgress":"Volver al inicio del recorrido",
+    "landingInitNewProgress":"Volver al inicio del recorrido",
+    "loadingLabel":"CARGANDO",
     "menuBtnLabelHome":"Inicio",
     "menuBtnLabelTransmedia":"Un Transmedia",
     "menuBtnLabelMusic":"Musica",
@@ -17,5 +18,18 @@
     "streetWalkSignDiscoveredStoriesTitle":"HISTORIAS DESCUBIERTAS",
     "streetWalkSignDiscoveredOf":"DE",
     "streetWalkSignAreaTitle":"ZONA",
-    "streetWalkBtnMenuLabel":"MENÚ"
+    "streetWalkBtnMenuLabel":"MENÚ",
+    "tutorialOkBtn":"OK ▸",
+    "tutorialFirstStreetHelper1Title":"AYUDA:",
+    "tutorialFirstStreetHelper1Description":"Dando click al nombre del pregonero, accedes a uno de los videos sobre su vida.",
+    "tutorialFirstStreetHelper2Title":"AYUDA: DESCUBRE MÁS",
+    "tutorialFirstStreetHelper2Description":"Un video es poco para conocer las facetas de la Jale. Hay más! Búscala en otras calles!.",
+    "tutorialFirstStreetHelper3Title":"AYUDA: OTROS PREGONEROS",
+    "tutorialFirstStreetHelper3Description":"Hay otros pregoneros en estas calles. Encuéntralos. Te llegó el turno de explorar!",
+    "tutorialDirectUnlockTitle":"Bloqueado",
+    "tutorialDirectUnlockDescription":"Para desbloquear, encuentra nuevamente al pregonero. Puedes ir directamente o regresar al recorrido y descubrirlo en otra calle de la ciudad.",
+    "tutorialDirectUnlockBtnGoDirectly":"Ir directamente",
+    "tutorialDirectUnlockBtnPreferSearch":"Prefiero buscar"
+
+    
 }

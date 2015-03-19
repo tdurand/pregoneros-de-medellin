@@ -1,10 +1,12 @@
 define(['jquery',
         'underscore',
         'backbone',
-        'utils/Logger'
+        'utils/Logger',
+        "utils/Localization"
         ],
 function($, _, Backbone,
-                LOGGER){
+                LOGGER,
+                Localization){
 
   var TutorialView = Backbone.View.extend({
 
@@ -13,6 +15,10 @@ function($, _, Backbone,
     initialize : function() {
         var self = this;
 
+        if(_.isUndefined(Localization.STR)) {
+            return;
+        }
+
         self.tutorial = {
           id: 'tutorial-firststreet',
           steps: [
@@ -20,8 +26,8 @@ function($, _, Backbone,
               id: 'tooltip-clickoncharacter',
               target: '.img-container',
               placement: 'left',
-              title: 'AYUDA: PERSONAJE',
-              content: 'Haz click en el botton alrededor del personaje para ver un video',
+              title: Localization.STR.tutorialFirstStreetHelper1Title,
+              content: Localization.STR.tutorialFirstStreetHelper1Description,
               showNextButton:false,
               onShow:function() {
                 $(".streetwalk-textcharacter").css("z-index","51");
@@ -46,11 +52,11 @@ function($, _, Backbone,
                 id: 'tooltip-characterfound',
                 target: '.menucharacter-jale .video3-locked',
                 placement: 'left',
-                title: 'AYUDA: DESCUBRE MÁS',
-                content: 'Puedes conocer mas sobre la Jale, buscala en otras calles !',
+                title: Localization.STR.tutorialFirstStreetHelper2Title,
+                content: Localization.STR.tutorialFirstStreetHelper2Description,
                 showCTAButton:true,
                 showNextButton:false,
-                ctaLabel:"OK ▸",
+                ctaLabel:Localization.STR.tutorialOkBtn,
                 onShow:function() {
                     self.trigger("pauseAnimating");
                     document.body.style.overflowY = "hidden";
@@ -76,13 +82,13 @@ function($, _, Backbone,
             },
             {
                 id: 'tooltip-characterfound',
-                target: '.streetwalk-menucharacter[data-character="lider"] .character',
+                target: '.streetwalk-menucharacter[data-character="pajarito"] .character',
                 placement: 'top',
-                title: 'AYUDA: OTROS PERSONAJES',
-                content: 'Te dejamos explorar, hay varios otros personajes por encontrar !',
+                title: Localization.STR.tutorialFirstStreetHelper3Title,
+                content: Localization.STR.tutorialFirstStreetHelper3Description,
                 showCTAButton:true,
                 showNextButton:false,
-                ctaLabel:"OK ▸",
+                ctaLabel:Localization.STR.tutorialOkBtn,
                 onShow: function() {
                     $(".streetwalk-tutorial-overlay").removeClass("step2");
                     $(".streetwalk-tutorial-overlay").addClass("step3");
