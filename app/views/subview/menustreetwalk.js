@@ -48,7 +48,8 @@ function($, _, Backbone,
 
         self.$el.html(_.template(menuStreetWalkViewTemplate)({
             loginStatus: self.UserManagerView.status,
-            lang: Localization.translationLoaded
+            lang: Localization.translationLoaded,
+            STR: Localization.STR
         }));
     },
 

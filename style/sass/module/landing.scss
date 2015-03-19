@@ -165,9 +165,13 @@
 
             .description-btnenter-btnsecondary {
                 position: absolute;
-                bottom: -2%;
+                bottom: -5%;
                 width: 100%;
                 text-align: center;
+
+                a {
+                    color : #4A2246;
+                }
             }
         }
 

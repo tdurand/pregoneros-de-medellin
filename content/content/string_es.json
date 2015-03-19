@@ -1,4 +1,21 @@
 {
     "landingDescriptionHeadline":"LA WEB DOCUMENTAL INTERACTIVA DE LOS QUE VENDEN CANTANDO EN MEDELLÍN - COLOMBIA.",
-    "landingDescriptionParagraph":"Un recorrido virtual por el universo laboral y personal de aquellos que entendieron que al amor y a los clientes se les seduce por el oído."
+    "landingDescriptionParagraph":"Un recorrido virtual por el universo laboral y personal de aquellos que entendieron que al amor y a los clientes se les seduce por el oído.",
+    "landingLoadSavedProgress":"Retomar recorrido guardado",
+    "langingInitNewProgress":"Volver al inicio del recorrido",
+    "menuBtnLabelHome":"Inicio",
+    "menuBtnLabelTransmedia":"Un Transmedia",
+    "menuBtnLabelMusic":"Musica",
+    "menuBtnLabelCredits":"Equipo",
+    "menuBtnLabelMakingOf":"Making of",
+    "menuBtnLabelPressKit":"Kit de Prensa",
+    "menuBtnLabelLogIn":"Ingresar",
+    "menuBtnLabelLogOut":"Salir",
+    "selectLanguageSpanish":"Español",
+    "selectLanguageEnglish":"English",
+    "selectLanguageFrench":"Français",
+    "streetWalkSignDiscoveredStoriesTitle":"HISTORIAS DESCUBIERTAS",
+    "streetWalkSignDiscoveredOf":"DE",
+    "streetWalkSignAreaTitle":"ZONA",
+    "streetWalkBtnMenuLabel":"MENÚ"
 }

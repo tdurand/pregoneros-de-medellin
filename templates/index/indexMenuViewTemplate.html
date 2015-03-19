@@ -1,17 +1,17 @@
-<p><a>Un Transmedia</a> <span class="menu-separator">|</span> 
-    <a>Musica</a> <span class="menu-separator">|</span> 
-    <a>Equipo</a> <span class="menu-separator">|</span> 
-    <a>Making of</a> <span class="menu-separator">|</span> 
-    <a>PressKit</a> <span class="menu-separator">|</span> 
+<p><a><%= STR.menuBtnLabelTransmedia %></a> <span class="menu-separator">|</span> 
+    <a><%= STR.menuBtnLabelMusic %></a> <span class="menu-separator">|</span> 
+    <a><%= STR.menuBtnLabelCredits %></a> <span class="menu-separator">|</span> 
+    <a><%= STR.menuBtnLabelMakingOf %></a> <span class="menu-separator">|</span> 
+    <a><%= STR.menuBtnLabelPressKit %></a> <span class="menu-separator">|</span> 
 
 <% if(loginStatus.logged) { %>
-        <a class="menu-btnlogout">Logout (<%= loginStatus.name %>)</a>
+        <a class="menu-btnlogout"><%= STR.menuBtnLabelLogOut %> (<%= loginStatus.name %>)</a>
 <% } else { %>
-    <a class="menu-btnlogin">Login</a> 
+    <a class="menu-btnlogin"><%= STR.menuBtnLabelLogIn %></a> 
 <% } %>
    <span class="menu-separator">|</span> <select name="language-selection" class="language-selection">
-        <option value="es" <% if(lang == "es") {%> selected <%} %>>Español</option>
-        <option value="en" <% if(lang == "en") {%> selected <%} %>>English</option>
-        <option value="fr" <% if(lang == "fr") {%> selected <%} %>>Français</option>
+        <option value="es" <% if(lang == "es") {%> selected <%} %>><%= STR.selectLanguageSpanish %></option>
+        <option value="en" <% if(lang == "en") {%> selected <%} %>><%= STR.selectLanguageEnglish %></option>
+        <option value="fr" <% if(lang == "fr") {%> selected <%} %>><%= STR.selectLanguageFrench %></option>
     </select>
 </p>

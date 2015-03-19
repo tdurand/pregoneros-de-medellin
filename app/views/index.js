@@ -41,7 +41,7 @@ function($, _, Backbone,
             self.render();
         }
 
-        Sounds.playSoundHome();
+        // Sounds.playSoundHome();
 
         //EVENT
         self.listenTo(UserManagerView,"loginStatusChanged", function() {
@@ -92,7 +92,8 @@ function($, _, Backbone,
 
         self.$el.find(".menu").html(_.template(indexMenuViewTemplate)({
             loginStatus: UserManagerView.status,
-            lang: Localization.translationLoaded
+            lang: Localization.translationLoaded,
+            STR: Localization.STR
         }));
     },
 
@@ -100,7 +101,9 @@ function($, _, Backbone,
         var self = this;
 
         self.$el.find(".description-btnenter").html(_.template(indexBtnEnterViewTemplate)({
-            loginStatus: UserManagerView.status
+            loginStatus: UserManagerView.status,
+            translationLoaded: Localization.translationLoaded,
+            STR: Localization.STR
         }));
     },
 

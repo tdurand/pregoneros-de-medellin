@@ -304,10 +304,12 @@ define(['jquery',
 
         //Render top signs
         self.$el.find(".streetwalk-progress").html(_.template(svgSignTopProgressTemplate)({
-            nbItemUnlocked: Progression.instance.get("nbItemUnlocked")
+            nbItemUnlocked: Progression.instance.get("nbItemUnlocked"),
+            STR : Localization.STR
         }));
         self.$el.find(".streetwalk-area").html(_.template(svgSignTopAreaTemplate)({
-            area:self.way.wayArea
+            area:self.way.wayArea,
+            STR : Localization.STR
         }));
 
         self.renderImgHighRes();

@@ -4285,11 +4285,15 @@ body.not-moving .streetwalk-sign {
 /* line 166, ../sass/module/landing.scss */
 .middle .description .description-btnenter .description-btnenter-btnsecondary {
   position: absolute;
-  bottom: -2%;
+  bottom: -5%;
   width: 100%;
   text-align: center;
 }
-/* line 176, ../sass/module/landing.scss */
+/* line 172, ../sass/module/landing.scss */
+.middle .description .description-btnenter .description-btnenter-btnsecondary a {
+  color: #4A2246;
+}
+/* line 180, ../sass/module/landing.scss */
 .middle .separator {
   width: 100%;
   float: left;
@@ -4304,7 +4308,7 @@ body.not-moving .streetwalk-sign {
   background-repeat: no-repeat;
 }
 
-/* line 191, ../sass/module/landing.scss */
+/* line 195, ../sass/module/landing.scss */
 .landingpage-video-frame {
   height: 100%;
   width: 100%;
@@ -4317,7 +4321,7 @@ body.not-moving .streetwalk-sign {
   right: 0;
 }
 
-/* line 205, ../sass/module/landing.scss */
+/* line 209, ../sass/module/landing.scss */
 .landingpage-video {
   height: 0;
   width: 100%;
@@ -4326,7 +4330,7 @@ body.not-moving .streetwalk-sign {
   right: 0;
   z-index: -1;
 }
-/* line 215, ../sass/module/landing.scss */
+/* line 219, ../sass/module/landing.scss */
 .landingpage-video iframe {
   bottom: 0px;
   position: absolute;

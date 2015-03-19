@@ -1,15 +1,15 @@
 <% if(loginStatus.logged) { %>
 <a href="#streetwalk">
-    <img src="images/btn-continue.svg" alt="">
+    <img src="images/<%= translationLoaded %>/btn-continue.svg" alt="">
 </a>
 <div class="btn-newprogress description-btnenter-btnsecondary">
-    <a href="#" class="menu-btnlogout">Empezar de nuevo</a>
+    <a href="#" class="menu-btnlogout"><%= STR.langingInitNewProgress %></a>
 </div>
 <% } else { %>
 <a href="#streetwalk">
-    <img src="images/btn-enter.svg" alt="">
+    <img src="images/<%= translationLoaded %>/btn-enter.svg" alt="">
 </a>
 <div class="btn-continueprogress description-btnenter-btnsecondary">
-    <a href="#" class="menu-btnlogin">Seguir mi progressión</a>
+    <a href="#" class="menu-btnlogin"><%= STR.landingLoadSavedProgress %></a>
 </div>
 <% } %>

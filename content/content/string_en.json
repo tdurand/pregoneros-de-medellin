@@ -1,4 +1,21 @@
 {
     "landingDescriptionHeadline":"THE INTERACTIVE WEB DOCUMENTARY OF THE SINGING STREET VENDORS OF MEDELLÍN - COLOMBIA.",
-    "landingDescriptionParagraph":"A virtual journey to discover the world of those who have understood that in trade as in love, it is the voice that seduces."
+    "landingDescriptionParagraph":"A virtual journey to discover the world of those who have understood that in trade as in love, it is the voice that seduces.",
+    "landingLoadSavedProgress":"Load saved progress",
+    "langingInitNewProgress":"Begin new progress",
+    "menuBtnLabelHome":"Home",
+    "menuBtnLabelTransmedia":"A Transmedia",
+    "menuBtnLabelMusic":"Music",
+    "menuBtnLabelCredits":"Team",
+    "menuBtnLabelMakingOf":"Making of",
+    "menuBtnLabelPressKit":"Press Kit",
+    "menuBtnLabelLogIn":"Login",
+    "menuBtnLabelLogOut":"Logout",
+    "selectLanguageSpanish":"Español",
+    "selectLanguageEnglish":"English",
+    "selectLanguageFrench":"Français",
+    "streetWalkSignDiscoveredStoriesTitle":"STORIES DISCOVERED",
+    "streetWalkSignDiscoveredOf":"OF",
+    "streetWalkSignAreaTitle":"AREA",
+    "streetWalkBtnMenuLabel":"MENU"
 }

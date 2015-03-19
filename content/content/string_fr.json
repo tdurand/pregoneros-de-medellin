@@ -1,4 +1,21 @@
 {
     "landingDescriptionHeadline":"LE WEBDOCUMENTAIRE INTERACTIF DES CRIEURS AMBULANTS COLOMBIENS.",
-    "landingDescriptionParagraph":"Parcourez virtuellement Medellín et découvrez l’univers de ceux qui ont compris, qu’en amour comme en commerce, c’est par la voix qu’on séduit."
+    "landingDescriptionParagraph":"Parcourez virtuellement Medellín et découvrez l’univers de ceux qui ont compris, qu’en amour comme en commerce, c’est par la voix qu’on séduit.",
+    "landingLoadSavedProgress":"Reprendre une sauvegarde",
+    "langingInitNewProgress":"Recommencer à zero",
+    "menuBtnLabelHome":"Accueil",
+    "menuBtnLabelTransmedia":"Un Transmedia",
+    "menuBtnLabelMusic":"Musique",
+    "menuBtnLabelCredits":"Equipe",
+    "menuBtnLabelMakingOf":"Making of",
+    "menuBtnLabelPressKit":"Dossier de Presse",
+    "menuBtnLabelLogIn":"Connexion",
+    "menuBtnLabelLogOut":"Déconnexion",
+    "selectLanguageSpanish":"Español",
+    "selectLanguageEnglish":"English",
+    "selectLanguageFrench":"Français",
+    "streetWalkSignDiscoveredStoriesTitle":"HISTOIRES DECOUVERTES",
+    "streetWalkSignDiscoveredOf":"DE",
+    "streetWalkSignAreaTitle":"ZONE",
+    "streetWalkBtnMenuLabel":"MENU"
 }
