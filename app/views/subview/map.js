@@ -72,6 +72,7 @@ function($, _, Backbone,
             self.addAllCharacterToMap();
             self.addWaysToMap();
             self.addDiscoveredPathToMap();
+            self.addStartingMarker();
 
             self.$el.find(".streetwalk-mapcontainer").hover(function() {
                 self.enlargeMap();
@@ -196,6 +197,17 @@ function($, _, Backbone,
             var newProgressionPath = Progression.instance.get("pathDiscovered")[Progression.instance.get("currentStreet")];
             self.updateDiscoveredPathToMap(newProgressionPath);
         });
+    },
+
+    addStartingMarker: function() {
+        var self = this;
+
+        self.markerStart = L.marker([6.252000116022819,-75.56807398796082]).addTo(self.map);
+        self.markerStart.setIcon(L.mapbox.marker.icon({
+                'marker-size': 'large',
+                'marker-symbol': 'triangle-stroked',
+                'marker-color': '#a3e46b'
+        }));
     },
 
     addAllCharacterToMap: function() {

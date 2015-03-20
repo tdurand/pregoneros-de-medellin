@@ -27,6 +27,7 @@ define(['jquery',
     'text!templates/svg/svgFrameGauchoTemplate.html',
     'text!templates/svg/svgFramePapavanegasTemplate.html',
     'text!templates/svg/svgScrollToStart.html',
+    'text!templates/svg/svgScrollOtherWay.html',
     'tweenmax',
     'mapbox'
     ],
@@ -56,7 +57,8 @@ define(['jquery',
         svgFrameLiderTemplate,
         svgFrameGauchoTemplate,
         svgFramePapavanegasTemplate,
-        svgScrollToStart){
+        svgScrollToStart,
+        svgScrollOtherSide){
 
       var StreetWalkView = Backbone.View.extend({
 
@@ -310,6 +312,9 @@ define(['jquery',
             Progression.instance.isFirstWay = false;
             //Render tutorial
             self.$el.find(".streetwalk-tutorial").html(_.template(svgScrollToStart)({
+                lang: Localization.translationLoaded
+            }));
+            self.$el.find(".streetwalk-tutorial-scrollotherside-tooltip").html(_.template(svgScrollOtherSide)({
                 lang: Localization.translationLoaded
             }));
         }
