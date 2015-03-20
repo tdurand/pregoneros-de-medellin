@@ -38,18 +38,18 @@ function($, _, Backbone,
 
                 self.listenToOnce(self,"clickOnCharacter",function() {
                     $(".streetwalk-tutorial-overlay").addClass("step2");
-                    $(".hopscotch-bubble:not(.hopscotch-callout)").hide();
+                    $(".hopscotch-bubble:not(.hopscotch-callout)").addClass("hide");
                 });
 
                 self.listenToOnce(self,"closeVideo",function() {
                     //Wait end of the animation
                     setTimeout(function() {
                         if(hopscotch.getState()) {
-                            $(".hopscotch-bubble:not(.hopscotch-callout)").show();
+                            $(".hopscotch-bubble:not(.hopscotch-callout)").removeClass("hide");
                             hopscotch.nextStep();
                         }
                         else {
-                            $(".hopscotch-bubble:not(.hopscotch-callout)").show();
+                            $(".hopscotch-bubble:not(.hopscotch-callout)").removeClass("hide");
                             hopscotch.startTour(self.tutorial,1);
                         }
                     },500);
@@ -140,7 +140,7 @@ function($, _, Backbone,
     showHelperLocker: function(character,video) {
             var self = this;
             //hide potential tooltip
-            $(".hopscotch-bubble:not(.hopscotch-callout)").hide();
+            $(".hopscotch-bubble:not(.hopscotch-callout)").addClass("hide");
 
             //show tooltip to go to other street
             var calloutMgr = hopscotch.getCalloutManager();
@@ -157,7 +157,7 @@ function($, _, Backbone,
                     //in case we are in the tutorial
                     $(".streetwalk-tutorial-overlay").hide();
                     if(!self.tutorialDone) {
-                        $(".hopscotch-bubble:not(.hopscotch-callout)").show();
+                        $(".hopscotch-bubble:not(.hopscotch-callout)").removeClass("hide");
                         if(hopscotch.getState()) {
                             hopscotch.nextStep();
                         }
@@ -166,7 +166,7 @@ function($, _, Backbone,
                   onClose: function() {
                     $(".streetwalk-tutorial-overlay").hide();
                     if(!self.tutorialDone) {
-                        $(".hopscotch-bubble:not(.hopscotch-callout)").show();
+                        $(".hopscotch-bubble:not(.hopscotch-callout)").removeClass("hide");
                         if(hopscotch.getState()) {
                             hopscotch.nextStep();
                         }
