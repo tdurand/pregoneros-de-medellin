@@ -2,6 +2,7 @@ define(['jquery',
         'underscore',
         'backbone',
         'utils/Logger',
+        'views/subview/tutorial',
         'utils/Localization',
         'models/Progression',
         'text!templates/streetwalk/menuCharactersViewTemplate.html',
@@ -13,6 +14,7 @@ define(['jquery',
         ],
 function($, _, Backbone,
                 LOGGER,
+                TutorialView,
                 Localization,
                 Progression,
                 streetWalkMenuCharactersViewTemplate,
@@ -332,32 +334,7 @@ function($, _, Backbone,
         }
         else {
             //locker
-            //show tooltip to go to other street
-            var calloutMgr = hopscotch.getCalloutManager();
-            calloutMgr.createCallout({
-                  id: 'unlock-video',
-                  target: ".menucharacter-" + character + " ." + content +"-locked",
-                  placement: 'top',
-                  title: Localization.STR.tutorialDirectUnlockTitle,
-                  content: Localization.STR.tutorialDirectUnlockDescription + '<p><button class="btn-gotostreet btn-secondary hopscotch-cta">'+ Localization.STR.tutorialDirectUnlockBtnGoDirectly + '</button> <button class="hopscotch-close hopscotch-nav-button hopscotch-cta">' + Localization.STR.tutorialDirectUnlockBtnPreferSearch +'</button></p>',
-                  onShow: function() {
-                     $(".streetwalk-tutorial-overlay").show();
-                  },
-                  onCTA: function() {
-                    //in case we are in the tutorial
-                    $(".streetwalk-tutorial-overlay").hide();
-                  },
-                  onClose: function() {
-                    $(".streetwalk-tutorial-overlay").hide();
-                  }
-
-            });
-
-            $(".btn-gotostreet").one("click",function() {
-                $("body").css("overflow", "visible");
-                var street = Progression.instance.getStreetWhereCharacterNotDiscovered(character);
-                window.location.href = "#streetwalk/"+ street;
-            });
+            TutorialView.showHelperLocker(character,content);
         }
     },
 

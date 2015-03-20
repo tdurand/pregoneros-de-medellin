@@ -1,10 +1,12 @@
 define(['jquery',
         'underscore',
         'backbone',
+        "models/Progression",
         'utils/Logger',
         "utils/Localization"
         ],
 function($, _, Backbone,
+                Progression,
                 LOGGER,
                 Localization){
 
@@ -36,15 +38,21 @@ function($, _, Backbone,
 
                 self.listenToOnce(self,"clickOnCharacter",function() {
                     $(".streetwalk-tutorial-overlay").addClass("step2");
+                    $(".hopscotch-bubble:not(.hopscotch-callout)").hide();
                 });
 
                 self.listenToOnce(self,"closeVideo",function() {
-                    if(hopscotch.getState()) {
-                        hopscotch.nextStep();
-                    }
-                    else {
-                        hopscotch.startTour(self.tutorial,1);
-                    }
+                    //Wait end of the animation
+                    setTimeout(function() {
+                        if(hopscotch.getState()) {
+                            $(".hopscotch-bubble:not(.hopscotch-callout)").show();
+                            hopscotch.nextStep();
+                        }
+                        else {
+                            $(".hopscotch-bubble:not(.hopscotch-callout)").show();
+                            hopscotch.startTour(self.tutorial,1);
+                        }
+                    },500);
                 });
               }
             },
@@ -127,6 +135,52 @@ function($, _, Backbone,
                     });
                 },200);
         }
+    },
+
+    showHelperLocker: function(character,video) {
+            var self = this;
+            //hide potential tooltip
+            $(".hopscotch-bubble:not(.hopscotch-callout)").hide();
+
+            //show tooltip to go to other street
+            var calloutMgr = hopscotch.getCalloutManager();
+            calloutMgr.createCallout({
+                  id: 'unlock-video',
+                  target: ".menucharacter-" + character + " ." + video +"-locked",
+                  placement: 'top',
+                  title: Localization.STR.tutorialDirectUnlockTitle,
+                  content: Localization.STR.tutorialDirectUnlockDescription + '<p><button class="btn-gotostreet btn-secondary hopscotch-cta">'+ Localization.STR.tutorialDirectUnlockBtnGoDirectly + '</button> <button class="hopscotch-close hopscotch-nav-button hopscotch-cta">' + Localization.STR.tutorialDirectUnlockBtnPreferSearch +'</button></p>',
+                  onShow: function() {
+                     $(".streetwalk-tutorial-overlay").show();
+                  },
+                  onCTA: function() {
+                    //in case we are in the tutorial
+                    $(".streetwalk-tutorial-overlay").hide();
+                    if(!self.tutorialDone) {
+                        $(".hopscotch-bubble:not(.hopscotch-callout)").show();
+                        if(hopscotch.getState()) {
+                            hopscotch.nextStep();
+                        }
+                    }
+                  },
+                  onClose: function() {
+                    $(".streetwalk-tutorial-overlay").hide();
+                    if(!self.tutorialDone) {
+                        $(".hopscotch-bubble:not(.hopscotch-callout)").show();
+                        if(hopscotch.getState()) {
+                            hopscotch.nextStep();
+                        }
+                    }
+
+                  }
+
+            });
+
+            $(".btn-gotostreet").one("click",function() {
+                $("body").css("overflow", "visible");
+                var street = Progression.instance.getStreetWhereCharacterNotDiscovered(character);
+                window.location.href = "#streetwalk/"+ street;
+            });
     },
 
     endTutorial: function() {
