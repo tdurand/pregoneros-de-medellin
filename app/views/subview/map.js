@@ -2,11 +2,13 @@ define(['jquery',
         'underscore',
         'backbone',
         'utils/Logger',
+        'utils/Localization',
         'utils/GeoUtils',
         'models/Progression'
         ],
 function($, _, Backbone,
                 LOGGER,
+                Localization,
                 GeoUtils,
                 Progression){
 
@@ -208,6 +210,11 @@ function($, _, Backbone,
                 'marker-symbol': 'triangle-stroked',
                 'marker-color': '#a3e46b'
         }));
+        self.markerStart.feature = { properties: { way: "plazabotero-start-carabobo" } };
+
+        self.markerStart.on("click", function(e) {
+            self.showHelpGoToStreet(e);
+        });
     },
 
     addAllCharacterToMap: function() {
@@ -229,7 +236,6 @@ function($, _, Backbone,
                     "coordinates": [characterPosition.position[1],characterPosition.position[0]]
                 },
                 "properties": {
-                    "title": characterPosition.name,
                     "way":characterPosition.way,
                     "wayReverse": Ways.getReverseWayName(characterPosition.way),
                     "icon": {
@@ -249,6 +255,9 @@ function($, _, Backbone,
                 feature = marker.feature;
 
             marker.setIcon(L.icon(feature.properties.icon));
+            marker.on("click", function(e) {
+                self.showHelpGoToStreet(e);
+            });
         });
 
         self.layerCharacters.setGeoJSON(geoJson);
@@ -482,6 +491,31 @@ function($, _, Backbone,
         self.$el.height(height/2.5);
         self.$el.width(height/2.5);
         
+    },
+
+    showHelpGoToStreet: function(e) {
+        var calloutMgr = hopscotch.getCalloutManager();
+        calloutMgr.createCallout({
+              id: 'goto-marker',
+              target: e.target._icon,
+              placement: 'top',
+              title: "Shortcut",
+              content: "Quieres ir directamente en esta calle ?" + '<p><button class="btn-gotostreet btn-secondary hopscotch-cta">'+ Localization.STR.tutorialDirectUnlockBtnGoDirectly + '</button> <button class="hopscotch-close hopscotch-nav-button hopscotch-cta">' + Localization.STR.tutorialDirectUnlockBtnPreferSearch +'</button></p>',
+              onShow: function() {
+                 $(".streetwalk-tutorial-overlay").show();
+              },
+              onCTA: function() {
+                //in case we are in the tutorial
+                $(".streetwalk-tutorial-overlay").hide();
+              },
+              onClose: function() {
+                $(".streetwalk-tutorial-overlay").hide();
+              }
+        });
+
+        $(".btn-gotostreet").one("click",function() {
+            window.location.href = "#streetwalk/"+ e.target.feature.properties.way;
+        });
     },
 
     onClose: function(){
