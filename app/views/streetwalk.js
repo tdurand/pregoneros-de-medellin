@@ -339,7 +339,7 @@ define(['jquery',
         }
         };
 
-        $.preloadImages("images/loading/background.jpg");
+        $.preloadImages("images/loading/background.png");
 
         //set right src for frame character
         if(!_.isUndefined(self.way.characterDefinition)) {
