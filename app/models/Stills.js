@@ -72,14 +72,14 @@ function($, _, Backbone,
                         self.nbImgLoaded++;
                         self.numOpenRequests--;
                         self.percentageLoaded = Math.floor(self.nbImgLoaded*accurate/(self.nbImages+1)*100);
-                        self.trigger("updatePercentageLoaded");
+                        self.trigger("updateStillsPercentageLoaded");
 
                         if(self.nbImgLoaded == parseInt(self.nbImages/accurate,10)) {
-                            self.trigger("loadingFinished");
+                            self.trigger("loadingStillsFinished");
                         }
 
                         if(self.nbImgLoaded == parseInt(self.nbImages,10)) {
-                            self.trigger("loadingFinishedCompletely");
+                            self.trigger("loadingStillsFinishedCompletely");
                         }
                     });
 

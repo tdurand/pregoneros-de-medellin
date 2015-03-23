@@ -15,6 +15,7 @@ function($, _, Backbone,
     model: Sound,
 
     soundHomeFaded: false,
+    percentageLoaded:0,
 
     playSoundHome: function() {
         var self = this;
@@ -237,21 +238,23 @@ function($, _, Backbone,
             }
 
             var nbSoundsToLoad = self.soundsToAdd.length;
+            var nbSoundsTotal = nbSoundsToLoad;
 
             //TODO REMOVE OR AVOID DUPLICATE CODE
             if(nbSoundsToLoad === 0) {
-                self.trigger('soundsLoaded');
-                        LOGGER.debug("ALL SOUNDS LOADED");
-                        console.log(self.models);
+                self.percentageSoundsLoaded = 100;
+                self.trigger('loadingSoundsFinished');
+                LOGGER.debug("ALL SOUNDS LOADED");
+                console.log(self.models);
 
-                        //Remove old sounds
-                        _.each(self.soundsToRemoveIds, function(soundToRemove) {
-                            var sound = self.get(soundToRemove);
-                            self.listenToOnce(sound,"faded",function() {
-                                self.remove(sound).unload();
-                            });
-                            sound.fadeOut();
-                        });
+                //Remove old sounds
+                _.each(self.soundsToRemoveIds, function(soundToRemove) {
+                    var sound = self.get(soundToRemove);
+                    self.listenToOnce(sound,"faded",function() {
+                        self.remove(sound).unload();
+                    });
+                    sound.fadeOut();
+                });
             }
             
             _.each(self.soundsToAdd, function(waySound) {
@@ -276,8 +279,12 @@ function($, _, Backbone,
                 self.listenTo(sound,"soundLoaded",function() {
                     nbSoundsToLoad--;
 
+                    self.percentageLoaded = Math.floor((nbSoundsTotal-nbSoundsToLoad)*100/nbSoundsTotal);
+                    self.trigger('updateSoundsPercentageLoaded');
+
                     if(nbSoundsToLoad === 0) {
-                        self.trigger('soundsLoaded');
+                        self.percentageLoaded = 100;
+                        self.trigger('loadingSoundsFinished');
                         LOGGER.debug("ALL SOUNDS LOADED");
                         console.log(self.models);
 

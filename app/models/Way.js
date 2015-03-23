@@ -17,7 +17,12 @@ function($, _, Backbone,
         wayStills:null,
 
         //States indicators
-        percentageLoaded:null,
+        percentageLoaded:0,
+        percentageStillsLoaded:0,
+        percentageSoundsLoaded:0,
+        loadingStillsFinished:false,
+        loadingStillsFinishedCompletely:false,
+        loadingSoundsFinished:false,
         loadingFinished:false,
         loadingFinishedCompletely:false,
 
@@ -80,26 +85,52 @@ function($, _, Backbone,
             self.wayStills = new Stills();
             self.wayStills.init(params);
 
-            self.listenTo(self.wayStills,"updatePercentageLoaded", function() {
-                self.percentageLoaded = self.wayStills.percentageLoaded;
+            self.listenTo(self.wayStills,"updateStillsPercentageLoaded", function() {
+                self.percentageStillsLoaded = self.wayStills.percentageLoaded;
+                self.percentageLoaded = Math.floor(self.percentageSoundsLoaded*10/100) + Math.floor(self.percentageStillsLoaded*90/100);
                 self.trigger("updatePercentageLoaded");
+                console.log(self.percentageLoaded);
             });
 
-            self.listenTo(self.wayStills,"loadingFinished", function() {
-                if(self.soundsLoaded) {
+            self.listenTo(Sounds,"updateSoundsPercentageLoaded", function() {
+                self.percentageSoundsLoaded = Sounds.percentageLoaded;
+                self.percentageLoaded = Math.floor(self.percentageSoundsLoaded*10/100) + Math.floor(self.percentageStillsLoaded*90/100);
+                self.trigger("updatePercentageLoaded");
+                console.log("sound"+self.percentageSoundsLoaded);
+            });
+
+            //Sounds
+            self.listenTo(Sounds,"loadingSoundsFinished", function() {
+                self.loadingSoundsFinished = true;
+                if(self.loadingStillsFinished) {
                     self.loadingFinished = true;
                     self.trigger("loadingFinished");
                 }
                 else {
-                    self.listenToOnce(Sounds,"soundsLoaded", function() {
+                    self.listenToOnce(self.wayStills,"loadingStillsFinished", function() {
                         self.loadingFinished = true;
+                        self.loadingStillsFinished = true;
                         self.trigger("loadingFinished");
                     });
                 }
-                
             });
 
-            self.listenTo(self.wayStills,"loadingFinishedCompletely", function() {
+            self.listenTo(self.wayStills,"loadingStillsFinished", function() {
+                self.loadingStillsFinished = true;
+                if(self.loadingSoundsFinished) {
+                    self.loadingFinished = true;
+                    self.trigger("loadingFinished");
+                }
+                else {
+                    self.listenToOnce(Sounds,"loadingSoundsFinished", function() {
+                        self.loadingFinished = true;
+                        self.loadingSoundsFinished = true;
+                        self.trigger("loadingFinished");
+                    });
+                }
+            });
+
+            self.listenTo(self.wayStills,"loadingStillsFinishedCompletely", function() {
                 self.trigger('loadingFinishedCompletely');
                 self.loadingFinishedCompletely = true;
             });
@@ -110,11 +141,7 @@ function($, _, Backbone,
             var self = this;
             self.wayStills.fetch();
 
-            //Sounds
-            self.listenTo(Sounds,"soundsLoaded", function() {
-                self.trigger('soundsLoaded');
-                self.soundsLoaded = true;
-            });
+            Sounds.percentageLoaded = 0;
             Sounds.updateSoundsCollection(self.waySoundsData,self.wayName);
             Sounds.fetch();
             
