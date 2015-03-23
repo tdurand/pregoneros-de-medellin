@@ -2,7 +2,9 @@ var express = require('express');
 var bodyParser = require("body-parser");
 var app = express();
 
-app.use('/', express.static(__dirname));
+var oneDay = 86400000;
+
+app.use('/', express.static(__dirname,{maxAge:oneDay}));
 app.use(bodyParser.json({limit: '2mb'}));
 app.use(bodyParser.urlencoded({limit: '2mb', extended: true}));
 app.set('port', (process.env.PORT || 3000));
