@@ -354,6 +354,9 @@ define(['jquery',
         Progression.setCurrentStreet(self.way.wayName);
 
         self.adjustSizes();
+
+        self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
+        self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
         
     },
 
