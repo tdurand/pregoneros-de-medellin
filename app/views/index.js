@@ -65,8 +65,8 @@ function($, _, Backbone,
           self.player.on("loadeddata",function() {
               self.player.off("loadeddata");
               self.resizeBackgroundVideo();
-              $(".landingpage-video-frame").css("z-index",-6);
               self.player.play();
+              $(".landingpage-video-frame").css("z-index",-6);
           });
         });
 
