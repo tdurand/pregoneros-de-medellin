@@ -8,6 +8,7 @@ require.config({
         backbone:     'libs/vendor/backbone-1.1.2.min',
         backbonenested:'libs/vendor/backbone-nested-2.0.1',
         popcorn:      'libs/vendor/popcorn-1.5.6.min',
+        videojs:      'libs/vendor/videojs-4.12.5.min',
         howl:         'libs/vendor/howler-2.0-beta.min',
         text:         'libs/vendor/text-2.0.10',
         fastclick:    'libs/vendor/fastclick.min',
@@ -44,7 +45,8 @@ define(['jquery',
         'routers/router',
         'rAF',
         'parse',
-        'backbonenested'], function($, _,
+        'backbonenested',
+        'videojs'], function($, _,
                             Backbone,
                             FastClick,
                             LOGGER,
@@ -60,6 +62,9 @@ define(['jquery',
 
         //Start app Router
         Backbone.history.start();
+
+        //Videojs config
+        videojs.options.flash.swf = "app/libs/vendor/video-js.swf";
         
     });
 

@@ -2,11 +2,15 @@ define(['jquery',
         'underscore',
         'backbone',
         'utils/Logger',
-        'utils/Constant'
+        'utils/Localization',
+        'utils/Constant',
+        'text!templates/streetwalk/videoViewTemplate.html'
         ],
 function($, _, Backbone,
                 LOGGER,
-                CONSTANT){
+                Localization,
+                CONSTANT,
+                videoViewTemplate){
 
   var VideoManagerView = Backbone.View.extend({
 
@@ -18,6 +22,7 @@ function($, _, Backbone,
     videoCharacter:"",
     videoName:"",
     videoId: null,
+    playerReady: false,
 
 
     prepare : function(Progression) {
@@ -28,32 +33,50 @@ function($, _, Backbone,
         self.setElement(".streetwalk-video");
     },
 
-    initVideo: function(characterName, wayName) {
+    initNextCharacterVideo: function(characterName, wayName) {
         var self = this;
 
         var video = self.Progression.instance.nextVideoToPlay(characterName, wayName);
-        // Add video
-        self.popcorn = Popcorn.vimeo( ".streetwalk-video-container", "http://player.vimeo.com/video/"+video.videoId);
 
-        self.videoCharacter = characterName;
-        self.videoName = video.videoName;
-        self.videoId = video.videoId;
+        video.videoCharacter = characterName;
+
+        self.initVideo(video);
    },
 
    initSpecificVideo: function(characterName, video) {
        var self = this;
 
-       var idVimeo = CONSTANT.get("videoToPlay")[characterName][video];
-        // Add video
-       if(self.popcorn) {
-            self.popcorn.destroy();
-       }
-       $(".streetwalk-video-container iframe").remove();
-       self.popcorn = Popcorn.vimeo( ".streetwalk-video-container", "http://player.vimeo.com/video/"+idVimeo);
+       var id = CONSTANT.get("videoToPlay")[characterName][video];
+       
+       var videoToInit = {
+            videoName : video,
+            videoId : id,
+            videoCharacter : characterName
+       };
 
-       self.videoCharacter = characterName;
-       self.videoName = video;
-       self.videoId = idVimeo;
+       self.initVideo(videoToInit);
+   },
+
+   initVideo: function(video) {
+        var self = this;
+
+        self.cleanPlayer();
+        // Add video
+        self.$el.find(".streetwalk-video-container").html(_.template(videoViewTemplate)({
+                video: video,
+                STR: Localization.STR,
+                lang: Localization.translationLoaded
+        }));
+
+        videojs("video").ready(function(){
+          self.player = this;
+          self.playerReady = true;
+          self.trigger("playerReady");
+        });
+
+        self.videoCharacter = video.videoCharacter;
+        self.videoName = video.videoName;
+        self.videoId = video.videoId;
    },
 
    showVideo: function(characterName, wayName) {
@@ -79,23 +102,24 @@ function($, _, Backbone,
             });
         }
 
-        if(_.isUndefined(self.popcorn)) {
-            self.initVideo(characterName, wayName);
-        }
-
         self.trigger("showVideo");
 
         setTimeout(function() {
-            self.popcorn.play();
-        },1000);
+            if(self.playerReady) {
+                self.player.play();
+            }
+        },2000);
 
     },
 
     closeVideo: function() {
         var self = this;
 
-        self.popcorn.pause();
-        self.popcorn.currentTime(0);
+        // self.popcorn.pause();
+        // self.popcorn.currentTime(0);
+        
+        self.player.pause();
+        self.player.currentTime(0);
 
         self.trigger("closeVideo");
 
@@ -112,6 +136,14 @@ function($, _, Backbone,
                     transformOrigin:"bottom 80%",
                     ease: Power1.easeInOut
             });
+        }
+    },
+
+    cleanPlayer: function() {
+        var self = this;
+        if(self.player) {
+            self.player.dispose();
+            self.playerReady = false;
         }
     },
 

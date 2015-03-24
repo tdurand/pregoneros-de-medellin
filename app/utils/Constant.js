@@ -9,29 +9,29 @@ define(["backbone"],function(Backbone) {
             self.set({
                 videoToPlay: {
                     jale: {
-                        video1:"120590814",
-                        video2:"120593060",
-                        video3:"120593061"
+                        video1:"http://player.vimeo.com/external/120590814.hd.mp4?s=dd914947e8fd3da5c8c85af6b2355a0f",
+                        video2:"http://player.vimeo.com/external/120593060.hd.mp4?s=3337a52da878a7351ce701df94c3185b",
+                        video3:"http://player.vimeo.com/external/120593061.hd.mp4?s=ade30b49360d46ceda33a05aa56ca56c"
                     },
                     pajarito: {
-                        video1:"121791163",
-                        video2:"121791164",
-                        video3:"121791165"
+                        video1:"http://player.vimeo.com/external/121791163.hd.mp4?s=8da2ded0216bfa4a4e63c7565891cacb",
+                        video2:"http://player.vimeo.com/external/121791164.hd.mp4?s=76694a41705ccd17c0c6191ecfc6d5fb",
+                        video3:"http://player.vimeo.com/external/121791165.hd.mp4?s=aa2096a17085ddfdab4f81e7d0028ace"
                     },
                     lider: {
-                        video1:"120198776",
-                        video2:"120198778",
-                        video3:"120198779"
+                        video1:"http://player.vimeo.com/external/120198776.hd.mp4?s=43749e12765f9f1f60405c6728a25186",
+                        video2:"http://player.vimeo.com/external/120198778.hd.mp4?s=63b50c5599a92752bdc4adcfb240d9be",
+                        video3:"http://player.vimeo.com/external/120198779.hd.mp4?s=18838bd30821001809902718bac9571e"
                     },
                     gaucho: {
-                        video1:"122376488",
-                        video2:"122378449",
-                        video3:"122591730"
+                        video1:"http://player.vimeo.com/external/122591730.hd.mp4?s=00d978024fa2d9dc743035e99f30f7ed",
+                        video2:"http://player.vimeo.com/external/122378449.hd.mp4?s=6e0b40c7edc780b802c84613d5c24fee",
+                        video3:"http://player.vimeo.com/external/122376488.hd.mp4?s=b2ef65f871f03847712716e0793e61c2"
                     },
                     papavanegas: {
-                        video1:"115328392",
-                        video2:"115325355",
-                        video3:"115325356"
+                        video1:"http://player.vimeo.com/external/120590814.hd.mp4?s=dd914947e8fd3da5c8c85af6b2355a0f",
+                        video2:"http://player.vimeo.com/external/120590814.hd.mp4?s=dd914947e8fd3da5c8c85af6b2355a0f",
+                        video3:"http://player.vimeo.com/external/120590814.hd.mp4?s=dd914947e8fd3da5c8c85af6b2355a0f"
                     }
                 }
             });

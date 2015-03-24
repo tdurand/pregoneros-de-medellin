@@ -89,14 +89,12 @@ function($, _, Backbone,
                 self.percentageStillsLoaded = self.wayStills.percentageLoaded;
                 self.percentageLoaded = Math.floor(self.percentageSoundsLoaded*10/100) + Math.floor(self.percentageStillsLoaded*90/100);
                 self.trigger("updatePercentageLoaded");
-                console.log(self.percentageLoaded);
             });
 
             self.listenTo(Sounds,"updateSoundsPercentageLoaded", function() {
                 self.percentageSoundsLoaded = Sounds.percentageLoaded;
                 self.percentageLoaded = Math.floor(self.percentageSoundsLoaded*10/100) + Math.floor(self.percentageStillsLoaded*90/100);
                 self.trigger("updatePercentageLoaded");
-                console.log("sound"+self.percentageSoundsLoaded);
             });
 
             //Sounds

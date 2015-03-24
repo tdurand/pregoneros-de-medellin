@@ -270,6 +270,11 @@
     .streetwalk-video-container {
         height: 100%;
         width: 100%;
+
+        .video-js {
+            height: 100% !important;
+            width: 100% !important;
+        }
     }
 
     .streetwalk-video-btnclose {
@@ -500,17 +505,6 @@
     left:0;
     width:100%;
     height:100%;
-}
-
-.trame-video {
-    background: url("../../images/trame-video.png") repeat;
-    height: 100%;
-    position: fixed;
-    width: 100%;
-    transition: opacity 0.5s ease;
-    -webkit-transition: opacity 0.5s ease;
-    -moz-transition: opacity 0.5s ease;
-    opacity: 1;
 }
 
 .streetwalk-tutorial-overlay {

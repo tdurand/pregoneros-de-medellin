@@ -1,0 +1,13 @@
+<video id="video" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto">
+    <source src="<%= video.videoId %>" type='video/mp4' />
+     <% if(lang == "es") {%>
+    <track kind="subtitles" src="content/subtitles/<%= video.videoCharacter %>/<%= video.videoName %>/es.vtt" srclang="es" label="<%= STR.selectLanguageSpanish %>" default></track>
+    <% } %>
+    <% if(lang == "en") {%>
+    <track kind="subtitles" src="content/subtitles/<%= video.videoCharacter %>/<%= video.videoName %>/en.vtt" srclang="en" label="<%= STR.selectLanguageEnglish %>" default></track>
+    <% } %>
+    <% if(lang == "fr") {%>
+    <track kind="subtitles" src="content/subtitles/<%= video.videoCharacter %>/<%= video.videoName %>/fr.vtt" srclang="fr" label="<%= STR.selectLanguageFrench %>" default></track>
+    <% } %>
+    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+</video>

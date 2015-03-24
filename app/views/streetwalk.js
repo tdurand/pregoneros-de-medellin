@@ -433,7 +433,7 @@ define(['jquery',
         self.listenToOnce(self.way,"loadingFinishedCompletely", function() {
             //if there is a character in this street
             if(self.way.isThereACharacter()) {
-                VideoManagerView.initVideo(self.way.characterDefinition.name, self.way.wayName);
+                VideoManagerView.initNextCharacterVideo(self.way.characterDefinition.name, self.way.wayName);
             }
         });
         
