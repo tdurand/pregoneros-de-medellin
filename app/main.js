@@ -7,7 +7,6 @@ require.config({
         underscore:   'libs/vendor/lodash-3.1.0.min',
         backbone:     'libs/vendor/backbone-1.1.2.min',
         backbonenested:'libs/vendor/backbone-nested-2.0.1',
-        popcorn:      'libs/vendor/popcorn-1.5.6.min',
         videojs:      'libs/vendor/videojs-4.12.5.min',
         howl:         'libs/vendor/howler-2.0-beta.min',
         text:         'libs/vendor/text-2.0.10',

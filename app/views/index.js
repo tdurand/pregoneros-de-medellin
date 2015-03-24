@@ -6,8 +6,7 @@ define(['jquery',
         'views/usermanager',
         'text!templates/index/indexViewTemplate.html',
         'text!templates/index/indexMenuViewTemplate.html',
-        'text!templates/index/indexBtnEnterViewTemplate.html',
-        'popcorn'
+        'text!templates/index/indexBtnEnterViewTemplate.html'
         ],
 function($, _, Backbone,
                     Localization,
@@ -60,19 +59,16 @@ function($, _, Backbone,
             STR: Localization.STR
         }));
 
-        //Add video
-        self.popcorn = Popcorn.vimeo( ".landingpage-video", "http://player.vimeo.com/video/114688319?loop=1" );
-        self.popcorn.volume(0);
-        self.popcorn.play();
-        
-        self.listenTo(self.popcorn,"play",function() {
-            self.resizeBackgroundVideo();
-            $(".landingpage-video-frame").css("z-index",-3);
-            
+        videojs("video-landing").ready(function(){
+          self.player = this;
+
+          self.player.on("loadeddata",function() {
+              self.player.off("loadeddata");
+              self.resizeBackgroundVideo();
+              $(".landingpage-video-frame").css("z-index",-6);
+              self.player.play();
+          });
         });
-
-        //EVENT AVAILABLE: https://github.com/mozilla/popcorn-js/blob/master/players/vimeo/popcorn.vimeo.unit.js
-
 
         //Prefetch image loading
         $.preloadImages = function() {
@@ -115,7 +111,7 @@ function($, _, Backbone,
 
         var mainContainer = self.$el.find(".main");
         var videoContainer = self.$el.find(".landingpage-video");
-        var videoIframe = self.$el.find(".landingpage-video iframe");
+        var videoIframe = self.$el.find(".landingpage-video .video-js");
 
         var ratio = 9/16;
 
@@ -167,7 +163,7 @@ function($, _, Backbone,
       var self = this;
       //Clean
       self.undelegateEvents();
-      self.popcorn.pause();
+      self.player.dispose();
     }
 
   });

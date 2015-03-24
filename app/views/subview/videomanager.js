@@ -114,9 +114,6 @@ function($, _, Backbone,
 
     closeVideo: function() {
         var self = this;
-
-        // self.popcorn.pause();
-        // self.popcorn.currentTime(0);
         
         self.player.pause();
         self.player.currentTime(0);
