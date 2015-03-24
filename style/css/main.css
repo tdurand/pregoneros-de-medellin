@@ -4326,6 +4326,25 @@ body.not-moving .streetwalk-sign {
   position: absolute;
 }
 
+/* line 226, ../sass/module/landing.scss */
+#index .toggle-sounds {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 2.5rem;
+  height: 2.5rem;
+  z-index: 5;
+  cursor: pointer;
+}
+/* line 237, ../sass/module/landing.scss */
+#index .toggle-sounds[data-state="muted"] {
+  background-image: url("../../images/mutesound.svg");
+}
+/* line 241, ../sass/module/landing.scss */
+#index .toggle-sounds[data-state="normal"] {
+  background-image: url("../../images/unmutesound.svg");
+}
+
 /* line 1, ../sass/module/btn.scss */
 .btn-primary {
   color: #fff;

@@ -318,6 +318,10 @@ function($, _, Backbone,
         Howler.mute(false);
     },
 
+    isMuted: function() {
+        return Howler._muted;
+    },
+
     solo: function(soundToSolo) {
         var self = this;
         

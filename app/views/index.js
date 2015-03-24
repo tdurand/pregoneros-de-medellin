@@ -24,6 +24,7 @@ function($, _, Backbone,
     events:{
         "click .menu-btnlogin":"displayLogin",
         "click .menu-btnlogout":"logout",
+        "click .toggle-sounds":"toggleSounds",
         "change .language-selection":"changeLanguage"
     },
 
@@ -145,6 +146,21 @@ function($, _, Backbone,
         var lang = self.$el.find(".language-selection").val();
 
         Localization.init(lang);
+    },
+
+    toggleSounds: function(e) {
+        var self = this;
+
+        var state = $(e.currentTarget).attr("data-state");
+
+        if(state == "normal") {
+            $(e.currentTarget).attr("data-state","muted");
+            Sounds.mute();
+        }
+        else {
+            $(e.currentTarget).attr("data-state","normal");
+            Sounds.unmute();
+        }
     },
 
     onClose: function(){

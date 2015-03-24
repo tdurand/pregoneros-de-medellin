@@ -221,3 +221,25 @@
         position: absolute;
     }
 }
+
+#index {
+    .toggle-sounds {
+        position:absolute;
+        bottom:20px;
+        right: 20px;
+        width:2.5rem;
+        height:2.5rem;
+
+        z-index:5;
+
+        cursor:pointer;
+
+        &[data-state="muted"] {
+            background-image:url("../../images/mutesound.svg");
+        }
+
+        &[data-state="normal"] {
+            background-image:url("../../images/unmutesound.svg");
+        }
+    }
+}

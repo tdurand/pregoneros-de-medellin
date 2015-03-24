@@ -301,11 +301,13 @@ define(['jquery',
         //render first still
         self.currentStill = self.way.wayStills.first();
         var pathFirstStill = self.currentStill.get("srcLowRes");
+        var soundsMuted = Sounds.isMuted();
 
         self.$el.html(_.template(streetWalkViewTemplate)({
             pathFirstStill:pathFirstStill,
             STR:Localization.STR,
-            lang:Localization.translationLoaded
+            lang:Localization.translationLoaded,
+            soundsMuted:soundsMuted
         }));
 
         if(Progression.instance.isFirstWay) {
@@ -357,7 +359,6 @@ define(['jquery',
 
         self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
         self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
-        
     },
 
     getFrameTemplate : function(character) {
