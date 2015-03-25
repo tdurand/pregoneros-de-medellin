@@ -2752,32 +2752,40 @@ body.not-moving .streetwalk-sign {
   text-align: right;
 }
 /* line 42, ../sass/module/usermanager.scss */
-.usermanager-content .modal-createaccount table {
+.usermanager-content .modal-createaccount table, .usermanager-content .modal-signin table {
   width: 100%;
 }
 /* line 45, ../sass/module/usermanager.scss */
-.usermanager-content .modal-createaccount table td {
+.usermanager-content .modal-createaccount table td, .usermanager-content .modal-signin table td {
   width: 50%;
   vertical-align: top;
 }
 /* line 51, ../sass/module/usermanager.scss */
-.usermanager-content .modal-createaccount input {
+.usermanager-content .modal-createaccount input, .usermanager-content .modal-signin input {
   width: 95%;
   height: 2.2rem;
   padding-left: 5px;
 }
 /* line 57, ../sass/module/usermanager.scss */
-.usermanager-content .modal-createaccount .btn-createaccount-wrapper {
+.usermanager-content .modal-createaccount .btn-alignright-wrapper, .usermanager-content .modal-signin .btn-alignright-wrapper {
   text-align: right;
   margin-right: 1rem;
 }
 /* line 62, ../sass/module/usermanager.scss */
-.usermanager-content .modal-createaccount .form-error-msgcontainer {
+.usermanager-content .modal-createaccount .form-error-msgcontainer, .usermanager-content .modal-signin .form-error-msgcontainer {
   color: red;
   padding-right: 5px;
 }
+/* line 67, ../sass/module/usermanager.scss */
+.usermanager-content .modal-createaccount .link-discrete, .usermanager-content .modal-signin .link-discrete {
+  color: #4b2246;
+}
+/* line 70, ../sass/module/usermanager.scss */
+.usermanager-content .modal-createaccount .link-discrete:active, .usermanager-content .modal-signin .link-discrete:active {
+  color: #4b2246;
+}
 
-/* line 71, ../sass/module/usermanager.scss */
+/* line 79, ../sass/module/usermanager.scss */
 .usermanager-btnclose {
   position: absolute;
   top: 10px;
@@ -2789,7 +2797,7 @@ body.not-moving .streetwalk-sign {
   cursor: pointer;
 }
 
-/* line 83, ../sass/module/usermanager.scss */
+/* line 91, ../sass/module/usermanager.scss */
 .usermanager-overlay {
   position: fixed;
   top: 0;

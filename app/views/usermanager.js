@@ -32,14 +32,15 @@ function($, _, Backbone,
     },
 
     events:{
-        "click .streetwalk-usermanager-btn-createaccount":"renderCreateAccountView",
         "click .signup-facebook":"signUpOrsignInWithFacebook",
         "click .login-facebook":"signUpOrsignInWithFacebook",
         "submit form.login-form": "logIn",
         "submit form.signup-form": "signUp",
         "click .usermanager-btnclose": "closeView",
-        "click .streetwalk-login-btnlogout": "logOut",
+        "click .btn-createaccountlater": "closeView",
+        "click .btn-logout": "logOut",
         "click .btn-createaccount":"renderCreateAccountView",
+        "click .btn-login":"renderSignInView",
         "click .btn-close":"closeView"
     },
 
@@ -80,7 +81,10 @@ function($, _, Backbone,
     renderCreateAccountView: function(e) {
         var self = this;
 
-        e.preventDefault();
+        if(e) {
+            e.preventDefault();
+        }
+
         self.$el.html(_.template(CreateAccountView));
     },
 
@@ -90,8 +94,12 @@ function($, _, Backbone,
          self.$el.html(_.template(SuccessAccountCreationView));
     },
 
-    renderSignInView: function() {
+    renderSignInView: function(e) {
         var self = this;
+
+        if(e) {
+            e.preventDefault();
+        }
 
         self.$el.html(_.template(SignInView));
     },
@@ -99,7 +107,9 @@ function($, _, Backbone,
     renderSuccessSignInView: function() {
         var self = this;
 
-         self.$el.html(_.template(SuccessSignInView));
+         self.$el.html(_.template(SuccessSignInView)({
+            username: self.status.name
+         }));
     },
 
     renderAlertBeforeLogout: function() {
