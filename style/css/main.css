@@ -2744,22 +2744,30 @@ body.not-moving .streetwalk-sign {
 /* line 29, ../sass/module/usermanager.scss */
 .usermanager-content h2 {
   margin-top: 0;
+  margin-bottom: 0;
 }
-/* line 33, ../sass/module/usermanager.scss */
-.usermanager-content button {
-  color: #fff;
-  border-radius: 1rem;
-  border: none;
-  font-size: 1.2rem;
-  padding: 0.3rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  text-decoration: none;
-  -webkit-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.75);
-  background-color: #00A99D;
+/* line 36, ../sass/module/usermanager.scss */
+.usermanager-content .modal-createaccount table {
+  width: 100%;
+}
+/* line 39, ../sass/module/usermanager.scss */
+.usermanager-content .modal-createaccount table td {
+  width: 50%;
+  vertical-align: top;
+}
+/* line 45, ../sass/module/usermanager.scss */
+.usermanager-content .modal-createaccount input {
+  width: 95%;
+  height: 2.2rem;
+  padding-left: 5px;
+}
+/* line 51, ../sass/module/usermanager.scss */
+.usermanager-content .modal-createaccount .btn-createaccount {
+  text-align: right;
+  margin-right: 1rem;
 }
 
-/* line 48, ../sass/module/usermanager.scss */
+/* line 60, ../sass/module/usermanager.scss */
 .usermanager-btnclose {
   position: absolute;
   top: 10px;
@@ -2767,10 +2775,11 @@ body.not-moving .streetwalk-sign {
   width: 30px;
   height: 30px;
   background-image: url("../../images/closeBtnPopup.svg");
+  background-repeat: no-repeat;
   cursor: pointer;
 }
 
-/* line 59, ../sass/module/usermanager.scss */
+/* line 72, ../sass/module/usermanager.scss */
 .usermanager-overlay {
   position: fixed;
   top: 0;
@@ -4350,17 +4359,16 @@ body.not-moving .streetwalk-sign {
   color: #fff;
   border-radius: 1rem;
   border: none;
-  height: 1.5rem;
   font-size: 1.2rem;
   padding: 0.3rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   text-decoration: none;
-  -webkit-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.75);
   background-color: #00A99D;
 }
 
-/* line 15, ../sass/module/btn.scss */
+/* line 14, ../sass/module/btn.scss */
 .btn-secondary {
   color: black;
   border-radius: 1rem;
@@ -4371,7 +4379,7 @@ body.not-moving .streetwalk-sign {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   text-decoration: none;
-  -webkit-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.75);
   background-color: #efe7e7;
 }
 
@@ -4427,6 +4435,7 @@ body.not-moving .streetwalk-sign {
   margin: 0 .25em .5em 0;
   padding: 0;
   color: #fff;
+  font-size: 0.9rem;
   font-weight: 400;
   line-height: 1em;
   text-decoration: none;

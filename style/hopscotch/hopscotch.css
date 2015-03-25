@@ -322,7 +322,7 @@ div.hopscotch-bubble.no-number .hopscotch-bubble-content {
 div.hopscotch-bubble .hopscotch-bubble-close {
   color: #000;
   background-image: url("../../images/closeBtnPopup.svg");
-  background-repeat: none;
+  background-repeat: no-repeat;
   display: block;
   padding: 8px;
   position: absolute;

@@ -28,19 +28,31 @@
 
     h2 {
         margin-top:0;
+        margin-bottom:0;
     }
 
-    button {
-        color:#fff;
-        border-radius:1rem;
-        border:none;
-        font-size:1.2rem;
-        padding:0.3rem;
-        padding-left:0.5rem;
-        padding-right: 0.5rem;
-        text-decoration: none;
-        -webkit-box-shadow:3px 3px 3px 0px rgba(0,0,0,0.75);
-        background-color: #00A99D;
+    .modal-createaccount {
+
+        table {
+            width: 100%;
+
+            td {
+                width: 50%;
+                vertical-align:top;
+            }
+        }
+
+        input {
+            width: 95%;
+            height: 2.2rem;
+            padding-left: 5px;
+        }
+
+        .btn-createaccount {
+            text-align: right;
+            margin-right: 1rem;
+        }
+
     }
     
 }
@@ -52,6 +64,7 @@
     width: 30px;
     height: 30px;
     background-image:url("../../images/closeBtnPopup.svg");
+    background-repeat: no-repeat;
 
     cursor:pointer;
 }
