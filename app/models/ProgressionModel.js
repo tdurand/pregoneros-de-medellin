@@ -126,7 +126,9 @@ function($, _, Backbone, LOGGER, CONSTANT, Ways){
 
             self.set({
                 nbItemUnlocked:0,
-                currentStreet:""
+                currentStreet:"",
+                nbStreetLoaded:0,
+                pageHaveBeenShared: false
             });
 
             self.set("pathDiscovered",{});
@@ -235,6 +237,10 @@ function($, _, Backbone, LOGGER, CONSTANT, Ways){
     setCurrentStreet: function(wayName) {
         var self = this;
         self.set("currentStreet", wayName);
+        //Increment nb street loaded
+        var nbStreetLoaded = self.get("nbStreetLoaded");
+        nbStreetLoaded++;
+        self.set("nbStreetLoaded", nbStreetLoaded);
     },
 
     getStreetWhereCharacterNotDiscovered: function(character) {

@@ -1,0 +1,816 @@
+/* -------------------------------------------------
+----------------------------------------------------
+    MATTBOLDT.COM
+    Copyright (c) 2013 Matt Boldt
+----------------------------------------------------
+----------------------------------------------------
+    CODE IS AVAILABLE FOR USE FREE OF CHARGE
+    UNDER THE MIT LICENSE
+    http://opensource.org/licenses/MIT
+----------------------------------------------------
+----------------------------------------------------
+    If you'd like to credit me, or even donate
+    a few bucks that'd be very much appreciated!
+    Visit http://www.mattboldt.com/demos/social-buttons/
+    for more info.
+----------------------------------------------------
+-------------------------------------------------- */
+/* line 18, ../../sass/module/social.scss */
+.sc-btn {
+  display: inline-block;
+  position: relative;
+  margin: 0 .25em .5em 0;
+  padding: 0;
+  color: #fff;
+  font-weight: 400;
+  line-height: 1em;
+  text-decoration: none;
+  text-shadow: rgba(0, 0, 0, 0.3) 0px -0.1em 0px;
+  border: 0;
+  border-radius: 0.4em;
+  -webkit-border-radius: 0.4em;
+  -moz-border-radius: 0.4em;
+  -ms-border-radius: 0.4em;
+  -o-border-radius: 0.4em;
+  background-color: #1a1a1a;
+  background-image: -webkit-linear-gradient(top, #595959, #1a1a1a 100%);
+  background-image: -moz-linear-gradient(top, #595959, #1a1a1a);
+  background-image: -ms-linear-gradient(top, #595959, #1a1a1a);
+  background-image: -o-linear-gradient(top, #595959, #1a1a1a);
+  background-image: linear-gradient(top, #595959, #1a1a1a);
+  box-shadow: inset rgba(0, 0, 0, 0.1) 0px -0.15em 0px, inset rgba(255, 255, 255, 0.2) 0px 0.15em 0px, rgba(0, 0, 0, 0.3) 0px 0.1em 0.3em;
+  text-align: center;
+  background-repeat: no-repeat;
+  -webkit-transition: background-position .1s ease-in-out;
+  -webkit-appearance: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* line 49, ../../sass/module/social.scss */
+.sc-btn:hover {
+  color: #fff;
+}
+
+/* line 51, ../../sass/module/social.scss */
+.sc-btn:active {
+  box-shadow: rgba(255, 255, 255, 0.2) 0 0.1em 0, inset rgba(0, 0, 0, 0.3) 0px 0.25em 1em;
+}
+
+/* line 54, ../../sass/module/social.scss */
+.sc-icon, .sc-text {
+  display: block;
+  float: left;
+}
+
+/* line 58, ../../sass/module/social.scss */
+.sc-icon {
+  margin: 0 -.4em 0 0;
+  padding: 0.6em .8em .5em;
+  border-right: rgba(255, 255, 255, 0.1) 0.1em solid;
+  box-shadow: inset rgba(0, 0, 0, 0.1) -0.1em 0px 0px;
+}
+
+/* line 64, ../../sass/module/social.scss */
+.sc-text {
+  padding: .95em 1em .85em 1em;
+  font-size: 1.15em;
+  text-align: center;
+}
+
+/* line 69, ../../sass/module/social.scss */
+.sc-btn svg {
+  width: 1.8em;
+  height: 1.8em;
+  fill: #fff;
+}
+
+/* line 74, ../../sass/module/social.scss */
+.sc-block {
+  display: block;
+}
+
+/* line 77, ../../sass/module/social.scss */
+.sc--big {
+  font-size: 24px;
+}
+
+/* line 80, ../../sass/module/social.scss */
+.sc--small {
+  font-size: 12px;
+}
+
+/* line 83, ../../sass/module/social.scss */
+.sc--tiny {
+  font-size: 9px;
+}
+
+/* line 85, ../../sass/module/social.scss */
+.sc--tiny .sc-text {
+  padding: .85em .75em .5em .75em;
+  text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0px;
+}
+
+/* line 88, ../../sass/module/social.scss */
+.sc--tiny .sc-icon {
+  padding: .5em .75em .5em .75em;
+  border-right: rgba(255, 255, 255, 0.1) 1px solid;
+  box-shadow: inset rgba(0, 0, 0, 0.1) -1px 0px 0px;
+}
+
+/* line 93, ../../sass/module/social.scss */
+.sc--short .sc-icon {
+  padding: 0.4em .9em .35em;
+}
+
+/* line 95, ../../sass/module/social.scss */
+.sc--short .sc-text {
+  padding: .75em 1em .75em 1em;
+}
+
+/* line 98, ../../sass/module/social.scss */
+.sc--tall {
+  font-size: 1.15em;
+}
+
+/* line 100, ../../sass/module/social.scss */
+.sc--tall .sc-icon {
+  padding: 1em .9em .85em;
+}
+
+/* line 102, ../../sass/module/social.scss */
+.sc--tall .sc-text {
+  padding: 1.25em 1em 1em 1em;
+}
+
+/* line 105, ../../sass/module/social.scss */
+.sc--round {
+  border-radius: 5em;
+  -webkit-border-radius: 5em;
+  -moz-border-radius: 5em;
+  -ms-border-radius: 5em;
+  -o-border-radius: 5em;
+}
+
+/* line 111, ../../sass/module/social.scss */
+.sc--round .sc-icon {
+  padding: 0.7em .8em .5em 1em;
+}
+
+/* line 114, ../../sass/module/social.scss */
+.sc--flat {
+  box-shadow: none;
+  background-image: none !important;
+}
+
+/* line 117, ../../sass/module/social.scss */
+.sc--flat .sc-icon {
+  border-color: transparent;
+}
+
+/* line 119, ../../sass/module/social.scss */
+.sc--flat:active {
+  box-shadow: inset rgba(0, 0, 0, 0.3) 0px 0.15em 0.25em;
+}
+
+/* line 122, ../../sass/module/social.scss */
+.sc--shine {
+  box-shadow: inset rgba(0, 0, 0, 0.1) 0px -0.15em 0px, inset rgba(255, 255, 255, 0.1) 0px 0.15em 0px, rgba(0, 0, 0, 0.3) 0px 0.1em 0.3em, inset rgba(255, 255, 255, 0.15) 0px 2.5em 0px -1em;
+}
+
+/* line 124, ../../sass/module/social.scss */
+.sc--shine:active {
+  box-shadow: rgba(255, 255, 255, 0.2) 0 0.1em 0, inset rgba(0, 0, 0, 0.3) 0px 0.25em 1em, inset rgba(255, 255, 255, 0.1) 0px 2.5em 0px -1em;
+}
+
+/* line 126, ../../sass/module/social.scss */
+.sc--shine:before, .sc--shine:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 0.1em;
+}
+
+/* line 132, ../../sass/module/social.scss */
+.sc--shine:before {
+  top: 0;
+  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 20%, rgba(255, 255, 255, 0) 100%);
+  background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 20%, rgba(255, 255, 255, 0) 100%);
+  background-image: -o-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 20%, rgba(255, 255, 255, 0) 100%);
+  background-image: -ms-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 20%, rgba(255, 255, 255, 0) 100%);
+  background-image: linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 20%, rgba(255, 255, 255, 0) 100%);
+}
+
+/* line 139, ../../sass/module/social.scss */
+.sc--shine:after {
+  bottom: .05em;
+  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 80%, rgba(255, 255, 255, 0) 100%);
+  background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 80%, rgba(255, 255, 255, 0) 100%);
+  background-image: -o-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 80%, rgba(255, 255, 255, 0) 100%);
+  background-image: -ms-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 80%, rgba(255, 255, 255, 0) 100%);
+  background-image: linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 80%, rgba(255, 255, 255, 0) 100%);
+}
+
+/* line 146, ../../sass/module/social.scss */
+.sc--shine:active:before, .sc--shine:active:after {
+  opacity: 0.5;
+}
+
+/* line 149, ../../sass/module/social.scss */
+.sc--default {
+  color: #222;
+  text-shadow: rgba(255, 255, 255, 0.4) 0 0.1em 0;
+  background-color: #ebebeb;
+  background-image: -webkit-linear-gradient(top, white, #ebebeb 100%);
+  background-image: -moz-linear-gradient(top, white, #ebebeb);
+  background-image: -ms-linear-gradient(top, white, #ebebeb);
+  background-image: -o-linear-gradient(top, white, #ebebeb);
+  background-image: linear-gradient(top, white, #ebebeb);
+}
+
+/* line 158, ../../sass/module/social.scss */
+.sc--default svg {
+  fill: #222;
+}
+
+/* line 160, ../../sass/module/social.scss */
+.sc--default:hover {
+  color: #222;
+  background-color: #d2d2d2;
+  background-image: -webkit-linear-gradient(top, white, #d2d2d2 90%);
+  background-image: -moz-linear-gradient(top, white, #d2d2d2);
+  background-image: -ms-linear-gradient(top, white, #d2d2d2);
+  background-image: -o-linear-gradient(top, white, #d2d2d2);
+  background-image: linear-gradient(top, white, #d2d2d2);
+  background-color: #fdfdfd;
+}
+
+/* line 169, ../../sass/module/social.scss */
+.sc--default:active {
+  background-color: #dfdfdf;
+  background-image: -webkit-linear-gradient(top, white, #dfdfdf 100%);
+  background-image: -moz-linear-gradient(top, white, #dfdfdf);
+  background-image: -ms-linear-gradient(top, white, #dfdfdf);
+  background-image: -o-linear-gradient(top, white, #dfdfdf);
+  background-image: linear-gradient(top, white, #dfdfdf);
+}
+
+/* line 177, ../../sass/module/social.scss */
+.sc--facebook {
+  background-color: #33477a;
+  background-image: -webkit-linear-gradient(top, #5975ba, #33477a 100%);
+  background-image: -moz-linear-gradient(top, #5975ba, #33477a);
+  background-image: -ms-linear-gradient(top, #5975ba, #33477a);
+  background-image: -o-linear-gradient(top, #5975ba, #33477a);
+  background-image: linear-gradient(top, #5975ba, #33477a);
+}
+
+/* line 184, ../../sass/module/social.scss */
+.sc--facebook:hover {
+  background-color: #304373;
+  background-image: -webkit-linear-gradient(top, #6b84c1, #304373 90%);
+  background-image: -moz-linear-gradient(top, #6b84c1, #304373);
+  background-image: -ms-linear-gradient(top, #6b84c1, #304373);
+  background-image: -o-linear-gradient(top, #6b84c1, #304373);
+  background-image: linear-gradient(top, #6b84c1, #304373);
+  background-color: #4560a5;
+}
+
+/* line 192, ../../sass/module/social.scss */
+.sc--facebook:active {
+  background-color: #33477a;
+  background-image: -webkit-linear-gradient(top, #4a66b0, #33477a 100%);
+  background-image: -moz-linear-gradient(top, #4a66b0, #33477a);
+  background-image: -ms-linear-gradient(top, #4a66b0, #33477a);
+  background-image: -o-linear-gradient(top, #4a66b0, #33477a);
+  background-image: linear-gradient(top, #4a66b0, #33477a);
+}
+
+/* line 200, ../../sass/module/social.scss */
+.sc--twitter {
+  background-color: #108ac1;
+  background-image: -webkit-linear-gradient(top, #47bbf0, #108ac1 100%);
+  background-image: -moz-linear-gradient(top, #47bbf0, #108ac1);
+  background-image: -ms-linear-gradient(top, #47bbf0, #108ac1);
+  background-image: -o-linear-gradient(top, #47bbf0, #108ac1);
+  background-image: linear-gradient(top, #47bbf0, #108ac1);
+}
+
+/* line 207, ../../sass/module/social.scss */
+.sc--twitter:hover {
+  background-color: #0f83b8;
+  background-image: -webkit-linear-gradient(top, #76cdf4, #0f83b8 90%);
+  background-image: -moz-linear-gradient(top, #76cdf4, #0f83b8);
+  background-image: -ms-linear-gradient(top, #76cdf4, #0f83b8);
+  background-image: -o-linear-gradient(top, #76cdf4, #0f83b8);
+  background-image: linear-gradient(top, #76cdf4, #0f83b8);
+  background-color: #21aded;
+}
+
+/* line 215, ../../sass/module/social.scss */
+.sc--twitter:active {
+  background-color: #108ac1;
+  background-image: -webkit-linear-gradient(top, #30b3ee, #108ac1 100%);
+  background-image: -moz-linear-gradient(top, #30b3ee, #108ac1);
+  background-image: -ms-linear-gradient(top, #30b3ee, #108ac1);
+  background-image: -o-linear-gradient(top, #30b3ee, #108ac1);
+  background-image: linear-gradient(top, #30b3ee, #108ac1);
+}
+
+/* line 223, ../../sass/module/social.scss */
+.sc--tumblr {
+  background-color: #243649;
+  background-image: -webkit-linear-gradient(top, #46688d, #243649 100%);
+  background-image: -moz-linear-gradient(top, #46688d, #243649);
+  background-image: -ms-linear-gradient(top, #46688d, #243649);
+  background-image: -o-linear-gradient(top, #46688d, #243649);
+  background-image: linear-gradient(top, #46688d, #243649);
+}
+
+/* line 230, ../../sass/module/social.scss */
+.sc--tumblr:hover {
+  background-color: #213142;
+  background-image: -webkit-linear-gradient(top, #4e759e, #213142 90%);
+  background-image: -moz-linear-gradient(top, #4e759e, #213142);
+  background-image: -ms-linear-gradient(top, #4e759e, #213142);
+  background-image: -o-linear-gradient(top, #4e759e, #213142);
+  background-image: linear-gradient(top, #4e759e, #213142);
+  background-color: #385472;
+}
+
+/* line 238, ../../sass/module/social.scss */
+.sc--tumblr:active {
+  background-color: #243649;
+  background-image: -webkit-linear-gradient(top, #3d5c7c, #243649 100%);
+  background-image: -moz-linear-gradient(top, #3d5c7c, #243649);
+  background-image: -ms-linear-gradient(top, #3d5c7c, #243649);
+  background-image: -o-linear-gradient(top, #3d5c7c, #243649);
+  background-image: linear-gradient(top, #3d5c7c, #243649);
+}
+
+/* line 246, ../../sass/module/social.scss */
+.sc--instagram {
+  background-color: #2c4d6e;
+  background-image: -webkit-linear-gradient(top, #4a81b6, #2c4d6e 100%);
+  background-image: -moz-linear-gradient(top, #4a81b6, #2c4d6e);
+  background-image: -ms-linear-gradient(top, #4a81b6, #2c4d6e);
+  background-image: -o-linear-gradient(top, #4a81b6, #2c4d6e);
+  background-image: linear-gradient(top, #4a81b6, #2c4d6e);
+}
+
+/* line 253, ../../sass/module/social.scss */
+.sc--instagram:hover {
+  background-color: #294866;
+  background-image: -webkit-linear-gradient(top, #5c8dbd, #294866 90%);
+  background-image: -moz-linear-gradient(top, #5c8dbd, #294866);
+  background-image: -ms-linear-gradient(top, #5c8dbd, #294866);
+  background-image: -o-linear-gradient(top, #5c8dbd, #294866);
+  background-image: linear-gradient(top, #5c8dbd, #294866);
+  background-color: #3e6c99;
+}
+
+/* line 261, ../../sass/module/social.scss */
+.sc--instagram:active {
+  background-color: #2c4d6e;
+  background-image: -webkit-linear-gradient(top, #4274a4, #2c4d6e 100%);
+  background-image: -moz-linear-gradient(top, #4274a4, #2c4d6e);
+  background-image: -ms-linear-gradient(top, #4274a4, #2c4d6e);
+  background-image: -o-linear-gradient(top, #4274a4, #2c4d6e);
+  background-image: linear-gradient(top, #4274a4, #2c4d6e);
+}
+
+/* line 269, ../../sass/module/social.scss */
+.sc--pinterest {
+  background-color: #95031e;
+  background-image: -webkit-linear-gradient(top, #f90532, #95031e 100%);
+  background-image: -moz-linear-gradient(top, #f90532, #95031e);
+  background-image: -ms-linear-gradient(top, #f90532, #95031e);
+  background-image: -o-linear-gradient(top, #f90532, #95031e);
+  background-image: linear-gradient(top, #f90532, #95031e);
+}
+
+/* line 276, ../../sass/module/social.scss */
+.sc--pinterest:hover {
+  background-color: #8b031c;
+  background-image: -webkit-linear-gradient(top, #fa1d46, #8b031c 90%);
+  background-image: -moz-linear-gradient(top, #fa1d46, #8b031c);
+  background-image: -ms-linear-gradient(top, #fa1d46, #8b031c);
+  background-image: -o-linear-gradient(top, #fa1d46, #8b031c);
+  background-image: linear-gradient(top, #fa1d46, #8b031c);
+  background-color: #d1042a;
+}
+
+/* line 284, ../../sass/module/social.scss */
+.sc--pinterest:active {
+  background-color: #95031e;
+  background-image: -webkit-linear-gradient(top, #e0052d, #95031e 100%);
+  background-image: -moz-linear-gradient(top, #e0052d, #95031e);
+  background-image: -ms-linear-gradient(top, #e0052d, #95031e);
+  background-image: -o-linear-gradient(top, #e0052d, #95031e);
+  background-image: linear-gradient(top, #e0052d, #95031e);
+}
+
+/* line 292, ../../sass/module/social.scss */
+.sc--pinterest-inverse {
+  color: #c70428;
+  background-color: #dfdfdf;
+  background-image: -webkit-linear-gradient(top, white, #dfdfdf 100%);
+  background-image: -moz-linear-gradient(top, white, #dfdfdf);
+  background-image: -ms-linear-gradient(top, white, #dfdfdf);
+  background-image: -o-linear-gradient(top, white, #dfdfdf);
+  background-image: linear-gradient(top, white, #dfdfdf);
+}
+
+/* line 300, ../../sass/module/social.scss */
+.sc--pinterest-inverse .sc-text {
+  text-shadow: rgba(255, 255, 255, 0.5) 0 0.1em 0;
+}
+
+/* line 302, ../../sass/module/social.scss */
+.sc--pinterest-inverse:hover {
+  background-color: #c5c5c5;
+  background-image: -webkit-linear-gradient(top, white, #c5c5c5 90%);
+  background-image: -moz-linear-gradient(top, white, #c5c5c5);
+  background-image: -ms-linear-gradient(top, white, #c5c5c5);
+  background-image: -o-linear-gradient(top, white, #c5c5c5);
+  background-image: linear-gradient(top, white, #c5c5c5);
+  background-color: #fdfdfd;
+}
+
+/* line 310, ../../sass/module/social.scss */
+.sc--pinterest-inverse:active {
+  background-color: #dfdfdf;
+  background-image: -webkit-linear-gradient(top, white, #dfdfdf 100%);
+  background-image: -moz-linear-gradient(top, white, #dfdfdf);
+  background-image: -ms-linear-gradient(top, white, #dfdfdf);
+  background-image: -o-linear-gradient(top, white, #dfdfdf);
+  background-image: linear-gradient(top, white, #dfdfdf);
+  box-shadow: rgba(255, 255, 255, 0.2) 0 0.1em 0, inset rgba(0, 0, 0, 0.2) 0px 0.25em 1em;
+}
+
+/* line 318, ../../sass/module/social.scss */
+.sc--pinterest-inverse svg {
+  fill: #c70428;
+}
+
+/* line 321, ../../sass/module/social.scss */
+.sc--google-plus {
+  background-color: #b92d25;
+  background-image: -webkit-linear-gradient(top, #e06b64, #b92d25 100%);
+  background-image: -moz-linear-gradient(top, #e06b64, #b92d25);
+  background-image: -ms-linear-gradient(top, #e06b64, #b92d25);
+  background-image: -o-linear-gradient(top, #e06b64, #b92d25);
+  background-image: linear-gradient(top, #e06b64, #b92d25);
+}
+
+/* line 328, ../../sass/module/social.scss */
+.sc--google-plus:hover {
+  background-color: #b12b23;
+  background-image: -webkit-linear-gradient(top, #e57f79, #b12b23 90%);
+  background-image: -moz-linear-gradient(top, #e57f79, #b12b23);
+  background-image: -ms-linear-gradient(top, #e57f79, #b12b23);
+  background-image: -o-linear-gradient(top, #e57f79, #b12b23);
+  background-image: linear-gradient(top, #e57f79, #b12b23);
+  background-color: #da4a42;
+}
+
+/* line 336, ../../sass/module/social.scss */
+.sc--google-plus:active {
+  background-color: #b92d25;
+  background-image: -webkit-linear-gradient(top, #dc564e, #b92d25 100%);
+  background-image: -moz-linear-gradient(top, #dc564e, #b92d25);
+  background-image: -ms-linear-gradient(top, #dc564e, #b92d25);
+  background-image: -o-linear-gradient(top, #dc564e, #b92d25);
+  background-image: linear-gradient(top, #dc564e, #b92d25);
+}
+
+/* line 344, ../../sass/module/social.scss */
+.sc--dribbble {
+  background-color: #e82a79;
+  background-image: -webkit-linear-gradient(top, #f286b3, #e82a79 100%);
+  background-image: -moz-linear-gradient(top, #f286b3, #e82a79);
+  background-image: -ms-linear-gradient(top, #f286b3, #e82a79);
+  background-image: -o-linear-gradient(top, #f286b3, #e82a79);
+  background-image: linear-gradient(top, #f286b3, #e82a79);
+}
+
+/* line 351, ../../sass/module/social.scss */
+.sc--dribbble:hover {
+  background-color: #e72173;
+  background-image: -webkit-linear-gradient(top, #f49dc1, #e72173 90%);
+  background-image: -moz-linear-gradient(top, #f49dc1, #e72173);
+  background-image: -ms-linear-gradient(top, #f49dc1, #e72173);
+  background-image: -o-linear-gradient(top, #f49dc1, #e72173);
+  background-image: linear-gradient(top, #f49dc1, #e72173);
+  background-color: #ee619c;
+}
+
+/* line 359, ../../sass/module/social.scss */
+.sc--dribbble:active {
+  background-color: #e82a79;
+  background-image: -webkit-linear-gradient(top, #ef6fa4, #e82a79 100%);
+  background-image: -moz-linear-gradient(top, #ef6fa4, #e82a79);
+  background-image: -ms-linear-gradient(top, #ef6fa4, #e82a79);
+  background-image: -o-linear-gradient(top, #ef6fa4, #e82a79);
+  background-image: linear-gradient(top, #ef6fa4, #e82a79);
+}
+
+/* line 367, ../../sass/module/social.scss */
+.sc--flickr {
+  background-color: #0a4eb2;
+  background-image: -webkit-linear-gradient(top, #2f7ef3, #0a4eb2 100%);
+  background-image: -moz-linear-gradient(top, #2f7ef3, #0a4eb2);
+  background-image: -ms-linear-gradient(top, #2f7ef3, #0a4eb2);
+  background-image: -o-linear-gradient(top, #2f7ef3, #0a4eb2);
+  background-image: linear-gradient(top, #2f7ef3, #0a4eb2);
+}
+
+/* line 374, ../../sass/module/social.scss */
+.sc--flickr:hover {
+  background-color: #0a4aa8;
+  background-image: -webkit-linear-gradient(top, #478df4, #0a4aa8 90%);
+  background-image: -moz-linear-gradient(top, #478df4, #0a4aa8);
+  background-image: -ms-linear-gradient(top, #478df4, #0a4aa8);
+  background-image: -o-linear-gradient(top, #478df4, #0a4aa8);
+  background-image: linear-gradient(top, #478df4, #0a4aa8);
+  background-color: #0e67ec;
+}
+
+/* line 382, ../../sass/module/social.scss */
+.sc--flickr:active {
+  background-color: #0a4eb2;
+  background-image: -webkit-linear-gradient(top, #176ff2, #0a4eb2 100%);
+  background-image: -moz-linear-gradient(top, #176ff2, #0a4eb2);
+  background-image: -ms-linear-gradient(top, #176ff2, #0a4eb2);
+  background-image: -o-linear-gradient(top, #176ff2, #0a4eb2);
+  background-image: linear-gradient(top, #176ff2, #0a4eb2);
+}
+
+/* line 390, ../../sass/module/social.scss */
+.sc--forrst {
+  background-color: #294d18;
+  background-image: -webkit-linear-gradient(top, #3d7324, #294d18 100%);
+  background-image: -moz-linear-gradient(top, #3d7324, #294d18);
+  background-image: -ms-linear-gradient(top, #3d7324, #294d18);
+  background-image: -o-linear-gradient(top, #3d7324, #294d18);
+  background-image: linear-gradient(top, #3d7324, #294d18);
+}
+
+/* line 397, ../../sass/module/social.scss */
+.sc--forrst:hover {
+  background-color: #294d18;
+  background-image: -webkit-linear-gradient(top, #447f28, #294d18 100%);
+  background-image: -moz-linear-gradient(top, #447f28, #294d18);
+  background-image: -ms-linear-gradient(top, #447f28, #294d18);
+  background-image: -o-linear-gradient(top, #447f28, #294d18);
+  background-image: linear-gradient(top, #447f28, #294d18);
+  background-color: #376820;
+}
+
+/* line 405, ../../sass/module/social.scss */
+.sc--forrst:active {
+  background-color: #294d18;
+  background-image: -webkit-linear-gradient(top, #396c22, #294d18 100%);
+  background-image: -moz-linear-gradient(top, #396c22, #294d18);
+  background-image: -ms-linear-gradient(top, #396c22, #294d18);
+  background-image: -o-linear-gradient(top, #396c22, #294d18);
+  background-image: linear-gradient(top, #396c22, #294d18);
+}
+
+/* line 413, ../../sass/module/social.scss */
+.sc--github {
+  background-color: #3269a0;
+  background-image: -webkit-linear-gradient(top, #689cd0, #3269a0 100%);
+  background-image: -moz-linear-gradient(top, #689cd0, #3269a0);
+  background-image: -ms-linear-gradient(top, #689cd0, #3269a0);
+  background-image: -o-linear-gradient(top, #689cd0, #3269a0);
+  background-image: linear-gradient(top, #689cd0, #3269a0);
+}
+
+/* line 420, ../../sass/module/social.scss */
+.sc--github:hover {
+  background-color: #2f6498;
+  background-image: -webkit-linear-gradient(top, #7ba9d6, #2f6498 90%);
+  background-image: -moz-linear-gradient(top, #7ba9d6, #2f6498);
+  background-image: -ms-linear-gradient(top, #7ba9d6, #2f6498);
+  background-image: -o-linear-gradient(top, #7ba9d6, #2f6498);
+  background-image: linear-gradient(top, #7ba9d6, #2f6498);
+  background-color: #4988c6;
+}
+
+/* line 428, ../../sass/module/social.scss */
+.sc--github:active {
+  background-color: #3269a0;
+  background-image: -webkit-linear-gradient(top, #5490ca, #3269a0 100%);
+  background-image: -moz-linear-gradient(top, #5490ca, #3269a0);
+  background-image: -ms-linear-gradient(top, #5490ca, #3269a0);
+  background-image: -o-linear-gradient(top, #5490ca, #3269a0);
+  background-image: linear-gradient(top, #5490ca, #3269a0);
+}
+
+/* line 436, ../../sass/module/social.scss */
+.sc--lastfm {
+  background-color: #901919;
+  background-image: -webkit-linear-gradient(top, #dc3333, #901919 100%);
+  background-image: -moz-linear-gradient(top, #dc3333, #901919);
+  background-image: -ms-linear-gradient(top, #dc3333, #901919);
+  background-image: -o-linear-gradient(top, #dc3333, #901919);
+  background-image: linear-gradient(top, #dc3333, #901919);
+}
+
+/* line 443, ../../sass/module/social.scss */
+.sc--lastfm:hover {
+  background-color: #881717;
+  background-image: -webkit-linear-gradient(top, #e04949, #881717 90%);
+  background-image: -moz-linear-gradient(top, #e04949, #881717);
+  background-image: -ms-linear-gradient(top, #e04949, #881717);
+  background-image: -o-linear-gradient(top, #e04949, #881717);
+  background-image: linear-gradient(top, #e04949, #881717);
+  background-color: #c52121;
+}
+
+/* line 451, ../../sass/module/social.scss */
+.sc--lastfm:active {
+  background-color: #901919;
+  background-image: -webkit-linear-gradient(top, #d22424, #901919 100%);
+  background-image: -moz-linear-gradient(top, #d22424, #901919);
+  background-image: -ms-linear-gradient(top, #d22424, #901919);
+  background-image: -o-linear-gradient(top, #d22424, #901919);
+  background-image: linear-gradient(top, #d22424, #901919);
+}
+
+/* line 459, ../../sass/module/social.scss */
+.sc--reddit {
+  background-color: #387cc4;
+  background-image: -webkit-linear-gradient(top, #86b0dc, #387cc4 100%);
+  background-image: -moz-linear-gradient(top, #86b0dc, #387cc4);
+  background-image: -ms-linear-gradient(top, #86b0dc, #387cc4);
+  background-image: -o-linear-gradient(top, #86b0dc, #387cc4);
+  background-image: linear-gradient(top, #86b0dc, #387cc4);
+}
+
+/* line 466, ../../sass/module/social.scss */
+.sc--reddit:hover {
+  background-color: #3677bc;
+  background-image: -webkit-linear-gradient(top, #99bde2, #3677bc 90%);
+  background-image: -moz-linear-gradient(top, #99bde2, #3677bc);
+  background-image: -ms-linear-gradient(top, #99bde2, #3677bc);
+  background-image: -o-linear-gradient(top, #99bde2, #3677bc);
+  background-image: linear-gradient(top, #99bde2, #3677bc);
+  background-color: #669bd3;
+}
+
+/* line 474, ../../sass/module/social.scss */
+.sc--reddit:active {
+  background-color: #387cc4;
+  background-image: -webkit-linear-gradient(top, #72a3d7, #387cc4 100%);
+  background-image: -moz-linear-gradient(top, #72a3d7, #387cc4);
+  background-image: -ms-linear-gradient(top, #72a3d7, #387cc4);
+  background-image: -o-linear-gradient(top, #72a3d7, #387cc4);
+  background-image: linear-gradient(top, #72a3d7, #387cc4);
+}
+
+/* line 482, ../../sass/module/social.scss */
+.sc--soundcloud {
+  background-color: #cc3300;
+  background-image: -webkit-linear-gradient(top, #ff6633, #cc3300 100%);
+  background-image: -moz-linear-gradient(top, #ff6633, #cc3300);
+  background-image: -ms-linear-gradient(top, #ff6633, #cc3300);
+  background-image: -o-linear-gradient(top, #ff6633, #cc3300);
+  background-image: linear-gradient(top, #ff6633, #cc3300);
+}
+
+/* line 489, ../../sass/module/social.scss */
+.sc--soundcloud:hover {
+  background-color: #c23100;
+  background-image: -webkit-linear-gradient(top, #ff794d, #c23100 90%);
+  background-image: -moz-linear-gradient(top, #ff794d, #c23100);
+  background-image: -ms-linear-gradient(top, #ff794d, #c23100);
+  background-image: -o-linear-gradient(top, #ff794d, #c23100);
+  background-image: linear-gradient(top, #ff794d, #c23100);
+  background-color: #ff480a;
+}
+
+/* line 497, ../../sass/module/social.scss */
+.sc--soundcloud:active {
+  background-color: #cc3300;
+  background-image: -webkit-linear-gradient(top, #ff531a, #cc3300 100%);
+  background-image: -moz-linear-gradient(top, #ff531a, #cc3300);
+  background-image: -ms-linear-gradient(top, #ff531a, #cc3300);
+  background-image: -o-linear-gradient(top, #ff531a, #cc3300);
+  background-image: linear-gradient(top, #ff531a, #cc3300);
+}
+
+/* line 505, ../../sass/module/social.scss */
+.sc--stack-overflow {
+  background-color: #ca6e00;
+  background-image: -webkit-linear-gradient(top, #ffa131, #ca6e00 100%);
+  background-image: -moz-linear-gradient(top, #ffa131, #ca6e00);
+  background-image: -ms-linear-gradient(top, #ffa131, #ca6e00);
+  background-image: -o-linear-gradient(top, #ffa131, #ca6e00);
+  background-image: linear-gradient(top, #ffa131, #ca6e00);
+}
+
+/* line 512, ../../sass/module/social.scss */
+.sc--stack-overflow:hover {
+  background-color: #c06900;
+  background-image: -webkit-linear-gradient(top, #ffad4b, #c06900 90%);
+  background-image: -moz-linear-gradient(top, #ffad4b, #c06900);
+  background-image: -ms-linear-gradient(top, #ffad4b, #c06900);
+  background-image: -o-linear-gradient(top, #ffad4b, #c06900);
+  background-image: linear-gradient(top, #ffad4b, #c06900);
+  background-color: #ff8f08;
+}
+
+/* line 520, ../../sass/module/social.scss */
+.sc--stack-overflow:active {
+  background-color: #ca6e00;
+  background-image: -webkit-linear-gradient(top, #ff9618, #ca6e00 100%);
+  background-image: -moz-linear-gradient(top, #ff9618, #ca6e00);
+  background-image: -ms-linear-gradient(top, #ff9618, #ca6e00);
+  background-image: -o-linear-gradient(top, #ff9618, #ca6e00);
+  background-image: linear-gradient(top, #ff9618, #ca6e00);
+}
+
+/* line 528, ../../sass/module/social.scss */
+.sc--vimeo {
+  background-color: #3492b7;
+  background-image: -webkit-linear-gradient(top, #79bdd8, #3492b7 100%);
+  background-image: -moz-linear-gradient(top, #79bdd8, #3492b7);
+  background-image: -ms-linear-gradient(top, #79bdd8, #3492b7);
+  background-image: -o-linear-gradient(top, #79bdd8, #3492b7);
+  background-image: linear-gradient(top, #79bdd8, #3492b7);
+}
+
+/* line 535, ../../sass/module/social.scss */
+.sc--vimeo:hover {
+  background-color: #328baf;
+  background-image: -webkit-linear-gradient(top, #8cc7de, #328baf 90%);
+  background-image: -moz-linear-gradient(top, #8cc7de, #328baf);
+  background-image: -ms-linear-gradient(top, #8cc7de, #328baf);
+  background-image: -o-linear-gradient(top, #8cc7de, #328baf);
+  background-image: linear-gradient(top, #8cc7de, #328baf);
+  background-color: #59aecf;
+}
+
+/* line 543, ../../sass/module/social.scss */
+.sc--vimeo:active {
+  background-color: #3492b7;
+  background-image: -webkit-linear-gradient(top, #65b4d3, #3492b7 100%);
+  background-image: -moz-linear-gradient(top, #65b4d3, #3492b7);
+  background-image: -ms-linear-gradient(top, #65b4d3, #3492b7);
+  background-image: -o-linear-gradient(top, #65b4d3, #3492b7);
+  background-image: linear-gradient(top, #65b4d3, #3492b7);
+}
+
+/* line 551, ../../sass/module/social.scss */
+.sc--vimeo-styled {
+  background-color: #5bb3d7;
+  background-image: -webkit-linear-gradient(left, #89daf7 0%, #89daf7 10%, #9fa5a8 10%, #9fa5a8 20%, #f58182 20%, #f58182 30%, #fcf4c0 30%, #fcf4c0 40%, #5bb3d7 40%, #5bb3d7 50%, #6b6b6b 50%, #6b6b6b 60%, #b0d570 60%, #b0d570 70%, #53a4c1 70%, #53a4c1 80%, #9e292c 80%, #9e292c 90%, #d4cd99 90%, #d4cd99 100%);
+  background-image: -moz-linear-gradient(left, #89daf7 0%, #89daf7 10%, #9fa5a8 10%, #9fa5a8 20%, #f58182 20%, #f58182 30%, #fcf4c0 30%, #fcf4c0 40%, #5bb3d7 40%, #5bb3d7 50%, #6b6b6b 50%, #6b6b6b 60%, #b0d570 60%, #b0d570 70%, #53a4c1 70%, #53a4c1 80%, #9e292c 80%, #9e292c 90%, #d4cd99 90%, #d4cd99 100%);
+  background-image: -ms-linear-gradient(left, #89daf7 0%, #89daf7 10%, #9fa5a8 10%, #9fa5a8 20%, #f58182 20%, #f58182 30%, #fcf4c0 30%, #fcf4c0 40%, #5bb3d7 40%, #5bb3d7 50%, #6b6b6b 50%, #6b6b6b 60%, #b0d570 60%, #b0d570 70%, #53a4c1 70%, #53a4c1 80%, #9e292c 80%, #9e292c 90%, #d4cd99 90%, #d4cd99 100%);
+  background-image: -o-linear-gradient(left, #89daf7 0%, #89daf7 10%, #9fa5a8 10%, #9fa5a8 20%, #f58182 20%, #f58182 30%, #fcf4c0 30%, #fcf4c0 40%, #5bb3d7 40%, #5bb3d7 50%, #6b6b6b 50%, #6b6b6b 60%, #b0d570 60%, #b0d570 70%, #53a4c1 70%, #53a4c1 80%, #9e292c 80%, #9e292c 90%, #d4cd99 90%, #d4cd99 100%);
+  background-image: linear-gradient(left, #89daf7 0%, #89daf7 10%, #9fa5a8 10%, #9fa5a8 20%, #f58182 20%, #f58182 30%, #fcf4c0 30%, #fcf4c0 40%, #5bb3d7 40%, #5bb3d7 50%, #6b6b6b 50%, #6b6b6b 60%, #b0d570 60%, #b0d570 70%, #53a4c1 70%, #53a4c1 80%, #9e292c 80%, #9e292c 90%, #d4cd99 90%, #d4cd99 100%);
+}
+
+/* line 558, ../../sass/module/social.scss */
+.sc--vimeo-styled:hover {
+  box-shadow: inset rgba(0, 0, 0, 0.1) 0px -0.15em 0px, inset rgba(255, 255, 255, 0.2) 0px 0.15em 0px, rgba(0, 0, 0, 0.3) 0px 0.1em 0.3em, inset rgba(255, 255, 255, 0.4) 0px 1em 3em;
+}
+
+/* line 560, ../../sass/module/social.scss */
+.sc--vimeo-styled:active {
+  box-shadow: rgba(255, 255, 255, 0.2) 0 0.1em 0, inset rgba(0, 0, 0, 0.3) 0px 0.25em 1em;
+}
+
+/* line 563, ../../sass/module/social.scss */
+.sc--rss {
+  background-color: #c96213;
+  background-image: -webkit-linear-gradient(top, #ee9754, #c96213 100%);
+  background-image: -moz-linear-gradient(top, #ee9754, #c96213);
+  background-image: -ms-linear-gradient(top, #ee9754, #c96213);
+  background-image: -o-linear-gradient(top, #ee9754, #c96213);
+  background-image: linear-gradient(top, #ee9754, #c96213);
+}
+
+/* line 570, ../../sass/module/social.scss */
+.sc--rss:hover {
+  background-color: #bf5e12;
+  background-image: -webkit-linear-gradient(top, #f1a56b, #bf5e12 90%);
+  background-image: -moz-linear-gradient(top, #f1a56b, #bf5e12);
+  background-image: -ms-linear-gradient(top, #f1a56b, #bf5e12);
+  background-image: -o-linear-gradient(top, #f1a56b, #bf5e12);
+  background-image: linear-gradient(top, #f1a56b, #bf5e12);
+  background-color: #eb812e;
+}
+
+/* line 578, ../../sass/module/social.scss */
+.sc--rss:active {
+  background-color: #c96213;
+  background-image: -webkit-linear-gradient(top, #ec893c, #c96213 100%);
+  background-image: -moz-linear-gradient(top, #ec893c, #c96213);
+  background-image: -ms-linear-gradient(top, #ec893c, #c96213);
+  background-image: -o-linear-gradient(top, #ec893c, #c96213);
+  background-image: linear-gradient(top, #ec893c, #c96213);
+}

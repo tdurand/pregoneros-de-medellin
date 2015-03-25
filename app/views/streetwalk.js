@@ -8,6 +8,7 @@ define(['jquery',
     'utils/LocalParams',
     'utils/Logger',
     'utils/Localization',
+    'utils/MessagingManager',
     'views/subview/menucharacters',
     'views/subview/soundeditor',
     'views/subview/menustreetwalk',
@@ -39,6 +40,7 @@ define(['jquery',
         LocalParams,
         LOGGER,
         Localization,
+        MessagingManager,
         MenuCharactersView,
         SoundEditorView,
         MenuStreetWalkView,
@@ -267,6 +269,8 @@ define(['jquery',
                     "stroke-dasharray": self.pathLoadingLength + " " + self.pathLoadingLength,
                     "stroke-dashoffset": self.pathLoadingLength
                 });
+
+                MessagingManager.showEventualNextMessage();
 
 
             }

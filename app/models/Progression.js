@@ -91,6 +91,16 @@ function($, _, Backbone, LOGGER, ProgressionModel){
 
         self.instance.setCurrentStreet(wayName);
         self.save();
+    },
+
+    getNbStreetLoaded: function() {
+        var self = this;
+        return self.instance.get("nbStreetLoaded");
+    },
+
+    isPageBeenShared: function() {
+        var self = this;
+        return self.instance.get("pageHaveBeenShared");
     }
 
   };

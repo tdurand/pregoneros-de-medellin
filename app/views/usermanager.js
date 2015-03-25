@@ -8,7 +8,8 @@ define(['jquery',
         'text!templates/usermanager/signInViewTemplate.html',
         'text!templates/usermanager/successAccountCreationViewTemplate.html',
         'text!templates/usermanager/successSignInViewTemplate.html',
-        'text!templates/usermanager/alertBeforeLogout.html'
+        'text!templates/usermanager/alertBeforeLogout.html',
+        'text!templates/usermanager/askToShareViewTemplate.html'
         ],
 function($, _, Backbone,
                 LOGGER,
@@ -18,7 +19,8 @@ function($, _, Backbone,
                 SignInView,
                 SuccessAccountCreationView,
                 SuccessSignInView,
-                AlertBeforeLogoutView){
+                AlertBeforeLogoutView,
+                AskToShareView){
 
   var UserManagerView = Backbone.View.extend({
 
@@ -67,6 +69,7 @@ function($, _, Backbone,
         
     },
 
+    //Account renders
     renderAskToCreateAccountView: function() {
          var self = this;
 
@@ -102,6 +105,13 @@ function($, _, Backbone,
         var self = this;
 
         self.$el.html(_.template(AlertBeforeLogoutView));
+    },
+
+    //Ask to share
+    renderAskToSharePageView: function() {
+        var self = this;
+
+        self.$el.html(_.template(AskToShareView));
     },
 
     logIn: function(e) {
@@ -264,10 +274,13 @@ function($, _, Backbone,
     },
 
     closeView: function() {
+        // TweenLite.fromTo("#usermanager",0.5,{scale:1},{scale:0,ease: Back.easeOut,onComplete:function() {
         $("#usermanager").addClass("hidden");
+        // }});
     },
 
     showView: function() {
+        // TweenLite.fromTo("#usermanager",1,{scale:0},{scale:1,ease: Back.easeOut});
         $("#usermanager").removeClass("hidden");
     },
 
@@ -277,6 +290,11 @@ function($, _, Backbone,
         self.renderSignInView();
 
         self.showView();
+    },
+
+    isLogged: function() {
+        var self = this;
+        return self.status.logged;
     },
 
     onClose: function(){
