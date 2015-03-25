@@ -50,7 +50,7 @@
   padding-left: 5px;
 }
 /* line 51, ../../sass/module/usermanager.scss */
-.usermanager-content .modal-createaccount .btn-createaccount {
+.usermanager-content .modal-createaccount .btn-createaccount-wrapper {
   text-align: right;
   margin-right: 1rem;
 }
