@@ -13,6 +13,8 @@
     width: 50%;
     z-index:60;
 
+    font-size:1.1rem;
+
     position: absolute;
     top: 50%;
     left: 50%;
@@ -26,9 +28,13 @@
 
     color:#4b2246;
 
-    h2 {
+    h3 {
         margin-top:0;
         margin-bottom:0;
+    }
+
+    .align-right {
+        text-align: right;
     }
 
     .modal-createaccount {
@@ -51,6 +57,11 @@
         .btn-createaccount-wrapper {
             text-align: right;
             margin-right: 1rem;
+        }
+
+        .form-error-msgcontainer {
+            color:red;
+            padding-right:5px;
         }
 
     }

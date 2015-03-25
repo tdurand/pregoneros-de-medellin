@@ -39,7 +39,8 @@ function($, _, Backbone,
         "submit form.signup-form": "signUp",
         "click .usermanager-btnclose": "closeView",
         "click .streetwalk-login-btnlogout": "logOut",
-        "click .btn-createaccount":"renderCreateAccountView"
+        "click .btn-createaccount":"renderCreateAccountView",
+        "click .btn-close":"closeView"
     },
 
     initialize : function() {
@@ -153,6 +154,15 @@ function($, _, Backbone,
       var name = self.$el.find(".signup-name").val();
       var email = self.$el.find(".signup-email").val();
       var password = self.$el.find(".signup-password").val();
+      var passwordConfirm = self.$el.find(".signup-password-confirm").val();
+
+      if(password != passwordConfirm) {
+         self.$(".signup-form .form-error-msg").text("Password mismatch");
+         self.$(".signup-form .form-error-msgcontainer").show();
+         return false;
+      }
+
+      self.$el.find(".signup-form button").attr("disabled", "disabled");
       
       Parse.User.signUp(email, password, { ACL: new Parse.ACL(), name:name, email:email }, {
         success: function(user) {
@@ -162,12 +172,11 @@ function($, _, Backbone,
         },
 
         error: function(user, error) {
-          self.$(".signup-form .error").html(_.escape(error.message)).show();
+          self.$(".signup-form .form-error-msg").html(_.escape(error.message));
+          self.$(".signup-form .form-error-msgcontainer").show();
           self.$(".signup-form button").removeAttr("disabled");
         }
       });
-
-      self.$el.find(".signup-form button").attr("disabled", "disabled");
 
       return false;
       

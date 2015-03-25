@@ -2731,6 +2731,7 @@ body.not-moving .streetwalk-sign {
 .usermanager-content {
   width: 50%;
   z-index: 60;
+  font-size: 1.1rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -2741,33 +2742,42 @@ body.not-moving .streetwalk-sign {
   padding: 1em;
   color: #4b2246;
 }
-/* line 29, ../sass/module/usermanager.scss */
-.usermanager-content h2 {
+/* line 31, ../sass/module/usermanager.scss */
+.usermanager-content h3 {
   margin-top: 0;
   margin-bottom: 0;
 }
 /* line 36, ../sass/module/usermanager.scss */
+.usermanager-content .align-right {
+  text-align: right;
+}
+/* line 42, ../sass/module/usermanager.scss */
 .usermanager-content .modal-createaccount table {
   width: 100%;
 }
-/* line 39, ../sass/module/usermanager.scss */
+/* line 45, ../sass/module/usermanager.scss */
 .usermanager-content .modal-createaccount table td {
   width: 50%;
   vertical-align: top;
 }
-/* line 45, ../sass/module/usermanager.scss */
+/* line 51, ../sass/module/usermanager.scss */
 .usermanager-content .modal-createaccount input {
   width: 95%;
   height: 2.2rem;
   padding-left: 5px;
 }
-/* line 51, ../sass/module/usermanager.scss */
+/* line 57, ../sass/module/usermanager.scss */
 .usermanager-content .modal-createaccount .btn-createaccount-wrapper {
   text-align: right;
   margin-right: 1rem;
 }
+/* line 62, ../sass/module/usermanager.scss */
+.usermanager-content .modal-createaccount .form-error-msgcontainer {
+  color: red;
+  padding-right: 5px;
+}
 
-/* line 60, ../sass/module/usermanager.scss */
+/* line 71, ../sass/module/usermanager.scss */
 .usermanager-btnclose {
   position: absolute;
   top: 10px;
@@ -2779,7 +2789,7 @@ body.not-moving .streetwalk-sign {
   cursor: pointer;
 }
 
-/* line 72, ../sass/module/usermanager.scss */
+/* line 83, ../sass/module/usermanager.scss */
 .usermanager-overlay {
   position: fixed;
   top: 0;
@@ -4373,7 +4383,6 @@ body.not-moving .streetwalk-sign {
   color: black;
   border-radius: 1rem;
   border: none;
-  height: 1.5rem;
   font-size: 1.2rem;
   padding: 0.3rem;
   padding-left: 0.5rem;
