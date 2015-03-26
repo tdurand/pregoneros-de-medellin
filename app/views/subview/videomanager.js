@@ -23,6 +23,8 @@ function($, _, Backbone,
     videoName:"",
     videoId: null,
     playerReady: false,
+    currentWayVideoInitialized:false,
+    currentWayVideo:null,
 
 
     prepare : function(Progression) {
@@ -41,6 +43,8 @@ function($, _, Backbone,
         video.videoCharacter = characterName;
 
         self.initVideo(video);
+        self.currentWayVideo = video;
+        self.currentWayVideoInitialized = true;
    },
 
    initSpecificVideo: function(characterName, video) {
@@ -55,6 +59,7 @@ function($, _, Backbone,
        };
 
        self.initVideo(videoToInit);
+       self.currentWayVideoInitialized = false;
    },
 
    initVideo: function(video) {
@@ -87,7 +92,11 @@ function($, _, Backbone,
         if(!_.isUndefined(characterName)) {
             //unlocknext item
             someThingUnlocked = self.Progression.instance.unlockNextItem(characterName,wayName);
-            self.Progression.save();
+
+            if(!self.currentWayVideoInitialized) {
+                self.initVideo(self.currentWayVideo);
+                self.currentWayVideoInitialized = true;
+            }
         }
 
         //if something unlocked, we open the menu and do the nice animation from the menucharacter.js view
@@ -100,6 +109,9 @@ function($, _, Backbone,
                     transformOrigin:"bottom 80%",
                     ease: Power1.easeInOut
             });
+        }
+        else {
+            self.Progression.save();
         }
 
         self.trigger("showVideo");

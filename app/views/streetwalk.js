@@ -157,6 +157,15 @@ define(['jquery',
                 });
             });
 
+            //VIDEO MANAGER
+            self.listenTo(VideoManagerView,"showVideo",function() {
+                self.muteSounds();
+            });
+
+            self.listenTo(VideoManagerView,"closeVideo",function() {
+                self.unmuteSounds();
+            });
+
         },
 
         initArrowKeyBinding: function() {
@@ -790,14 +799,6 @@ define(['jquery',
         var self = this;
 
         self.trigger("clickOnCharacter");
-
-        self.listenToOnce(VideoManagerView,"showVideo",function() {
-            self.muteSounds();
-        });
-
-        self.listenToOnce(VideoManagerView,"closeVideo",function() {
-            self.unmuteSounds();
-        });
 
         VideoManagerView.showVideo(self.way.characterDefinition.name, self.way.wayName);
     },
