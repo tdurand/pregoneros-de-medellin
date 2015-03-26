@@ -15,6 +15,7 @@ function($, _, Backbone,
     model: Sound,
 
     soundHomeFaded: false,
+    userMuted: false,
     percentageLoaded:0,
 
     playSoundHome: function() {
@@ -315,6 +316,7 @@ function($, _, Backbone,
     },
 
     unmute: function() {
+        var self = this;
         Howler.mute(false);
     },
 

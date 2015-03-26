@@ -74,9 +74,18 @@ function($, _, Backbone,
         }));
 
         videojs("video").ready(function(){
+          self.$el.find(".streetwalk-video-btnclose").show();
           self.player = this;
           self.playerReady = true;
           self.trigger("playerReady");
+
+            self.player.on("useractive", function() {
+                self.$el.find(".streetwalk-video-btnclose").show();
+            });
+
+            self.player.on("userinactive", function() {
+                self.$el.find(".streetwalk-video-btnclose").hide();
+            });
         });
 
         self.videoCharacter = video.videoCharacter;

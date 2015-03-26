@@ -773,10 +773,12 @@ define(['jquery',
 
         if(state == "normal") {
             $(e.currentTarget).attr("data-state","muted");
+            Sounds.userMuted = true;
             Sounds.mute();
         }
         else {
             $(e.currentTarget).attr("data-state","normal");
+            Sounds.userMuted = false;
             Sounds.unmute();
         }
     },
@@ -791,8 +793,10 @@ define(['jquery',
     unmuteSounds: function() {
         var self = this;
 
-        self.$el.find(".toggle-sounds").attr("data-state","normal");
-        Sounds.unmute();
+        if(!Sounds.userMuted) {
+            self.$el.find(".toggle-sounds").attr("data-state","normal");
+            Sounds.unmute();
+        }
     },
 
    clickOnCharacter: function(e) {

@@ -151,10 +151,12 @@ function($, _, Backbone,
 
         if(state == "normal") {
             $(e.currentTarget).attr("data-state","muted");
+            Sounds.userMuted = true;
             Sounds.mute();
         }
         else {
             $(e.currentTarget).attr("data-state","normal");
+            Sounds.userMuted = false;
             Sounds.unmute();
         }
     },
