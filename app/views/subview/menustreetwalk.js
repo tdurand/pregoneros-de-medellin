@@ -59,9 +59,9 @@ function($, _, Backbone,
         var elem = $(".streetwalk-bottombar");
 
         if(self.menuOpen) {
+            self.$el.removeClass("open");
             TweenLite.to(elem, 0.5, { bottom:0 , onComplete: function() {
                 self.menuOpen = false;
-                self.$el.removeClass("open");
             }});
         }
         else {
