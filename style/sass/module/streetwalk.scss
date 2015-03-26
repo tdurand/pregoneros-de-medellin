@@ -18,6 +18,9 @@
     font-size:1.1rem;
     font-variant: small-caps;
 
+    transform:translateY(90%);
+    -webkit-transition:0.5s ease-out;
+
     .streetwalk-menubottom-content {
         position:absolute;
         top:50%;
@@ -548,10 +551,6 @@
         transform:translateY(-85%);
         -webkit-transition:0.5s ease-out;
         opacity: 0.2;
-}
-
-.streetwalk-menubottom {
-        transform:translateY(90%);
 }
 
 .streetwalk-syncing {
