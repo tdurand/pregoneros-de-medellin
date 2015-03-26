@@ -105,6 +105,9 @@ function($, _, Backbone, LOGGER, ProgressionModel){
 
   };
 
+  //Give capability to use events
+  _.extend(Progression, Backbone.Events);
+
   return Progression;
   
 });

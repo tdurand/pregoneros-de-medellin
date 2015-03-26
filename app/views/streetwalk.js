@@ -281,7 +281,8 @@ define(['jquery',
 
                 MessagingManager.showEventualNextMessage();
 
-
+                self.showSyncingProgressMsg();
+                
             }
 
             window.scrollTo(0,5);
@@ -812,6 +813,16 @@ define(['jquery',
         if(self.soundEditorView) {
             self.soundEditorView.showEditor();
         }
+    },
+
+    showSyncingProgressMsg: function() {
+        var self = this;
+
+        self.$el.find(".streetwalk-syncing").addClass("syncinginprogress");
+
+        setTimeout(function() {
+            self.$el.find(".streetwalk-syncing").removeClass("syncinginprogress");
+        },2000);
     },
 
     goToStreetName: function(wayName) {

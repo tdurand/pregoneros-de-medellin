@@ -554,6 +554,28 @@
         transform:translateY(90%);
 }
 
+.streetwalk-syncing {
+    position:fixed;
+    top:0px;
+    left:50%;
+    transform:translate(-50%,-100%);
+
+    background-color:#FFD64A;
+    border:2px solid #4B2246;
+    border-top:none;
+    border-radius: 5px;
+    padding:1em;
+    color:#4b2246;
+
+
+    -webkit-transition:1s ease-out;
+
+    &.syncinginprogress {
+        -webkit-transition:1s ease-out;
+        transform:translate(-50%,0%);
+    }
+}
+
 body.not-moving {
 
     .streetwalk-bottombar {
