@@ -24,9 +24,9 @@ define(["backbone"],function(Backbone) {
                         video3:"http://player.vimeo.com/external/120198779.hd.mp4?s=18838bd30821001809902718bac9571e"
                     },
                     gaucho: {
-                        video1:"http://player.vimeo.com/external/122591730.hd.mp4?s=00d978024fa2d9dc743035e99f30f7ed",
+                        video1:"http://player.vimeo.com/external/122376488.hd.mp4?s=b2ef65f871f03847712716e0793e61c2",
                         video2:"http://player.vimeo.com/external/122378449.hd.mp4?s=6e0b40c7edc780b802c84613d5c24fee",
-                        video3:"http://player.vimeo.com/external/122376488.hd.mp4?s=b2ef65f871f03847712716e0793e61c2"
+                        video3:"http://player.vimeo.com/external/122591730.hd.mp4?s=00d978024fa2d9dc743035e99f30f7ed"
                     },
                     papavanegas: {
                         video1:"http://player.vimeo.com/external/120590814.hd.mp4?s=dd914947e8fd3da5c8c85af6b2355a0f",
