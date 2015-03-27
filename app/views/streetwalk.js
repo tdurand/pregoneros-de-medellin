@@ -281,8 +281,9 @@ define(['jquery',
 
                 MessagingManager.showEventualNextMessage();
 
-                self.showSyncingProgressMsg();
-                
+                if(UserManagerView.isLogged()) {
+                    self.showSyncingProgressMsg();
+                }
             }
 
             window.scrollTo(0,5);

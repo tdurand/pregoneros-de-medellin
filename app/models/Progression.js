@@ -85,7 +85,7 @@ function($, _, Backbone, LOGGER, ProgressionModel){
         self.instance.initialize();
         self.instance.set("id",undefined);
     },
-
+    
     setCurrentStreet: function(wayName) {
         var self = this;
 
