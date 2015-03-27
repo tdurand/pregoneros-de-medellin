@@ -72,8 +72,12 @@
 .usermanager-content .modal-createaccount .link-discrete:active, .usermanager-content .modal-signin .link-discrete:active {
   color: #4b2246;
 }
+/* line 78, ../../sass/module/usermanager.scss */
+.usermanager-content .modal-share .margin-none {
+  margin: 0;
+}
 
-/* line 79, ../../sass/module/usermanager.scss */
+/* line 85, ../../sass/module/usermanager.scss */
 .usermanager-btnclose {
   position: absolute;
   top: 10px;
@@ -85,7 +89,7 @@
   cursor: pointer;
 }
 
-/* line 91, ../../sass/module/usermanager.scss */
+/* line 97, ../../sass/module/usermanager.scss */
 .usermanager-overlay {
   position: fixed;
   top: 0;

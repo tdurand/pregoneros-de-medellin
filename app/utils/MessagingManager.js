@@ -13,11 +13,11 @@ define(['jquery',
     var MessagingManager = {
 
         messageAskToCreateAccount: {
-            conditionStreetsLoaded:[2,10,25,40]
+            conditionStreetsLoaded:[2,10,30]
         },
 
         messageShareWithFriends: {
-            conditionStreetsLoaded: [4,8,18]
+            conditionStreetsLoaded: [4,20]
         },
 
         init: function() {

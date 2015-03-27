@@ -41,7 +41,10 @@ function($, _, Backbone,
         "click .btn-logout": "logOut",
         "click .btn-createaccount":"renderCreateAccountView",
         "click .btn-login":"renderSignInView",
-        "click .btn-close":"closeView"
+        "click .btn-close":"closeView",
+        "click .btn-shareontwitter":"shareOnTwitter",
+        "click .btn-shareonfacebook":"shareOnFacebook",
+        "click .btn-sharewithemail":"shareByEmail"
     },
 
     initialize : function() {
@@ -314,6 +317,60 @@ function($, _, Backbone,
     isLogged: function() {
         var self = this;
         return self.status.logged;
+    },
+
+    shareOnFacebook: function(e) {
+        var self = this;
+
+        e.preventDefault();
+
+        Progression.instance.set('pageHaveBeenShared', true);
+
+        self.closeView();
+
+        popUp=window.open(
+        'http://www.facebook.com/sharer.php?u=http://www.pregonerosdemedellin.com',
+        'popupwindow',
+        'scrollbars=yes,width=800,height=400');
+        popUp.focus();
+
+        return false;
+    },
+
+    shareOnTwitter: function(e) {
+        var self = this;
+
+        e.preventDefault();
+
+        Progression.instance.set('pageHaveBeenShared', true);
+
+        self.closeView();
+
+        var popUp=window.open(
+        'http://twitter.com/intent/tweet?text=Pregoneros de Medellín - http://www.pregonerosdemedellin.com',
+        'popupwindow',
+        'scrollbars=yes,width=800,height=400');
+
+        popUp.focus();
+        return false;
+    },
+
+    shareByEmail: function(e) {
+        var self = this;
+        
+        e.preventDefault();
+
+        Progression.instance.set('pageHaveBeenShared', true);
+
+        self.closeView();
+
+        var popUp=window.open(
+        'mailto:?subject=[Page Title] via [Site Name]&amp;body=I\'ve just read \'[Page Title]\' at [url]',
+        'popupwindow',
+        'scrollbars=yes,width=800,height=400');
+
+        popUp.focus();
+        return false;
     },
 
     onClose: function(){

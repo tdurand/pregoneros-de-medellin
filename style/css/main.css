@@ -449,6 +449,11 @@ button:focus {
   outline: 0;
 }
 
+/* line 9, ../sass/base.scss */
+.align-center {
+  text-align: center;
+}
+
 /* line 1, ../sass/states.scss */
 .hidden {
   display: none !important;
@@ -1030,7 +1035,7 @@ html:after, body:after {
   opacity: 0.2;
 }
 
-/* line 560, ../sass/module/streetwalk.scss */
+/* line 556, ../sass/module/streetwalk.scss */
 .streetwalk-syncing {
   position: fixed;
   top: 0px;
@@ -1044,38 +1049,38 @@ html:after, body:after {
   color: #4b2246;
   -webkit-transition: 1s ease-out;
 }
-/* line 576, ../sass/module/streetwalk.scss */
+/* line 572, ../sass/module/streetwalk.scss */
 .streetwalk-syncing.syncinginprogress {
   -webkit-transition: 1s ease-out;
   transform: translate(-50%, 0%);
 }
 
-/* line 584, ../sass/module/streetwalk.scss */
+/* line 580, ../sass/module/streetwalk.scss */
 body.not-moving .streetwalk-bottombar {
   -webkit-transition: 0.5s ease-out;
   opacity: 1;
   transform: translateY(0%);
 }
-/* line 589, ../sass/module/streetwalk.scss */
+/* line 585, ../sass/module/streetwalk.scss */
 body.not-moving .streetwalk-bottombar .streetwalk-map {
   transform: translateY(0%);
   -webkit-transition: 0.5s ease-out;
 }
-/* line 593, ../sass/module/streetwalk.scss */
+/* line 589, ../sass/module/streetwalk.scss */
 body.not-moving .streetwalk-bottombar .streetwalk-map .enlarged {
   transform: translateY(0%);
 }
-/* line 599, ../sass/module/streetwalk.scss */
+/* line 595, ../sass/module/streetwalk.scss */
 body.not-moving .streetwalk-menubottom {
   transform: translateY(0%);
   -webkit-transition: 0.5s ease-out;
 }
-/* line 604, ../sass/module/streetwalk.scss */
+/* line 600, ../sass/module/streetwalk.scss */
 body.not-moving .streetwalk-btnmenu-wrapper {
   -webkit-transition: 0.5s ease-out;
   transform: translate(95%, -110%);
 }
-/* line 609, ../sass/module/streetwalk.scss */
+/* line 605, ../sass/module/streetwalk.scss */
 body.not-moving .streetwalk-sign {
   transform: translateY(0%);
   -webkit-transition: 0.5s ease-out;
@@ -2801,8 +2806,12 @@ body.not-moving .streetwalk-sign {
 .usermanager-content .modal-createaccount .link-discrete:active, .usermanager-content .modal-signin .link-discrete:active {
   color: #4b2246;
 }
+/* line 78, ../sass/module/usermanager.scss */
+.usermanager-content .modal-share .margin-none {
+  margin: 0;
+}
 
-/* line 79, ../sass/module/usermanager.scss */
+/* line 85, ../sass/module/usermanager.scss */
 .usermanager-btnclose {
   position: absolute;
   top: 10px;
@@ -2814,7 +2823,7 @@ body.not-moving .streetwalk-sign {
   cursor: pointer;
 }
 
-/* line 91, ../sass/module/usermanager.scss */
+/* line 97, ../sass/module/usermanager.scss */
 .usermanager-overlay {
   position: fixed;
   top: 0;
