@@ -76,10 +76,14 @@ function($, _, Backbone,
             self.addDiscoveredPathToMap();
             self.addStartingMarker();
 
-            self.$el.find(".streetwalk-mapcontainer").hover(function() {
-                self.enlargeMap();
-            },function() {
-                self.reduceMap();
+            // // self.$el.find(".streetwalk-mapcontainer").hover(function() {
+            // //     self.enlargeMap();
+            // // },function() {
+            // //     self.reduceMap();
+            // });
+
+            self.$el.find(".streetwalk-map-btnfullscreen").on("click",function() {
+                self.toggleBigMap();
             });
 
             self.initListeners();
@@ -441,10 +445,21 @@ function($, _, Backbone,
         self.map.panTo(self.currentPosition);
     },
 
+    toggleBigMap: function() {
+        var self = this;
+
+        if(self.enlarged) {
+            self.reduceMap();
+        }
+        else {
+            self.enlargeMap();
+        }
+    },
+
     enlargeMap: function() {
         var self = this;
 
-        if(self.enlarged || self.isChangingSize || self.moving) {
+        if(self.enlarged || self.isChangingSize) {
             return;
         }
 
@@ -470,7 +485,7 @@ function($, _, Backbone,
     reduceMap: function() {
         var self = this;
 
-        if(!self.enlarged || self.isChangingSize || self.moving) {
+        if(!self.enlarged || self.isChangingSize) {
             return;
         }
 
