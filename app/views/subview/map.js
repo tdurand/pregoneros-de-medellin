@@ -62,6 +62,7 @@ function($, _, Backbone,
         self.listenTo(self.map,"load", function() {
             self.trigger("loaded");
             self.mapLoaded = true;
+            self.enlarged = false;
 
             self.map.panTo(positionInit);
             self.updateMarkerPosition(positionInit);
