@@ -579,9 +579,9 @@ define(['jquery',
                 lang : Localization.translationLoaded
             }));
 
-            TweenLite.set(".streetwalk-chooseway-end-wrapper",{scale:0});
+            TweenLite.set(".streetwalk-chooseway",{scale:0});
             self.$el.find(".streetwalk-chooseway-end-wrapper").show();
-            TweenLite.fromTo(".streetwalk-chooseway-end-wrapper",0.5,{scale:0},{scale:1,ease: Back.easeOut,onComplete:function() {
+            TweenLite.fromTo(".streetwalk-chooseway",0.5,{scale:0},{scale:1,ease: Back.easeOut,onComplete:function() {
                 self.chooseWayEndDisplayed = true;
             }});
 
@@ -596,9 +596,9 @@ define(['jquery',
                 lang : Localization.translationLoaded
             }));
 
-            TweenLite.set(".streetwalk-chooseway-start-wrapper",{scale:0});
+            TweenLite.set(".streetwalk-chooseway",{scale:0});
             self.$el.find(".streetwalk-chooseway-start-wrapper").show();
-            TweenLite.fromTo(".streetwalk-chooseway-start-wrapper",0.5,{scale:0},{scale:1,ease: Back.easeOut,onComplete:function() {
+            TweenLite.fromTo(".streetwalk-chooseway",0.5,{scale:0},{scale:1,ease: Back.easeOut,onComplete:function() {
                 self.chooseWayStartDisplayed = true;
             }});
 
@@ -607,7 +607,7 @@ define(['jquery',
         else {
             if(self.chooseWayEndDisplayed && !self.maskingChooseWay) {
                 self.maskingChooseWay = true;
-                TweenLite.fromTo(".streetwalk-chooseway-end-wrapper",0.3,{scale:1},{scale:0,ease: Power0.easeIn,onComplete:function() {
+                TweenLite.fromTo(".streetwalk-chooseway",0.3,{scale:1},{scale:0,ease: Power0.easeIn,onComplete:function() {
                     self.chooseWayEndDisplayed = false;
                     self.maskingChooseWay = false;
                     self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
@@ -616,7 +616,7 @@ define(['jquery',
 
             if(self.chooseWayStartDisplayed && !self.maskingChooseWay) {
                 self.maskingChooseWay = true;
-                TweenLite.fromTo(".streetwalk-chooseway-start-wrapper",0.3,{scale:1},{scale:0,ease: Power0.easeIn,onComplete:function() {
+                TweenLite.fromTo(".streetwalk-chooseway",0.3,{scale:1},{scale:0,ease: Power0.easeIn,onComplete:function() {
                     self.chooseWayStartDisplayed = false;
                     self.maskingChooseWay = false;
                     self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
