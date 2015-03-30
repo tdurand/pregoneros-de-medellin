@@ -296,14 +296,18 @@ function($, _, Backbone,
     },
 
     closeView: function() {
-        // TweenLite.fromTo("#usermanager",0.5,{scale:1},{scale:0,ease: Back.easeOut,onComplete:function() {
-        $("#usermanager").addClass("hidden");
-        // }});
+        TweenLite.fromTo("#usermanager",0.7,{opacity:1},{opacity:0});
+        TweenLite.fromTo(".usermanager-content",0.7,{x:"-50%",y:"-50%"},{x:"-50%",y:"-20%",ease:Power1.easeInOut,onComplete:function() {
+            $("#usermanager").addClass("hidden");
+        }});
+
     },
 
     showView: function() {
-        // TweenLite.fromTo("#usermanager",1,{scale:0},{scale:1,ease: Back.easeOut});
         $("#usermanager").removeClass("hidden");
+        TweenLite.fromTo("#usermanager",0.7,{opacity:0},{opacity:1});
+        TweenLite.fromTo(".usermanager-content",0.7,{x:"-50%",y:"-20%"},{x:"-50%",y:"-50%",ease:Power1.easeInOut});
+        
     },
 
     displayLogin: function() {
