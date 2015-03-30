@@ -657,9 +657,9 @@ html:after, body:after {
 }
 /* line 132, ../sass/module/streetwalk.scss */
 .streetwalk-bottombar .streetwalk-map.enlarged .streetwalk-map-btnfullscreen {
-  background-position-y: -27px;
+  background-image: url("../../images/closebtn-black.svg");
 }
-/* line 152, ../sass/module/streetwalk.scss */
+/* line 153, ../sass/module/streetwalk.scss */
 .streetwalk-bottombar .streetwalk-map .streetwalk-mapcontainer {
   height: 100%;
   width: 100%;
@@ -668,7 +668,7 @@ html:after, body:after {
   z-index: 30;
   box-shadow: 5px 5px 20px #a08a1c;
 }
-/* line 162, ../sass/module/streetwalk.scss */
+/* line 163, ../sass/module/streetwalk.scss */
 .streetwalk-bottombar .streetwalk-map .streetwalk-map-btnfullscreen {
   position: absolute;
   top: 28px;
@@ -680,8 +680,8 @@ html:after, body:after {
   height: 26px;
   border: 1px solid #999;
   border-radius: 3px;
-  background: #fff url("../../images/fullscreen.png") no-repeat 0 0;
-  background-size: 26px 52px;
+  background: #fff url("../../images/map/magnifier.svg") no-repeat 0 0;
+  background-size: contain;
 }
 /* line 187, ../sass/module/streetwalk.scss */
 .streetwalk-bottombar .streetwalk-menucharacters {
