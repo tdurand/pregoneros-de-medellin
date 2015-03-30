@@ -90,6 +90,13 @@ function($, _, Backbone,
             self.player.on("ended", function() {
                 self.closeVideo();
             });
+
+            $(document).on("keyup",function(e) {
+                // escape key maps to keycode `27`
+                if (e.keyCode == 27) {
+                   self.closeVideo();
+                }
+            });
         });
 
         self.videoCharacter = video.videoCharacter;
@@ -166,6 +173,7 @@ function($, _, Backbone,
         if(self.player) {
             self.player.dispose();
             self.playerReady = false;
+            $(document).off("keyup");
         }
     },
 
