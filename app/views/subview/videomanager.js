@@ -113,7 +113,7 @@ function($, _, Backbone,
             //unlocknext item
             someThingUnlocked = self.Progression.instance.unlockNextItem(characterName,wayName);
 
-            if(!self.currentWayVideoInitialized) {
+            if(self.currentWayVideoInitialized) {
                 self.initVideo(self.currentWayVideo);
                 self.currentWayVideoInitialized = true;
             }
