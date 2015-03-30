@@ -86,6 +86,10 @@ function($, _, Backbone,
             self.player.on("userinactive", function() {
                 self.$el.find(".streetwalk-video-btnclose").hide();
             });
+
+            self.player.on("ended", function() {
+                self.closeVideo();
+            });
         });
 
         self.videoCharacter = video.videoCharacter;
