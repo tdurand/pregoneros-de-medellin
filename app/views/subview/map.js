@@ -515,7 +515,7 @@ function($, _, Backbone,
               id: 'goto-marker',
               target: e.target._icon,
               placement: 'top',
-              title: "Shortcut",
+              title: "ATAJO",
               content: "Quieres ir directamente en esta calle ?" + '<p><button class="btn-gotostreet btn-secondary hopscotch-cta">'+ Localization.STR.tutorialDirectUnlockBtnGoDirectly + '</button> <button class="hopscotch-close hopscotch-nav-button hopscotch-cta">' + Localization.STR.tutorialDirectUnlockBtnPreferSearch +'</button></p>',
               onShow: function() {
                  $(".streetwalk-tutorial-overlay").show();
