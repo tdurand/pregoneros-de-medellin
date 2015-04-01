@@ -1,0 +1,30 @@
+@import "grids";
+
+#page {
+    position:fixed;
+    height: 100%;
+    width: 100%;
+    z-index:101;
+    top:0;
+    left:0;
+
+    background:#ffffff;
+
+    overflow: auto;
+}
+
+.page-content {
+    margin:2em;
+}
+
+.page-btnclose {
+    position:fixed;
+    top:10px;
+    right:10px;
+    width: 30px;
+    height: 30px;
+    background-image:url("../../images/closeBtnPopup.svg");
+    background-repeat: no-repeat;
+
+    cursor:pointer;
+}

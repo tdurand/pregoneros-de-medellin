@@ -17,6 +17,7 @@ require.config({
         models:       'models',
         views:        'views',
         utils:        'utils',
+        conf:         'conf',
         templates:    '../templates',
         content:      '../content'
     },

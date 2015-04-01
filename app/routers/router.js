@@ -5,7 +5,8 @@ define([
         'utils/AppView',
         'utils/Localization',
         'models/Progression',
-        'views/index'
+        'views/index',
+        'views/page'
         // 'views/streetwalk'
         ],
     function($, _, Backbone,
@@ -13,7 +14,9 @@ define([
                     Localization,
                     Progression,
                     IndexView,
-                    StreetWalkView) {
+                    PageView
+                    // StreetWalkView
+                    ) {
 
         var Router = Backbone.Router.extend({
             routes: {
@@ -22,6 +25,7 @@ define([
                 'streetwalk':                           'streetwalk',
                 'streetwalk/:wayName':                  'streetwalk',
                 'streetwalk/:wayName/:lang':            'streetwalk',
+                'page':                                 'page',
                 ':lang':                                'index'
              },
 
@@ -30,10 +34,12 @@ define([
         initialize: function() {
             var self = this;
 
+            self.history =  [];
+
             Progression.initialize();
             Progression.fetch();
 
-            self.StreetWalkView = StreetWalkView;
+            self.StreetWalkView = undefined;
 
             require([ "views/streetwalk" ], function(streetwalk) {
                 self.streetWalkLoaded = true;
@@ -47,7 +53,7 @@ define([
 
             self.listenToOnce(Localization,"STRSuccess",function() {
                 if(AppView.currentView.el.id == "index") {
-                    self.navigate("#"+Localization.translationLoaded, {trigger:false,replace:true});
+                    self.changeAndStoreFragment("#"+Localization.translationLoaded);
                 }
             });
 
@@ -126,6 +132,81 @@ define([
 
             streetWalkView = AppView.show(streetWalkView);
             AppView.changePage(streetWalkView);
+        },
+
+        page: function(pageName, lang) {
+            var self = this;
+
+            self.initLocalization(lang);
+
+            PageView.on("closePage", function() {
+                //update URL without triggering
+                self.previous();
+                PageView.off("closePage");
+            });
+
+            PageView.renderTransmediaViewTemplate();
+            PageView.showView();
+        },
+
+        storeRoute : function() {
+            var self = this;
+            return self.history.push(Backbone.history.fragment);
+        },
+
+        previous : function() {
+            var self = this;
+            if (self.history.length > 1) {
+              return self.changeAndStoreFragment(self.history[self.history.length - 2]);
+            }
+        },
+
+        changeAndStoreFragment: function(fragment) {
+            var self = this;
+            self.navigate(fragment);
+            self.storeRoute();
+        },
+
+        before: function(){
+            var self = this;
+            self.storeRoute();
+        },
+
+        after: function() {
+
+        },
+
+        route : function(route, name, callback) {
+              if (!_.isRegExp(route)) route = this._routeToRegExp(route);
+
+              if (_.isFunction(name)) {
+                callback = name;
+                name = '';
+              }
+
+              if (!callback) callback = this[name];
+
+              var router = this;
+
+              Backbone.history.route(route, function(fragment) {
+                var args = router._extractParameters(route, fragment);
+
+                if (_.isFunction(router.before)) {
+                    router.before();
+                }
+
+                router.execute(callback, args);
+
+                if (_.isFunction(router.after)) {
+                    router.after();
+                }
+
+                router.trigger.apply(router, ['route:' + name].concat(args));
+                router.trigger('route', name, args);
+                Backbone.history.trigger('route', router, name, args);
+              });
+
+              return this;
         }
 
     });
