@@ -29,6 +29,11 @@ define(['jquery',
         showModalPage: function(view) {
             if(this.currentView) {
                 this.lastView = this.currentView;
+
+                if(this.lastView.el.id == "streetwalk") {
+                    //pause streetwalk
+                    this.lastView.pause();
+                }
             }
 
             this.currentView = view;
@@ -36,6 +41,11 @@ define(['jquery',
 
         closeModalPage: function() {
             this.currentView = this.lastView;
+
+            if(this.lastView.el.id == "streetwalk") {
+                //play streetwalk
+                this.lastView.play();
+            }
         },
 
         changePage: function(view) {

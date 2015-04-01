@@ -641,16 +641,19 @@ define(['jquery',
         return self.bodyHeight;
     },
 
+    getCurrentPosition : function() {
+        var supportPageOffset = window.pageXOffset !== undefined;
+        var isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
+        return supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+    },
+
     computeAnimation: function(firstStill) {
         var self = this;
 
             if(self.animating) {
 
             //LOGGER.debug("Compute animation");
-
-            var supportPageOffset = window.pageXOffset !== undefined;
-            var isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
-            self.targetPosition  = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
+            self.targetPosition  = self.getCurrentPosition();
 
             if( Math.floor(self.targetPosition) != Math.floor(self.currentPosition) || firstStill) {
                 //LOGGER.debug("Compute We have moved : scroll position " + self.currentPosition);
@@ -837,6 +840,23 @@ define(['jquery',
 
     goToStreetName: function(wayName) {
         window.location.href = "#streetwalk/" + wayName;
+    },
+
+    pause: function() {
+        var self = this;
+        self.paused = true;
+        self.animating = false;
+        self.positionOnPause = self.getCurrentPosition();
+        $("body").css("overflow", "hidden");
+    },
+
+    play: function() {
+        var self = this;
+        $("body").css("overflow", "visible");
+        window.scrollTo(0,self.positionOnPause);
+        self.paused = false;
+        self.animating = true;
+        self.computeAnimation(true);
     },
 
     onClose: function(){

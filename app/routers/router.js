@@ -154,8 +154,6 @@ define([
                 AppView.closeModalPage();
             });
 
-            
-
             if(_.isUndefined(Localization.STR)) {
                 self.listenToOnce(Localization,"STRLoaded", function() {
                     //Update URL to have the lang in there for sharing
