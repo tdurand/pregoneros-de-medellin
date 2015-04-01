@@ -127,18 +127,18 @@ define([
                 self.navigate("#streetwalk/" + wayName,{replace:true});
             }
 
-            var streetWalkView = new self.StreetWalkView({
+            self.streetWalkView = new self.StreetWalkView({
                 wayName : wayName
             });
 
-            streetWalkView = AppView.show(streetWalkView);
-            AppView.changePage(streetWalkView);
+            self.streetWalkView = AppView.show(self.streetWalkView);
+            AppView.changePage(self.streetWalkView);
         },
 
         page: function(pageName, lang) {
             var self = this;
 
-            if(_.isUndefined(self.indexView)) {
+            if(_.isUndefined(self.indexView) && _.isUndefined(self.streetWalkView)) {
                 //Coming directly from a page link init the index page in background
                 self.navigate("#index",{trigger:true});
                 //Trick the history and add again entry for this page

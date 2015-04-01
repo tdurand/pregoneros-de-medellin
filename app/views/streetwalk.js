@@ -166,6 +166,15 @@ define(['jquery',
                 self.unmuteSounds();
             });
 
+            //SOUNDS
+            self.listenTo(Sounds,"mute",function() {
+                self.$el.find(".toggle-sounds").attr("data-state","muted");
+            });
+
+            self.listenTo(Sounds,"unmute",function() {
+                self.$el.find(".toggle-sounds").attr("data-state","normal");
+            });
+
         },
 
         initArrowKeyBinding: function() {

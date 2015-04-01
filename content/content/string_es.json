@@ -30,7 +30,11 @@
     "tutorialDirectUnlockDescription":"Para desbloquear, encuentra nuevamente al pregonero. Puedes ir directamente o regresar al recorrido y descubrirlo en otra calle de la ciudad.",
     "tutorialDirectUnlockBtnGoDirectly":"Ir directamente",
     "tutorialDirectUnlockBtnPreferSearch":"Prefiero buscar",
-    "pageTransmediaTitle":"Un proyecto Transmedia"
+    "pageTransmediaTitle":"Un proyecto Transmedia",
+    "pageMusicTitle":"Musica",
+    "pagePressKitTitle":"Kit de prensa",
+    "pageTeamTitle":"Equipo",
+    "pageMakingofTitle":"Detrás de camara"
 
     
 }

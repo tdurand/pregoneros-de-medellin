@@ -2,6 +2,7 @@ define(['jquery',
         'underscore',
         'backbone',
         'utils/Logger',
+        'models/Sounds',
         'utils/Localization',
         'models/Progression',
         'text!templates/page/transmediaViewTemplate.html',
@@ -12,6 +13,7 @@ define(['jquery',
         ],
 function($, _, Backbone,
                 LOGGER,
+                Sounds,
                 Localization,
                 Progression,
                 TransmediaView,
@@ -25,7 +27,8 @@ function($, _, Backbone,
     el:"#page",
 
     events:{
-        "click .page-btnclose":"closeView"
+        "click .page-btnclose":"closeView",
+        "click .toggle-sounds":"toggleSounds"
     },
 
     initialize : function() {
@@ -58,32 +61,45 @@ function($, _, Backbone,
          var self = this;
 
          self.$el.html(_.template(TransmediaView)({
-            STR : Localization.STR
+            STR : Localization.STR,
+            soundsMuted: Sounds.isMuted()
          }));
     },
 
     renderMusicView: function(e) {
         var self = this;
 
-        self.$el.html(_.template(MusicView));
+        self.$el.html(_.template(MusicView)({
+            STR : Localization.STR,
+            soundsMuted: Sounds.isMuted()
+         }));
     },
 
     renderTeamView: function() {
         var self = this;
 
-         self.$el.html(_.template(TeamView));
+         self.$el.html(_.template(TeamView)({
+            STR : Localization.STR,
+            soundsMuted: Sounds.isMuted()
+         }));
     },
 
     renderMakingOfView: function(e) {
         var self = this;
 
-        self.$el.html(_.template(MakingOfView));
+        self.$el.html(_.template(MakingOfView)({
+            STR : Localization.STR,
+            soundsMuted: Sounds.isMuted()
+         }));
     },
 
     renderPressKitView: function() {
         var self = this;
 
-         self.$el.html(_.template(PressKitView));
+         self.$el.html(_.template(PressKitView)({
+            STR : Localization.STR,
+            soundsMuted: Sounds.isMuted()
+         }));
     },
 
     closeView: function() {
@@ -98,7 +114,29 @@ function($, _, Backbone,
 
     showView: function() {
         $("#page").removeClass("hidden");
-        TweenLite.fromTo("#page",0.7,{y:"-100%"},{y:"0%",ease:Power1.easeInOut});
+        TweenLite.fromTo("#page",0.7,{y:"-100%"},{y:"0%",ease:Power1.easeInOut,onComplete:function() {
+            //FIX BUG CHROME FIXED POSITIONNING AND TRANSFORM:
+            //http://stackoverflow.com/questions/19059662/css3-transform-reverts-position-fixed
+            $("#page").css("transform","none");
+        }});
+
+    },
+
+    toggleSounds: function(e) {
+        var self = this;
+
+        var state = $(e.currentTarget).attr("data-state");
+
+        if(state == "normal") {
+            $(e.currentTarget).attr("data-state","muted");
+            Sounds.userMuted = true;
+            Sounds.mute();
+        }
+        else {
+            $(e.currentTarget).attr("data-state","normal");
+            Sounds.userMuted = false;
+            Sounds.unmute();
+        }
     },
 
     onClose: function(){

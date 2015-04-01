@@ -41,12 +41,23 @@ function($, _, Backbone,
             self.render();
         }
 
-        Sounds.playSoundHome();
+        if(!Sounds.userMuted) {
+            Sounds.playSoundHome();
+        }
 
         //EVENT
         self.listenTo(UserManagerView,"loginStatusChanged", function() {
             self.renderMenu();
             self.renderStartButton();
+        });
+
+        //SOUNDS
+        self.listenTo(Sounds,"mute",function() {
+            self.$el.find(".toggle-sounds").attr("data-state","muted");
+        });
+
+        self.listenTo(Sounds,"unmute",function() {
+            self.$el.find(".toggle-sounds").attr("data-state","normal");
         });
 
     },

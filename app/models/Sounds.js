@@ -312,12 +312,15 @@ function($, _, Backbone,
     },
 
     mute: function() {
+        var self = this;
         Howler.mute(true);
+        self.trigger("mute");
     },
 
     unmute: function() {
         var self = this;
         Howler.mute(false);
+        self.trigger("unmute");
     },
 
     isMuted: function() {
