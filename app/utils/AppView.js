@@ -16,12 +16,18 @@ define(['jquery',
 
         show: function(view) {
             if (this.currentView){
-              this.currentView.onClose();
+              //if paused , do not close
+              if(!this.currentView.paused) {
+                this.currentView.onClose();
+              }
               this.lastView = this.currentView;
             }
          
             this.currentView = view;
-            this.currentView.prepare();
+
+            if(!this.currentView.paused) {
+                this.currentView.prepare();
+            }
 
             return view;
         },
@@ -53,6 +59,10 @@ define(['jquery',
                 this.lastView.$el.hide();
             }
             view.$el.show();
+
+            if(this.currentView.paused) {
+                this.currentView.play();
+            }
         }
 
 

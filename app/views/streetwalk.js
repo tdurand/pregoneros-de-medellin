@@ -175,6 +175,11 @@ define(['jquery',
                 self.$el.find(".toggle-sounds").attr("data-state","normal");
             });
 
+            //MENU
+            self.listenTo(MenuStreetWalkView,"goToHome", function() {
+                self.pause();
+            });
+
         },
 
         initArrowKeyBinding: function() {

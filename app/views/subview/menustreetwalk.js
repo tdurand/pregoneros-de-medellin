@@ -19,7 +19,8 @@ function($, _, Backbone,
     events:{
         "click .streetwalk-menubottom-btnlogin":"displayLogin",
         "click .streetwalk-menubottom-btnlogout":"logout",
-        "change .language-selection":"changeLanguage"
+        "change .language-selection":"changeLanguage",
+        "click .streetwalk-menubottom-linkhome":"goToHome"
     },
 
     prepare : function(UserManagerView) {
@@ -92,6 +93,11 @@ function($, _, Backbone,
         var lang = self.$el.find(".language-selection").val();
 
         Localization.init(lang);
+    },
+
+    goToHome: function() {
+        var self = this;
+        self.trigger("goToHome");
     },
 
     onClose: function(){

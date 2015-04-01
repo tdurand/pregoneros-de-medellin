@@ -127,11 +127,13 @@ define([
                 self.navigate("#streetwalk/" + wayName,{replace:true});
             }
 
-            self.streetWalkView = new self.StreetWalkView({
-                wayName : wayName
-            });
+            if(!(self.streetWalkView && self.streetWalkView.paused)) {
+                self.streetWalkView = new self.StreetWalkView({
+                    wayName : wayName
+                });
+            }
 
-            self.streetWalkView = AppView.show(self.streetWalkView);
+            AppView.show(self.streetWalkView);
             AppView.changePage(self.streetWalkView);
         },
 
