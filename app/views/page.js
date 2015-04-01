@@ -2,6 +2,7 @@ define(['jquery',
         'underscore',
         'backbone',
         'utils/Logger',
+        'utils/Localization',
         'models/Progression',
         'text!templates/page/transmediaViewTemplate.html',
         'text!templates/page/musicViewTemplate.html',
@@ -11,6 +12,7 @@ define(['jquery',
         ],
 function($, _, Backbone,
                 LOGGER,
+                Localization,
                 Progression,
                 TransmediaView,
                 MusicView,
@@ -31,14 +33,36 @@ function($, _, Backbone,
         
     },
 
-    //Account renders
-    renderTransmediaViewTemplate: function() {
-         var self = this;
+    render: function(pageName) {
+        var self = this;
 
-         self.$el.html(_.template(TransmediaView));
+        if(pageName == "transmedia") {
+            self.renderTransmediaView();
+        }
+        else if(pageName == "music") {
+            self.renderMusicView();
+        }
+        else if(pageName == "team") {
+            self.renderTeamView();
+        }
+        else if(pageName == "makingof") {
+            self.renderMakingOfView();
+        }
+        else if(pageName == "presskit") {
+            self.renderPressKitView();
+        }
     },
 
-    renderMusicViewTemplate: function(e) {
+    //Account renders
+    renderTransmediaView: function() {
+         var self = this;
+
+         self.$el.html(_.template(TransmediaView)({
+            STR : Localization.STR
+         }));
+    },
+
+    renderMusicView: function(e) {
         var self = this;
 
         self.$el.html(_.template(MusicView));

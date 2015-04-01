@@ -26,6 +26,18 @@ define(['jquery',
             return view;
         },
 
+        showModalPage: function(view) {
+            if(this.currentView) {
+                this.lastView = this.currentView;
+            }
+
+            this.currentView = view;
+        },
+
+        closeModalPage: function() {
+            this.currentView = this.lastView;
+        },
+
         changePage: function(view) {
             if(this.lastView) {
                 this.lastView.$el.hide();

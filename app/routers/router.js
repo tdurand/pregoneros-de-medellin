@@ -25,7 +25,8 @@ define([
                 'streetwalk':                           'streetwalk',
                 'streetwalk/:wayName':                  'streetwalk',
                 'streetwalk/:wayName/:lang':            'streetwalk',
-                'page':                                 'page',
+                'page/:pageName':                       'page',
+                'page/:pageName/:lang':                 'page',
                 ':lang':                                'index'
              },
 
@@ -63,7 +64,7 @@ define([
                 }
 
                 if(AppView.currentView.el.id == "streetwalk") {
-                    //display popup
+                    //TODO display popup
                     self.index(Localization.translationLoaded);
                 }
             });
@@ -77,12 +78,12 @@ define([
 
             self.initLocalization(lang);
 
-            var indexView = new IndexView();
+            self.indexView = new IndexView();
 
             Progression.instance.viewedLandingPage = true;
 
-            indexView = AppView.show(indexView);
-            AppView.changePage(indexView);
+            self.indexView = AppView.show(self.indexView);
+            AppView.changePage(self.indexView);
 
         },
 
@@ -137,17 +138,45 @@ define([
         page: function(pageName, lang) {
             var self = this;
 
+            if(_.isUndefined(self.indexView)) {
+                //Coming directly from a page link init the index page in background
+                self.navigate("#index",{trigger:true});
+                //Trick the history and add again entry for this page
+                self.changeAndStoreFragment("#page/"+pageName+"/"+lang);
+            }
+
             self.initLocalization(lang);
 
             PageView.on("closePage", function() {
                 //update URL without triggering
                 self.previous();
                 PageView.off("closePage");
+                AppView.closeModalPage();
             });
 
-            PageView.renderTransmediaViewTemplate();
-            PageView.showView();
+            
+
+            if(_.isUndefined(Localization.STR)) {
+                self.listenToOnce(Localization,"STRLoaded", function() {
+                    //Update URL to have the lang in there for sharing
+                    self.navigate("#page/"+pageName+"/"+Localization.translationLoaded,{replace:true});
+                    PageView.render(pageName);
+                    PageView.showView();
+                });
+            }
+            else {
+                //Update URL to have the lang in there for sharing
+                self.navigate("#page/"+pageName+"/"+Localization.translationLoaded,{replace:true});
+                PageView.render(pageName);
+                PageView.showView();
+            }
+
+            AppView.showModalPage(PageView);
         },
+
+        //EXTEND BACKBONE ROUTER TO GIVE THESE FUNCIONALITIES:
+        //-> before/after route event
+        //-> store hash history and be able to call previous() method
 
         storeRoute : function() {
             var self = this;
