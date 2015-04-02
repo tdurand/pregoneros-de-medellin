@@ -280,9 +280,13 @@ function($, _, Backbone,
                     },
                     "properties": {
                         "id": way.wayName,
+                        "title": way.wayName,
                         "stroke": "#6c6c6c",
                         "stroke-opacity": 1,
                         "stroke-width": 3
+                    },
+                    "className": {
+                        "baseVal": way.wayName
                     }
                 });
             }
@@ -290,6 +294,9 @@ function($, _, Backbone,
 
         // Dash array
         self.layerWays.on('layeradd', function(e) {
+            var currentClass = $(e.layer._path).attr("class");
+            var className = currentClass + " map-path-way" + " path-" + e.layer.feature.properties.id + " path-" + Ways.getReverseWayName(e.layer.feature.properties.id);
+            $(e.layer._path).attr("class",className);
             e.layer.setStyle({
                 dashArray: "8,6"
             });

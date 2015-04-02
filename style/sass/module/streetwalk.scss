@@ -139,6 +139,12 @@
             }
         }
 
+        .map-path-way {
+            &.highlight {
+                stroke:red !important;
+            }
+        }
+
         //Positionning
         bottom:30%;
         left:-2%;

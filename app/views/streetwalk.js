@@ -541,13 +541,6 @@ define(['jquery',
             self.firstScroll = false;
         }
 
-        var imgStartText = 266;
-        var imgEndText = 286;
-        var fullWidth = 37.66;
-        var startWidth = 13.42;
-        //range
-
-
         if(!_.isUndefined(self.way.characterDefinition)) {
 
             if(imgNb >= self.way.characterDefinition.startFrame && imgNb <= self.way.characterDefinition.endFrame) {
@@ -609,6 +602,25 @@ define(['jquery',
             }});
 
             MenuCharactersView.closeMenu();
+
+            //CHOOSEWAY HIGHLIGHT
+            $(".btn-chooseway").hover(function() {
+                 var pathToHighlight = this.href.baseVal.split("/")[1];
+                 var reversePathToHighlight = Ways.getReverseWayName(pathToHighlight);
+                 var element = ".path-" + pathToHighlight + ",.path-" + reversePathToHighlight;
+                 var currentClass = $(element).attr("class");
+                 var newClass = currentClass + " highlight";
+                 $(element).attr("class", newClass);
+                 console.log("Add class highlight");
+            },function() {
+                 var pathToHighlight = this.href.baseVal.split("/")[1];
+                 var reversePathToHighlight = Ways.getReverseWayName(pathToHighlight);
+                 var element = ".path-" + pathToHighlight + ",.path-" + reversePathToHighlight;
+                 var currentClass = $(element).attr("class");
+                 var newClass = currentClass.replace("highlight","");
+                 $(element).attr("class", newClass);
+                 console.log("remove class highlight");
+            });
         }
         else if(imgNb === 0) {
             self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
