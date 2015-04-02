@@ -242,7 +242,7 @@ function($, _, Backbone,
                         "iconSize": [40, 40], // size of the icon
                         "iconAnchor": [20, 20], // point of the icon which will correspond to marker's location
                         "popupAnchor": [0, -20], // point from which the popup should open relative to the iconAnchor
-                        "className": characterPosition.name + " " + characterPosition.way + " " + Ways.getReverseWayName(characterPosition.way)
+                        "className": "character-icon " + characterPosition.name + " " + characterPosition.way + " " + Ways.getReverseWayName(characterPosition.way)
                     }
                 }
             });
