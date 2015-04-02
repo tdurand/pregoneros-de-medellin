@@ -50,28 +50,29 @@ function($, _, Backbone,
     initialize : function() {
         var self = this;
 
-        window.fbAsyncInit = function() {
+        if(navigator.onLine) {
+            self.fbAsyncInit();
+        }
+    },
 
-            Parse.initialize("9uInSCaUNce345LbJrkqIsKQZfS7TJSdQNzQeFXT",
+    fbAsyncInit: function() {
+        var self = this;
+
+        Parse.initialize("9uInSCaUNce345LbJrkqIsKQZfS7TJSdQNzQeFXT",
                    "XmjFAZhIjwkRKzir12xZO6w9kz8V5t1zwYmuT0Qt");
 
-            Parse.FacebookUtils.init({ // this line replaces FB.init({
-              appId      : '584965638293572', // Facebook App ID
-              status     : true,  // check Facebook Login status
-              cookie     : true,  // enable cookies to allow Parse to access the session
-              xfbml      : true,  // initialize Facebook social plugins on the page
-              version    : 'v2.2' // point to the latest Facebook Graph API version
-            });
+        Parse.FacebookUtils.init({ // this line replaces FB.init({
+          appId      : '584965638293572', // Facebook App ID
+          status     : true,  // check Facebook Login status
+          cookie     : true,  // enable cookies to allow Parse to access the session
+          xfbml      : true,  // initialize Facebook social plugins on the page
+          version    : 'v2.2' // point to the latest Facebook Graph API version
+        });
          
-            // Run code after the Facebook SDK is loaded.
-            self.renderAskToCreateAccountView();
+        // Run code after the Facebook SDK is loaded.
+        self.renderAskToCreateAccountView();
 
-            self.updateLoginStatus();
-          };
-
-        fbAsyncInit();
-
-        
+        self.updateLoginStatus();
     },
 
     //Account renders

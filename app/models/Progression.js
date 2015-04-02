@@ -22,6 +22,10 @@ function($, _, Backbone, LOGGER, ProgressionModel){
     save: function() {
         var self = this;
 
+        if(!navigator.onLine) {
+            return;
+        }
+
         var user = Parse.User.current();
 
         //If user logged in
@@ -52,6 +56,11 @@ function($, _, Backbone, LOGGER, ProgressionModel){
 
     fetch: function(callBack) {
         var self = this;
+
+        if(!navigator.onLine) {
+            return;
+        }
+
         var query = new Parse.Query(self.modelParseDAO);
 
         query.equalTo("belongTo", Parse.User.current());
@@ -81,6 +90,10 @@ function($, _, Backbone, LOGGER, ProgressionModel){
 
     logOut: function() {
         var self = this;
+
+        if(!navigator.onLine) {
+            return;
+        }
 
         self.instance.initialize();
         self.instance.set("id",undefined);
