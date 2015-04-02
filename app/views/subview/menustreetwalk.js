@@ -90,6 +90,8 @@ function($, _, Backbone,
     changeLanguage: function() {
         var self = this;
 
+        self.trigger("changeLanguage");
+
         var lang = self.$el.find(".language-selection").val();
 
         Localization.init(lang);
@@ -97,7 +99,7 @@ function($, _, Backbone,
 
     goToHome: function() {
         var self = this;
-        self.trigger("goToHome");
+        Progression.instance.isFirstLoad = true;
     },
 
     onClose: function(){

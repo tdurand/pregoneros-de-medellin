@@ -77,12 +77,6 @@ function($, _, Backbone,
             self.addDiscoveredPathToMap();
             self.addStartingMarker();
 
-            // // self.$el.find(".streetwalk-mapcontainer").hover(function() {
-            // //     self.enlargeMap();
-            // // },function() {
-            // //     self.reduceMap();
-            // });
-
             self.$el.find(".streetwalk-map-btnfullscreen").on("click",function() {
                 self.toggleBigMap();
             });
@@ -537,8 +531,9 @@ function($, _, Backbone,
     onClose: function(){
       var self = this;
       //Clean
-      this.undelegateEvents();
-      this.markerMap =  undefined;
+      self.undelegateEvents();
+      self.mapLoaded = false;
+      self.markerMap =  undefined;
       self.stopListening();
     }
 

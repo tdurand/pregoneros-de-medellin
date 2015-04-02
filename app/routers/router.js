@@ -63,10 +63,10 @@ define([
                     self.index(Localization.translationLoaded);
                 }
 
-                if(AppView.currentView.el.id == "streetwalk") {
-                    //TODO display popup
-                    self.index(Localization.translationLoaded);
-                }
+                // if(AppView.currentView.el.id == "streetwalk") {
+                //     //TODO display popup
+                //     self.index(Localization.translationLoaded);
+                // }
             });
 
             Localization.init(lang);

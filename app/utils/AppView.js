@@ -17,17 +17,13 @@ define(['jquery',
         show: function(view) {
             if (this.currentView){
               //if paused , do not close
-              if(!this.currentView.paused) {
-                this.currentView.onClose();
-              }
+              this.currentView.onClose();
               this.lastView = this.currentView;
             }
          
             this.currentView = view;
 
-            if(!this.currentView.paused) {
-                this.currentView.prepare();
-            }
+            this.currentView.prepare();
 
             return view;
         },

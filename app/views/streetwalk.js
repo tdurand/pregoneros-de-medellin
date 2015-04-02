@@ -175,9 +175,9 @@ define(['jquery',
                 self.$el.find(".toggle-sounds").attr("data-state","normal");
             });
 
-            //MENU
-            self.listenTo(MenuStreetWalkView,"goToHome", function() {
-                self.pause();
+            //CHANGE LANGUAGE
+            self.listenTo(Localization,"STRChanged", function() {
+                self.renderUI();
             });
 
         },
@@ -230,15 +230,27 @@ define(['jquery',
             });
         },
 
+        renderUI: function() {
+            var self = this;
+            //reset map
+            MapView.onClose();
+            //Usefull when changing language
+            self.pause();
+            self.render();
+            self.play();
+        },
+
         renderLoading: function() {
             var self = this;
 
             self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
             self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
             
-            if(Progression.instance.isFirstWay) {
+            if(Progression.instance.isFirstLoad) {
 
-                self.$el.find(".streetwalk-loading-main").html(_.template(streetWalkLoadingViewTemplate)({
+                Progression.instance.isFirstLoad = false;
+
+                self.$el.html(_.template(streetWalkLoadingViewTemplate)({
                     STR: Localization.STR,
                     lang: Localization.translationLoaded
                 }));
@@ -317,9 +329,6 @@ define(['jquery',
             if(self.carito) {
                 self.carito.css("transform","translateX(" + currentLoadingLength + "px)");
             }
-        }
-        else {
-            self.$el.find(".loading-text").text("CARGANDO SONIDOS ...");
         }
     },
 
@@ -865,11 +874,12 @@ define(['jquery',
     },
 
     onClose: function(){
+      var self = this;
       //Clean
-      this.undelegateEvents();
-      this.stopListening();
-      this.way.clear();
-      this.animating = false;
+      self.undelegateEvents();
+      self.stopListening();
+      self.way.clear();
+      self.animating = false;
       MapView.onClose();
   }
 

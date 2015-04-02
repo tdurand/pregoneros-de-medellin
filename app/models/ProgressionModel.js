@@ -12,7 +12,7 @@ function($, _, Backbone, LOGGER, CONSTANT, Ways){
     className: "Progression",
 
     isFirstWay: true,
-    isFirstVideo: true,
+    isFirstLoad: true,
 
     initialize: function(data) {
         var self = this;
