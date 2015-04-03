@@ -31,14 +31,43 @@
             background-image:url("../../images/unmutesound.svg");
         }
     }
+
+    p {
+        font-family: sans-serif;
+        line-height: 1.3rem;
+        text-align: justify;
+
+        color:#595858;
+
+    }
+
+    h2 {
+        color: #9b482a;
+    }
 }
 
 .page-topbar {
 
-    height:10%;
+    height:14%;
     width: 100%;
 
-    background-color:#dfdbd7;
+    background-color:#00937A;
+}
+
+.page-logo {
+
+    background-image: url("../../images/page/logo.png");
+    background-size: contain;
+    background-repeat:no-repeat;
+
+    width:30%;
+    height: 30%;
+
+    z-index: 2;
+
+    position:absolute;
+    top:0%;
+
 }
 
 .page-separator {

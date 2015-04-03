@@ -5332,15 +5332,38 @@ body.not-moving .streetwalk-sign {
 #page .toggle-sounds[data-state="normal"] {
   background-image: url("../../images/unmutesound.svg");
 }
-
-/* line 36, ../sass/module/page.scss */
-.page-topbar {
-  height: 10%;
-  width: 100%;
-  background-color: #dfdbd7;
+/* line 35, ../sass/module/page.scss */
+#page p {
+  font-family: sans-serif;
+  line-height: 1.3rem;
+  text-align: justify;
+  color: #595858;
+}
+/* line 44, ../sass/module/page.scss */
+#page h2 {
+  color: #9b482a;
 }
 
-/* line 44, ../sass/module/page.scss */
+/* line 49, ../sass/module/page.scss */
+.page-topbar {
+  height: 14%;
+  width: 100%;
+  background-color: #00937A;
+}
+
+/* line 57, ../sass/module/page.scss */
+.page-logo {
+  background-image: url("../../images/page/logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 30%;
+  height: 30%;
+  z-index: 2;
+  position: absolute;
+  top: 0%;
+}
+
+/* line 73, ../sass/module/page.scss */
 .page-separator {
   height: 12%;
   background-image: url("../../images/separator_bottom.png");
@@ -5350,13 +5373,13 @@ body.not-moving .streetwalk-sign {
   top: -5%;
 }
 
-/* line 54, ../sass/module/page.scss */
+/* line 83, ../sass/module/page.scss */
 .page-content {
   width: 80%;
   margin: auto;
 }
 
-/* line 59, ../sass/module/page.scss */
+/* line 88, ../sass/module/page.scss */
 .page-btnclose {
   position: fixed;
   top: 10px;

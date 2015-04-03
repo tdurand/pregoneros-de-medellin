@@ -105,7 +105,7 @@ function($, _, Backbone,
     closeView: function() {
         var self = this;
 
-        TweenLite.fromTo("#page",0.7,{y:"0%"},{y:"-100%",ease:Power1.easeInOut,onComplete:function() {
+        TweenLite.fromTo("#page",0.7,{y:"0%"},{y:"100%",ease:Power1.easeInOut,onComplete:function() {
             $("#page").addClass("hidden");
             self.trigger("closePage");
         }});
@@ -114,7 +114,7 @@ function($, _, Backbone,
 
     showView: function() {
         $("#page").removeClass("hidden");
-        TweenLite.fromTo("#page",0.7,{y:"-100%"},{y:"0%",ease:Power1.easeInOut,onComplete:function() {
+        TweenLite.fromTo("#page",0.7,{y:"100%"},{y:"0%",ease:Power1.easeInOut,onComplete:function() {
             //FIX BUG CHROME FIXED POSITIONNING AND TRANSFORM:
             //http://stackoverflow.com/questions/19059662/css3-transform-reverts-position-fixed
             $("#page").css("transform","none");
