@@ -214,7 +214,7 @@ define(['jquery',
             way : self.way
         }));
 
-        self.map = L.mapbox.map('streetwalk-soundeditor-mapcontainer', 'tdurand.kojgk1k3',{
+        self.map = L.mapbox.map('streetwalk-soundeditor-mapcontainer', 'tdurand.l4njnee1',{
             accessToken: 'pk.eyJ1IjoidGR1cmFuZCIsImEiOiI0T1ZEWlRVIn0.1PEGeiEWz6RUBfZq9Bvy7Q'
         });
 
