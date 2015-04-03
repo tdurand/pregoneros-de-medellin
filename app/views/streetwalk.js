@@ -611,7 +611,7 @@ define(['jquery',
                  var currentClass = $(element).attr("class");
                  var newClass = currentClass + " highlight";
                  $(element).attr("class", newClass);
-                 console.log("Add class highlight");
+                 LOGGER.debug("Add class highlight");
             },function() {
                  var pathToHighlight = this.href.baseVal.split("/")[1];
                  var reversePathToHighlight = Ways.getReverseWayName(pathToHighlight);
@@ -619,7 +619,7 @@ define(['jquery',
                  var currentClass = $(element).attr("class");
                  var newClass = currentClass.replace("highlight","");
                  $(element).attr("class", newClass);
-                 console.log("remove class highlight");
+                 LOGGER.debug("Add class highlight");
             });
         }
         else if(imgNb === 0) {
@@ -638,6 +638,25 @@ define(['jquery',
             }});
 
             MenuCharactersView.closeMenu();
+
+            //CHOOSEWAY HIGHLIGHT
+            $(".btn-chooseway").hover(function() {
+                 var pathToHighlight = this.href.baseVal.split("/")[1];
+                 var reversePathToHighlight = Ways.getReverseWayName(pathToHighlight);
+                 var element = ".path-" + pathToHighlight + ",.path-" + reversePathToHighlight;
+                 var currentClass = $(element).attr("class");
+                 var newClass = currentClass + " highlight";
+                 $(element).attr("class", newClass);
+                 LOGGER.debug("Add class highlight");
+            },function() {
+                 var pathToHighlight = this.href.baseVal.split("/")[1];
+                 var reversePathToHighlight = Ways.getReverseWayName(pathToHighlight);
+                 var element = ".path-" + pathToHighlight + ",.path-" + reversePathToHighlight;
+                 var currentClass = $(element).attr("class");
+                 var newClass = currentClass.replace("highlight","");
+                 $(element).attr("class", newClass);
+                 LOGGER.debug("Add class highlight");
+            });
         }
         else {
             if(self.chooseWayEndDisplayed && !self.maskingChooseWay) {

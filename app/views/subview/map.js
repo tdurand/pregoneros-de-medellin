@@ -333,6 +333,13 @@ function($, _, Backbone,
                 });
         });
 
+        // Add class with path name
+        self.layerDiscoveredPath.on('layeradd', function(e) {
+            var currentClass = $(e.layer._path).attr("class");
+            var className = currentClass + " map-path-way" + " path-" + e.layer.feature.properties.id + " path-" + Ways.getReverseWayName(e.layer.feature.properties.id);
+            $(e.layer._path).attr("class",className);
+        });
+
         self.layerDiscoveredPath.setGeoJSON(geoJson);
     },
 
