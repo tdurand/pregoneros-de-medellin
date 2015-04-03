@@ -283,6 +283,8 @@ function($, _, Backbone,
     afterLogin: function() {
         var self = this;
 
+        self.trigger("beforeFetchProgress");
+
         Progression.fetch(function(data) {
           if(!_.isUndefined(data)) {
             //Go to last street

@@ -141,9 +141,15 @@ define(['jquery',
             });
 
             //USER MANAGER
-            self.listenToOnce(UserManagerView,"progressFetched",function() {
+            self.listenTo(UserManagerView,"progressFetched",function() {
                 var lastStreet = Progression.instance.get("currentStreet");
                 self.goToStreetName(lastStreet);
+                MenuCharactersView.initListeners();
+            });
+
+            self.listenTo(UserManagerView,"beforeFetchProgress", function() {
+                //Disable menucharacter events
+                MenuCharactersView.stopListening();
             });
 
             self.listenTo(UserManagerView,"logOut",function() {
@@ -185,14 +191,8 @@ define(['jquery',
         initArrowKeyBinding: function() {
             $(document).keydown(function(e) {
                 switch(e.which) {
-                    case 37: // left
-                    break;
-
                     case 38: // up
                     window.scrollBy(0, 50);
-                    break;
-
-                    case 39: // right
                     break;
 
                     case 40: // down
