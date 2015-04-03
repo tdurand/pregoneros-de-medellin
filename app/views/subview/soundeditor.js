@@ -450,7 +450,72 @@ define(['jquery',
         
     },
 
-    generateAllReverseStreet: function() {
+    generateAllReverseDirections: function() {
+
+        WAYSClone = _.map(WAYSClone,function(way) {
+
+            var wayName = way.wayName;
+
+            if(wayName == "plazabotero-start-carabobo") {
+                return way;
+            }
+
+            var reverseWay = Ways.findWhere({wayName:Ways.getReverseWayName(wayName)});
+
+            way.wayConnectionsStart = [];
+
+            _.each(reverseWay.wayConnectionsEnd, function(wayConnection) {
+                var wayConnectionStartReverse = {};
+                
+                if(wayConnection.direction == "forward") {
+                    wayConnectionStartReverse = wayConnection;
+                    wayConnectionStartReverse.direction = "backward";
+                }
+                else if(wayConnection.direction == "right") {
+                    wayConnectionStartReverse = wayConnection;
+                    wayConnectionStartReverse.direction = "left";
+                }
+                else if(wayConnection.direction == "backward") {
+                    wayConnectionStartReverse = wayConnection;
+                    wayConnectionStartReverse.direction = "forward";
+                }
+                else if(wayConnection.direction == "left") {
+                    wayConnectionStartReverse = wayConnection;
+                    wayConnectionStartReverse.direction = "right";
+                }
+                else if(wayConnection.direction == "forward-right") {
+                    wayConnectionStartReverse = wayConnection;
+                    wayConnectionStartReverse.direction = "backward-left";
+                }
+                else if(wayConnection.direction == "backward-right") {
+                    wayConnectionStartReverse = wayConnection;
+                    wayConnectionStartReverse.direction = "forward-left";
+                }
+                else if(wayConnection.direction == "backward-left") {
+                    wayConnectionStartReverse = wayConnection;
+                    wayConnectionStartReverse.direction = "forward-right";
+                }
+                else if(wayConnection.direction == "forward-left") {
+                    wayConnectionStartReverse = wayConnection;
+                    wayConnectionStartReverse.direction = "backward-right";
+                }
+
+                way.wayConnectionsStart.push(wayConnectionStartReverse);
+            });
+
+            return way;
+
+        });
+
+        $.ajax({
+              type: "POST",
+              url: "saveways",
+              data: {file:JSON.stringify(WAYSClone)},
+              success:function() {
+                window.location.href = "#streetwalk/" + reverseStreetName;
+                window.location.reload();
+              }
+            });
         
     },
 
