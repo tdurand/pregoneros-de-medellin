@@ -145,8 +145,9 @@ function($, _, Backbone,
         },
 
         error: function(user, error) {
-          self.$(".login-form .error").html("Invalid username or password. Please try again.").show();
-          self.$(".login-form button").removeAttr("disabled");
+          self.$el.find(".login-form .form-error-msg").html("Invalid username or password. Please try again.").show();
+          self.$el.find(".login-form button").removeAttr("disabled");
+          self.$el.find(".login-form .form-error-msgcontainer").show();
         }
       });
 
@@ -186,9 +187,9 @@ function($, _, Backbone,
         },
 
         error: function(user, error) {
-          self.$(".signup-form .form-error-msg").html(_.escape(error.message));
-          self.$(".signup-form .form-error-msgcontainer").show();
-          self.$(".signup-form button").removeAttr("disabled");
+          self.$el.find(".signup-form .form-error-msg").html(_.escape(error.message));
+          self.$el.find(".signup-form .form-error-msgcontainer").show();
+          self.$el.find(".signup-form button").removeAttr("disabled");
         }
       });
 
