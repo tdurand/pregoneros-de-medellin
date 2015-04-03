@@ -17,7 +17,7 @@ define(['jquery',
         },
 
         messageShareWithFriends: {
-            conditionStreetsLoaded: [1,20]
+            conditionStreetsLoaded: [4,20]
         },
 
         init: function() {
