@@ -29,9 +29,9 @@ define(["backbone"],function(Backbone) {
                         video3:"http://player.vimeo.com/external/122591730.hd.mp4?s=00d978024fa2d9dc743035e99f30f7ed"
                     },
                     papavanegas: {
-                        video1:"http://player.vimeo.com/external/120590814.hd.mp4?s=dd914947e8fd3da5c8c85af6b2355a0f",
-                        video2:"http://player.vimeo.com/external/120590814.hd.mp4?s=dd914947e8fd3da5c8c85af6b2355a0f",
-                        video3:"http://player.vimeo.com/external/120590814.hd.mp4?s=dd914947e8fd3da5c8c85af6b2355a0f"
+                        video1:"http://player.vimeo.com/external/123199088.hd.mp4?s=bb11d30ed71e9e21811230e2f0e6cee8",
+                        video2:"http://player.vimeo.com/external/124050297.hd.mp4?s=6ba8eec486c00b0fc51ce2a6b7559e94",
+                        video3:"http://player.vimeo.com/external/124050298.hd.mp4?s=e02d24d469cd6cef9a4cb9786ff62fd1"
                     }
                 }
             });

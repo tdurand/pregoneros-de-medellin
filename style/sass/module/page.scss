@@ -33,8 +33,27 @@
     }
 }
 
+.page-topbar {
+
+    height:10%;
+    width: 100%;
+
+    background-color:#dfdbd7;
+}
+
+.page-separator {
+    height: 12%;
+    background-image: url("../../images/separator_bottom.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    position:relative;
+    top:-5%;
+}
+
 .page-content {
-    margin:2em;
+    width:80%;
+    margin:auto;
 }
 
 .page-btnclose {

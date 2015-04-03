@@ -196,7 +196,7 @@
 
     .streetwalk-menucharacters {
         position:absolute;
-        z-index: 2;
+        z-index: 30;
         top:-30%;
         right: 70px;
         height: 120%;
@@ -350,8 +350,7 @@
     position: fixed;
     width:0;
     height:0;
-
-    z-index:14;
+    z-index:15;
 
     .img-container {
         width: 0%;

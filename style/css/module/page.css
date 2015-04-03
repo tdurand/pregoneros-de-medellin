@@ -36,11 +36,29 @@
 }
 
 /* line 36, ../../sass/module/page.scss */
-.page-content {
-  margin: 2em;
+.page-topbar {
+  height: 10%;
+  width: 100%;
+  background-color: #dfdbd7;
 }
 
-/* line 40, ../../sass/module/page.scss */
+/* line 44, ../../sass/module/page.scss */
+.page-separator {
+  height: 12%;
+  background-image: url("../../images/separator_bottom.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  top: -5%;
+}
+
+/* line 54, ../../sass/module/page.scss */
+.page-content {
+  width: 80%;
+  margin: auto;
+}
+
+/* line 59, ../../sass/module/page.scss */
 .page-btnclose {
   position: fixed;
   top: 10px;
