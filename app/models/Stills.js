@@ -109,6 +109,11 @@ function($, _, Backbone,
             stillToLoad.pull();
             self.numOpenRequests++;
         }
+
+        // If we need to do something to refresh queue if the stills are in "pending" mode
+        // here we need to set a timer and if QUEUE IS NOT PROCESED IN 10s, refresh the Image() src
+        // to initiate a new connexion
+        // console.log("QUEUE PROCESED");
     },
 
     // addPriorityStillToQueue: function(still) {
