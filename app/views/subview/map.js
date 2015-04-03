@@ -313,6 +313,10 @@ function($, _, Backbone,
         self.layerDiscoveredPath = L.mapbox.featureLayer(geoJson).addTo(self.map);
 
         _.each(Progression.instance.get("pathDiscovered"),function(path,wayName) {
+
+            if(path === true) {
+                path = Ways.findWhere({wayName:wayName}).wayPath;
+            }
             //If we didn't draw the reverse street
             geoJson.push({
                     "type": "Feature",
@@ -340,6 +344,10 @@ function($, _, Backbone,
         var geoJson = [];
 
         _.each(Progression.instance.get("pathDiscovered"),function(path,wayName) {
+
+            if(path === true) {
+                path = Ways.findWhere({wayName:wayName}).wayPath;
+            }
             //If we didn't draw the reverse street
             geoJson.push({
                     "type": "Feature",
@@ -404,6 +412,18 @@ function($, _, Backbone,
         var currentWay = Ways.findWhere({wayName:currentStreet});
 
         var currentPositionInStreet = _.values(currentWay.wayPath).indexOf(currentPosition);
+
+        //if we are at the last position of the street, set the pathDiscovered[way] to true to avoid storing
+        //all the intermediate coordinates
+        if(currentPositionInStreet >= _.values(currentWay.wayPath).length-1) {
+            Progression.instance.get("pathDiscovered")[currentWay.wayName] = true;
+            return;
+        }
+
+        //already discovered
+        if(Progression.instance.get("pathDiscovered")[currentWay.wayName] === true) {
+            return;
+        }
 
         //if we are in a street we already have discovered or doing going back
         if(!_.isUndefined(Progression.instance.get("pathDiscovered")[currentWay.wayName]) && Progression.instance.get("pathDiscovered")[currentWay.wayName].length > currentPositionInStreet) {
