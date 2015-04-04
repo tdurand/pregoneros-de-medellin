@@ -61,6 +61,11 @@ function($, _, Backbone,
             self.$el.find(".toggle-sounds").attr("data-state","normal");
         });
 
+        $(window).on("resize", function() {
+            console.log("Adjust size");
+            self.resizeBackgroundVideo();
+        });
+
     },
 
     render:function() {
@@ -207,6 +212,7 @@ function($, _, Backbone,
       //Clean
       self.undelegateEvents();
       self.player.dispose();
+      $(window).off("resize");
     }
 
   });
