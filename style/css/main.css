@@ -2850,8 +2850,18 @@ body.not-moving .streetwalk-sign {
 .usermanager-content .modal-share .margin-none {
   margin: 0;
 }
+/* line 83, ../sass/module/usermanager.scss */
+.usermanager-content .modal-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: black;
+  opacity: 0.4;
+}
 
-/* line 85, ../sass/module/usermanager.scss */
+/* line 95, ../sass/module/usermanager.scss */
 .usermanager-btnclose {
   position: absolute;
   top: 10px;
@@ -2863,7 +2873,7 @@ body.not-moving .streetwalk-sign {
   cursor: pointer;
 }
 
-/* line 97, ../sass/module/usermanager.scss */
+/* line 107, ../sass/module/usermanager.scss */
 .usermanager-overlay {
   position: fixed;
   top: 0;

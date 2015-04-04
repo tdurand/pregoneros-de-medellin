@@ -142,16 +142,19 @@ function($, _, Backbone,
           self.renderSuccessSignInView();
 
           self.afterLogin();
+          self.$el.find(".modal-loading").addClass("hidden");
         },
 
         error: function(user, error) {
           self.$el.find(".login-form .form-error-msg").html("Invalid username or password. Please try again.").show();
           self.$el.find(".login-form button").removeAttr("disabled");
           self.$el.find(".login-form .form-error-msgcontainer").show();
+          self.$el.find(".modal-loading").addClass("hidden");
         }
       });
 
       this.$(".login-form button").attr("disabled", "disabled");
+      self.$el.find(".modal-loading").removeClass("hidden");
 
       return false;
     },
@@ -178,18 +181,21 @@ function($, _, Backbone,
       }
 
       self.$el.find(".signup-form button").attr("disabled", "disabled");
+      self.$el.find(".modal-loading").removeClass("hidden");
       
       Parse.User.signUp(email, password, { ACL: new Parse.ACL(), name:name, email:email }, {
         success: function(user) {
             self.renderSuccessAccountCreationView();
             self.updateLoginStatus();
             Progression.save();
+            self.$el.find(".modal-loading").addClass("hidden");
         },
 
         error: function(user, error) {
           self.$el.find(".signup-form .form-error-msg").html(_.escape(error.message));
           self.$el.find(".signup-form .form-error-msgcontainer").show();
           self.$el.find(".signup-form button").removeAttr("disabled");
+          self.$el.find(".modal-loading").addClass("hidden");
         }
       });
 
