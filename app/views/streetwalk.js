@@ -72,6 +72,7 @@ define(['jquery',
         fullscreen:false,
 
         tutorialDone: false,
+        paused:false,
 
         events:{
             "click .toggle-sounds ":"toggleSounds",
@@ -235,9 +236,14 @@ define(['jquery',
             //reset map
             MapView.onClose();
             //Usefull when changing language
-            self.pause();
-            self.render();
-            self.play();
+            if(self.paused) {
+                self.render();
+            }
+            else {
+                self.pause();
+                self.render();
+                self.play();
+            }
         },
 
         renderLoading: function() {
