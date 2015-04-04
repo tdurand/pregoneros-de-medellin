@@ -629,6 +629,11 @@ define(['jquery',
             });
         }
         else if(imgNb === 0) {
+
+            if(_.isUndefined(self.way.wayConnectionsStart)) {
+                return;
+            }
+
             self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
 
             self.$el.find(".streetwalk-chooseway-start-wrapper").show();
@@ -759,6 +764,7 @@ define(['jquery',
 
                     //close menu
                     MenuCharactersView.closeMenu(true);
+                    MenuStreetWalkView.closeMenu();
 
                     //Update map
                     MapView.update(self.way.wayPath[self.currentStill.id]);
