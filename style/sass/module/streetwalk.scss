@@ -97,13 +97,17 @@
 
     .streetwalk-control {
         position: absolute;
-        bottom:20px;
-        right:20px;
+        bottom:5px;
+        right:5px;
         z-index:21;
 
+        height: 120%;
+        width: 6%;
+
         .toggle-sounds {
-            width:3rem;
-            height:3rem;
+            height:50%;
+
+            background-repeat: no-repeat;
 
             cursor:pointer;
 
@@ -114,17 +118,20 @@
             &[data-state="normal"] {
                 background-image:url("../../images/unmutesound.svg");
             }
+
+            margin-bottom: 5%;
             
         }
 
         .toggle-fullscreen {
-            width:3rem;
-            height:3rem;
+            height:50%;
+
+            background-repeat: no-repeat;
 
             cursor:pointer;
 
-            &[data-state="muted"] {
-                background-image:url("../../images/mutesound.svg");
+            &[data-state="fullscreen"] {
+                background-image:url("../../images/leavefullscreen.svg");
             }
 
             &[data-state="normal"] {

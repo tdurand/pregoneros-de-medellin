@@ -90,13 +90,6 @@ function($, _, Backbone,
             self.player.on("ended", function() {
                 self.closeVideo();
             });
-
-            $(document).on("keyup",function(e) {
-                // escape key maps to keycode `27`
-                if (e.keyCode == 27) {
-                   self.closeVideo();
-                }
-            });
         });
 
         self.videoCharacter = video.videoCharacter;
@@ -136,6 +129,14 @@ function($, _, Backbone,
 
         self.trigger("showVideo");
 
+        //close with escape key
+        $(document).one("keyup",function(e) {
+            // escape key maps to keycode `27`
+            if (e.keyCode == 27) {
+                   self.closeVideo();
+            }
+        });
+
         setTimeout(function() {
             if(self.playerReady) {
                 self.player.play();
@@ -166,6 +167,9 @@ function($, _, Backbone,
                     ease: Power1.easeInOut
             });
         }
+
+        //clean events
+        $(document).off("keyup");
     },
 
     cleanPlayer: function() {

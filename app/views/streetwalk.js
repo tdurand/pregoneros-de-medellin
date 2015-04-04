@@ -245,12 +245,22 @@ define(['jquery',
         initFullScreenEventHandler: function() {
             var self = this;
             //FULLSCREEN EVENT
-            if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement) {
+            if (self.isFullScreen()) {
                 $(document).one("webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange", function() {
                     self.pause();
                     self.positionOnPause = self.currentPosition;
                     self.play();
+                    self.$el.find(".toggle-fullscreen").attr("data-state","normal");
                 });
+            }
+        },
+
+        isFullScreen: function() {
+            if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement) {
+                return true;
+            }
+            else {
+                return false;
             }
         },
 
@@ -374,7 +384,8 @@ define(['jquery',
             pathFirstStill:pathFirstStill,
             STR:Localization.STR,
             lang:Localization.translationLoaded,
-            soundsMuted:soundsMuted
+            soundsMuted:soundsMuted,
+            isFullscreen:self.isFullScreen()
         }));
 
         if(Progression.instance.isFirstWay) {
@@ -893,13 +904,14 @@ define(['jquery',
         }
     },
 
-    toggleFullscreen: function() {
+    toggleFullscreen: function(e) {
         var self = this;
 
-        if (!document.fullscreenElement &&    // alternative standard method
-              !document.mozFullScreenElement && !document.webkitFullscreenElement) {  // current working methods
+        if (!self.isFullScreen()) {  // current working methods
             
             self.pause();
+
+            $(e.currentTarget).attr("data-state","fullscreen");
 
             $(document).one("webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange", function() {
                 console.log("fullscreenevent play");
@@ -910,6 +922,7 @@ define(['jquery',
                     self.pause();
                     self.positionOnPause = self.currentPosition;
                     self.play();
+                    $(e.currentTarget).attr("data-state","normal");
                 });
             });
 
@@ -928,6 +941,7 @@ define(['jquery',
             $(document).one("webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange", function() {
                 console.log("fullscreenevent play");
                 self.play();
+                $(e.currentTarget).attr("data-state","normal");
             });
 
             if (document.cancelFullScreen) {
@@ -971,7 +985,6 @@ define(['jquery',
 
     pause: function() {
         var self = this;
-        TutorialView.pauseTutorial();
         self.paused = true;
         self.animating = false;
         self.positionOnPause = self.getCurrentPosition();
@@ -985,7 +998,6 @@ define(['jquery',
         self.paused = false;
         self.animating = true;
         self.computeAnimation(true);
-        TutorialView.restartTutorial();
     },
 
     onClose: function(){
