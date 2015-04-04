@@ -48,8 +48,9 @@
 
 .page-topbar {
 
-    height:14%;
+    height:9%;
     width: 100%;
+    position: fixed;
 
     background-color:#00937A;
 }
@@ -65,24 +66,29 @@
 
     z-index: 2;
 
-    position:absolute;
-    top:0%;
+    position:fixed;
+    top:-5%;
 
 }
 
 .page-separator {
     height: 12%;
+    width: 100%;
     background-image: url("../../images/separator_bottom.png");
     background-size: cover;
     background-repeat: no-repeat;
 
-    position:relative;
-    top:-5%;
+    position:fixed;
+    top:3%;
 }
 
 .page-content {
     width:80%;
-    margin:auto;
+    position:absolute;
+    transform:translate(-50%);
+    left:50%;
+    top:20%;
+    z-index:-1;
 }
 
 .page-btnclose {
