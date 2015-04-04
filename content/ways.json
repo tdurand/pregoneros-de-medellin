@@ -11706,6 +11706,10 @@
       {
         "direction": "backward",
         "name": "cl51-cr51-carabobo"
+      },
+      {
+        "direction": "forward",
+        "name": "cl51-cr51-cr50"
       }
     ]
   },
@@ -11765,6 +11769,10 @@
       {
         "direction": "forward",
         "name": "cl51-cr51-carabobo"
+      },
+      {
+        "direction":"backward",
+        "name":"cl51-cr51-cr50"
       }
     ],
     "waySoundsMaster": false,
