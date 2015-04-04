@@ -105,6 +105,8 @@ function($, _, Backbone,
     closeView: function() {
         var self = this;
 
+        self.$el.scrollTop(0);
+
         TweenLite.fromTo("#page",0.7,{y:"0%"},{y:"100%",ease:Power1.easeInOut,onComplete:function() {
             $("#page").addClass("hidden");
             self.trigger("closePage");

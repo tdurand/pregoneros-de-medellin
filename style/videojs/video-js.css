@@ -1,6 +1,6 @@
 /*!
 Video.js Default Styles (http://videojs.com)
-Version 4.12.5
+Version GENERATED_AT_BUILD
 Create your own skin at http://designer.videojs.com
 */
 /* SKIN
@@ -432,6 +432,7 @@ fonts to show/hide properly.
   width: 3.8em;
   cursor: pointer;
   float: right;
+  visibility: hidden;
 }
 .vjs-default-skin .vjs-fullscreen-control:before {
   content: "\e000";
