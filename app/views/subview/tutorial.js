@@ -187,6 +187,7 @@ function($, _, Backbone,
         var self = this;
 
         self.tutorialDone = true;
+        self.stopListening();
         self.trigger("startAnimating");
         $("body").css("overflow", "visible");
         $(".streetwalk-tutorial-overlay").hide();

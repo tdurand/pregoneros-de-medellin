@@ -129,13 +129,15 @@ function($, _, Backbone,
 
         self.trigger("showVideo");
 
-        //close with escape key
-        $(document).one("keyup",function(e) {
-            // escape key maps to keycode `27`
-            if (e.keyCode == 27) {
-                   self.closeVideo();
-            }
-        });
+        //close with escape key only if we are not in fullscreen
+        if (!self.isFullScreen()) {
+            $(document).one("keyup",function(e) {
+                // escape key maps to keycode `27`
+                if (e.keyCode == 27) {
+                       self.closeVideo();
+                }
+            });
+        }
 
         setTimeout(function() {
             if(self.playerReady) {
@@ -143,6 +145,15 @@ function($, _, Backbone,
             }
         },2000);
 
+    },
+
+    isFullScreen: function() {
+            if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement) {
+                return true;
+            }
+            else {
+                return false;
+            }
     },
 
     closeVideo: function() {
