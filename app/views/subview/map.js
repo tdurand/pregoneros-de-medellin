@@ -495,15 +495,13 @@ function($, _, Backbone,
         self.isChangingSize = true;
 
         //CAN'T USE GSAP BECAUSE OF WIDTH SET, doesn't work with Gsap, it set outerwidth
-        self.$el.one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
+        self.$el.one("webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
             self.$el.addClass("enlarged");
             self.map.setZoom(16);
             self.map.invalidateSize(true);
             self.enlarged = true;
             self.isChangingSize = false;
             self.trigger("centerMarker");
-            //TODO see why doesn't work
-            self.centerMarker();
         });
 
         var height = self.$el.height();
@@ -520,15 +518,13 @@ function($, _, Backbone,
 
         self.isChangingSize = true;
 
-        self.$el.one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
+        self.$el.one("webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
             self.$el.removeClass("enlarged");
             self.map.setZoom(17);
             self.map.invalidateSize(true);
             self.enlarged = false;
             self.isChangingSize = false;
             self.trigger("centerMarker");
-            //TODO see why doesn't work
-            self.centerMarker();
         });
 
         var height = self.$el.height();

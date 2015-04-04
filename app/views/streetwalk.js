@@ -141,6 +141,17 @@ define(['jquery',
                 MapView.update(self.way.wayPath[0]);
             });
 
+            self.listenTo(MapView,"centerMarker", function() {
+                //HACK TO CENTER MARKER, NEED TO SPECIFY SOMETHING AFTER CURRENT POSITION
+                if(self.way.wayPath.length <= self.currentStill.id+10) {
+                    MapView.map.panTo(self.way.wayPath[self.currentStill.id-10]);
+                }
+                else {
+                    MapView.map.panTo(self.way.wayPath[self.currentStill.id+10]);
+                }
+                
+            });
+
             //USER MANAGER
             self.listenTo(UserManagerView,"progressFetched",function() {
                 var lastStreet = Progression.instance.get("currentStreet");
