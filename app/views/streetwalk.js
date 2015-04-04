@@ -198,6 +198,12 @@ define(['jquery',
             self.listenTo(Localization,"STRChanged", function() {
                 self.renderUI();
             });
+
+            //RESIZE WINDOW
+            $(window).on("resize",function() {
+                console.log("adjust sizes");
+                self.adjustSizes();
+            });
         },
 
         initArrowKeyBinding: function() {
@@ -1007,6 +1013,7 @@ define(['jquery',
       self.stopListening();
       self.way.clear();
       self.animating = false;
+      $(window).off("resize");
       MapView.onClose();
   }
 
