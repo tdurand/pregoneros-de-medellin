@@ -76,6 +76,7 @@ define(['jquery',
 
         events:{
             "click .toggle-sounds ":"toggleSounds",
+            "click .toggle-fullscreen ":"toggleFullscreen",
             "click .character-sign":"clickOnCharacter",
             "click .streetwalk-soundeditor-btnshow":"showSoundEditor"
         },
@@ -197,7 +198,6 @@ define(['jquery',
             self.listenTo(Localization,"STRChanged", function() {
                 self.renderUI();
             });
-
         },
 
         initArrowKeyBinding: function() {
@@ -240,6 +240,18 @@ define(['jquery',
                }
                lastScrollTop = st;
             });
+        },
+
+        initFullScreenEventHandler: function() {
+            var self = this;
+            //FULLSCREEN EVENT
+            if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement) {
+                $(document).one("webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange", function() {
+                    self.pause();
+                    self.positionOnPause = self.currentPosition;
+                    self.play();
+                });
+            }
         },
 
         renderUI: function() {
@@ -482,7 +494,7 @@ define(['jquery',
 
             self.computeAnimation(true);
             self.initScrollEventHandlers();
-
+            self.initFullScreenEventHandler();
             self.scrollToStartAnimation();
         });
 
@@ -881,6 +893,53 @@ define(['jquery',
         }
     },
 
+    toggleFullscreen: function() {
+        var self = this;
+
+        if (!document.fullscreenElement &&    // alternative standard method
+              !document.mozFullScreenElement && !document.webkitFullscreenElement) {  // current working methods
+            
+            self.pause();
+
+            $(document).one("webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange", function() {
+                console.log("fullscreenevent play");
+                self.play();
+
+                $(document).one("webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange", function() {
+                    console.log("fullscreen close btn enter");
+                    self.pause();
+                    self.positionOnPause = self.currentPosition;
+                    self.play();
+                });
+            });
+
+            if (document.documentElement.requestFullscreen) {
+              document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) {
+              document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) {
+              document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+            }
+
+        } else {
+
+            self.pause();
+
+            $(document).one("webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange", function() {
+                console.log("fullscreenevent play");
+                self.play();
+            });
+
+            if (document.cancelFullScreen) {
+              document.cancelFullScreen();
+            } else if (document.mozCancelFullScreen) {
+              document.mozCancelFullScreen();
+            } else if (document.webkitCancelFullScreen) {
+              document.webkitCancelFullScreen();
+            }
+        }
+    },
+ 
    clickOnCharacter: function(e) {
         var self = this;
 
@@ -912,6 +971,7 @@ define(['jquery',
 
     pause: function() {
         var self = this;
+        TutorialView.pauseTutorial();
         self.paused = true;
         self.animating = false;
         self.positionOnPause = self.getCurrentPosition();
@@ -925,6 +985,7 @@ define(['jquery',
         self.paused = false;
         self.animating = true;
         self.computeAnimation(true);
+        TutorialView.restartTutorial();
     },
 
     onClose: function(){

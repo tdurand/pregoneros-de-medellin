@@ -116,6 +116,22 @@
             }
             
         }
+
+        .toggle-fullscreen {
+            width:3rem;
+            height:3rem;
+
+            cursor:pointer;
+
+            &[data-state="muted"] {
+                background-image:url("../../images/mutesound.svg");
+            }
+
+            &[data-state="normal"] {
+                background-image:url("../../images/fullscreen.svg");
+            }
+            
+        }
     }
 
     .streetwalk-map {

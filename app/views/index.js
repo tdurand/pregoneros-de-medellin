@@ -24,6 +24,7 @@ function($, _, Backbone,
         "click .menu-btnlogin":"displayLogin",
         "click .menu-btnlogout":"logout",
         "click .toggle-sounds":"toggleSounds",
+        "click .btn-enter":"goToStreetWalk",
         "change .language-selection":"changeLanguage"
     },
 
@@ -180,6 +181,24 @@ function($, _, Backbone,
             $(e.currentTarget).attr("data-state","normal");
             Sounds.userMuted = false;
             Sounds.unmute();
+        }
+    },
+
+    goToStreetWalk: function() {
+        var self = this;
+        self.enterFullScreen();
+    },
+
+    enterFullScreen: function() {
+        if (!document.fullscreenElement &&    // alternative standard method
+              !document.mozFullScreenElement && !document.webkitFullscreenElement) {  // current working methods
+            if (document.documentElement.requestFullscreen) {
+              document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) {
+              document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) {
+              document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+            }
         }
     },
 
