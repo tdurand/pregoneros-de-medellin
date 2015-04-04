@@ -1014,6 +1014,7 @@ define(['jquery',
       self.way.clear();
       self.animating = false;
       $(window).off("resize");
+      $(document).off("webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange");
       MapView.onClose();
   }
 
