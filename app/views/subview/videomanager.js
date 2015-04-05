@@ -24,7 +24,7 @@ function($, _, Backbone,
     videoId: null,
     playerReady: false,
     currentWayVideoInitialized:false,
-    currentWayVideo:null,
+    currentWayVideo:undefined,
 
 
     prepare : function(Progression) {
@@ -106,7 +106,10 @@ function($, _, Backbone,
             //unlocknext item
             someThingUnlocked = self.Progression.instance.unlockNextItem(characterName,wayName);
 
-            if(self.currentWayVideoInitialized) {
+            if(!self.currentWayVideoInitialized) {
+                if(_.isUndefined(self.currentWayVideo)) {
+                    self.currentWayVideo = self.Progression.instance.nextVideoToPlay(characterName, wayName);
+                }
                 self.initVideo(self.currentWayVideo);
                 self.currentWayVideoInitialized = true;
             }
