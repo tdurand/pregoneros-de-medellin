@@ -1,20 +1,20 @@
 <div class="modal-createaccount">
 <form class="signup-form">
-  <h3>GUARDAR MI PROGRESSIÓN</h3>
+  <h3><%= STR.askToCreateAccountTitle %></h3>
   <table>
     <td>
-        <p>Crear una cuenta:</p>
+        <p><%= STR.createAccountCreateAccount %>:</p>
         <div class="form-error-msgcontainer" style="display:none">Error: 
             <span class="form-error-msg"></span>
         </div>
-        <p><input type="text" class="signup-name" placeholder="Nombre" required /></p>
-        <p><input type="email" class="signup-email" placeholder="Email" required /></p>
-        <p><input type="password" class="signup-password" placeholder="Clave" /></p>
-        <p><input type="password" class="signup-password-confirm" placeholder="Confirmar Clave" /></p>
-        <p class="btn-alignright-wrapper"><button class="btn-primary" >Crear mi cuenta</button></p>
+        <p><input type="text" class="signup-name" placeholder="<%= STR.createAccountFormPlaceholderName %>" required /></p>
+        <p><input type="email" class="signup-email" placeholder="<%= STR.createAccountFormPlaceholderEmail %>" required /></p>
+        <p><input type="password" class="signup-password" placeholder="<%= STR.createAccountFormPlaceholderPassword %>" /></p>
+        <p><input type="password" class="signup-password-confirm" placeholder="<%= STR.createAccountFormPlaceholderConfirmPassword %>" /></p>
+        <p class="btn-alignright-wrapper"><button class="btn-primary" ><%= STR.createAccountCreateAccountCTA %></button></p>
     </td>
     <td>
-        <p>Crear con Facebook:</p>
+        <p><%= STR.createAccountCreateWithFacebook %>:</p>
         <a href="#" class="sc-btn sc--facebook signup-facebook">
             <span class="sc-icon">
               <svg viewBox="0 0 33 33" width="25" height="25" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M 17.996,32L 12,32 L 12,16 l-4,0 l0-5.514 l 4-0.002l-0.006-3.248C 11.993,2.737, 13.213,0, 18.512,0l 4.412,0 l0,5.515 l-2.757,0 c-2.063,0-2.163,0.77-2.163,2.209l-0.008,2.76l 4.959,0 l-0.585,5.514L 18,16L 17.996,32z"></path></g></svg>
@@ -23,7 +23,7 @@
               Identificarse
             </span>
         </a>
-        <p style="margin-top:0"><a href="#" class="link-discrete btn-login">Yo tengo una cuenta</a></p>
+        <p style="margin-top:0"><a href="#" class="link-discrete btn-login"><%= STR.createAccountAlreadyHaveOne %></a></p>
         </td>
     </td>
   </table>

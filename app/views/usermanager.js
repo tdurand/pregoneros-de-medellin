@@ -2,6 +2,7 @@ define(['jquery',
         'underscore',
         'backbone',
         'utils/Logger',
+        'utils/Localization',
         'models/Progression',
         'text!templates/usermanager/askToCreateAccountViewTemplate.html',
         'text!templates/usermanager/createAccountViewTemplate.html',
@@ -13,6 +14,7 @@ define(['jquery',
         ],
 function($, _, Backbone,
                 LOGGER,
+                Localization,
                 Progression,
                 AskToCreateAccountView,
                 CreateAccountView,
@@ -68,18 +70,28 @@ function($, _, Backbone,
           xfbml      : true,  // initialize Facebook social plugins on the page
           version    : 'v2.2' // point to the latest Facebook Graph API version
         });
-         
-        // Run code after the Facebook SDK is loaded.
-        self.renderAskToCreateAccountView();
 
-        self.updateLoginStatus();
+        if(_.isUndefined(Localization.STR)) {
+                self.listenToOnce(Localization,"STRLoaded", function() {
+                    // Run code after the Facebook SDK and STR is loaded.
+                    self.renderAskToCreateAccountView();
+                    self.updateLoginStatus();
+                });
+        }
+        else {
+            // Run code after the Facebook SDK and STR is loaded.
+            self.renderAskToCreateAccountView();
+            self.updateLoginStatus();
+        }
     },
 
     //Account renders
     renderAskToCreateAccountView: function() {
          var self = this;
 
-         self.$el.html(_.template(AskToCreateAccountView));
+         self.$el.html(_.template(AskToCreateAccountView)({
+            STR: Localization.STR
+         }));
     },
 
     renderCreateAccountView: function(e) {
@@ -89,13 +101,17 @@ function($, _, Backbone,
             e.preventDefault();
         }
 
-        self.$el.html(_.template(CreateAccountView));
+        self.$el.html(_.template(CreateAccountView)({
+            STR: Localization.STR
+         }));
     },
 
     renderSuccessAccountCreationView: function() {
         var self = this;
 
-         self.$el.html(_.template(SuccessAccountCreationView));
+         self.$el.html(_.template(SuccessAccountCreationView)({
+            STR: Localization.STR
+         }));
     },
 
     renderSignInView: function(e) {
@@ -105,28 +121,35 @@ function($, _, Backbone,
             e.preventDefault();
         }
 
-        self.$el.html(_.template(SignInView));
+        self.$el.html(_.template(SignInView)({
+            STR: Localization.STR
+         }));
     },
 
     renderSuccessSignInView: function() {
         var self = this;
 
          self.$el.html(_.template(SuccessSignInView)({
-            username: self.status.name
+            username: self.status.name,
+            STR: Localization.STR
          }));
     },
 
     renderAlertBeforeLogout: function() {
         var self = this;
 
-        self.$el.html(_.template(AlertBeforeLogoutView));
+        self.$el.html(_.template(AlertBeforeLogoutView)({
+            STR: Localization.STR
+         }));
     },
 
     //Ask to share
     renderAskToSharePageView: function() {
         var self = this;
 
-        self.$el.html(_.template(AskToShareView));
+        self.$el.html(_.template(AskToShareView)({
+            STR: Localization.STR
+         }));
     },
 
     logIn: function(e) {
@@ -361,7 +384,7 @@ function($, _, Backbone,
         self.closeView();
 
         var popUp=window.open(
-        'http://twitter.com/intent/tweet?text=Pregoneros de Medellín - http://www.pregonerosdemedellin.com',
+        'http://twitter.com/intent/tweet?text='+ Localization.STR.shareTweetContent,
         'popupwindow',
         'scrollbars=yes,width=800,height=400');
 
@@ -379,7 +402,7 @@ function($, _, Backbone,
         self.closeView();
 
         var popUp=window.open(
-        'mailto:?subject=[Page Title] via [Site Name]&amp;body=I\'ve just read \'[Page Title]\' at [url]',
+        'mailto:?subject=' + Localization.STR.shareEmailObject + '&amp;body=' + Localization.STR.shareEmailContent,
         'popupwindow',
         'scrollbars=yes,width=800,height=400');
 
