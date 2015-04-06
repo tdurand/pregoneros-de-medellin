@@ -155,10 +155,10 @@ function($, _, Backbone,
             state : Progression.instance.get("charactersProgression").get("pajarito")
         }));
         self.$el.find(".streetwalk-menucharacter[data-character='lider']").html(_.template(svgMenuLiderTemplate)({
-            state : Progression.instance.get("charactersProgression").get("gaucho")
+            state : Progression.instance.get("charactersProgression").get("lider")
         }));
         self.$el.find(".streetwalk-menucharacter[data-character='gaucho']").html(_.template(svgMenuGauchoTemplate)({
-            state : Progression.instance.get("charactersProgression").get("lider")
+            state : Progression.instance.get("charactersProgression").get("gaucho")
         }));
         self.$el.find(".streetwalk-menucharacter[data-character='papavanegas']").html(_.template(svgMenuPapavanegasTemplate)({
             state : Progression.instance.get("charactersProgression").get("papavanegas")
