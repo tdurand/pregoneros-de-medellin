@@ -108,6 +108,7 @@
             height:50%;
 
             background-repeat: no-repeat;
+            background-position:right;
 
             cursor:pointer;
 
@@ -127,6 +128,7 @@
             height:50%;
 
             background-repeat: no-repeat;
+            background-position:right;
 
             cursor:pointer;
 
@@ -303,8 +305,8 @@
             &[data-character='papavanegas'] {
                 left:54%;
                 z-index:6;
-                width: 48%;
-                bottom:-30%;
+                width: 47%;
+                bottom:-35%;
             }
 
             &[data-state='open'] {
