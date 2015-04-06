@@ -275,6 +275,8 @@
             //Default states
             &[data-character='jale'] {
                 z-index: 10;
+                bottom:-32%;
+                width: 42%;
             }
 
             &[data-character='pajarito'] {
@@ -288,21 +290,21 @@
                 left:16%;
                 z-index: 8;
                 width: 44%;
-                bottom: -45%;
+                bottom: -37%;
             }
 
             &[data-character='gaucho'] {
                 left:34%;
                 z-index: 7;
-                width: 44%;
-                bottom:-42%;
+                width: 45%;
+                bottom:-30%;
             }
 
             &[data-character='papavanegas'] {
-                left:56%;
+                left:54%;
                 z-index:6;
-                width: 44%;
-                bottom:-42%;
+                width: 48%;
+                bottom:-30%;
             }
 
             &[data-state='open'] {
