@@ -133,6 +133,8 @@ function($, _, Backbone, LOGGER, CONSTANT, Ways){
 
             self.set("pathDiscovered",{});
 
+            self.set("tutorialDone",false);
+
             //Reinitialize id to undefined (for parse sync)
             self.id = undefined;
         }

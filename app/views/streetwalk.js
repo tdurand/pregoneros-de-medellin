@@ -70,8 +70,6 @@ define(['jquery',
         currentPosition:0,
         bodyHeight:7000,
         fullscreen:false,
-
-        tutorialDone: false,
         paused:false,
 
         events:{
@@ -178,11 +176,22 @@ define(['jquery',
 
             //VIDEO MANAGER
             self.listenTo(VideoManagerView,"showVideo",function() {
+                //Pause to avoid scroll within video (only after tutorial)
+                if(Progression.instance.get("tutorialDone")) {
+                    self.pause();
+                }
                 self.muteSounds();
             });
 
             self.listenTo(VideoManagerView,"closeVideo",function() {
-                self.unmuteSounds();
+                //Play when leaving video (only after tutorial)
+                if(Progression.instance.get("tutorialDone")) {
+                    self.play();
+                }
+
+                if(!Sounds.userMuted) {
+                    self.unmuteSounds();
+                }
             });
 
             //SOUNDS

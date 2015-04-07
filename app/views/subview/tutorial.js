@@ -12,8 +12,6 @@ function($, _, Backbone,
 
   var TutorialView = Backbone.View.extend({
 
-    tutorialDone : false,
-
     initialize : function() {
         var self = this;
 
@@ -121,7 +119,7 @@ function($, _, Backbone,
     update: function(wayName, frameNb) {
         var self = this;
 
-        if(wayName == "plazabotero-start-carabobo" && frameNb >= 110 && frameNb <= 120 && !self.tutorialDone) {
+        if(wayName == "plazabotero-start-carabobo" && frameNb >= 110 && frameNb <= 120 && !Progression.instance.get("tutorialDone")) {
                 self.trigger("pauseAnimating");
                 // document.body.style.overflowY = "hidden";
                 $("body").css("overflow", "hidden");
@@ -156,7 +154,7 @@ function($, _, Backbone,
                   onCTA: function() {
                     //in case we are in the tutorial
                     $(".streetwalk-tutorial-overlay").hide();
-                    if(!self.tutorialDone) {
+                    if(!Progression.instance.get("tutorialDone")) {
                         $(".hopscotch-bubble:not(.hopscotch-callout)").removeClass("hide");
                         if(hopscotch.getState()) {
                             hopscotch.nextStep();
@@ -165,7 +163,7 @@ function($, _, Backbone,
                   },
                   onClose: function() {
                     $(".streetwalk-tutorial-overlay").hide();
-                    if(!self.tutorialDone) {
+                    if(!Progression.instance.get("tutorialDone")) {
                         $(".hopscotch-bubble:not(.hopscotch-callout)").removeClass("hide");
                         if(hopscotch.getState()) {
                             hopscotch.nextStep();
@@ -186,7 +184,7 @@ function($, _, Backbone,
     endTutorial: function() {
         var self = this;
 
-        self.tutorialDone = true;
+        Progression.instance.set("tutorialDone",true);
         self.stopListening();
         self.trigger("startAnimating");
         $("body").css("overflow", "visible");

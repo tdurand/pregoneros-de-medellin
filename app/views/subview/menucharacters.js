@@ -29,7 +29,8 @@ function($, _, Backbone,
     events:{
         "click .character":"toggleMenu",
         "click .btn-close":"toggleMenu",
-        "click .video":"clickOnMenu"
+        "click .video":"clickOnMenu",
+        "click .streetwalk-menucharacter":"clickOnMenuHack"
     },
 
     firstRender: true,
@@ -336,6 +337,18 @@ function($, _, Backbone,
             //locker
             TutorialView.showHelperLocker(character,content);
         }
+    },
+
+    clickOnMenuHack: function(e) {
+        var self = this;
+
+        //if we click on the svg element but outside
+        //the actual interactive btn, we close the menu
+        
+        if(_.contains(e.target.classList,"menucharacter")) {
+            self.closeMenu();
+        }
+
     },
 
     onClose: function(){
