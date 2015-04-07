@@ -417,10 +417,18 @@ define(['jquery',
         //Render top signs
         self.$el.find(".streetwalk-progress").html(_.template(svgSignTopProgressTemplate)({
             nbItemUnlocked: Progression.instance.get("nbItemUnlocked"),
+            lang: Localization.translationLoaded,
             STR : Localization.STR
         }));
+
+        var fontSizeArea = 45.688;
+        if(self.way.wayArea == "PARQUE DE LAS LUCES") {
+            fontSizeArea = 37;
+        }
+
         self.$el.find(".streetwalk-area").html(_.template(svgSignTopAreaTemplate)({
             area:self.way.wayArea,
+            fontSizeArea : fontSizeArea,
             STR : Localization.STR
         }));
 
