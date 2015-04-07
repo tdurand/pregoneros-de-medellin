@@ -12,6 +12,7 @@ app.set('views', __dirname);
 
 app.get('/', function(req, res) {
     var lang = "en";
+    console.log(JSON.stringify(req.headers));
     if(req.query.fb_locale) {
         lang = req.query.fb_locale;
     }
