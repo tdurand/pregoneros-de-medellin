@@ -12,14 +12,16 @@ app.set('views', __dirname);
 
 app.get('/', function(req, res) {
     var lang = "en";
+    console.log("x-facebook-locale set to: " + req.headers["x-facebook-locale"]);
     if(req.headers["x-facebook-locale"]) {
         lang = req.headers["x-facebook-locale"];
-        console.log("x-facebook-locale set to : " + lang);
+        // console.log("x-facebook-locale set to : " + lang);
     }
     if(req.query.fb_locale) {
         lang = req.query.fb_locale;
-        console.log("fb_locale set to : " + lang);
+        // console.log("fb_locale set to : " + lang);
     }
+    console.log("render lang:" + lang);
     res.render('index.ejs', {lang:lang});
 });
 
