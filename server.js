@@ -11,7 +11,7 @@ app.set('port', (process.env.PORT || 3000));
 app.set('views', __dirname);
 
 app.get('/', function(req, res) {
-    var lang = "en";
+    var lang = "es_ES";
     console.log("x-facebook-locale set to: " + req.headers["x-facebook-locale"]);
     if(req.headers["x-facebook-locale"]) {
         lang = req.headers["x-facebook-locale"];
