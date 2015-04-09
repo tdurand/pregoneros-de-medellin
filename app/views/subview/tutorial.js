@@ -12,6 +12,8 @@ function($, _, Backbone,
 
   var TutorialView = Backbone.View.extend({
 
+    helperMapShown: false,
+
     initialize : function() {
         var self = this;
 
@@ -179,6 +181,53 @@ function($, _, Backbone,
                 var street = Progression.instance.getStreetWhereCharacterNotDiscovered(character);
                 window.location.href = "#streetwalk/"+ street;
             });
+    },
+
+    showHelperMap: function() {
+
+        //hide potential tooltip
+        $(".hopscotch-bubble:not(.hopscotch-callout)").addClass("hide");
+
+        if(self.helperMapShown) {
+            return;
+        }
+
+        //show tooltip to go to other street
+        self.calloutMgr = hopscotch.getCalloutManager();
+        self.calloutMgr.createCallout({
+              id: 'enlarge-map',
+              target: ".streetwalk-map-btnfullscreen",
+              placement: 'top',
+              xOffset:"-20",
+              yOffset:"-20",
+              title: Localization.STR.tutorialHelperMapTitle,
+              content: Localization.STR.tutorialHelperMapDescription,
+              onShow: function() {
+                 $(".streetwalk-map-btnfullscreen").on("click", function() {
+                    self.calloutMgr.removeCallout("enlarge-map");
+                    self.helperMapShown = true;
+                 });
+
+                 $(document).on("scroll",function() {
+                    self.calloutMgr.removeCallout("enlarge-map");
+                    self.helperMapShown = true;
+                    $(document).off("scroll");
+                 });
+              },
+              onClose: function() {
+                self.helperMapShown = true;
+              }
+
+        });
+
+    },
+
+    closeHelperMap: function() {
+        var self = this;
+        if(!self.helperMapShown) {
+            self.helperMapShown = true;
+            self.calloutMgr.removeCallout("enlarge-map");
+        }
     },
 
     endTutorial: function() {

@@ -691,6 +691,13 @@ define(['jquery',
                  $(element).attr("class", newClass);
                  LOGGER.debug("Add class highlight");
             });
+
+            //If first view, display help on map
+            if(self.wayName == "plazabotero-start-carabobo") {
+                //display tooltip help on map
+                TutorialView.showHelperMap();
+            }
+            
         }
         else if(imgNb === 0) {
 
