@@ -212,9 +212,8 @@ function($, _, Backbone,
                  });
 
                  $(document).on("scroll",function() {
-                    self.calloutMgr.removeCallout("enlarge-map");
-                    self.helperMapShown = true;
                     $(document).off("scroll");
+                    self.closeHelperMap();
                  });
               },
               onClose: function() {
