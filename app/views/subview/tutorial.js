@@ -36,10 +36,12 @@ function($, _, Backbone,
                 $(".streetwalk-tutorial-overlay").addClass("step1");
                 $(".hopscotch-bubble-close").hide();
                 $(".streetwalk-tutorial-overlay").show();
+                self.characterSignAnimation = TweenMax.fromTo(".character-sign",0.5,{scale:0.9},{scale:1.1,repeat:-1,yoyo:true});
 
                 self.listenToOnce(self,"clickOnCharacter",function() {
                     $(".streetwalk-tutorial-overlay").addClass("step2");
                     $(".hopscotch-bubble:not(.hopscotch-callout)").addClass("hide");
+                    self.characterSignAnimation.pause();
                 });
 
                 self.listenToOnce(self,"closeVideo",function() {
