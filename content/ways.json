@@ -159,7 +159,7 @@
     "characterDefinition": {
       "startFrame": 110,
       "endFrame": 120,
-      "framefullWidth": 20,
+      "framefullWidth": 15,
       "framestartWidth": 20,
       "offsetTopCenter": 10,
       "name": "jale"
