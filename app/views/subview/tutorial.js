@@ -34,6 +34,7 @@ function($, _, Backbone,
               onShow:function() {
                 $(".streetwalk-textcharacter").css("z-index","51");
                 $(".streetwalk-tutorial-overlay").addClass("step1");
+                $(".hopscotch-bubble-close").hide();
                 $(".streetwalk-tutorial-overlay").show();
 
                 self.listenToOnce(self,"clickOnCharacter",function() {
