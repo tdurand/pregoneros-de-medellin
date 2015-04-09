@@ -72,6 +72,9 @@ define(['jquery',
         fullscreen:false,
         paused:false,
 
+        chooseWayEndDisplaying: false,
+        chooseWayStartDisplaying: false,
+
         events:{
             "click .toggle-sounds ":"toggleSounds",
             "click .toggle-fullscreen ":"toggleFullscreen",
@@ -658,11 +661,15 @@ define(['jquery',
                 lang : Localization.translationLoaded
             }));
 
-            TweenLite.set(".streetwalk-chooseway",{scale:0});
-            self.$el.find(".streetwalk-chooseway-end-wrapper").show();
-            TweenLite.fromTo(".streetwalk-chooseway",0.5,{scale:0},{scale:1,ease: Back.easeOut,onComplete:function() {
-                self.chooseWayEndDisplayed = true;
-            }});
+            if(!self.chooseWayEndDisplaying) {
+                self.chooseWayEndDisplaying = true;
+                TweenLite.set(".streetwalk-chooseway",{scale:0});
+                self.$el.find(".streetwalk-chooseway-end-wrapper").show();
+                TweenLite.fromTo(".streetwalk-chooseway",0.5,{scale:0},{scale:1,ease: Back.easeOut,onComplete:function() {
+                    self.chooseWayEndDisplayed = true;
+                    self.chooseWayEndDisplaying = false;
+                }});
+            }
 
             MenuCharactersView.closeMenu();
 
@@ -699,11 +706,15 @@ define(['jquery',
                 lang : Localization.translationLoaded
             }));
 
-            TweenLite.set(".streetwalk-chooseway",{scale:0});
-            self.$el.find(".streetwalk-chooseway-start-wrapper").show();
-            TweenLite.fromTo(".streetwalk-chooseway",0.5,{scale:0},{scale:1,ease: Back.easeOut,onComplete:function() {
-                self.chooseWayStartDisplayed = true;
-            }});
+            if(!self.chooseWayStartDisplaying) {
+                self.chooseWayStartDisplaying = true;
+                TweenLite.set(".streetwalk-chooseway",{scale:0});
+                self.$el.find(".streetwalk-chooseway-start-wrapper").show();
+                TweenLite.fromTo(".streetwalk-chooseway",0.5,{scale:0},{scale:1,ease: Back.easeOut,onComplete:function() {
+                    self.chooseWayStartDisplayed = true;
+                    self.chooseWayStartDisplaying = false;
+                }});
+            }
 
             MenuCharactersView.closeMenu();
 
