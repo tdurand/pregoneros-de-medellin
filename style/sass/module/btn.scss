@@ -1,3 +1,5 @@
+@import "compass/css3";
+
 .btn-primary {
     color:#fff;
     border-radius:1rem;
@@ -7,7 +9,9 @@
     padding-left:0.5rem;
     padding-right: 0.5rem;
     text-decoration: none;
-    -webkit-box-shadow:2px 2px 4px 0px rgba(0,0,0,0.75);
+
+    @include box-shadow(2px 2px 4px 0px rgba(0,0,0,0.75));
+
     background-color: #00A99D;
 }
 
@@ -20,7 +24,9 @@
     padding-left:0.5rem;
     padding-right: 0.5rem;
     text-decoration: none;
-    -webkit-box-shadow:2px 2px 4px 0px rgba(0,0,0,0.75);
+
+    @include box-shadow(2px 2px 4px 0px rgba(0,0,0,0.75));
+
     background-color: rgb(239, 231, 231);
 
 }

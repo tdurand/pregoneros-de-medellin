@@ -1,4 +1,4 @@
-/* line 4, ../../sass/module/loading.scss */
+/* line 5, ../../sass/module/loading.scss */
 .streetwalk-loading {
   width: 100%;
   height: 100%;
@@ -7,22 +7,22 @@
   left: 0;
   z-index: 16;
 }
-/* line 12, ../../sass/module/loading.scss */
+/* line 13, ../../sass/module/loading.scss */
 .streetwalk-loading.firstway {
   background-image: url("../../images/loadingbackground.jpg");
   background-size: cover;
 }
-/* line 16, ../../sass/module/loading.scss */
+/* line 17, ../../sass/module/loading.scss */
 .streetwalk-loading.firstway .streetwalk-loading-main {
   height: 80%;
 }
-/* line 21, ../../sass/module/loading.scss */
+/* line 22, ../../sass/module/loading.scss */
 .streetwalk-loading.firstway .streetwalk-loading-bottom {
   height: 20%;
   background-color: #00937A;
   position: relative;
 }
-/* line 26, ../../sass/module/loading.scss */
+/* line 27, ../../sass/module/loading.scss */
 .streetwalk-loading.firstway .streetwalk-loading-bottom .separator {
   position: absolute;
   top: -40%;
@@ -33,34 +33,30 @@
   background-repeat: no-repeat;
 }
 
-/* line 43, ../../sass/module/loading.scss */
+/* line 44, ../../sass/module/loading.scss */
 .streetwalk-loading-simple {
   position: absolute;
   width: 30%;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
 
-/* line 56, ../../sass/module/loading.scss */
+/* line 53, ../../sass/module/loading.scss */
 .streetwalk-loading-text {
   position: absolute;
   width: 50%;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 68, ../../sass/module/loading.scss */
+/* line 61, ../../sass/module/loading.scss */
 .streetwalk-loading-text .loading-text {
   font-family: "FilbertBrush";
   font-size: 1.3rem;
@@ -68,16 +64,14 @@
   color: #FFFFFF;
   margin: 1rem;
 }
-/* line 76, ../../sass/module/loading.scss */
+/* line 69, ../../sass/module/loading.scss */
 .streetwalk-loading-text .headset {
   position: absolute;
   width: 50%;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -75%);
-  -webkit-transform: translate(-50%, -75%);
   -moz-transform: translate(-50%, -75%);
   -ms-transform: translate(-50%, -75%);
-  -o-transform: translate(-50%, -75%);
+  -webkit-transform: translate(-50%, -75%);
   transform: translate(-50%, -75%);
 }

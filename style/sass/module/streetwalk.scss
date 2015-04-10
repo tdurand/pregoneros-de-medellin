@@ -1,5 +1,5 @@
 @import "grids";
-
+@import "compass/css3";
 
 .menu-separator {
     font-family: Arial !important;
@@ -18,13 +18,13 @@
     font-size:1.1rem;
     font-variant: small-caps;
 
-    transform:translateY(90%);
-    -webkit-transition:0.5s ease-out;
+    @include translateY(90%);
+    @include transition(transform 0.5s ease-out);
 
     .streetwalk-menubottom-content {
         position:absolute;
         top:50%;
-        transform:translateY(-50%);
+        @include translateY(-50%);
         margin-left: 2%;
     } 
 
@@ -40,7 +40,7 @@
         cursor:pointer;
     }
 
-    a:visited {
+    a:visited,a:active,a:link {
         color:#4B2246;
     }
 }
@@ -51,9 +51,13 @@
 
     @include span(12);
     height: 10%;
-    -webkit-transition:0.5s ease-out;
+
+    @include transition(transform 0.5s ease-out);
+
     opacity: 1;
-    transform:translateY(90%);
+
+    @include translateY(90%);
+
     background-color: #FFD64A;
 
     z-index:20;
@@ -75,9 +79,10 @@
         position:absolute;
         top:100%;
         right: 0%;
-        
-        -webkit-transition:0.5s ease-out;
-        transform:translate(0%,-110%);
+
+
+        @include transition(transform 0.5s ease-out);
+        @include translate(0%,-110%);
 
         z-index:10;
 
@@ -90,7 +95,7 @@
             padding-left:1rem;
             padding-right: 0.7rem;
             text-decoration: none;
-            -webkit-box-shadow:3px 3px 3px 0px rgba(0,0,0,0.75);
+            @include box-shadow(3px 3px 3px 0px rgba(0,0,0,0.75));
             background-color: #AD482A;
         }
     }
@@ -148,11 +153,11 @@
         z-index:30;
 
         //Position
-        transform:translateY(-25%);
-        -webkit-transition:0.5s ease-out;
+        @include translateY(-25%);
+        @include transition(transform 0.5s ease-out);
 
         &.enlarged {
-            transform:translateY(-12%);
+            @include translateY(-12%);
 
             .streetwalk-map-btnfullscreen {
                 background-image: url("../../images/closebtn-black.svg");
@@ -179,6 +184,7 @@
 
         border-style: solid;
         border-width: 39px 167px 0px 89px;
+
         -moz-border-image: url("../../images/mapborder.png") 39 167 63 89 stretch;
         -webkit-border-image: url("../../images/mapborder.png") 39 167 63 89 stretch;
         -o-border-image: url("../../images/mapborder.png") 39 167 63 89 stretch;
@@ -199,12 +205,8 @@
             position:absolute;
             top:28px;
             left:2px;
-            
-            transform:translate(0%,-110%);
 
-            //background-image: url("../../images/iconfullscreen.svg");
-            //background-repeat:no-repeat;
-            //background-color:white;
+            @include translate(0%,-110%);
 
             z-index:40;
             cursor:pointer;
@@ -368,11 +370,9 @@
 
     left: 50%;
     top: 50%;
-    -webkit-transform:translate(-50%, -50%);
-       -moz-transform:translate(-50%, -50%);
-        -ms-transform:translate(-50%, -50%);
-         -o-transform:translate(-50%, -50%);
-            transform:translate(-50%, -50%);
+
+
+    @include translate(-50%, -50%);
 }
 
 .streetwalk-textcharacter {
@@ -385,7 +385,8 @@
         width: 0%;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -100%);
+
+        @include translate(-50%, -100%);
         position: absolute;
         z-index:10;
 
@@ -407,12 +408,8 @@
         width:200px;
         height:200px;
 
-        transform: translate(-50%, 0%);
-        -webkit-transform: translate(-50%, 0%);
-        -moz-transform:translate(-50%, 0%);
-        -ms-transform:translate(-50%, 0%);
-         -o-transform:translate(-50%, 0%);
-            transform:translate(-50%, 0%);
+
+        @include translate(-50%,0%)
     }
 
     &:active {
@@ -588,31 +585,26 @@
     opacity: 0.5;
 
     &.step1 {
-        background:-webkit-radial-gradient(65% 60%, circle closest-corner, transparent 0, black 50%);
+        // background:-webkit-radial-gradient(65% 60%, circle closest-corner, transparent 0, black 50%);
+        @include background-image(radial-gradient(65% 60%, circle closest-corner, transparent 0,black 50%));
     }
 
     &.step2 {
         opacity: 0.4;
         z-index:5;
-        // background:-webkit-radial-gradient(80% 76%, circle closest-corner, transparent 0, black 75%);
     }
 
     &.step3 {
         opacity: 0.4;
         z-index:5;
-        // background:-webkit-radial-gradient(90% 92%, circle closest-corner, transparent 0, black 200%);
     }
 
-    -webkit-transition: all 0.3s ease-out;
-     -moz-transition: all 0.3s ease-out;
-      -ms-transition: all 0.3s ease-out;
-       -o-transition: all 0.3s ease-out;
-          transition: all 0.3s ease-out;
+    @include transition(all 0.3s ease-out);
 }
 
 .streetwalk-sign {
-        transform:translateY(-85%);
-        -webkit-transition:0.5s ease-out;
+        @include translateY(-85%);
+        @include transition(transform 0.5s ease-out);
         opacity: 0.2;
 }
 
@@ -620,7 +612,7 @@
     position:fixed;
     top:0px;
     left:50%;
-    transform:translate(-50%,-100%);
+    @include translate(-50%,-100%);
 
     background-color:#FFD64A;
     border:2px solid #4B2246;
@@ -629,45 +621,44 @@
     padding:1em;
     color:#4b2246;
 
-
-    -webkit-transition:1s ease-out;
+    @include transition(transform 1s ease-out);
 
     &.syncinginprogress {
-        -webkit-transition:1s ease-out;
-        transform:translate(-50%,0%);
+        @include transition(transform 1s ease-out);
+        @include translate(-50%,0%);
     }
 }
 
 body.not-moving {
 
     .streetwalk-bottombar {
-        -webkit-transition:0.5s ease-out;
+        @include transition(transform 0.5s ease-out);
         opacity: 1;
-        transform:translateY(0%);
+        @include translateY(0%);
 
         .streetwalk-map {
-            transform:translateY(0%);
-            -webkit-transition:0.5s ease-out;
+            @include translateY(0%);
+           @include transition(transform 0.5s ease-out);
 
             .enlarged {
-                transform:translateY(0%);
+                @include translateY(0%);
             }
         }   
     }
 
     .streetwalk-menubottom {
-        transform:translateY(0%);
-        -webkit-transition:0.5s ease-out;
+        @include translateY(0%);
+        @include transition(transform 0.5s ease-out);
     }
 
     .streetwalk-btnmenu-wrapper {
-        -webkit-transition:0.5s ease-out;
-        transform:translate(95%,-110%);
+        @include transition(transform 0.5s ease-out);
+        @include translate(95%,-110%);
     }
 
     .streetwalk-sign {
-        transform:translateY(0%);
-        -webkit-transition:0.5s ease-out;
+        @include translateY(0%);
+        @include transition(transform 0.5s ease-out);
         opacity: 1;
     }
 }

@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-/* line 3, ../../sass/module/page.scss */
+/* line 4, ../../sass/module/page.scss */
 #page {
   position: fixed;
   height: 100%;
@@ -16,7 +16,7 @@
   background: #ffffff;
   overflow: auto;
 }
-/* line 15, ../../sass/module/page.scss */
+/* line 16, ../../sass/module/page.scss */
 #page .toggle-sounds {
   position: fixed;
   bottom: 10px;
@@ -26,27 +26,27 @@
   z-index: 200;
   cursor: pointer;
 }
-/* line 26, ../../sass/module/page.scss */
+/* line 27, ../../sass/module/page.scss */
 #page .toggle-sounds[data-state="muted"] {
   background-image: url("../../images/mutesound.svg");
 }
-/* line 30, ../../sass/module/page.scss */
+/* line 31, ../../sass/module/page.scss */
 #page .toggle-sounds[data-state="normal"] {
   background-image: url("../../images/unmutesound.svg");
 }
-/* line 35, ../../sass/module/page.scss */
+/* line 36, ../../sass/module/page.scss */
 #page p {
   font-family: sans-serif;
   line-height: 1.3rem;
   text-align: justify;
   color: #595858;
 }
-/* line 44, ../../sass/module/page.scss */
+/* line 45, ../../sass/module/page.scss */
 #page h2 {
   color: #9b482a;
 }
 
-/* line 49, ../../sass/module/page.scss */
+/* line 50, ../../sass/module/page.scss */
 .page-topbar {
   height: 9%;
   width: 100%;
@@ -54,7 +54,7 @@
   background-color: #00937A;
 }
 
-/* line 58, ../../sass/module/page.scss */
+/* line 59, ../../sass/module/page.scss */
 .page-logo {
   background-image: url("../../images/page/logo.png");
   background-size: contain;
@@ -66,7 +66,7 @@
   top: -5%;
 }
 
-/* line 74, ../../sass/module/page.scss */
+/* line 75, ../../sass/module/page.scss */
 .page-separator {
   height: 12%;
   width: 100%;
@@ -77,17 +77,20 @@
   top: 3%;
 }
 
-/* line 85, ../../sass/module/page.scss */
+/* line 86, ../../sass/module/page.scss */
 .page-content {
   width: 80%;
   position: absolute;
-  transform: translate(-50%);
+  -moz-transform: translate(-50%, 1em);
+  -ms-transform: translate(-50%, 1em);
+  -webkit-transform: translate(-50%, 1em);
+  transform: translate(-50%, 1em);
   left: 50%;
   top: 20%;
   z-index: -1;
 }
 
-/* line 94, ../../sass/module/page.scss */
+/* line 95, ../../sass/module/page.scss */
 .page-btnclose {
   position: fixed;
   top: 10px;

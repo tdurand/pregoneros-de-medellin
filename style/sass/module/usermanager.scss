@@ -1,4 +1,5 @@
 @import "grids";
+@import "compass/css3";
 
 #usermanager {
     position:fixed;
@@ -18,7 +19,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    @include translate(-50%, -50%);
 
     background-color: #FFD64A;
     border:7px solid #4B2246;

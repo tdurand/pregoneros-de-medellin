@@ -1,4 +1,4 @@
-/* line 1, ../../sass/module/btn.scss */
+/* line 3, ../../sass/module/btn.scss */
 .btn-primary {
   color: #fff;
   border-radius: 1rem;
@@ -8,11 +8,13 @@
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   text-decoration: none;
+  -moz-box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.75);
   background-color: #00A99D;
 }
 
-/* line 14, ../../sass/module/btn.scss */
+/* line 18, ../../sass/module/btn.scss */
 .btn-secondary {
   color: black;
   border-radius: 1rem;
@@ -22,6 +24,8 @@
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   text-decoration: none;
+  -moz-box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.75);
   background-color: #efe7e7;
 }

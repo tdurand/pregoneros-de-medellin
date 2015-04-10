@@ -1,4 +1,5 @@
 @import "grids";
+@import "compass/css3";
 
 .main {
     @include span(12);
@@ -68,12 +69,8 @@
                     position: absolute;
                     top: 50%;
                     left: 50%;
-                    transform: translate(-50%, -50%);
-                     -webkit-transform: translate(-50%, -50%);
-                        -moz-transform:translate(-50%, -50%);
-                        -ms-transform:translate(-50%, -50%);
-                         -o-transform:translate(-50%, -50%);
-                            transform:translate(-50%, -50%);
+
+                    @include translate(-50%, -50%);
                 }
             }
 
@@ -85,7 +82,8 @@
                 margin-left:2%;
                 position:absolute;
                 top:50%;
-                transform:translateY(-50%);
+
+                @include translateY(-50%);
 
                 .language-selection {
                     background-color: transparent;
@@ -93,9 +91,10 @@
 
                 a {
                     cursor: pointer;
+                    color:white;
                 }
 
-                a:visited {
+                a:visited,a:active,a:link {
                     color:white;
                 }
             }
@@ -130,11 +129,10 @@
         z-index:26;
 
         border-style: solid;
-        -webkit-border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
-        -moz-border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
-        border-image: url("../../images/texture_description_area.png") 111 214 51 297 fill stretch;
 
+        @include border-image(url("../../images/texture_description_area.png") 111 214 51 297 fill stretch);
         @include span(isolate 7 at 6);
+
         border-width: 111px 214px 0px 297px;
 
         @media screen and (max-width: 1400px) {
