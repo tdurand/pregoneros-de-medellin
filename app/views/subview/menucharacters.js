@@ -214,7 +214,18 @@ function($, _, Backbone,
         var tl = new TimelineLite();
 
         var elem = $(".streetwalk-menucharacter[data-character='" + character + "'] ." + video);
-        var elemProperties = $(elem)[0].getBoundingClientRect();
+        var elemToGetProperties = $(".streetwalk-menucharacter[data-character='" + character + "'] ." + video + "-locked");
+
+        var elemSubmenu = $(".streetwalk-menucharacter[data-character='" + character + "'] .submenu");
+        //HACK FOR SAFARI : getBoundingClientRect() doesn't work when svg display:none, set visibility hidden
+        elemSubmenu.css("visibility","hidden");
+        elemSubmenu.attr("data-state","open");
+        //END HACK
+        var elemProperties = elemToGetProperties[0].getBoundingClientRect();
+        //HACK FOR SAFARI
+        elemSubmenu.attr("data-state","closed");
+        elemSubmenu.css("visibility","visible");
+        //END HACK
 
         var Xposition = elemProperties.left + elemProperties.width/2;
         var Yposition = elemProperties.top + elemProperties.height/2;
