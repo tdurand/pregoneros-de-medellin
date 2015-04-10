@@ -72,6 +72,8 @@ define(['jquery',
         fullscreen:false,
         paused:false,
 
+        loadingFinished:false,
+
         chooseWayEndDisplaying: false,
         chooseWayStartDisplaying: false,
 
@@ -208,7 +210,9 @@ define(['jquery',
 
             //CHANGE LANGUAGE
             self.listenTo(Localization,"STRChanged", function() {
-                self.renderUI();
+                if(self.loadingFinished) {
+                    self.renderUI();
+                }
             });
 
             //RESIZE WINDOW
@@ -513,6 +517,7 @@ define(['jquery',
 
         self.listenToOnce(self.way,"loadingFinished", function() {
             self.animating = true;
+            self.loadingFinished = true;
             self.currentStill = self.way.wayStills.first();
             self.$el.css("height",self.computeBodyHeigh(self.way.wayLength)+"px");
             self.$el.find("#scrollToStartLoaded").show();
