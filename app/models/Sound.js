@@ -139,13 +139,19 @@ function($, _, Backbone, GeoUtils, LOGGER){
     loadSound:function() {
 
         var self = this;
+
+        console.log("SOUND SET TO LOAD :  AMBIENT: " + self.isAmbient() + " Loaded PATH: " + 'data/sounds/' + self.get("path") + '.mp3');
+
+
         self.sound = new Howl({
           src: ['data/sounds/' + self.get("path") + '.mp3'],
           loop:true,
           html5:self.isAmbient(),
           volume:0,
           onload: function() {
-            self.trigger("soundLoaded");
+            if(!self.isAmbient()) {
+                self.trigger("soundLoaded");
+            }
           }
         });
 

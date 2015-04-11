@@ -239,10 +239,11 @@ function($, _, Backbone,
             }
 
             var nbSoundsToLoad = self.soundsToAdd.length;
+            var nbSoundsPunctualToLoad = _.size(_.where(self.soundsToAdd,{type:"punctual"}));
             var nbSoundsTotal = nbSoundsToLoad;
 
             //TODO REMOVE OR AVOID DUPLICATE CODE
-            if(nbSoundsToLoad === 0) {
+            if(nbSoundsPunctualToLoad === 0) {
                 self.percentageSoundsLoaded = 100;
                 self.trigger('loadingSoundsFinished');
                 LOGGER.debug("ALL SOUNDS LOADED");
@@ -278,12 +279,12 @@ function($, _, Backbone,
                 self.add(sound);
 
                 self.listenTo(sound,"soundLoaded",function() {
-                    nbSoundsToLoad--;
+                    nbSoundsPunctualToLoad--;
 
                     self.percentageLoaded = Math.floor((nbSoundsTotal-nbSoundsToLoad)*100/nbSoundsTotal);
                     self.trigger('updateSoundsPercentageLoaded');
 
-                    if(nbSoundsToLoad === 0) {
+                    if(nbSoundsPunctualToLoad === 0) {
                         self.percentageLoaded = 100;
                         self.trigger('loadingSoundsFinished');
                         LOGGER.debug("ALL SOUNDS LOADED");
