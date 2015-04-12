@@ -38,10 +38,12 @@ define(["backbone"],function(Backbone) {
 
 
             //BROWSER
+            self.isOpera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+                // Opera 8.0+ (UA detection to detect Blink/v8-powered Opera)
             self.isFirefox = typeof InstallTrigger !== 'undefined';   // Firefox 1.0+
             self.isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
                 // At least Safari 3+: "[object HTMLElementConstructor]"
-            self.isChrome = !!window.chrome; // Chrome 1+
+            self.isChrome = !!window.chrome && !self.isOpera;              // Chrome 1+
             self.isIE = /*@cc_on!@*/false || !!document.documentMode; // At least IE6
 
 
