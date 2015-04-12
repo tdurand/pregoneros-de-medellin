@@ -66,6 +66,7 @@ define(['jquery',
 
         el:"#streetwalk",
         elImg:"#streetwalk .streetwalkImg",
+        elImgHighRes:"#streetwalk .streetwalkImgHighRes",
 
         currentPosition:0,
         bodyHeight:7000,
@@ -593,13 +594,21 @@ define(['jquery',
 
     },
 
-    renderImgHighRes: function() {
+    renderImgHighRes: function(callBackLoaded) {
         var self = this;
 
         LOGGER.debug("HIGH RES RENDER");
 
-        self.currentStill.loadHighRes(function() {
-            $(self.elImg).attr("src", self.currentStill.get("srcHighRes"));
+        self.currentStill.loadHighRes(function(srcHighRes) {
+            // console.log("REAL SRC HIGHRES" + srcHighRes);
+            var loadedHighResId = parseInt(_.last(srcHighRes.split("/")).substring(3,6),10);
+            // console.log("SUPPOSED SRC HIGHRES" + self.currentStill.get("srcHighRes"));
+            $(self.elImgHighRes).attr("src", self.currentStill.get("srcHighRes"));
+            
+            if(callBackLoaded) {
+                 callBackLoaded(loadedHighResId);
+            }
+           
         });
 
     },
@@ -841,6 +850,8 @@ define(['jquery',
                     self.renderElements(imgNb);
                     $("body").removeClass('not-moving');
                     MapView.moving = true;
+                    $(self.elImgHighRes).addClass("hidden");
+
 
                     //close menu
                     MenuCharactersView.closeMenu(true);
@@ -861,7 +872,13 @@ define(['jquery',
                             clearTimeout(self.timeOutNotMoving);
                         }
 
-                        self.renderImgHighRes();
+                        self.renderImgHighRes(function(stillHighResId) {
+                            //HACK FOR FIREFOX: swap img do not replace src directly otherwise there is
+                            //a flickering
+                            if(self.currentStill.id === stillHighResId) {
+                                $(self.elImgHighRes).removeClass("hidden");
+                            }
+                        });
                         self.lastCallRenderHighResTime = new Date().getTime();
                         self.lastCallRenderHighResStill = self.currentStill;
 

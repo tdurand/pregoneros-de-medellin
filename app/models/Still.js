@@ -39,10 +39,10 @@ function($, _, Backbone,LOGGER){
         imgHighRes.src = this.get("srcHighRes");
         //If image already loaded
         if(imgHighRes.loaded) {
-            callbackLoaded();
+            callbackLoaded(imgHighRes.src);
         }
         imgHighRes.onload = function() {
-            callbackLoaded();
+            callbackLoaded(imgHighRes.src);
             imgHighRes.loaded = true;
         };
 

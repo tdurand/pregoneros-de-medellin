@@ -1066,7 +1066,7 @@ html:after, body:after {
 }
 
 /* line 563, ../sass/module/streetwalk.scss */
-.streetwalkImg, .element-fixed, .blurImg {
+.streetwalkImg, .streetwalkImgHighRes {
   position: fixed;
   top: 0;
   bottom: 0;
