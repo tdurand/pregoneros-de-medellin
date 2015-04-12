@@ -2,6 +2,7 @@ define(['jquery',
         'underscore',
         'backbone',
         'utils/Logger',
+        'utils/Constant',
         'views/subview/tutorial',
         'utils/Localization',
         'models/Progression',
@@ -14,6 +15,7 @@ define(['jquery',
         ],
 function($, _, Backbone,
                 LOGGER,
+                CONSTANT,
                 TutorialView,
                 Localization,
                 Progression,
@@ -230,14 +232,23 @@ function($, _, Backbone,
         var Xposition = elemProperties.left + elemProperties.width/2;
         var Yposition = elemProperties.top + elemProperties.height/2;
 
+
+        TweenLite.set(".streetwalk-menucharacter[data-character="+ character +"] ." + video,{display:"block"});
+
+        //HACK FOR FIREFOX, doesn't work, the animation bug
+        if(!CONSTANT.isFirefox) {
+            TweenLite.set(".streetwalk-menucharacter[data-character="+ character +"] ." + video,{scaleX:0.8,scaleY:0.8});
+        }
+        
+        TweenLite.set(".streetwalk-video",{display:"block",scaleX:0,scaleY:0});
+
         //Open menu
         tl.call(self.openMenu,[character],self)
               //Unlock video
-              .to(".streetwalk-menucharacter[data-character="+ character +"] ." + video + "-locked", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",display:"none",ease:Power2.easeIn})
-              .fromTo(".streetwalk-menucharacter[data-character="+ character +"] ." + video, 1, {scaleX:0.8,scaleY:0.8,display:"block"},{scaleX:1,scaleY:1,transformOrigin:"center center",ease:Back.easeOut.config(3)},"-=0.5")
+              .to(".streetwalk-menucharacter[data-character="+ character +"] ." + video + "-locked", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",ease:Power2.easeIn})
+              .to(".streetwalk-menucharacter[data-character="+ character +"] ." + video, 1, {scaleX:1,scaleY:1,transformOrigin:"center center",ease:Back.easeOut.config(3)},"-=0.5")
               //open video
-              .fromTo(".streetwalk-video", 1,
-                {scaleY:0,scaleX:0,display:"block"},
+              .to(".streetwalk-video", 1,
                 {scaleY:1,scaleX:1,
                     transformOrigin:Xposition+"px "+Yposition+"px",
                     ease: Power1.easeInOut
