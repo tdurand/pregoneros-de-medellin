@@ -191,6 +191,7 @@ function($, _, Backbone,
     },
 
     showHelperMap: function() {
+        var self = this;
 
         //hide potential tooltip
         $(".hopscotch-bubble:not(.hopscotch-callout)").addClass("hide");
