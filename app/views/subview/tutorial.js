@@ -3,11 +3,13 @@ define(['jquery',
         'backbone',
         "models/Progression",
         'utils/Logger',
+        'utils/Constant',
         "utils/Localization"
         ],
 function($, _, Backbone,
                 Progression,
                 LOGGER,
+                CONSTANT,
                 Localization){
 
   var TutorialView = Backbone.View.extend({
@@ -104,14 +106,16 @@ function($, _, Backbone,
                     $(".streetwalk-tutorial-overlay").removeClass("step2");
                     $(".streetwalk-tutorial-overlay").addClass("step3");
 
-                    //Animate locked characters
-                    self.animationLockedCharacters = new TimelineMax({onComplete:function() {
-                        TweenLite.to(".character-locked",0.5,{scaleX:1,scaleY:1});
-                        TweenLite.to(".character-locked",0.5,{scaleX:1,scaleY:1});
-                    }});
-                    self.animationLockedCharacters.add(TweenLite.fromTo(".character-locked", 0.5, { scaleX:0.95,scaleY:0.95 },{scaleX:1.05,scaleY:1.05, transformOrigin:"center center",ease: Power0.easeNone}));
-                    self.animationLockedCharacters.add(TweenLite.fromTo(".character-locked", 0.5, { scaleX:1.05,scaleY:1.05 },{scaleX:0.95,scaleY:0.95, transformOrigin:"center center",ease: Power0.easeNone}));
-                    self.animationLockedCharacters.repeat(-1);
+                    //Animate locked characters doesn't work on firefox
+                    if(!CONSTANT.isFirefox) {
+                        self.animationLockedCharacters = new TimelineMax({onComplete:function() {
+                            TweenLite.to(".character-locked",0.5,{scaleX:1,scaleY:1});
+                            TweenLite.to(".character-locked",0.5,{scaleX:1,scaleY:1});
+                        }});
+                        self.animationLockedCharacters.add(TweenLite.fromTo(".character-locked", 0.5, { scaleX:0.95,scaleY:0.95 },{scaleX:1.05,scaleY:1.05, transformOrigin:"center center",ease: Power0.easeNone}));
+                        self.animationLockedCharacters.add(TweenLite.fromTo(".character-locked", 0.5, { scaleX:1.05,scaleY:1.05 },{scaleX:0.95,scaleY:0.95, transformOrigin:"center center",ease: Power0.easeNone}));
+                        self.animationLockedCharacters.repeat(-1);
+                    }
                 },
                 onCTA: function() {
                     hopscotch.endTour();
