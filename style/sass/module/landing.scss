@@ -159,6 +159,8 @@
                 bottom:5%;
                 max-height: 25%;
                 z-index: 25;
+                @include translateX(-50%);
+                left:50%;
             }
 
             .description-btnenter-btnsecondary {

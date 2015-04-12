@@ -4291,19 +4291,24 @@ body.not-moving .streetwalk-sign {
   bottom: 5%;
   max-height: 25%;
   z-index: 25;
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  left: 50%;
 }
-/* line 164, ../sass/module/landing.scss */
+/* line 166, ../sass/module/landing.scss */
 .middle .description .description-btnenter .description-btnenter-btnsecondary {
   position: absolute;
   bottom: -5%;
   width: 100%;
   text-align: center;
 }
-/* line 170, ../sass/module/landing.scss */
+/* line 172, ../sass/module/landing.scss */
 .middle .description .description-btnenter .description-btnenter-btnsecondary a {
   color: #4A2246;
 }
-/* line 178, ../sass/module/landing.scss */
+/* line 180, ../sass/module/landing.scss */
 .middle .separator {
   width: 100%;
   float: left;
@@ -4318,7 +4323,7 @@ body.not-moving .streetwalk-sign {
   background-repeat: no-repeat;
 }
 
-/* line 193, ../sass/module/landing.scss */
+/* line 195, ../sass/module/landing.scss */
 .landingpage-video-frame {
   height: 100%;
   width: 100%;
@@ -4331,7 +4336,7 @@ body.not-moving .streetwalk-sign {
   right: 0;
 }
 
-/* line 207, ../sass/module/landing.scss */
+/* line 209, ../sass/module/landing.scss */
 .landingpage-video {
   height: 0;
   width: 100%;
@@ -4340,13 +4345,13 @@ body.not-moving .streetwalk-sign {
   right: 0;
   z-index: -5;
 }
-/* line 217, ../sass/module/landing.scss */
+/* line 219, ../sass/module/landing.scss */
 .landingpage-video .video-js {
   bottom: 0px;
   position: absolute;
 }
 
-/* line 224, ../sass/module/landing.scss */
+/* line 226, ../sass/module/landing.scss */
 #index .toggle-sounds {
   position: absolute;
   bottom: 20px;
@@ -4356,11 +4361,11 @@ body.not-moving .streetwalk-sign {
   z-index: 200;
   cursor: pointer;
 }
-/* line 235, ../sass/module/landing.scss */
+/* line 237, ../sass/module/landing.scss */
 #index .toggle-sounds[data-state="muted"] {
   background-image: url("../../images/mutesound.svg");
 }
-/* line 239, ../sass/module/landing.scss */
+/* line 241, ../sass/module/landing.scss */
 #index .toggle-sounds[data-state="normal"] {
   background-image: url("../../images/unmutesound.svg");
 }
