@@ -793,13 +793,14 @@ define(['jquery',
         }
 
         //SCROLL TUTORIAL ANIMATION
-        if(imgNb >=30) {
-            self.stopScrollToStartAnimation();
+        if(Progression.instance.isFirstWay) {
+            if(imgNb >=30) {
+                self.stopScrollToStartAnimation();
+            }
+            else {
+                self.restartScrollToStartAnimation();
+            }
         }
-        else {
-            self.restartScrollToStartAnimation();
-        }
-
     },
 
     computeBodyHeigh: function(wayLength) {
