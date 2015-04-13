@@ -2,11 +2,13 @@ define(['jquery',
         'underscore',
         'backbone',
         'models/Still',
-        "utils/GeoUtils"
+        "utils/GeoUtils",
+        "utils/Constant"
         ],
 function($, _, Backbone,
                 Still,
-                GeoUtils){
+                GeoUtils,
+                CONSTANT){
 
   var Stills = Backbone.Collection.extend({
 
@@ -128,7 +130,13 @@ function($, _, Backbone,
     clear: function() {
         self = this;
 
-        window.stop();
+        if(CONSTANT.isIE) {
+            document.execCommand("Stop");
+        }
+        else {
+            window.stop();
+        }
+        
         self.stopLoading = true;
         setTimeout(function() {
             self.stopLoading = false;

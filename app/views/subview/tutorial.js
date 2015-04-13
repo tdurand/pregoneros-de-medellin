@@ -72,7 +72,7 @@ function($, _, Backbone,
                 ctaLabel:Localization.STR.tutorialOkBtn,
                 onShow:function() {
                     self.trigger("pauseAnimating");
-                    document.body.style.overflowY = "hidden";
+                    $("body").css("overflow","hidden");
 
                     $(".streetwalk-textcharacter").css("z-index","-1");
                     $(".streetwalk-tutorial-overlay").show();
@@ -130,7 +130,6 @@ function($, _, Backbone,
 
         if(wayName == "plazabotero-start-carabobo" && frameNb >= 110 && frameNb <= 120 && !Progression.instance.get("tutorialDone")) {
                 self.trigger("pauseAnimating");
-                // document.body.style.overflowY = "hidden";
                 $("body").css("overflow", "hidden");
                 setTimeout(function() {
                     hopscotch.startTour(self.tutorial,0);
