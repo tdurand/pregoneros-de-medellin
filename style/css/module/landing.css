@@ -260,3 +260,9 @@
 #index .toggle-sounds[data-state="normal"] {
   background-image: url("../../images/unmutesound.svg");
 }
+
+/* line 249, ../../sass/module/landing.scss */
+#mobile .video-js {
+  width: 100% !important;
+  height: 100% !important;
+}

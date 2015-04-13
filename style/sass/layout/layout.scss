@@ -17,15 +17,3 @@ html,body {
 .index {
     position:relative;
 }
-
-@media (max-width: 1000px) {
-
-    .page {
-        display:none !important;
-
-        &.mobile {
-            display:block !important;
-        }
-    }
-
-}

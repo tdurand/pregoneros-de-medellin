@@ -502,16 +502,6 @@ html:after, body:after {
   position: relative;
 }
 
-@media (max-width: 1000px) {
-  /* line 23, ../sass/layout/layout.scss */
-  .page {
-    display: none !important;
-  }
-  /* line 26, ../sass/layout/layout.scss */
-  .page.mobile {
-    display: block !important;
-  }
-}
 @font-face {
   font-family: 'FilbertBrush';
   src: url("../../fonts/2C7B89_0_0.eot");
@@ -4378,6 +4368,12 @@ body.not-moving .streetwalk-sign {
 /* line 241, ../sass/module/landing.scss */
 #index .toggle-sounds[data-state="normal"] {
   background-image: url("../../images/unmutesound.svg");
+}
+
+/* line 249, ../sass/module/landing.scss */
+#mobile .video-js {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 /* line 3, ../sass/module/btn.scss */

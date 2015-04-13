@@ -6,7 +6,8 @@ define([
         'utils/Localization',
         'models/Progression',
         'views/index',
-        'views/page'
+        'views/page',
+        'views/mobile'
         // 'views/streetwalk'
         ],
     function($, _, Backbone,
@@ -14,7 +15,8 @@ define([
                     Localization,
                     Progression,
                     IndexView,
-                    PageView
+                    PageView,
+                    MobileView
                     // StreetWalkView
                     ) {
 
@@ -27,6 +29,7 @@ define([
                 'streetwalk/:wayName/:lang':            'streetwalk',
                 'page/:pageName':                       'page',
                 'page/:pageName/:lang':                 'page',
+                'mobile':                               'mobile',
                 ':lang':                                'index'
              },
 
@@ -62,11 +65,6 @@ define([
                 if(AppView.currentView.el.id == "index") {
                     self.index(Localization.translationLoaded);
                 }
-
-                // if(AppView.currentView.el.id == "streetwalk") {
-                //     //TODO display popup
-                //     self.index(Localization.translationLoaded);
-                // }
             });
 
             Localization.init(lang);
@@ -135,6 +133,18 @@ define([
 
             AppView.show(self.streetWalkView);
             AppView.changePage(self.streetWalkView);
+        },
+
+        mobile: function() {
+            var self = this;
+
+            self.initLocalization();
+
+            self.mobileView = new MobileView();
+
+            self.mobileView = AppView.show(self.mobileView);
+            AppView.changePage(self.mobileView);
+
         },
 
         page: function(pageName, lang) {
@@ -222,6 +232,13 @@ define([
 
                 if (_.isFunction(router.before)) {
                     router.before();
+
+                    //Check if mobile
+                    if(window.matchMedia("(max-width : 1000px)").matches) {
+                        console.log("MOBILE DETECTED");
+                        router.mobile();
+                        return;
+                    }
                 }
 
                 router.execute(callback, args);

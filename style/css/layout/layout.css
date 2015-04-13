@@ -40,14 +40,3 @@ html:after, body:after {
 .index {
   position: relative;
 }
-
-@media (max-width: 1000px) {
-  /* line 23, ../../sass/layout/layout.scss */
-  .page {
-    display: none !important;
-  }
-  /* line 26, ../../sass/layout/layout.scss */
-  .page.mobile {
-    display: block !important;
-  }
-}

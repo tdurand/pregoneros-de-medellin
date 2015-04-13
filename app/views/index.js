@@ -98,18 +98,6 @@ function($, _, Backbone,
 
         self.renderMenu();
         self.renderStartButton();
-
-        var elem = document;
-            if (elem.requestFullscreen) {
-              elem.requestFullscreen();
-            } else if (elem.msRequestFullscreen) {
-              elem.msRequestFullscreen();
-            } else if (elem.mozRequestFullScreen) {
-              elem.mozRequestFullScreen();
-            } else if (elem.webkitRequestFullscreen) {
-              elem.webkitRequestFullscreen();
-            }
-
     },
 
     renderMenu: function() {
