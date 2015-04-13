@@ -521,14 +521,10 @@ define(['jquery',
             self.loadingFinished = true;
             self.currentStill = self.way.wayStills.first();
             self.$el.css("height",self.computeBodyHeigh(self.way.wayLength)+"px");
-            self.$el.find("#scrollToStartLoaded").show();
-            self.$el.find("#scrollToStartLoading").hide();
             self.render();
             self.$el.find(".streetwalk-loading").hide();
-            //TODO Sounds can be loaded after render....
             Sounds.fadeOutSoundHome();
             Sounds.updateSounds(self.way.wayPath[0]);
-
             //SPECIFIC SOUND EDITOR STUFF
             setTimeout(function() {
                 self.soundEditorView = new SoundEditorView(self.way);
