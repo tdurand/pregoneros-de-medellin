@@ -683,10 +683,10 @@ html:after, body:after {
   -ms-transform: translateY(-25%);
   -webkit-transform: translateY(-25%);
   transform: translateY(-25%);
-  -moz-transition: -moz-transform 0.5s ease-out;
-  -o-transition: -o-transform 0.5s ease-out;
-  -webkit-transition: -webkit-transform 0.5s ease-out;
-  transition: transform 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
   bottom: 30%;
   left: -2%;
   height: 320%;
@@ -1174,10 +1174,10 @@ body.not-moving .streetwalk-bottombar .streetwalk-map {
   -ms-transform: translateY(0%);
   -webkit-transform: translateY(0%);
   transform: translateY(0%);
-  -moz-transition: -moz-transform 0.5s ease-out;
-  -o-transition: -o-transform 0.5s ease-out;
-  -webkit-transition: -webkit-transform 0.5s ease-out;
-  transition: transform 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
 }
 /* line 643, ../sass/module/streetwalk.scss */
 body.not-moving .streetwalk-bottombar .streetwalk-map .enlarged {
