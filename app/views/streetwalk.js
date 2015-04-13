@@ -417,6 +417,9 @@ define(['jquery',
             self.$el.find(".streetwalk-tutorial").html(_.template(svgScrollToStart)({
                 lang: Localization.translationLoaded
             }));
+
+            self.scrollToStartAnimation();
+
             self.$el.find(".streetwalk-tutorial-scrollotherside-tooltip").html(_.template(svgScrollOtherSide)({
                 lang: Localization.translationLoaded
             }));
@@ -534,7 +537,6 @@ define(['jquery',
             self.computeAnimation(true);
             self.initScrollEventHandlers();
             self.initFullScreenEventHandler();
-            self.scrollToStartAnimation();
         });
 
         self.listenToOnce(self.way,"loadingFinishedCompletely", function() {
@@ -547,17 +549,33 @@ define(['jquery',
     },
 
     scrollToStartAnimation: function() {
-        var tl = new TimelineMax({
+        var self = this;
+        self.scrollToStartAnimation = new TimelineMax({
             repeat:-1
         });
-        tl.add( TweenLite.fromTo($(".frame1"), 0.2, {display:"block"},{display:"none"}));
-        tl.add( TweenLite.fromTo($(".frame2"), 0.2, {display:"none"},{display:"block"}));
-        tl.add( TweenLite.fromTo($(".frame2"), 0.2, {display:"block"},{display:"none"}));
-        tl.add( TweenLite.fromTo($(".frame3"), 0.2, {display:"none"},{display:"block"}));
-        tl.add( TweenLite.fromTo($(".frame3"), 0.2, {display:"block"},{display:"none"}));
-        tl.add( TweenLite.fromTo($(".frame1"), 0.2, {display:"none"},{display:"block"}));
+        self.scrollToStartAnimation.add( TweenLite.fromTo($(".frame1"), 0.2, {display:"block"},{display:"none"}));
+        self.scrollToStartAnimation.add( TweenLite.fromTo($(".frame2"), 0.2, {display:"none"},{display:"block"}));
+        self.scrollToStartAnimation.add( TweenLite.fromTo($(".frame2"), 0.2, {display:"block"},{display:"none"}));
+        self.scrollToStartAnimation.add( TweenLite.fromTo($(".frame3"), 0.2, {display:"none"},{display:"block"}));
+        self.scrollToStartAnimation.add( TweenLite.fromTo($(".frame3"), 0.2, {display:"block"},{display:"none"}));
+        self.scrollToStartAnimation.add( TweenLite.fromTo($(".frame1"), 0.2, {display:"none"},{display:"block"}));
 
-        tl.play();
+        self.scrollToStartAnimation.play();
+        self.scrollToStartAnimationPlaying = true;
+    },
+
+    stopScrollToStartAnimation: function() {
+        var self = this;
+        self.scrollToStartAnimation.pause();
+        self.scrollToStartAnimationPlaying = false;
+    },
+
+    restartScrollToStartAnimation: function() {
+        var self = this;
+        if(!self.scrollToStartAnimationPlaying) {
+            self.scrollToStartAnimation.play();
+            self.scrollToStartAnimationPlaying = true;
+        }
     },
 
     renderImg: function(imgNb) {
@@ -772,6 +790,14 @@ define(['jquery',
                     self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
                 }});
             }
+        }
+
+        //SCROLL TUTORIAL ANIMATION
+        if(imgNb >=30) {
+            self.stopScrollToStartAnimation();
+        }
+        else {
+            self.restartScrollToStartAnimation();
         }
 
     },
