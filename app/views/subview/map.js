@@ -495,7 +495,7 @@ function($, _, Backbone,
         self.isChangingSize = true;
 
         //CAN'T USE GSAP BECAUSE OF WIDTH SET, doesn't work with Gsap, it set outerwidth
-        self.$el.one("webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
+        self.$el.one("webkitTransitionEnd oTransitionEnd MSTransitionEnd transitionend", function() {
             self.$el.addClass("enlarged");
             self.map.setZoom(16);
             self.map.invalidateSize(true);
@@ -518,7 +518,7 @@ function($, _, Backbone,
 
         self.isChangingSize = true;
 
-        self.$el.one("webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
+        self.$el.one("webkitTransitionEnd oTransitionEnd MSTransitionEnd transitionend", function() {
             self.$el.removeClass("enlarged");
             self.map.setZoom(17);
             self.map.invalidateSize(true);
