@@ -7,6 +7,7 @@ define(['jquery',
     'utils/GeoUtils',
     'utils/LocalParams',
     'utils/Logger',
+    'utils/Constant',
     'utils/Localization',
     'utils/MessagingManager',
     'views/subview/menucharacters',
@@ -39,6 +40,7 @@ define(['jquery',
         GeoUtils,
         LocalParams,
         LOGGER,
+        CONSTANT,
         Localization,
         MessagingManager,
         MenuCharactersView,
@@ -896,10 +898,19 @@ define(['jquery',
                         }
 
                         self.renderImgHighRes(function(stillHighResId) {
-                            //HACK FOR FIREFOX: swap img do not replace src directly otherwise there is
-                            //a flickering
-                            if(self.currentStill.id === stillHighResId) {
-                                $(self.elImgHighRes).removeClass("hidden");
+                            //HACK FOR FIREFOX AND IE: swap img do not replace src directly otherwise there is
+                            //a flickering, et little timeout
+                            if(CONSTANT.isIE || CONSTANT.isFirefox) {
+                                setTimeout(function() {
+                                    if(self.currentStill.id === stillHighResId) {
+                                        $(self.elImgHighRes).removeClass("hidden");
+                                    }
+                                },100);
+                            }
+                            else {
+                                if(self.currentStill.id === stillHighResId) {
+                                    $(self.elImgHighRes).removeClass("hidden");
+                                }
                             }
                         });
                         self.lastCallRenderHighResTime = new Date().getTime();
