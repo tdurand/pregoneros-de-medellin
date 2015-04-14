@@ -33,8 +33,8 @@
         }
     }
 
-    p {
-        font-family: sans-serif;
+    p,li,ul {
+        font-family: Tahoma,sans-serif;
         line-height: 1.3rem;
         text-align: justify;
 
@@ -110,6 +110,13 @@
     height: 30px;
     background-image:url("../../images/closeBtnPopup.svg");
     background-repeat: no-repeat;
-
     cursor:pointer;
+}
+
+.music-youtube {
+    padding-left:3%;
+}
+
+.music-group-description {
+    vertical-align: top;
 }

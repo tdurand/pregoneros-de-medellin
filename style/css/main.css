@@ -5301,8 +5301,8 @@ body.not-moving .streetwalk-sign {
   background-image: url("../../images/unmutesound.svg");
 }
 /* line 36, ../sass/module/page.scss */
-#page p {
-  font-family: sans-serif;
+#page p, #page li, #page ul {
+  font-family: Tahoma,sans-serif;
   line-height: 1.3rem;
   text-align: justify;
   color: #595858;
@@ -5377,4 +5377,14 @@ body.not-moving .streetwalk-sign {
   background-image: url("../../images/closeBtnPopup.svg");
   background-repeat: no-repeat;
   cursor: pointer;
+}
+
+/* line 116, ../sass/module/page.scss */
+.music-youtube {
+  padding-left: 3%;
+}
+
+/* line 120, ../sass/module/page.scss */
+.music-group-description {
+  vertical-align: top;
 }
