@@ -32,7 +32,8 @@ define(["backbone"],function(Backbone) {
                         video1:"http://player.vimeo.com/external/123199088.hd.mp4?s=bb11d30ed71e9e21811230e2f0e6cee8",
                         video2:"http://player.vimeo.com/external/124050297.hd.mp4?s=6ba8eec486c00b0fc51ce2a6b7559e94",
                         video3:"http://player.vimeo.com/external/124050298.hd.mp4?s=e02d24d469cd6cef9a4cb9786ff62fd1"
-                    }
+                    },
+                    specialpajarito: "http://player.vimeo.com/external/124885146.hd.mp4?s=cad07c1c46d5d50bb6477a7a4c9c25a4"
                 }
             });
 
