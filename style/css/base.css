@@ -13,5 +13,5 @@ button:focus {
 
 /* line 9, ../sass/base.scss */
 .align-center {
-  text-align: center;
+  text-align: center !important;
 }

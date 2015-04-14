@@ -451,7 +451,7 @@ button:focus {
 
 /* line 9, ../sass/base.scss */
 .align-center {
-  text-align: center;
+  text-align: center !important;
 }
 
 /* line 1, ../sass/states.scss */
@@ -5311,8 +5311,13 @@ body.not-moving .streetwalk-sign {
 #page h2 {
   color: #9b482a;
 }
+/* line 49, ../sass/module/page.scss */
+#page h3 {
+  color: #5a5a59;
+  font-size: 1.3rem;
+}
 
-/* line 50, ../sass/module/page.scss */
+/* line 55, ../sass/module/page.scss */
 .page-topbar {
   height: 9%;
   width: 100%;
@@ -5320,7 +5325,7 @@ body.not-moving .streetwalk-sign {
   background-color: #00937A;
 }
 
-/* line 59, ../sass/module/page.scss */
+/* line 64, ../sass/module/page.scss */
 .page-logo {
   background-image: url("../../images/page/logo.png");
   background-size: contain;
@@ -5332,7 +5337,7 @@ body.not-moving .streetwalk-sign {
   top: -5%;
 }
 
-/* line 75, ../sass/module/page.scss */
+/* line 80, ../sass/module/page.scss */
 .page-separator {
   height: 12%;
   width: 100%;
@@ -5343,7 +5348,7 @@ body.not-moving .streetwalk-sign {
   top: 3%;
 }
 
-/* line 86, ../sass/module/page.scss */
+/* line 91, ../sass/module/page.scss */
 .page-content {
   width: 80%;
   position: absolute;
@@ -5356,7 +5361,13 @@ body.not-moving .streetwalk-sign {
   z-index: -1;
 }
 
-/* line 95, ../sass/module/page.scss */
+/* line 100, ../sass/module/page.scss */
+.page-image {
+  width: 80%;
+  border: 1px solid grey;
+}
+
+/* line 105, ../sass/module/page.scss */
 .page-btnclose {
   position: fixed;
   top: 10px;

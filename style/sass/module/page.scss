@@ -45,6 +45,11 @@
     h2 {
         color: #9b482a;
     }
+
+    h3 {
+        color:rgb(90, 90, 89);
+        font-size:1.3rem;
+    }
 }
 
 .page-topbar {
@@ -90,6 +95,11 @@
     left:50%;
     top:20%;
     z-index:-1;
+}
+
+.page-image {
+    width:80%;
+    border:1px solid grey;
 }
 
 .page-btnclose {
