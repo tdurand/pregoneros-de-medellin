@@ -387,6 +387,12 @@ define(['jquery',
         var currentLoadingLength = pourcentage * self.pathLoadingLength / 100;
 
         if(pourcentage <= 100) {
+
+            //always start to 1%
+            if(pourcentage === 0) {
+                pourcentage = 1;
+            }
+
             self.$el.find(".loadingIndicator").text(pourcentage);
             self.pathLoading.attr("stroke-dashoffset", self.pathLoadingLength-currentLoadingLength);
             
