@@ -125,6 +125,7 @@
                 "text!templates/usermanager/successAccountCreationViewTemplate.html",
                 "text!templates/usermanager/successSignInViewTemplate.html",
                 "text!templates/usermanager/alertBeforeLogout.html",
+                "text!templates/usermanager/askToShareViewTemplate.html",
                 "libs/vendor/jquery-2.0.3.min.js",
                 "libs/vendor/lodash-3.1.0.min.js",
                 "libs/vendor/backbone-1.1.2.min.js",
@@ -140,6 +141,7 @@
                 "utils/AppView.js",
                 "utils/LocalParams.js",
                 "utils/Localization.js",
+                "utils/Constant.js",
                 "models/Still.js",
                 "utils/GeoUtils.js",
                 "utils/Logger.js",
@@ -147,7 +149,6 @@
                 "models/Way.js",
                 "libs/vendor/text-2.0.10.js",
                 "libs/vendor/json-0.3.1.js",
-                "libs/vendor/popcorn-1.5.6.min.js",
                 "json!content/ways.json"
             ]
         }
