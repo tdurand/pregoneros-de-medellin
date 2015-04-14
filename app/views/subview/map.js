@@ -49,9 +49,9 @@ function($, _, Backbone,
     initMap: function(positionInit) {
         var self = this;
 
-        L.mapbox.accessToken = 'pk.eyJ1IjoidGR1cmFuZCIsImEiOiI0T1ZEWlRVIn0.1PEGeiEWz6RUBfZq9Bvy7Q';
+        L.mapbox.accessToken = 'pk.eyJ1IjoicHJlZ29uZXJvc2RlbWVkZWxsaW4iLCJhIjoicGVRNFo2VSJ9.NeabLQml7j9uBGBUIZLIuA';
             
-        self.map = L.mapbox.map('streetwalk-mapcontainer', 'tdurand.l4njnee1',{
+        self.map = L.mapbox.map('streetwalk-mapcontainer', 'pregonerosdemedellin.lnni2dn4',{
             zoomControl: false,
             attributionControl: false,
             minZoom: 16,
