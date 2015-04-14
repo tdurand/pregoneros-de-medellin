@@ -1056,7 +1056,15 @@ define(['jquery',
 
         self.trigger("clickOnCharacter");
 
-        VideoManagerView.showVideo(self.way.characterDefinition.name, self.way.wayName);
+        //Special case for pajarito in the cl56-cr47-cr48 // cl56-cr48-cr47
+        if(self.way.wayName == "cl56-cr47-cr48" || self.way.wayName == "cl56-cr48-cr47") {
+            VideoManagerView.initSpecificVideo(self.way.characterDefinition.name, "videobonus");
+            VideoManagerView.showVideo();
+        }
+        else {
+            VideoManagerView.showVideo(self.way.characterDefinition.name, self.way.wayName);
+        }
+        
     },
 
     showSoundEditor: function() {
