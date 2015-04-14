@@ -1,14 +1,14 @@
 <div class="streetwalk-menubottom-content">
-    <a href="#index" class="streetwalk-menubottom-linkhome"><%= STR.menuBtnLabelHome %></a> <span class="menu-separator">|</span> 
-    <a href="#page/transmedia"><%= STR.menuBtnLabelTransmedia %></a> <span class="menu-separator">|</span> 
-    <a href="#page/music"><%= STR.menuBtnLabelMusic %></a> <span class="menu-separator">|</span> 
-    <a href="#page/team"><%= STR.menuBtnLabelCredits %></a> <span class="menu-separator">|</span> 
-    <a href="#page/makingof"><%= STR.menuBtnLabelMakingOf %></a> <span class="menu-separator">|</span> 
-    <a href="#page/presskit"><%= STR.menuBtnLabelPressKit %></a> <span class="menu-separator">|</span> 
+    <a href="#index" class="streetwalk-menubottom-linkhome btn"><%= STR.menuBtnLabelHome %></a> <span class="menu-separator">|</span> 
+    <a href="#page/transmedia" class="btn"><%= STR.menuBtnLabelTransmedia %></a> <span class="menu-separator">|</span> 
+    <a href="#page/music" class="btn"><%= STR.menuBtnLabelMusic %></a> <span class="menu-separator">|</span> 
+    <a href="#page/team" class="btn"><%= STR.menuBtnLabelCredits %></a> <span class="menu-separator">|</span> 
+    <a href="#page/makingof" class="btn"><%= STR.menuBtnLabelMakingOf %></a> <span class="menu-separator">|</span> 
+    <a href="#page/presskit" class="btn"><%= STR.menuBtnLabelPressKit %></a> <span class="menu-separator">|</span> 
     <% if(loginStatus.logged) { %>
-        <a class="streetwalk-menubottom-btnlogout"><%= STR.menuBtnLabelLogOut %> (<%= loginStatus.name %>)</a>
+        <a class="streetwalk-menubottom-btnlogout" class="btn"><%= STR.menuBtnLabelLogOut %> (<%= loginStatus.name %>)</a>
     <% } else { %>
-        <a class="streetwalk-menubottom-btnlogin"><%= STR.menuBtnLabelLogIn %></a>
+        <a class="streetwalk-menubottom-btnlogin" class="btn"><%= STR.menuBtnLabelLogIn %></a>
     <% } %>
      <span class="menu-separator">|</span> <select name="language-selection" class="language-selection">
         <option value="es" <% if(lang == "es") {%> selected <%} %>><%= STR.selectLanguageSpanish %></option>

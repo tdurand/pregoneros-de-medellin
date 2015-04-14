@@ -4377,6 +4377,16 @@ body.not-moving .streetwalk-sign {
 }
 
 /* line 3, ../sass/module/btn.scss */
+.btn {
+  opacity: 1;
+}
+
+/* line 7, ../sass/module/btn.scss */
+.btn:active {
+  opacity: 0.8;
+}
+
+/* line 11, ../sass/module/btn.scss */
 .btn-primary {
   color: #fff;
   border-radius: 1rem;
@@ -4392,7 +4402,7 @@ body.not-moving .streetwalk-sign {
   background-color: #00A99D;
 }
 
-/* line 18, ../sass/module/btn.scss */
+/* line 26, ../sass/module/btn.scss */
 .btn-secondary {
   color: black;
   border-radius: 1rem;

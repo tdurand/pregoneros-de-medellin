@@ -199,7 +199,9 @@ function($, _, Backbone,
       var self = this;
       //Clean
       self.undelegateEvents();
-      self.player.dispose();
+      if(self.player) {
+        self.player.dispose();
+      }
       $(window).off("resize");
     }
 

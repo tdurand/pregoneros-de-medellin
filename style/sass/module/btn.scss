@@ -1,5 +1,13 @@
 @import "compass/css3";
 
+.btn {
+    opacity:1;
+}
+
+.btn:active {
+    opacity:0.8;
+}
+
 .btn-primary {
     color:#fff;
     border-radius:1rem;
