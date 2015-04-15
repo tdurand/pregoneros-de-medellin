@@ -26,17 +26,11 @@
         position: absolute;
         @include span(12);
         background-color: white;
-        
-        .logo-wrapper {
-            width: 30%;
-            height: 80%;
-            position:absolute;
-            top:10%;
-            right: 5px;
-            background-image: url("../../images/logos.jpg");
-            background-size:contain;
-            background-repeat: no-repeat;
-        }
+
+        background-image: url("../../images/logos/bannerlogo.jpg");
+        background-size:contain;
+        background-repeat: no-repeat;
+        background-position: center;
      }
 
      .wrap-top-bar {
