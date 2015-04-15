@@ -4146,12 +4146,18 @@ body.not-moving .streetwalk-sign {
   margin-left: 0;
   margin-right: 0;
   background-color: white;
-  background-image: url("../../images/logos/bannerlogo.jpg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 }
-/* line 36, ../sass/module/landing.scss */
+/* line 30, ../sass/module/landing.scss */
+.top .logo-bar svg {
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  -moz-transform: translate(-50%, 0%);
+  -ms-transform: translate(-50%, 0%);
+  -webkit-transform: translate(-50%, 0%);
+  transform: translate(-50%, 0%);
+}
+/* line 38, ../sass/module/landing.scss */
 .top .wrap-top-bar {
   position: absolute;
   height: 50%;
@@ -4162,7 +4168,7 @@ body.not-moving .streetwalk-sign {
   margin-right: 0;
   background-color: rgba(189, 117, 15, 0.6);
 }
-/* line 45, ../sass/module/landing.scss */
+/* line 47, ../sass/module/landing.scss */
 .top .wrap-top-bar .top-bar {
   position: absolute;
   height: 80%;
@@ -4174,7 +4180,7 @@ body.not-moving .streetwalk-sign {
   background-color: #00937A;
   opacity: 1;
 }
-/* line 55, ../sass/module/landing.scss */
+/* line 57, ../sass/module/landing.scss */
 .top .wrap-top-bar .top-bar .share-btn {
   width: 5%;
   position: absolute;
@@ -4182,17 +4188,17 @@ body.not-moving .streetwalk-sign {
   top: 15%;
   height: 70%;
 }
-/* line 62, ../sass/module/landing.scss */
+/* line 64, ../sass/module/landing.scss */
 .top .wrap-top-bar .top-bar .share-btn svg {
   height: 100%;
   position: absolute;
   right: 0;
 }
-/* line 67, ../sass/module/landing.scss */
+/* line 69, ../sass/module/landing.scss */
 .top .wrap-top-bar .top-bar .share-btn svg .btn-share {
   cursor: pointer;
 }
-/* line 73, ../sass/module/landing.scss */
+/* line 75, ../sass/module/landing.scss */
 .top .wrap-top-bar .top-bar .menu {
   font-family: "FilbertBrush";
   font-size: 1.3rem;
@@ -4206,25 +4212,25 @@ body.not-moving .streetwalk-sign {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-/* line 84, ../sass/module/landing.scss */
+/* line 86, ../sass/module/landing.scss */
 .top .wrap-top-bar .top-bar .menu .language-selection {
   background-color: transparent;
 }
-/* line 88, ../sass/module/landing.scss */
+/* line 90, ../sass/module/landing.scss */
 .top .wrap-top-bar .top-bar .menu a {
   cursor: pointer;
   color: white;
 }
-/* line 93, ../sass/module/landing.scss */
+/* line 95, ../sass/module/landing.scss */
 .top .wrap-top-bar .top-bar .menu a:visited, .top .wrap-top-bar .top-bar .menu a:active, .top .wrap-top-bar .top-bar .menu a:link {
   color: white;
 }
-/* line 97, ../sass/module/landing.scss */
+/* line 99, ../sass/module/landing.scss */
 .top .wrap-top-bar .top-bar .menu .menu-btnlogin {
   text-decoration: underline;
 }
 
-/* line 107, ../sass/module/landing.scss */
+/* line 109, ../sass/module/landing.scss */
 .middle {
   width: 100%;
   float: left;
@@ -4233,7 +4239,7 @@ body.not-moving .streetwalk-sign {
   height: 75%;
   position: relative;
 }
-/* line 113, ../sass/module/landing.scss */
+/* line 115, ../sass/module/landing.scss */
 .middle .logo {
   width: 32.20339%;
   float: left;
@@ -4244,7 +4250,7 @@ body.not-moving .streetwalk-sign {
   background-size: contain;
   background-repeat: no-repeat;
 }
-/* line 123, ../sass/module/landing.scss */
+/* line 125, ../sass/module/landing.scss */
 .middle .description {
   height: 120%;
   position: absolute;
@@ -4262,7 +4268,7 @@ body.not-moving .streetwalk-sign {
   border-width: 111px 214px 0px 297px;
 }
 @media screen and (max-width: 1400px) {
-  /* line 139, ../sass/module/landing.scss */
+  /* line 141, ../sass/module/landing.scss */
   .middle .description {
     width: 57.62712%;
     float: left;
@@ -4271,18 +4277,18 @@ body.not-moving .streetwalk-sign {
     border-width: 60px 130px 0px 130px;
   }
 }
-/* line 145, ../sass/module/landing.scss */
+/* line 147, ../sass/module/landing.scss */
 .middle .description .description-text {
   font-family: "FilbertBrush";
   font-size: 1.2rem;
   text-align: center;
   color: #4A2246;
 }
-/* line 151, ../sass/module/landing.scss */
+/* line 153, ../sass/module/landing.scss */
 .middle .description .description-text p {
   margin: 1em 0px;
 }
-/* line 157, ../sass/module/landing.scss */
+/* line 159, ../sass/module/landing.scss */
 .middle .description .description-btnenter img {
   position: absolute;
   bottom: 5%;
@@ -4294,18 +4300,18 @@ body.not-moving .streetwalk-sign {
   transform: translateX(-50%);
   left: 50%;
 }
-/* line 166, ../sass/module/landing.scss */
+/* line 168, ../sass/module/landing.scss */
 .middle .description .description-btnenter .description-btnenter-btnsecondary {
   position: absolute;
   bottom: -5%;
   width: 100%;
   text-align: center;
 }
-/* line 172, ../sass/module/landing.scss */
+/* line 174, ../sass/module/landing.scss */
 .middle .description .description-btnenter .description-btnenter-btnsecondary a {
   color: #4A2246;
 }
-/* line 180, ../sass/module/landing.scss */
+/* line 182, ../sass/module/landing.scss */
 .middle .separator {
   width: 100%;
   float: left;
@@ -4320,7 +4326,7 @@ body.not-moving .streetwalk-sign {
   background-repeat: no-repeat;
 }
 
-/* line 195, ../sass/module/landing.scss */
+/* line 197, ../sass/module/landing.scss */
 .landingpage-video-frame {
   height: 100%;
   width: 100%;
@@ -4333,7 +4339,7 @@ body.not-moving .streetwalk-sign {
   right: 0;
 }
 
-/* line 209, ../sass/module/landing.scss */
+/* line 211, ../sass/module/landing.scss */
 .landingpage-video {
   height: 0;
   width: 100%;
@@ -4342,13 +4348,13 @@ body.not-moving .streetwalk-sign {
   right: 0;
   z-index: -5;
 }
-/* line 219, ../sass/module/landing.scss */
+/* line 221, ../sass/module/landing.scss */
 .landingpage-video .video-js {
   bottom: 0px;
   position: absolute;
 }
 
-/* line 226, ../sass/module/landing.scss */
+/* line 228, ../sass/module/landing.scss */
 #index .toggle-sounds {
   position: absolute;
   bottom: 20px;
@@ -4358,16 +4364,16 @@ body.not-moving .streetwalk-sign {
   z-index: 200;
   cursor: pointer;
 }
-/* line 237, ../sass/module/landing.scss */
+/* line 239, ../sass/module/landing.scss */
 #index .toggle-sounds[data-state="muted"] {
   background-image: url("../../images/mutesound.svg");
 }
-/* line 241, ../sass/module/landing.scss */
+/* line 243, ../sass/module/landing.scss */
 #index .toggle-sounds[data-state="normal"] {
   background-image: url("../../images/unmutesound.svg");
 }
 
-/* line 249, ../sass/module/landing.scss */
+/* line 251, ../sass/module/landing.scss */
 #mobile .video-js {
   width: 100% !important;
   height: 100% !important;

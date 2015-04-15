@@ -27,10 +27,12 @@
         @include span(12);
         background-color: white;
 
-        background-image: url("../../images/logos/bannerlogo.jpg");
-        background-size:contain;
-        background-repeat: no-repeat;
-        background-position: center;
+        svg {
+            height: 100%;
+            position:absolute;
+            left:50%;
+            @include translate(-50%,0%);
+        }
      }
 
      .wrap-top-bar {
