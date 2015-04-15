@@ -5359,15 +5359,16 @@ body.not-moving .streetwalk-sign {
   left: 50%;
   top: 20%;
   z-index: -1;
+  padding-bottom: 30px;
 }
 
-/* line 100, ../sass/module/page.scss */
+/* line 101, ../sass/module/page.scss */
 .page-image {
   width: 80%;
   border: 1px solid grey;
 }
 
-/* line 105, ../sass/module/page.scss */
+/* line 106, ../sass/module/page.scss */
 .page-btnclose {
   position: fixed;
   top: 10px;
@@ -5379,12 +5380,12 @@ body.not-moving .streetwalk-sign {
   cursor: pointer;
 }
 
-/* line 116, ../sass/module/page.scss */
+/* line 117, ../sass/module/page.scss */
 .music-youtube {
   padding-left: 3%;
 }
 
-/* line 120, ../sass/module/page.scss */
+/* line 121, ../sass/module/page.scss */
 .music-group-description {
   vertical-align: top;
 }

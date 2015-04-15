@@ -128,19 +128,19 @@ function($, _, Backbone,
     update: function(wayName, frameNb) {
         var self = this;
 
-        if(wayName == "plazabotero-start-carabobo" && frameNb >= 110 && frameNb <= 120 && !Progression.instance.get("tutorialDone")) {
-                self.trigger("pauseAnimating");
-                $("body").css("overflow", "hidden");
-                setTimeout(function() {
-                    hopscotch.startTour(self.tutorial,0);
-                    hopscotch.listen("close",function() {
-                        self.endTutorial();
-                    });
-                    hopscotch.listen("end",function() {
-                        self.endTutorial();
-                    });
-                },200);
-        }
+        // if(wayName == "plazabotero-start-carabobo" && frameNb >= 110 && frameNb <= 120 && !Progression.instance.get("tutorialDone")) {
+        //         self.trigger("pauseAnimating");
+        //         $("body").css("overflow", "hidden");
+        //         setTimeout(function() {
+        //             hopscotch.startTour(self.tutorial,0);
+        //             hopscotch.listen("close",function() {
+        //                 self.endTutorial();
+        //             });
+        //             hopscotch.listen("end",function() {
+        //                 self.endTutorial();
+        //             });
+        //         },200);
+        // }
     },
 
     showHelperLocker: function(character,video) {
