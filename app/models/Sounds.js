@@ -290,6 +290,19 @@ function($, _, Backbone,
                         LOGGER.debug("ALL SOUNDS LOADED");
                         console.log(self.models);
 
+                        //Find eventual sound to fadein
+                        if(self.soundToFadeInId !== "") {
+                            var soundToFadeIn = _.find(self.models,{id:self.soundToFadeInId});
+
+                            if(soundToFadeIn && soundToFadeIn.sound.volume() === 0) {
+                                console.log("FADEIN");
+                                soundToFadeIn.fadeIn();
+                            }
+                            else {
+                                console.log("SOUND TO FADEIN ALREADY VOLUME UP");
+                            }
+                        }
+
                         //Remove old sounds
                         _.each(self.soundsToRemoveIds, function(soundToRemove) {
                             var sound = self.get(soundToRemove);
@@ -298,14 +311,6 @@ function($, _, Backbone,
                             });
                             sound.fadeOut();
                         });
-                    }
-
-                    console.log(self.soundToFadeInId);
-                    console.log(waySound.path);
-
-                    if(self.soundToFadeInId == waySound.path) {
-                        console.log("FADE IN");
-                        sound.fadeIn();
                     }
                 });
 
