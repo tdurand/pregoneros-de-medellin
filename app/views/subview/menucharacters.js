@@ -246,13 +246,13 @@ function($, _, Backbone,
         tl.call(self.openMenu,[character],self)
               //Unlock video
               .to(".streetwalk-menucharacter[data-character="+ character +"] ." + video + "-locked", 1, {scaleX:5,scaleY:5,opacity:0,transformOrigin:"center center",display:"none",ease:Power2.easeIn})
-              .to(".streetwalk-menucharacter[data-character="+ character +"] ." + video, 1, {scaleX:1,scaleY:1,transformOrigin:"center center",ease:Back.easeOut.config(3)},"-=0.5");
+              .to(".streetwalk-menucharacter[data-character="+ character +"] ." + video, 1, {scaleX:1,scaleY:1,transformOrigin:"center center",ease:Back.easeOut.config(3)},"-=0.5")
               //open video
-              // .to(".streetwalk-video", 1,
-              //   {scaleY:1,scaleX:1,
-              //       transformOrigin:Xposition+"px "+Yposition+"px",
-              //       ease: Power1.easeInOut
-              //  },"-=0.5");
+              .to(".streetwalk-video", 1,
+                {scaleY:1,scaleX:1,
+                    transformOrigin:Xposition+"px "+Yposition+"px",
+                    ease: Power1.easeInOut
+               },"-=0.5");
 
     },
 
