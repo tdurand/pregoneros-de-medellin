@@ -25,6 +25,8 @@ function($, _, Backbone,
         "click .menu-btnlogout":"logout",
         "click .toggle-sounds":"toggleSounds",
         "click .btn-enter":"goToStreetWalk",
+        "click .btn-shareontwitter":"shareOnTwitter",
+        "click .btn-shareonfacebook":"shareOnFacebook",
         "change .language-selection":"changeLanguage"
     },
 
@@ -193,6 +195,14 @@ function($, _, Backbone,
         //       document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
         //     }
         // }
+    },
+
+    shareOnTwitter: function(e) {
+        UserManagerView.shareOnTwitter(e);
+    },
+
+    shareOnFacebook: function(e) {
+        UserManagerView.shareOnFacebook(e);
     },
 
     onClose: function(){
