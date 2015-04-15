@@ -1,10 +1,13 @@
 var express = require('express');
 var bodyParser = require("body-parser");
+var compression = require('compression');
 var app = express();
 
-var oneDay = 86400000;
+var week = 604800000;
 
-app.use('/', express.static(__dirname,{maxAge:oneDay}));
+// compress all requests
+app.use(compression());
+app.use('/', express.static(__dirname,{maxAge:week}));
 app.use(bodyParser.json({limit: '2mb'}));
 app.use(bodyParser.urlencoded({limit: '2mb', extended: true}));
 app.set('port', (process.env.PORT || 3000));

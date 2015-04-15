@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "body-parser": "^1.11.0",
+    "compression": "^1.4.3",
     "ejs": "^2.2.4",
     "express": "^4.11.2"
   },
