@@ -22,7 +22,7 @@ function($, _, Backbone, LOGGER, ProgressionModel){
     save: function() {
         var self = this;
 
-        if(!navigator.onLine) {
+        if(!navigator.onLine || !window.parseInitialized) {
             return;
         }
 
@@ -57,7 +57,7 @@ function($, _, Backbone, LOGGER, ProgressionModel){
     fetch: function(callBack) {
         var self = this;
 
-        if(!navigator.onLine) {
+        if(!navigator.onLine || !window.parseInitialized) {
             return;
         }
 
@@ -91,7 +91,7 @@ function($, _, Backbone, LOGGER, ProgressionModel){
     logOut: function() {
         var self = this;
 
-        if(!navigator.onLine) {
+        if(!navigator.onLine || !window.parseInitialized) {
             return;
         }
 

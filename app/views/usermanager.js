@@ -56,6 +56,8 @@ function($, _, Backbone,
 
         if(navigator.onLine) {
 
+            window.parseInitialized = false;
+
             if(fbSDKLoaded) {
                 console.log("init parse");
                 self.fbAsyncInit();
@@ -84,6 +86,8 @@ function($, _, Backbone,
           xfbml      : true,  // initialize Facebook social plugins on the page
           version    : 'v2.2' // point to the latest Facebook Graph API version
         });
+
+        window.parseInitialized = true;
 
         if(_.isUndefined(Localization.STR)) {
                 self.listenToOnce(Localization,"STRLoaded", function() {
