@@ -355,7 +355,8 @@ define(['jquery',
             else {
                 self.$el.find(".streetwalk-tutorial").hide();
                 self.$el.find(".streetwalk-loading").html(_.template(streetWalkLoadingSimpleViewTemplate)({
-                    STR: Localization.STR
+                    STR: Localization.STR,
+                    lang: Localization.translationLoaded
                 }));
                 self.$el.find(".streetwalk-loading").show();
 
