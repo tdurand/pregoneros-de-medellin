@@ -80,6 +80,16 @@
     loadCSS( "style/css/main.css" );
     loadCSS( "style/hopscotch/hopscotch.css");
     loadCSS( "style/videojs/video-js.css");
+
+          fbSDKLoaded = false;
+
+          window.fbAsyncInit = function() {
+                fbSDKLoaded = true; //init flag
+                console.log("fbsdk loaded" + fbSDKLoaded);
+                var event = new Event('fbSDKLoaded');
+                document.dispatchEvent(event);
+          };
+
     </script>
     <script>
     (function(d, s, id){

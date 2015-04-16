@@ -52,8 +52,22 @@ function($, _, Backbone,
     initialize : function() {
         var self = this;
 
+        console.log("fbSDKLoaded?" + fbSDKLoaded);
+
         if(navigator.onLine) {
-            self.fbAsyncInit();
+
+            if(fbSDKLoaded) {
+                console.log("init parse");
+                self.fbAsyncInit();
+            }
+            else {
+                console.log("wait fb sdk loading");
+                $(document).on("fbSDKLoaded", function() {
+                    $(document).off("fbSDKLoaded");
+                    console.log("init parse");
+                    self.fbAsyncInit();
+                });
+            }
         }
     },
 
