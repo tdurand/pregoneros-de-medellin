@@ -54,7 +54,7 @@
     //- "closure.keepLines": Same as closure option, but keeps line returns
     //in the minified files.
     //- "none": no minification will be done.
-    optimize: "uglify",
+    optimize: "uglify2",
 
     //If using UglifyJS for script optimization, these config options can be
     //used to pass configuration values to UglifyJS.
