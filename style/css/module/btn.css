@@ -9,6 +9,26 @@
 }
 
 /* line 11, ../../sass/module/btn.scss */
+.btn-chooseway {
+  opacity: 1;
+}
+
+/* line 15, ../../sass/module/btn.scss */
+.btn-chooseway:active {
+  opacity: 0.8;
+}
+
+/* line 19, ../../sass/module/btn.scss */
+.hopscotch-cta:active {
+  opacity: 0.8;
+}
+
+/* line 23, ../../sass/module/btn.scss */
+.hopscotch-close:active {
+  opacity: 0.8;
+}
+
+/* line 27, ../../sass/module/btn.scss */
 .btn-primary {
   color: #fff;
   border-radius: 1rem;
@@ -24,7 +44,7 @@
   background-color: #00A99D;
 }
 
-/* line 26, ../../sass/module/btn.scss */
+/* line 42, ../../sass/module/btn.scss */
 .btn-secondary {
   color: black;
   border-radius: 1rem;

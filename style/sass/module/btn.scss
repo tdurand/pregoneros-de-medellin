@@ -8,6 +8,22 @@
     opacity:0.8;
 }
 
+.btn-chooseway {
+    opacity: 1;
+}
+
+.btn-chooseway:active {
+    opacity: 0.8;
+}
+
+.hopscotch-cta:active {
+    opacity: 0.8;
+}
+
+.hopscotch-close:active {
+    opacity: 0.8;
+}
+
 .btn-primary {
     color:#fff;
     border-radius:1rem;

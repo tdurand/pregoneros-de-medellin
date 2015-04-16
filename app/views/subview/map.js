@@ -540,7 +540,7 @@ function($, _, Backbone,
               target: e.target._icon,
               placement: 'top',
               title: Localization.STR.tutorialShortCutMapTitle,
-              content: Localization.STR.tutorialShortCutMapDescription + '<p><button class="btn-gotostreet btn-secondary hopscotch-cta">'+ Localization.STR.tutorialDirectUnlockBtnGoDirectly + '</button> <button class="hopscotch-close hopscotch-nav-button hopscotch-cta">' + Localization.STR.tutorialDirectUnlockBtnPreferSearch +'</button></p>',
+              content: Localization.STR.tutorialShortCutMapDescription + '<p><button class="btn-gotostreet btn-secondary hopscotch-cta btn">'+ Localization.STR.tutorialDirectUnlockBtnGoDirectly + '</button> <button class="hopscotch-close hopscotch-nav-button hopscotch-cta btn">' + Localization.STR.tutorialDirectUnlockBtnPreferSearch +'</button></p>',
               onShow: function() {
                  $(".streetwalk-tutorial-overlay").show();
               },
