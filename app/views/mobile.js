@@ -42,7 +42,8 @@ function($, _, Backbone,
         var self = this;
 
         self.$el.html(_.template(mobileViewTemplate)({
-            STR: Localization.STR
+            STR: Localization.STR,
+            lang: Localization.translationLoaded
         }));
 
         videojs("video-mobile").ready(function(){

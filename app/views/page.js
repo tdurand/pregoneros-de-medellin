@@ -62,6 +62,7 @@ function($, _, Backbone,
 
          self.$el.html(_.template(TransmediaView)({
             STR : Localization.STR,
+            lang: Localization.translationLoaded,
             soundsMuted: Sounds.isMuted()
          }));
     },
@@ -71,6 +72,7 @@ function($, _, Backbone,
 
         self.$el.html(_.template(MusicView)({
             STR : Localization.STR,
+            lang: Localization.translationLoaded,
             soundsMuted: Sounds.isMuted()
          }));
     },
@@ -80,6 +82,7 @@ function($, _, Backbone,
 
          self.$el.html(_.template(TeamView)({
             STR : Localization.STR,
+            lang: Localization.translationLoaded,
             soundsMuted: Sounds.isMuted()
          }));
     },
@@ -89,6 +92,7 @@ function($, _, Backbone,
 
         self.$el.html(_.template(MakingOfView)({
             STR : Localization.STR,
+            lang: Localization.translationLoaded,
             soundsMuted: Sounds.isMuted()
          }));
     },
@@ -98,6 +102,7 @@ function($, _, Backbone,
 
          self.$el.html(_.template(PressKitView)({
             STR : Localization.STR,
+            lang: Localization.translationLoaded,
             soundsMuted: Sounds.isMuted()
          }));
     },

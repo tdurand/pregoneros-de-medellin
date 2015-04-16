@@ -75,7 +75,8 @@ function($, _, Backbone,
         var self = this;
 
         self.$el.html(_.template(indexViewTemplate)({
-            STR: Localization.STR
+            STR: Localization.STR,
+            lang: Localization.translationLoaded
         }));
 
         videojs("video-landing").ready(function(){

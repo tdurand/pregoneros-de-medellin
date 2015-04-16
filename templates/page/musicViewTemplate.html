@@ -6,6 +6,7 @@
 <div class="page-content">
 <h2><%= STR.pageMusicTitle %></h2>
 
+    <% if(lang == "es") {%>
 <p>La dimensión expresiva de la música es incontestable, así como su riqueza y capacidad  comunicativa. En este proyecto que se inspira del paisaje sonoro de la ciudad, la música no solo es concepto narrativo, sino también goce, acompañamiento, y detonadora de sentidos e identidad.</p>
 
 <p>Los músicos que nos acompañaron a contar la ciudad que canta son:</p>
@@ -81,9 +82,13 @@
         </td>
     </tr>
 </table>
-
-
-
+    <% } %>
+    <% if(lang == "en") {%>
+    <p>Available Soon</p>
+    <% } %>
+    <% if(lang == "fr") {%>
+    <p>Bientôt disponible</p>
+    <% } %>
 
 
 </div>

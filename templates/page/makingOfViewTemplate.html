@@ -6,9 +6,17 @@
 <div class="page-content">
     <h2><%= STR.pageMakingofTitle %></h2>
     
+    <% if(lang == "es") {%>
     <p>Bien pueda siga, por aquí encontrarás la parte de atrás de la casa Pregoneros!</p>
     
     <iframe src="https://www.flickr.com/photos/132268176@N07/17032636582/player/" width="100%" height="300px" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+    <% } %>
+    <% if(lang == "en") {%>
+    <p>Available Soon</p>
+    <% } %>
+    <% if(lang == "fr") {%>
+    <p>Bientôt disponible</p>
+    <% } %>
 </div>
 
 <div class="page-btnclose">
