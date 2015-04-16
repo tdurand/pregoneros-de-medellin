@@ -7,8 +7,8 @@ define([
         'models/Progression',
         'views/index',
         'views/page',
-        'views/mobile',
-        'views/streetwalk'
+        'views/mobile'
+        // 'views/streetwalk'
         ],
     function($, _, Backbone,
                     AppView,
@@ -16,8 +16,8 @@ define([
                     Progression,
                     IndexView,
                     PageView,
-                    MobileView,
-                    StreetWalkView
+                    MobileView
+                    // StreetWalkView
                     ) {
 
         var Router = Backbone.Router.extend({
@@ -43,13 +43,12 @@ define([
             Progression.initialize();
             Progression.fetch();
 
-            self.StreetWalkView = StreetWalkView;
-            self.streetWalkLoaded = true;
+            self.StreetWalkView = undefined;
 
-            // require([ "views/streetwalk" ], function(streetwalk) {
-            //     self.streetWalkLoaded = true;
-            //     self.StreetWalkView = streetwalk;
-            // });
+            require([ "views/streetwalk" ], function(streetwalk) {
+                self.streetWalkLoaded = true;
+                self.StreetWalkView = streetwalk;
+            });
         },
 
         initLocalization: function(lang) {
