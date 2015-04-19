@@ -476,6 +476,9 @@ define(['jquery',
 
         Progression.setCurrentStreet(self.way.wayName);
 
+        //track unlock event
+        ga('send', 'event', 'changeStreet', self.way.wayName);
+
         self.adjustSizes();
 
         self.$el.find(".streetwalk-chooseway-end-wrapper").hide();

@@ -223,6 +223,9 @@ function($, _, Backbone, LOGGER, CONSTANT, Ways){
 
         self.set("nbItemUnlocked", nbItemUnlocked);
 
+        //track event
+        ga('send', 'event', 'nbStoriesUnlocked', nbItemUnlocked);
+
         console.log("nbItemUnlocked: " + nbItemUnlocked);
 
         return true;

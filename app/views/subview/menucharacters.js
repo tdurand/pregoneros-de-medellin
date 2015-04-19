@@ -173,6 +173,9 @@ function($, _, Backbone,
     unlock: function(character,video) {
         var self = this;
 
+        //track unlock event
+        ga('send', 'event', 'unlockVideo', character + '_' + video);
+
         //if character not unlocked, unlock it
         if(Progression.instance.get("charactersProgression").get(character+".character.locked")) {
             Progression.instance.unlockCharacter(character);
