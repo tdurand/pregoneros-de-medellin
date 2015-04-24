@@ -16,6 +16,12 @@ define(['jquery',
 
         show: function(view) {
             if (this.currentView){
+
+              if(this.currentView.el.id == "page") {
+                 this.currentView.closeView();
+                 return this.closeModalPage();
+              }
+
               //if paused , do not close
               this.currentView.onClose();
               this.lastView = this.currentView;
@@ -48,6 +54,8 @@ define(['jquery',
                 //play streetwalk
                 this.lastView.play();
             }
+
+            return this.currentView;
         },
 
         changePage: function(view) {
