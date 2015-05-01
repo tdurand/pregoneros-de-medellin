@@ -28,19 +28,19 @@ app.get('/', function(req, res) {
     res.render('index.ejs', {lang:lang});
 });
 
-app.post('/saveways', function (req, res) {
-  var fs = require('fs');
-    fs.writeFile("content/ways.json", req.body.file, function(err) {
-        if(err) {
-            console.log(err);
-            res.sendStatus(500);
-        } else {
-            console.log("The file was saved!");
-            res.sendStatus(200);
+// app.post('/saveways', function (req, res) {
+//   var fs = require('fs');
+//     fs.writeFile("content/ways.json", req.body.file, function(err) {
+//         if(err) {
+//             console.log(err);
+//             res.sendStatus(500);
+//         } else {
+//             console.log("The file was saved!");
+//             res.sendStatus(200);
 
-        }
-    });
-});
+//         }
+//     });
+// });
 
 app.listen(app.get('port'), function() {
     console.log("Node app is running at localhost:" + app.get('port'));
