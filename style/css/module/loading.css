@@ -45,7 +45,23 @@
   transform: translate(-50%, -50%);
 }
 
-/* line 53, ../../sass/module/loading.scss */
+@-webkit-keyframes opacity {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-moz-keyframes opacity {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/* line 62, ../../sass/module/loading.scss */
 .streetwalk-loading-text {
   position: absolute;
   width: 50%;
@@ -56,7 +72,7 @@
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 61, ../../sass/module/loading.scss */
+/* line 70, ../../sass/module/loading.scss */
 .streetwalk-loading-text .loading-text {
   font-family: "FilbertBrush";
   font-size: 1.3rem;
@@ -64,7 +80,26 @@
   color: #FFFFFF;
   margin: 1rem;
 }
-/* line 69, ../../sass/module/loading.scss */
+/* line 78, ../../sass/module/loading.scss */
+.streetwalk-loading-text .loading-text .dot {
+  -webkit-animation-name: opacity;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-name: opacity;
+  -moz-animation-duration: 1s;
+  -moz-animation-iteration-count: infinite;
+}
+/* line 88, ../../sass/module/loading.scss */
+.streetwalk-loading-text .loading-text .dot:nth-child(2) {
+  -webkit-animation-delay: 100ms;
+  -moz-animation-delay: 100ms;
+}
+/* line 93, ../../sass/module/loading.scss */
+.streetwalk-loading-text .loading-text .dot:nth-child(3) {
+  -webkit-animation-delay: 300ms;
+  -moz-animation-delay: 300ms;
+}
+/* line 98, ../../sass/module/loading.scss */
 .streetwalk-loading-text .headset {
   position: absolute;
   width: 50%;
