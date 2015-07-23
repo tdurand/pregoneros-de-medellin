@@ -10,7 +10,7 @@ app.use(compression());
 app.use('/', express.static(__dirname,{maxAge:week}));
 app.use(bodyParser.json({limit: '2mb'}));
 app.use(bodyParser.urlencoded({limit: '2mb', extended: true}));
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 8080));
 app.set('views', __dirname);
 
 app.get('/', function(req, res) {
