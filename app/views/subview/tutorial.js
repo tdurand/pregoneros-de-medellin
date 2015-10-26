@@ -154,6 +154,8 @@ function($, _, Backbone,
                   id: 'unlock-video',
                   target: ".menucharacter-" + character + " .character-locked",
                   placement: 'top',
+                  xOffset: 'center',
+                  arrowOffset:'center',
                   title: Localization.STR.tutorialDirectUnlockTitle,
                   content: Localization.STR.tutorialDirectUnlockDescription + '<p><button class="btn-gotostreet btn-secondary hopscotch-cta btn">'+ Localization.STR.tutorialDirectUnlockBtnGoDirectly + '</button> <button class="hopscotch-close hopscotch-nav-button hopscotch-cta">' + Localization.STR.tutorialDirectUnlockBtnPreferSearch +'</button></p>',
                   onShow: function() {
