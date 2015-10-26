@@ -39,7 +39,6 @@ function($, _, Backbone,
                 $(".hopscotch-bubble-close").hide();
                 $(".streetwalk-tutorial-overlay").show();
                 self.characterSignAnimation = TweenMax.fromTo(".character-sign",0.5,{scale:0.9},{scale:1.1,repeat:-1,yoyo:true});
-
                 self.listenToOnce(self,"clickOnCharacter",function() {
                     $(".streetwalk-tutorial-overlay").addClass("step2");
                     $(".hopscotch-bubble:not(.hopscotch-callout)").addClass("hide");
@@ -49,14 +48,15 @@ function($, _, Backbone,
                 self.listenToOnce(self,"closeVideo",function() {
                     //Wait end of the animation
                     setTimeout(function() {
-                        if(hopscotch.getState()) {
-                            $(".hopscotch-bubble:not(.hopscotch-callout)").removeClass("hide");
-                            hopscotch.nextStep();
-                        }
-                        else {
-                            $(".hopscotch-bubble:not(.hopscotch-callout)").removeClass("hide");
-                            hopscotch.startTour(self.tutorial,1);
-                        }
+                        hopscotch.endTour();
+                        // if(hopscotch.getState()) {
+                        //     $(".hopscotch-bubble:not(.hopscotch-callout)").removeClass("hide");
+                        //     hopscotch.nextStep();
+                        // }
+                        // else {
+                        //     $(".hopscotch-bubble:not(.hopscotch-callout)").removeClass("hide");
+                        //     hopscotch.startTour(self.tutorial,1);
+                        // }
                     },500);
                 });
               }
