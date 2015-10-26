@@ -1,16 +1,5 @@
-<p><a href="#index" class="btn"><%= STR.menuBtnLabelHome %></a> <span class="menu-separator">|</span>
-    <a href="#page/transmedia" class="btn"><%= STR.menuBtnLabelTransmedia %></a> <span class="menu-separator">|</span> 
-    <a href="#page/music" class="btn"><%= STR.menuBtnLabelMusic %></a> <span class="menu-separator">|</span> 
-    <a href="#page/team" class="btn"><%= STR.menuBtnLabelCredits %></a> <span class="menu-separator">|</span> 
-    <a href="#page/makingof" class="btn"><%= STR.menuBtnLabelMakingOf %></a> <span class="menu-separator">|</span> 
-    <a href="#page/presskit" class="btn"><%= STR.menuBtnLabelPressKit %></a> <span class="menu-separator">|</span> 
-
-<% if(loginStatus.logged) { %>
-        <a class="menu-btnlogout"><%= STR.menuBtnLabelLogOut %> (<%= loginStatus.name %>)</a>
-<% } else { %>
-    <a class="menu-btnlogin"><%= STR.menuBtnLabelLogIn %></a> 
-<% } %>
-   <span class="menu-separator">|</span> <select name="language-selection" class="language-selection">
+<p>
+   <select name="language-selection" class="language-selection">
         <option value="es" <% if(lang == "es") {%> selected <%} %>><%= STR.selectLanguageSpanish %></option>
         <option value="en" <% if(lang == "en") {%> selected <%} %>><%= STR.selectLanguageEnglish %></option>
         <option value="fr" <% if(lang == "fr") {%> selected <%} %>><%= STR.selectLanguageFrench %></option>

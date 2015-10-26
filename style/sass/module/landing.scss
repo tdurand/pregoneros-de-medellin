@@ -16,29 +16,15 @@
 .top {
      @include span(12);
 
-     height:25%;
+     height:15%;
 
      position: relative;
      z-index:30;
 
-     .logo-bar {
-        height: 50%;
-        position: absolute;
-        @include span(12);
-        background-color: white;
-
-        svg {
-            height: 100%;
-            position:absolute;
-            left:50%;
-            @include translate(-50%,0%);
-        }
-     }
-
      .wrap-top-bar {
         position:absolute;
-        height: 50%;
-        top:50%;
+        height: 100%;
+        top:0%;
 
         @include span(12);
 
@@ -53,6 +39,11 @@
 
             background-color: #00937A;
             opacity: 1;
+
+            .menu {
+                position: absolute;
+                right: 40px;
+            }
 
             .share-btn {
                 width:5%;
@@ -109,7 +100,7 @@
 .middle {
     @include span(12);
 
-    height:75%;
+    height:85%;
     position:relative;
 
     .logo {
