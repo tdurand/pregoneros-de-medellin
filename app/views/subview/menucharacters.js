@@ -29,10 +29,7 @@ function($, _, Backbone,
   var MenuCharactersView = Backbone.View.extend({
 
     events:{
-        "click .character":"toggleMenu",
-        "click .btn-close":"toggleMenu",
-        "click .video":"clickOnMenu",
-        "click .streetwalk-menucharacter":"clickOnMenuHack"
+        "click .character":"clickOnMenu"
     },
 
     firstRender: true,
@@ -182,12 +179,12 @@ function($, _, Backbone,
 
             //Launch animation unlockCharacter
             self.unlockCharacter(character,function() {
-                self.unlockVideoAndOpen(character,video);
+                self.openVideo(character);
             });
         }
         else {
             //Launch animation unlockvideo
-            self.unlockVideoAndOpen(character,video);
+            self.openVideo(character);
         }
 
         self.listenToOnce(self,"closeVideo",function() {
@@ -261,7 +258,7 @@ function($, _, Backbone,
 
     closeVideo: function(character, video) {
 
-        var elem = $(".streetwalk-menucharacter[data-character='" + character + "'] ." + video);
+        var elem = $(".streetwalk-menucharacter[data-character='" + character + "'] .character");
         var elemProperties = $(elem)[0].getBoundingClientRect();
 
         var Xposition = elemProperties.left + elemProperties.width/2;
@@ -270,6 +267,23 @@ function($, _, Backbone,
         TweenLite.fromTo(".streetwalk-video", 1,
                 {scaleY:1,scaleX:1,display:"block"},
                 {scaleY:0,scaleX:0,
+                    transformOrigin:Xposition+"px "+Yposition+"px",
+                    ease: Power1.easeInOut
+               });
+
+    },
+
+    openVideo: function(character, video) {
+
+        var elem = $(".streetwalk-menucharacter[data-character='" + character + "'] .character");
+        var elemProperties = $(elem)[0].getBoundingClientRect();
+
+        var Xposition = elemProperties.left + elemProperties.width/2;
+        var Yposition = elemProperties.top + elemProperties.height/2;
+
+        TweenLite.fromTo(".streetwalk-video", 1,
+                {scaleY:0,scaleX:0,display:"block"},
+                {scaleY:1,scaleX:1,
                     transformOrigin:Xposition+"px "+Yposition+"px",
                     ease: Power1.easeInOut
                });
@@ -349,18 +363,17 @@ function($, _, Backbone,
     clickOnMenu: function(e) {
         var self = this;
 
-        var type = $(e.currentTarget).attr("data-type");
-        var content = $(e.currentTarget).attr("data-content");
+        var state = $(e.currentTarget).attr("data-state");
         var character = $(e.currentTarget).attr("data-character");
 
-        if(type == "video") {
+        if(state == "unlocked") {
             //open video
-            self.VideoManagerView.initSpecificVideo(character, content);
+            self.VideoManagerView.initSpecificVideo(character, "video1");
             self.VideoManagerView.showVideo();
         }
         else {
             //locker
-            TutorialView.showHelperLocker(character,content);
+            TutorialView.showHelperLocker(character);
         }
     },
 

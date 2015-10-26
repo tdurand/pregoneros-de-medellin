@@ -143,7 +143,7 @@ function($, _, Backbone,
         }
     },
 
-    showHelperLocker: function(character,video) {
+    showHelperLocker: function(character) {
             var self = this;
             //hide potential tooltip
             $(".hopscotch-bubble:not(.hopscotch-callout)").addClass("hide");
@@ -152,7 +152,7 @@ function($, _, Backbone,
             var calloutMgr = hopscotch.getCalloutManager();
             calloutMgr.createCallout({
                   id: 'unlock-video',
-                  target: ".menucharacter-" + character + " ." + video +"-locked",
+                  target: ".menucharacter-" + character + " .character-locked",
                   placement: 'top',
                   title: Localization.STR.tutorialDirectUnlockTitle,
                   content: Localization.STR.tutorialDirectUnlockDescription + '<p><button class="btn-gotostreet btn-secondary hopscotch-cta btn">'+ Localization.STR.tutorialDirectUnlockBtnGoDirectly + '</button> <button class="hopscotch-close hopscotch-nav-button hopscotch-cta">' + Localization.STR.tutorialDirectUnlockBtnPreferSearch +'</button></p>',
