@@ -38,15 +38,15 @@ define(['jquery',
             var nbStreetsLoaded = Progression.getNbStreetLoaded();
 
             //Message to create account
-            if(!UserManagerView.isLogged() && _.contains(self.messageAskToCreateAccount.conditionStreetsLoaded,nbStreetsLoaded)) {
-                self.showMessageAskToCreateAccount();
-            }
+            // if(!UserManagerView.isLogged() && _.contains(self.messageAskToCreateAccount.conditionStreetsLoaded,nbStreetsLoaded)) {
+            //     self.showMessageAskToCreateAccount();
+            // }
 
             //Message to ask to share
-            if(!Progression.isPageBeenShared() && _.contains(self.messageShareWithFriends.conditionStreetsLoaded,nbStreetsLoaded)) {
-                self.showMessageAskToShare();
-                //TODO IMPLEMENT IN USERMANAGER TO SET SHARED=TRUE WHEN SHARED
-            }
+            // if(!Progression.isPageBeenShared() && _.contains(self.messageShareWithFriends.conditionStreetsLoaded,nbStreetsLoaded)) {
+            //     self.showMessageAskToShare();
+            //     //TODO IMPLEMENT IN USERMANAGER TO SET SHARED=TRUE WHEN SHARED
+            // }
 
         },
 
