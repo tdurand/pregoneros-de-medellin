@@ -30,7 +30,7 @@ function($, _, Backbone,
           loop:true,
           html5:true,
           // volume:0,
-          volume:0.7,
+          volume:0.6,
           onload: function() {
             self.soundHome.play();
           }
@@ -42,7 +42,7 @@ function($, _, Backbone,
 
         if(self.soundHome) {
             if(!self.soundHomeFaded) {
-                self.soundHome.fade(1,0,3000);
+                self.soundHome.fade(0.6,0,3000);
                 self.soundHomeFaded = true;
             }
         }

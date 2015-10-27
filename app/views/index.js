@@ -182,7 +182,7 @@ function($, _, Backbone,
 
     goToStreetWalk: function() {
         var self = this;
-        self.enterFullScreen();
+        // self.enterFullScreen();
     },
 
     enterFullScreen: function() {
