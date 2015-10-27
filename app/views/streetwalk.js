@@ -236,6 +236,7 @@ define(['jquery',
             // STOP ON LOADING STARTED == DONE
             // STOP ON PLAYING VIDEO  == DONE
             // START ON FINISH PLAYING VIDEO == DONE
+            Inactivity.init();
             Inactivity.on("inactivity", function() {
                 console.log("==== INACTIVITY DETECTED , go back to homepage");
                 window.location.href = "/";

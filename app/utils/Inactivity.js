@@ -4,10 +4,21 @@ define(["backbone"],function(Backbone) {
 
         timer: 10000,
         timeout: null,
+        isCounting: false,
+
+        init: function() {
+            var self = this;
+            $(document).off("mousemove touchstart touchmove click");
+            $(document).on("mousemove touchstart touchmove click", function() {
+                console.log("==== RESET COUNTING ... ===")
+                self.resetCounting();
+            });
+        },
 
         startCounting: function() {
             console.log("==== RECORDING INACTIVITY ... ===");
             var self = this;
+            self.isCounting = true;
             self.timeout = setTimeout(function() {
                 self.inactivity();
             }, self.timer);
@@ -16,7 +27,15 @@ define(["backbone"],function(Backbone) {
         stopCounting: function() {
             console.log("==== STOP RECORDING INACTIVITY ===");
             var self = this;
-            window.clearTimeout(self.timeout)
+            self.isCounting = false;
+            window.clearTimeout(self.timeout);
+        },
+
+        resetCounting: function() {
+            if(this.isCounting) {
+                this.stopCounting();
+                this.startCounting();
+            }
         },
 
         inactivity: function() {
