@@ -19,6 +19,7 @@ define(["backbone"],function(Backbone) {
             console.log("==== RECORDING INACTIVITY ... ===");
             var self = this;
             self.isCounting = true;
+            window.clearTimeout(self.timeout);
             self.timeout = setTimeout(function() {
                 self.inactivity();
             }, self.timer);
