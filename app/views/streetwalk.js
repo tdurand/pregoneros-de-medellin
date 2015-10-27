@@ -7,6 +7,7 @@ define(['jquery',
     'utils/GeoUtils',
     'utils/LocalParams',
     'utils/Logger',
+    'utils/Inactivity',
     'utils/Constant',
     'utils/Localization',
     'utils/MessagingManager',
@@ -40,6 +41,7 @@ define(['jquery',
         GeoUtils,
         LocalParams,
         LOGGER,
+        Inactivity,
         CONSTANT,
         Localization,
         MessagingManager,
@@ -189,6 +191,8 @@ define(['jquery',
                     self.pause();
                 }
                 self.muteSounds();
+                //STOP INACTIVITY COUNTER
+                Inactivity.stopCounting();
             });
 
             self.listenTo(VideoManagerView,"closeVideo",function() {
@@ -196,10 +200,11 @@ define(['jquery',
                 if(Progression.instance.get("tutorialDone")) {
                     self.play();
                 }
-
                 if(!Sounds.userMuted) {
                     self.unmuteSounds();
                 }
+                //START INACTIVITY COUNTER
+                Inactivity.startCounting();
             });
 
             //SOUNDS
@@ -223,6 +228,19 @@ define(['jquery',
                 console.log("adjust sizes");
                 self.adjustSizes();
             });
+
+            //INACTIVITY
+            // START ON LOADING FINISHED == DONE
+            // START ON FINISH MOVING == DONE
+            // STOP ON MOVING == DONE
+            // STOP ON LOADING STARTED == DONE
+            // STOP ON PLAYING VIDEO  == DONE
+            // START ON FINISH PLAYING VIDEO == DONE
+            Inactivity.on("inactivity", function() {
+                console.log("==== INACTIVITY DETECTED , go back to homepage");
+                window.location.href = "/";
+            });
+
         },
 
         initArrowKeyBinding: function() {
@@ -306,6 +324,8 @@ define(['jquery',
 
         renderLoading: function() {
             var self = this;
+
+            Inactivity.stopCounting();
 
             self.$el.find(".streetwalk-chooseway-end-wrapper").hide();
             self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
@@ -549,6 +569,7 @@ define(['jquery',
             self.computeAnimation(true);
             self.initScrollEventHandlers();
             self.initFullScreenEventHandler();
+            Inactivity.startCounting();
         });
 
         self.listenToOnce(self.way,"loadingFinishedCompletely", function() {
@@ -885,6 +906,7 @@ define(['jquery',
                     self.renderElements(imgNb);
                     $("body").removeClass('not-moving');
                     MapView.moving = true;
+                    Inactivity.stopCounting();
                     $(self.elImgHighRes).addClass("hidden");
 
 
@@ -928,6 +950,7 @@ define(['jquery',
 
                         self.timeOutNotMoving = setTimeout(function() {
                             MapView.moving = false;
+                            Inactivity.startCounting();
                             $("body").addClass('not-moving');
                         },1000);
                     },100);

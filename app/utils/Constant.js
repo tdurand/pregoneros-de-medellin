@@ -9,28 +9,28 @@ define(["backbone"],function(Backbone) {
             self.set({
                 videoToPlay: {
                     jale: {
-                        video1:"videos/jale-01.mp4",
-                        video2:"videos/jale-02.mp4",
-                        video3:"videos/jale-03.mp4"
+                        video1:"videos/jale-01-1080.mp4",
+                        video2:"videos/jale-01-1080.mp4",
+                        video3:"videos/jale-01-1080.mp4"
                     },
                     pajarito: {
-                        video1:"videos/pajarito-01.mp4",
+                        video1:"videos/pajarito-01-1080.mp4",
                         video2:"videos/pajarito-02.mp4",
                         video3:"videos/pajarito-03.mp4",
                         videobonus:"videos/videobonus.mp4"
                     },
                     lider: {
-                        video1:"videos/lider-01.mp4",
+                        video1:"videos/lider-01-1080.mp4",
                         video2:"videos/lider-02.mp4",
                         video3:"videos/lider-03.mp4"
                     },
                     gaucho: {
-                        video1:"videos/pajarito-01.mp4",
-                        video2:"videos/pajarito-01.mp4",
-                        video3:"videos/pajarito-01.mp4"
+                        video1:"videos/pajarito-01-1080.mp4",
+                        video2:"videos/pajarito-02.mp4",
+                        video3:"videos/pajarito-03.mp4"
                     },
                     papavanegas: {
-                        video1:"videos/papavanegas-01.mp4",
+                        video1:"videos/papavanegas-01-1080.mp4",
                         video2:"videos/papavanegas-02.mp4",
                         video3:"videos/papavanegas-03.mp4"
                     }

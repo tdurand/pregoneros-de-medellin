@@ -71,6 +71,7 @@ function($, _, Backbone,
                 });
             }
         }
+
     },
 
     fbAsyncInit: function() {
