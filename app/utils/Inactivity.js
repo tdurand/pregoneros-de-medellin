@@ -2,7 +2,7 @@ define(["backbone"],function(Backbone) {
 
     var Inactivity = {
 
-        timer: 10000,
+        timer: 60000,
         timeout: null,
         isCounting: false,
 
