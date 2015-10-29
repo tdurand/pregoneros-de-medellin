@@ -4469,6 +4469,11 @@ body.not-moving .streetwalk-sign {
   background-color: #efe7e7;
 }
 
+/* line 57, ../sass/module/btn.scss */
+.btn-gotostreet {
+  margin-bottom: 10px;
+}
+
 @media screen and (max-width: 1300px) {
   /* line 1, ../sass/module/mediaquery.scss */
   html, body {
