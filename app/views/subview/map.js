@@ -56,7 +56,7 @@ function($, _, Backbone,
             attributionControl: false,
             minZoom: 18,
             maxZoom: 18,
-            maxBounds:[[6.24965380488494,-75.57065427303314],[6.25270400731175,-75.56537568569183]]
+            maxBounds:[[6.248523305761993,-75.57166814804077],[6.2530772826108425,-75.56503772735594]]
         });
 
         self.listenTo(self.map,"load", function() {
