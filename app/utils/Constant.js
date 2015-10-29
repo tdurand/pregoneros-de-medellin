@@ -25,9 +25,9 @@ define(["backbone"],function(Backbone) {
                         video3:"videos/lider-03.mp4"
                     },
                     gaucho: {
-                        video1:"videos/pajarito-01-1080.mp4",
-                        video2:"videos/pajarito-02.mp4",
-                        video3:"videos/pajarito-03.mp4"
+                        video1:"videos/gaucho-01-1080.mp4",
+                        video2:"videos/gaucho-02.mp4",
+                        video3:"videos/gaucho-03.mp4"
                     },
                     papavanegas: {
                         video1:"videos/papavanegas-01-1080.mp4",
