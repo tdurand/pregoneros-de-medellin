@@ -84,7 +84,7 @@ function($, _, Backbone,
             });
 
             self.player.on("userinactive", function() {
-                self.$el.find(".streetwalk-video-btnclose").hide();
+                // self.$el.find(".streetwalk-video-btnclose").hide();
             });
 
             self.player.on("ended", function() {
