@@ -130,7 +130,7 @@
         @include border-image(url("../../images/texture_description_area.png") 111 214 51 297 fill stretch);
         @include span(isolate 7 at 6);
 
-        border-width: 111px 214px 0px 297px;
+        border-width: 181px 214px 0px 297px;
 
         @media screen and (max-width: 1400px) {
             & {
