@@ -267,6 +267,32 @@ function($, _, Backbone, LOGGER, CONSTANT, Ways){
         return streetsToGo[0];
     },
 
+    getFirstStreetWhereCharacterNotDiscovered: function() {
+        var self = this;
+
+        var streetsToGo = [];
+        var street = "";
+
+        _.each(_.keys(self.get("charactersProgression").attributes),function(character) {
+            street = self.getStreetWhereCharacterNotDiscovered(character);
+            if(!_.isUndefined(street)) {
+                streetsToGo.push(street);
+            }
+        });
+
+        if(streetsToGo[0] == "plazabotero-carabobo-cr51") {
+            streetsToGo.shift();
+        }
+
+        if(streetsToGo.length == 0) {
+            streetstoGo.push("plazabotero-cr51-carabobo");
+        }
+
+        console.log(streetsToGo);
+
+        return streetsToGo[0];
+    },
+
     isThisCharacterInThisStreetLocked: function(wayName, character) {
         var self = this;
 

@@ -241,7 +241,6 @@ define(['jquery',
                 console.log("==== INACTIVITY DETECTED , go back to homepage");
                 window.location.href = "/";
             });
-
         },
 
         initArrowKeyBinding: function() {
@@ -718,10 +717,24 @@ define(['jquery',
         if(imgNb >= self.way.wayStills.nbImages-1) {
             self.$el.find(".streetwalk-chooseway-start-wrapper").hide();
 
-            self.$el.find(".streetwalk-chooseway-end-wrapper").html(_.template(streetWalkChoosePathViewTemplate)({
-                wayConnections:self.way.wayConnectionsEnd,
-                lang : Localization.translationLoaded
-            }));
+            if(self.way.wayConnectionsEnd === "auto") {
+                var specialWayConnectionEnd = [{
+                    "direction" : "forward",
+                    "name" : Progression.instance.getFirstStreetWhereCharacterNotDiscovered()
+                }
+                ]
+
+                self.$el.find(".streetwalk-chooseway-end-wrapper").html(_.template(streetWalkChoosePathViewTemplate)({
+                    wayConnections: specialWayConnectionEnd,
+                    lang : Localization.translationLoaded
+                }));
+            }
+            else {
+                self.$el.find(".streetwalk-chooseway-end-wrapper").html(_.template(streetWalkChoosePathViewTemplate)({
+                    wayConnections:self.way.wayConnectionsEnd,
+                    lang : Localization.translationLoaded
+                }));
+            }
 
             if(!self.chooseWayEndDisplaying) {
                 self.chooseWayEndDisplaying = true;
