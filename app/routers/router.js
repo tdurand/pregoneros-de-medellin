@@ -234,7 +234,7 @@ define([
                     router.before();
 
                     //Check if mobile
-                    if(window.matchMedia("(max-width : 1000px)").matches) {
+                    if(window.matchMedia("(max-width : 995px)").matches) {
                         console.log("MOBILE DETECTED");
                         router.mobile();
                         return;
