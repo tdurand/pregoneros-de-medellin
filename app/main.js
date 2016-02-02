@@ -65,6 +65,11 @@ define(['jquery',
         //Start app Router
         Backbone.history.start();
 
+        //Disable contextmenu on chrome
+        window.addEventListener("contextmenu", function(e) {
+            e.preventDefault();
+        })
+
         //Videojs config
         videojs.options.flash.swf = "app/libs/vendor/video-js.swf";
         
