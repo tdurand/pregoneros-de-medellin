@@ -70,7 +70,7 @@ function($, _, Backbone,
             self.map.doubleClickZoom.disable();
             self.map.scrollWheelZoom.disable();
             // Disable tap handler, if present.
-            if (self.map.tap) map.tap.disable();
+            if (self.map.tap) self.map.tap.disable();
 
             self.addAllCharacterToMap();
             self.addWaysToMap();
