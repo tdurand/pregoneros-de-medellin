@@ -165,6 +165,12 @@
 
             .streetwalk-map-btnfullscreen {
                 background-image: url("../../images/closebtn-black.svg");
+
+                &::before { 
+                    content: '';
+                    position: absolute;
+                    top: -20px; right: -20px; bottom: -20px; left: -20px;
+                }
             }
 
             .character-icon {
@@ -222,6 +228,12 @@
 
             background: #fff url("../../images/map/magnifier.svg") no-repeat 0 0;
             background-size: contain;
+
+            &::before { 
+                content: '';
+                position: absolute;
+                top: -20px; right: -20px; bottom: -20px; left: -20px;
+            }
         }
     }
 
@@ -363,6 +375,12 @@
         background-repeat: no-repeat;
 
         cursor:pointer;
+
+        &::before { 
+            content: '';
+            position: absolute;
+            top: -25px; right: -25px; bottom: -25px; left: -25px;
+        }
     }
 }
 

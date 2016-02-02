@@ -4,6 +4,10 @@ html {
   -moz-osx-font-smoothing:grayscale;
 }
 
+html::-webkit-scrollbar {
+  display:none;
+}
+
 button:focus {outline:0;}
 
 .align-center {
