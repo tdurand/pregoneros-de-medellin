@@ -119,9 +119,9 @@
 /* line 112, ../../sass/module/loading.scss */
 .streetwalk-loading-bottom .laurels .laurels-img {
   max-width: 100%;
-  max-height: 70%;
+  max-height: 60%;
   position: absolute;
+  bottom: 5px;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
 }
