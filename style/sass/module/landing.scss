@@ -122,6 +122,20 @@
         background-repeat: no-repeat;
     }
 
+    .laurels {
+        width: 50%;
+        position:absolute;
+        bottom:0px;
+        left:10px;
+        z-index:30;
+        text-align: center;
+
+        .laurels-img {
+            max-width: 100%;
+            max-height: 120px;
+        }
+    }
+
     .description {
         
         height: 120%;
