@@ -193,6 +193,10 @@ define(['jquery',
                 self.muteSounds();
                 //STOP INACTIVITY COUNTER
                 Inactivity.stopCounting();
+                //MAKE SURE WE STOP INACTIVITY COUNTER
+                setTimeout(function() {
+                    Inactivity.stopCounting();
+                }, 3000)
             });
 
             self.listenTo(VideoManagerView,"closeVideo",function() {
