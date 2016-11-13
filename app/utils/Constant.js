@@ -17,7 +17,7 @@ define(["backbone"],function(Backbone) {
                         video1:"https://player.vimeo.com/external/121791163.hd.mp4?s=8da2ded0216bfa4a4e63c7565891cacb",
                         video2:"https://player.vimeo.com/external/121791164.hd.mp4?s=76694a41705ccd17c0c6191ecfc6d5fb",
                         video3:"https://player.vimeo.com/external/121791165.hd.mp4?s=aa2096a17085ddfdab4f81e7d0028ace",
-                        videobonus:"http://player.vimeo.com/external/124885146.hd.mp4?s=cad07c1c46d5d50bb6477a7a4c9c25a4"
+                        videobonus:"https://player.vimeo.com/external/124885146.hd.mp4?s=cad07c1c46d5d50bb6477a7a4c9c25a4"
                     },
                     lider: {
                         video1:"https://player.vimeo.com/external/120198776.hd.mp4?s=43749e12765f9f1f60405c6728a25186",
