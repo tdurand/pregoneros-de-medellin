@@ -144,7 +144,7 @@ function($, _, Backbone, GeoUtils, LOGGER){
 
 
         self.sound = new Howl({
-          src: ['http://images.pregonerosdemedellin.com/data/sounds/' + self.get("path") + '.mp3'],
+          src: ['https://images.pregonerosdemedellin.com/data/sounds/' + self.get("path") + '.mp3'],
           loop:true,
           html5:self.isAmbient(),
           volume:0,
