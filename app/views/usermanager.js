@@ -79,6 +79,8 @@ function($, _, Backbone,
         Parse.initialize("9uInSCaUNce345LbJrkqIsKQZfS7TJSdQNzQeFXT",
                    "XmjFAZhIjwkRKzir12xZO6w9kz8V5t1zwYmuT0Qt");
 
+        Parse.serverURL = 'https://parseapi.back4app.com';
+
         Parse.FacebookUtils.init({ // this line replaces FB.init({
           appId      : '584965638293572', // Facebook App ID
           status     : true,  // check Facebook Login status
