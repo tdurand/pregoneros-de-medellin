@@ -68,10 +68,10 @@ function($, _, Backbone, LOGGER, ProgressionModel){
           success: function(data) {
                 if(!_.isUndefined(data)) {
                     //reject characterProgression
+                    var dataAttributes = _.omit(data.attributes, 'charactersProgression');
                     var charactersProgression = data.attributes.charactersProgression;
-                    delete data.attributes.charactersProgression;
                     self.instance.get("charactersProgression").set(charactersProgression);
-                    self.instance.set(data.attributes);
+                    self.instance.set(dataAttributes);
                     self.instance.set({id : data.id});
                 }
                 
