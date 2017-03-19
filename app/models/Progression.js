@@ -43,12 +43,12 @@ function($, _, Backbone, LOGGER, ProgressionModel){
             self.parseDAOInstance.save(null,{
                   success: function(progression) {
                     // Execute any logic that should take place after the object is saved.
-                    console.log('New object created with objectId: ' + progression.id);
+                    // console.log('New object created with objectId: ' + progression.id);
                   },
                   error: function(progression, error) {
                     // Execute any logic that should take place if the save fails.
                     // error is a Parse.Error with an error code and message.
-                    console.log('Failed to create new object, with error code: ' + error.message);
+                    // console.log('Failed to create new object, with error code: ' + error.message);
                    }
                 });
         }

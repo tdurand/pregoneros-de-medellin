@@ -64,7 +64,7 @@ function($, _, Backbone,
         });
 
         $(window).on("resize", function() {
-            console.log("Adjust size");
+            // console.log("Adjust size");
             self.resizeBackgroundVideo();
         });
 

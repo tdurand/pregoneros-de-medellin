@@ -220,7 +220,7 @@ define(['jquery',
 
             //RESIZE WINDOW
             $(window).on("resize",function() {
-                console.log("adjust sizes");
+                // console.log("adjust sizes");
                 self.adjustSizes();
             });
         },
@@ -360,7 +360,7 @@ define(['jquery',
                 }));
                 self.$el.find(".streetwalk-loading").show();
 
-                console.log(self.$el.find(".streetwalk-loading"));
+                // console.log(self.$el.find(".streetwalk-loading"));
 
                 self.pathLoading = $(".streetwalk-loading .loading-line");
                 self.pathLoadingLength = self.pathLoading[0].getTotalLength();
@@ -553,7 +553,8 @@ define(['jquery',
 
         self.listenToOnce(self.way,"loadingFinishedCompletely", function() {
             //if there is a character in this street
-            if(self.way.isThereACharacter()) {
+            if(self.way.isThereACharacter() && !VideoManagerView.currentWayVideoInitialized) {
+                console.log('INIT ONLY IF NOT INIT YET')
                 VideoManagerView.initNextCharacterVideo(self.way.characterDefinition.name, self.way.wayName);
             }
         });
@@ -626,9 +627,9 @@ define(['jquery',
         LOGGER.debug("HIGH RES RENDER");
 
         self.currentStill.loadHighRes(function(srcHighRes) {
-            // console.log("REAL SRC HIGHRES" + srcHighRes);
+            // // console.log("REAL SRC HIGHRES" + srcHighRes);
             var loadedHighResId = parseInt(_.last(srcHighRes.split("/")).substring(3,6),10);
-            // console.log("SUPPOSED SRC HIGHRES" + self.currentStill.get("srcHighRes"));
+            // // console.log("SUPPOSED SRC HIGHRES" + self.currentStill.get("srcHighRes"));
             $(self.elImgHighRes).attr("src", self.currentStill.get("srcHighRes"));
             
             if(callBackLoaded) {
@@ -901,7 +902,7 @@ define(['jquery',
                         currentTime = new Date().getTime();
                         //If time since last call < 1 sec, cancel last highres
                         if(currentTime - self.lastCallRenderHighResTime < 1000) {
-                            console.log("Cancel highres loading");
+                            // console.log("Cancel highres loading");
                             self.lastCallRenderHighResStill.cancelHighResLoading();
                             //cancel timeout not moving
                             clearTimeout(self.timeOutNotMoving);
@@ -1021,11 +1022,11 @@ define(['jquery',
             $(e.currentTarget).attr("data-state","fullscreen");
 
             $(document).one("webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange", function() {
-                console.log("fullscreenevent play");
+                // console.log("fullscreenevent play");
                 self.play();
 
                 $(document).one("webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange", function() {
-                    console.log("fullscreen close btn enter");
+                    // console.log("fullscreen close btn enter");
                     self.pause();
                     self.positionOnPause = self.currentPosition;
                     self.play();
@@ -1046,7 +1047,7 @@ define(['jquery',
             self.pause();
 
             $(document).one("webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange", function() {
-                console.log("fullscreenevent play");
+                // console.log("fullscreenevent play");
                 self.play();
                 $(e.currentTarget).attr("data-state","normal");
             });

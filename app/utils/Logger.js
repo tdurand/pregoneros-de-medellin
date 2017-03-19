@@ -6,7 +6,7 @@ define(function() {
 
         debug : function(text) {
             if (this.modeDebug) {
-                console.log(text);
+                // console.log(text);
             }
         },
         error : function(text) {

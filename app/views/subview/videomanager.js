@@ -144,6 +144,7 @@ function($, _, Backbone,
 
         setTimeout(function() {
             if(self.playerReady) {
+                console.log('play');
                 self.player.play();
             }
         },2000);

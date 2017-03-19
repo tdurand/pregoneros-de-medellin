@@ -1,13 +1,12 @@
-<video id="video" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto">
-    <source src="<%= video.videoId %>" type='video/mp4' />
-     <% if(lang == "es") {%>
-    <track kind="captions" src="content/subtitles/<%= video.videoCharacter %>/<%= video.videoName %>/es.vtt" srclang="es" label="<%= STR.selectLanguageSpanish %>" default></track>
-    <% } %>
-    <% if(lang == "en") {%>
-    <track kind="captions" src="content/subtitles/<%= video.videoCharacter %>/<%= video.videoName %>/en.vtt" srclang="en" label="<%= STR.selectLanguageEnglish %>" default></track>
-    <% } %>
-    <% if(lang == "fr") {%>
-    <track kind="captions" src="content/subtitles/<%= video.videoCharacter %>/<%= video.videoName %>/fr.vtt" srclang="fr" label="<%= STR.selectLanguageFrench %>" default></track>
-    <% } %>
-    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+<video id="video" class="video-js vjs-default-skin vjs-big-play-centered" data-setup='{ "techOrder": ["youtube"], "src": "https://www.youtube.com/watch?v=dN68bWAfhOw", "quality": "720p" }' controls preload="auto">
+  <% if(lang == "es") {%>
+  <track kind="captions" src="content/subtitles/jale/video1/es.vtt" srclang="es" label="<%= STR.selectLanguageSpanish %>" default></track>
+  <% } %>
+  <% if(lang == "en") {%>
+  <track kind="captions" src="content/subtitles/jale/video1/en.vtt" srclang="en" label="<%= STR.selectLanguageEnglish %>" default></track>
+  <% } %>
+  <% if(lang == "fr") {%>
+  <track kind="captions" src="content/subtitles/jale/video1/fr.vtt" srclang="fr" label="<%= STR.selectLanguageFrench %>" default></track>
+  <% } %>
+  <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
 </video>

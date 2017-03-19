@@ -15,7 +15,7 @@ function($, _, Backbone,
     model: Sound,
 
     soundHomeFaded: false,
-    userMuted: false,
+    userMuted: true,
     percentageLoaded:0,
 
     playSoundHome: function() {
@@ -209,7 +209,7 @@ function($, _, Backbone,
 
         sound = self.add(sound);
 
-        console.log(self.models);
+        // console.log(self.models);
 
         return sound;
     },
@@ -217,17 +217,17 @@ function($, _, Backbone,
     removeSound: function(waySound) {
         var self = this;
 
-        console.log(self.previousWaySounds);
+        // console.log(self.previousWaySounds);
 
         self.previousWaySounds = _.reject(self.previousWaySounds,function(sound) {
             return (sound.path == waySound.path);
         });
 
-        console.log(self.previousWaySounds);
+        // console.log(self.previousWaySounds);
 
         self.remove(waySound).unload();
 
-        console.log(self.models);
+        // console.log(self.models);
     },
 
     fetch: function() {
@@ -248,7 +248,7 @@ function($, _, Backbone,
                 self.percentageSoundsLoaded = 100;
                 self.trigger('loadingSoundsFinished');
                 LOGGER.debug("ALL SOUNDS LOADED");
-                console.log(self.models);
+                // console.log(self.models);
 
                 //Remove old sounds
                 _.each(self.soundsToRemoveIds, function(soundToRemove) {
@@ -289,18 +289,18 @@ function($, _, Backbone,
                         self.percentageLoaded = 100;
                         self.trigger('loadingSoundsFinished');
                         LOGGER.debug("ALL SOUNDS LOADED");
-                        console.log(self.models);
+                        // console.log(self.models);
 
                         //Find eventual sound to fadein
                         if(self.soundToFadeInId !== "") {
                             var soundToFadeIn = _.find(self.models,{id:self.soundToFadeInId});
 
                             if(soundToFadeIn && soundToFadeIn.sound.volume() === 0) {
-                                console.log("FADEIN");
+                                // console.log("FADEIN");
                                 soundToFadeIn.fadeIn();
                             }
                             else {
-                                console.log("SOUND TO FADEIN ALREADY VOLUME UP");
+                                // console.log("SOUND TO FADEIN ALREADY VOLUME UP");
                             }
                         }
 
