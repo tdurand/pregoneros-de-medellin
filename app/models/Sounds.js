@@ -15,7 +15,7 @@ function($, _, Backbone,
     model: Sound,
 
     soundHomeFaded: false,
-    userMuted: true,
+    userMuted: false,
     percentageLoaded:0,
 
     playSoundHome: function() {
