@@ -15,16 +15,16 @@ app.set('views', __dirname);
 
 app.get('/', function(req, res) {
     var lang = "es_ES";
-    console.log("x-facebook-locale set to: " + req.headers["x-facebook-locale"]);
+    // console.log("x-facebook-locale set to: " + req.headers["x-facebook-locale"]);
     if(req.headers["x-facebook-locale"]) {
         lang = req.headers["x-facebook-locale"];
-        // console.log("x-facebook-locale set to : " + lang);
+        // // console.log("x-facebook-locale set to : " + lang);
     }
     if(req.query.fb_locale) {
         lang = req.query.fb_locale;
-        // console.log("fb_locale set to : " + lang);
+        // // console.log("fb_locale set to : " + lang);
     }
-    console.log("render lang:" + lang);
+    // console.log("render lang:" + lang);
     res.render('index.ejs', {lang:lang});
 });
 
@@ -32,10 +32,10 @@ app.get('/', function(req, res) {
 //   var fs = require('fs');
 //     fs.writeFile("content/ways.json", req.body.file, function(err) {
 //         if(err) {
-//             console.log(err);
+//             // console.log(err);
 //             res.sendStatus(500);
 //         } else {
-//             console.log("The file was saved!");
+//             // console.log("The file was saved!");
 //             res.sendStatus(200);
 
 //         }
@@ -43,5 +43,5 @@ app.get('/', function(req, res) {
 // });
 
 app.listen(app.get('port'), function() {
-    console.log("Node app is running at localhost:" + app.get('port'));
+    // console.log("Node app is running at localhost:" + app.get('port'));
 });

@@ -76,10 +76,10 @@ function($, _, Backbone,
                 lastPoint = point;
             });
 
-            console.log("WAY "+ self.wayName + ":");
-            console.log("LENGTH :" + self.wayLength + "m");
-            console.log("NBSTILLS :" + self.nbStills);
-            console.log("RATIO STILL/m :" + self.nbStills/self.wayLength);
+            // console.log("WAY "+ self.wayName + ":");
+            // console.log("LENGTH :" + self.wayLength + "m");
+            // console.log("NBSTILLS :" + self.nbStills);
+            // console.log("RATIO STILL/m :" + self.nbStills/self.wayLength);
 
             //Create the stills collection for this way
             self.wayStills = new Stills();

@@ -156,13 +156,13 @@ function($, _, Backbone, LOGGER, CONSTANT, Ways){
         var videoAlreadyUnlockedInThisStreet = self.itemAlreadyUnlockedInThisStreet(character, wayName);
 
         if(_.isUndefined(videoAlreadyUnlockedInThisStreet)) {
-            console.log("No unlock in this street yet");
+            // console.log("No unlock in this street yet");
             var nextItemForThisCharacter = self.nextItemToUnlock(character);
             videoName = nextItemForThisCharacter;
             videoId = CONSTANT.get("videoToPlay")[character][nextItemForThisCharacter];
         }
         else {
-            console.log("Video already unlocked in this street, play same");
+            // console.log("Video already unlocked in this street, play same");
             videoId = CONSTANT.get("videoToPlay")[character][videoAlreadyUnlockedInThisStreet];
             videoName = videoAlreadyUnlockedInThisStreet;
         }
@@ -180,7 +180,7 @@ function($, _, Backbone, LOGGER, CONSTANT, Ways){
                 }
         });
 
-        console.log("Next item to unlock" + toUnLock);
+        // console.log("Next item to unlock" + toUnLock);
 
         return toUnLock;
     },
@@ -226,7 +226,7 @@ function($, _, Backbone, LOGGER, CONSTANT, Ways){
         //track event
         ga('send', 'event', 'nbStoriesUnlocked', nbItemUnlocked);
 
-        console.log("nbItemUnlocked: " + nbItemUnlocked);
+        // console.log("nbItemUnlocked: " + nbItemUnlocked);
 
         return true;
 

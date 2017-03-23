@@ -290,7 +290,7 @@ function($, _, Backbone,
     toggleMenu: function(e) {
         var self = this;
 
-        console.log("toggle menu");
+        // console.log("toggle menu");
         var dataCharacter = $(e.currentTarget).parents(".streetwalk-menucharacter").attr("data-character");
 
         if(self.$el.find(".submenu[data-state='open']").parents("[data-character='"+dataCharacter+"']").length < 1) {

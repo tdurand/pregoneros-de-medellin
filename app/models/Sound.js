@@ -67,7 +67,7 @@ function($, _, Backbone, GeoUtils, LOGGER){
         if (angle < -180)       angle += 360;
         else if (angle > 180)   angle -= 360;
 
-        // console.log("ANGLE: " + angle);
+        // // console.log("ANGLE: " + angle);
 
         // Calculate panPosition, as a range between -1 and +1
         var panPosition = (angle/90);
@@ -76,7 +76,7 @@ function($, _, Backbone, GeoUtils, LOGGER){
             panPosition = (panPosition > 0) ? 1 - x : -1 + x;
         }
 
-        // console.log("PANPOSITION " + panPosition);
+        // // console.log("PANPOSITION " + panPosition);
 
         // Set the new pan poition
         self.sound.pos(panPosition, 1, 1);
@@ -140,7 +140,7 @@ function($, _, Backbone, GeoUtils, LOGGER){
 
         var self = this;
 
-        console.log("SOUND SET TO LOAD :  AMBIENT: " + self.isAmbient() + " Loaded PATH: " + 'data/sounds/' + self.get("path") + '.mp3');
+        // console.log("SOUND SET TO LOAD :  AMBIENT: " + self.isAmbient() + " Loaded PATH: " + 'data/sounds/' + self.get("path") + '.mp3');
 
 
         self.sound = new Howl({

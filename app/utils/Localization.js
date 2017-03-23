@@ -67,7 +67,7 @@ define(["underscore",
                 }
               },
               error: function(e) {
-                console.log('Error while loading : ' + self.getPath(translation));
+                // console.log('Error while loading : ' + self.getPath(translation));
               }
             });
         },

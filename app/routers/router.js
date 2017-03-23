@@ -235,7 +235,7 @@ define([
 
                     //Check if mobile
                     if(window.matchMedia("(max-width : 995px)").matches) {
-                        console.log("MOBILE DETECTED");
+                        // console.log("MOBILE DETECTED");
                         router.mobile();
                         return;
                     }

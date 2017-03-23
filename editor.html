@@ -36,7 +36,7 @@ L.mapbox.accessToken = 'pk.eyJ1IjoidGR1cmFuZCIsImEiOiI0T1ZEWlRVIn0.1PEGeiEWz6RUB
   });
 
   featureGroup.on("click",function(e) {
-    console.log(e);
+    // console.log(e);
     var popup = L.popup()
     .setLatLng(e.latlng)
     .setContent(JSON.stringify(e.layer.toGeoJSON().geometry.coordinates))

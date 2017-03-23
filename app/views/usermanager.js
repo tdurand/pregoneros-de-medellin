@@ -52,21 +52,21 @@ function($, _, Backbone,
     initialize : function() {
         var self = this;
 
-        console.log("fbSDKLoaded?" + fbSDKLoaded);
+        // console.log("fbSDKLoaded?" + fbSDKLoaded);
 
         if(navigator.onLine) {
 
             window.parseInitialized = false;
 
             if(fbSDKLoaded) {
-                console.log("init parse");
+                // console.log("init parse");
                 self.fbAsyncInit();
             }
             else {
-                console.log("wait fb sdk loading");
+                // console.log("wait fb sdk loading");
                 $(document).on("fbSDKLoaded", function() {
                     $(document).off("fbSDKLoaded");
-                    console.log("init parse");
+                    // console.log("init parse");
                     self.fbAsyncInit();
                 });
             }
@@ -179,7 +179,7 @@ function($, _, Backbone,
       
       Parse.User.logIn(email, password, {
         success: function(user) {
-          console.log("SuccessFullLogin" + user);
+          // console.log("SuccessFullLogin" + user);
           self.updateLoginStatus();
 
           self.renderSuccessSignInView();
@@ -255,17 +255,17 @@ function($, _, Backbone,
           success: function(user) {
             if (!user.existed()) {
 
-              console.log("User signed up and logged in through Facebook!");
+              // console.log("User signed up and logged in through Facebook!");
 
               FB.api('/me', function(response) {
                     var user = Parse.User.current();
                     user.set("name",response.name);
-                    console.log("Set facebook name!" + response.Name);
+                    // console.log("Set facebook name!" + response.Name);
 
                     user.save(null, {
                       success: function(user) {
                         // This succeeds, since the user was authenticated on the device
-                        console.log(user);
+                        // console.log(user);
                         self.renderSuccessAccountCreationView();
                         self.updateLoginStatus();
 
@@ -279,7 +279,7 @@ function($, _, Backbone,
 
             } else {
 
-              console.log("User logged in through Facebook!");
+              // console.log("User logged in through Facebook!");
 
               self.afterLogin();
 
