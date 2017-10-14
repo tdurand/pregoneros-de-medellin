@@ -1,4 +1,5 @@
 data/
 app-build/
 node_modules/
+videos/
 *.map
