@@ -79,7 +79,7 @@ function($, _, Backbone, GeoUtils, LOGGER){
         // // console.log("PANPOSITION " + panPosition);
 
         // Set the new pan poition
-        self.sound.pos(panPosition, 1, 1);
+        self.sound.seek(panPosition, 1, 1);
 
         // Apply lowpass filter *if* the sound is behind us (11,000hz = filter fully open)
         // var freq = 11000;

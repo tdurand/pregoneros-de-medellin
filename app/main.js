@@ -8,7 +8,7 @@ require.config({
         backbone:     'libs/vendor/backbone-1.1.2.min',
         backbonenested:'libs/vendor/backbone-nested-2.0.1',
         videojs:      'libs/vendor/videojs-4.12.5.min',
-        howl:         'libs/vendor/howler-2.0-beta.min',
+        howl:         'libs/vendor/howler-2.0.5.min',
         text:         'libs/vendor/text-2.0.10',
         fastclick:    'libs/vendor/fastclick.min',
         tweenmax:     'libs/vendor/TweenMax-1.15.1.min',
