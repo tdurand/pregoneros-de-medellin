@@ -9,30 +9,30 @@ define(["backbone"],function(Backbone) {
             self.set({
                 videoToPlay: {
                     jale: {
-                        video1:"https://images.pregonerosdemedellin.com/video/jale-01.mp4",
-                        video2:"https://images.pregonerosdemedellin.com/video/jale-02.mp4",
-                        video3:"https://images.pregonerosdemedellin.com/video/jale-03.mp4"
+                        video1:"/videos/jale-01.mp4",
+                        video2:"/videos/jale-02.mp4",
+                        video3:"/videos/jale-03.mp4"
                     },
                     pajarito: {
-                        video1:"https://images.pregonerosdemedellin.com/video/pajarito-01.mp4",
-                        video2:"https://images.pregonerosdemedellin.com/video/pajarito-02.mp4",
-                        video3:"https://images.pregonerosdemedellin.com/video/pajarito-03.mp4",
-                        videobonus:"https://images.pregonerosdemedellin.com/video/videobonus.mp4"
+                        video1:"/videos/pajarito-01.mp4",
+                        video2:"/videos/pajarito-02.mp4",
+                        video3:"/videos/pajarito-03.mp4",
+                        videobonus:"/videos/videobonus.mp4"
                     },
                     lider: {
-                        video1:"https://images.pregonerosdemedellin.com/video/lider-01.mp4",
-                        video2:"https://images.pregonerosdemedellin.com/video/lider-02.mp4",
-                        video3:"https://images.pregonerosdemedellin.com/video/lider-03.mp4"
+                        video1:"/videos/lider-01.mp4",
+                        video2:"/videos/lider-02.mp4",
+                        video3:"/videos/lider-03.mp4"
                     },
                     gaucho: {
-                        video1:"https://images.pregonerosdemedellin.com/video/gaucho-01.mp4",
-                        video2:"https://images.pregonerosdemedellin.com/video/gaucho-02.mp4",
-                        video3:"https://images.pregonerosdemedellin.com/video/gaucho-03.mp4"
+                        video1:"/videos/gaucho-01.mp4",
+                        video2:"/videos/gaucho-02.mp4",
+                        video3:"/videos/gaucho-03.mp4"
                     },
                     papavanegas: {
-                        video1:"https://images.pregonerosdemedellin.com/video/papavanegas-01.mp4",
-                        video2:"https://images.pregonerosdemedellin.com/video/papavanegas-02.mp4",
-                        video3:"https://images.pregonerosdemedellin.com/video/papavanegas-03.mp4"
+                        video1:"/videos/papavanegas-01.mp4",
+                        video2:"/videos/papavanegas-02.mp4",
+                        video3:"/videos/papavanegas-03.mp4"
                     }
                 }
             });
