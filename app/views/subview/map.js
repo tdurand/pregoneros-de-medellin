@@ -51,7 +51,7 @@ function($, _, Backbone,
 
         L.mapbox.accessToken = 'pk.eyJ1IjoicHJlZ29uZXJvc2RlbWVkZWxsaW4iLCJhIjoicGVRNFo2VSJ9.NeabLQml7j9uBGBUIZLIuA';
             
-        self.map = L.mapbox.map('streetwalk-mapcontainer', 'pregonerosdemedellin.lnni2dn4',{
+        self.map = L.mapbox.map('streetwalk-mapcontainer','mapbox.streets',{
             zoomControl: false,
             attributionControl: false,
             minZoom: 16,

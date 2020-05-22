@@ -12,7 +12,7 @@ require.config({
         text:         'libs/vendor/text-2.0.10',
         fastclick:    'libs/vendor/fastclick.min',
         tweenmax:     'libs/vendor/TweenMax-1.15.1.min',
-        mapbox:       'libs/vendor/mapbox-2.1.2.min',
+        mapbox:       'libs/vendor/mapbox-3.3.1.min',
         matchmedia:   'libs/vendor/matchmedia',
         models:       'models',
         views:        'views',
