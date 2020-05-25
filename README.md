@@ -4,6 +4,8 @@ Read here the making of : [https://medium.com/@tibbb/how-we-created-an-immersive
 
 # Deployment notes
 
+Deployed auto from master
+
 ```
 vercel
 
