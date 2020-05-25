@@ -3,3 +3,5 @@ app-build/
 node_modules/
 videos/
 *.map
+public/
+.vercel

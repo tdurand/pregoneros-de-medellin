@@ -59,6 +59,8 @@ function($, _, Backbone,
             maxBounds:[[6.24327071884627,-75.57523012161253],[6.254767683129394,-75.56199073791504]]
         });
 
+        // .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+
         self.listenTo(self.map,"load", function() {
             self.trigger("loaded");
             self.mapLoaded = true;

@@ -35,13 +35,13 @@
     mainConfigFile: 'app/main.js',
 
     paths: {
-        // "jquery": "empty:"
+        "mapbox": "https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js"
     },
 
     //The directory path to save the output. If not specified, then
     //the path will default to be a directory called "build" as a sibling
     //to the build file. All relative paths are relative to the build file.
-    dir: "app-build/",
+    dir: "public/app",
 
     //How to optimize all the JS files in the build output directory.
     //Right now only the following values
