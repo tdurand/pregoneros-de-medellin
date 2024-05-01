@@ -6,7 +6,7 @@
     "build": "r.js -o app-build.js && cp -R content public && cp -R fonts public && cp -R images public && cp -R seo public && cp -R style public"
   },
   "dependencies": {
-    "ejs": "^2.7.4",
+    "ejs": "^3.1.10",
     "requirejs": "^2.3.6"
   },
   "repository": {
