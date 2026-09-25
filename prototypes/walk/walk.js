@@ -19,7 +19,7 @@ const flat = $('flat'), hires = $('hires'), gl = $('gl'), track = $('track');
 
 const NOTES = {
   flat: '<b>A · Original.</b> The 2015 walk rebuilt as it is: native scroll, 100 px per metre, one image swapped per still. This is the baseline to compare against.',
-  depth: '<b>B · Depth on stop.</b> Walks exactly like A. Stop for a moment and the still turns 3D with a slow drift; drag or tilt your phone to look around. Scroll again and it snaps straight back to the photo.',
+  depth: '<b>B · Depth on stop.</b> Walks exactly like A. Stop for a moment and the still turns 3D with a slow drift; drag or tilt your phone to look around. Scroll again and it snaps straight back to the photo. <i>Clean edges</i> tears the 3D surface around people instead of stretching them; <i>Look around</i> keeps the photo flat.',
   interp: `<b>C · Denser frames.</b> Walks like A, with two generated frames between each pair of stills (3x denser). Only the first ${INTERP.stills} stills of Plaza Botero have them; after that it falls back to A.`,
 };
 
@@ -84,7 +84,14 @@ class Frames {
 let way, stills, inter = null, mode = 'flat';
 let current = 0, shown = -1, lastMove = performance.now();
 let hiresFor = -1, depthFor_ = -1;
-const depthView = createDepthView(gl, { hfov: +(params.get('hfov') || 100) });
+const depthView = createDepthView(gl, { hfov: +(params.get('hfov') || 100), tear: +(params.get('tear') || 0.05) });
+function setStyle(st) {
+  if (!['clean', 'stretch', 'look'].includes(st)) st = 'clean';
+  depthView.setStyle(st);
+  document.querySelectorAll('#styles button').forEach((b) => b.classList.toggle('on', b.dataset.style === st));
+  const u = new URL(location.href); u.searchParams.set('style', st); history.replaceState(null, '', u);
+}
+document.querySelectorAll('#styles button').forEach((b) => b.addEventListener('click', () => setStyle(b.dataset.style)));
 
 function setWay(name) {
   const w = ways.find((x) => x.wayName === name) || ways[0];
@@ -193,5 +200,6 @@ async function showDepth(still) {
 }
 
 setWay(params.get('way') || 'plazabotero-start-carabobo');
+setStyle(params.get('style') || 'clean');
 setMode(['flat', 'depth', 'interp'].includes(params.get('mode')) ? params.get('mode') : 'flat');
 requestAnimationFrame(tick);

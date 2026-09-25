@@ -6,7 +6,7 @@
 // view can fade in over it and then "inflate" into 3D without a visible jump.
 import * as THREE from 'three';
 
-const MODEL = 'onnx-community/depth-anything-v2-small';
+const MODEL = new URLSearchParams(location.search).get('model') || 'onnx-community/depth-anything-v2-small';
 const NEAR_M = 1.2, FAR_M = 60;
 
 // --- depth model in a worker, so inference never blocks the page -----------
@@ -90,13 +90,44 @@ function heuristicDepth() {
 }
 export const fallbackDepth = heuristicDepth();
 
+// Background layer: a min-filter pushes near things (people, poles) back to the
+// depth of what surrounds them, so the gaps opened behind them have somewhere to go.
+function backgroundDepth(tex) {
+  const { width: w, height: h, data } = tex.image;
+  const r = Math.max(4, Math.round(w / 40));
+  const tmp = new Uint8Array(w * h), out = new Uint8Array(w * h);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    let m = 255; for (let d = -r; d <= r; d++) { const xx = Math.min(w - 1, Math.max(0, x + d)); m = Math.min(m, data[y * w + xx]); }
+    tmp[y * w + x] = m;
+  }
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    let m = 255; for (let d = -r; d <= r; d++) { const yy = Math.min(h - 1, Math.max(0, y + d)); m = Math.min(m, tmp[yy * w + x]); }
+    out[y * w + x] = m;
+  }
+  const t = new THREE.DataTexture(out, w, h, THREE.RedFormat, THREE.UnsignedByteType);
+  t.minFilter = t.magFilter = THREE.LinearFilter; t.unpackAlignment = 1; t.needsUpdate = true;
+  return t;
+}
+const bgCache = new WeakMap();
+const bgFor = (tex) => { if (!bgCache.has(tex)) bgCache.set(tex, backgroundDepth(tex)); return bgCache.get(tex); };
+
+// Blurred copy of the photo, used to fill what was hidden behind people.
+function blurred(img) {
+  const c = document.createElement('canvas'); c.width = 96; c.height = Math.round(96 * img.naturalHeight / img.naturalWidth);
+  const ctx = c.getContext('2d'); ctx.filter = 'blur(2px)'; ctx.drawImage(img, 0, 0, c.width, c.height);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+
 // --- renderer ----------------------------------------------------------------
 const LENS = `
 uniform float tanHalfW; uniform float aspect;
 vec3 uvToDir(vec2 uv){ vec2 p = (uv - 0.5) * 2.0; return normalize(vec3(p.x * tanHalfW, p.y * tanHalfW / aspect, -1.0)); }
 vec2 dirToUv(vec3 d){ vec2 p = d.xy / max(-d.z, 1e-3); return vec2(p.x / tanHalfW, p.y * aspect / tanHalfW) * 0.5 + 0.5; }`;
 
-export function createDepthView(canvas, { hfov = 100 } = {}) {
+// style: 'clean'  foreground torn at depth edges, background layer fills the gaps
+//        'stretch' one continuous surface (people get smeared at their edges)
+//        'look'   no 3D at all: the photo on a sphere, drag or tilt to look around
+export function createDepthView(canvas, { hfov = 100, tear = 0.05 } = {}) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   const camera = new THREE.PerspectiveCamera(60, 1, 0.05, 500);
@@ -109,25 +140,51 @@ export function createDepthView(canvas, { hfov = 100 } = {}) {
     map: { value: null }, depth: { value: fallbackDepth }, amount: { value: 0 },
     tanHalfW: { value: tanHalfW }, aspect: { value: 16 / 9 },
   };
-  const mesh = new THREE.Mesh(geo, new THREE.ShaderMaterial({
-    uniforms,
-    vertexShader: LENS + `
-      uniform sampler2D depth; uniform float amount; varying vec2 vUv;
+  const VERT = LENS + `
+      uniform sampler2D depth; uniform float amount, tear; varying vec2 vUv; varying float vEdge;
+      float dispAt(vec2 uv){ return texture2D(depth, uv).r; }
       void main(){
         vUv = position.xy;
-        float disp = texture2D(depth, vUv).r;                   // 1 = near
+        float disp = dispAt(vUv);                               // 1 = near
+        // biggest depth jump to the neighbouring grid points: a silhouette edge
+        vec2 g = vec2(1.0 / 160.0, 1.0 / 90.0);
+        float e = max(max(abs(dispAt(vUv + vec2(g.x, 0.)) - disp), abs(dispAt(vUv - vec2(g.x, 0.)) - disp)),
+                      max(abs(dispAt(vUv + vec2(0., g.y)) - disp), abs(dispAt(vUv - vec2(0., g.y)) - disp)));
+        vEdge = tear > 0.0 ? step(tear, e) : 0.0;
         float dist = 1.0 / mix(${(1 / FAR_M).toFixed(5)}, ${(1 / NEAR_M).toFixed(5)}, disp);
         vec3 p = uvToDir(vUv) * mix(12.0, dist, amount);        // amount 0 = flat, same as the <img>
         gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
-      }`,
-    fragmentShader: `uniform sampler2D map; varying vec2 vUv;
-      void main(){ vec2 e = smoothstep(0.0, 0.02, vUv) * smoothstep(0.0, 0.02, 1.0 - vUv);
-        gl_FragColor = vec4(texture2D(map, vUv).rgb, e.x * e.y);
+      }`;
+  // The back layer's geometry uses the background depth; fgDepth is the real depth,
+  // so where the two differ something nearer stood there.
+  const FRAG = `uniform sampler2D map, fill, depth, fgDepth; uniform float isBack; varying vec2 vUv; varying float vEdge;
+      void main(){
+        if (isBack < 0.5 && vEdge > 0.01) discard;             // tear the foreground at silhouettes
+        vec2 e = smoothstep(0.0, 0.02, vUv) * smoothstep(0.0, 0.02, 1.0 - vUv);
+        vec3 c = texture2D(map, vUv).rgb;
+        if (isBack > 0.5) {
+          // where something nearer stood, show a blur of the surroundings, not the person again
+          float fg = smoothstep(0.03, 0.10, texture2D(fgDepth, vUv).r - texture2D(depth, vUv).r);
+          c = mix(c, texture2D(fill, vUv).rgb, fg);
+        }
+        gl_FragColor = vec4(c, isBack > 0.5 ? 1.0 : e.x * e.y);
         #include <colorspace_fragment>
-      }`,
-    transparent: true, side: THREE.DoubleSide,
-  }));
-  mesh.frustumCulled = false;
+      }`;
+  const makeLayer = (isBack) => {
+    const m = new THREE.Mesh(geo, new THREE.ShaderMaterial({
+      uniforms: {
+        ...uniforms, depth: isBack ? { value: fallbackDepth } : uniforms.depth,
+        fgDepth: { value: fallbackDepth }, fill: { value: null },
+        tear: { value: isBack ? 0 : tear }, isBack: { value: isBack ? 1 : 0 },
+      },
+      vertexShader: VERT, fragmentShader: FRAG, side: THREE.DoubleSide,
+      transparent: !isBack,
+    }));
+    m.frustumCulled = false; return m;
+  };
+  const mesh = makeLayer(false);
+  const back = makeLayer(true);    // sits behind the torn foreground
+  back.renderOrder = 0; mesh.renderOrder = 1;
   // Beyond the frame: the photo's own edge colours, blurred, so turning your head
   // doesn't show black. (Where real 360° outpainting would go.)
   const surround = new THREE.Mesh(new THREE.SphereGeometry(200, 48, 24), new THREE.ShaderMaterial({
@@ -142,7 +199,12 @@ export function createDepthView(canvas, { hfov = 100 } = {}) {
     side: THREE.BackSide, depthWrite: false,
   }));
   surround.renderOrder = -1;
-  scene.add(surround, mesh);
+  scene.add(surround, back, mesh);
+  let style = 'clean';
+  function applyStyle() {
+    mesh.material.uniforms.tear.value = style === 'clean' ? tear : 0;
+    back.visible = style === 'clean';
+  }
 
   let running = false, shownAt = 0, raf = 0;
   const look = { yaw: 0, pitch: 0, yawT: 0, pitchT: 0 };
@@ -179,14 +241,16 @@ export function createDepthView(canvas, { hfov = 100 } = {}) {
     if (!running) return;
     const t = (performance.now() - shownAt) / 1000;
     const ease = 1 - Math.exp(-t * 1.6);
-    uniforms.amount.value = ease;
+    const amt = style === 'look' ? 0 : ease;
+    uniforms.amount.value = amt; back.material.uniforms.amount.value = amt;
+    const drift = style === 'look' ? 0 : ease;
     look.yaw += (look.yawT - look.yaw) * 0.12; look.pitch += (look.pitchT - look.pitch) * 0.12;
     head.lerp(headT, 0.06);
     // a slow, small drift so the depth reads without any input
     camera.position.set(
-      0.12 * Math.sin(t * 0.55) * ease + head.x * 0.12,
-      0.03 * Math.sin(t * 0.8) * ease - head.y * 0.06,
-      -0.25 * ease);
+      (0.07 * Math.sin(t * 0.55) + head.x * 0.08) * drift,
+      (0.02 * Math.sin(t * 0.8) - head.y * 0.04) * drift,
+      -0.15 * drift);
     camera.rotation.set(-look.pitch, -look.yaw, 0, 'YXZ');
     renderer.render(scene, camera);
     raf = requestAnimationFrame(frame);
@@ -198,14 +262,20 @@ export function createDepthView(canvas, { hfov = 100 } = {}) {
       const tex = new THREE.Texture(img); tex.colorSpace = THREE.SRGBColorSpace; tex.needsUpdate = true;
       uniforms.map.value?.dispose();
       uniforms.map.value = tex; surround.material.uniforms.map.value = tex;
-      uniforms.depth.value = depthTex || fallbackDepth;
+      const d = depthTex || fallbackDepth;
+      uniforms.depth.value = d;
+      const bu = back.material.uniforms;
+      bu.fill.value?.dispose(); bu.fill.value = blurred(img);
+      bu.fgDepth.value = d; bu.depth.value = bgFor(d);
+      applyStyle();
       uniforms.aspect.value = img.naturalWidth / img.naturalHeight;
       look.yaw = look.yawT = look.pitch = look.pitchT = 0; gyroBase = null;
       fit();
       shownAt = performance.now();
       if (!running) { running = true; raf = requestAnimationFrame(frame); }
     },
-    setDepth(depthTex) { uniforms.depth.value = depthTex; },
+    setStyle(s) { style = s; shownAt = performance.now(); applyStyle(); },
+    get style() { return style; },
     hide() { running = false; cancelAnimationFrame(raf); },
     get running() { return running; },
     async enableGyro() {
