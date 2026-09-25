@@ -5,18 +5,43 @@
   <title>Pregoneros de Medellín</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#4F2747">
-  <meta name="description" content="La web documental interactiva de los que venden cantando en Medellín - Colombia.">
+  <meta name="description" content="La web documental interactiva de los que venden cantando en Medellín - Colombia. Un recorrido virtual por el universo laboral y personal de aquellos que entendieron que al amor y a los clientes se les seduce por el oído.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.pregonerosdemedellin.com">
   <meta property="og:title" content="Pregoneros de Medellín">
+  <meta property="og:description" content="La web documental interactiva de los que venden cantando en Medellín - Colombia.">
   <meta property="og:image" content="https://www.pregonerosdemedellin.com/images/seo/es.jpg">
-  <link rel="icon" href="../images/favicon.ico">
+  <link rel="alternate" hreflang="es" href="https://www.pregonerosdemedellin.com/#es">
+  <link rel="alternate" hreflang="en" href="https://www.pregonerosdemedellin.com/#en">
+  <link rel="alternate" hreflang="fr" href="https://www.pregonerosdemedellin.com/#fr">
+  <link rel="icon" href="images/favicon.ico">
   <link rel="preconnect" href="https://images.pregonerosdemedellin.com" crossorigin>
-  <link rel="stylesheet" href="walk.css">
+  <!-- The 2015 stylesheet styles the landing, pages and desktop street furniture;
+       css/walk.css styles the walk and the touch controls on top of it. -->
+  <link rel="stylesheet" href="style/css/main.css">
+  <link rel="stylesheet" href="css/walk.css">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/desktop-hud.css">
   <script type="module" src="js/main.js"></script>
 </head>
 <body>
-<div id="app">
+
+<!-- Landing (#index): 2015 landing on desktop, compact start screen on touch. -->
+<section id="landing" hidden></section>
+
+<!-- Project pages (#page/<name>): transmedia, music, team, making of, press kit. -->
+<section id="page" hidden></section>
+
+<!-- The street walk (#streetwalk/<way>/<lang>). -->
+<div id="app" hidden>
   <canvas id="frame" aria-hidden="true"></canvas>
+  <!-- Touch: takes every swipe on the street; overlays sit above it. -->
   <div id="stage" aria-label="Street"></div>
+  <!-- Desktop: a page as tall as the street (1 m = 100 px); scrolling it walks. -->
+  <div id="scroller" tabindex="0" aria-label="Street"><div id="scroll-space"></div></div>
+
+  <!-- Desktop street furniture, drawn by js/desktop-hud.js from the 2015 templates. -->
+  <div id="hud-desktop"></div>
 
   <button id="sign" class="sign" hidden><span class="sign-art"></span></button>
 
@@ -39,8 +64,9 @@
 
   <div id="hint" hidden>
     <div class="finger"></div>
-    <p data-t="swipe"></p>
-    <p class="small" data-t="look"></p>
+    <p class="hint-touch" data-t="swipe"></p>
+    <p class="hint-touch small" data-t="look"></p>
+    <p class="hint-desktop" data-t="scroll"></p>
   </div>
 
   <section id="chooser" hidden>
@@ -55,8 +81,8 @@
     <div class="track"><div id="loading-bar"></div></div>
   </div>
 
-  <section id="start">
-    <img class="logo" src="../images/logo.png" alt="Pregoneros de Medellín">
+  <section id="start" hidden>
+    <img class="logo" src="images/logo.png" alt="Pregoneros de Medellín">
     <p class="headline" data-s="landingDescriptionHeadline"></p>
     <button id="start-btn" class="cta" data-t="start"></button>
     <p class="small">🎧 <span data-t="headphones"></span></p>
@@ -70,15 +96,17 @@
       <button data-lang="en">English</button>
       <button data-lang="fr">Français</button>
     </div>
+    <button class="menu-home menu-item" data-t="home"></button>
     <button class="menu-trailer menu-item" data-t="trailer"></button>
-    <a class="menu-item" href="https://medium.com/@tibbb/how-we-created-an-immersive-street-walk-experience-with-a-gopro-and-javascript-f442cf8aa2dd" target="_blank" rel="noopener" data-s="menuBtnLabelMakingOf">Making of</a>
-    <p class="small" data-t="desktop"></p>
-  </section>
-
-  <section id="video" hidden>
-    <video playsinline controls preload="metadata"></video>
-    <button id="video-close" class="icon" data-aria="close">✕</button>
+    <a class="menu-item" href="#page/makingof" data-s="menuBtnLabelMakingOf">Making of</a>
+    <a class="menu-item" href="#page/team" data-s="menuBtnLabelCredits">Créditos</a>
   </section>
 </div>
+
+<section id="video" hidden>
+  <video playsinline controls preload="metadata"></video>
+  <button id="video-close" class="icon" data-aria="close">✕</button>
+</section>
+
 </body>
 </html>

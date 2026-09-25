@@ -1,0 +1,135 @@
+/* Desktop street furniture (js/desktop-hud.js).
+   The pieces keep their 2015 classes, so style/css/main.css lays them out as
+   in 2015; this file only adds what the port changed: one stacking layer above
+   the scroller, pointer events, CSS animations in place of GSAP tweens, and
+   the plain SVG map in place of Mapbox. */
+
+/* One layer above the street and the scroller, below the start screen and videos. */
+html.desktop #hud-desktop { z-index: 10; font-family: 'FilbertBrush', sans-serif; line-height: normal; }
+
+/* The engine's own loading bar and scroll hint are replaced by the 2015 ones. */
+html.desktop #loading, html.desktop #hint { display: none !important; }
+
+/* Decoration lets clicks through; the wheel is forwarded to the scroller anyway. */
+#hud-desktop > .streetwalk-sign,
+#hud-desktop > .streetwalk-tutorial-wrapper,
+#hud-desktop > .streetwalk-textcharacter,
+#hud-desktop .streetwalk-bottombar-separator { pointer-events: none; }
+#hud-desktop .character-sign { pointer-events: auto; }
+
+/* ---------- vendor sign: positioned by transforms only ---------- */
+
+#hud-desktop .streetwalk-textcharacter { left: 0; top: 0; will-change: transform; }
+#hud-desktop .streetwalk-textcharacter .img-container {
+  top: 0; left: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+#hud-desktop .streetwalk-textcharacter .img-container svg { display: block; height: auto; }
+
+/* ---------- junction arrows: 2015's Back.easeOut pop, then a quick shrink ---------- */
+
+#hud-desktop .streetwalk-chooseway { animation: hud-pop .5s cubic-bezier(.34, 1.56, .64, 1) both; }
+#hud-desktop .streetwalk-chooseway-wrapper.hud-out .streetwalk-chooseway { animation: hud-shrink .3s ease-in both; }
+#hud-desktop .btn-chooseway { cursor: pointer; }
+@keyframes hud-pop { from { transform: scale(0); } }
+@keyframes hud-shrink { to { transform: scale(0); } }
+
+/* ---------- bottom bar ---------- */
+
+/* MENU lifts the bar by 5% to uncover the menu line (a GSAP tween in 2015). */
+#hud-desktop .streetwalk-bottombar { transition: transform .5s ease-out, bottom .5s ease-out; }
+#hud-desktop.hud-menu-open .streetwalk-bottombar { bottom: 5%; }
+#hud-desktop .streetwalk-menubottom select { font-variant: normal; }
+
+/* 2015 set these in JS: map content square (width = height, under a
+   39/167/0/89 px border), characters strip width = 6 × its height. The bar is
+   10vh tall, the map 320% of it, the strip 120% of it. */
+#hud-desktop .streetwalk-map { width: calc(32vh + 217px); }
+#hud-desktop .streetwalk-map.enlarged { height: calc(80vh - 58.5px); width: calc(80vh + 158.5px); }
+#hud-desktop .streetwalk-menucharacters { width: 72vh; }
+#hud-desktop .streetwalk-btnmenu, #hud-desktop .streetwalk-control > div { cursor: pointer; }
+
+/* Plain SVG street map (js/minimap.js) instead of Mapbox tiles. */
+#hud-desktop .streetwalk-mapcontainer { background: #efe9dc; }
+#hud-desktop .hud-minimap { display: block; width: 100%; height: 100%; }
+#hud-desktop .hud-minimap .street { fill: none; stroke: #9a948a; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+#hud-desktop .hud-minimap .street.next { stroke: #0DBD9B; stroke-width: 9; }
+#hud-desktop .hud-minimap .street.current { stroke: #1087bf; stroke-width: 10; }
+#hud-desktop .hud-minimap .street.highlight { stroke: red; stroke-width: 10; }
+#hud-desktop .hud-minimap .me { fill: #e2412d; stroke: #fff; stroke-width: 5; }
+#hud-desktop .hud-map-icon { cursor: pointer; }
+
+/* Characters menu: 2015 popped the story bubbles out from the bottom right. */
+#hud-desktop .submenu[data-state='open'] {
+  transform-box: fill-box;
+  transform-origin: right bottom;
+  animation: hud-pop .5s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+
+/* ---------- tutorial: the three mouse drawings flip every 0.4 s ---------- */
+
+#hud-desktop .streetwalk-tutorial .frame1 { animation: hud-f1 1.2s step-end infinite; }
+#hud-desktop .streetwalk-tutorial .frame2 { animation: hud-f2 1.2s step-end infinite; }
+#hud-desktop .streetwalk-tutorial .frame3 { animation: hud-f3 1.2s step-end infinite; }
+@keyframes hud-f1 { 0% { visibility: visible; } 33.3%, 100% { visibility: hidden; } }
+@keyframes hud-f2 { 0% { visibility: hidden; } 33.3% { visibility: visible; } 66.6%, 100% { visibility: hidden; } }
+@keyframes hud-f3 { 0%, 33.3% { visibility: hidden; } 66.6%, 100% { visibility: visible; } }
+#hud-desktop .streetwalk-tutorial.hud-hide { display: none; }
+#hud-desktop .streetwalk-tutorial-scrollotherside-tooltip.hud-show { display: block; }
+
+/* ---------- loading ---------- */
+
+/* The first street's full page covers the rest of the furniture, as in 2015. */
+#hud-desktop .streetwalk-loading.hud-full { z-index: 40; }
+#hud-desktop.hud-firstload > :not(.streetwalk-loading) { visibility: hidden; }
+#hud-desktop .streetwalk-loading .headset { animation: hud-fade-out 1s 5s both; }
+#hud-desktop .streetwalk-loading .loading-animation { animation: hud-rise 1s 5s both; }
+#hud-desktop .streetwalk-loading #carito { animation: hud-fade-in 1s 5s both; }
+#hud-desktop .streetwalk-loading #waveleft,
+#hud-desktop .streetwalk-loading #waveright {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hud-wave 1s ease-in-out infinite;
+}
+@keyframes hud-fade-out { to { opacity: 0; } }
+@keyframes hud-fade-in { from { opacity: 0; } }
+@keyframes hud-rise { from { transform: translateY(25%); } }
+@keyframes hud-wave { 50% { transform: scale(1.2); } }
+
+/* ---------- hint bubble (locked story, vendor on the map) ---------- */
+
+#hud-desktop .hud-callout {
+  position: fixed;
+  z-index: 60;
+  width: 300px;
+  padding: 14px 18px;
+  background: #FFD64A;
+  border: 5px solid #4B2246;
+  color: #4B2246;
+  font-size: 1rem;
+}
+#hud-desktop .hud-callout::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: var(--arrow, 50%);
+  margin-left: -12px;
+  border: 12px solid transparent;
+  border-top-color: #4B2246;
+}
+#hud-desktop .hud-callout p { margin: 0 0 8px; }
+#hud-desktop .hud-callout-title { font-size: 1.2rem; }
+#hud-desktop .hud-callout-actions { margin: 12px 0 0 !important; display: flex; gap: 8px; flex-wrap: wrap; }
+#hud-desktop .hud-callout button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #4B2246;
+  color: #fff;
+}
+#hud-desktop .hud-callout button.hud-callout-close { background: transparent; color: #4B2246; text-decoration: underline; }
+
+@media (prefers-reduced-motion: reduce) {
+  #hud-desktop .streetwalk-chooseway, #hud-desktop .submenu[data-state='open'],
+  #hud-desktop .streetwalk-loading #waveleft, #hud-desktop .streetwalk-loading #waveright { animation: none; }
+}

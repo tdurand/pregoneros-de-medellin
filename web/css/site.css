@@ -1,0 +1,281 @@
+/* Landing and project pages (js/landing.js, js/pages.js).
+   Desktop is the 2015 stylesheet (style/css/main.css) as it was; this file
+   undoes what css/walk.css changes globally, gives #landing what 2015's #index
+   had, and makes both screens work on phones. */
+
+/* ---------- back to 2015 defaults on these two screens ---------- */
+
+/* 2015 sized rem with the window (style/sass/module/mediaquery.scss);
+   walk.css pins html to 16px. */
+@media (min-width: 1300px) and (max-width: 1500px) {
+  html.desktop:has(> body[data-view="index"]), html.desktop:has(> body[data-view="page"]) { font-size: 17px; }
+}
+@media (min-width: 1500px) and (max-width: 1700px) {
+  html.desktop:has(> body[data-view="index"]), html.desktop:has(> body[data-view="page"]) { font-size: 18px; }
+}
+@media (min-width: 1700px) {
+  html.desktop:has(> body[data-view="index"]), html.desktop:has(> body[data-view="page"]) { font-size: 20px; }
+}
+
+#landing, #page {
+  font-family: 'FilbertBrush', sans-serif;
+  font-size: 1rem;
+  line-height: normal;
+}
+
+/* ---------- landing, desktop (2015 #index) ---------- */
+
+#landing {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  color: #000;
+}
+
+/* 2015 sized the video from JS (resizeBackgroundVideo): full width, 16:9,
+   sitting on the bottom of the window. */
+#landing .landingpage-video { height: 100%; }
+#landing .landingpage-video video {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+#landing.video-ready .landingpage-video-frame { z-index: -6; }
+
+#landing .top-bar .menu select.language-selection { cursor: pointer; }
+#landing .top-bar .menu select option,
+#page .page-menu select option { color: #000; background: #fff; }
+/* 2015 placed the image absolutely inside an empty link (its width came out as
+   half the description's content box); give the link that box instead, so the
+   link itself is what gets clicked and focused. */
+#landing .middle .description .description-btnenter .btn-enter {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  width: 50%;
+  z-index: 25;
+  transform: translateX(-50%);
+}
+#landing .middle .description .description-btnenter .btn-enter img {
+  position: static;
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: none;
+  cursor: pointer;
+}
+#landing .btn-enter:hover img { filter: brightness(1.12); }
+
+/* 2015 #index .toggle-sounds */
+#landing .toggle-sounds {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 2.5rem;
+  height: 2.5rem;
+  z-index: 200;
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+#landing .toggle-sounds[data-state="muted"] { background-image: url('../images/mutesound.svg'); }
+#landing .toggle-sounds[data-state="normal"] { background-image: url('../images/unmutesound.svg'); }
+
+/* ---------- landing, touch: compact start screen ---------- */
+
+#landing.landing-touch { color: #fff; background: #1e0a1c; }
+/* The first frame is letterboxed: its top 43 % is black. Stretch the layer up
+   by 75 % of the screen so only the street shows, under the plum veil. */
+#landing.landing-touch::before {
+  content: '';
+  position: absolute;
+  inset: -75% 0 0;
+  background: url('../images/landing-video-firstframe.jpg') center bottom / cover;
+  filter: blur(3px);
+}
+#landing.landing-touch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(79, 39, 71, .82), rgba(30, 10, 28, .95));
+}
+
+.st {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: calc(var(--safe-top) + 12px) max(20px, env(safe-area-inset-right)) calc(var(--safe-bottom) + 14px) max(20px, env(safe-area-inset-left));
+  text-align: center;
+  font-family: -apple-system, system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+.st-langs { align-self: flex-end; display: flex; gap: 4px; }
+.st-langs button {
+  min-width: 40px;
+  min-height: 34px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  color: rgba(255, 255, 255, .75);
+}
+.st-langs button[aria-pressed="true"] { color: var(--plum); background: var(--yellow); }
+
+.st-head { display: flex; flex-direction: column; align-items: center; gap: 14px; min-height: 0; }
+.st-logo { width: min(80vw, 380px, 42vh); height: auto; filter: drop-shadow(0 4px 14px rgba(0, 0, 0, .45)); }
+.st-headline {
+  margin: 0;
+  max-width: 22em;
+  font: 19px/1.25 'FilbertBrush', sans-serif;
+  color: var(--yellow);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, .5);
+}
+
+.st-go { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.st-go .cta { min-width: min(100%, 300px); min-height: 60px; font-size: 19px; }
+.st-go .cta:active { transform: scale(.97); }
+.st-go p { margin: 0; font-size: 14px; opacity: .85; }
+.st-found { color: var(--yellow); }
+
+.st-pages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px 4px;
+  max-width: 30em;
+}
+.st-pages a, .st-pages button {
+  padding: 6px 8px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, .8);
+  text-decoration: none;
+}
+.st-pages .st-trailer { color: var(--yellow); font-weight: 600; }
+
+/* Short screens (small phones, landscape): tighten up. */
+@media (max-height: 640px) {
+  .st { gap: 8px; }
+  .st-head { gap: 10px; }
+  .st-headline { font-size: 17px; }
+}
+
+/* Landscape phones: logo and headline on the left, the button on the right. */
+@media (orientation: landscape) and (max-height: 540px) {
+  .st {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 'langs langs' 'head go' 'pages pages';
+    align-items: center;
+    justify-items: center;
+    gap: 4px 24px;
+    padding-top: calc(var(--safe-top) + 6px);
+    padding-bottom: calc(var(--safe-bottom) + 6px);
+  }
+  .st-langs { grid-area: langs; justify-self: end; }
+  .st-head { grid-area: head; gap: 8px; }
+  .st-go { grid-area: go; }
+  .st-pages { grid-area: pages; max-width: none; }
+  .st-logo { width: min(40vw, 320px, 48vh); }
+  .st-headline { font-size: 16px; }
+  .st-pages a, .st-pages button { padding: 4px 8px; }
+}
+
+/* ---------- pages (2015 #page) ---------- */
+
+#page {
+  -webkit-user-select: text;
+  user-select: text;
+  color: #595858;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+#page a { color: #9b482a; }
+#page img { max-width: 100%; }
+
+/* The 2015 menu, in the green bar right of the logo, before the close button. */
+#page .page-menu {
+  position: fixed;
+  top: 0;
+  right: 56px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  z-index: 3;
+  font-family: 'FilbertBrush', sans-serif;
+  font-size: 1.05rem;
+  font-variant: small-caps;
+  color: #fff;
+  user-select: none;
+}
+#page .page-menu p { margin: 0; font: inherit; color: inherit; line-height: normal; text-align: left; white-space: nowrap; }
+#page .page-menu a,
+#page .page-menu a:visited { color: #fff; }
+#page .page-menu a.current { color: #FFD44A; }
+#page .page-menu select {
+  background: transparent;
+  color: #fff;
+  font-variant: small-caps;
+  border: 1px solid rgba(255, 255, 255, .6);
+  cursor: pointer;
+}
+#page .page-btnclose { z-index: 3; }
+
+/* ---------- pages on phones and tablets ---------- */
+
+html.touch #page .page-topbar { height: 56px; z-index: 2; }
+html.touch #page .page-separator { top: 34px; height: 40px; background-position: center top; z-index: 1; }
+html.touch #page .page-logo {
+  top: 2px;
+  left: 8px;
+  width: 128px;
+  height: 64px;
+  background-position: left top;
+  z-index: 3;
+}
+html.touch #page .page-btnclose {
+  top: 8px;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  background-size: contain;
+}
+/* Only home and the language fit beside the logo; the pages are one tap away on the landing. */
+html.touch #page .page-menu { top: 0; right: 52px; left: 140px; height: 48px; justify-content: flex-end; font-size: 18px; }
+html.touch #page .page-menu p { display: flex; align-items: center; gap: 8px; }
+html.touch #page .page-menu a:not([href^="#index"]),
+html.touch #page .page-menu .menu-separator { display: none; }
+html.touch #page .page-menu select { padding: 4px 2px; }
+
+html.touch #page .page-content {
+  position: static;
+  width: auto;
+  max-width: 44em;
+  transform: none;
+  margin: 0 auto;
+  padding: calc(var(--safe-top) + 88px) 18px calc(var(--safe-bottom) + 40px);
+  font-size: 16px;
+}
+html.touch #page h2 { font-size: 30px; margin: 0 0 12px; }
+html.touch #page h3 { font-size: 19px; margin: 24px 0 8px; }
+html.touch #page p,
+html.touch #page li { font-size: 16px; line-height: 1.5; text-align: left; overflow-wrap: anywhere; }
+html.touch #page ul { padding-left: 20px; }
+html.touch #page .page-image { width: 100%; }
+html.touch #page iframe { max-width: 100%; }
+html.touch #page iframe[src*="youtube"],
+html.touch #page iframe[src*="vimeo"],
+html.touch #page iframe[src*="flickr"] { width: 100%; height: auto; max-height: 70vh; aspect-ratio: 16 / 9; }
+/* The music page lays groups out in two-column tables: stack them. */
+html.touch #page table, html.touch #page tbody, html.touch #page tr, html.touch #page td { display: block; width: 100%; }
+html.touch #page .music-youtube { padding-left: 0; margin: 8px 0; }

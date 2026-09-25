@@ -40,6 +40,26 @@ button {
 
 #app { position: fixed; inset: 0; }
 
+/* ---------- one app, two sets of controls ----------
+   html.desktop: page scroll walks (#scroller), 2015 street furniture (#hud-desktop).
+   html.touch: swipes on #stage, compact controls (.bar, #sign, #chooser). */
+
+#scroller {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  outline: none;
+}
+#scroller::-webkit-scrollbar { display: none; }
+#hud-desktop { position: absolute; inset: 0; pointer-events: none; }
+#hud-desktop > * { pointer-events: auto; }
+
+html.touch #scroller, html.touch #hud-desktop, html.touch .hint-desktop { display: none; }
+html.desktop #stage, html.desktop .bar, html.desktop #sign, html.desktop #chooser,
+html.desktop #map, html.desktop .hint-touch, html.desktop .finger { display: none !important; }
+
 #frame { position: absolute; inset: 0; display: block; }
 
 /* Takes every touch on the street; overlays sit above it. */
@@ -225,9 +245,18 @@ button { touch-action: manipulation; }
   gap: 16px;
   padding: calc(var(--safe-top) + 24px) 28px calc(var(--safe-bottom) + 24px);
   text-align: center;
+  background: linear-gradient(rgba(79, 39, 71, .82), rgba(30, 10, 28, .95));
+}
+#start { overflow: hidden; isolation: isolate; }
+/* The first frame's top is black: extend it upwards so only the street shows. */
+#start::before {
+  content: '';
+  position: absolute;
+  inset: -75% 0 0;
+  z-index: -1;
   background:
     linear-gradient(rgba(79, 39, 71, .82), rgba(30, 10, 28, .95)),
-    url('../images/landing-video-firstframe.jpg') center / cover;
+    url('../images/landing-video-firstframe.jpg') center bottom / cover;
 }
 .logo { width: min(78vw, 380px); height: auto; }
 .headline { margin: 0; font: 20px/1.25 'FilbertBrush', sans-serif; color: var(--yellow); max-width: 30em; }
@@ -259,7 +288,7 @@ button { touch-action: manipulation; }
   font-weight: 600;
 }
 
-#video { position: absolute; inset: 0; z-index: 30; background: #000; display: grid; place-items: center; }
+#video { position: fixed; inset: 0; z-index: 30; background: #000; display: grid; place-items: center; }
 #video video { width: 100%; height: 100%; object-fit: contain; }
 #video-close { position: absolute; top: calc(var(--safe-top) + 10px); right: 12px; }
 
