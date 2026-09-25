@@ -34,7 +34,7 @@
   <details>
     <summary>Tuning</summary>
     <label><span>Depth</span><input id="depthAmt" type="range" min="0" max="1.5" step="0.01" value="1"></label>
-    <label><span>Step length</span><input id="step" type="range" min="0" max="2" step="0.01" value="0.7"></label>
+    <label><span>Step length</span><input id="step" type="range" min="0" max="2" step="0.01" value="0.3"></label>
     <label><span>Field of view</span><input id="fov" type="range" min="70" max="150" step="1" value="118"></label>
     <label><span>Lens</span><select id="lens"><option value="fisheye">GoPro fisheye</option><option value="rect">Rectilinear</option></select></label>
     <label><span>Surround fill</span><select id="fill"><option value="smear">Smeared edges</option><option value="none">Black</option></select></label>
@@ -446,17 +446,18 @@ const settings = () => ({
   depthAmt: +ui.depthAmt.value, step: +ui.step.value, fov: +ui.fov.value,
   fisheye: ui.lens.value === 'fisheye', fill: ui.fill.value, view: ui.view.value, cut: ui.trans.value === 'cut', stride: +ui.stride.value,
 });
+const perMetre = () => (way && way.perMetre) || 3; // stills per metre of street (about 3.2 on average)
 const count = () => way ? (way.files ? way.files.length : way.count) : 1;
 const walk = (d) => { target = THREE.MathUtils.clamp(target + d, 0, count() - 1); };
 
 addEventListener('wheel', (e) => {
   e.preventDefault();
   const px = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY; // lines -> pixels
-  vel = 0; walk(px * 0.01); // like the original: 100 px of scroll = one still
+  vel = 0; walk(px * 0.01 * perMetre()); // like the original: 100 px of scroll = one metre of street
 }, { passive: false });
 addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowUp' || e.key === 'w') walk(settings().stride * 2);
-  if (e.key === 'ArrowDown' || e.key === 's') walk(-settings().stride * 2);
+  if (e.key === 'ArrowUp' || e.key === 'w') walk(perMetre());
+  if (e.key === 'ArrowDown' || e.key === 's') walk(-perMetre());
 });
 let holdDir = 0;
 for (const [id, d] of [['fwd', 1], ['back', -1]]) {
@@ -475,7 +476,7 @@ addEventListener('pointermove', (e) => {
   if (drag.touch && !gyro && Math.abs(dy) > Math.abs(dx) * 1.5) {
     // vertical swipe walks on phones, like scrolling the original
     const prev = target;
-    target = THREE.MathUtils.clamp(drag.t - dy * 0.05, 0, count() - 1);
+    target = THREE.MathUtils.clamp(drag.t - dy * 0.02 * perMetre(), 0, count() - 1);
     const now = performance.now();
     if (drag.lt) drag.v = (target - prev) / Math.max((now - drag.lt) / 1000, 0.008);
     drag.lt = now; drag.walking = true;
@@ -520,6 +521,12 @@ function setWay(w) {
   viewA.frame = viewB.frame = null;
 }
 
+function metres([lon1, lat1], [lon2, lat2]) {
+  const R = 6371000, r = Math.PI / 180;
+  const a = Math.sin((lat2 - lat1) * r / 2) ** 2 + Math.cos(lat1 * r) * Math.cos(lat2 * r) * Math.sin((lon2 - lon1) * r / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
 async function loadWays() {
   const ways = await fetch('/content/ways.json').then((r) => r.json()).catch(() => []);
   const def = params.get('way') || 'plazabotero-start-carabobo';
@@ -530,8 +537,18 @@ async function loadWays() {
   }
   const pick = ways.find((w) => w.wayName === def) || ways[0] || { wayName: def, nbStills: 300 };
   ui.way.value = pick.wayName;
-  ui.way.onchange = () => { const w = ways.find((x) => x.wayName === ui.way.value); setWay({ name: w.wayName, count: +w.nbStills }); };
-  setWay({ name: pick.wayName, count: +pick.nbStills });
+  const toWay = (w) => {
+    let len = 0;
+    try {
+      const path = JSON.parse(w.wayPath); // [[lon, lat], ...]
+      for (let k = 1; k < path.length; k++) len += metres(path[k - 1], path[k]);
+    } catch {}
+    const perMetre = len > 0 ? +w.nbStills / len : 3;
+    ui.step.value = (1 / perMetre).toFixed(2); // one still = this many metres of camera travel
+    return { name: w.wayName, count: +w.nbStills, perMetre };
+  };
+  ui.way.onchange = () => setWay(toWay(ways.find((x) => x.wayName === ui.way.value)));
+  setWay(toWay(pick));
 }
 
 // ---------------------------------------------------------------------------
@@ -540,14 +557,14 @@ async function loadWays() {
 // one step "behind" the camera — so motion is continuous instead of a flipbook.
 // ---------------------------------------------------------------------------
 let last = performance.now(), restFrames = 0;
-const WALK_SPEED = 10;  // stills per second while a Walk button is held
-const MAX_SPEED = 25;   // stills per second from a scroll or swipe fling
+const WALK_SPEED = 4;   // metres per second while a Walk button is held
+const MAX_SPEED = 60;   // stills per second from a swipe fling
 let vel = 0;            // stills per second, decays like a scroll with inertia
 let fpsAcc = 0, fpsN = 0, fps = 0;
 function tick() {
   const now = performance.now(); const dt = Math.min((now - last) / 1000, 0.1); last = now;
   const s = settings();
-  if (holdDir) vel = holdDir * WALK_SPEED;
+  if (holdDir) vel = holdDir * WALK_SPEED * perMetre();
   else if (!drag) { vel *= Math.exp(-dt * 3); if (Math.abs(vel) < 0.3) vel = 0; } // swipe fling decays
   if (vel) { walk(vel * dt); if (target <= 0 || target >= count() - 1) vel = 0; }
   // Light smoothing only (~30 ms): heavier easing is what reads as lag.
