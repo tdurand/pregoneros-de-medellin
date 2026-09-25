@@ -299,15 +299,19 @@ function draw() {
 function placeSign(i) {
   const c = state.way.characterDefinition;
   const at = c && state.way.characterPosition && state.way.characterPosition[i];
-  if (!c || !at || i < c.startFrame || i > c.endFrame || (state.chooserFor && !state.desktop)) {
+  // Desktop shows the sign over the 2015 window (startFrame..endFrame). A
+  // phone swipe covers ~45 stills, so there the sign stays up wherever the
+  // vendor is placed in the frame (about 10 m) and isn't flicked past unseen.
+  const inWindow = !c || !state.desktop || (i >= c.startFrame && i <= c.endFrame);
+  if (!c || !at || !inWindow || (state.chooserFor && !state.desktop)) {
     el.sign.hidden = true;
     emit('sign', { visible: false });
     return;
   }
   const r = state.rect;
-  const t = (i - c.startFrame) / Math.max(1, c.endFrame - c.startFrame);
+  const t = Math.min(1, Math.max(0, (i - c.startFrame) / Math.max(1, c.endFrame - c.startFrame)));
   const widthPct = c.framestartWidth + t * (c.framefullWidth - c.framestartWidth);
-  const width = Math.max(72, widthPct * r.h / 100);
+  const width = Math.max(64, widthPct * r.h / 100 * (state.desktop ? 1 : 0.7)); // smaller on phones
   const rawX = r.x + at.left / 100 * r.w;
   const y = r.y + at.top / 100 * r.h;
   const W = window.innerWidth;

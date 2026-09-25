@@ -142,65 +142,77 @@ html.touch #hud .streetwalk-tutorial-wrapper { display: none; }
 }
 
 /* ---------- phones and tablets (html.touch) ----------
-   Same pieces and art as desktop, resized: the 2015 sizes assume a wide
-   screen (signs 12% high, map 32vh + 217 px of frame, characters 72vh wide). */
+   Same pieces and art as desktop, kept small so the street stays the
+   picture: the 2015 sizes assume a wide screen (signs 12% high, map
+   32vh + 217 px of frame, characters 72vh wide). */
 
 html.touch #hud {
-  --bar: 64px;         /* yellow bottom bar, above the home indicator */
-  --strip: calc((100vw - 120px) / 6);  /* characters strip height (its width is 6x); room on the left for the first story bubbles */
-  --map: 30vw;         /* map square */
+  --bar: 40px;    /* yellow bottom bar, above the home indicator */
+  --strip: 30px;  /* characters strip height, about one hexagon (its width is 6x) */
+  --map: 24vw;    /* map square */
+  --menu: 64px;   /* bottom menu band */
 }
-html.touch #hud .streetwalk-sign { height: auto; width: min(47vw, 34vh); top: var(--safe-top); }
+html.touch #hud .streetwalk-sign { height: auto; width: min(30vw, 24vh, 150px); top: var(--safe-top); }
 html.touch #hud .streetwalk-sign svg { display: block; width: 100%; height: auto; }
 html.touch #hud .streetwalk-progress { left: 2vw; }
 html.touch #hud .streetwalk-area { right: 2vw; }
 
 html.touch #hud .streetwalk-bottombar { height: calc(var(--bar) + var(--safe-bottom)); }
+html.touch #hud .streetwalk-bottombar-separator { top: -45%; }
 html.touch #hud .streetwalk-menucharacters {
-  top: auto; right: 48px; bottom: calc(var(--safe-bottom) + var(--bar) * .35);
+  top: auto; right: 36px; bottom: calc(var(--safe-bottom) + var(--bar) * .3);
   height: var(--strip); width: calc(var(--strip) * 6);
 }
-html.touch #hud .streetwalk-control { width: 40px; right: 4px; height: calc(var(--bar) * 1.1); bottom: calc(var(--safe-bottom) + 4px); }
+html.touch #hud .streetwalk-control { width: 28px; right: 4px; height: 60px; bottom: calc(var(--safe-bottom) + 4px); }
 html.touch #hud .streetwalk-control > div { background-size: contain; background-position: center; }
 
-/* The map floats above the characters, on the left, without its 2015 frame. */
+/* The map sits bottom left, without its 2015 frame, with MENU on its
+   right; like the bars, it folds away while walking and comes back on a stop. */
 html.touch #hud .streetwalk-map {
-  left: 8px;
-  bottom: calc(var(--bar) * .35 + var(--strip) * 1.15 + 10px);
+  left: 6px;
+  bottom: calc(var(--bar) * .3);
   width: var(--map); height: var(--map);
   border: 0; border-image: none;
+  transform: translateY(calc(100% + var(--bar)));
 }
-html.touch #hud .streetwalk-map.enlarged { width: calc(100vw - 16px); height: min(60vh, calc(100vw - 16px)); }
-html.touch #hud .streetwalk-map .streetwalk-map-btnfullscreen { top: 6px; left: 6px; transform: none; width: 30px; height: 30px; }
+html.touch body.not-moving #hud .streetwalk-map,
+html.touch #hud .streetwalk-map.enlarged { transform: none; }
+html.touch #hud .streetwalk-map.enlarged { width: calc(100vw - 12px); height: min(60vh, calc(100vw - 12px)); }
+html.touch #hud .streetwalk-map .streetwalk-mapcontainer { border-radius: 6px; box-shadow: 2px 2px 8px rgba(160, 138, 28, .8); }
+html.touch #hud .streetwalk-map .streetwalk-map-btnfullscreen { top: 4px; left: 4px; transform: none; width: 22px; height: 22px; }
 html.touch #hud .streetwalk-btnmenu-wrapper { top: auto; bottom: 0; right: auto; left: 100%; }
 html.touch body.not-moving #hud .streetwalk-btnmenu-wrapper,
 html.touch #hud .streetwalk-btnmenu-wrapper { transform: none; }
+html.touch #hud .streetwalk-bottombar .streetwalk-btnmenu-wrapper button {
+  font-size: .8rem; padding: .2rem .5rem .2rem .6rem; border-radius: 0 .6rem .6rem 0;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, .6);
+}
 
-/* Bottom menu: the links wrap onto a taller band that MENU uncovers. */
-html.touch #hud { --menu: 88px; }
+/* Bottom menu: the links wrap onto a band that MENU uncovers. */
 html.touch #hud .streetwalk-menubottom,
 html.touch body.not-moving #hud .streetwalk-menubottom {
   height: calc(var(--menu) + var(--safe-bottom));
-  padding: 6px 12px var(--safe-bottom);
+  padding: 4px 10px var(--safe-bottom);
+  font-size: .8rem;
   transform: translateY(100%);
 }
 html.touch #hud .streetwalk-menubottom.open,
 html.touch body.not-moving #hud .streetwalk-menubottom.open { transform: none; }
-html.touch #hud .streetwalk-menubottom .streetwalk-menubottom-content { position: static; transform: none; margin: 0; line-height: 2.2; }
+html.touch #hud .streetwalk-menubottom .streetwalk-menubottom-content { position: static; transform: none; margin: 0; line-height: 2.1; }
 html.touch #hud.hud-menu-open .streetwalk-bottombar { bottom: var(--menu); }
 
-/* Junction arrows and the loading pages take more of a narrow screen. */
-html.touch #hud .streetwalk-chooseway-wrapper { width: min(88vw, 70vh); }
-html.touch #hud .streetwalk-loading-simple { width: 60vw; }
+/* Junction arrows, loading wheel and hints, scaled to a narrow screen. */
+html.touch #hud .streetwalk-chooseway-wrapper { width: min(54vw, 44vh); }
+html.touch #hud .streetwalk-loading-simple { width: 36vw; }
 /* Later streets load under a small wheel: keep the street swipeable. */
 html.touch #hud .streetwalk-loading:not(.hud-full) { pointer-events: none; }
-html.touch #hud .hud-callout { width: min(300px, calc(100vw - 20px)); }
+html.touch #hud .hud-callout { width: min(260px, calc(100vw - 20px)); padding: 10px 12px; border-width: 3px; font-size: .85rem; }
+html.touch #hud .hud-callout-title { font-size: 1rem; }
+html.touch #hint { bottom: calc(var(--safe-bottom) + 17vh); font-size: 14px; }
 
 /* Landscape phones: a short screen, so size by height. */
 @media (orientation: landscape) {
-  html.touch #hud { --bar: 13vh; --strip: 14vh; --map: 36vh; --menu: 52px; }
-  html.touch #hint { bottom: calc(var(--safe-bottom) + 28vh); }
-  html.touch #hud .streetwalk-sign { width: min(30vw, 46vh); }
-  html.touch #hud .streetwalk-menucharacters { right: 56px; }
-  html.touch #hud .streetwalk-map { bottom: calc(var(--bar) * .35); }
+  html.touch #hud { --bar: 30px; --strip: 30px; --map: 24vh; --menu: 40px; }
+  html.touch #hud .streetwalk-sign { width: min(20vw, 32vh, 150px); }
+  html.touch #hint { bottom: calc(var(--safe-bottom) + 20vh); }
 }
