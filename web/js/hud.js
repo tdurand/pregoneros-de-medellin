@@ -1,6 +1,9 @@
-// Desktop street furniture: the 2015 signs, vendor sign, junction arrows,
-// bottom bar (map, menu, characters, sound, fullscreen) and loading screen,
-// drawn from the original templates so style/css/main.css styles them as in 2015.
+// The 2015 street furniture: signs, vendor sign, junction arrows, bottom bar
+// (map, menu, characters, sound, fullscreen) and loading screen, drawn from
+// the original templates so style/css/main.css styles them as in 2015.
+// Desktop and touch share it; css/hud.css fits it to phones, where the
+// engine's own vendor sign (#sign) replaces the 2015 one so it can stay
+// pinned on screen in portrait.
 //
 // What keeps scrolling smooth (the 2015 view re-rendered templates on every
 // still): templates render only when their data changes (language, street,
@@ -63,7 +66,7 @@ let el = {};
 let built = false;
 let minimap = null;
 
-// Remembered even while hidden, so switching to desktop mid-walk redraws everything.
+// Remembered so a rebuild (after Home) redraws everything.
 let chooser = { which: null, list: [] };
 let lastSign = { visible: false };
 let loading = null; // { way, full, ... } while a street loads
@@ -89,11 +92,11 @@ let callout = null;
 
 export function init(c) {
   ctx = c;
-  root = document.getElementById('hud-desktop');
+  root = document.getElementById('hud');
   scroller = document.getElementById('scroller');
   if (!root) return;
 
-  on('layout', ({ desktop }) => setActive(desktop));
+  on('layout', () => { if (built) { placeSign(lastSign); updateTutorial(Math.round(ctx.state.pos), 1); } });
   on('lang', () => { if (built) renderText(); });
   on('way', ({ way }) => {
     chooser = { which: null, list: [] };
@@ -148,12 +151,7 @@ export function init(c) {
     }
   });
 
-  setActive(ctx.state.desktop);
-}
-
-function setActive(desktop) {
-  if (desktop && !built) build();
-  else if (!desktop && built) teardown();
+  build();
 }
 
 function build() {
@@ -183,6 +181,7 @@ function build() {
   mapFramed = null; mapBox = null; callout = null;
   el.sound.dataset.state = ctx.isMuted() ? 'muted' : 'normal';
   el.fullscreen.dataset.state = document.fullscreenElement ? 'fullscreen' : 'normal';
+  el.fullscreen.hidden = !document.fullscreenEnabled; // iPhone Safari
 
   minimap = new MiniMap(el.mapSvg, ctx.ways);
   addMapIcons();
@@ -192,19 +191,6 @@ function build() {
   renderCharacters();
   renderText();
   if (ctx.state.way) applyWay();
-}
-
-function teardown() {
-  built = false;
-  clearTimeout(notMovingTimer);
-  clearTimeout(chooserTimer);
-  document.body.classList.remove('not-moving');
-  notMoving = false;
-  root.classList.remove('hud-menu-open', 'hud-firstload');
-  root.innerHTML = '';
-  el = {};
-  minimap = null;
-  mapIcons = [];
 }
 
 // Renders a template into a node, dropping results that arrive after the
@@ -342,7 +328,7 @@ function updateTutorial(i, dir) {
 // the image height), anchored at its bottom centre like 2015's
 // translate(-50%, -100% + offsetTopCenter).
 function placeSign(s) {
-  if (!s.visible || !signName || s.character !== signName) {
+  if (!ctx.state.desktop || !s.visible || !signName || s.character !== signName) {
     if (!el.sign.hidden) el.sign.hidden = true;
     return;
   }
@@ -674,5 +660,5 @@ function toggleFullscreen() {
 
 // Arrow keys walk through the scroller: give it the focus back after a click.
 function focusWalk() {
-  if (ctx.state.view === 'walk' && scroller) scroller.focus({ preventScroll: true });
+  if (ctx.state.desktop && ctx.state.view === 'walk' && scroller) scroller.focus({ preventScroll: true });
 }

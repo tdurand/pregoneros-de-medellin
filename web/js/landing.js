@@ -162,7 +162,7 @@ export function localizeLinks(el, lang) {
   });
 }
 
-// ---------- touch: compact start screen ----------
+// ---------- touch: the 2015 landing, stacked for a narrow screen ----------
 
 const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
 
@@ -170,24 +170,26 @@ function renderTouch(lang, str) {
   const t = TEXT[lang] || TEXT.es;
   const found = stories.storiesFound();
   const langs = Object.keys(TEXT).map((l) =>
-    `<button data-lang="${l}" lang="${l}" title="${esc(str[LANG_NAMES[l]])}" aria-pressed="${l === lang}">${l.toUpperCase()}</button>`,
+    `<option value="${l}"${l === lang ? ' selected' : ''}>${esc(str[LANG_NAMES[l]] || l.toUpperCase())}</option>`,
   ).join('');
-  const pages = PAGES.map(([name, key]) => `<a href="#page/${name}/${lang}">${esc(str[key] || name)}</a>`).join('');
+  const pages = PAGES.map(([name, key]) => `<a href="#page/${name}/${lang}">${esc(str[key] || name)}</a>`)
+    .join('<span class="menu-separator">|</span>');
   return `
     <div class="st">
-      <nav class="st-langs">${langs}</nav>
-      <div class="st-head">
+      <nav class="st-bar">
+        <span class="st-links">${pages}</span>
+        <select class="language-selection" aria-label="Language">${langs}</select>
+      </nav>
+      <div class="st-main">
         <img class="st-logo" src="images/logo.png" alt="Pregoneros de Medellín">
         <p class="st-headline">${esc(str.landingDescriptionHeadline)}</p>
-      </div>
-      <div class="st-go">
-        <button class="cta btn-enter">${esc(t.start)}</button>
+        <button class="btn-enter" aria-label="${esc(t.start)}"><img src="images/${lang}/btn-enter.svg" alt=""></button>
         <p class="st-hint">🎧 ${esc(t.headphones)}</p>
         ${found ? `<p class="st-found">★ ${found}/${stories.TOTAL_STORIES} ${esc(t.found)}</p>` : ''}
+        <button class="st-trailer">▶ ${esc(t.trailer)}</button>
+        <img class="st-laurels" src="images/laurels-new.png" alt="">
       </div>
-      <nav class="st-pages">
-        <button class="st-trailer">▶ ${esc(t.trailer)}</button>${pages}
-      </nav>
+      <div class="st-street"></div>
     </div>`;
 }
 
@@ -208,9 +210,6 @@ root.addEventListener('click', (e) => {
     share(`https://www.facebook.com/sharer.php?u=${encodeURIComponent(SITE)}`);
   } else if (hit('.btn-shareontwitter')) {
     share(`https://twitter.com/intent/tweet?text=${encodeURIComponent(str.shareTweetContent || SITE)}`);
-  } else if (hit('[data-lang]')) {
-    const l = hit('[data-lang]').dataset.lang;
-    if (l !== lang) emit('set-lang', { lang: l });
   } else if (hit('.st-trailer')) {
     emit('play-video', { src: TRAILER, subs: `content/subtitles/jale/mobilebonus/${lang}.vtt` });
   }

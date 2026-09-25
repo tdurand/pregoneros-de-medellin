@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="style/css/main.css">
   <link rel="stylesheet" href="css/walk.css">
   <link rel="stylesheet" href="css/site.css">
-  <link rel="stylesheet" href="css/desktop-hud.css">
+  <link rel="stylesheet" href="css/hud.css">
   <script type="module" src="js/main.js"></script>
 </head>
 <body>
@@ -40,27 +40,10 @@
   <!-- Desktop: a page as tall as the street (1 m = 100 px); scrolling it walks. -->
   <div id="scroller" tabindex="0" aria-label="Street"><div id="scroll-space"></div></div>
 
-  <!-- Desktop street furniture, drawn by js/desktop-hud.js from the 2015 templates. -->
-  <div id="hud-desktop"></div>
+  <!-- 2015 street furniture (signs, bottom bar, map, arrows), drawn by js/hud.js. -->
+  <div id="hud"></div>
 
   <button id="sign" class="sign" hidden><span class="sign-art"></span></button>
-
-  <header class="bar">
-    <div class="pill" id="area"></div>
-    <div class="pill found"><span data-s="streetWalkSignDiscoveredStoriesTitle">STORIES</span> <b id="found">0/16</b></div>
-    <div class="bar-actions">
-      <button id="map-btn" class="icon" data-aria="map">
-        <svg viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zm0 2.2 6 2v11.6l-6-2V6.2z"/></svg>
-      </button>
-      <button id="sound-btn" class="icon" data-aria="sound" aria-pressed="false">
-        <svg class="on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
-        <svg class="off" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.6 3 2.7-2.7-1.4-1.4-2.7 2.7-2.7-2.7-1.4 1.4 2.7 2.7-2.7 2.7 1.4 1.4 2.7-2.7 2.7 2.7 1.4-1.4-2.7-2.7z"/></svg>
-      </button>
-      <button id="menu-btn" class="icon" data-aria="menu">
-        <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
-      </button>
-    </div>
-  </header>
 
   <div id="hint" hidden>
     <div class="finger"></div>
@@ -68,13 +51,6 @@
     <p class="hint-touch small" data-t="look"></p>
     <p class="hint-desktop" data-t="scroll"></p>
   </div>
-
-  <section id="chooser" hidden>
-    <p class="chooser-title"></p>
-    <div class="chooser-options"></div>
-  </section>
-
-  <div id="map" hidden><svg></svg></div>
 
   <div id="loading" hidden>
     <p data-s="loadingLabel">CARGANDO</p>
@@ -84,22 +60,8 @@
   <section id="start" hidden>
     <img class="logo" src="images/logo.png" alt="Pregoneros de Medellín">
     <p class="headline" data-s="landingDescriptionHeadline"></p>
-    <button id="start-btn" class="cta" data-t="start"></button>
+    <button id="start-btn" data-aria="start"><img src="images/es/btn-enter.svg" alt=""></button>
     <p class="small">🎧 <span data-t="headphones"></span></p>
-  </section>
-
-  <section id="menu" hidden>
-    <button class="menu-close icon" data-aria="close">✕</button>
-    <p class="menu-label" data-t="language"></p>
-    <div class="langs">
-      <button data-lang="es">Español</button>
-      <button data-lang="en">English</button>
-      <button data-lang="fr">Français</button>
-    </div>
-    <button class="menu-home menu-item" data-t="home"></button>
-    <button class="menu-trailer menu-item" data-t="trailer"></button>
-    <a class="menu-item" href="#page/makingof" data-s="menuBtnLabelMakingOf">Making of</a>
-    <a class="menu-item" href="#page/team" data-s="menuBtnLabelCredits">Créditos</a>
   </section>
 </div>
 

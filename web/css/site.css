@@ -85,110 +85,116 @@
 #landing .toggle-sounds[data-state="muted"] { background-image: url('../images/mutesound.svg'); }
 #landing .toggle-sounds[data-state="normal"] { background-image: url('../images/unmutesound.svg'); }
 
-/* ---------- landing, touch: compact start screen ---------- */
+/* ---------- landing, touch: the 2015 landing stacked for a narrow screen ----------
+   Same pieces as desktop: the green menu bar, the yellow brush texture with
+   the logo and the plum description, the ENTRAR brush, the laurels, and the
+   street below its brush edge. */
 
-#landing.landing-touch { color: #fff; background: #1e0a1c; }
-/* The first frame is letterboxed: its top 43 % is black. Stretch the layer up
-   by 75 % of the screen so only the street shows, under the plum veil. */
-#landing.landing-touch::before {
-  content: '';
-  position: absolute;
-  inset: -75% 0 0;
-  background: url('../images/landing-video-firstframe.jpg') center bottom / cover;
-  filter: blur(3px);
-}
-#landing.landing-touch::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(rgba(79, 39, 71, .82), rgba(30, 10, 28, .95));
-}
+#landing.landing-touch { background: #1e0a1c; color: #4A2246; }
 
 .st {
   position: relative;
-  z-index: 1;
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: calc(var(--safe-top) + 12px) max(20px, env(safe-area-inset-right)) calc(var(--safe-bottom) + 14px) max(20px, env(safe-area-inset-left));
+  font-family: 'FilbertBrush', sans-serif;
   text-align: center;
-  font-family: -apple-system, system-ui, 'Segoe UI', Roboto, sans-serif;
 }
 
-.st-langs { align-self: flex-end; display: flex; gap: 4px; }
-.st-langs button {
-  min-width: 40px;
-  min-height: 34px;
-  padding: 0 8px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: .05em;
-  color: rgba(255, 255, 255, .75);
-}
-.st-langs button[aria-pressed="true"] { color: var(--plum); background: var(--yellow); }
-
-.st-head { display: flex; flex-direction: column; align-items: center; gap: 14px; min-height: 0; }
-.st-logo { width: min(80vw, 380px, 42vh); height: auto; filter: drop-shadow(0 4px 14px rgba(0, 0, 0, .45)); }
-.st-headline {
-  margin: 0;
-  max-width: 22em;
-  font: 19px/1.25 'FilbertBrush', sans-serif;
-  color: var(--yellow);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, .5);
-}
-
-.st-go { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.st-go .cta { min-width: min(100%, 300px); min-height: 60px; font-size: 19px; }
-.st-go .cta:active { transform: scale(.97); }
-.st-go p { margin: 0; font-size: 14px; opacity: .85; }
-.st-found { color: var(--yellow); }
-
-.st-pages {
+/* 2015 .top-bar: green, over an orange band. */
+.st-bar {
+  flex: none;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  padding: calc(var(--safe-top) + 6px) 12px 6px;
+  background: #00937A;
+  box-shadow: 0 6px 0 rgba(189, 117, 15, .6);
+  color: #fff;
+  font-size: 15px;
+  font-variant: small-caps;
+  position: relative;
+  z-index: 2;
+}
+.st-links { flex: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 0 6px; text-align: left; line-height: 1.9; }
+.st-bar a { color: #fff; }
+.st-bar .menu-separator { opacity: .8; }
+.st-bar .language-selection {
+  flex: none;
+  padding: 4px 6px;
+  border: 1px solid rgba(255, 255, 255, .6);
+  border-radius: 4px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-variant: normal;
+}
+.st-bar .language-selection option { color: #4A2246; }
+
+/* 2015 .main: the yellow brush texture. */
+.st-main {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 2px 4px;
-  max-width: 30em;
+  gap: 10px;
+  padding: 18px 20px 30px;
+  background: url('../images/texture_full_hq.jpg') center / cover;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
-.st-pages a, .st-pages button {
-  padding: 6px 8px;
-  font-size: 13px;
-  color: rgba(255, 255, 255, .8);
-  text-decoration: none;
-}
-.st-pages .st-trailer { color: var(--yellow); font-weight: 600; }
+.st-logo { width: min(78vw, 360px, 30vh); height: auto; }
+.st-headline { margin: 0; max-width: 20em; font-size: 18px; line-height: 1.3; text-transform: uppercase; }
+.st-main .btn-enter { padding: 0; background: none; border: 0; }
+.st-main .btn-enter img { display: block; width: min(52vw, 220px); height: auto; filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, .35)); }
+.st-main .btn-enter:active img { transform: scale(.97); }
+.st-main p { margin: 0; font-size: 15px; }
+.st-trailer { padding: 4px 8px; color: #9b482a; font: inherit; font-size: 16px; text-decoration: underline; }
+.st-laurels { width: min(88vw, 420px); max-height: 12vh; object-fit: contain; margin-top: 4px; }
 
-/* Short screens (small phones, landscape): tighten up. */
+/* The street under the texture's brush edge (2015 .separator). */
+.st-street {
+  flex: 0 0 18vh;
+  margin-top: -6vh;
+  background: url('../images/landing-video-firstframe.jpg') center 80% / cover;
+  position: relative;
+}
+.st-street::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: -1px;
+  height: 9vh;
+  background: url('../images/separator_bottom.png') center top / 100% 100% no-repeat;
+  transform: scaleY(-1);
+}
+
+/* Short screens (small phones): tighten up. */
 @media (max-height: 640px) {
-  .st { gap: 8px; }
-  .st-head { gap: 10px; }
-  .st-headline { font-size: 17px; }
+  .st-main { gap: 6px; padding-top: 10px; }
+  .st-headline { font-size: 15px; }
+  .st-laurels { max-height: 9vh; }
+  .st-street { flex-basis: 12vh; }
 }
 
-/* Landscape phones: logo and headline on the left, the button on the right. */
+/* Landscape phones: logo and laurels on the left, the words and ENTRAR on the right. */
 @media (orientation: landscape) and (max-height: 540px) {
-  .st {
+  .st-main {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas: 'langs langs' 'head go' 'pages pages';
-    align-items: center;
+    grid-auto-flow: dense;
+    align-content: center;
     justify-items: center;
-    gap: 4px 24px;
-    padding-top: calc(var(--safe-top) + 6px);
-    padding-bottom: calc(var(--safe-bottom) + 6px);
+    gap: 6px 24px;
+    padding: 10px 24px 16px;
   }
-  .st-langs { grid-area: langs; justify-self: end; }
-  .st-head { grid-area: head; gap: 8px; }
-  .st-go { grid-area: go; }
-  .st-pages { grid-area: pages; max-width: none; }
-  .st-logo { width: min(40vw, 320px, 48vh); }
-  .st-headline { font-size: 16px; }
-  .st-pages a, .st-pages button { padding: 4px 8px; }
+  .st-logo, .st-laurels { grid-column: 1; }
+  .st-logo { width: min(40vw, 46vh); grid-row: 1 / span 3; }
+  .st-laurels { grid-row: 4 / span 2; max-height: 16vh; }
+  .st-main > :not(.st-logo):not(.st-laurels) { grid-column: 2; }
+  .st-street { display: none; }
 }
 
 /* ---------- pages (2015 #page) ---------- */

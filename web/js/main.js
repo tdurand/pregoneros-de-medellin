@@ -9,12 +9,11 @@ import { framePositions, bearing, distance, wayLength } from './geo.js';
 import { FrameLoader, connectionIsConstrained } from './frames.js';
 import { VideoFrameLoader } from './frames-video.js';
 import { Soundscape } from './audio.js';
-import { MiniMap } from './minimap.js';
 import * as stories from './stories.js';
 import { emit, on } from './bus.js';
 import * as landing from './landing.js';
 import * as pages from './pages.js';
-import * as desktopHud from './desktop-hud.js';
+import * as hud from './hud.js';
 
 const params = new URLSearchParams(location.search);
 // Where stills, sounds live. Overridable for local testing: ?assets=http://...
@@ -42,7 +41,6 @@ export const UI_TEXT = {
     tapSign: 'Toca el letrero para ver su historia', choose: '¿Por dónde seguimos?',
     trailer: 'Ver el tráiler', close: 'Cerrar', map: 'Mapa', sound: 'Sonido', menu: 'Menú',
     language: 'Idioma', home: 'Inicio',
-    dirs: { forward: 'Adelante', 'forward-left': 'Adelante a la izquierda', 'forward-right': 'Adelante a la derecha', left: 'Izquierda', right: 'Derecha', backward: 'Atrás', 'backward-left': 'Atrás a la izquierda', 'backward-right': 'Atrás a la derecha' },
   },
   en: {
     start: 'Start walking', headphones: 'Best with headphones',
@@ -51,7 +49,6 @@ export const UI_TEXT = {
     tapSign: 'Tap the sign to watch their story', choose: 'Which way now?',
     trailer: 'Watch the trailer', close: 'Close', map: 'Map', sound: 'Sound', menu: 'Menu',
     language: 'Language', home: 'Home',
-    dirs: { forward: 'Straight on', 'forward-left': 'Ahead left', 'forward-right': 'Ahead right', left: 'Left', right: 'Right', backward: 'Back', 'backward-left': 'Back left', 'backward-right': 'Back right' },
   },
   fr: {
     start: 'Commencer la balade', headphones: 'Mieux avec un casque',
@@ -60,11 +57,8 @@ export const UI_TEXT = {
     tapSign: "Touchez le panneau pour voir son histoire", choose: 'Par où continuer ?',
     trailer: 'Voir la bande-annonce', close: 'Fermer', map: 'Carte', sound: 'Son', menu: 'Menu',
     language: 'Langue', home: 'Accueil',
-    dirs: { forward: 'Tout droit', 'forward-left': 'Devant à gauche', 'forward-right': 'Devant à droite', left: 'Gauche', right: 'Droite', backward: 'Demi-tour', 'backward-left': 'Derrière à gauche', 'backward-right': 'Derrière à droite' },
   },
 };
-
-const DIR_ANGLE = { forward: 0, 'forward-right': 45, right: 90, 'backward-right': 135, backward: 180, 'backward-left': 225, left: 270, 'forward-left': 315 };
 
 const $ = (s) => document.querySelector(s);
 const el = {
@@ -72,10 +66,7 @@ const el = {
   scroller: $('#scroller'), scrollSpace: $('#scroll-space'),
   start: $('#start'), startBtn: $('#start-btn'),
   loading: $('#loading'), loadingBar: $('#loading-bar'),
-  area: $('#area'), found: $('#found'),
-  sign: $('#sign'), hint: $('#hint'), chooser: $('#chooser'),
-  mapBtn: $('#map-btn'), map: $('#map'), soundBtn: $('#sound-btn'),
-  menuBtn: $('#menu-btn'), menu: $('#menu'),
+  sign: $('#sign'), hint: $('#hint'),
   video: $('#video'), videoEl: $('#video video'), videoClose: $('#video-close'),
   landing: $('#landing'), page: $('#page'),
 };
@@ -91,7 +82,6 @@ export const state = {
   scrollTarget: 0, scrollCur: 0, scrollRange: 1, length: 0,
 };
 const sound = new Soundscape(SOUND_BASE);
-let minimap;
 if (params.has('debug')) { window.__walk = state; window.__sound = sound; }
 
 // ---------- language ----------
@@ -119,7 +109,7 @@ async function setLang(lang) {
   document.querySelectorAll('[data-t]').forEach((n) => { n.textContent = t[n.dataset.t] || ''; });
   document.querySelectorAll('[data-s]').forEach((n) => { n.textContent = state.str[n.dataset.s] || n.textContent; });
   document.querySelectorAll('[data-aria]').forEach((n) => n.setAttribute('aria-label', t[n.dataset.aria]));
-  document.querySelectorAll('[data-lang]').forEach((n) => n.setAttribute('aria-pressed', n.dataset.lang === lang));
+  el.startBtn.querySelector('img').src = `images/${lang}/btn-enter.svg`;
   emit('lang', { lang, str: state.str, ui: t });
   if (state.way && state.view === 'walk') { updateHash(); renderChooser(state.chooserFor); }
 }
@@ -210,16 +200,10 @@ export function loadWay(name) {
   state.pos = 0; state.vel = 0; state.pan = 0; state.panTarget = null; state.shown = -1;
   state.hiImg = null; state.hiIndex = -1; state.chooserFor = null;
   state.lastSoundPos = null; state.leftStart = false;
-  el.chooser.hidden = true;
   el.sign.hidden = true;
-  el.area.textContent = way.wayArea;
   if (state.view === 'walk') updateHash();
   stories.rememberStreet(way.wayName);
   if (state.unlocked) sound.setWay(way.waySounds);
-  if (minimap) {
-    minimap.setWay(way.wayName, []);
-    minimap.setPosition(state.positions[0]);
-  }
   if (way.characterDefinition) loadSign(way.characterDefinition.name);
   resetScroll();
 
@@ -328,7 +312,7 @@ function placeSign(i) {
   const y = r.y + at.top / 100 * r.h;
   const W = window.innerWidth;
   emit('sign', { visible: true, character: c.name, x: rawX, y, width, widthPct, rect: r, def: c, frame: i });
-  // Desktop draws the 2015 sign instead (desktop-hud.js).
+  // Desktop draws the 2015 sign instead (hud.js).
   if (state.desktop) { el.sign.hidden = true; return; }
   // In portrait the vendor can be outside the visible slice: pin the sign to
   // the edge so it stays findable, and let a tap pan towards it.
@@ -356,7 +340,6 @@ function onFrameChange(i) {
     sound.update(here, heading);
     state.lastSoundPos = here;
   }
-  if (minimap) minimap.setPosition(here);
 
   // The "start" chooser only appears when walking back to the beginning, not
   // on arrival, so a new street opens on the view rather than on a menu.
@@ -368,32 +351,12 @@ function onFrameChange(i) {
   emit('frame', { i, n, here, heading, dir, way: state.way });
 }
 
+// The junction arrows are drawn by hud.js from the 2015 template.
 function renderChooser(which) {
   const all = which === 'end' ? state.way.wayConnectionsEnd : which === 'start' ? state.way.wayConnectionsStart : null;
   const list = (all || []).filter((c) => state.ways[c.name]);
   state.chooserFor = list.length ? which : null;
   emit('chooser', { which: state.chooserFor, list });
-  if (!list.length) {
-    el.chooser.hidden = true;
-    if (minimap) minimap.setWay(state.way.wayName, []);
-    return;
-  }
-  if (minimap) minimap.setWay(state.way.wayName, list.map((c) => c.name));
-  // Desktop draws the 2015 junction arrows instead (desktop-hud.js).
-  if (state.desktop) { el.chooser.hidden = true; return; }
-  const t = UI_TEXT[state.lang];
-  el.chooser.querySelector('.chooser-title').textContent = t.choose;
-  const box = el.chooser.querySelector('.chooser-options');
-  box.innerHTML = '';
-  list.forEach((c) => {
-    const b = document.createElement('button');
-    b.className = 'choice';
-    b.innerHTML = `<span class="arrow" style="transform:rotate(${DIR_ANGLE[c.direction] || 0}deg)">↑</span><span></span>`;
-    b.lastChild.textContent = t.dirs[c.direction] || c.direction;
-    b.addEventListener('click', () => chooseWay(c.name));
-    box.appendChild(b);
-  });
-  el.chooser.hidden = false;
 }
 
 export function chooseWay(name) {
@@ -630,13 +593,11 @@ function closeVideo() {
 }
 
 function updateFound() {
-  el.found.textContent = `${stories.storiesFound()}/${stories.TOTAL_STORIES}`;
   emit('found', { count: stories.storiesFound(), total: stories.TOTAL_STORIES });
 }
 
 export function setMuted(muted) {
   sound.setMuted(muted);
-  el.soundBtn.setAttribute('aria-pressed', String(muted));
   emit('muted', { muted });
 }
 
@@ -650,14 +611,13 @@ async function boot() {
   const ways = await (await fetch('content/ways.json')).json();
   state.waysList = ways;
   ways.forEach((w) => { state.ways[w.wayName] = w; });
-  minimap = new MiniMap(el.map.querySelector('svg'), ways);
 
   resize();
   window.addEventListener('resize', resize);
   desktopQuery.addEventListener('change', resize);
   setupGestures();
   setupScroll();
-  desktopHud.init({ state, ways, stories, openStory, replayStory, chooseWay, setMuted, isMuted, go, walkHash, UI_TEXT, playVideo });
+  hud.init({ state, ways, stories, openStory, replayStory, chooseWay, setMuted, isMuted, go, walkHash, UI_TEXT, playVideo });
   requestAnimationFrame(tick);
 
   el.startBtn.addEventListener('click', () => {
@@ -685,17 +645,6 @@ async function boot() {
     openStory(state.way.characterDefinition.name);
   }
 
-  el.soundBtn.addEventListener('click', () => setMuted(!sound.muted));
-  el.mapBtn.addEventListener('click', () => { el.map.hidden = !el.map.hidden; });
-  el.map.addEventListener('click', () => { el.map.hidden = true; });
-  el.menuBtn.addEventListener('click', () => { el.menu.hidden = !el.menu.hidden; });
-  el.menu.querySelector('.menu-close').addEventListener('click', () => { el.menu.hidden = true; });
-  el.menu.querySelectorAll('[data-lang]').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.lang)));
-  el.menu.querySelector('.menu-home').addEventListener('click', () => { el.menu.hidden = true; go(`#index/${state.lang}`); });
-  el.menu.querySelector('.menu-trailer').addEventListener('click', () => {
-    el.menu.hidden = true;
-    playVideo('https://images.pregonerosdemedellin.com/video/mobile.mp4', `content/subtitles/jale/mobilebonus/${state.lang}.vtt`);
-  });
   el.videoClose.addEventListener('click', closeVideo);
   el.videoEl.addEventListener('ended', closeVideo);
   on('play-video', ({ src, subs }) => playVideo(src, subs));
