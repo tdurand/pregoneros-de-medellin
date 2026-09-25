@@ -15,5 +15,8 @@
   },
   "license": "MIT",
   "devDependencies": {},
-  "author": ""
+  "author": "",
+  "engines": {
+    "node": "24.x"
+  }
 }
