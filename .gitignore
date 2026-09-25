@@ -4,4 +4,4 @@ node_modules/
 videos/
 *.map
 public/
-.vercel
+.vercel__pycache__/

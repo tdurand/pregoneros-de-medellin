@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Pregoneros · Immersive prototype</title>
+<style>
+  :root { --fg: #f4efe6; --muted: #b9b1a3; --panel: rgba(18, 16, 14, .78); --accent: #f2b441; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #000; color: var(--fg); font: 14px/1.4 system-ui, -apple-system, sans-serif; overflow: hidden; touch-action: none; }
+  canvas { display: block; }
+  #hud { position: fixed; left: 12px; top: 12px; max-width: min(340px, calc(100vw - 24px)); background: var(--panel); border-radius: 10px; padding: 10px 12px; backdrop-filter: blur(6px); }
+  #hud h1 { font-size: 14px; margin: 0 0 6px; letter-spacing: .02em; }
+  #hud label { display: flex; align-items: center; gap: 8px; margin: 6px 0; color: var(--muted); font-size: 12px; }
+  #hud label span { min-width: 78px; }
+  #hud input[type=range] { flex: 1; min-width: 0; }
+  #hud select { flex: 1; min-width: 0; background: #222; color: var(--fg); border: 1px solid #444; border-radius: 6px; padding: 3px; }
+  #hud details summary { cursor: pointer; color: var(--muted); font-size: 12px; margin-top: 4px; }
+  #status { font-size: 12px; color: var(--accent); min-height: 1.4em; }
+  #bar { position: fixed; left: 0; right: 0; bottom: 0; display: flex; gap: 8px; justify-content: center; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); }
+  #bar button { background: var(--panel); color: var(--fg); border: 1px solid #555; border-radius: 999px; padding: 10px 16px; font-size: 14px; }
+  #bar button.on { border-color: var(--accent); color: var(--accent); }
+  #frameinfo { position: fixed; right: 12px; top: 12px; background: var(--panel); border-radius: 8px; padding: 4px 8px; font-size: 12px; color: var(--muted); }
+  #drop { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,.6); font-size: 18px; }
+  body.dragging #drop { display: flex; }
+  @media (max-width: 600px) { #frameinfo { top: auto; right: 50%; transform: translateX(50%); bottom: calc(70px + env(safe-area-inset-bottom)); white-space: nowrap; } }
+</style>
+</head>
+<body>
+<div id="hud">
+  <h1>Pregoneros · depth walk prototype</h1>
+  <div id="status">Loading…</div>
+  <label><span>Street</span><select id="way"></select></label>
+  <details>
+    <summary>Tuning</summary>
+    <label><span>Depth</span><input id="depthAmt" type="range" min="0" max="1.5" step="0.01" value="1"></label>
+    <label><span>Step length</span><input id="step" type="range" min="0" max="2" step="0.01" value="0.3"></label>
+    <label><span>Field of view</span><input id="fov" type="range" min="70" max="150" step="1" value="118"></label>
+    <label><span>Lens</span><select id="lens"><option value="fisheye">GoPro fisheye</option><option value="rect">Rectilinear</option></select></label>
+    <label><span>Surround fill</span><select id="fill"><option value="smear">Smeared edges</option><option value="none">Black</option></select></label>
+    <label><span>Transition</span><select id="trans"><option value="cut">Cut (like video)</option><option value="blend">Blend</option></select></label>
+    <label><span>View</span><select id="view"><option value="photo">Photo</option><option value="depth">Depth map</option><option value="mesh">Wireframe</option></select></label>
+    <label><span>Frame step</span><select id="stride"><option value="1" selected>every frame</option><option value="2">every 2nd</option><option value="4">every 4th</option></select></label>
+  </details>
+</div>
+<div id="frameinfo"></div>
+<div id="bar">
+  <button id="back">◀ Back</button>
+  <button id="gyro">Look with phone</button>
+  <button id="fwd">Walk ▶</button>
+</div>
+<div id="drop">Drop a sequence of frames (jpg/png) to walk through them</div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+
+// ---------------------------------------------------------------------------
+// Config. Frames are the same stills the live site uses. On Vercel, /frames/
+// is a same-origin rewrite to the image CDN (needed so WebGL can read pixels).
+// Override with ?base=https://…/data/ when running elsewhere.
+// ---------------------------------------------------------------------------
+const params = new URLSearchParams(location.search);
+const FRAME_BASE = params.get('base') || '/frames/';
+const REST_RES = params.get('res') || 'highres';      // texture shown once you stop walking
+const MOVE_RES = 'lowres';                            // texture used while walking (small, fast to fetch)
+const DEPTH_RES = params.get('depthres') || 'lowres'; // input to the depth model
+const PRECOMPUTED = params.has('precomputed');         // load <way>/depth/wayNNN.png instead of running the model
+const MODEL = params.get('model') || 'onnx-community/depth-anything-v2-small';
+const GRID_W = 192, GRID_H = 108;
+const NEAR_M = 1.2, FAR_M = 60; // metric range the relative depth is mapped into
+
+const $ = (id) => document.getElementById(id);
+const ui = {
+  depthAmt: $('depthAmt'), step: $('step'), fov: $('fov'), lens: $('lens'),
+  fill: $('fill'), view: $('view'), trans: $('trans'), stride: $('stride'), way: $('way'),
+};
+const setStatus = (t) => { $('status').textContent = t; };
+
+// ---------------------------------------------------------------------------
+// Renderer, two render targets for crossfading between consecutive frames.
+// ---------------------------------------------------------------------------
+const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(devicePixelRatio, matchMedia('(pointer: coarse)').matches ? 1.25 : 1.5));
+renderer.setSize(innerWidth, innerHeight);
+document.body.prepend(renderer.domElement);
+
+const camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.05, 500);
+const rtOpts = { depthBuffer: true, colorSpace: THREE.SRGBColorSpace };
+const rtA = new THREE.WebGLRenderTarget(1, 1, rtOpts);
+const rtB = new THREE.WebGLRenderTarget(1, 1, rtOpts);
+function resize() {
+  renderer.setSize(innerWidth, innerHeight);
+  const w = innerWidth * renderer.getPixelRatio(), h = innerHeight * renderer.getPixelRatio();
+  rtA.setSize(w, h); rtB.setSize(w, h);
+  camera.aspect = innerWidth / innerHeight;
+  camera.fov = camera.aspect < 1 ? 95 : 75; // taller view on phones in portrait
+  camera.updateProjectionMatrix();
+}
+addEventListener('resize', resize);
+
+const compositeScene = new THREE.Scene();
+const compositeCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+const compositeMat = new THREE.ShaderMaterial({
+  uniforms: { a: { value: rtA.texture }, b: { value: rtB.texture }, t: { value: 0 } },
+  vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0., 1.); }',
+  fragmentShader: `uniform sampler2D a, b; uniform float t; varying vec2 vUv;
+    void main(){ gl_FragColor = mix(texture2D(a, vUv), texture2D(b, vUv), smoothstep(0.3, 0.7, t)); }`,
+  depthTest: false, depthWrite: false,
+});
+compositeScene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), compositeMat));
+
+// ---------------------------------------------------------------------------
+// Shared shader chunk: lens model. Maps image uv -> view direction and back.
+// fisheye = equidistant (angle proportional to radius), roughly GoPro "wide".
+// ---------------------------------------------------------------------------
+const LENS_GLSL = `
+uniform float hfov; uniform float aspect; uniform float fisheye;
+vec3 uvToDir(vec2 uv){
+  vec2 p = (uv - 0.5) * 2.0; p.y /= aspect;             // p.x in [-1,1]
+  float half_ = hfov * 0.5;
+  if (fisheye > 0.5) {
+    float r = length(p); float th = r * half_;
+    vec2 d = r > 1e-5 ? p / r : vec2(0.);
+    return normalize(vec3(d * sin(th), -cos(th)));
+  }
+  return normalize(vec3(p * tan(half_), -1.0));
+}
+vec2 dirToUv(vec3 d){
+  float half_ = hfov * 0.5; vec2 p;
+  if (fisheye > 0.5) {
+    float th = acos(clamp(-d.z, -1., 1.)); vec2 xy = d.xy; float l = length(xy);
+    p = l > 1e-5 ? xy / l * (th / half_) : vec2(0.);
+  } else {
+    p = d.xy / max(-d.z, 1e-3) / tan(half_);
+  }
+  p.y *= aspect; return p * 0.5 + 0.5;
+}`;
+
+// Geometry: a grid whose vertices are pushed along their view ray by depth.
+const gridGeo = new THREE.PlaneGeometry(1, 1, GRID_W, GRID_H);
+{
+  const uv = gridGeo.attributes.uv;
+  const pos = gridGeo.attributes.position;
+  for (let i = 0; i < pos.count; i++) pos.setXYZ(i, uv.getX(i), uv.getY(i), 0);
+  gridGeo.computeBoundingSphere();
+  gridGeo.boundingSphere.radius = 1e4;
+}
+
+function makeFrameMaterial() {
+  return new THREE.ShaderMaterial({
+    uniforms: {
+      map: { value: null }, depth: { value: null }, hfov: { value: 2 }, aspect: { value: 16 / 9 },
+      fisheye: { value: 1 }, amount: { value: 1 }, mode: { value: 0 },
+      nearInv: { value: 1 / NEAR_M }, farInv: { value: 1 / FAR_M },
+    },
+    vertexShader: LENS_GLSL + `
+      uniform sampler2D depth; uniform float amount, nearInv, farInv;
+      varying vec2 vUv; varying float vDisp;
+      void main(){
+        vUv = position.xy;
+        float disp = texture2D(depth, vUv).r;             // relative inverse depth, 1 = near
+        vDisp = disp;
+        float dist = 1.0 / mix(farInv, nearInv, disp);
+        dist = mix(12.0, dist, amount);                  // amount 0 = flat photo on a sphere
+        vec3 p = uvToDir(vUv) * dist;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
+      }`,
+    fragmentShader: `
+      uniform sampler2D map; uniform int mode; varying vec2 vUv; varying float vDisp;
+      void main(){
+        vec4 c = texture2D(map, vUv);
+        if (mode == 1) c = vec4(vec3(vDisp), 1.);
+        // feather the frame border into the surround fill
+        vec2 e = smoothstep(0.0, 0.03, vUv) * smoothstep(0.0, 0.03, 1.0 - vUv);
+        gl_FragColor = vec4(c.rgb, e.x * e.y);
+      }`,
+    transparent: true,
+    side: THREE.DoubleSide,
+  });
+}
+
+// Surround: a big sphere that extends the frame's blurred edge colours in every
+// direction. It's the cheap stand-in for real AI panorama outpainting.
+function makeSurroundMaterial() {
+  return new THREE.ShaderMaterial({
+    uniforms: { map: { value: null }, hfov: { value: 2 }, aspect: { value: 16 / 9 }, fisheye: { value: 1 }, on: { value: 1 } },
+    vertexShader: 'varying vec3 vDir; void main(){ vDir = position; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); }',
+    fragmentShader: LENS_GLSL + `
+      uniform sampler2D map; uniform float on; varying vec3 vDir;
+      void main(){
+        vec3 d = normalize(vDir);
+        vec3 f = d; if (f.z > -0.05) f = normalize(vec3(f.xy, -0.05 - abs(f.z) * 0.2));
+        vec2 uv = clamp(dirToUv(f), 0.02, 0.98);
+        vec3 c = texture2D(map, uv).rgb;
+        float behind = smoothstep(-0.2, 0.9, d.z);
+        gl_FragColor = vec4(c * on * (1.0 - 0.55 * behind), 1.);
+      }`,
+    side: THREE.BackSide, depthWrite: false,
+  });
+}
+
+class FrameView {
+  constructor() {
+    this.scene = new THREE.Scene();
+    this.surround = new THREE.Mesh(new THREE.SphereGeometry(200, 48, 24), makeSurroundMaterial());
+    this.surround.renderOrder = -1;
+    this.mesh = new THREE.Mesh(gridGeo, makeFrameMaterial());
+    this.wire = new THREE.Mesh(gridGeo, makeFrameMaterial());
+    this.wire.material.wireframe = true;
+    this.wire.material.transparent = false;
+    this.scene.add(this.surround, this.mesh, this.wire);
+    this.frame = null;
+  }
+  set(frame) {
+    this.frame = frame;
+    for (const m of [this.mesh.material, this.wire.material]) {
+      m.uniforms.map.value = frame.tex; m.uniforms.depth.value = depthFor(frame);
+    }
+    this.surround.material.uniforms.map.value = frame.blurTex;
+  }
+  sync(s) {
+    for (const m of [this.mesh.material, this.wire.material, this.surround.material]) {
+      m.uniforms.hfov.value = THREE.MathUtils.degToRad(s.fov);
+      m.uniforms.fisheye.value = s.fisheye ? 1 : 0;
+      if (this.frame) m.uniforms.aspect.value = this.frame.aspect;
+    }
+    for (const m of [this.mesh.material, this.wire.material]) {
+      m.uniforms.amount.value = s.depthAmt;
+      m.uniforms.mode.value = s.view === 'depth' ? 1 : 0;
+    }
+    this.wire.visible = s.view === 'mesh';
+    this.mesh.visible = s.view !== 'mesh';
+    this.surround.material.uniforms.on.value = s.fill === 'smear' ? 1 : 0;
+  }
+}
+const viewA = new FrameView(), viewB = new FrameView();
+
+// ---------------------------------------------------------------------------
+// Frames: image + depth, loaded lazily and cached.
+// ---------------------------------------------------------------------------
+const pad3 = (i) => String(i).padStart(3, '0');
+let way = null;              // { name, count } or { files: [...] }
+const cache = new Map();     // index -> frame
+const loader = new THREE.ImageBitmapLoader();
+loader.setOptions({ imageOrientation: 'flipY' });
+
+function frameUrl(i, res) {
+  if (way.files) return way.files[i].url;
+  return `${FRAME_BASE}${way.name}/${res}/way${pad3(i)}.jpg`;
+}
+
+function loadBitmap(url) {
+  return new Promise((ok, err) => loader.load(url, ok, undefined, err));
+}
+
+function heuristicDepth(w, h) {
+  // Street prior: ground plane below the horizon gets nearer towards the bottom,
+  // facades get nearer towards the left/right edges. Used until the model answers.
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const ctx = c.getContext('2d'); const img = ctx.createImageData(w, h);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const v = y / h, u = x / w;
+    const ground = v < 0.5 ? 0 : (v - 0.5) * 2;       // top-down canvas: bottom rows near
+    const walls = Math.pow(Math.abs(u - 0.5) * 2, 2) * 0.6;
+    const d = Math.min(1, Math.max(ground * 0.9, walls, 0.08));
+    const k = (y * w + x) * 4; img.data[k] = img.data[k + 1] = img.data[k + 2] = d * 255; img.data[k + 3] = 255;
+  }
+  ctx.putImageData(img, 0, 0);
+  return c;
+}
+const fallbackDepth = new THREE.CanvasTexture(heuristicDepth(64, 36));
+fallbackDepth.flipY = true;
+
+function blurTexture(bitmap) {
+  const c = document.createElement('canvas'); c.width = 24; c.height = 14;
+  const ctx = c.getContext('2d'); ctx.filter = 'blur(1px)';
+  ctx.drawImage(bitmap, 0, 0, c.width, c.height);
+  const t = new THREE.CanvasTexture(c); t.flipY = false; t.colorSpace = THREE.SRGBColorSpace;
+  t.minFilter = t.magFilter = THREE.LinearFilter;
+  return t;
+}
+
+function makeTexture(bmp) {
+  const t = new THREE.Texture(bmp); t.flipY = false; t.colorSpace = THREE.SRGBColorSpace;
+  t.needsUpdate = true; return t;
+}
+
+// Swap in the high-res still once the walker has stopped on a frame.
+function upgradeFrame(f) {
+  if (way.files || f.hi || !f.ready || REST_RES === MOVE_RES) return;
+  f.hi = loadBitmap(frameUrl(f.i, REST_RES)).then((bmp) => {
+    if (!cache.has(f.i)) return;
+    const old = f.tex; f.tex = makeTexture(bmp);
+    if (viewA.frame === f) viewA.set(f);
+    if (viewB.frame === f) viewB.set(f);
+    old.dispose();
+  }).catch(() => {});
+}
+
+// Neighbouring stills are a step apart, so their depth maps are nearly the same.
+// Borrow the closest computed one until this frame's own depth is ready.
+function depthFor(f) {
+  if (f.depthReady) return f.depthTex;
+  for (let d = 1; d <= 10; d++) {
+    for (const j of [f.i - d, f.i + d]) { const g = cache.get(j); if (g && g.depthReady) return g.depthTex; }
+  }
+  return fallbackDepth;
+}
+
+function nearestReady(i, dir) {
+  const f = getFrame(i); if (f.ready) return f;
+  for (let d = 1; d <= 6; d++) {
+    const g = cache.get(i + dir * d) || cache.get(i - dir * d);
+    if (g && g.ready) return g;
+  }
+  return null;
+}
+
+function getFrame(i) {
+  if (cache.has(i)) return cache.get(i);
+  const f = { i, ready: false, depthReady: false, tex: null, depthTex: fallbackDepth, blurTex: null, aspect: 16 / 9 };
+  f.promise = loadBitmap(frameUrl(i, MOVE_RES)).then((bmp) => {
+    f.tex = makeTexture(bmp); f.aspect = bmp.width / bmp.height;
+    f.blurTex = blurTexture(bmp); f.ready = true;
+    renderer.initTexture(f.tex); // upload now, not on the frame it first shows
+    queueDepth(f);
+    return f;
+  }).catch((e) => { f.error = e; setStatus(`Could not load frame ${i}: is ${FRAME_BASE} reachable?`); });
+  cache.set(i, f);
+  // keep memory bounded on phones
+  if (cache.size > 90) {
+    for (const [k, v] of cache) { if (Math.abs(k - pos) > 40 && v.ready) { v.tex.dispose(); v.blurTex.dispose(); if (v.depthTex !== fallbackDepth) v.depthTex.dispose(); cache.delete(k); } }
+  }
+  return f;
+}
+
+// ---------------------------------------------------------------------------
+// Depth: Depth Anything V2 (small) in the browser via transformers.js, WebGPU
+// when available, WASM otherwise. Or precomputed PNGs with ?precomputed.
+// The model runs in a Web Worker so inference never blocks rendering.
+// ---------------------------------------------------------------------------
+const WORKER_SRC = `
+import { pipeline, env, RawImage } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.0';
+env.allowLocalModels = false;
+let pipe;
+self.onmessage = async ({ data }) => {
+  try {
+    if (data.type === 'init') {
+      let backend;
+      try {
+        if (!self.navigator.gpu) throw new Error('no webgpu');
+        pipe = await pipeline('depth-estimation', data.model, { device: 'webgpu', dtype: 'fp16' }); backend = 'WebGPU';
+      } catch {
+        pipe = await pipeline('depth-estimation', data.model, { device: 'wasm', dtype: 'q8' }); backend = 'WASM (slower)';
+      }
+      self.postMessage({ type: 'ready', backend });
+    } else {
+      const out = await pipe(await RawImage.fromURL(data.url));
+      const { width, height, channels } = out.depth;
+      const px = new Uint8Array(width * height);
+      // bottom row first, to match the photo textures (bitmaps are decoded flipped)
+      for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) {
+        px[(height - 1 - y) * width + x] = out.depth.data[(y * width + x) * channels];
+      }
+      self.postMessage({ type: 'depth', id: data.id, width, height, px }, [px.buffer]);
+    }
+  } catch (e) { self.postMessage({ type: 'error', id: data.id, message: String(e) }); }
+};`;
+let depthWorker = null, depthPipe = null, depthBusy = false, depthBackend = '';
+const workerJobs = new Map(); let jobId = 0;
+function runDepth(url) {
+  return new Promise((ok, err) => { const id = ++jobId; workerJobs.set(id, { ok, err }); depthWorker.postMessage({ id, url }); });
+}
+const depthQueue = [];
+function queueDepth(f) { if (!depthQueue.includes(f)) depthQueue.push(f); pumpDepth(); }
+
+async function initDepth() {
+  if (PRECOMPUTED) { depthBackend = 'precomputed'; return; }
+  setStatus('Downloading depth model (~25 MB, cached after first visit)…');
+  depthWorker = new Worker(URL.createObjectURL(new Blob([WORKER_SRC], { type: 'text/javascript' })), { type: 'module' });
+  await new Promise((ok, err) => {
+    depthWorker.onerror = (e) => err(new Error(e.message || 'depth worker failed'));
+    depthWorker.onmessage = ({ data }) => {
+      if (data.type === 'ready') { depthBackend = data.backend; depthPipe = true; ok(); return; }
+      const job = workerJobs.get(data.id);
+      if (data.type === 'error' && !job) { err(new Error(data.message)); return; }
+      if (!job) return;
+      workerJobs.delete(data.id);
+      data.type === 'depth' ? job.ok(data) : job.err(new Error(data.message));
+    };
+    depthWorker.postMessage({ type: 'init', model: MODEL });
+  });
+}
+
+function depthToTexture({ width, height, px }) {
+  // one channel, 0..255 where 255 = nearest
+  const t = new THREE.DataTexture(px, width, height, THREE.RedFormat, THREE.UnsignedByteType);
+  t.flipY = false; t.minFilter = t.magFilter = THREE.LinearFilter; t.unpackAlignment = 1; t.needsUpdate = true;
+  return t;
+}
+
+async function pumpDepth() {
+  if (depthBusy || (!depthPipe && depthBackend !== 'precomputed')) return;
+  // Inference shares the GPU with rendering, so hold it while walking unless the
+  // current still has no depth at all to borrow.
+  const here = cache.get(Math.round(pos));
+  if (walkingNow && here && depthFor(here) !== fallbackDepth) return;
+  // nearest pending frame to the walker first
+  depthQueue.sort((a, b) => Math.abs(a.i - pos) - Math.abs(b.i - pos));
+  const f = depthQueue.shift();
+  if (!f) return;
+  if (Math.abs(f.i - pos) > 30 || !cache.has(f.i)) return pumpDepth();
+  depthBusy = true;
+  try {
+    const t0 = performance.now();
+    if (depthBackend === 'precomputed') {
+      const bmp = await loadBitmap(`${FRAME_BASE}${way.name}/depth/way${pad3(f.i)}.png`);
+      f.depthTex = new THREE.Texture(bmp); f.depthTex.flipY = false; f.depthTex.needsUpdate = true;
+    } else {
+      const url = new URL(way.files ? way.files[f.i].url : frameUrl(f.i, DEPTH_RES), location.href).href;
+      f.depthTex = depthToTexture(await runDepth(url));
+    }
+    f.depthReady = true;
+    lastDepthMs = performance.now() - t0;
+  } catch (e) { console.warn('depth failed', f.i, e); }
+  depthBusy = false;
+  pumpDepth();
+}
+let lastDepthMs = 0, walkingNow = false;
+
+// ---------------------------------------------------------------------------
+// Controls: scroll / swipe / buttons walk; drag or gyro looks around; the
+// pointer position nudges the head a little for parallax.
+// ---------------------------------------------------------------------------
+let pos = 0, target = 0;           // continuous frame position
+let yaw = 0, pitch = 0, yawT = 0, pitchT = 0;
+let head = new THREE.Vector2(), headT = new THREE.Vector2();
+let gyro = null;
+
+const settings = () => ({
+  depthAmt: +ui.depthAmt.value, step: +ui.step.value, fov: +ui.fov.value,
+  fisheye: ui.lens.value === 'fisheye', fill: ui.fill.value, view: ui.view.value, cut: ui.trans.value === 'cut', stride: +ui.stride.value,
+});
+const perMetre = () => (way && way.perMetre) || 3; // stills per metre of street (about 3.2 on average)
+const count = () => way ? (way.files ? way.files.length : way.count) : 1;
+const walk = (d) => { target = THREE.MathUtils.clamp(target + d, 0, count() - 1); };
+
+addEventListener('wheel', (e) => {
+  e.preventDefault();
+  const px = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY; // lines -> pixels
+  vel = 0; walk(px * 0.01 * perMetre()); // like the original: 100 px of scroll = one metre of street
+}, { passive: false });
+addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowUp' || e.key === 'w') walk(perMetre());
+  if (e.key === 'ArrowDown' || e.key === 's') walk(-perMetre());
+});
+let holdDir = 0;
+for (const [id, d] of [['fwd', 1], ['back', -1]]) {
+  const b = $(id);
+  b.addEventListener('pointerdown', (e) => { e.stopPropagation(); holdDir = d; });
+  for (const ev of ['pointerup', 'pointerleave', 'pointercancel']) b.addEventListener(ev, () => { holdDir = 0; });
+}
+
+let drag = null;
+renderer.domElement.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, y: e.clientY, yaw: yawT, pitch: pitchT, t: target, touch: e.pointerType === 'touch' }; });
+addEventListener('pointerup', () => { if (drag?.walking && drag.v) vel = THREE.MathUtils.clamp(drag.v, -MAX_SPEED, MAX_SPEED); drag = null; });
+addEventListener('pointermove', (e) => {
+  headT.set((e.clientX / innerWidth - 0.5) * 2, (e.clientY / innerHeight - 0.5) * 2);
+  if (!drag) return;
+  const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+  if (drag.touch && !gyro && Math.abs(dy) > Math.abs(dx) * 1.5) {
+    // vertical swipe walks on phones, like scrolling the original
+    const prev = target;
+    target = THREE.MathUtils.clamp(drag.t - dy * 0.02 * perMetre(), 0, count() - 1);
+    const now = performance.now();
+    if (drag.lt) drag.v = (target - prev) / Math.max((now - drag.lt) / 1000, 0.008);
+    drag.lt = now; drag.walking = true;
+  } else {
+    yawT = drag.yaw + dx * 0.004; pitchT = THREE.MathUtils.clamp(drag.pitch + dy * 0.003, -1.1, 1.1);
+  }
+});
+
+$('gyro').addEventListener('click', async () => {
+  if (gyro) { removeEventListener('deviceorientation', onOrient); gyro = null; $('gyro').classList.remove('on'); return; }
+  if (typeof DeviceOrientationEvent !== 'undefined' && DeviceOrientationEvent.requestPermission) {
+    if (await DeviceOrientationEvent.requestPermission() !== 'granted') return;
+  }
+  gyro = { base: null }; addEventListener('deviceorientation', onOrient); $('gyro').classList.add('on');
+});
+function onOrient(e) {
+  if (e.alpha == null) return;
+  const portrait = innerHeight > innerWidth;
+  const alpha = THREE.MathUtils.degToRad(e.alpha);
+  const tilt = THREE.MathUtils.degToRad(portrait ? e.beta - 90 : (e.gamma > 0 ? 90 - e.gamma : -90 - e.gamma));
+  if (!gyro.base) gyro.base = { alpha, tilt };
+  yawT = -(alpha - gyro.base.alpha) ; pitchT = THREE.MathUtils.clamp(tilt - gyro.base.tilt, -1.1, 1.1) * (portrait ? -1 : 1);
+}
+
+// Drop a local sequence (e.g. re-extracted high-res GoPro frames)
+addEventListener('dragover', (e) => { e.preventDefault(); document.body.classList.add('dragging'); });
+addEventListener('dragleave', () => document.body.classList.remove('dragging'));
+addEventListener('drop', (e) => {
+  e.preventDefault(); document.body.classList.remove('dragging');
+  const files = [...e.dataTransfer.files].filter((f) => f.type.startsWith('image/')).sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+  if (!files.length) return;
+  setWay({ files: files.map((f) => ({ url: URL.createObjectURL(f), name: f.name })) });
+});
+
+// ---------------------------------------------------------------------------
+// Street selection from the site's own ways.json
+// ---------------------------------------------------------------------------
+function setWay(w) {
+  for (const f of cache.values()) if (f.ready) { f.tex.dispose(); f.blurTex.dispose(); }
+  cache.clear(); depthQueue.length = 0;
+  way = w; pos = target = 0;
+  viewA.frame = viewB.frame = null;
+}
+
+function metres([lon1, lat1], [lon2, lat2]) {
+  const R = 6371000, r = Math.PI / 180;
+  const a = Math.sin((lat2 - lat1) * r / 2) ** 2 + Math.cos(lat1 * r) * Math.cos(lat2 * r) * Math.sin((lon2 - lon1) * r / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+async function loadWays() {
+  const ways = await fetch('/content/ways.json').then((r) => r.json()).catch(() => []);
+  const def = params.get('way') || 'plazabotero-start-carabobo';
+  for (const w of ways) {
+    const o = document.createElement('option'); o.value = w.wayName;
+    o.textContent = `${w.wayArea ? w.wayArea + ' · ' : ''}${w.wayName} (${w.nbStills})`;
+    ui.way.append(o);
+  }
+  const pick = ways.find((w) => w.wayName === def) || ways[0] || { wayName: def, nbStills: 300 };
+  ui.way.value = pick.wayName;
+  const toWay = (w) => {
+    let len = 0;
+    try {
+      const path = JSON.parse(w.wayPath); // [[lon, lat], ...]
+      for (let k = 1; k < path.length; k++) len += metres(path[k - 1], path[k]);
+    } catch {}
+    const perMetre = len > 0 ? +w.nbStills / len : 3;
+    ui.step.value = (1 / perMetre).toFixed(2); // one still = this many metres of camera travel
+    return { name: w.wayName, count: +w.nbStills, perMetre };
+  };
+  ui.way.onchange = () => setWay(toWay(ways.find((x) => x.wayName === ui.way.value)));
+  setWay(toWay(pick));
+}
+
+// ---------------------------------------------------------------------------
+// Frame loop. Between frame i and i+stride the camera dollies forward through
+// frame i's 3D mesh while crossfading into frame i+stride's mesh, which starts
+// one step "behind" the camera — so motion is continuous instead of a flipbook.
+// ---------------------------------------------------------------------------
+let last = performance.now(), restFrames = 0;
+const WALK_SPEED = 4;   // metres per second while a Walk button is held
+const MAX_SPEED = 60;   // stills per second from a swipe fling
+let vel = 0;            // stills per second, decays like a scroll with inertia
+let fpsAcc = 0, fpsN = 0, fps = 0;
+function tick() {
+  const now = performance.now(); const dt = Math.min((now - last) / 1000, 0.1); last = now;
+  const s = settings();
+  if (holdDir) vel = holdDir * WALK_SPEED * perMetre();
+  else if (!drag) { vel *= Math.exp(-dt * 3); if (Math.abs(vel) < 0.3) vel = 0; } // swipe fling decays
+  if (vel) { walk(vel * dt); if (target <= 0 || target >= count() - 1) vel = 0; }
+  // Light smoothing only (~30 ms): heavier easing is what reads as lag.
+  pos += (target - pos) * Math.min(1, dt * 35);
+  if (Math.abs(target - pos) < 0.002) pos = target;
+  const moving = pos !== target || vel !== 0;
+  yaw += (yawT - yaw) * Math.min(1, dt * 8); pitch += (pitchT - pitch) * Math.min(1, dt * 8);
+  head.lerp(headT, Math.min(1, dt * 4));
+
+  if (way) {
+    const k = pos / s.stride;
+    const i0 = Math.floor(k) * s.stride, i1 = Math.min(i0 + s.stride, count() - 1);
+    const t = k - Math.floor(k);
+    // Never wait for a still: if one isn't loaded yet, show the nearest one that is.
+    const f0 = nearestReady(i0, -1) || getFrame(i0), f1 = nearestReady(i1, 1) || getFrame(i1);
+    // prefetch well ahead and a little behind, in the direction of travel
+    const dir = target >= pos ? 1 : -1;
+    for (let j = 1; j <= 24; j++) getFrame(THREE.MathUtils.clamp(Math.round(pos) + dir * j, 0, count() - 1));
+    for (let j = 1; j <= 4; j++) getFrame(THREE.MathUtils.clamp(Math.round(pos) - dir * j, 0, count() - 1));
+    if (f0.ready) viewA.set(f0);
+    if (f1.ready) viewB.set(f1);
+    // high-res only once the walk has settled, like the original site
+    walkingNow = moving;
+    if (!moving) {
+      restFrames++;
+      if (restFrames === 6) pumpDepth();
+      if (restFrames === 12) upgradeFrame(getFrame(Math.round(pos)));
+    } else restFrames = 0;
+    viewA.sync(s); viewB.sync(s);
+
+    const headOffset = new THREE.Vector3(head.x * 0.15, -head.y * 0.08, 0);
+    camera.rotation.set(-pitch * 0.9, yaw, 0, 'YXZ');
+    const fwd = s.step;
+    if (s.cut) {
+      // Like the original site: one still at a time, swapped at the midpoint, but
+      // the camera glides through each one in 3D so the swap lines up.
+      const useB = t >= 0.5 && viewB.frame;
+      camera.position.set(0, 0, useB ? (1 - t) * fwd : -t * fwd).add(headOffset);
+      renderer.setRenderTarget(null);
+      renderer.render((useB ? viewB : viewA).scene, camera);
+      fpsAcc += dt; fpsN++; if (fpsAcc > 0.5) { fps = Math.round(fpsN / fpsAcc); fpsAcc = fpsN = 0; }
+      $('frameinfo').textContent = `frame ${Math.round(pos)} / ${count() - 1} · ${fps} fps${lastDepthMs ? ` · depth ${Math.round(lastDepthMs)} ms` : ''}`;
+      requestAnimationFrame(tick);
+      return;
+    }
+    // pass A: camera moved t*fwd into frame i0
+    camera.position.set(0, 0, -t * fwd).add(headOffset);
+    renderer.setRenderTarget(rtA); renderer.clear();
+    if (viewA.frame) renderer.render(viewA.scene, camera);
+    // pass B: frame i1 seen from (1-t)*fwd behind its own camera
+    camera.position.set(0, 0, (1 - t) * fwd).add(headOffset);
+    renderer.setRenderTarget(rtB); renderer.clear();
+    if (viewB.frame) renderer.render(viewB.scene, camera); else renderer.render(viewA.scene, camera);
+    renderer.setRenderTarget(null);
+    compositeMat.uniforms.t.value = viewB.frame ? t : 0;
+    renderer.render(compositeScene, compositeCam);
+
+    fpsAcc += dt; fpsN++; if (fpsAcc > 0.5) { fps = Math.round(fpsN / fpsAcc); fpsAcc = fpsN = 0; }
+    $('frameinfo').textContent = `frame ${Math.round(pos)} / ${count() - 1} · ${fps} fps${lastDepthMs ? ` · depth ${Math.round(lastDepthMs)} ms` : ''}`;
+  }
+  requestAnimationFrame(tick);
+}
+
+resize();
+await loadWays();
+tick();
+try {
+  await initDepth();
+  setStatus(`Depth: ${depthBackend === 'precomputed' ? 'precomputed maps' : 'Depth Anything V2 · ' + depthBackend}. Scroll or swipe to walk, drag to look.`);
+  for (const f of cache.values()) if (f.ready && !f.depthReady) queueDepth(f);
+  pumpDepth();
+} catch (e) {
+  console.error(e);
+  setStatus('Depth model unavailable, using a simple street-shape guess. Scroll or swipe to walk, drag to look.');
+}
+</script>
+</body>
+</html>

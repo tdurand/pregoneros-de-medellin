@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "r.js -o app-build.js && cp -R content public && cp -R fonts public && cp -R images public && cp -R seo public && cp -R style public"
+    "build": "r.js -o app-build.js && cp -R content public && cp -R fonts public && cp -R images public && cp -R seo public && cp -R style public && cp -R prototypes public"
   },
   "dependencies": {
     "ejs": "^2.7.4",
@@ -15,5 +15,8 @@
   },
   "license": "MIT",
   "devDependencies": {},
-  "author": ""
+  "author": "",
+  "engines": {
+    "node": "24.x"
+  }
 }
