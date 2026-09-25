@@ -39,7 +39,7 @@
     <label><span>Lens</span><select id="lens"><option value="fisheye">GoPro fisheye</option><option value="rect">Rectilinear</option></select></label>
     <label><span>Surround fill</span><select id="fill"><option value="smear">Smeared edges</option><option value="none">Black</option></select></label>
     <label><span>View</span><select id="view"><option value="photo">Photo</option><option value="depth">Depth map</option><option value="mesh">Wireframe</option></select></label>
-    <label><span>Frame step</span><select id="stride"><option value="1">every frame</option><option value="2" selected>every 2nd</option><option value="4">every 4th</option></select></label>
+    <label><span>Frame step</span><select id="stride"><option value="1" selected>every frame</option><option value="2">every 2nd</option><option value="4">every 4th</option></select></label>
   </details>
 </div>
 <div id="frameinfo"></div>
@@ -52,8 +52,7 @@
 
 <script type="importmap">
 { "imports": {
-  "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js",
-  "@huggingface/transformers": "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.0"
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js"
 } }
 </script>
 <script type="module">
@@ -66,8 +65,9 @@ import * as THREE from 'three';
 // ---------------------------------------------------------------------------
 const params = new URLSearchParams(location.search);
 const FRAME_BASE = params.get('base') || '/frames/';
-const RES = params.get('res') || 'highres';           // texture resolution
-const DEPTH_RES = params.get('depthres') || 'lowres';  // input to the depth model
+const REST_RES = params.get('res') || 'highres';      // texture shown once you stop walking
+const MOVE_RES = 'lowres';                            // texture used while walking (small, fast to fetch)
+const DEPTH_RES = params.get('depthres') || 'lowres'; // input to the depth model
 const PRECOMPUTED = params.has('precomputed');         // load <way>/depth/wayNNN.png instead of running the model
 const MODEL = params.get('model') || 'onnx-community/depth-anything-v2-small';
 const GRID_W = 192, GRID_H = 108;
@@ -84,7 +84,7 @@ const setStatus = (t) => { $('status').textContent = t; };
 // Renderer, two render targets for crossfading between consecutive frames.
 // ---------------------------------------------------------------------------
 const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: 'high-performance' });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setPixelRatio(Math.min(devicePixelRatio, matchMedia('(pointer: coarse)').matches ? 1.25 : 1.5));
 renderer.setSize(innerWidth, innerHeight);
 document.body.prepend(renderer.domElement);
 
@@ -108,7 +108,7 @@ const compositeMat = new THREE.ShaderMaterial({
   uniforms: { a: { value: rtA.texture }, b: { value: rtB.texture }, t: { value: 0 } },
   vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0., 1.); }',
   fragmentShader: `uniform sampler2D a, b; uniform float t; varying vec2 vUv;
-    void main(){ gl_FragColor = mix(texture2D(a, vUv), texture2D(b, vUv), smoothstep(0., 1., t)); }`,
+    void main(){ gl_FragColor = mix(texture2D(a, vUv), texture2D(b, vUv), smoothstep(0.3, 0.7, t)); }`,
   depthTest: false, depthWrite: false,
 });
 compositeScene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), compositeMat));
@@ -218,7 +218,7 @@ class FrameView {
   set(frame) {
     this.frame = frame;
     for (const m of [this.mesh.material, this.wire.material]) {
-      m.uniforms.map.value = frame.tex; m.uniforms.depth.value = frame.depthTex;
+      m.uniforms.map.value = frame.tex; m.uniforms.depth.value = depthFor(frame);
     }
     this.surround.material.uniforms.map.value = frame.blurTex;
   }
@@ -284,20 +284,47 @@ function blurTexture(bitmap) {
   return t;
 }
 
+function makeTexture(bmp) {
+  const t = new THREE.Texture(bmp); t.flipY = false; t.colorSpace = THREE.SRGBColorSpace;
+  t.needsUpdate = true; return t;
+}
+
+// Swap in the high-res still once the walker has stopped on a frame.
+function upgradeFrame(f) {
+  if (way.files || f.hi || !f.ready || REST_RES === MOVE_RES) return;
+  f.hi = loadBitmap(frameUrl(f.i, REST_RES)).then((bmp) => {
+    if (!cache.has(f.i)) return;
+    const old = f.tex; f.tex = makeTexture(bmp);
+    if (viewA.frame === f) viewA.set(f);
+    if (viewB.frame === f) viewB.set(f);
+    old.dispose();
+  }).catch(() => {});
+}
+
+// Neighbouring stills are a step apart, so their depth maps are nearly the same.
+// Borrow the closest computed one until this frame's own depth is ready.
+function depthFor(f) {
+  if (f.depthReady) return f.depthTex;
+  for (let d = 1; d <= 10; d++) {
+    for (const j of [f.i - d, f.i + d]) { const g = cache.get(j); if (g && g.depthReady) return g.depthTex; }
+  }
+  return fallbackDepth;
+}
+
 function getFrame(i) {
   if (cache.has(i)) return cache.get(i);
   const f = { i, ready: false, depthReady: false, tex: null, depthTex: fallbackDepth, blurTex: null, aspect: 16 / 9 };
-  f.promise = loadBitmap(frameUrl(i, RES)).then((bmp) => {
-    f.tex = new THREE.Texture(bmp); f.tex.flipY = false; f.tex.colorSpace = THREE.SRGBColorSpace;
-    f.tex.needsUpdate = true; f.aspect = bmp.width / bmp.height;
+  f.promise = loadBitmap(frameUrl(i, MOVE_RES)).then((bmp) => {
+    f.tex = makeTexture(bmp); f.aspect = bmp.width / bmp.height;
     f.blurTex = blurTexture(bmp); f.ready = true;
+    renderer.initTexture(f.tex); // upload now, not on the frame it first shows
     queueDepth(f);
     return f;
   }).catch((e) => { f.error = e; setStatus(`Could not load frame ${i}: is ${FRAME_BASE} reachable?`); });
   cache.set(i, f);
   // keep memory bounded on phones
-  if (cache.size > 40) {
-    for (const [k, v] of cache) { if (Math.abs(k - pos) > 16 && v.ready) { v.tex.dispose(); v.blurTex.dispose(); if (v.depthTex !== fallbackDepth) v.depthTex.dispose(); cache.delete(k); } }
+  if (cache.size > 90) {
+    for (const [k, v] of cache) { if (Math.abs(k - pos) > 40 && v.ready) { v.tex.dispose(); v.blurTex.dispose(); if (v.depthTex !== fallbackDepth) v.depthTex.dispose(); cache.delete(k); } }
   }
   return f;
 }
@@ -305,36 +332,65 @@ function getFrame(i) {
 // ---------------------------------------------------------------------------
 // Depth: Depth Anything V2 (small) in the browser via transformers.js, WebGPU
 // when available, WASM otherwise. Or precomputed PNGs with ?precomputed.
+// The model runs in a Web Worker so inference never blocks rendering.
 // ---------------------------------------------------------------------------
-let depthPipe = null, depthBusy = false, depthBackend = '';
+const WORKER_SRC = `
+import { pipeline, env, RawImage } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.0';
+env.allowLocalModels = false;
+let pipe;
+self.onmessage = async ({ data }) => {
+  try {
+    if (data.type === 'init') {
+      let backend;
+      try {
+        if (!self.navigator.gpu) throw new Error('no webgpu');
+        pipe = await pipeline('depth-estimation', data.model, { device: 'webgpu', dtype: 'fp16' }); backend = 'WebGPU';
+      } catch {
+        pipe = await pipeline('depth-estimation', data.model, { device: 'wasm', dtype: 'q8' }); backend = 'WASM (slower)';
+      }
+      self.postMessage({ type: 'ready', backend });
+    } else {
+      const out = await pipe(await RawImage.fromURL(data.url));
+      const { width, height, channels } = out.depth;
+      const px = new Uint8Array(width * height);
+      // bottom row first, to match the photo textures (bitmaps are decoded flipped)
+      for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) {
+        px[(height - 1 - y) * width + x] = out.depth.data[(y * width + x) * channels];
+      }
+      self.postMessage({ type: 'depth', id: data.id, width, height, px }, [px.buffer]);
+    }
+  } catch (e) { self.postMessage({ type: 'error', id: data.id, message: String(e) }); }
+};`;
+let depthWorker = null, depthPipe = null, depthBusy = false, depthBackend = '';
+const workerJobs = new Map(); let jobId = 0;
+function runDepth(url) {
+  return new Promise((ok, err) => { const id = ++jobId; workerJobs.set(id, { ok, err }); depthWorker.postMessage({ id, url }); });
+}
 const depthQueue = [];
 function queueDepth(f) { if (!depthQueue.includes(f)) depthQueue.push(f); pumpDepth(); }
 
 async function initDepth() {
   if (PRECOMPUTED) { depthBackend = 'precomputed'; return; }
   setStatus('Downloading depth model (~25 MB, cached after first visit)…');
-  const { pipeline, env } = await import('@huggingface/transformers');
-  env.allowLocalModels = false;
-  const tryDevice = async (device, dtype) => pipeline('depth-estimation', MODEL, { device, dtype });
-  try {
-    if (!navigator.gpu) throw new Error('no webgpu');
-    depthPipe = await tryDevice('webgpu', 'fp16'); depthBackend = 'WebGPU';
-  } catch {
-    depthPipe = await tryDevice('wasm', 'q8'); depthBackend = 'WASM (slower)';
-  }
+  depthWorker = new Worker(URL.createObjectURL(new Blob([WORKER_SRC], { type: 'text/javascript' })), { type: 'module' });
+  await new Promise((ok, err) => {
+    depthWorker.onerror = (e) => err(new Error(e.message || 'depth worker failed'));
+    depthWorker.onmessage = ({ data }) => {
+      if (data.type === 'ready') { depthBackend = data.backend; depthPipe = true; ok(); return; }
+      const job = workerJobs.get(data.id);
+      if (data.type === 'error' && !job) { err(new Error(data.message)); return; }
+      if (!job) return;
+      workerJobs.delete(data.id);
+      data.type === 'depth' ? job.ok(data) : job.err(new Error(data.message));
+    };
+    depthWorker.postMessage({ type: 'init', model: MODEL });
+  });
 }
 
-function depthToTexture(raw) {
-  // raw: RawImage, 1 channel, 0..255 where 255 = nearest
-  const { width: w, height: h, data, channels } = raw;
-  const c = document.createElement('canvas'); c.width = w; c.height = h;
-  const ctx = c.getContext('2d'); const img = ctx.createImageData(w, h);
-  for (let k = 0; k < w * h; k++) {
-    const v = data[k * channels];
-    img.data[k * 4] = img.data[k * 4 + 1] = img.data[k * 4 + 2] = v; img.data[k * 4 + 3] = 255;
-  }
-  ctx.putImageData(img, 0, 0);
-  const t = new THREE.CanvasTexture(c); t.flipY = false; t.minFilter = t.magFilter = THREE.LinearFilter;
+function depthToTexture({ width, height, px }) {
+  // one channel, 0..255 where 255 = nearest
+  const t = new THREE.DataTexture(px, width, height, THREE.RedFormat, THREE.UnsignedByteType);
+  t.flipY = false; t.minFilter = t.magFilter = THREE.LinearFilter; t.unpackAlignment = 1; t.needsUpdate = true;
   return t;
 }
 
@@ -344,7 +400,7 @@ async function pumpDepth() {
   depthQueue.sort((a, b) => Math.abs(a.i - pos) - Math.abs(b.i - pos));
   const f = depthQueue.shift();
   if (!f) return;
-  if (Math.abs(f.i - pos) > 12 || !cache.has(f.i)) return pumpDepth();
+  if (Math.abs(f.i - pos) > 30 || !cache.has(f.i)) return pumpDepth();
   depthBusy = true;
   try {
     const t0 = performance.now();
@@ -352,15 +408,11 @@ async function pumpDepth() {
       const bmp = await loadBitmap(`${FRAME_BASE}${way.name}/depth/way${pad3(f.i)}.png`);
       f.depthTex = new THREE.Texture(bmp); f.depthTex.flipY = false; f.depthTex.needsUpdate = true;
     } else {
-      const { RawImage } = await import('@huggingface/transformers');
-      const img = await RawImage.fromURL(way.files ? way.files[f.i].url : frameUrl(f.i, DEPTH_RES));
-      const out = await depthPipe(img);
-      f.depthTex = depthToTexture(out.depth);
+      const url = new URL(way.files ? way.files[f.i].url : frameUrl(f.i, DEPTH_RES), location.href).href;
+      f.depthTex = depthToTexture(await runDepth(url));
     }
     f.depthReady = true;
     lastDepthMs = performance.now() - t0;
-    if (viewA.frame === f) viewA.set(f);
-    if (viewB.frame === f) viewB.set(f);
   } catch (e) { console.warn('depth failed', f.i, e); }
   depthBusy = false;
   pumpDepth();
@@ -383,7 +435,7 @@ const settings = () => ({
 const count = () => way ? (way.files ? way.files.length : way.count) : 1;
 const walk = (d) => { target = THREE.MathUtils.clamp(target + d, 0, count() - 1); };
 
-addEventListener('wheel', (e) => { e.preventDefault(); walk(e.deltaY * 0.02 * settings().stride); }, { passive: false });
+addEventListener('wheel', (e) => { e.preventDefault(); walk(e.deltaY * 0.01); }, { passive: false });
 addEventListener('keydown', (e) => {
   if (e.key === 'ArrowUp' || e.key === 'w') walk(settings().stride * 2);
   if (e.key === 'ArrowDown' || e.key === 's') walk(-settings().stride * 2);
@@ -404,7 +456,7 @@ addEventListener('pointermove', (e) => {
   const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
   if (drag.touch && !gyro && Math.abs(dy) > Math.abs(dx) * 1.5) {
     // vertical swipe walks on phones, like scrolling the original
-    target = THREE.MathUtils.clamp(drag.t - dy * 0.08 * settings().stride, 0, count() - 1);
+    target = THREE.MathUtils.clamp(drag.t - dy * 0.05, 0, count() - 1);
   } else {
     yawT = drag.yaw + dx * 0.004; pitchT = THREE.MathUtils.clamp(drag.pitch + dy * 0.003, -1.1, 1.1);
   }
@@ -465,13 +517,22 @@ async function loadWays() {
 // frame i's 3D mesh while crossfading into frame i+stride's mesh, which starts
 // one step "behind" the camera — so motion is continuous instead of a flipbook.
 // ---------------------------------------------------------------------------
-let last = performance.now();
+let last = performance.now(), restFrames = 0;
+const WALK_SPEED = 6; // stills per second while a Walk button is held
 let fpsAcc = 0, fpsN = 0, fps = 0;
 function tick() {
   const now = performance.now(); const dt = Math.min((now - last) / 1000, 0.1); last = now;
   const s = settings();
-  if (holdDir) walk(holdDir * dt * 8 * s.stride);
-  pos += (target - pos) * Math.min(1, dt * 6);
+  if (holdDir) walk(holdDir * dt * WALK_SPEED);
+  // Never move into a still that isn't loaded yet: waiting a beat is smooth,
+  // snapping back and forth is what makes it feel like Street View.
+  let limit = Math.floor(pos);
+  while (limit < count() - 1 && cache.get(limit + 1)?.ready) limit++;
+  let low = Math.ceil(pos);
+  while (low > 0 && cache.get(low - 1)?.ready) low--;
+  const goal = THREE.MathUtils.clamp(target, low, limit);
+  pos += (goal - pos) * Math.min(1, dt * 10);
+  if (Math.abs(goal - pos) < 0.001) pos = goal;
   yaw += (yawT - yaw) * Math.min(1, dt * 8); pitch += (pitchT - pitch) * Math.min(1, dt * 8);
   head.lerp(headT, Math.min(1, dt * 4));
 
@@ -480,9 +541,14 @@ function tick() {
     const i0 = Math.floor(k) * s.stride, i1 = Math.min(i0 + s.stride, count() - 1);
     const t = k - Math.floor(k);
     const f0 = getFrame(i0), f1 = getFrame(i1);
-    for (let j = 1; j <= 3; j++) getFrame(Math.min(i1 + j * s.stride, count() - 1)); // prefetch ahead
-    if (f0.ready && viewA.frame !== f0) viewA.set(f0);
-    if (f1.ready && viewB.frame !== f1) viewB.set(f1);
+    // prefetch well ahead and a little behind, in the direction of travel
+    const dir = target >= pos ? 1 : -1;
+    for (let j = 1; j <= 24; j++) getFrame(THREE.MathUtils.clamp(Math.round(pos) + dir * j, 0, count() - 1));
+    for (let j = 1; j <= 4; j++) getFrame(THREE.MathUtils.clamp(Math.round(pos) - dir * j, 0, count() - 1));
+    if (f0.ready) viewA.set(f0);
+    if (f1.ready) viewB.set(f1);
+    // high-res only once the walk has settled, like the original site
+    if (pos === goal) { if (++restFrames === 12) upgradeFrame(getFrame(Math.round(pos))); } else restFrames = 0;
     viewA.sync(s); viewB.sync(s);
 
     const headOffset = new THREE.Vector3(head.x * 0.15, -head.y * 0.08, 0);
