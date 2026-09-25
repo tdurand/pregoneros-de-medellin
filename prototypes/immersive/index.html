@@ -38,6 +38,7 @@
     <label><span>Field of view</span><input id="fov" type="range" min="70" max="150" step="1" value="118"></label>
     <label><span>Lens</span><select id="lens"><option value="fisheye">GoPro fisheye</option><option value="rect">Rectilinear</option></select></label>
     <label><span>Surround fill</span><select id="fill"><option value="smear">Smeared edges</option><option value="none">Black</option></select></label>
+    <label><span>Transition</span><select id="trans"><option value="cut">Cut (like video)</option><option value="blend">Blend</option></select></label>
     <label><span>View</span><select id="view"><option value="photo">Photo</option><option value="depth">Depth map</option><option value="mesh">Wireframe</option></select></label>
     <label><span>Frame step</span><select id="stride"><option value="1" selected>every frame</option><option value="2">every 2nd</option><option value="4">every 4th</option></select></label>
   </details>
@@ -76,7 +77,7 @@ const NEAR_M = 1.2, FAR_M = 60; // metric range the relative depth is mapped int
 const $ = (id) => document.getElementById(id);
 const ui = {
   depthAmt: $('depthAmt'), step: $('step'), fov: $('fov'), lens: $('lens'),
-  fill: $('fill'), view: $('view'), stride: $('stride'), way: $('way'),
+  fill: $('fill'), view: $('view'), trans: $('trans'), stride: $('stride'), way: $('way'),
 };
 const setStatus = (t) => { $('status').textContent = t; };
 
@@ -311,6 +312,15 @@ function depthFor(f) {
   return fallbackDepth;
 }
 
+function nearestReady(i, dir) {
+  const f = getFrame(i); if (f.ready) return f;
+  for (let d = 1; d <= 6; d++) {
+    const g = cache.get(i + dir * d) || cache.get(i - dir * d);
+    if (g && g.ready) return g;
+  }
+  return null;
+}
+
 function getFrame(i) {
   if (cache.has(i)) return cache.get(i);
   const f = { i, ready: false, depthReady: false, tex: null, depthTex: fallbackDepth, blurTex: null, aspect: 16 / 9 };
@@ -396,6 +406,10 @@ function depthToTexture({ width, height, px }) {
 
 async function pumpDepth() {
   if (depthBusy || (!depthPipe && depthBackend !== 'precomputed')) return;
+  // Inference shares the GPU with rendering, so hold it while walking unless the
+  // current still has no depth at all to borrow.
+  const here = cache.get(Math.round(pos));
+  if (walkingNow && here && depthFor(here) !== fallbackDepth) return;
   // nearest pending frame to the walker first
   depthQueue.sort((a, b) => Math.abs(a.i - pos) - Math.abs(b.i - pos));
   const f = depthQueue.shift();
@@ -417,7 +431,7 @@ async function pumpDepth() {
   depthBusy = false;
   pumpDepth();
 }
-let lastDepthMs = 0;
+let lastDepthMs = 0, walkingNow = false;
 
 // ---------------------------------------------------------------------------
 // Controls: scroll / swipe / buttons walk; drag or gyro looks around; the
@@ -430,12 +444,16 @@ let gyro = null;
 
 const settings = () => ({
   depthAmt: +ui.depthAmt.value, step: +ui.step.value, fov: +ui.fov.value,
-  fisheye: ui.lens.value === 'fisheye', fill: ui.fill.value, view: ui.view.value, stride: +ui.stride.value,
+  fisheye: ui.lens.value === 'fisheye', fill: ui.fill.value, view: ui.view.value, cut: ui.trans.value === 'cut', stride: +ui.stride.value,
 });
 const count = () => way ? (way.files ? way.files.length : way.count) : 1;
 const walk = (d) => { target = THREE.MathUtils.clamp(target + d, 0, count() - 1); };
 
-addEventListener('wheel', (e) => { e.preventDefault(); walk(e.deltaY * 0.01); }, { passive: false });
+addEventListener('wheel', (e) => {
+  e.preventDefault();
+  const px = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY; // lines -> pixels
+  vel = 0; walk(px * 0.01); // like the original: 100 px of scroll = one still
+}, { passive: false });
 addEventListener('keydown', (e) => {
   if (e.key === 'ArrowUp' || e.key === 'w') walk(settings().stride * 2);
   if (e.key === 'ArrowDown' || e.key === 's') walk(-settings().stride * 2);
@@ -449,14 +467,18 @@ for (const [id, d] of [['fwd', 1], ['back', -1]]) {
 
 let drag = null;
 renderer.domElement.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, y: e.clientY, yaw: yawT, pitch: pitchT, t: target, touch: e.pointerType === 'touch' }; });
-addEventListener('pointerup', () => { drag = null; });
+addEventListener('pointerup', () => { if (drag?.walking && drag.v) vel = THREE.MathUtils.clamp(drag.v, -MAX_SPEED, MAX_SPEED); drag = null; });
 addEventListener('pointermove', (e) => {
   headT.set((e.clientX / innerWidth - 0.5) * 2, (e.clientY / innerHeight - 0.5) * 2);
   if (!drag) return;
   const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
   if (drag.touch && !gyro && Math.abs(dy) > Math.abs(dx) * 1.5) {
     // vertical swipe walks on phones, like scrolling the original
+    const prev = target;
     target = THREE.MathUtils.clamp(drag.t - dy * 0.05, 0, count() - 1);
+    const now = performance.now();
+    if (drag.lt) drag.v = (target - prev) / Math.max((now - drag.lt) / 1000, 0.008);
+    drag.lt = now; drag.walking = true;
   } else {
     yawT = drag.yaw + dx * 0.004; pitchT = THREE.MathUtils.clamp(drag.pitch + dy * 0.003, -1.1, 1.1);
   }
@@ -518,21 +540,20 @@ async function loadWays() {
 // one step "behind" the camera — so motion is continuous instead of a flipbook.
 // ---------------------------------------------------------------------------
 let last = performance.now(), restFrames = 0;
-const WALK_SPEED = 6; // stills per second while a Walk button is held
+const WALK_SPEED = 10;  // stills per second while a Walk button is held
+const MAX_SPEED = 25;   // stills per second from a scroll or swipe fling
+let vel = 0;            // stills per second, decays like a scroll with inertia
 let fpsAcc = 0, fpsN = 0, fps = 0;
 function tick() {
   const now = performance.now(); const dt = Math.min((now - last) / 1000, 0.1); last = now;
   const s = settings();
-  if (holdDir) walk(holdDir * dt * WALK_SPEED);
-  // Never move into a still that isn't loaded yet: waiting a beat is smooth,
-  // snapping back and forth is what makes it feel like Street View.
-  let limit = Math.floor(pos);
-  while (limit < count() - 1 && cache.get(limit + 1)?.ready) limit++;
-  let low = Math.ceil(pos);
-  while (low > 0 && cache.get(low - 1)?.ready) low--;
-  const goal = THREE.MathUtils.clamp(target, low, limit);
-  pos += (goal - pos) * Math.min(1, dt * 10);
-  if (Math.abs(goal - pos) < 0.001) pos = goal;
+  if (holdDir) vel = holdDir * WALK_SPEED;
+  else if (!drag) { vel *= Math.exp(-dt * 3); if (Math.abs(vel) < 0.3) vel = 0; } // swipe fling decays
+  if (vel) { walk(vel * dt); if (target <= 0 || target >= count() - 1) vel = 0; }
+  // Light smoothing only (~30 ms): heavier easing is what reads as lag.
+  pos += (target - pos) * Math.min(1, dt * 35);
+  if (Math.abs(target - pos) < 0.002) pos = target;
+  const moving = pos !== target || vel !== 0;
   yaw += (yawT - yaw) * Math.min(1, dt * 8); pitch += (pitchT - pitch) * Math.min(1, dt * 8);
   head.lerp(headT, Math.min(1, dt * 4));
 
@@ -540,7 +561,8 @@ function tick() {
     const k = pos / s.stride;
     const i0 = Math.floor(k) * s.stride, i1 = Math.min(i0 + s.stride, count() - 1);
     const t = k - Math.floor(k);
-    const f0 = getFrame(i0), f1 = getFrame(i1);
+    // Never wait for a still: if one isn't loaded yet, show the nearest one that is.
+    const f0 = nearestReady(i0, -1) || getFrame(i0), f1 = nearestReady(i1, 1) || getFrame(i1);
     // prefetch well ahead and a little behind, in the direction of travel
     const dir = target >= pos ? 1 : -1;
     for (let j = 1; j <= 24; j++) getFrame(THREE.MathUtils.clamp(Math.round(pos) + dir * j, 0, count() - 1));
@@ -548,12 +570,29 @@ function tick() {
     if (f0.ready) viewA.set(f0);
     if (f1.ready) viewB.set(f1);
     // high-res only once the walk has settled, like the original site
-    if (pos === goal) { if (++restFrames === 12) upgradeFrame(getFrame(Math.round(pos))); } else restFrames = 0;
+    walkingNow = moving;
+    if (!moving) {
+      restFrames++;
+      if (restFrames === 6) pumpDepth();
+      if (restFrames === 12) upgradeFrame(getFrame(Math.round(pos)));
+    } else restFrames = 0;
     viewA.sync(s); viewB.sync(s);
 
     const headOffset = new THREE.Vector3(head.x * 0.15, -head.y * 0.08, 0);
     camera.rotation.set(-pitch * 0.9, yaw, 0, 'YXZ');
     const fwd = s.step;
+    if (s.cut) {
+      // Like the original site: one still at a time, swapped at the midpoint, but
+      // the camera glides through each one in 3D so the swap lines up.
+      const useB = t >= 0.5 && viewB.frame;
+      camera.position.set(0, 0, useB ? (1 - t) * fwd : -t * fwd).add(headOffset);
+      renderer.setRenderTarget(null);
+      renderer.render((useB ? viewB : viewA).scene, camera);
+      fpsAcc += dt; fpsN++; if (fpsAcc > 0.5) { fps = Math.round(fpsN / fpsAcc); fpsAcc = fpsN = 0; }
+      $('frameinfo').textContent = `frame ${Math.round(pos)} / ${count() - 1} · ${fps} fps${lastDepthMs ? ` · depth ${Math.round(lastDepthMs)} ms` : ''}`;
+      requestAnimationFrame(tick);
+      return;
+    }
     // pass A: camera moved t*fwd into frame i0
     camera.position.set(0, 0, -t * fwd).add(headOffset);
     renderer.setRenderTarget(rtA); renderer.clear();
