@@ -9,7 +9,8 @@
 // reused: only the VOICES loudest sources at the walker's position play. Volume
 // and stereo pan go through Web Audio gain/panner nodes, which iOS honours.
 // If the sound host does not send CORS headers, Web Audio would output silence,
-// so we probe once and fall back to plain element volume (fine on Android).
+// so we probe once and fall back to plain element volume. iOS ignores element
+// volume, so in that fallback only the single loudest source plays there.
 
 import { distance, bearing } from './geo.js';
 
@@ -75,6 +76,11 @@ export class Soundscape {
       this.ctx.resume();
     }
 
+    // iOS keeps HTMLMediaElement.volume at 1 whatever is set.
+    const probeEl = new Audio();
+    probeEl.volume = 0.5;
+    this.elementVolume = probeEl.volume !== 1;
+
     const silence = silentWav();
     for (let i = 0; i < VOICES; i++) {
       const el = new Audio();
@@ -121,7 +127,7 @@ export class Soundscape {
   }
 
   url(sound) {
-    return `${this.base}/data/sounds/${sound.path}.mp3`;
+    return `${this.base}/sounds/${sound.path}.mp3`;
   }
 
   setWay(waySounds) {
@@ -142,7 +148,7 @@ export class Soundscape {
       })
       .filter((x) => x.vol > MIN_AUDIBLE)
       .sort((a, b) => b.vol - a.vol)
-      .slice(0, VOICES);
+      .slice(0, this.webAudio || this.elementVolume ? VOICES : 1);
 
     const wanted = new Map(ranked.map((x) => [x.s.path, x]));
 

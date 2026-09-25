@@ -11,6 +11,10 @@ import * as stories from './stories.js';
 const params = new URLSearchParams(location.search);
 // Where stills, sounds live. Overridable for local testing: ?assets=http://...
 const ASSETS = (params.get('assets') || 'https://images.pregonerosdemedellin.com').replace(/\/$/, '');
+// Sounds go through the site's own origin (a /frames/ proxy route in
+// vercel.json): the media host sends no CORS headers, and without them Web
+// Audio outputs silence, which would lose distance mixing and panning on iOS.
+const SOUND_BASE = params.get('assets') ? `${ASSETS}/data` : `${location.origin}/frames`;
 const FIRST_WAY = 'plazabotero-start-carabobo';
 const LANGS = ['es', 'en', 'fr'];
 
@@ -62,9 +66,9 @@ const state = {
   lastMove: 0, dirty: true, lang: 'es', str: {}, walked: 0,
   lastSoundPos: null, dir: 1, panTarget: null,
 };
-const sound = new Soundscape(ASSETS);
+const sound = new Soundscape(SOUND_BASE);
 let minimap;
-if (params.has('debug')) window.__walk = state;
+if (params.has('debug')) { window.__walk = state; window.__sound = sound; }
 
 // ---------- language ----------
 
