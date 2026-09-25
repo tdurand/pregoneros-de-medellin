@@ -6,9 +6,28 @@
       "dest": "https://images.pregonerosdemedellin.com/data/$1"
     },
     {
-      "src": "/",
+      "src": "/classic",
+      "status": 308,
+      "headers": {
+        "Location": "/classic/"
+      }
+    },
+    {
+      "src": "/classic/",
       "dest": "/api/index.js",
-      "methods": ["GET"]
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "src": "/m(/.*)?",
+      "status": 308,
+      "headers": {
+        "Location": "/"
+      }
+    },
+    {
+      "handle": "filesystem"
     }
   ]
 }

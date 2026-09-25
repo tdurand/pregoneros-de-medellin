@@ -37,12 +37,18 @@ export function videoUrl(character, video) {
 }
 
 export function subtitlesUrl(character, video, lang) {
-  return `../content/subtitles/${character}/${video}/${lang}.vtt`;
+  return `content/subtitles/${character}/${video}/${lang}.vtt`;
 }
 
 export function storiesFound() {
   const s = load();
   return Object.values(s.unlocked || {}).reduce((n, c) => n + Object.keys(c).length, 0);
+}
+
+// Read-only view of what has been found: { character: { videoN: wayName } }.
+// The desktop characters menu and map draw locked/unlocked states from it.
+export function unlockedStories() {
+  return load().unlocked || {};
 }
 
 export function lastStreet() {

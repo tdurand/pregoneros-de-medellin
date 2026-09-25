@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Pregoneros de Medellín</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#4F2747">
+  <meta name="description" content="La web documental interactiva de los que venden cantando en Medellín - Colombia. Un recorrido virtual por el universo laboral y personal de aquellos que entendieron que al amor y a los clientes se les seduce por el oído.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.pregonerosdemedellin.com">
+  <meta property="og:title" content="Pregoneros de Medellín">
+  <meta property="og:description" content="La web documental interactiva de los que venden cantando en Medellín - Colombia.">
+  <meta property="og:image" content="https://www.pregonerosdemedellin.com/images/seo/es.jpg">
+  <link rel="alternate" hreflang="es" href="https://www.pregonerosdemedellin.com/#es">
+  <link rel="alternate" hreflang="en" href="https://www.pregonerosdemedellin.com/#en">
+  <link rel="alternate" hreflang="fr" href="https://www.pregonerosdemedellin.com/#fr">
+  <link rel="icon" href="images/favicon.ico">
+  <link rel="preconnect" href="https://images.pregonerosdemedellin.com" crossorigin>
+  <!-- The 2015 stylesheet styles the landing, pages and desktop street furniture;
+       css/walk.css styles the walk and the touch controls on top of it. -->
+  <link rel="stylesheet" href="style/css/main.css">
+  <link rel="stylesheet" href="css/walk.css">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/hud.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+
+<!-- Landing (#index): 2015 landing on desktop, compact start screen on touch. -->
+<section id="landing" hidden></section>
+
+<!-- Project pages (#page/<name>): transmedia, music, team, making of, press kit. -->
+<section id="page" hidden></section>
+
+<!-- The street walk (#streetwalk/<way>/<lang>). -->
+<div id="app" hidden>
+  <canvas id="frame" aria-hidden="true"></canvas>
+  <!-- Touch: takes every swipe on the street; overlays sit above it. -->
+  <div id="stage" aria-label="Street"></div>
+  <!-- Desktop: a page as tall as the street (1 m = 100 px); scrolling it walks. -->
+  <div id="scroller" tabindex="0" aria-label="Street"><div id="scroll-space"></div></div>
+
+  <!-- 2015 street furniture (signs, bottom bar, map, arrows), drawn by js/hud.js. -->
+  <div id="hud"></div>
+
+  <button id="sign" class="sign" hidden><span class="sign-art"></span></button>
+
+  <div id="hint" hidden>
+    <div class="finger"></div>
+    <p class="hint-touch" data-t="swipe"></p>
+    <p class="hint-touch small" data-t="look"></p>
+    <p class="hint-desktop" data-t="scroll"></p>
+  </div>
+
+  <div id="loading" hidden>
+    <p data-s="loadingLabel">CARGANDO</p>
+    <div class="track"><div id="loading-bar"></div></div>
+  </div>
+
+  <section id="start" hidden>
+    <img class="logo" src="images/logo.png" alt="Pregoneros de Medellín">
+    <p class="headline" data-s="landingDescriptionHeadline"></p>
+    <button id="start-btn" data-aria="start"><img src="images/es/btn-enter.svg" alt=""></button>
+    <p class="small">🎧 <span data-t="headphones"></span></p>
+  </section>
+</div>
+
+<section id="video" hidden>
+  <video playsinline controls preload="metadata"></video>
+  <button id="video-close" class="icon" data-aria="close">✕</button>
+</section>
+
+</body>
+</html>

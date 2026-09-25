@@ -1,12 +1,19 @@
-// Pregoneros de Medellín, mobile walk.
-// Swipe up/down to walk the street, sideways to look around the wide GoPro
-// frame, tap a vendor's sign to watch their story, pick a direction at corners.
+// Pregoneros de Medellín.
+// One app for every screen: a landing, the street walk and the project pages.
+// The walk is the same engine everywhere; only the controls around it change:
+//   - desktop: scroll the page to walk (1 m of street = 100 px, like 2015),
+//     with the original street furniture (signs, bottom bar, characters),
+//   - touch: swipe up to walk, sideways to look around the wide GoPro frame.
 
-import { framePositions, bearing, distance } from './geo.js';
+import { framePositions, bearing, distance, wayLength } from './geo.js';
 import { FrameLoader, connectionIsConstrained } from './frames.js';
+import { VideoFrameLoader } from './frames-video.js';
 import { Soundscape } from './audio.js';
-import { MiniMap } from './minimap.js';
 import * as stories from './stories.js';
+import { emit, on } from './bus.js';
+import * as landing from './landing.js';
+import * as pages from './pages.js';
+import * as hud from './hud.js';
 
 const params = new URLSearchParams(location.search);
 // Where stills, sounds live. Overridable for local testing: ?assets=http://...
@@ -16,124 +23,212 @@ const ASSETS = (params.get('assets') || 'https://images.pregonerosdemedellin.com
 // Audio outputs silence, which would lose distance mixing and panning on iOS.
 const SOUND_BASE = params.get('assets') ? `${ASSETS}/data` : `${location.origin}/frames`;
 const FIRST_WAY = 'plazabotero-start-carabobo';
+// Streets as one video file each (tools/media/encode-v2.mjs), decoded with
+// WebCodecs. Opt-in with ?video until the v2 files are published with CORS;
+// the loader falls back to the JPEG stills whenever they're missing.
+const VIDEO_FRAMES = params.has('video');
 const LANGS = ['es', 'en', 'fr'];
 
-const UI_TEXT = {
+// Desktop keeps the 2015 layout and page scrolling; everything else is touch.
+const desktopQuery = matchMedia('(min-width: 996px) and (hover: hover) and (pointer: fine)');
+const isDesktop = () => (desktopQuery.matches || params.has('desktop')) && !params.has('touch');
+
+export const UI_TEXT = {
   es: {
     start: 'Empezar a caminar', headphones: 'Mejor con audífonos',
     swipe: 'Desliza hacia arriba para caminar', look: 'Desliza a los lados para mirar alrededor',
+    scroll: 'Haz scroll para caminar',
     tapSign: 'Toca el letrero para ver su historia', choose: '¿Por dónde seguimos?',
     trailer: 'Ver el tráiler', close: 'Cerrar', map: 'Mapa', sound: 'Sonido', menu: 'Menú',
-    language: 'Idioma', desktop: 'La experiencia completa, con mapa y editor de sonido, está en computador.',
-    dirs: { forward: 'Adelante', 'forward-left': 'Adelante a la izquierda', 'forward-right': 'Adelante a la derecha', left: 'Izquierda', right: 'Derecha', backward: 'Atrás', 'backward-left': 'Atrás a la izquierda', 'backward-right': 'Atrás a la derecha' },
+    language: 'Idioma', home: 'Inicio',
   },
   en: {
     start: 'Start walking', headphones: 'Best with headphones',
     swipe: 'Swipe up to walk', look: 'Swipe sideways to look around',
+    scroll: 'Scroll to walk',
     tapSign: 'Tap the sign to watch their story', choose: 'Which way now?',
     trailer: 'Watch the trailer', close: 'Close', map: 'Map', sound: 'Sound', menu: 'Menu',
-    language: 'Language', desktop: 'The full experience, with the map and sound editor, is on desktop.',
-    dirs: { forward: 'Straight on', 'forward-left': 'Ahead left', 'forward-right': 'Ahead right', left: 'Left', right: 'Right', backward: 'Back', 'backward-left': 'Back left', 'backward-right': 'Back right' },
+    language: 'Language', home: 'Home',
   },
   fr: {
     start: 'Commencer la balade', headphones: 'Mieux avec un casque',
     swipe: 'Glissez vers le haut pour marcher', look: 'Glissez sur les côtés pour regarder autour',
+    scroll: 'Faites défiler pour marcher',
     tapSign: "Touchez le panneau pour voir son histoire", choose: 'Par où continuer ?',
     trailer: 'Voir la bande-annonce', close: 'Fermer', map: 'Carte', sound: 'Son', menu: 'Menu',
-    language: 'Langue', desktop: "L'expérience complète, avec la carte et l'éditeur de sons, est sur ordinateur.",
-    dirs: { forward: 'Tout droit', 'forward-left': 'Devant à gauche', 'forward-right': 'Devant à droite', left: 'Gauche', right: 'Droite', backward: 'Demi-tour', 'backward-left': 'Derrière à gauche', 'backward-right': 'Derrière à droite' },
+    language: 'Langue', home: 'Accueil',
   },
 };
-
-const DIR_ANGLE = { forward: 0, 'forward-right': 45, right: 90, 'backward-right': 135, backward: 180, 'backward-left': 225, left: 270, 'forward-left': 315 };
 
 const $ = (s) => document.querySelector(s);
 const el = {
   app: $('#app'), canvas: $('#frame'), stage: $('#stage'),
+  scroller: $('#scroller'), scrollSpace: $('#scroll-space'),
   start: $('#start'), startBtn: $('#start-btn'),
   loading: $('#loading'), loadingBar: $('#loading-bar'),
-  area: $('#area'), found: $('#found'),
-  sign: $('#sign'), hint: $('#hint'), chooser: $('#chooser'),
-  mapBtn: $('#map-btn'), map: $('#map'), soundBtn: $('#sound-btn'),
-  menuBtn: $('#menu-btn'), menu: $('#menu'),
+  sign: $('#sign'), hint: $('#hint'),
   video: $('#video'), videoEl: $('#video video'), videoClose: $('#video-close'),
+  landing: $('#landing'), page: $('#page'),
 };
 const ctx = el.canvas.getContext('2d', { alpha: false });
 
-const state = {
-  ways: {}, way: null, positions: [], loader: null,
+export const state = {
+  ways: {}, waysList: [], way: null, positions: [], loader: null,
   pos: 0, vel: 0, pan: 0, shown: -1, hiImg: null, hiIndex: -1,
   lastMove: 0, dirty: true, lang: 'es', str: {}, walked: 0,
   lastSoundPos: null, dir: 1, panTarget: null,
+  view: null, unlocked: false, desktop: false,
+  // Desktop scrolling: where the page is, and where the walk has eased to.
+  scrollTarget: 0, scrollCur: 0, scrollRange: 1, length: 0,
 };
 const sound = new Soundscape(SOUND_BASE);
-let minimap;
 if (params.has('debug')) { window.__walk = state; window.__sound = sound; }
 
 // ---------- language ----------
 
-function pickLang() {
-  const fromHash = location.hash.split('/')[1];
-  if (LANGS.includes(fromHash)) return fromHash;
+function pickLang(wanted) {
+  if (LANGS.includes(wanted)) return wanted;
+  if (state.str.loaded) return state.lang;
   const nav = (navigator.language || 'es').slice(0, 2);
   return LANGS.includes(nav) ? nav : 'es';
 }
 
 async function setLang(lang) {
+  if (lang === state.lang && state.str.loaded) return;
   state.lang = lang;
   document.documentElement.lang = lang;
+  const url = `content/content/string_${lang}.json`;
+  const load = async () => { const r = await fetch(url); if (!r.ok) throw new Error(r.status); return r.json(); };
+  // Retry once; on a second failure keep the previous strings rather than blank labels.
   try {
-    state.str = await (await fetch(`../content/content/string_${lang}.json`)).json();
-  } catch (e) { state.str = {}; }
+    state.str = await load().catch(load);
+  } catch (e) { state.str = { ...state.str }; }
+  if (state.lang !== lang) return; // a newer language change won the race
+  state.str.loaded = true;
   const t = UI_TEXT[lang];
   document.querySelectorAll('[data-t]').forEach((n) => { n.textContent = t[n.dataset.t] || ''; });
   document.querySelectorAll('[data-s]').forEach((n) => { n.textContent = state.str[n.dataset.s] || n.textContent; });
   document.querySelectorAll('[data-aria]').forEach((n) => n.setAttribute('aria-label', t[n.dataset.aria]));
-  document.querySelectorAll('[data-lang]').forEach((n) => n.setAttribute('aria-pressed', n.dataset.lang === lang));
-  if (state.way) { updateHash(); renderChooser(state.chooserFor); }
+  el.startBtn.querySelector('img').src = `images/${lang}/btn-enter.svg`;
+  emit('lang', { lang, str: state.str, ui: t });
+  if (state.way && state.view === 'walk') { updateHash(); renderChooser(state.chooserFor); }
+}
+
+// ---------- routing ----------
+// Keeps the 2015 URLs working: #index/es, #streetwalk/<way>/<lang>,
+// #page/<name>/<lang>, #es, and the #<way>/<lang> links of the first mobile walk.
+
+function parseRoute(hash) {
+  const p = hash.replace(/^#\/?/, '').split('/').filter(Boolean).map(decodeURIComponent);
+  if (!p.length || p[0] === 'mobile') return { view: 'index' };
+  if (p[0] === 'index') return { view: 'index', lang: p[1] };
+  if (p[0] === 'streetwalk') return { view: 'walk', way: p[1], lang: p[2] };
+  if (p[0] === 'page') return { view: 'page', name: p[1], lang: p[2] };
+  if (LANGS.includes(p[0])) return { view: 'index', lang: p[0] };
+  return { view: 'walk', way: p[0], lang: p[1] };
+}
+
+export function walkHash(way, lang = state.lang) {
+  return `#streetwalk/${way}/${lang}`;
+}
+
+async function route() {
+  const r = parseRoute(location.hash);
+  await setLang(pickLang(r.lang));
+  showView(r.view);
+  if (r.view === 'index') {
+    await landing.show({ lang: state.lang, str: state.str, desktop: state.desktop, enter: enterWalk });
+  } else if (r.view === 'page') {
+    await pages.show(r.name, { lang: state.lang, str: state.str, desktop: state.desktop });
+  } else {
+    const name = state.ways[r.way] ? r.way : stories.lastStreet() || FIRST_WAY;
+    if (!state.way || state.way.wayName !== name) loadWay(name);
+    else updateHash();
+    // Sound can only start from a tap or click: ask for one when the walk
+    // was opened from a link rather than from the landing's button.
+    el.start.hidden = state.unlocked;
+    if (state.desktop) el.scroller.focus({ preventScroll: true });
+  }
+}
+
+function showView(view) {
+  state.view = view;
+  document.body.dataset.view = view;
+  el.landing.hidden = view !== 'index';
+  el.page.hidden = view !== 'page';
+  el.app.hidden = view !== 'walk';
+  if (view !== 'index') landing.hide();
+  if (view !== 'page') pages.hide();
+  sound.setPaused(view !== 'walk' || !el.video.hidden);
+  emit('view', { view });
+}
+
+// Called from a click (landing button, start button): unlocks sound, then walks.
+export function enterWalk(way) {
+  unlockSound();
+  const name = way || stories.lastStreet() || FIRST_WAY;
+  if (location.hash === walkHash(name)) route();
+  else location.hash = walkHash(name);
+}
+
+function unlockSound() {
+  if (state.unlocked) return;
+  state.unlocked = true;
+  sound.unlock();
+  if (state.way) sound.setWay(state.way.waySounds);
+  state.lastSoundPos = null;
+  if (state.loader && state.loader.ready) onFrameChange(Math.round(state.pos));
+}
+
+export function go(hash) {
+  location.hash = hash;
 }
 
 // ---------- streets ----------
 
 function updateHash() {
-  history.replaceState(null, '', `#${state.way.wayName}/${state.lang}`);
+  history.replaceState(null, '', walkHash(state.way.wayName));
 }
 
-function loadWay(name) {
+export function loadWay(name) {
   const way = state.ways[name] || state.ways[FIRST_WAY];
   if (state.loader) state.loader.stop();
 
   state.way = way;
   state.positions = framePositions(way.wayPath, way.nbStills, way.wayPathSyncPoints);
+  state.length = wayLength(way.wayPath);
   state.pos = 0; state.vel = 0; state.pan = 0; state.panTarget = null; state.shown = -1;
   state.hiImg = null; state.hiIndex = -1; state.chooserFor = null;
   state.lastSoundPos = null; state.leftStart = false;
-  el.chooser.hidden = true;
   el.sign.hidden = true;
-  el.area.textContent = way.wayArea;
-  updateHash();
+  if (state.view === 'walk') updateHash();
   stories.rememberStreet(way.wayName);
-  sound.setWay(way.waySounds);
-  if (minimap) {
-    minimap.setWay(way.wayName, []);
-    minimap.setPosition(state.positions[0]);
-  }
+  if (state.unlocked) sound.setWay(way.waySounds);
   if (way.characterDefinition) loadSign(way.characterDefinition.name);
+  resetScroll();
 
   el.loading.hidden = false;
   el.loadingBar.style.transform = 'scaleX(0)';
-  state.loader = new FrameLoader({
+  emit('way', { way, positions: state.positions, length: state.length });
+  emit('chooser', { which: null, list: [] });
+  emit('loading', { progress: 0 });
+  const Loader = VIDEO_FRAMES ? VideoFrameLoader : FrameLoader;
+  state.loader = new Loader({
+    // Decoding is asynchronous with video: redraw when a still is ready.
+    onFrame: () => { state.dirty = true; },
     base: ASSETS,
     way: way.wayName,
     count: way.nbStills,
     concurrency: connectionIsConstrained() ? 4 : 6,
     onProgress: (p) => {
       el.loadingBar.style.transform = `scaleX(${p})`;
+      emit('loading', { progress: p });
       if (state.shown < 0 && state.loader.frames[0]) state.dirty = true;
     },
     onReady: () => {
       el.loading.hidden = true;
       state.dirty = true;
+      emit('ready', { way });
       onFrameChange(0);
     },
   });
@@ -163,6 +258,14 @@ function resize() {
   el.canvas.style.height = h + 'px';
   state.dpr = dpr;
   state.dirty = true;
+  const desktop = isDesktop();
+  if (desktop !== state.desktop || !document.documentElement.classList.contains(desktop ? 'desktop' : 'touch')) {
+    state.desktop = desktop;
+    document.documentElement.classList.toggle('desktop', desktop);
+    document.documentElement.classList.toggle('touch', !desktop);
+    emit('layout', { desktop });
+  }
+  if (state.way) sizeScrollSpace();
 }
 
 // Where the still lands on screen: cover the viewport, then shift by `pan`
@@ -196,21 +299,29 @@ function draw() {
 function placeSign(i) {
   const c = state.way.characterDefinition;
   const at = c && state.way.characterPosition && state.way.characterPosition[i];
-  if (!c || !at || i < c.startFrame || i > c.endFrame || !el.chooser.hidden) {
+  // Desktop shows the sign over the 2015 window (startFrame..endFrame). A
+  // phone swipe covers ~45 stills, so there the sign stays up wherever the
+  // vendor is placed in the frame (about 10 m) and isn't flicked past unseen.
+  const inWindow = !c || !state.desktop || (i >= c.startFrame && i <= c.endFrame);
+  if (!c || !at || !inWindow || (state.chooserFor && !state.desktop)) {
     el.sign.hidden = true;
+    emit('sign', { visible: false });
     return;
   }
   const r = state.rect;
-  const t = (i - c.startFrame) / Math.max(1, c.endFrame - c.startFrame);
+  const t = Math.min(1, Math.max(0, (i - c.startFrame) / Math.max(1, c.endFrame - c.startFrame)));
   const widthPct = c.framestartWidth + t * (c.framefullWidth - c.framestartWidth);
-  const width = Math.max(72, widthPct * r.h / 100);
-  let x = r.x + at.left / 100 * r.w;
+  const width = Math.max(64, widthPct * r.h / 100 * (state.desktop ? 1 : 0.7)); // smaller on phones
+  const rawX = r.x + at.left / 100 * r.w;
   const y = r.y + at.top / 100 * r.h;
   const W = window.innerWidth;
+  emit('sign', { visible: true, character: c.name, x: rawX, y, width, widthPct, rect: r, def: c, frame: i });
+  // Desktop draws the 2015 sign instead (hud.js).
+  if (state.desktop) { el.sign.hidden = true; return; }
   // In portrait the vendor can be outside the visible slice: pin the sign to
   // the edge so it stays findable, and let a tap pan towards it.
-  const edge = x < width / 2 ? 'left' : x > W - width / 2 ? 'right' : '';
-  x = Math.min(Math.max(x, width / 2), W - width / 2);
+  const edge = rawX < width / 2 ? 'left' : rawX > W - width / 2 ? 'right' : '';
+  const x = Math.min(Math.max(rawX, width / 2), W - width / 2);
   el.sign.style.width = width + 'px';
   el.sign.style.transform = `translate(${x - width / 2}px, ${y}px) translateY(${-100 + (c.offsetTopCenter || 0)}%)`;
   el.sign.dataset.edge = edge;
@@ -229,11 +340,10 @@ function onFrameChange(i) {
   const b = state.positions[Math.max(0, Math.min(n - 1, i + 2))];
   const heading = dir >= 0 ? bearing(a, b) : bearing(b, a);
   const here = state.positions[i];
-  if (!state.lastSoundPos || distance(state.lastSoundPos, here) > 1.5) {
+  if (state.unlocked && (!state.lastSoundPos || distance(state.lastSoundPos, here) > 1.5)) {
     sound.update(here, heading);
     state.lastSoundPos = here;
   }
-  if (minimap) minimap.setPosition(here);
 
   // The "start" chooser only appears when walking back to the beginning, not
   // on arrival, so a new street opens on the view rather than on a menu.
@@ -242,30 +352,19 @@ function onFrameChange(i) {
   if (want !== state.chooserFor) renderChooser(want);
 
   if (!el.hint.hidden && Math.abs(state.walked) > 12) el.hint.hidden = true;
+  emit('frame', { i, n, here, heading, dir, way: state.way });
 }
 
+// The junction arrows are drawn by hud.js from the 2015 template.
 function renderChooser(which) {
-  state.chooserFor = which;
-  const list = which === 'end' ? state.way.wayConnectionsEnd : which === 'start' ? state.way.wayConnectionsStart : null;
-  if (!list || !list.length) {
-    el.chooser.hidden = true;
-    if (minimap) minimap.setWay(state.way.wayName, []);
-    return;
-  }
-  const t = UI_TEXT[state.lang];
-  el.chooser.querySelector('.chooser-title').textContent = t.choose;
-  const box = el.chooser.querySelector('.chooser-options');
-  box.innerHTML = '';
-  list.filter((c) => state.ways[c.name]).forEach((c) => {
-    const b = document.createElement('button');
-    b.className = 'choice';
-    b.innerHTML = `<span class="arrow" style="transform:rotate(${DIR_ANGLE[c.direction] || 0}deg)">↑</span><span></span>`;
-    b.lastChild.textContent = t.dirs[c.direction] || c.direction;
-    b.addEventListener('click', () => loadWay(c.name));
-    box.appendChild(b);
-  });
-  el.chooser.hidden = false;
-  if (minimap) minimap.setWay(state.way.wayName, list.map((c) => c.name));
+  const all = which === 'end' ? state.way.wayConnectionsEnd : which === 'start' ? state.way.wayConnectionsStart : null;
+  const list = (all || []).filter((c) => state.ways[c.name]);
+  state.chooserFor = list.length ? which : null;
+  emit('chooser', { which: state.chooserFor, list });
+}
+
+export function chooseWay(name) {
+  loadWay(name);
 }
 
 function maybeLoadHighRes(now) {
@@ -288,8 +387,9 @@ function tick(now) {
   const dt = Math.min(50, now - lastT) / 16.67;
   lastT = now;
 
-  if (state.way && state.loader && state.loader.ready) {
-    if (!state.dragging && state.vel !== 0) {
+  if (state.view === 'walk' && state.way && state.loader && state.loader.ready) {
+    if (state.desktop) followScroll(dt);
+    else if (!state.dragging && state.vel !== 0) {
       moveBy(state.vel * dt);
       state.vel *= Math.pow(0.93, dt);
       if (Math.abs(state.vel) < 0.02) state.vel = 0;
@@ -309,7 +409,7 @@ function tick(now) {
     state.dirty = true;
   }
 
-  if (state.dirty && state.loader) {
+  if (state.dirty && state.loader && state.view === 'walk') {
     state.dirty = false;
     draw();
   }
@@ -324,6 +424,49 @@ function moveBy(frames) {
   if (frames) state.dir = frames > 0 ? 1 : -1;
   state.walked += state.pos - before;
   state.lastMove = performance.now();
+}
+
+// ---------- desktop: page scroll drives the walk ----------
+// Same rules as the 2015 site (views/streetwalk.js): the page is
+// wayLength × 100 px tall, the walk eases a tenth of the way to the scroll
+// position each frame, and the still is scrollTop / (height − viewport) × nbStills.
+
+const PX_PER_METRE = 100;
+
+function sizeScrollSpace() {
+  const h = Math.max(window.innerHeight + 1, Math.round(state.length * PX_PER_METRE));
+  el.scrollSpace.style.height = h + 'px';
+  state.scrollRange = h - window.innerHeight;
+}
+
+function resetScroll() {
+  sizeScrollSpace();
+  el.scroller.scrollTop = 0;
+  state.scrollTarget = state.scrollCur = 0;
+}
+
+function followScroll(dt) {
+  const diff = state.scrollTarget - state.scrollCur;
+  if (diff === 0) return;
+  state.scrollCur += diff * (1 - Math.pow(0.9, dt));
+  if (Math.abs(state.scrollTarget - state.scrollCur) < 0.5) state.scrollCur = state.scrollTarget;
+  const n = state.way.nbStills;
+  const target = Math.min(n - 1, state.scrollCur / Math.max(1, state.scrollRange) * n);
+  moveBy(target - state.pos);
+}
+
+function setupScroll() {
+  el.scroller.addEventListener('scroll', () => {
+    if (!state.desktop) return;
+    state.scrollTarget = el.scroller.scrollTop;
+  }, { passive: true });
+  // Arrow keys step 50 px, like the 2015 site.
+  el.scroller.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      el.scroller.scrollTop += e.key === 'ArrowDown' ? 50 : -50;
+    }
+  });
 }
 
 // ---------- touch ----------
@@ -384,14 +527,14 @@ function setupGestures() {
   el.stage.addEventListener('pointerup', end);
   el.stage.addEventListener('pointercancel', end);
 
-  // Desktop / trackpad testing.
+  // Tablets with a trackpad or mouse wheel.
   el.stage.addEventListener('wheel', (e) => {
     if (!state.loader || !state.loader.ready) return;
     e.preventDefault();
     moveBy(e.deltaY * framesPerPx() * 0.5);
   }, { passive: false });
   window.addEventListener('keydown', (e) => {
-    if (!state.loader || !state.loader.ready) return;
+    if (state.desktop || state.view !== 'walk' || !state.loader || !state.loader.ready) return;
     if (e.key === 'ArrowUp') state.vel = 1.5;
     if (e.key === 'ArrowDown') state.vel = -1.5;
     if (e.key === 'ArrowLeft') { state.pan = Math.max(-1, state.pan - 0.2); state.dirty = true; }
@@ -416,13 +559,19 @@ function framesPerPx() {
 
 // ---------- stories ----------
 
-function openStory(character) {
+export function openStory(character) {
   const video = stories.storyFor(character, state.way.wayName);
   playVideo(stories.videoUrl(character, video), stories.subtitlesUrl(character, video, state.lang));
   updateFound();
+  emit('story', { character, video });
 }
 
-function playVideo(src, subs) {
+// Replays a story already found (desktop characters menu).
+export function replayStory(character, video) {
+  playVideo(stories.videoUrl(character, video), stories.subtitlesUrl(character, video, state.lang));
+}
+
+export function playVideo(src, subs) {
   const v = el.videoEl;
   v.innerHTML = '';
   v.src = src;
@@ -434,6 +583,7 @@ function playVideo(src, subs) {
   el.video.hidden = false;
   sound.setPaused(true);
   v.play().catch(() => {});
+  emit('video', { open: true });
 }
 
 function closeVideo() {
@@ -441,39 +591,44 @@ function closeVideo() {
   el.videoEl.removeAttribute('src');
   el.videoEl.load();
   el.video.hidden = true;
-  sound.setPaused(false);
+  sound.setPaused(state.view !== 'walk');
+  emit('video', { open: false });
+  if (state.desktop && state.view === 'walk') el.scroller.focus({ preventScroll: true });
 }
 
 function updateFound() {
-  el.found.textContent = `${stories.storiesFound()}/${stories.TOTAL_STORIES}`;
+  emit('found', { count: stories.storiesFound(), total: stories.TOTAL_STORIES });
+}
+
+export function setMuted(muted) {
+  sound.setMuted(muted);
+  emit('muted', { muted });
+}
+
+export function isMuted() {
+  return sound.muted;
 }
 
 // ---------- boot ----------
 
 async function boot() {
-  const ways = await (await fetch('../content/ways.json')).json();
+  const ways = await (await fetch('content/ways.json')).json();
+  state.waysList = ways;
   ways.forEach((w) => { state.ways[w.wayName] = w; });
-  minimap = new MiniMap(el.map.querySelector('svg'), ways);
 
-  await setLang(pickLang());
-  updateFound();
   resize();
   window.addEventListener('resize', resize);
+  desktopQuery.addEventListener('change', resize);
   setupGestures();
+  setupScroll();
+  hud.init({ state, ways, stories, openStory, replayStory, chooseWay, setMuted, isMuted, go, walkHash, UI_TEXT, playVideo });
   requestAnimationFrame(tick);
 
-  const hashWay = decodeURIComponent(location.hash.slice(1).split('/')[0] || '');
-  const firstWay = state.ways[hashWay] ? hashWay : stories.lastStreet() || FIRST_WAY;
-  // Start fetching stills while the start screen is up.
-  loadWay(firstWay);
-
   el.startBtn.addEventListener('click', () => {
-    sound.unlock();
-    sound.setWay(state.way.waySounds);
-    state.lastSoundPos = null;
-    if (state.loader.ready) onFrameChange(Math.round(state.pos));
+    unlockSound();
     el.start.hidden = true;
     el.hint.hidden = false;
+    if (state.desktop) el.scroller.focus({ preventScroll: true });
   });
 
   // The sign moves every frame, so act on a clean pointer tap rather than
@@ -494,27 +649,21 @@ async function boot() {
     openStory(state.way.characterDefinition.name);
   }
 
-  el.soundBtn.addEventListener('click', () => {
-    const muted = !sound.muted;
-    sound.setMuted(muted);
-    el.soundBtn.setAttribute('aria-pressed', String(muted));
-  });
-  el.mapBtn.addEventListener('click', () => { el.map.hidden = !el.map.hidden; });
-  el.map.addEventListener('click', () => { el.map.hidden = true; });
-  el.menuBtn.addEventListener('click', () => { el.menu.hidden = !el.menu.hidden; });
-  el.menu.querySelector('.menu-close').addEventListener('click', () => { el.menu.hidden = true; });
-  el.menu.querySelectorAll('[data-lang]').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.lang)));
-  el.menu.querySelector('.menu-trailer').addEventListener('click', () => {
-    el.menu.hidden = true;
-    playVideo('https://images.pregonerosdemedellin.com/video/mobile.mp4', `../content/subtitles/jale/mobilebonus/${state.lang}.vtt`);
-  });
   el.videoClose.addEventListener('click', closeVideo);
   el.videoEl.addEventListener('ended', closeVideo);
-
-  window.addEventListener('hashchange', () => {
-    const name = decodeURIComponent(location.hash.slice(1).split('/')[0]);
-    if (state.ways[name] && name !== state.way.wayName) loadWay(name);
+  on('play-video', ({ src, subs }) => playVideo(src, subs));
+  on('set-muted', ({ muted }) => setMuted(muted));
+  on('set-lang', ({ lang }) => {
+    const r = parseRoute(location.hash);
+    // Language lives in the URL: rewrite it, keeping the current screen.
+    if (r.view === 'walk') setLang(lang);
+    else if (r.view === 'page') go(`#page/${r.name}/${lang}`);
+    else go(`#index/${lang}`);
   });
+
+  window.addEventListener('hashchange', route);
+  updateFound();
+  await route();
 }
 
 boot();

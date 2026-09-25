@@ -1,0 +1,287 @@
+/* Landing and project pages (js/landing.js, js/pages.js).
+   Desktop is the 2015 stylesheet (style/css/main.css) as it was; this file
+   undoes what css/walk.css changes globally, gives #landing what 2015's #index
+   had, and makes both screens work on phones. */
+
+/* ---------- back to 2015 defaults on these two screens ---------- */
+
+/* 2015 sized rem with the window (style/sass/module/mediaquery.scss);
+   walk.css pins html to 16px. */
+@media (min-width: 1300px) and (max-width: 1500px) {
+  html.desktop:has(> body[data-view="index"]), html.desktop:has(> body[data-view="page"]) { font-size: 17px; }
+}
+@media (min-width: 1500px) and (max-width: 1700px) {
+  html.desktop:has(> body[data-view="index"]), html.desktop:has(> body[data-view="page"]) { font-size: 18px; }
+}
+@media (min-width: 1700px) {
+  html.desktop:has(> body[data-view="index"]), html.desktop:has(> body[data-view="page"]) { font-size: 20px; }
+}
+
+#landing, #page {
+  font-family: 'FilbertBrush', sans-serif;
+  font-size: 1rem;
+  line-height: normal;
+}
+
+/* ---------- landing, desktop (2015 #index) ---------- */
+
+#landing {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  color: #000;
+}
+
+/* 2015 sized the video from JS (resizeBackgroundVideo): full width, 16:9,
+   sitting on the bottom of the window. */
+#landing .landingpage-video { height: 100%; }
+#landing .landingpage-video video {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+#landing.video-ready .landingpage-video-frame { z-index: -6; }
+
+#landing .top-bar .menu select.language-selection { cursor: pointer; }
+#landing .top-bar .menu select option,
+#page .page-menu select option { color: #000; background: #fff; }
+/* 2015 placed the image absolutely inside an empty link (its width came out as
+   half the description's content box); give the link that box instead, so the
+   link itself is what gets clicked and focused. */
+#landing .middle .description .description-btnenter .btn-enter {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  width: 50%;
+  z-index: 25;
+  transform: translateX(-50%);
+}
+#landing .middle .description .description-btnenter .btn-enter img {
+  position: static;
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: none;
+  cursor: pointer;
+}
+#landing .btn-enter:hover img { filter: brightness(1.12); }
+
+/* 2015 #index .toggle-sounds */
+#landing .toggle-sounds {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 2.5rem;
+  height: 2.5rem;
+  z-index: 200;
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+#landing .toggle-sounds[data-state="muted"] { background-image: url('../images/mutesound.svg'); }
+#landing .toggle-sounds[data-state="normal"] { background-image: url('../images/unmutesound.svg'); }
+
+/* ---------- landing, touch: the 2015 landing stacked for a narrow screen ----------
+   Same pieces as desktop: the green menu bar, the yellow brush texture with
+   the logo and the plum description, the ENTRAR brush, the laurels, and the
+   street below its brush edge. */
+
+#landing.landing-touch { background: #1e0a1c; color: #4A2246; }
+
+.st {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: 'FilbertBrush', sans-serif;
+  text-align: center;
+}
+
+/* 2015 .top-bar: green, over an orange band. */
+.st-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 6px 10px;
+  padding: calc(var(--safe-top) + 6px) 12px 6px;
+  background: #00937A;
+  box-shadow: 0 6px 0 rgba(189, 117, 15, .6);
+  color: #fff;
+  font-size: 15px;
+  font-variant: small-caps;
+  position: relative;
+  z-index: 2;
+}
+.st-links { flex: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 0 6px; text-align: left; line-height: 1.9; }
+.st-bar a { color: #fff; }
+.st-bar .menu-separator { opacity: .8; }
+.st-bar .language-selection {
+  flex: none;
+  padding: 4px 6px;
+  border: 1px solid rgba(255, 255, 255, .6);
+  border-radius: 4px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-variant: normal;
+}
+.st-bar .language-selection option { color: #4A2246; }
+
+/* 2015 .main: the yellow brush texture. */
+.st-main {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 20px 30px;
+  background: url('../images/texture_full_hq.jpg') center / cover;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+.st-logo { width: min(78vw, 360px, 30vh); height: auto; }
+.st-headline { margin: 0; max-width: 20em; font-size: 18px; line-height: 1.3; text-transform: uppercase; }
+.st-main .btn-enter { padding: 0; background: none; border: 0; }
+.st-main .btn-enter img { display: block; width: min(52vw, 220px); height: auto; filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, .35)); }
+.st-main .btn-enter:active img { transform: scale(.97); }
+.st-main p { margin: 0; font-size: 15px; }
+.st-trailer { padding: 4px 8px; color: #9b482a; font: inherit; font-size: 16px; text-decoration: underline; }
+.st-laurels { width: min(88vw, 420px); max-height: 12vh; object-fit: contain; margin-top: 4px; }
+
+/* The street under the texture's brush edge (2015 .separator). */
+.st-street {
+  flex: 0 0 18vh;
+  margin-top: -6vh;
+  background: url('../images/landing-video-firstframe.jpg') center 80% / cover;
+  position: relative;
+}
+.st-street::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: -1px;
+  height: 9vh;
+  background: url('../images/separator_bottom.png') center top / 100% 100% no-repeat;
+  transform: scaleY(-1);
+}
+
+/* Short screens (small phones): tighten up. */
+@media (max-height: 640px) {
+  .st-main { gap: 6px; padding-top: 10px; }
+  .st-headline { font-size: 15px; }
+  .st-laurels { max-height: 9vh; }
+  .st-street { flex-basis: 12vh; }
+}
+
+/* Landscape phones: logo and laurels on the left, the words and ENTRAR on the right. */
+@media (orientation: landscape) and (max-height: 540px) {
+  .st-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: dense;
+    align-content: center;
+    justify-items: center;
+    gap: 6px 24px;
+    padding: 10px 24px 16px;
+  }
+  .st-logo, .st-laurels { grid-column: 1; }
+  .st-logo { width: min(40vw, 46vh); grid-row: 1 / span 3; }
+  .st-laurels { grid-row: 4 / span 2; max-height: 16vh; }
+  .st-main > :not(.st-logo):not(.st-laurels) { grid-column: 2; }
+  .st-street { display: none; }
+}
+
+/* ---------- pages (2015 #page) ---------- */
+
+#page {
+  -webkit-user-select: text;
+  user-select: text;
+  color: #595858;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+#page a { color: #9b482a; }
+#page img { max-width: 100%; }
+
+/* The 2015 menu, in the green bar right of the logo, before the close button. */
+#page .page-menu {
+  position: fixed;
+  top: 0;
+  right: 56px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  z-index: 3;
+  font-family: 'FilbertBrush', sans-serif;
+  font-size: 1.05rem;
+  font-variant: small-caps;
+  color: #fff;
+  user-select: none;
+}
+#page .page-menu p { margin: 0; font: inherit; color: inherit; line-height: normal; text-align: left; white-space: nowrap; }
+#page .page-menu a,
+#page .page-menu a:visited { color: #fff; }
+#page .page-menu a.current { color: #FFD44A; }
+#page .page-menu select {
+  background: transparent;
+  color: #fff;
+  font-variant: small-caps;
+  border: 1px solid rgba(255, 255, 255, .6);
+  cursor: pointer;
+}
+#page .page-btnclose { z-index: 3; }
+
+/* ---------- pages on phones and tablets ---------- */
+
+html.touch #page .page-topbar { height: 56px; z-index: 2; }
+html.touch #page .page-separator { top: 34px; height: 40px; background-position: center top; z-index: 1; }
+html.touch #page .page-logo {
+  top: 2px;
+  left: 8px;
+  width: 128px;
+  height: 64px;
+  background-position: left top;
+  z-index: 3;
+}
+html.touch #page .page-btnclose {
+  top: 8px;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  background-size: contain;
+}
+/* Only home and the language fit beside the logo; the pages are one tap away on the landing. */
+html.touch #page .page-menu { top: 0; right: 52px; left: 140px; height: 48px; justify-content: flex-end; font-size: 18px; }
+html.touch #page .page-menu p { display: flex; align-items: center; gap: 8px; }
+html.touch #page .page-menu a:not([href^="#index"]),
+html.touch #page .page-menu .menu-separator { display: none; }
+html.touch #page .page-menu select { padding: 4px 2px; }
+
+html.touch #page .page-content {
+  position: static;
+  width: auto;
+  max-width: 44em;
+  transform: none;
+  margin: 0 auto;
+  padding: calc(var(--safe-top) + 88px) 18px calc(var(--safe-bottom) + 40px);
+  font-size: 16px;
+}
+html.touch #page h2 { font-size: 30px; margin: 0 0 12px; }
+html.touch #page h3 { font-size: 19px; margin: 24px 0 8px; }
+html.touch #page p,
+html.touch #page li { font-size: 16px; line-height: 1.5; text-align: left; overflow-wrap: anywhere; }
+html.touch #page ul { padding-left: 20px; }
+html.touch #page .page-image { width: 100%; }
+html.touch #page iframe { max-width: 100%; }
+html.touch #page iframe[src*="youtube"],
+html.touch #page iframe[src*="vimeo"],
+html.touch #page iframe[src*="flickr"] { width: 100%; height: auto; max-height: 70vh; aspect-ratio: 16 / 9; }
+/* The music page lays groups out in two-column tables: stack them. */
+html.touch #page table, html.touch #page tbody, html.touch #page tr, html.touch #page td { display: block; width: 100%; }
+html.touch #page .music-youtube { padding-left: 0; margin: 8px 0; }

@@ -1,0 +1,218 @@
+/* 2015 street furniture (js/hud.js), on desktop and touch.
+   The pieces keep their 2015 classes, so style/css/main.css lays them out as
+   in 2015; this file only adds what the port changed: one stacking layer above
+   the scroller, pointer events, CSS animations in place of GSAP tweens, and
+   the plain SVG map in place of Mapbox. */
+
+/* One layer above the street and the scroller, below the start screen and videos. */
+#hud { z-index: 10; font-family: 'FilbertBrush', sans-serif; line-height: normal; }
+
+/* The engine's own loading bar is replaced by the 2015 one, and on desktop
+   its hint by the 2015 "scroll the page" tutorial. */
+#loading, html.desktop #hint { display: none !important; }
+html.touch #hud .streetwalk-tutorial-wrapper { display: none; }
+
+/* Decoration lets clicks through; the wheel is forwarded to the scroller anyway. */
+#hud > .streetwalk-sign,
+#hud > .streetwalk-tutorial-wrapper,
+#hud > .streetwalk-textcharacter,
+#hud .streetwalk-bottombar-separator { pointer-events: none; }
+#hud .character-sign { pointer-events: auto; }
+/* Each character's drawing box is four times the strip's height (room for
+   its story bubbles): only the painted hexagon and bubbles take taps, so the
+   street, the map and MENU under the empty part stay reachable. */
+#hud .streetwalk-menucharacter, #hud .streetwalk-menucharacter > svg { pointer-events: none; }
+#hud .streetwalk-menucharacter > svg * { pointer-events: auto; }
+
+/* ---------- vendor sign: positioned by transforms only ---------- */
+
+#hud .streetwalk-textcharacter { left: 0; top: 0; will-change: transform; }
+#hud .streetwalk-textcharacter .img-container {
+  top: 0; left: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+#hud .streetwalk-textcharacter .img-container svg { display: block; height: auto; }
+
+/* ---------- junction arrows: 2015's Back.easeOut pop, then a quick shrink ---------- */
+
+#hud .streetwalk-chooseway { animation: hud-pop .5s cubic-bezier(.34, 1.56, .64, 1) both; }
+#hud .streetwalk-chooseway-wrapper.hud-out .streetwalk-chooseway { animation: hud-shrink .3s ease-in both; }
+#hud .btn-chooseway { cursor: pointer; }
+@keyframes hud-pop { from { transform: scale(0); } }
+@keyframes hud-shrink { to { transform: scale(0); } }
+
+/* ---------- bottom bar ---------- */
+
+/* MENU lifts the bar by 5% to uncover the menu line (a GSAP tween in 2015). */
+#hud .streetwalk-bottombar { transition: transform .5s ease-out, bottom .5s ease-out; }
+#hud.hud-menu-open .streetwalk-bottombar { bottom: 5%; }
+#hud .streetwalk-menubottom select { font-variant: normal; }
+
+/* 2015 set these in JS: map content square (width = height, under a
+   39/167/0/89 px border), characters strip width = 6 × its height. The bar is
+   10vh tall, the map 320% of it, the strip 120% of it. */
+#hud .streetwalk-map { width: calc(32vh + 217px); }
+#hud .streetwalk-map.enlarged { height: calc(80vh - 58.5px); width: calc(80vh + 158.5px); }
+#hud .streetwalk-menucharacters { width: 72vh; }
+#hud .streetwalk-btnmenu, #hud .streetwalk-control > div { cursor: pointer; }
+
+/* Plain SVG street map (js/minimap.js) instead of Mapbox tiles. */
+#hud .streetwalk-mapcontainer { background: #efe9dc; }
+#hud .hud-minimap { display: block; width: 100%; height: 100%; }
+#hud .hud-minimap .street { fill: none; stroke: #9a948a; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+#hud .hud-minimap .street.next { stroke: #0DBD9B; stroke-width: 9; }
+#hud .hud-minimap .street.current { stroke: #1087bf; stroke-width: 10; }
+#hud .hud-minimap .street.highlight { stroke: red; stroke-width: 10; }
+#hud .hud-minimap .me { fill: #e2412d; stroke: #fff; stroke-width: 5; }
+#hud .hud-map-icon { cursor: pointer; }
+
+/* Characters menu: 2015 popped the story bubbles out from the bottom right. */
+#hud .submenu[data-state='open'] {
+  transform-box: fill-box;
+  transform-origin: right bottom;
+  animation: hud-pop .5s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+
+/* ---------- tutorial: the three mouse drawings flip every 0.4 s ---------- */
+
+#hud .streetwalk-tutorial .frame1 { animation: hud-f1 1.2s step-end infinite; }
+#hud .streetwalk-tutorial .frame2 { animation: hud-f2 1.2s step-end infinite; }
+#hud .streetwalk-tutorial .frame3 { animation: hud-f3 1.2s step-end infinite; }
+@keyframes hud-f1 { 0% { visibility: visible; } 33.3%, 100% { visibility: hidden; } }
+@keyframes hud-f2 { 0% { visibility: hidden; } 33.3% { visibility: visible; } 66.6%, 100% { visibility: hidden; } }
+@keyframes hud-f3 { 0%, 33.3% { visibility: hidden; } 66.6%, 100% { visibility: visible; } }
+#hud .streetwalk-tutorial.hud-hide { display: none; }
+#hud .streetwalk-tutorial-scrollotherside-tooltip.hud-show { display: block; }
+
+/* ---------- loading ---------- */
+
+/* The first street's full page covers the rest of the furniture, as in 2015. */
+#hud .streetwalk-loading.hud-full { z-index: 40; }
+#hud.hud-firstload > :not(.streetwalk-loading) { visibility: hidden; }
+#hud .streetwalk-loading .headset { animation: hud-fade-out 1s 5s both; }
+#hud .streetwalk-loading .loading-animation { animation: hud-rise 1s 5s both; }
+#hud .streetwalk-loading #carito { animation: hud-fade-in 1s 5s both; }
+#hud .streetwalk-loading #waveleft,
+#hud .streetwalk-loading #waveright {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hud-wave 1s ease-in-out infinite;
+}
+@keyframes hud-fade-out { to { opacity: 0; } }
+@keyframes hud-fade-in { from { opacity: 0; } }
+@keyframes hud-rise { from { transform: translateY(25%); } }
+@keyframes hud-wave { 50% { transform: scale(1.2); } }
+
+/* ---------- hint bubble (locked story, vendor on the map) ---------- */
+
+#hud .hud-callout {
+  position: fixed;
+  z-index: 60;
+  width: 300px;
+  padding: 14px 18px;
+  background: #FFD64A;
+  border: 5px solid #4B2246;
+  color: #4B2246;
+  font-size: 1rem;
+}
+#hud .hud-callout::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: var(--arrow, 50%);
+  margin-left: -12px;
+  border: 12px solid transparent;
+  border-top-color: #4B2246;
+}
+#hud .hud-callout p { margin: 0 0 8px; }
+#hud .hud-callout-title { font-size: 1.2rem; }
+#hud .hud-callout-actions { margin: 12px 0 0 !important; display: flex; gap: 8px; flex-wrap: wrap; }
+#hud .hud-callout button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #4B2246;
+  color: #fff;
+}
+#hud .hud-callout button.hud-callout-close { background: transparent; color: #4B2246; text-decoration: underline; }
+
+@media (prefers-reduced-motion: reduce) {
+  #hud .streetwalk-chooseway, #hud .submenu[data-state='open'],
+  #hud .streetwalk-loading #waveleft, #hud .streetwalk-loading #waveright { animation: none; }
+}
+
+/* ---------- phones and tablets (html.touch) ----------
+   Same pieces and art as desktop, kept small so the street stays the
+   picture: the 2015 sizes assume a wide screen (signs 12% high, map
+   32vh + 217 px of frame, characters 72vh wide). */
+
+html.touch #hud {
+  --bar: 40px;    /* yellow bottom bar, above the home indicator */
+  --strip: 30px;  /* characters strip height, about one hexagon (its width is 6x) */
+  --map: 24vw;    /* map square */
+  --menu: 64px;   /* bottom menu band */
+}
+html.touch #hud .streetwalk-sign { height: auto; width: min(30vw, 24vh, 150px); top: var(--safe-top); }
+html.touch #hud .streetwalk-sign svg { display: block; width: 100%; height: auto; }
+html.touch #hud .streetwalk-progress { left: 2vw; }
+html.touch #hud .streetwalk-area { right: 2vw; }
+
+html.touch #hud .streetwalk-bottombar { height: calc(var(--bar) + var(--safe-bottom)); }
+html.touch #hud .streetwalk-bottombar-separator { top: -45%; }
+html.touch #hud .streetwalk-menucharacters {
+  top: auto; right: 36px; bottom: calc(var(--safe-bottom) + var(--bar) * .3);
+  height: var(--strip); width: calc(var(--strip) * 6);
+}
+html.touch #hud .streetwalk-control { width: 28px; right: 4px; height: 60px; bottom: calc(var(--safe-bottom) + 4px); }
+html.touch #hud .streetwalk-control > div { background-size: contain; background-position: center; }
+
+/* The map sits bottom left, without its 2015 frame, with MENU on its
+   right; like the bars, it folds away while walking and comes back on a stop. */
+html.touch #hud .streetwalk-map {
+  left: 6px;
+  bottom: calc(var(--bar) * .3);
+  width: var(--map); height: var(--map);
+  border: 0; border-image: none;
+  transform: translateY(calc(100% + var(--bar)));
+}
+html.touch body.not-moving #hud .streetwalk-map,
+html.touch #hud .streetwalk-map.enlarged { transform: none; }
+html.touch #hud .streetwalk-map.enlarged { width: calc(100vw - 12px); height: min(60vh, calc(100vw - 12px)); }
+html.touch #hud .streetwalk-map .streetwalk-mapcontainer { border-radius: 6px; box-shadow: 2px 2px 8px rgba(160, 138, 28, .8); }
+html.touch #hud .streetwalk-map .streetwalk-map-btnfullscreen { top: 4px; left: 4px; transform: none; width: 22px; height: 22px; }
+html.touch #hud .streetwalk-btnmenu-wrapper { top: auto; bottom: 0; right: auto; left: 100%; }
+html.touch body.not-moving #hud .streetwalk-btnmenu-wrapper,
+html.touch #hud .streetwalk-btnmenu-wrapper { transform: none; }
+html.touch #hud .streetwalk-bottombar .streetwalk-btnmenu-wrapper button {
+  font-size: .8rem; padding: .2rem .5rem .2rem .6rem; border-radius: 0 .6rem .6rem 0;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, .6);
+}
+
+/* Bottom menu: the links wrap onto a band that MENU uncovers. */
+html.touch #hud .streetwalk-menubottom,
+html.touch body.not-moving #hud .streetwalk-menubottom {
+  height: calc(var(--menu) + var(--safe-bottom));
+  padding: 4px 10px var(--safe-bottom);
+  font-size: .8rem;
+  transform: translateY(100%);
+}
+html.touch #hud .streetwalk-menubottom.open,
+html.touch body.not-moving #hud .streetwalk-menubottom.open { transform: none; }
+html.touch #hud .streetwalk-menubottom .streetwalk-menubottom-content { position: static; transform: none; margin: 0; line-height: 2.1; }
+html.touch #hud.hud-menu-open .streetwalk-bottombar { bottom: var(--menu); }
+
+/* Junction arrows, loading wheel and hints, scaled to a narrow screen. */
+html.touch #hud .streetwalk-chooseway-wrapper { width: min(54vw, 44vh); }
+html.touch #hud .streetwalk-loading-simple { width: 36vw; }
+/* Later streets load under a small wheel: keep the street swipeable. */
+html.touch #hud .streetwalk-loading:not(.hud-full) { pointer-events: none; }
+html.touch #hud .hud-callout { width: min(260px, calc(100vw - 20px)); padding: 10px 12px; border-width: 3px; font-size: .85rem; }
+html.touch #hud .hud-callout-title { font-size: 1rem; }
+html.touch #hint { bottom: calc(var(--safe-bottom) + 17vh); font-size: 14px; }
+
+/* Landscape phones: a short screen, so size by height. */
+@media (orientation: landscape) {
+  html.touch #hud { --bar: 30px; --strip: 30px; --map: 24vh; --menu: 40px; }
+  html.touch #hud .streetwalk-sign { width: min(20vw, 32vh, 150px); }
+  html.touch #hint { bottom: calc(var(--safe-bottom) + 20vh); }
+}

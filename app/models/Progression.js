@@ -13,10 +13,6 @@ function($, _, Backbone, LOGGER, ProgressionModel){
 
         self.instance = new ProgressionModel();
 
-        // DECLARE PARSE INSTANCE
-        self.modelParseDAO = Parse.Object.extend("Progression");
-        self.parseDAOInstance = new self.modelParseDAO();
-
     },
 
     save: function() {
