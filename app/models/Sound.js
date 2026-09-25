@@ -143,8 +143,13 @@ function($, _, Backbone, GeoUtils, LOGGER){
         // console.log("SOUND SET TO LOAD :  AMBIENT: " + self.isAmbient() + " Loaded PATH: " + 'data/sounds/' + self.get("path") + '.mp3');
 
 
+        //Punctual sounds are decoded with Web Audio (for stereo panning), which
+        //needs CORS: the media host has none, so they come through the site's
+        //own /frames/ route (see vercel.json). Ambient sounds stream as <audio>.
+        var soundBase = self.isAmbient() ? 'https://images.pregonerosdemedellin.com/data/sounds/' : '/frames/sounds/';
+
         self.sound = new Howl({
-          src: ['https://images.pregonerosdemedellin.com/data/sounds/' + self.get("path") + '.mp3'],
+          src: [soundBase + self.get("path") + '.mp3'],
           loop:true,
           html5:self.isAmbient(),
           volume:0,
