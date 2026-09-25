@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pregoneros · Walk comparison</title>
+<style>
+  :root { --fg: #f4efe6; --muted: #b9b1a3; --panel: rgba(18, 16, 14, .78); --accent: #f2b441; }
+  * { box-sizing: border-box; }
+  html { background: #000; }
+  body { margin: 0; color: var(--fg); font: 14px/1.4 system-ui, -apple-system, sans-serif; }
+  /* The page is really this tall: walking is plain native scrolling, like the 2015 site. */
+  #track { width: 1px; }
+  .stage { position: fixed; inset: 0; width: 100%; height: 100%; }
+  #flat, #hires { object-fit: cover; }
+  #hires { opacity: 0; }
+  #hires.on { opacity: 1; }
+  #gl { touch-action: pan-y; opacity: 0; pointer-events: none; transition: opacity .7s ease; }
+  #gl.on { opacity: 1; pointer-events: auto; }
+  #gl.off-now { transition: none; }
+  #hud { position: fixed; left: 12px; right: 12px; top: calc(12px + env(safe-area-inset-top)); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; pointer-events: none; }
+  #hud > * { pointer-events: auto; }
+  .modes { display: flex; background: var(--panel); border-radius: 999px; padding: 3px; backdrop-filter: blur(6px); }
+  .modes button { background: none; border: 0; color: var(--muted); padding: 7px 12px; border-radius: 999px; font: inherit; font-size: 13px; cursor: pointer; }
+  .modes button.on { background: var(--fg); color: #111; }
+  .modes button:disabled { opacity: .35; cursor: default; }
+  #old { background: var(--panel); border-radius: 999px; padding: 7px 12px; font-size: 13px; color: var(--muted); text-decoration: none; }
+  #note.min #noteText, #note.min select, #note.min #gyro { display: none; }
+  #close { float: right; background: none; border: 0; color: var(--muted); font-size: 16px; line-height: 1; padding: 0 0 4px 8px; cursor: pointer; }
+  #note.min #close::after { content: 'About this version'; font-size: 12px; }
+  #note:not(.min) #close::after { content: '×'; }
+  @media (max-width: 600px) { .modes button, #old { padding: 6px 9px; font-size: 12px; white-space: nowrap; } #info { margin-left: 0; } }
+  #info { margin-left: auto; background: var(--panel); border-radius: 8px; padding: 5px 9px; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  #note { position: fixed; left: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); max-width: min(420px, calc(100vw - 24px)); background: var(--panel); border-radius: 10px; padding: 9px 12px; font-size: 13px; color: var(--fg); backdrop-filter: blur(6px); }
+  #note b { color: var(--accent); font-weight: 600; }
+  #note select { background: #222; color: var(--fg); border: 1px solid #444; border-radius: 6px; padding: 2px; max-width: 100%; margin-top: 6px; }
+  #gyro { display: none; margin-top: 6px; background: none; border: 1px solid #666; color: var(--fg); border-radius: 999px; padding: 5px 10px; font: inherit; font-size: 12px; }
+  body.depth #gyro { display: inline-block; }
+  #gyro.on { border-color: var(--accent); color: var(--accent); }
+</style>
+</head>
+<body>
+<div id="track"></div>
+<img id="flat" class="stage" alt="">
+<img id="hires" class="stage" alt="">
+<canvas id="gl" class="stage"></canvas>
+
+<div id="hud">
+  <div class="modes" role="tablist">
+    <button data-mode="flat" class="on">A · Original</button>
+    <button data-mode="depth">B · Depth on stop</button>
+    <button data-mode="interp">C · Denser frames</button>
+  </div>
+  <a id="old" href="../immersive/">D · Old depth walk</a>
+  <div id="info"></div>
+</div>
+<div id="note">
+  <button id="close" aria-label="Show or hide notes"></button>
+  <div id="noteText"></div>
+  <select id="way" aria-label="Street"></select>
+  <button id="gyro">Look with phone</button>
+</div>
+
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js" } }
+</script>
+<script type="module" src="walk.js"></script>
+</body>
+</html>
