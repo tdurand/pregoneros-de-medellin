@@ -1,0 +1,14 @@
+{
+  "name": "pregoneros-scroll-webcodecs-poc",
+  "private": true,
+  "type": "module",
+  "description": "Proof of concept: replace the per-still JPEG swap with WebCodecs frame-accurate playback (ActiveFrame .af format)",
+  "scripts": {
+    "build:af": "node tools/build_af.mjs",
+    "bench": "node tools/bench.mjs",
+    "bench:mobile": "node tools/bench-mobile.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.55.0"
+  }
+}

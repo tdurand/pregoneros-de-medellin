@@ -1,0 +1,12 @@
+{
+  "name": "pregoneros-media-tools",
+  "private": true,
+  "type": "module",
+  "description": "Builds the v2 media (video frame files) for the street walk from the source stills",
+  "scripts": {
+    "encode": "node encode-v2.mjs"
+  },
+  "dependencies": {
+    "mp4box": "^2.3.0"
+  }
+}
