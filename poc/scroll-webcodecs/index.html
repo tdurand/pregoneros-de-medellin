@@ -28,6 +28,8 @@ var hud = document.getElementById('hud');
 var viewer = document.getElementById('viewer');
 var t0 = performance.now();
 var bench = window.__bench = { mode: MODE, frames: [], longTasks: 0, longTaskMs: 0 };
+// Default buffer is 250 entries; today's walk makes 378+ image requests per street
+performance.setResourceTimingBufferSize(5000);
 
 try {
   new PerformanceObserver(function (l) {
@@ -117,8 +119,7 @@ function WebCodecs(urls) {
   viewer.appendChild(this.canvas);
   this.player = new StillsPlayer(this.canvas, {});
   this.ready = (async function () {
-    var sources = urls.map(function (u) { return { url: u, codec: null }; });
-    // Codec lives in the manifest; peek with a tiny range-less guess from the filename, then verify on load
+    // Try each .af in order (e.g. h264 first, vp9 second); load() throws when this browser can't decode it
     var picked = null, lastErr;
     for (var i = 0; i < urls.length && !picked; i++) {
       try {

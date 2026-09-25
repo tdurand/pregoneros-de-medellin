@@ -10,6 +10,8 @@
 //
 // Set AF_REF=<dir of reference wayNNN.jpg> to print SSIM against it.
 //
+// CRF is passed straight to the encoder: x264 uses 0-51, libvpx-vp9 and libaom 0-63.
+//
 // usage: node tools/build_af.mjs <stills_dir> <out.af> [h264|vp9|av1] [gop=5] [crf=28] [maxWidth=1000]
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -30,9 +32,9 @@ const tmpMp4 = path.join(os.tmpdir(), `af-${process.pid}.mp4`);
 const codecArgs = {
     h264: ['-c:v', 'libx264', '-tag:v', 'avc1', '-profile:v', 'main', '-preset', 'slower',
         '-refs', '1', '-bf', '0', '-crf', crf],
-    vp9: ['-c:v', 'libvpx-vp9', '-b:v', '0', '-crf', String(Number(crf) + 8), '-row-mt', '1',
+    vp9: ['-c:v', 'libvpx-vp9', '-b:v', '0', '-crf', crf, '-row-mt', '1',
         '-deadline', 'good', '-cpu-used', '4', '-auto-alt-ref', '0', '-lag-in-frames', '0'],
-    av1: ['-c:v', 'libaom-av1', '-b:v', '0', '-crf', String(Number(crf) + 8), '-cpu-used', '6',
+    av1: ['-c:v', 'libaom-av1', '-b:v', '0', '-crf', crf, '-cpu-used', '6',
         '-lag-in-frames', '0', '-row-mt', '1'],
 }[codec];
 if (!codecArgs) throw new Error(`unknown codec ${codec}`);

@@ -34,19 +34,6 @@
         return typeof root.VideoDecoder === 'function';
     };
 
-    // Resolve the first .af whose codec this browser can decode.
-    // sources: [{ url, codec }] in order of preference (h264 first for Safari/iOS).
-    StillsPlayer.pickSource = async function (sources, width, height) {
-        if (!StillsPlayer.isSupported()) return null;
-        for (var i = 0; i < sources.length; i++) {
-            try {
-                var res = await VideoDecoder.isConfigSupported({ codec: sources[i].codec, codedWidth: width, codedHeight: height });
-                if (res.supported) return sources[i];
-            } catch (e) { /* invalid codec string for this browser */ }
-        }
-        return null;
-    };
-
     StillsPlayer.prototype.load = async function (url, onProgress) {
         var res = await fetch(url);
         var total = Number(res.headers.get('content-length')) || 0;

@@ -16,7 +16,7 @@ const variants = [
     { name: 'WebCodecs VP9 1000px GOP 5', q: `mode=webcodecs&af=${base}/street/af/vp9-1000-g5.af` },
     { name: 'WebCodecs VP9 1000px GOP 15', q: `mode=webcodecs&af=${base}/street/af/vp9-1000-g15.af` },
     { name: 'WebCodecs VP9 1000px all-intra', q: `mode=webcodecs&af=${base}/street/af/vp9-1000-g1.af` },
-];
+].filter((v) => !process.env.BENCH_ONLY || v.name.includes(process.env.BENCH_ONLY));
 const profiles = [
     { name: 'fast 4G, 4x CPU', down: 9e6, rtt: 60, cpu: 4 },
     { name: 'cable, 1x CPU', down: 50e6, rtt: 20, cpu: 1 },

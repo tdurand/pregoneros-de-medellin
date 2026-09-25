@@ -57,7 +57,28 @@ image-swap walk against a WebCodecs player that reads the
 SSIM is measured against the 1920px high-res stills, with everything compared at
 1000px wide. Encodes come from `tools/build_af.mjs`.
 
-RESULTS_SIZE
+| Encoding | Size | Files | Width | SSIM |
+| --- | ---: | ---: | ---: | ---: |
+| **Today: low-res JPEG** (shown while moving) | **12.7 MB** | 378 | 500 | 0.865 |
+| Today: high-res JPEG (one per idle stop) | 109 MB | 378 | 1920 | reference |
+| H.264, GOP 5, CRF 32 | 3.9 MB | 1 | 1000 | 0.867 |
+| **H.264, GOP 5, CRF 29** (recommended) | **6.0 MB** | 1 | 1000 | **0.900** |
+| H.264, GOP 15, CRF 29 | 4.9 MB | 1 | 1000 | 0.890 |
+| H.264, all-intra, CRF 29 | 6.2 MB | 1 | 1000 | 0.859 |
+| H.264, GOP 5, CRF 23 | 13.3 MB | 1 | 1000 | 0.950 |
+| H.264, GOP 5, CRF 26 | 13.7 MB | 1 | 1280 | 0.949 |
+| VP9, GOP 5, CRF 50 (used in the browser runs) | 5.9 MB | 1 | 1000 | 0.895 |
+| VP9, GOP 15, CRF 50 | 4.3 MB | 1 | 1000 | 0.879 |
+| VP9, all-intra, CRF 50 | 17.6 MB | 1 | 1000 | 0.948 |
+
+At the same quality as today's low-res stills, one H.264 file is **3.3× smaller
+at twice the width** (3.9 MB against 12.7 MB). The recommended setting spends
+6 MB for visibly sharper frames, which is still under half of today's bytes. It
+also removes the 1920px swap on idle, which today costs about 300 KB every time
+the user stops.
+
+GOP (the keyframe interval) trades size against how many frames a backward step
+or a jump has to decode. GOP 5 means at most 5 decodes.
 
 ### Scrolling in the browser
 
@@ -73,7 +94,34 @@ Chromium 141 and median values over 3 runs. The scripted scrub is:
 - "Stale" counts animation frames where the picture sits more than 3 stills
   (about 1 m) away from the scroll position.
 
-RESULTS_BENCH
+| Profile | Variant | Walk opens | Whole street loaded | MB downloaded | Stale frames | Stills behind p50 / p95 | Decode p50 / p95 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Fast 4G | Today (JPEG) | 5.5 s (⅓ of stills) | 16.0 s | 13.1 | 0% | 0 / 1 | n/a |
+| Fast 4G | VP9 GOP 5 | 5.8 s | **5.8 s** | 5.9 | 56% | 4 / 45 | 27 / 43 ms |
+| Fast 4G | VP9 GOP 15 | 4.2 s | 4.2 s | 4.3 | 53% | 4 / 58 | 24 / 60 ms |
+| Fast 4G | VP9 all-intra | 17.0 s | 17.0 s | 17.6 | 54% | 4 / 37 | 25 / 32 ms |
+| Cable | Today (JPEG) | 1.9 s (⅓ of stills) | 5.5 s | 14.5 | 0% | 0 / 1 | n/a |
+| Cable | VP9 GOP 5 | 1.1 s | **1.1 s** | 5.9 | 34% | 1 / 17 | 11 / 21 ms |
+| Cable | VP9 GOP 15 | 0.9 s | 0.9 s | 4.3 | 41% | 1 / 36 | 9 / 37 ms |
+| Cable | VP9 all-intra | 3.3 s | 3.3 s | 17.6 | 26% | 1 / 14 | 11 / 15 ms |
+
+Main-thread jank was zero in every run: no long tasks and no animation frames
+over 50 ms. The WebCodecs runs use 12–40 MB of JS heap for the encoded file,
+against about 2 MB for today's code, which keeps decoded images outside the JS heap.
+
+**What this says:**
+- **Loading is clearly better.** The whole street, at twice the resolution, is
+  playable before today's code opens the walk on Fast 4G (5.8 s against 5.5 s
+  for a third of the stills and 16 s for all of them). It takes one request
+  instead of 378 and less than half the bytes.
+- **Responsiveness is not proven yet.** With software VP9 in headless Chromium,
+  the picture runs about 1 still behind on cable and 4 behind on the throttled
+  profile. Right after a jump it takes one or two animation frames to catch up.
+  That is where the p95 comes from. Today's code looks perfect here only because
+  it is counted as shown the moment the image source changes.
+- The deciding test is H.264 hardware decode on a real phone and a Mac, which
+  this sandbox cannot run. Open `index.html` on the device and read the numbers
+  it reports on screen.
 
 How to read the numbers:
 - This Chromium build has no H.264, so the browser runs use **VP9 decoded in
@@ -111,7 +159,7 @@ export FFMPEG=$(python3 -c "import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmp
 tools/fetch_way.sh plazabotero-start-carabobo street     # real stills (or tools/make_synthetic_street.py)
 mkdir -p street/af
 AF_REF=street/highres node tools/build_af.mjs street/highres street/af/h264-1000-g5.af h264 5 29 1000
-node tools/build_af.mjs street/highres street/af/vp9-1000-g5.af vp9 5 42 1000
+node tools/build_af.mjs street/highres street/af/vp9-1000-g5.af vp9 5 50 1000
 
 python3 -m http.server 8765 &   # from a folder with ./poc -> this folder and ./street -> the stills
 open "http://localhost:8765/poc/index.html?mode=webcodecs&af=http://localhost:8765/street/af/h264-1000-g5.af"
