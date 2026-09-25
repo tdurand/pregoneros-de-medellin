@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Pregoneros de Medellín</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#4F2747">
+  <meta name="description" content="La web documental interactiva de los que venden cantando en Medellín - Colombia.">
+  <meta property="og:title" content="Pregoneros de Medellín">
+  <meta property="og:image" content="https://www.pregonerosdemedellin.com/images/seo/es.jpg">
+  <link rel="icon" href="../images/favicon.ico">
+  <link rel="preconnect" href="https://images.pregonerosdemedellin.com" crossorigin>
+  <link rel="stylesheet" href="walk.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+<div id="app">
+  <canvas id="frame" aria-hidden="true"></canvas>
+  <div id="stage" aria-label="Street"></div>
+
+  <button id="sign" class="sign" hidden><span class="sign-art"></span></button>
+
+  <header class="bar">
+    <div class="pill" id="area"></div>
+    <div class="pill found"><span data-s="streetWalkSignDiscoveredStoriesTitle">STORIES</span> <b id="found">0/16</b></div>
+    <div class="bar-actions">
+      <button id="map-btn" class="icon" data-aria="map">
+        <svg viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zm0 2.2 6 2v11.6l-6-2V6.2z"/></svg>
+      </button>
+      <button id="sound-btn" class="icon" data-aria="sound" aria-pressed="false">
+        <svg class="on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
+        <svg class="off" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.6 3 2.7-2.7-1.4-1.4-2.7 2.7-2.7-2.7-1.4 1.4 2.7 2.7-2.7 2.7 1.4 1.4 2.7-2.7 2.7 2.7 1.4-1.4-2.7-2.7z"/></svg>
+      </button>
+      <button id="menu-btn" class="icon" data-aria="menu">
+        <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div id="hint" hidden>
+    <div class="finger"></div>
+    <p data-t="swipe"></p>
+    <p class="small" data-t="look"></p>
+  </div>
+
+  <section id="chooser" hidden>
+    <p class="chooser-title"></p>
+    <div class="chooser-options"></div>
+  </section>
+
+  <div id="map" hidden><svg></svg></div>
+
+  <div id="loading" hidden>
+    <p data-s="loadingLabel">CARGANDO</p>
+    <div class="track"><div id="loading-bar"></div></div>
+  </div>
+
+  <section id="start">
+    <img class="logo" src="../images/logo.png" alt="Pregoneros de Medellín">
+    <p class="headline" data-s="landingDescriptionHeadline"></p>
+    <button id="start-btn" class="cta" data-t="start"></button>
+    <p class="small">🎧 <span data-t="headphones"></span></p>
+  </section>
+
+  <section id="menu" hidden>
+    <button class="menu-close icon" data-aria="close">✕</button>
+    <p class="menu-label" data-t="language"></p>
+    <div class="langs">
+      <button data-lang="es">Español</button>
+      <button data-lang="en">English</button>
+      <button data-lang="fr">Français</button>
+    </div>
+    <button class="menu-trailer menu-item" data-t="trailer"></button>
+    <a class="menu-item" href="https://medium.com/@tibbb/how-we-created-an-immersive-street-walk-experience-with-a-gopro-and-javascript-f442cf8aa2dd" target="_blank" rel="noopener" data-s="menuBtnLabelMakingOf">Making of</a>
+    <p class="small" data-t="desktop"></p>
+  </section>
+
+  <section id="video" hidden>
+    <video playsinline controls preload="metadata"></video>
+    <button id="video-close" class="icon" data-aria="close">✕</button>
+  </section>
+</div>
+</body>
+</html>
