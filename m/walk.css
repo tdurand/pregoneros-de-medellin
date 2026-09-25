@@ -103,7 +103,9 @@ button {
   will-change: transform;
   filter: drop-shadow(0 4px 10px rgba(0,0,0,.5));
   animation: bob 1.6s ease-in-out infinite;
+  touch-action: none;
 }
+button { touch-action: manipulation; }
 .sign-art, .sign-art svg { display: block; width: 100%; height: auto; }
 .sign[data-edge="left"]::before, .sign[data-edge="right"]::before {
   content: '';

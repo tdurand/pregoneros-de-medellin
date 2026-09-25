@@ -472,14 +472,23 @@ async function boot() {
     el.hint.hidden = false;
   });
 
-  el.sign.addEventListener('click', () => {
+  // The sign moves every frame, so act on a clean pointer tap rather than
+  // relying on the browser's click synthesis (missed taps right after a swipe).
+  let signDown = null;
+  el.sign.addEventListener('pointerdown', (e) => { signDown = { x: e.clientX, y: e.clientY }; });
+  el.sign.addEventListener('pointerup', (e) => {
+    if (signDown && Math.hypot(e.clientX - signDown.x, e.clientY - signDown.y) < 12) activateSign();
+    signDown = null;
+  });
+  el.sign.addEventListener('click', (e) => { if (e.detail === 0) activateSign(); }); // keyboard
+  function activateSign() {
     if (el.sign.dataset.edge) {
       // First tap on an edge-pinned sign turns to face the vendor.
       turnTowardsVendor();
       return;
     }
     openStory(state.way.characterDefinition.name);
-  });
+  }
 
   el.soundBtn.addEventListener('click', () => {
     const muted = !sound.muted;
