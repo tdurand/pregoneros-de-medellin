@@ -45,7 +45,6 @@ var template = `<!DOCTYPE html>
         <meta property="og:title" content="Pregoneros de Medellín"/>
     
         <script src="app/libs/vendor/hopscotch-0.2.3-min.js"></script>
-        <script src="app/libs/vendor/parse-1.9.2.min.js"></script>
         <link rel="icon" href="images/favicon.ico" type="image/x-icon"> 
         <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
@@ -92,33 +91,15 @@ var template = `<!DOCTYPE html>
     loadCSS( "style/hopscotch/hopscotch.css");
     loadCSS( "style/videojs/video-js.css");
 
-          fbSDKLoaded = false;
-
-          window.fbAsyncInit = function() {
-                fbSDKLoaded = true; //init flag
-                // console.log("fbsdk loaded" + fbSDKLoaded);
-                var event = new Event('fbSDKLoaded');
-                document.dispatchEvent(event);
-          };
-
     </script>
     <script>
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-    </script>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-56280633-1', 'auto');
-      ga('send', 'pageview');
+      //Universal Analytics stopped collecting in 2023, keep ga() calls harmless
+      window.ga = function() {};
+      //Howler 2.0-beta calls PannerNode.setVelocity, which browsers removed
+      //(Chrome 71+); without this shim, stereo panning of the pregones throws.
+      if (window.PannerNode && !PannerNode.prototype.setVelocity) {
+        PannerNode.prototype.setVelocity = function() {};
+      }
     </script>
     <noscript><link rel="stylesheet" href="style/css/main.css" /></noscript>
     <script data-main="app/main" src="app/libs/vendor/require-2.1.15.min.js"></script>
