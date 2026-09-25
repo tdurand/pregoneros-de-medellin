@@ -52,25 +52,9 @@ function($, _, Backbone,
     initialize : function() {
         var self = this;
 
-        // console.log("fbSDKLoaded?" + fbSDKLoaded);
-
-        if(navigator.onLine) {
-
-            window.parseInitialized = false;
-
-            if(fbSDKLoaded) {
-                // console.log("init parse");
-                self.fbAsyncInit();
-            }
-            else {
-                // console.log("wait fb sdk loading");
-                $(document).on("fbSDKLoaded", function() {
-                    $(document).off("fbSDKLoaded");
-                    // console.log("init parse");
-                    self.fbAsyncInit();
-                });
-            }
-        }
+        //Accounts (Parse + Facebook login) were retired, progress is only kept
+        //in localStorage, so Progression.save/fetch stay no-ops.
+        window.parseInitialized = false;
     },
 
     fbAsyncInit: function() {

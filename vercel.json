@@ -2,6 +2,10 @@
   "version": 2,
   "routes": [
     {
+      "src": "/frames/(.*)",
+      "dest": "https://images.pregonerosdemedellin.com/data/$1"
+    },
+    {
       "src": "/",
       "dest": "/api/index.js",
       "methods": ["GET"]
