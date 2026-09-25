@@ -1,0 +1,266 @@
+@font-face {
+  font-family: 'FilbertBrush';
+  src: url('../fonts/2C7B89_0_0.woff2') format('woff2'), url('../fonts/2C7B89_0_0.woff') format('woff');
+  font-display: swap;
+}
+
+:root {
+  --plum: #4F2747;
+  --yellow: #FFD44A;
+  --green: #0DBD9B;
+  --ink: #fff;
+  --glass: rgba(20, 8, 18, .55);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #000;
+  color: var(--ink);
+  font: 16px/1.35 -apple-system, system-ui, 'Segoe UI', Roboto, sans-serif;
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+[hidden] { display: none !important; }
+
+button {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+#app { position: fixed; inset: 0; }
+
+#frame { position: absolute; inset: 0; display: block; }
+
+/* Takes every touch on the street; overlays sit above it. */
+#stage { position: absolute; inset: 0; touch-action: none; }
+
+/* ---------- top bar ---------- */
+
+.bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  padding: calc(var(--safe-top) + 10px) 12px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  background: linear-gradient(rgba(0,0,0,.45), transparent);
+}
+.bar > * { pointer-events: auto; }
+.pill {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font: 15px/1 'FilbertBrush', sans-serif;
+  letter-spacing: .03em;
+  white-space: nowrap;
+}
+#area { color: var(--yellow); overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 0 1 auto; }
+.found { flex: none; }
+.found span { font-size: 11px; opacity: .8; }
+.found b { color: var(--green); font-weight: normal; }
+.bar-actions { margin-left: auto; display: flex; gap: 6px; }
+
+.icon {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  display: grid; place-items: center;
+  font-size: 18px;
+}
+.icon svg { width: 22px; height: 22px; fill: currentColor; }
+#sound-btn .off, #sound-btn[aria-pressed="true"] .on { display: none; }
+#sound-btn[aria-pressed="true"] .off { display: block; }
+
+/* Phones: keep the street name readable, drop the counter's caption. */
+@media (max-width: 480px) {
+  .found span { display: none; }
+  .found b::before { content: '★ '; }
+}
+
+/* ---------- vendor sign ---------- */
+
+.sign {
+  position: absolute;
+  top: 0; left: 0;
+  padding: 0;
+  z-index: 5;
+  will-change: transform;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.5));
+  animation: bob 1.6s ease-in-out infinite;
+}
+.sign-art, .sign-art svg { display: block; width: 100%; height: auto; }
+.sign[data-edge="left"]::before, .sign[data-edge="right"]::before {
+  content: '';
+  position: absolute;
+  top: 30%;
+  border: 12px solid transparent;
+}
+.sign[data-edge="left"]::before { left: -18px; border-right-color: var(--yellow); }
+.sign[data-edge="right"]::before { right: -18px; border-left-color: var(--yellow); }
+@keyframes bob { 50% { margin-top: -6px; } }
+
+/* ---------- hint ---------- */
+
+#hint {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: calc(var(--safe-bottom) + 40px);
+  text-align: center;
+  pointer-events: none;
+  text-shadow: 0 1px 4px rgba(0,0,0,.8);
+  font-weight: 600;
+}
+#hint p { margin: 4px 16px; }
+.small { font-size: 13px; font-weight: 400; opacity: .85; }
+.finger {
+  width: 34px; height: 34px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  background: rgba(255,255,255,.25);
+  animation: swipe 1.4s ease-in-out infinite;
+}
+@keyframes swipe {
+  0% { transform: translateY(40px); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(-40px); opacity: 0; }
+}
+
+/* ---------- direction chooser ---------- */
+
+#chooser {
+  position: absolute;
+  left: 12px; right: 12px;
+  bottom: calc(var(--safe-bottom) + 16px);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 14px;
+  animation: rise .35s cubic-bezier(.2, 1.4, .4, 1);
+  z-index: 6;
+}
+.chooser-title { margin: 0 0 10px; text-align: center; font: 20px 'FilbertBrush', sans-serif; color: var(--yellow); }
+.chooser-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
+.choice {
+  display: flex; align-items: center; gap: 10px;
+  min-height: 56px;
+  padding: 8px 12px;
+  border-radius: 14px;
+  background: var(--yellow);
+  color: var(--plum);
+  font-weight: 700;
+  text-align: left;
+}
+.choice:active { transform: scale(.97); }
+.arrow {
+  display: grid; place-items: center;
+  width: 32px; height: 32px; flex: none;
+  border-radius: 50%;
+  background: var(--plum);
+  color: var(--yellow);
+  font-size: 20px;
+}
+@keyframes rise { from { transform: translateY(30px); opacity: 0; } }
+
+/* ---------- map ---------- */
+
+#map {
+  position: absolute;
+  inset: calc(var(--safe-top) + 64px) 12px auto auto;
+  width: min(70vw, 320px);
+  background: rgba(255, 244, 214, .92);
+  border-radius: 16px;
+  padding: 6px;
+  z-index: 7;
+  box-shadow: 0 6px 24px rgba(0,0,0,.4);
+}
+#map svg { display: block; width: 100%; height: auto; }
+#map .street { fill: none; stroke: #b9a88a; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+#map .street.next { stroke: var(--green); stroke-width: 10; }
+#map .street.current { stroke: var(--plum); stroke-width: 12; }
+#map .me { fill: #e2412d; stroke: #fff; stroke-width: 5; }
+
+/* ---------- loading / start / menu / video ---------- */
+
+#loading {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  text-align: center;
+  font: 18px 'FilbertBrush', sans-serif;
+  z-index: 8;
+}
+.track { height: 6px; border-radius: 3px; background: rgba(255,255,255,.25); overflow: hidden; }
+#loading-bar { height: 100%; background: var(--yellow); transform-origin: left; transform: scaleX(0); transition: transform .2s; }
+
+#start, #menu {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: calc(var(--safe-top) + 24px) 28px calc(var(--safe-bottom) + 24px);
+  text-align: center;
+  background:
+    linear-gradient(rgba(79, 39, 71, .82), rgba(30, 10, 28, .95)),
+    url('../images/landing-video-firstframe.jpg') center / cover;
+}
+.logo { width: min(78vw, 380px); height: auto; }
+.headline { margin: 0; font: 20px/1.25 'FilbertBrush', sans-serif; color: var(--yellow); max-width: 30em; }
+.cta {
+  min-height: 56px;
+  padding: 0 32px;
+  border-radius: 999px;
+  background: var(--yellow);
+  color: var(--plum);
+  font-weight: 800;
+  font-size: 18px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.35);
+}
+
+#menu { background: rgba(30, 10, 28, .96); justify-content: flex-start; padding-top: calc(var(--safe-top) + 80px); }
+.menu-close { position: absolute; top: calc(var(--safe-top) + 10px); right: 12px; }
+.menu-label { margin: 0; opacity: .7; font-size: 13px; text-transform: uppercase; letter-spacing: .1em; }
+.langs { display: flex; gap: 8px; }
+.langs button { padding: 10px 14px; border-radius: 12px; border: 2px solid rgba(255,255,255,.3); }
+.langs button[aria-pressed="true"] { border-color: var(--yellow); color: var(--yellow); }
+.menu-item {
+  display: block;
+  width: min(100%, 320px);
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.1);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#video { position: absolute; inset: 0; z-index: 30; background: #000; display: grid; place-items: center; }
+#video video { width: 100%; height: 100%; object-fit: contain; }
+#video-close { position: absolute; top: calc(var(--safe-top) + 10px); right: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sign, .finger, #chooser { animation: none; }
+}

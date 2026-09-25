@@ -233,10 +233,16 @@ define([
                 if (_.isFunction(router.before)) {
                     router.before();
 
-                    //Check if mobile
-                    if(window.matchMedia("(max-width : 995px)").matches) {
-                        // console.log("MOBILE DETECTED");
-                        router.mobile();
+                    //Phones and tablets get the touch version of the walk in m/,
+                    //keeping the street and language from the URL.
+                    //?desktop forces this version, #mobile still shows the trailer.
+                    var isTouchDevice = window.matchMedia("(max-width : 995px), (pointer: coarse)").matches;
+                    if(isTouchDevice && name !== "mobile" && window.location.search.indexOf("desktop") < 0) {
+                        var parts = (Backbone.history.fragment || "").split("/");
+                        var wayName = parts[0] === "streetwalk" ? (parts[1] || "") : "";
+                        var lang = parts[0] === "streetwalk" ? parts[2] : (parts[0] === "index" ? parts[1] : parts[0]);
+                        if(["es","en","fr"].indexOf(lang) < 0) { lang = ""; }
+                        window.location.replace("m/#" + wayName + (lang ? "/" + lang : ""));
                         return;
                     }
                 }
