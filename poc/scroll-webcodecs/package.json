@@ -5,10 +5,10 @@
   "description": "Proof of concept: replace the per-still JPEG swap with WebCodecs frame-accurate playback (ActiveFrame .af format)",
   "scripts": {
     "build:af": "node tools/build_af.mjs",
-    "bench": "node tools/bench.mjs"
+    "bench": "node tools/bench.mjs",
+    "bench:mobile": "node tools/bench-mobile.mjs"
   },
   "devDependencies": {
-    "mp4box": "^2.3.0",
     "playwright-core": "^1.55.0"
   }
 }

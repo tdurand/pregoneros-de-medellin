@@ -130,6 +130,30 @@ How to read the numbers:
 - For today's code, a still counts as shown the moment its source is set. That is
   generous: Chromium decodes JPEGs off the main thread and can paint them later.
 
+## In the mobile walk (draft PR #3)
+
+`m/js/frames-video.js` is a drop-in for the mobile app's `FrameLoader`. It has
+the same methods and falls back to the JPEG loader on its own. It streams the
+`.af` and decodes as bytes arrive, so a street is walkable after its first 10%
+has loaded.
+
+`tools/bench-mobile.mjs` walks Plaza Botero in `m/` with a 390×844 phone
+viewport. The route goes forward along the whole street at a brisk swipe pace,
+back over half of it, then makes 10 jumps. Figures are medians of 3 runs.
+
+| Profile | Loader | Walkable after | Requests | MB on the wire | Stale frames | Stills behind p50 / p95 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Fast 4G, 4× CPU | JPEG (PR #3) | 2.8 s | 379 | 16.5 | 3% | 0 / 3 |
+| Fast 4G, 4× CPU | Video (VP9 in software) | **1.6 s** | **3** | **7.0** | 69% | 5 / 10 |
+| Cable | JPEG (PR #3) | 0.7 s | 379 | 18.4 | 0% | 0 / 0 |
+| Cable | Video (VP9 in software) | **0.4 s** | **3** | **7.2** | 2% | 1 / 2 |
+
+With a normal CPU the video source keeps up with walking: it runs 1–2 stills
+behind while you move. With the CPU slowed 4×, software VP9 decoding at 1000px
+cannot keep up and trails by 5–10 stills. Phones decode H.264 in hardware, which
+this sandbox cannot run, so that case needs a real device. If it still trails
+there, the next step is a lighter 640px file for slow devices.
+
 ## What it would take to ship
 
 1. **Encode every street.** Run `tools/build_af.mjs` over each street's high-res
@@ -139,7 +163,9 @@ How to read the numbers:
    today. `fetch()` of a `.af` from the site origin will fail unless the host adds
    `Access-Control-Allow-Origin`, or the files are served from the same origin
    as the site.
-3. **Wire it in behind a check.** In `Stills.fetch` / `streetwalk.renderImg`, when
+3. **Wire it in behind a check.** For the mobile app this is done:
+   `m/js/frames-video.js` swaps in for `FrameLoader` and needs one `onFrame`
+   callback in `main.js`. For the 2015 desktop app: In `Stills.fetch` / `streetwalk.renderImg`, when
    `StillsPlayer.isSupported()` and the `.af` loads, call
    `player.setFrame(imgNb)` instead of swapping the image source. Keep the JPEG
    path as the fallback. Map, sounds and characters already key off `imgNb` and
@@ -152,7 +178,8 @@ How to read the numbers:
 
 ```sh
 cd poc/scroll-webcodecs
-npm install                    # mp4box, playwright-core
+npm install                    # playwright-core
+(cd ../../tools/media && npm install)   # mp4box, used by tools/build_af.mjs
 python3 -m pip install imageio-ffmpeg pillow numpy   # ffmpeg with libx264/libvpx
 export FFMPEG=$(python3 -c "import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())")
 
