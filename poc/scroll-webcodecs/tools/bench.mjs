@@ -12,12 +12,10 @@ const runs = Number(process.argv[3] || 3);
 const executablePath = process.env.CHROMIUM || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
 
 const variants = [
-    { name: 'legacy JPEG (500px, 1000px on idle)', q: `mode=legacy&stills=${base}/street&n=378` },
-    { name: 'VP9 500px GOP5', q: `mode=webcodecs&af=${base}/street/af/vp9-500-g5.af` },
-    { name: 'VP9 1000px GOP5', q: `mode=webcodecs&af=${base}/street/af/vp9-1000-g5.af` },
-    { name: 'VP9 1000px GOP5 high quality', q: `mode=webcodecs&af=${base}/street/af/vp9-1000-g5-hq.af` },
-    { name: 'VP9 1000px GOP15', q: `mode=webcodecs&af=${base}/street/af/vp9-1000-g15.af` },
-    { name: 'VP9 1000px all-intra', q: `mode=webcodecs&af=${base}/street/af/vp9-1000-g1.af` },
+    { name: 'today: JPEG 500px, 1920px on idle', q: `mode=legacy&stills=${base}/street&n=378` },
+    { name: 'WebCodecs VP9 1000px GOP 5', q: `mode=webcodecs&af=${base}/street/af/vp9-1000-g5.af` },
+    { name: 'WebCodecs VP9 1000px GOP 15', q: `mode=webcodecs&af=${base}/street/af/vp9-1000-g15.af` },
+    { name: 'WebCodecs VP9 1000px all-intra', q: `mode=webcodecs&af=${base}/street/af/vp9-1000-g1.af` },
 ];
 const profiles = [
     { name: 'fast 4G, 4x CPU', down: 9e6, rtt: 60, cpu: 4 },
