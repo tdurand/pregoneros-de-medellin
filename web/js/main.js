@@ -248,10 +248,19 @@ async function loadSign(name) {
 
 // ---------- drawing ----------
 
+// Widest still the walk ever draws (high-res). The canvas never needs more
+// pixels than that still has on screen: in portrait a 1920 px still covers
+// ~1500 CSS px, so 1.3 canvas pixels per CSS pixel already show every source
+// pixel, where the screen's 2-3× would only make a bigger canvas to fill each
+// frame (2.5× fewer pixels on a 393×851 phone). The compositor scales it up.
+const SOURCE_WIDTH = 1920;
+const SOURCE_HEIGHT = 1080;
+
 function resize() {
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
   const w = window.innerWidth;
   const h = window.innerHeight;
+  const cover = Math.max(w / SOURCE_WIDTH, h / SOURCE_HEIGHT); // CSS px per source px
+  const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 2, 1 / cover));
   el.canvas.width = Math.round(w * dpr);
   el.canvas.height = Math.round(h * dpr);
   el.canvas.style.width = w + 'px';
@@ -274,8 +283,8 @@ function resize() {
 function drawRect(img) {
   const W = window.innerWidth;
   const H = window.innerHeight;
-  const iw = img.naturalWidth || 16;
-  const ih = img.naturalHeight || 9;
+  const iw = img.naturalWidth || img.width || 16;
+  const ih = img.naturalHeight || img.height || 9;
   const s = Math.max(W / iw, H / ih);
   const w = iw * s;
   const h = ih * s;
@@ -370,19 +379,55 @@ export function chooseWay(name) {
 function maybeLoadHighRes(now) {
   const i = Math.round(state.pos);
   if (state.vel !== 0 || now - state.lastMove < 250 || state.hiIndex === i || state.hiPending === i) return;
-  if (connectionIsConstrained()) return;
+  if (state.hiTried === i || connectionIsConstrained()) return;
   state.hiPending = i;
+  state.hiTried = i; // once per stop: a missing still isn't asked for again every frame
+  // The loader frees the previous high-res bitmap when asked for another one.
+  state.hiImg = null;
+  state.hiIndex = -1;
   state.loader.loadHighRes(i).then((img) => {
     state.hiPending = -1;
     if (img && Math.round(state.pos) === i) {
       state.hiImg = img;
       state.hiIndex = i;
       state.dirty = true;
+    } else if (img && state.hiTried === i) {
+      state.hiTried = -1; // arrived after the walker moved on: fine to ask again later
     }
   });
 }
 
+// The loop only runs while something moves or needs drawing, so a walker
+// standing still (or the landing and pages) costs no frame callbacks at all.
+// Writing any of the fields below wakes it.
 let lastT = performance.now();
+let ticking = false;
+function wake() {
+  if (ticking) return;
+  ticking = true;
+  lastT = performance.now() - 16.67;
+  requestAnimationFrame(tick);
+}
+for (const key of ['dirty', 'vel', 'pos', 'pan', 'panTarget', 'scrollTarget', 'view', 'dragging']) {
+  let value = state[key];
+  Object.defineProperty(state, key, {
+    enumerable: true,
+    get: () => value,
+    set: (v) => { if (v !== value) { value = v; wake(); } },
+  });
+}
+
+// Whether the loop has more to do on the next frame.
+function busy(now) {
+  if (state.view !== 'walk' || !state.way || !state.loader) return false;
+  if (state.dirty || state.dragging || state.vel !== 0 || state.panTarget !== null) return true;
+  if (state.desktop && state.scrollTarget !== state.scrollCur) return true;
+  // Waiting to fetch the high-res still of where the walker stopped.
+  const i = Math.round(state.pos);
+  return state.loader.ready && state.hiIndex !== i && state.hiPending !== i && state.hiTried !== i
+    && !connectionIsConstrained() && now - state.lastMove < 1000;
+}
+
 function tick(now) {
   const dt = Math.min(50, now - lastT) / 16.67;
   lastT = now;
@@ -413,7 +458,8 @@ function tick(now) {
     state.dirty = false;
     draw();
   }
-  requestAnimationFrame(tick);
+  if (busy(now)) requestAnimationFrame(tick);
+  else ticking = false;
 }
 
 function moveBy(frames) {
@@ -622,7 +668,7 @@ async function boot() {
   setupGestures();
   setupScroll();
   hud.init({ state, ways, stories, openStory, replayStory, chooseWay, setMuted, isMuted, go, walkHash, UI_TEXT, playVideo });
-  requestAnimationFrame(tick);
+  wake();
 
   el.startBtn.addEventListener('click', () => {
     unlockSound();
