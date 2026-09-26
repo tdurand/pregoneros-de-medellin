@@ -20,7 +20,7 @@
 // One addition to the FrameLoader options: `onFrame(index)` is called when a
 // newly decoded still is ready to draw. Decoding is asynchronous, so the
 // caller should redraw then (in main.js: `onFrame: () => { state.dirty = true; }`).
-import { FrameLoader, highResUrl } from './frames.js';
+import { FrameLoader, highResUrl, loadHighResInto, release } from './frames.js';
 
 // Share of the street (in stills) that must have arrived before it is walkable.
 const READY_SHARE = 0.1;
@@ -88,6 +88,7 @@ export class VideoFrameLoader {
     if (this.abort) this.abort.abort();
     this._closeDecoder();
     if (this.hi.img) this.hi.img.src = '';
+    release(this.hi.bitmap);
     if (this.fallback) this.fallback.stop();
   }
 
@@ -111,15 +112,7 @@ export class VideoFrameLoader {
 
   loadHighRes(i) {
     if (this.fallback) return this.fallback.loadHighRes(i);
-    if (this.hi.index === i && this.hi.img && this.hi.img.complete) return Promise.resolve(this.hi.img);
-    if (this.hi.img) this.hi.img.src = '';
-    const img = new Image();
-    this.hi = { index: i, img };
-    return new Promise((resolve) => {
-      img.onload = () => resolve(this.hi.img === img ? img : null);
-      img.onerror = () => resolve(null);
-      img.src = highResUrl(this.base, this.way, i);
-    });
+    return loadHighResInto(this, highResUrl(this.base, this.way, i), i);
   }
 
   // ---- loading ----
